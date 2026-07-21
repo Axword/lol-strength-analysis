@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /*
+    Warm Anthropic dark + Apple quiet chrome.
+    Scene: late-night desk, one monitor, match state as a calm instrument.
+  */
+  --ink: oklch(0.93 0.012 78);
+  --muted: oklch(0.64 0.016 70);
+  --bg: oklch(0.145 0.014 55);
+  --panel: oklch(0.175 0.015 55);
+  --surface: oklch(0.215 0.015 55);
+  --elevated: oklch(0.25 0.014 55);
+  --line: oklch(0.92 0.01 78 / 0.1);
+  --line-strong: oklch(0.92 0.01 78 / 0.18);
+  --accent: oklch(0.74 0.12 48);
+  --accent-deep: oklch(0.66 0.125 45);
+  --accent-soft: oklch(0.74 0.12 48 / 0.14);
+  --on-accent: oklch(0.18 0.02 55);
+  --blue: oklch(0.74 0.1 245);
+  --blue-soft: oklch(0.74 0.1 245 / 0.14);
+  --red: oklch(0.72 0.13 28);
+  --red-soft: oklch(0.72 0.13 28 / 0.14);
+  --warn: oklch(0.8 0.1 75);
+  --live: oklch(0.78 0.11 150);
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --display: var(--sans);
+  --radius: 8px;
+  --radius-sm: 6px;
+
+  color-scheme: dark;
+  font: 15px/1.45 var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--bg);
+}
+
+#root {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  min-height: 100svh;
+  padding: 0 1rem 2.5rem;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
