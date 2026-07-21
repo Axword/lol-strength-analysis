@@ -1,0 +1,4119 @@
+{
+  "Aatrox": {
+    "id": 266,
+    "key": "Aatrox",
+    "name": "Aatrox",
+    "title": "the Darkin Blade",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "BLOOD_WELL",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Deathbringer Stance",
+      "Q": "The Darkin Blade",
+      "W": "Infernal Chains",
+      "E": "Umbral Dash",
+      "R": "World Ender"
+    }
+  },
+  "Ahri": {
+    "id": 103,
+    "key": "Ahri",
+    "name": "Ahri",
+    "title": "the Nine-Tailed Fox",
+    "roles": [
+      "ASSASSIN",
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Essence Theft",
+      "Q": "Orb of Deception",
+      "W": "Fox-Fire",
+      "E": "Charm",
+      "R": "Spirit Rush"
+    }
+  },
+  "Akali": {
+    "id": 84,
+    "key": "Akali",
+    "name": "Akali",
+    "title": "the Rogue Assassin",
+    "roles": [
+      "ASSASSIN"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "ENERGY",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Assassin's Mark",
+      "Q": "Five Point Strike",
+      "W": "Twilight Shroud",
+      "E": "Shuriken Flip",
+      "R": "Perfect Execution"
+    }
+  },
+  "Akshan": {
+    "id": 166,
+    "key": "Akshan",
+    "name": "Akshan",
+    "title": "the Rogue Sentinel",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.22",
+    "abilityNames": {
+      "P": "Dirty Fighting",
+      "Q": "Avengerang",
+      "W": "Going Rogue",
+      "E": "Heroic Swing",
+      "R": "Comeuppance"
+    }
+  },
+  "Alistar": {
+    "id": 12,
+    "key": "Alistar",
+    "name": "Alistar",
+    "title": "the Minotaur",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Triumphant Roar",
+      "Q": "Pulverize",
+      "W": "Headbutt",
+      "E": "Trample",
+      "R": "Unbreakable Will"
+    }
+  },
+  "Ambessa": {
+    "id": 799,
+    "key": "Ambessa",
+    "name": "Ambessa",
+    "title": "Matriarch of War",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "ENERGY",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Drakehound's Step",
+      "Q": "Cunning Sweep",
+      "W": "Repudiation",
+      "E": "Lacerate",
+      "R": "Public Execution"
+    }
+  },
+  "Amumu": {
+    "id": 32,
+    "key": "Amumu",
+    "name": "Amumu",
+    "title": "the Sad Mummy",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE",
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.9",
+    "abilityNames": {
+      "P": "Cursed Touch",
+      "Q": "Bandage Toss",
+      "W": "Despair",
+      "E": "Tantrum",
+      "R": "Curse of the Sad Mummy"
+    }
+  },
+  "Anivia": {
+    "id": 34,
+    "key": "Anivia",
+    "name": "Anivia",
+    "title": "the Cryophoenix",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Rebirth",
+      "Q": "Flash Frost",
+      "W": "Crystallize",
+      "E": "Frostbite",
+      "R": "Glacial Storm"
+    }
+  },
+  "Annie": {
+    "id": 1,
+    "key": "Annie",
+    "name": "Annie",
+    "title": "the Dark Child",
+    "roles": [
+      "BURST",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Pyromania",
+      "Q": "Disintegrate",
+      "W": "Incinerate",
+      "E": "Molten Shield",
+      "R": "Summon: Tibbers"
+    }
+  },
+  "Aphelios": {
+    "id": 523,
+    "key": "Aphelios",
+    "name": "Aphelios",
+    "title": "the Weapon of the Faithful",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "The Hitman and the Seer",
+      "Q": "Weapons of the Faithful",
+      "W": "Phase",
+      "E": "Weapon Queue System",
+      "R": "Moonlight Vigil"
+    }
+  },
+  "Ashe": {
+    "id": 22,
+    "key": "Ashe",
+    "name": "Ashe",
+    "title": "the Frost Archer",
+    "roles": [
+      "MARKSMAN",
+      "SUPPORT"
+    ],
+    "positions": [
+      "BOTTOM",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Frost Shot",
+      "Q": "Ranger's Focus",
+      "W": "Volley",
+      "E": "Hawkshot",
+      "R": "Enchanted Crystal Arrow"
+    }
+  },
+  "AurelionSol": {
+    "id": 136,
+    "key": "AurelionSol",
+    "name": "Aurelion Sol",
+    "title": "The Star Forger",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Cosmic Creator",
+      "Q": "Breath of Light",
+      "W": "Astral Flight",
+      "E": "Singularity",
+      "R": "Falling Star"
+    }
+  },
+  "Aurora": {
+    "id": 893,
+    "key": "Aurora",
+    "name": "Aurora",
+    "title": "the Witch Between Worlds",
+    "roles": [
+      "ASSASSIN",
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Spirit Abjuration",
+      "Q": "Twofold Hex",
+      "W": "Across the Veil",
+      "E": "The Weirding",
+      "R": "Between Worlds"
+    }
+  },
+  "Azir": {
+    "id": 268,
+    "key": "Azir",
+    "name": "Azir",
+    "title": "the Emperor of the Sands",
+    "roles": [
+      "MAGE",
+      "MARKSMAN",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Shurima's Legacy",
+      "Q": "Conquering Sands",
+      "W": "Arise!",
+      "E": "Shifting Sands",
+      "R": "Emperor's Divide"
+    }
+  },
+  "Bard": {
+    "id": 432,
+    "key": "Bard",
+    "name": "Bard",
+    "title": "the Wandering Caretaker",
+    "roles": [
+      "CATCHER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Traveler's Call",
+      "Q": "Cosmic Binding",
+      "W": "Caretaker's Shrine",
+      "E": "Magical Journey",
+      "R": "Tempered Fate"
+    }
+  },
+  "Belveth": {
+    "id": 200,
+    "key": "Belveth",
+    "name": "Bel'Veth",
+    "title": "the Empress of the Void",
+    "roles": [
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "NONE",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Death in Lavender",
+      "Q": "Void Surge",
+      "W": "Above and Below",
+      "E": "Royal Maelstrom",
+      "R": "Endless Banquet"
+    }
+  },
+  "Blitzcrank": {
+    "id": 53,
+    "key": "Blitzcrank",
+    "name": "Blitzcrank",
+    "title": "the Great Steam Golem",
+    "roles": [
+      "CATCHER",
+      "SUPPORT",
+      "TANK"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Mana Barrier",
+      "Q": "Rocket Grab",
+      "W": "Overdrive",
+      "E": "Power Fist",
+      "R": "Static Field"
+    }
+  },
+  "Brand": {
+    "id": 63,
+    "key": "Brand",
+    "name": "Brand",
+    "title": "the Burning Vengeance",
+    "roles": [
+      "BURST",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Blaze",
+      "Q": "Sear",
+      "W": "Pillar of Flame",
+      "E": "Conflagration",
+      "R": "Pyroclasm"
+    }
+  },
+  "Braum": {
+    "id": 201,
+    "key": "Braum",
+    "name": "Braum",
+    "title": "the Heart of the Freljord",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Concussive Blows",
+      "Q": "Winter's Bite",
+      "W": "Stand Behind Me",
+      "E": "Unbreakable",
+      "R": "Glacial Fissure"
+    }
+  },
+  "Briar": {
+    "id": 233,
+    "key": "Briar",
+    "name": "Briar",
+    "title": "the Restrained Hunger",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "FRENZY",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Crimson Curse",
+      "Q": "Head Rush",
+      "W": "Blood Frenzy",
+      "E": "Chilling Scream",
+      "R": "Certain Death"
+    }
+  },
+  "Caitlyn": {
+    "id": 51,
+    "key": "Caitlyn",
+    "name": "Caitlyn",
+    "title": "the Sheriff of Piltover",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Headshot",
+      "Q": "Piltover Peacemaker",
+      "W": "Yordle Snap Trap",
+      "E": "90 Caliber Net",
+      "R": "Ace in the Hole"
+    }
+  },
+  "Camille": {
+    "id": 164,
+    "key": "Camille",
+    "name": "Camille",
+    "title": "the Steel Shadow",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.21",
+    "abilityNames": {
+      "P": "Adaptive Defenses",
+      "Q": "Precision Protocol",
+      "W": "Tactical Sweep",
+      "E": "Hookshot",
+      "R": "The Hextech Ultimatum"
+    }
+  },
+  "Cassiopeia": {
+    "id": 69,
+    "key": "Cassiopeia",
+    "name": "Cassiopeia",
+    "title": "the Serpent's Embrace",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Serpentine Grace",
+      "Q": "Noxious Blast",
+      "W": "Miasma",
+      "E": "Twin Fang",
+      "R": "Petrifying Gaze"
+    }
+  },
+  "Chogath": {
+    "id": 31,
+    "key": "Chogath",
+    "name": "Cho'Gath",
+    "title": "the Terror of the Void",
+    "roles": [
+      "MAGE",
+      "SPECIALIST",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Carnivore",
+      "Q": "Rupture",
+      "W": "Feral Scream",
+      "E": "Vorpal Spikes",
+      "R": "Feast"
+    }
+  },
+  "Corki": {
+    "id": 42,
+    "key": "Corki",
+    "name": "Corki",
+    "title": "the Daring Bombardier",
+    "roles": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Hextech Munitions",
+      "Q": "Phosphorus Bomb",
+      "W": "Valkyrie",
+      "E": "Gatling Gun",
+      "R": "Missile Barrage"
+    }
+  },
+  "Darius": {
+    "id": 122,
+    "key": "Darius",
+    "name": "Darius",
+    "title": "the Hand of Noxus",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Hemorrhage",
+      "Q": "Decimate",
+      "W": "Crippling Strike",
+      "E": "Apprehend",
+      "R": "Noxian Guillotine"
+    }
+  },
+  "Diana": {
+    "id": 131,
+    "key": "Diana",
+    "name": "Diana",
+    "title": "Scorn of the Moon",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Moonsilver Blade",
+      "Q": "Crescent Strike",
+      "W": "Pale Cascade",
+      "E": "Lunar Rush",
+      "R": "Moonfall"
+    }
+  },
+  "DrMundo": {
+    "id": 36,
+    "key": "DrMundo",
+    "name": "Dr. Mundo",
+    "title": "the Madman of Zaun",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "HEALTH",
+    "patchLastChanged": "25.05",
+    "abilityNames": {
+      "P": "Goes Where He Pleases",
+      "Q": "Infected Bonesaw",
+      "W": "Heart Zapper",
+      "E": "Blunt Force Trauma",
+      "R": "Maximum Dosage"
+    }
+  },
+  "Draven": {
+    "id": 119,
+    "key": "Draven",
+    "name": "Draven",
+    "title": "the Glorious Executioner",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "League of Draven",
+      "Q": "Spinning Axe",
+      "W": "Blood Rush",
+      "E": "Stand Aside",
+      "R": "Whirling Death"
+    }
+  },
+  "Ekko": {
+    "id": 245,
+    "key": "Ekko",
+    "name": "Ekko",
+    "title": "the Boy Who Shattered Time",
+    "roles": [
+      "ASSASSIN",
+      "MAGE"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.04",
+    "abilityNames": {
+      "P": "Z-Drive Resonance",
+      "Q": "Timewinder",
+      "W": "Parallel Convergence",
+      "E": "Phase Dive",
+      "R": "Chronobreak"
+    }
+  },
+  "Elise": {
+    "id": 60,
+    "key": "Elise",
+    "name": "Elise",
+    "title": "the Spider Queen",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "MAGE"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Spider Queen",
+      "Q": "Neurotoxin",
+      "W": "Volatile Spiderling",
+      "E": "Cocoon",
+      "R": "Spider Form / Human Form"
+    }
+  },
+  "Evelynn": {
+    "id": 28,
+    "key": "Evelynn",
+    "name": "Evelynn",
+    "title": "Agony's Embrace",
+    "roles": [
+      "ASSASSIN",
+      "MAGE"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Demon Shade",
+      "Q": "Hate Spike",
+      "W": "Allure",
+      "E": "Whiplash",
+      "R": "Last Caress"
+    }
+  },
+  "Ezreal": {
+    "id": 81,
+    "key": "Ezreal",
+    "name": "Ezreal",
+    "title": "the Prodigal Explorer",
+    "roles": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Rising Spell Force",
+      "Q": "Mystic Shot",
+      "W": "Essence Flux",
+      "E": "Arcane Shift",
+      "R": "Trueshot Barrage"
+    }
+  },
+  "Fiddlesticks": {
+    "id": 9,
+    "key": "Fiddlesticks",
+    "name": "Fiddlesticks",
+    "title": "the Ancient Fear",
+    "roles": [
+      "MAGE",
+      "SPECIALIST",
+      "SUPPORT"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "A Harmless Scarecrow",
+      "Q": "Terrify",
+      "W": "Bountiful Harvest",
+      "E": "Reap",
+      "R": "Crowstorm"
+    }
+  },
+  "Fiora": {
+    "id": 114,
+    "key": "Fiora",
+    "name": "Fiora",
+    "title": "the Grand Duelist",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Duelist's Dance",
+      "Q": "Lunge",
+      "W": "Riposte",
+      "E": "Bladework",
+      "R": "Grand Challenge"
+    }
+  },
+  "Fizz": {
+    "id": 105,
+    "key": "Fizz",
+    "name": "Fizz",
+    "title": "the Tidal Trickster",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Nimble Fighter",
+      "Q": "Urchin Strike",
+      "W": "Seastone Trident",
+      "E": "Playful",
+      "R": "Chum the Waters"
+    }
+  },
+  "Galio": {
+    "id": 3,
+    "key": "Galio",
+    "name": "Galio",
+    "title": "the Colossus",
+    "roles": [
+      "MAGE",
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Colossal Smash",
+      "Q": "Winds of War",
+      "W": "Shield of Durand",
+      "E": "Justice Punch",
+      "R": "Hero's Entrance"
+    }
+  },
+  "Gangplank": {
+    "id": 41,
+    "key": "Gangplank",
+    "name": "Gangplank",
+    "title": "the Saltwater Scourge",
+    "roles": [
+      "FIGHTER",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Trial by Fire",
+      "Q": "Parrrley",
+      "W": "Remove Scurvy",
+      "E": "Powder Keg",
+      "R": "Cannon Barrage"
+    }
+  },
+  "Garen": {
+    "id": 86,
+    "key": "Garen",
+    "name": "Garen",
+    "title": "The Might of Demacia",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "NONE",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Perseverance",
+      "Q": "Decisive Strike",
+      "W": "Courage",
+      "E": "Judgment",
+      "R": "Demacian Justice"
+    }
+  },
+  "Gnar": {
+    "id": 150,
+    "key": "Gnar",
+    "name": "Gnar",
+    "title": "the Missing Link",
+    "roles": [
+      "FIGHTER",
+      "SPECIALIST",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "RAGE",
+    "patchLastChanged": "14.18",
+    "abilityNames": {
+      "P": "Rage Gene",
+      "Q": "Boomerang Throw",
+      "W": "Hyper",
+      "E": "Hop",
+      "R": "GNAR!"
+    }
+  },
+  "Gragas": {
+    "id": 79,
+    "key": "Gragas",
+    "name": "Gragas",
+    "title": "the Rabble Rouser",
+    "roles": [
+      "FIGHTER",
+      "MAGE",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Happy Hour",
+      "Q": "Barrel Roll",
+      "W": "Drunken Rage",
+      "E": "Body Slam",
+      "R": "Explosive Cask"
+    }
+  },
+  "Graves": {
+    "id": 104,
+    "key": "Graves",
+    "name": "Graves",
+    "title": "the Outlaw",
+    "roles": [
+      "MARKSMAN",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "New Destiny",
+      "Q": "End of the Line",
+      "W": "Smoke Screen",
+      "E": "Quickdraw",
+      "R": "Collateral Damage"
+    }
+  },
+  "Gwen": {
+    "id": 887,
+    "key": "Gwen",
+    "name": "Gwen",
+    "title": "The Hallowed Seamstress",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "A Thousand Cuts",
+      "Q": "Snip Snip!",
+      "W": "Hallowed Mist",
+      "E": "Skip 'n Slash",
+      "R": "Needlework"
+    }
+  },
+  "Hecarim": {
+    "id": 120,
+    "key": "Hecarim",
+    "name": "Hecarim",
+    "title": "the Shadow of War",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.24",
+    "abilityNames": {
+      "P": "Warpath",
+      "Q": "Rampage",
+      "W": "Spirit of Dread",
+      "E": "Devastating Charge",
+      "R": "Onslaught of Shadows"
+    }
+  },
+  "Heimerdinger": {
+    "id": 74,
+    "key": "Heimerdinger",
+    "name": "Heimerdinger",
+    "title": "the Revered Inventor",
+    "roles": [
+      "MAGE",
+      "SPECIALIST",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Hextech Affinity",
+      "Q": "H-28G Evolution Turret",
+      "W": "Hextech Micro-Rockets",
+      "E": "CH-2 Electron Storm Grenade",
+      "R": "UPGRADE!!!"
+    }
+  },
+  "Hwei": {
+    "id": 910,
+    "key": "Hwei",
+    "name": "Hwei",
+    "title": "the Visionary",
+    "roles": [
+      "ARTILLERY",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Signature of the Visionary",
+      "Q": "Subject: Disaster",
+      "W": "Subject: Serenity",
+      "E": "Subject: Torment",
+      "R": "Spiraling Despair"
+    }
+  },
+  "Illaoi": {
+    "id": 420,
+    "key": "Illaoi",
+    "name": "Illaoi",
+    "title": "the Kraken Priestess",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Prophet of an Elder God",
+      "Q": "Tentacle Smash",
+      "W": "Harsh Lesson",
+      "E": "Test of Spirit",
+      "R": "Leap of Faith"
+    }
+  },
+  "Irelia": {
+    "id": 39,
+    "key": "Irelia",
+    "name": "Irelia",
+    "title": "the Blade Dancer",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Ionian Fervor",
+      "Q": "Bladesurge",
+      "W": "Defiant Dance",
+      "E": "Flawless Duet",
+      "R": "Vanguard's Edge"
+    }
+  },
+  "Ivern": {
+    "id": 427,
+    "key": "Ivern",
+    "name": "Ivern",
+    "title": "the Green Father",
+    "roles": [
+      "CATCHER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Friend of the Forest",
+      "Q": "Rootcaller",
+      "W": "Brushmaker",
+      "E": "Triggerseed",
+      "R": "Daisy!"
+    }
+  },
+  "Janna": {
+    "id": 40,
+    "key": "Janna",
+    "name": "Janna",
+    "title": "the Storm's Fury",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.20",
+    "abilityNames": {
+      "P": "Tailwind",
+      "Q": "Howling Gale",
+      "W": "Zephyr",
+      "E": "Eye of the Storm",
+      "R": "Monsoon"
+    }
+  },
+  "JarvanIV": {
+    "id": 59,
+    "key": "JarvanIV",
+    "name": "Jarvan IV",
+    "title": "the Exemplar of Demacia",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Martial Cadence",
+      "Q": "Dragon Strike",
+      "W": "Golden Aegis",
+      "E": "Demacian Standard",
+      "R": "Cataclysm"
+    }
+  },
+  "Jax": {
+    "id": 24,
+    "key": "Jax",
+    "name": "Jax",
+    "title": "Grandmaster at Arms",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Relentless Assault",
+      "Q": "Leap Strike",
+      "W": "Empower",
+      "E": "Counter Strike",
+      "R": "Grandmaster-at-Arms"
+    }
+  },
+  "Jayce": {
+    "id": 126,
+    "key": "Jayce",
+    "name": "Jayce",
+    "title": "the Defender of Tomorrow",
+    "roles": [
+      "ARTILLERY",
+      "FIGHTER",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Hextech Capacitor",
+      "Q": "To the Skies!",
+      "W": "Lightning Field",
+      "E": "Thundering Blow",
+      "R": "Transform Mercury Cannon"
+    }
+  },
+  "Jhin": {
+    "id": 202,
+    "key": "Jhin",
+    "name": "Jhin",
+    "title": "the Virtuoso",
+    "roles": [
+      "CATCHER",
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Whisper",
+      "Q": "Dancing Grenade",
+      "W": "Deadly Flourish",
+      "E": "Captive Audience",
+      "R": "Curtain Call"
+    }
+  },
+  "Jinx": {
+    "id": 222,
+    "key": "Jinx",
+    "name": "Jinx",
+    "title": "the Loose Cannon",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Get Excited!",
+      "Q": "Switcheroo!",
+      "W": "Zap!",
+      "E": "Flame Chompers!",
+      "R": "Super Mega Death Rocket!"
+    }
+  },
+  "KSante": {
+    "id": 897,
+    "key": "KSante",
+    "name": "K'Sante",
+    "title": "the Pride of Nazumah",
+    "roles": [
+      "FIGHTER",
+      "SKIRMISHER",
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Dauntless Instinct",
+      "Q": "Ntofo Strikes",
+      "W": "Path Maker",
+      "E": "Footwork",
+      "R": "All Out"
+    }
+  },
+  "Kaisa": {
+    "id": 145,
+    "key": "Kaisa",
+    "name": "Kai'Sa",
+    "title": "Daughter of the Void",
+    "roles": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Second Skin",
+      "Q": "Icathian Rain",
+      "W": "Void Seeker",
+      "E": "Supercharge",
+      "R": "Killer Instinct"
+    }
+  },
+  "Kalista": {
+    "id": 429,
+    "key": "Kalista",
+    "name": "Kalista",
+    "title": "the Spear of Vengeance",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Martial Poise",
+      "Q": "Pierce",
+      "W": "Sentinel",
+      "E": "Rend",
+      "R": "Fate's Call"
+    }
+  },
+  "Karma": {
+    "id": 43,
+    "key": "Karma",
+    "name": "Karma",
+    "title": "the Enlightened One",
+    "roles": [
+      "BURST",
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Gathering Fire",
+      "Q": "Inner Flame",
+      "W": "Focused Resolve",
+      "E": "Inspire",
+      "R": "Mantra"
+    }
+  },
+  "Karthus": {
+    "id": 30,
+    "key": "Karthus",
+    "name": "Karthus",
+    "title": "the Deathsinger",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.24",
+    "abilityNames": {
+      "P": "Death Defied",
+      "Q": "Lay Waste",
+      "W": "Wall of Pain",
+      "E": "Defile",
+      "R": "Requiem"
+    }
+  },
+  "Kassadin": {
+    "id": 38,
+    "key": "Kassadin",
+    "name": "Kassadin",
+    "title": "the Void Walker",
+    "roles": [
+      "ASSASSIN",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Void Stone",
+      "Q": "Null Sphere",
+      "W": "Nether Blade",
+      "E": "Force Pulse",
+      "R": "Riftwalk"
+    }
+  },
+  "Katarina": {
+    "id": 55,
+    "key": "Katarina",
+    "name": "Katarina",
+    "title": "the Sinister Blade",
+    "roles": [
+      "ASSASSIN",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "NONE",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Voracity",
+      "Q": "Bouncing Blade",
+      "W": "Preparation",
+      "E": "Shunpo",
+      "R": "Death Lotus"
+    }
+  },
+  "Kayle": {
+    "id": 10,
+    "key": "Kayle",
+    "name": "Kayle",
+    "title": "the Righteous",
+    "roles": [
+      "MAGE",
+      "MARKSMAN",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Divine Ascent",
+      "Q": "Radiant Blast",
+      "W": "Celestial Blessing",
+      "E": "Starfire Spellblade",
+      "R": "Divine Judgment"
+    }
+  },
+  "Kayn": {
+    "id": 141,
+    "key": "Kayn",
+    "name": "Kayn",
+    "title": "the Shadow Reaper",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.10",
+    "abilityNames": {
+      "P": "The Darkin Scythe",
+      "Q": "Reaping Slash",
+      "W": "Blade's Reach",
+      "E": "Shadow Step",
+      "R": "Umbral Trespass"
+    }
+  },
+  "Kennen": {
+    "id": 85,
+    "key": "Kennen",
+    "name": "Kennen",
+    "title": "the Heart of the Tempest",
+    "roles": [
+      "MAGE",
+      "MARKSMAN",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "ENERGY",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Mark of the Storm",
+      "Q": "Thundering Shuriken",
+      "W": "Electrical Surge",
+      "E": "Lightning Rush",
+      "R": "Slicing Maelstrom"
+    }
+  },
+  "Khazix": {
+    "id": 121,
+    "key": "Khazix",
+    "name": "Kha'Zix",
+    "title": "the Voidreaver",
+    "roles": [
+      "ASSASSIN"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Unseen Threat",
+      "Q": "Taste Their Fear",
+      "W": "Void Spike",
+      "E": "Leap",
+      "R": "Void Assault"
+    }
+  },
+  "Kindred": {
+    "id": 203,
+    "key": "Kindred",
+    "name": "Kindred",
+    "title": "The Eternal Hunters",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Mark of the Kindred",
+      "Q": "Dance of Arrows",
+      "W": "Wolf's Frenzy",
+      "E": "Mounting Dread",
+      "R": "Lamb's Respite"
+    }
+  },
+  "Kled": {
+    "id": 240,
+    "key": "Kled",
+    "name": "Kled",
+    "title": "the Cantankerous Cavalier",
+    "roles": [
+      "FIGHTER",
+      "SKIRMISHER",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "COURAGE",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Skaarl the Cowardly Lizard",
+      "Q": "Bear Trap on a Rope",
+      "W": "Violent Tendencies",
+      "E": "Jousting",
+      "R": "Chaaaaaaaarge!!!"
+    }
+  },
+  "KogMaw": {
+    "id": 96,
+    "key": "KogMaw",
+    "name": "Kog'Maw",
+    "title": "the Mouth of the Abyss",
+    "roles": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.04",
+    "abilityNames": {
+      "P": "Icathian Surprise",
+      "Q": "Caustic Spittle",
+      "W": "Bio-Arcane Barrage",
+      "E": "Void Ooze",
+      "R": "Living Artillery"
+    }
+  },
+  "Leblanc": {
+    "id": 7,
+    "key": "Leblanc",
+    "name": "LeBlanc",
+    "title": "the Deceiver",
+    "roles": [
+      "ASSASSIN",
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Mirror Image",
+      "Q": "Sigil of Malice",
+      "W": "Distortion",
+      "E": "Ethereal Chains",
+      "R": "Mimic"
+    }
+  },
+  "LeeSin": {
+    "id": 64,
+    "key": "LeeSin",
+    "name": "Lee Sin",
+    "title": "the Blind Monk",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "ENERGY",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Flurry",
+      "Q": "Sonic Wave",
+      "W": "Safeguard",
+      "E": "Tempest",
+      "R": "Dragon's Rage"
+    }
+  },
+  "Leona": {
+    "id": 89,
+    "key": "Leona",
+    "name": "Leona",
+    "title": "the Radiant Dawn",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Sunlight",
+      "Q": "Shield of Daybreak",
+      "W": "Eclipse",
+      "E": "Zenith Blade",
+      "R": "Solar Flare"
+    }
+  },
+  "Lillia": {
+    "id": 876,
+    "key": "Lillia",
+    "name": "Lillia",
+    "title": "the Bashful Bloom",
+    "roles": [
+      "FIGHTER",
+      "MAGE",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.07",
+    "abilityNames": {
+      "P": "Dream-Laden Bough",
+      "Q": "Blooming Blows",
+      "W": "Watch Out! Eep!",
+      "E": "Swirlseed",
+      "R": "Lilting Lullaby"
+    }
+  },
+  "Lissandra": {
+    "id": 127,
+    "key": "Lissandra",
+    "name": "Lissandra",
+    "title": "the Ice Witch",
+    "roles": [
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Iceborn Subjugation",
+      "Q": "Ice Shard",
+      "W": "Ring of Frost",
+      "E": "Glacial Path",
+      "R": "Frozen Tomb"
+    }
+  },
+  "Lucian": {
+    "id": 236,
+    "key": "Lucian",
+    "name": "Lucian",
+    "title": "the Purifier",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Lightslinger",
+      "Q": "Piercing Light",
+      "W": "Ardent Blaze",
+      "E": "Relentless Pursuit",
+      "R": "The Culling"
+    }
+  },
+  "Lulu": {
+    "id": 117,
+    "key": "Lulu",
+    "name": "Lulu",
+    "title": "the Fae Sorceress",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Pix, Faerie Companion",
+      "Q": "Glitterlance",
+      "W": "Whimsy",
+      "E": "Help, Pix!",
+      "R": "Wild Growth"
+    }
+  },
+  "Lux": {
+    "id": 99,
+    "key": "Lux",
+    "name": "Lux",
+    "title": "the Lady of Luminosity",
+    "roles": [
+      "ARTILLERY",
+      "BURST",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.10",
+    "abilityNames": {
+      "P": "Illumination",
+      "Q": "Light Binding",
+      "W": "Prismatic Barrier",
+      "E": "Lucent Singularity",
+      "R": "Final Spark"
+    }
+  },
+  "Malphite": {
+    "id": 54,
+    "key": "Malphite",
+    "name": "Malphite",
+    "title": "Shard of the Monolith",
+    "roles": [
+      "MAGE",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.21",
+    "abilityNames": {
+      "P": "Granite Shield",
+      "Q": "Seismic Shard",
+      "W": "Thunderclap",
+      "E": "Ground Slam",
+      "R": "Unstoppable Force"
+    }
+  },
+  "Malzahar": {
+    "id": 90,
+    "key": "Malzahar",
+    "name": "Malzahar",
+    "title": "the Prophet of the Void",
+    "roles": [
+      "ASSASSIN",
+      "BATTLEMAGE",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.04",
+    "abilityNames": {
+      "P": "Void Shift",
+      "Q": "Call of the Void",
+      "W": "Void Swarm",
+      "E": "Malefic Visions",
+      "R": "Nether Grasp"
+    }
+  },
+  "Maokai": {
+    "id": 57,
+    "key": "Maokai",
+    "name": "Maokai",
+    "title": "the Twisted Treant",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE",
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.22",
+    "abilityNames": {
+      "P": "Sap Magic",
+      "Q": "Bramble Smash",
+      "W": "Twisted Advance",
+      "E": "Sapling Toss",
+      "R": "Nature's Grasp"
+    }
+  },
+  "MasterYi": {
+    "id": 11,
+    "key": "MasterYi",
+    "name": "Master Yi",
+    "title": "the Wuju Bladesman",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Double Strike",
+      "Q": "Alpha Strike",
+      "W": "Meditate",
+      "E": "Wuju Style",
+      "R": "Highlander"
+    }
+  },
+  "Mel": {
+    "id": 800,
+    "key": "Mel",
+    "name": "Mel",
+    "title": "the Soul's Reflection",
+    "roles": [
+      "ARTILLERY",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Searing Brilliance",
+      "Q": "Radiant Volley",
+      "W": "Rebuttal",
+      "E": "Solar Snare",
+      "R": "Golden Eclipse"
+    }
+  },
+  "Milio": {
+    "id": 902,
+    "key": "Milio",
+    "name": "Milio",
+    "title": "The Gentle Flame",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Fired Up!",
+      "Q": "Ultra Mega Fire Kick",
+      "W": "Cozy Campfire",
+      "E": "Warm Hugs",
+      "R": "Breath of Life"
+    }
+  },
+  "MissFortune": {
+    "id": 21,
+    "key": "MissFortune",
+    "name": "Miss Fortune",
+    "title": "the Bounty Hunter",
+    "roles": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Love Tap",
+      "Q": "Double Up",
+      "W": "Strut",
+      "E": "Make It Rain",
+      "R": "Bullet Time"
+    }
+  },
+  "Mordekaiser": {
+    "id": 82,
+    "key": "Mordekaiser",
+    "name": "Mordekaiser",
+    "title": "the Iron Revenant",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "MAGE"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "SHIELD",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Darkness Rise",
+      "Q": "Obliterate",
+      "W": "Indestructible",
+      "E": "Death's Grasp",
+      "R": "Realm of Death"
+    }
+  },
+  "Morgana": {
+    "id": 25,
+    "key": "Morgana",
+    "name": "Morgana",
+    "title": "the Fallen",
+    "roles": [
+      "CATCHER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Soul Siphon",
+      "Q": "Dark Binding",
+      "W": "Tormented Shadow",
+      "E": "Black Shield",
+      "R": "Soul Shackles"
+    }
+  },
+  "Naafiri": {
+    "id": 950,
+    "key": "Naafiri",
+    "name": "Naafiri",
+    "title": "the Hound of a Hundred Bites",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "We Are More",
+      "Q": "Darkin Daggers",
+      "W": "The Call of the Pack",
+      "E": "Eviscerate",
+      "R": "Hounds' Pursuit"
+    }
+  },
+  "Nami": {
+    "id": 267,
+    "key": "Nami",
+    "name": "Nami",
+    "title": "the Tidecaller",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.24",
+    "abilityNames": {
+      "P": "Surging Tides",
+      "Q": "Aqua Prison",
+      "W": "Ebb and Flow",
+      "E": "Tidecaller's Blessing",
+      "R": "Tidal Wave"
+    }
+  },
+  "Nasus": {
+    "id": 75,
+    "key": "Nasus",
+    "name": "Nasus",
+    "title": "the Curator of the Sands",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Soul Eater",
+      "Q": "Siphoning Strike",
+      "W": "Wither",
+      "E": "Spirit Fire",
+      "R": "Fury of the Sands"
+    }
+  },
+  "Nautilus": {
+    "id": 111,
+    "key": "Nautilus",
+    "name": "Nautilus",
+    "title": "the Titan of the Depths",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.04",
+    "abilityNames": {
+      "P": "Staggering Blow",
+      "Q": "Dredge Line",
+      "W": "Titan's Wrath",
+      "E": "Riptide",
+      "R": "Depth Charge"
+    }
+  },
+  "Neeko": {
+    "id": 518,
+    "key": "Neeko",
+    "name": "Neeko",
+    "title": "the Curious Chameleon",
+    "roles": [
+      "BURST",
+      "CATCHER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Inherent Glamour",
+      "Q": "Blooming Burst",
+      "W": "Shapesplitter",
+      "E": "Tangle-Barbs",
+      "R": "Pop Blossom"
+    }
+  },
+  "Nidalee": {
+    "id": 76,
+    "key": "Nidalee",
+    "name": "Nidalee",
+    "title": "the Bestial Huntress",
+    "roles": [
+      "ASSASSIN",
+      "MAGE",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Prowl",
+      "Q": "Javelin Toss",
+      "W": "Bushwhack",
+      "E": "Primal Surge",
+      "R": "Aspect of the Cougar"
+    }
+  },
+  "Nilah": {
+    "id": 895,
+    "key": "Nilah",
+    "name": "Nilah",
+    "title": "the Joy Unbound",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Joy Unending",
+      "Q": "Formless Blade",
+      "W": "Jubilant Veil",
+      "E": "Slipstream",
+      "R": "Apotheosis"
+    }
+  },
+  "Nocturne": {
+    "id": 56,
+    "key": "Nocturne",
+    "name": "Nocturne",
+    "title": "the Eternal Nightmare",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.10",
+    "abilityNames": {
+      "P": "Umbra Blades",
+      "Q": "Duskbringer",
+      "W": "Shroud of Darkness",
+      "E": "Unspeakable Horror",
+      "R": "Paranoia"
+    }
+  },
+  "Nunu": {
+    "id": 20,
+    "key": "Nunu",
+    "name": "Nunu & Willump",
+    "title": "the Boy and His Yeti",
+    "roles": [
+      "MAGE",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Call of the Freljord",
+      "Q": "Consume",
+      "W": "Biggest Snowball Ever!",
+      "E": "Snowball Barrage",
+      "R": "Absolute Zero"
+    }
+  },
+  "Olaf": {
+    "id": 2,
+    "key": "Olaf",
+    "name": "Olaf",
+    "title": "the Berserker",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.07",
+    "abilityNames": {
+      "P": "Berserker Rage",
+      "Q": "Undertow",
+      "W": "Tough It Out",
+      "E": "Reckless Swing",
+      "R": "Ragnarok"
+    }
+  },
+  "Orianna": {
+    "id": 61,
+    "key": "Orianna",
+    "name": "Orianna",
+    "title": "the Lady of Clockwork",
+    "roles": [
+      "BURST",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Clockwork Windup",
+      "Q": "Command: Attack",
+      "W": "Command: Dissonance",
+      "E": "Command: Protect",
+      "R": "Command: Shockwave"
+    }
+  },
+  "Ornn": {
+    "id": 516,
+    "key": "Ornn",
+    "name": "Ornn",
+    "title": "The Fire below the Mountain",
+    "roles": [
+      "FIGHTER",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.02",
+    "abilityNames": {
+      "P": "Living Forge",
+      "Q": "Volcanic Rupture",
+      "W": "Bellows Breath",
+      "E": "Searing Charge",
+      "R": "Call of the Forge God"
+    }
+  },
+  "Pantheon": {
+    "id": 80,
+    "key": "Pantheon",
+    "name": "Pantheon",
+    "title": "the Unbreakable Spear",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE",
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Mortal Will",
+      "Q": "Comet Spear",
+      "W": "Shield Vault",
+      "E": "Aegis Assault",
+      "R": "Grand Starfall"
+    }
+  },
+  "Poppy": {
+    "id": 78,
+    "key": "Poppy",
+    "name": "Poppy",
+    "title": "Keeper of the Hammer",
+    "roles": [
+      "FIGHTER",
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Iron Ambassador",
+      "Q": "Hammer Shock",
+      "W": "Steadfast Presence",
+      "E": "Heroic Charge",
+      "R": "Keeper's Verdict"
+    }
+  },
+  "Pyke": {
+    "id": 555,
+    "key": "Pyke",
+    "name": "Pyke",
+    "title": "the Bloodharbor Ripper",
+    "roles": [
+      "ASSASSIN",
+      "CATCHER",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Gift of the Drowned Ones",
+      "Q": "Bone Skewer",
+      "W": "Ghostwater Dive",
+      "E": "Phantom Undertow",
+      "R": "Death from Below"
+    }
+  },
+  "Qiyana": {
+    "id": 246,
+    "key": "Qiyana",
+    "name": "Qiyana",
+    "title": "Empress of the Elements",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.21",
+    "abilityNames": {
+      "P": "Royal Privilege",
+      "Q": "Edge of Ixtal",
+      "W": "Terrashape",
+      "E": "Audacity",
+      "R": "Supreme Display of Talent"
+    }
+  },
+  "Quinn": {
+    "id": 133,
+    "key": "Quinn",
+    "name": "Quinn",
+    "title": "Demacia's Wings",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Harrier",
+      "Q": "Blinding Assault",
+      "W": "Heightened Senses",
+      "E": "Vault",
+      "R": "Behind Enemy Lines"
+    }
+  },
+  "Rakan": {
+    "id": 497,
+    "key": "Rakan",
+    "name": "Rakan",
+    "title": "The Charmer",
+    "roles": [
+      "CATCHER",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Fey Feathers",
+      "Q": "Gleaming Quill",
+      "W": "Grand Entrance",
+      "E": "Battle Dance",
+      "R": "The Quickness"
+    }
+  },
+  "Rammus": {
+    "id": 33,
+    "key": "Rammus",
+    "name": "Rammus",
+    "title": "the Armordillo",
+    "roles": [
+      "FIGHTER",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Spiked Shell",
+      "Q": "Powerball",
+      "W": "Defensive Ball Curl",
+      "E": "Frenzying Taunt",
+      "R": "Soaring Slam"
+    }
+  },
+  "RekSai": {
+    "id": 421,
+    "key": "RekSai",
+    "name": "Rek'Sai",
+    "title": "the Void Burrower",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "RAGE",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Fury of the Xer'Sai",
+      "Q": "Queen's Wrath",
+      "W": "Burrow",
+      "E": "Furious Bite",
+      "R": "Void Rush"
+    }
+  },
+  "Rell": {
+    "id": 526,
+    "key": "Rell",
+    "name": "Rell",
+    "title": "the Iron Maiden",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.15",
+    "abilityNames": {
+      "P": "Break the Mold",
+      "Q": "Shattering Strike",
+      "W": "Ferromancy: Crash Down",
+      "E": "Full Tilt",
+      "R": "Magnet Storm"
+    }
+  },
+  "Renata": {
+    "id": 888,
+    "key": "Renata",
+    "name": "Renata Glasc",
+    "title": "the Chem-Baroness",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Leverage",
+      "Q": "Handshake",
+      "W": "Bailout",
+      "E": "Loyalty Program",
+      "R": "Hostile Takeover"
+    }
+  },
+  "Renekton": {
+    "id": 58,
+    "key": "Renekton",
+    "name": "Renekton",
+    "title": "the Butcher of the Sands",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "FURY",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Reign of Anger",
+      "Q": "Cull the Meek",
+      "W": "Ruthless Predator",
+      "E": "Slice",
+      "R": "Dominus"
+    }
+  },
+  "Rengar": {
+    "id": 107,
+    "key": "Rengar",
+    "name": "Rengar",
+    "title": "the Pridestalker",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "FEROCITY",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Unseen Predator",
+      "Q": "Savagery",
+      "W": "Battle Roar",
+      "E": "Bola Strike",
+      "R": "Thrill of the Hunt"
+    }
+  },
+  "Riven": {
+    "id": 92,
+    "key": "Riven",
+    "name": "Riven",
+    "title": "the Exile",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "NONE",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Runic Blade",
+      "Q": "Broken Wings",
+      "W": "Ki Burst",
+      "E": "Valor",
+      "R": "Blade of the Exile"
+    }
+  },
+  "Rumble": {
+    "id": 68,
+    "key": "Rumble",
+    "name": "Rumble",
+    "title": "the Mechanized Menace",
+    "roles": [
+      "BATTLEMAGE",
+      "FIGHTER",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "HEAT",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Junkyard Titan",
+      "Q": "Flamespitter",
+      "W": "Scrap Shield",
+      "E": "Electro Harpoon",
+      "R": "The Equalizer"
+    }
+  },
+  "Ryze": {
+    "id": 13,
+    "key": "Ryze",
+    "name": "Ryze",
+    "title": "the Rune Mage",
+    "roles": [
+      "BATTLEMAGE",
+      "FIGHTER",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Arcane Mastery",
+      "Q": "Overload",
+      "W": "Rune Prison",
+      "E": "Spell Flux",
+      "R": "Realm Warp"
+    }
+  },
+  "Samira": {
+    "id": 360,
+    "key": "Samira",
+    "name": "Samira",
+    "title": "the Desert Rose",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Daredevil Impulse",
+      "Q": "Flair",
+      "W": "Blade Whirl",
+      "E": "Wild Rush",
+      "R": "Inferno Trigger"
+    }
+  },
+  "Sejuani": {
+    "id": 113,
+    "key": "Sejuani",
+    "name": "Sejuani",
+    "title": "Fury of the North",
+    "roles": [
+      "FIGHTER",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.15",
+    "abilityNames": {
+      "P": "Fury of the North",
+      "Q": "Arctic Assault",
+      "W": "Winter's Wrath",
+      "E": "Permafrost",
+      "R": "Glacial Prison"
+    }
+  },
+  "Senna": {
+    "id": 235,
+    "key": "Senna",
+    "name": "Senna",
+    "title": "the Redeemer",
+    "roles": [
+      "ENCHANTER",
+      "MARKSMAN",
+      "SUPPORT"
+    ],
+    "positions": [
+      "BOTTOM",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Absolution",
+      "Q": "Piercing Darkness",
+      "W": "Last Embrace",
+      "E": "Curse of the Black Mist",
+      "R": "Dawning Shadow"
+    }
+  },
+  "Seraphine": {
+    "id": 147,
+    "key": "Seraphine",
+    "name": "Seraphine",
+    "title": "the Starry-Eyed Songstress",
+    "roles": [
+      "BURST",
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "BOTTOM",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.05",
+    "abilityNames": {
+      "P": "Stage Presence",
+      "Q": "High Note",
+      "W": "Surround Sound",
+      "E": "Beat Drop",
+      "R": "Encore"
+    }
+  },
+  "Sett": {
+    "id": 875,
+    "key": "Sett",
+    "name": "Sett",
+    "title": "the Boss",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "GRIT",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Pit Grit",
+      "Q": "Knuckle Down",
+      "W": "Haymaker",
+      "E": "Facebreaker",
+      "R": "The Show Stopper"
+    }
+  },
+  "Shaco": {
+    "id": 35,
+    "key": "Shaco",
+    "name": "Shaco",
+    "title": "the Demon Jester",
+    "roles": [
+      "ASSASSIN"
+    ],
+    "positions": [
+      "JUNGLE",
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.07",
+    "abilityNames": {
+      "P": "Backstab",
+      "Q": "Deceive",
+      "W": "Jack in the Box",
+      "E": "Two-Shiv Poison",
+      "R": "Hallucinate"
+    }
+  },
+  "Shen": {
+    "id": 98,
+    "key": "Shen",
+    "name": "Shen",
+    "title": "the Eye of Twilight",
+    "roles": [
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "ENERGY",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Ki Barrier",
+      "Q": "Twilight Assault",
+      "W": "Spirit's Refuge",
+      "E": "Shadow Dash",
+      "R": "Stand United"
+    }
+  },
+  "Shyvana": {
+    "id": 102,
+    "key": "Shyvana",
+    "name": "Shyvana",
+    "title": "the Half-Dragon",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "MAGE"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "FURY",
+    "patchLastChanged": "14.23",
+    "abilityNames": {
+      "P": "Fury of the Dragonborn",
+      "Q": "Twin Bite",
+      "W": "Burnout",
+      "E": "Flame Breath",
+      "R": "Dragon's Descent"
+    }
+  },
+  "Singed": {
+    "id": 27,
+    "key": "Singed",
+    "name": "Singed",
+    "title": "the Mad Chemist",
+    "roles": [
+      "MAGE",
+      "SPECIALIST",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Noxious Slipstream",
+      "Q": "Poison Trail",
+      "W": "Mega Adhesive",
+      "E": "Fling",
+      "R": "Insanity Potion"
+    }
+  },
+  "Sion": {
+    "id": 14,
+    "key": "Sion",
+    "name": "Sion",
+    "title": "The Undead Juggernaut",
+    "roles": [
+      "FIGHTER",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Glory in Death",
+      "Q": "Decimating Smash",
+      "W": "Soul Furnace",
+      "E": "Roar of the Slayer",
+      "R": "Unstoppable Onslaught"
+    }
+  },
+  "Sivir": {
+    "id": 15,
+    "key": "Sivir",
+    "name": "Sivir",
+    "title": "the Battle Mistress",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Fleet of Foot",
+      "Q": "Boomerang Blade",
+      "W": "Ricochet",
+      "E": "Spell Shield",
+      "R": "On the Hunt"
+    }
+  },
+  "Skarner": {
+    "id": 72,
+    "key": "Skarner",
+    "name": "Skarner",
+    "title": "the Primordial Sovereign",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Threads of Vibration",
+      "Q": "Shattered Earth",
+      "W": "Seismic Bastion",
+      "E": "Ixtal's Impact",
+      "R": "Impale"
+    }
+  },
+  "Smolder": {
+    "id": 901,
+    "key": "Smolder",
+    "name": "Smolder",
+    "title": "the Fiery Fledgling",
+    "roles": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM",
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Dragon Practice",
+      "Q": "Super Scorcher Breath",
+      "W": "Achooo!",
+      "E": "Flap, Flap, Flap",
+      "R": "MMOOOMMMM!"
+    }
+  },
+  "Sona": {
+    "id": 37,
+    "key": "Sona",
+    "name": "Sona",
+    "title": "Maven of the Strings",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Power Chord",
+      "Q": "Hymn of Valor",
+      "W": "Aria of Perseverance",
+      "E": "Song of Celerity",
+      "R": "Crescendo"
+    }
+  },
+  "Soraka": {
+    "id": 16,
+    "key": "Soraka",
+    "name": "Soraka",
+    "title": "the Starchild",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.24",
+    "abilityNames": {
+      "P": "Salvation",
+      "Q": "Starcall",
+      "W": "Astral Infusion",
+      "E": "Equinox",
+      "R": "Wish"
+    }
+  },
+  "Swain": {
+    "id": 50,
+    "key": "Swain",
+    "name": "Swain",
+    "title": "the Noxian Grand General",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "BOTTOM",
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Ravenous Flock",
+      "Q": "Death's Hand",
+      "W": "Vision of Empire",
+      "E": "Nevermove",
+      "R": "Demonic Ascension"
+    }
+  },
+  "Sylas": {
+    "id": 517,
+    "key": "Sylas",
+    "name": "Sylas",
+    "title": "the Unshackled",
+    "roles": [
+      "ASSASSIN",
+      "BURST",
+      "MAGE",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Petricite Burst",
+      "Q": "Chain Lash",
+      "W": "Kingslayer",
+      "E": "Abscond",
+      "R": "Hijack"
+    }
+  },
+  "Syndra": {
+    "id": 134,
+    "key": "Syndra",
+    "name": "Syndra",
+    "title": "the Dark Sovereign",
+    "roles": [
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Transcendent",
+      "Q": "Dark Sphere",
+      "W": "Force of Will",
+      "E": "Scatter the Weak",
+      "R": "Unleashed Power"
+    }
+  },
+  "TahmKench": {
+    "id": 223,
+    "key": "TahmKench",
+    "name": "Tahm Kench",
+    "title": "The River King",
+    "roles": [
+      "SUPPORT",
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.02",
+    "abilityNames": {
+      "P": "An Acquired Taste",
+      "Q": "Tongue Lash",
+      "W": "Abyssal Dive",
+      "E": "Thick Skin",
+      "R": "Devour"
+    }
+  },
+  "Taliyah": {
+    "id": 163,
+    "key": "Taliyah",
+    "name": "Taliyah",
+    "title": "the Stoneweaver",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Rock Surfing",
+      "Q": "Threaded Volley",
+      "W": "Seismic Shove",
+      "E": "Unraveled Earth",
+      "R": "Weaver's Wall"
+    }
+  },
+  "Talon": {
+    "id": 91,
+    "key": "Talon",
+    "name": "Talon",
+    "title": "the Blade's Shadow",
+    "roles": [
+      "ASSASSIN"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Blade's End",
+      "Q": "Noxian Diplomacy",
+      "W": "Rake",
+      "E": "Assassin's Path",
+      "R": "Shadow Assault"
+    }
+  },
+  "Taric": {
+    "id": 44,
+    "key": "Taric",
+    "name": "Taric",
+    "title": "the Shield of Valoran",
+    "roles": [
+      "ENCHANTER",
+      "SUPPORT",
+      "TANK",
+      "WARDEN"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "14.21",
+    "abilityNames": {
+      "P": "Bravado",
+      "Q": "Starlight's Touch",
+      "W": "Bastion",
+      "E": "Dazzle",
+      "R": "Cosmic Radiance"
+    }
+  },
+  "Teemo": {
+    "id": 17,
+    "key": "Teemo",
+    "name": "Teemo",
+    "title": "the Swift Scout",
+    "roles": [
+      "MAGE",
+      "MARKSMAN",
+      "SPECIALIST"
+    ],
+    "positions": [
+      "JUNGLE",
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.04",
+    "abilityNames": {
+      "P": "Guerrilla Warfare",
+      "Q": "Blinding Dart",
+      "W": "Move Quick",
+      "E": "Toxic Shot",
+      "R": "Noxious Trap"
+    }
+  },
+  "Thresh": {
+    "id": 412,
+    "key": "Thresh",
+    "name": "Thresh",
+    "title": "the Chain Warden",
+    "roles": [
+      "CATCHER",
+      "SUPPORT",
+      "TANK"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Damnation",
+      "Q": "Death Sentence",
+      "W": "Dark Passage",
+      "E": "Flay",
+      "R": "The Box"
+    }
+  },
+  "Tristana": {
+    "id": 18,
+    "key": "Tristana",
+    "name": "Tristana",
+    "title": "the Yordle Gunner",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM",
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Draw a Bead",
+      "Q": "Rapid Fire",
+      "W": "Rocket Jump",
+      "E": "Explosive Charge",
+      "R": "Buster Shot"
+    }
+  },
+  "Trundle": {
+    "id": 48,
+    "key": "Trundle",
+    "name": "Trundle",
+    "title": "the Troll King",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.07",
+    "abilityNames": {
+      "P": "King's Tribute",
+      "Q": "Chomp",
+      "W": "Frozen Domain",
+      "E": "Pillar of Ice",
+      "R": "Subjugate"
+    }
+  },
+  "Tryndamere": {
+    "id": 23,
+    "key": "Tryndamere",
+    "name": "Tryndamere",
+    "title": "the Barbarian King",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "FURY",
+    "patchLastChanged": "14.20",
+    "abilityNames": {
+      "P": "Battle Fury",
+      "Q": "Bloodlust",
+      "W": "Mocking Shout",
+      "E": "Spinning Slash",
+      "R": "Undying Rage"
+    }
+  },
+  "TwistedFate": {
+    "id": 4,
+    "key": "TwistedFate",
+    "name": "Twisted Fate",
+    "title": "the Card Master",
+    "roles": [
+      "BURST",
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM",
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Loaded Dice",
+      "Q": "Wild Cards",
+      "W": "Pick a Card",
+      "E": "Stacked Deck",
+      "R": "Destiny"
+    }
+  },
+  "Twitch": {
+    "id": 29,
+    "key": "Twitch",
+    "name": "Twitch",
+    "title": "the Plague Rat",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Deadly Venom",
+      "Q": "Ambush",
+      "W": "Venom Cask",
+      "E": "Contaminate",
+      "R": "Spray and Pray"
+    }
+  },
+  "Udyr": {
+    "id": 77,
+    "key": "Udyr",
+    "name": "Udyr",
+    "title": "the Spirit Walker",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Bridge Between",
+      "Q": "Wilding Claw",
+      "W": "Iron Mantle",
+      "E": "Blazing Stampede",
+      "R": "Wingborne Storm"
+    }
+  },
+  "Urgot": {
+    "id": 6,
+    "key": "Urgot",
+    "name": "Urgot",
+    "title": "the Dreadnought",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Echoing Flames",
+      "Q": "Corrosive Charge",
+      "W": "Purge",
+      "E": "Disdain",
+      "R": "Fear Beyond Death"
+    }
+  },
+  "Varus": {
+    "id": 110,
+    "key": "Varus",
+    "name": "Varus",
+    "title": "the Arrow of Retribution",
+    "roles": [
+      "ARTILLERY",
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Living Vengeance",
+      "Q": "Piercing Arrow",
+      "W": "Blighted Quiver",
+      "E": "Hail of Arrows",
+      "R": "Chain of Corruption"
+    }
+  },
+  "Vayne": {
+    "id": 67,
+    "key": "Vayne",
+    "name": "Vayne",
+    "title": "the Night Hunter",
+    "roles": [
+      "ASSASSIN",
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.22",
+    "abilityNames": {
+      "P": "Night Hunter",
+      "Q": "Tumble",
+      "W": "Silver Bolts",
+      "E": "Condemn",
+      "R": "Final Hour"
+    }
+  },
+  "Veigar": {
+    "id": 45,
+    "key": "Veigar",
+    "name": "Veigar",
+    "title": "the Tiny Master of Evil",
+    "roles": [
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Phenomenal Evil Power",
+      "Q": "Baleful Strike",
+      "W": "Dark Matter",
+      "E": "Event Horizon",
+      "R": "Primordial Burst"
+    }
+  },
+  "Velkoz": {
+    "id": 161,
+    "key": "Velkoz",
+    "name": "Vel'Koz",
+    "title": "the Eye of the Void",
+    "roles": [
+      "ARTILLERY",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Organic Deconstruction",
+      "Q": "Plasma Fission",
+      "W": "Void Rift",
+      "E": "Tectonic Disruption",
+      "R": "Life Form Disintegration Ray"
+    }
+  },
+  "Vex": {
+    "id": 711,
+    "key": "Vex",
+    "name": "Vex",
+    "title": "the Gloomist",
+    "roles": [
+      "BURST",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Doom 'n Gloom",
+      "Q": "Mistral Bolt",
+      "W": "Personal Space",
+      "E": "Looming Darkness",
+      "R": "Shadow Surge"
+    }
+  },
+  "Vi": {
+    "id": 254,
+    "key": "Vi",
+    "name": "Vi",
+    "title": "the Piltover Enforcer",
+    "roles": [
+      "ASSASSIN",
+      "DIVER",
+      "FIGHTER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Blast Shield",
+      "Q": "Vault Breaker",
+      "W": "Denting Blows",
+      "E": "Relentless Force",
+      "R": "Cease and Desist"
+    }
+  },
+  "Viego": {
+    "id": 234,
+    "key": "Viego",
+    "name": "Viego",
+    "title": "The Ruined King",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "NONE",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Sovereign's Domination",
+      "Q": "Blade of the Ruined King",
+      "W": "Spectral Maw",
+      "E": "Harrowed Path",
+      "R": "Heartbreaker"
+    }
+  },
+  "Viktor": {
+    "id": 112,
+    "key": "Viktor",
+    "name": "Viktor",
+    "title": "the Herald of the Arcane",
+    "roles": [
+      "BATTLEMAGE",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.06",
+    "abilityNames": {
+      "P": "Glorious Evolution",
+      "Q": "Siphon Power",
+      "W": "Gravity Field",
+      "E": "Hextech Ray",
+      "R": "Arcane Storm"
+    }
+  },
+  "Vladimir": {
+    "id": 8,
+    "key": "Vladimir",
+    "name": "Vladimir",
+    "title": "the Crimson Reaper",
+    "roles": [
+      "BATTLEMAGE",
+      "FIGHTER",
+      "MAGE"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "RANGED",
+    "resource": "CRIMSON_RUSH",
+    "patchLastChanged": "25.11",
+    "abilityNames": {
+      "P": "Crimson Pact",
+      "Q": "Transfusion",
+      "W": "Sanguine Pool",
+      "E": "Tides of Blood",
+      "R": "Hemoplague"
+    }
+  },
+  "Volibear": {
+    "id": 106,
+    "key": "Volibear",
+    "name": "Volibear",
+    "title": "the Relentless Storm",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.07",
+    "abilityNames": {
+      "P": "The Relentless Storm",
+      "Q": "Thundering Smash",
+      "W": "Frenzied Maul",
+      "E": "Sky Splitter",
+      "R": "Stormbringer"
+    }
+  },
+  "Warwick": {
+    "id": 19,
+    "key": "Warwick",
+    "name": "Warwick",
+    "title": "the Uncaged Wrath of Zaun",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Eternal Hunger",
+      "Q": "Jaws of the Beast",
+      "W": "Blood Hunt",
+      "E": "Primal Howl",
+      "R": "Infinite Duress"
+    }
+  },
+  "MonkeyKing": {
+    "id": 62,
+    "key": "MonkeyKing",
+    "name": "Wukong",
+    "title": "the Monkey King",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.03",
+    "abilityNames": {
+      "P": "Stone Skin",
+      "Q": "Crushing Blow",
+      "W": "Warrior Trickster",
+      "E": "Nimbus Strike",
+      "R": "Cyclone"
+    }
+  },
+  "Xayah": {
+    "id": 498,
+    "key": "Xayah",
+    "name": "Xayah",
+    "title": "the Rebel",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.21",
+    "abilityNames": {
+      "P": "Clean Cuts",
+      "Q": "Double Daggers",
+      "W": "Deadly Plumage",
+      "E": "Bladecaller",
+      "R": "Featherstorm"
+    }
+  },
+  "Xerath": {
+    "id": 101,
+    "key": "Xerath",
+    "name": "Xerath",
+    "title": "the Magus Ascendant",
+    "roles": [
+      "ARTILLERY",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE",
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Mana Surge",
+      "Q": "Arcanopulse",
+      "W": "Eye of Destruction",
+      "E": "Shocking Orb",
+      "R": "Rite of the Arcane"
+    }
+  },
+  "XinZhao": {
+    "id": 5,
+    "key": "XinZhao",
+    "name": "Xin Zhao",
+    "title": "the Seneschal of Demacia",
+    "roles": [
+      "DIVER",
+      "FIGHTER",
+      "TANK"
+    ],
+    "positions": [
+      "JUNGLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Determination",
+      "Q": "Three Talon Strike",
+      "W": "Wind Becomes Lightning",
+      "E": "Audacious Charge",
+      "R": "Crescent Guard"
+    }
+  },
+  "Yasuo": {
+    "id": 157,
+    "key": "Yasuo",
+    "name": "Yasuo",
+    "title": "the Unforgiven",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "BOTTOM",
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "FLOW",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Way of the Wanderer",
+      "Q": "Steel Tempest",
+      "W": "Wind Wall",
+      "E": "Sweeping Blade",
+      "R": "Last Breath"
+    }
+  },
+  "Yone": {
+    "id": 777,
+    "key": "Yone",
+    "name": "Yone",
+    "title": "the Unforgotten",
+    "roles": [
+      "ASSASSIN",
+      "FIGHTER",
+      "SKIRMISHER"
+    ],
+    "positions": [
+      "MIDDLE",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "FLOW",
+    "patchLastChanged": "25.09",
+    "abilityNames": {
+      "P": "Way of the Hunter",
+      "Q": "Mortal Steel",
+      "W": "Spirit Cleave",
+      "E": "Soul Unbound",
+      "R": "Fate Sealed"
+    }
+  },
+  "Yorick": {
+    "id": 83,
+    "key": "Yorick",
+    "name": "Yorick",
+    "title": "Shepherd of Souls",
+    "roles": [
+      "FIGHTER",
+      "JUGGERNAUT",
+      "TANK"
+    ],
+    "positions": [
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Shepherd of Souls",
+      "Q": "Last Rites",
+      "W": "Dark Procession",
+      "E": "Mourning Mist",
+      "R": "Eulogy of the Isles"
+    }
+  },
+  "Yunara": {
+    "id": 804,
+    "key": "Yunara",
+    "name": "Yunara",
+    "title": "the Unbroken Faith",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Vow of the First Lands",
+      "Q": "Cultivation of Spirit",
+      "W": "Arc of Judgment",
+      "E": "Kanmei's Steps",
+      "R": "Transcend One's Self"
+    }
+  },
+  "Yuumi": {
+    "id": 350,
+    "key": "Yuumi",
+    "name": "Yuumi",
+    "title": "the Magical Cat",
+    "roles": [
+      "ENCHANTER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Feline Friendship",
+      "Q": "Prowling Projectile",
+      "W": "You and Me!",
+      "E": "Zoomies",
+      "R": "Final Chapter"
+    }
+  },
+  "Zac": {
+    "id": 154,
+    "key": "Zac",
+    "name": "Zac",
+    "title": "the Secret Weapon",
+    "roles": [
+      "FIGHTER",
+      "TANK",
+      "VANGUARD"
+    ],
+    "positions": [
+      "JUNGLE",
+      "SUPPORT",
+      "TOP"
+    ],
+    "attackType": "MELEE",
+    "resource": "HEALTH",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Cell Division",
+      "Q": "Stretching Strikes",
+      "W": "Unstable Matter",
+      "E": "Elastic Slingshot",
+      "R": "Let's Bounce!"
+    }
+  },
+  "Zed": {
+    "id": 238,
+    "key": "Zed",
+    "name": "Zed",
+    "title": "the Master of Shadows",
+    "roles": [
+      "ASSASSIN"
+    ],
+    "positions": [
+      "JUNGLE",
+      "MIDDLE"
+    ],
+    "attackType": "MELEE",
+    "resource": "ENERGY",
+    "patchLastChanged": "25.08",
+    "abilityNames": {
+      "P": "Contempt for the Weak",
+      "Q": "Razor Shuriken",
+      "W": "Living Shadow",
+      "E": "Shadow Slash",
+      "R": "Death Mark"
+    }
+  },
+  "Zeri": {
+    "id": 221,
+    "key": "Zeri",
+    "name": "Zeri",
+    "title": "The Spark of Zaun",
+    "roles": [
+      "MARKSMAN"
+    ],
+    "positions": [
+      "BOTTOM"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.12",
+    "abilityNames": {
+      "P": "Living Battery",
+      "Q": "Burst Fire",
+      "W": "Ultrashock Laser",
+      "E": "Spark Surge",
+      "R": "Lightning Crash"
+    }
+  },
+  "Ziggs": {
+    "id": 115,
+    "key": "Ziggs",
+    "name": "Ziggs",
+    "title": "the Hexplosives Expert",
+    "roles": [
+      "ARTILLERY",
+      "MAGE"
+    ],
+    "positions": [
+      "BOTTOM",
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "Short Fuse",
+      "Q": "Bouncing Bomb",
+      "W": "Satchel Charge",
+      "E": "Hexplosive Minefield",
+      "R": "Mega Inferno Bomb"
+    }
+  },
+  "Zilean": {
+    "id": 26,
+    "key": "Zilean",
+    "name": "Zilean",
+    "title": "the Chronokeeper",
+    "roles": [
+      "MAGE",
+      "SPECIALIST",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.13",
+    "abilityNames": {
+      "P": "Time in a Bottle",
+      "Q": "Time Bomb",
+      "W": "Rewind",
+      "E": "Time Warp",
+      "R": "Chronoshift"
+    }
+  },
+  "Zoe": {
+    "id": 142,
+    "key": "Zoe",
+    "name": "Zoe",
+    "title": "the Aspect of Twilight",
+    "roles": [
+      "BURST",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "MIDDLE"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "25.14",
+    "abilityNames": {
+      "P": "More Sparkles!",
+      "Q": "Paddle Star!",
+      "W": "Spell Thief",
+      "E": "Sleepy Trouble Bubble",
+      "R": "Portal Jump"
+    }
+  },
+  "Zyra": {
+    "id": 143,
+    "key": "Zyra",
+    "name": "Zyra",
+    "title": "Rise of the Thorns",
+    "roles": [
+      "CATCHER",
+      "MAGE",
+      "SUPPORT"
+    ],
+    "positions": [
+      "SUPPORT"
+    ],
+    "attackType": "RANGED",
+    "resource": "MANA",
+    "patchLastChanged": "14.24",
+    "abilityNames": {
+      "P": "Garden of Thorns",
+      "Q": "Deadly Spines",
+      "W": "Rampant Growth",
+      "E": "Grasping Roots",
+      "R": "Stranglethorns"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "patch": "16.14.1",
+  "ingestedAt": "2026-07-21T11:09:46.616Z",
+  "sources": {
+    "ddragon": "https://ddragon.leagueoflegends.com/cdn/16.14.1/data/en_US/",
+    "meraki": "https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/",
+    "cdragon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/"
+  },
+  "counts": {
+    "items": 706,
+    "itemsSummonersRift": 316,
+    "runes": 62,
+    "keystones": 17,
+    "summoners": 18,
+    "champions": 171
+  },
+  "policy": {
+    "utilityAbilities": "never-skip-zero-damage",
+    "leeSinQ": "single-cast-multi-packet",
+    "spellbook": "modeled-as-keystone-with-swap-state",
+    "items": "summoners-rift-map-11-only-in-calculator"
+  }
+}

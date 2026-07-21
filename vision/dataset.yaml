@@ -1,0 +1,24 @@
+# Touch / structure vision — YOLO object detection
+#
+# Classes chosen for Grub Touch audit + siege understanding on EWC broadcast VODs.
+# Train with:  python vision/train_detector.py
+# Annotate:    label-studio or vision/serve_annotator.py (Label Studio config below)
+
+names:
+  0: voidmite
+  1: turret
+  2: inhibitor
+  3: nexus
+  4: champion
+  5: replay_bumper
+  6: touch_burn_fx
+  7: grub_buff_icon
+  8: baron_buff_icon
+
+# YOLO paths are relative to this file's directory when training from vision/
+path: data
+train: images/train
+val: images/val
+
+# Optional test split
+# test: images/test

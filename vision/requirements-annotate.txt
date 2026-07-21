@@ -1,0 +1,3 @@
+# Optional annotation UI (install separately if needed)
+# label-studio often needs Postgres tooling on some platforms.
+label-studio>=1.13.0

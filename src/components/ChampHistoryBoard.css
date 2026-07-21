@@ -1,0 +1,302 @@
+.hist-board {
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.hist-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.hist-head h3 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hist-head p {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.hist-tabs {
+  display: inline-flex;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.hist-tabs button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.hist-tabs button.active {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.hist-tabs button:hover:not(.active) {
+  color: var(--ink);
+  background: var(--elevated);
+}
+
+.hist-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+
+.hist-order-note {
+  flex: 1 1 100%;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+.hist-missing {
+  margin: 0;
+  padding: 0.85rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.hist-table-wrap {
+  overflow: auto;
+  max-height: min(42vh, 420px);
+}
+
+.hist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.hist-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--panel);
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.hist-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: left;
+  padding: 0.45rem 0.55rem;
+  cursor: pointer;
+}
+
+.hist-sort:hover,
+.hist-sort.active {
+  color: var(--ink);
+}
+
+.hist-sort-ind {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 0.7rem;
+}
+
+.hist-table td {
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink);
+}
+
+.hist-table td em {
+  display: block;
+  font-style: normal;
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
+.hist-champ {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-family: var(--sans) !important;
+  min-width: 9.5rem;
+}
+
+.hist-champ img {
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.hist-champ strong {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hist-champ span {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.hist-row.team-blue td:first-child {
+  box-shadow: inset 2px 0 0 var(--blue);
+}
+
+.hist-row.team-red td:first-child {
+  box-shadow: inset 2px 0 0 var(--red);
+}
+
+.hist-row.dead {
+  opacity: 0.55;
+}
+
+.hist-empty {
+  color: var(--muted);
+  font-family: var(--sans) !important;
+}
+
+.hist-grub {
+  min-width: 8rem;
+}
+
+.hist-audit-btn {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hist-audit-btn:hover {
+  color: var(--accent);
+}
+
+.hist-audit-btn em {
+  display: block;
+  font-style: normal;
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
+.hist-conf {
+  display: inline-block;
+  margin-left: 0.35rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hist-conf-high {
+  color: #6a9a6a;
+}
+
+.hist-conf-medium {
+  color: #b08a3a;
+}
+
+.hist-conf-low {
+  color: #b05a5a;
+}
+
+.hist-audit {
+  margin-top: 0.45rem;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--elevated);
+  max-width: 36rem;
+}
+
+.hist-audit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.hist-audit-table th,
+.hist-audit-table td {
+  padding: 0.2rem 0.3rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.hist-audit-table th {
+  color: var(--muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  position: static;
+  background: transparent;
+}
+
+.hist-audit-cycle {
+  margin: 0 0 0.35rem;
+  font-size: 0.65rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  line-height: 1.35;
+}
+
+.hist-audit-assumptions {
+  margin: 0 0 0.35rem;
+  padding-left: 1rem;
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  line-height: 1.35;
+}
+
+.hist-audit-raw {
+  margin: 0;
+  max-height: 7rem;
+  overflow: auto;
+  font-size: 0.58rem;
+  color: var(--muted);
+  white-space: pre-wrap;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "lol-strength-analysis",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "ingest:lolwiki": "node scripts/ingest-lolwiki.mjs",
+    "rebuild:scoreboard": "python3 scripts/rebuild-timeline-scoreboard.py",
+    "build:map-terrain": "python3 scripts/build-map-terrain.py",
+    "validate:fights": "python3 scripts/validate-fights-from-jsonl.py",
+    "enrich:career": "python3 scripts/enrich-timeline-career.py",
+    "eval:xh": "npx --yes tsx scripts/eval-xh-math.ts",
+    "extractFrames": "python3 vision/extract_frames.py --interval 0.5 --width 1280",
+    "vision:prepare": "python3 vision/prepare_annotation.py",
+    "vision:train": "python3 vision/train_detector.py",
+    "vision:split": "python3 vision/split_dataset.py"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "oxlint": "^1.71.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1"
+  }
+}

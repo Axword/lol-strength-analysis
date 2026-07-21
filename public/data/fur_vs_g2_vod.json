@@ -1,0 +1,31 @@
+{
+  "match": "G2 vs FURIA — EWC 26 Group Stage",
+  "youtubeId": "WWndc4XR3vs",
+  "vodPath": "G2 Esports vs FURIA ｜ League of Legends at EWC 26 - Group Stage - VOD [WWndc4XR3vs].webm",
+  "timeline": "public/data/fur_vs_g2_timeline.json",
+  "jsonl": "/Users/river/Desktop/events_2970115_1_riot.jsonl",
+  "offsetSec": 0,
+  "calibration": "VOD t≈game clock (t=33→00:33, t=540→08:59). Duration 1505s vs game 1468s.",
+  "probeOut": "/tmp/touch-vod-clips",
+  "vision": {
+    "intervalSec": 0.5,
+    "framesDir": "vision/data/frames/raw",
+    "datasetYaml": "vision/dataset.yaml",
+    "classes": [
+      "voidmite",
+      "turret",
+      "inhibitor",
+      "nexus",
+      "champion",
+      "replay_bumper",
+      "touch_burn_fx",
+      "grub_buff_icon",
+      "baron_buff_icon"
+    ]
+  },
+  "notes": [
+    "offsetSec is VOD seconds at gameTime 0",
+    "Broadcast REPLAY bumpers can land on Touch-rise timestamps — skip those clips",
+    "24:06 base siege shows Voidmites on blue inhib turret (Hunger visual confirm)"
+  ]
+}

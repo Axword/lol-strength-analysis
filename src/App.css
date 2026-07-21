@@ -1,0 +1,163 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.app-shell {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.app-shell .brand {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.app-shell .brand-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.app-tabs {
+  display: inline-flex;
+  gap: 0.15rem;
+}
+
+.app-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.35rem 0.75rem 0.55rem;
+  margin-bottom: -1px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.app-tabs button.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.app-tabs button:hover:not(.active) {
+  color: var(--ink);
+}
+
+.calc-context {
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  color: var(--ink);
+  font-size: 0.85rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.calc-context strong {
+  font-weight: 600;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.match-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  padding: 0.75rem 0.85rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.field-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.segmented button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.segmented button.active {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.segmented button:hover:not(.active) {
+  color: var(--ink);
+  background: var(--accent-soft);
+}
+
+.fighters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.fighters > * {
+  border-right: 1px solid var(--line);
+}
+
+.fighters > *:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 900px) {
+  .fighters {
+    grid-template-columns: 1fr;
+  }
+
+  .fighters > * {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .app-shell {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

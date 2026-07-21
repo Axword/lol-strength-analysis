@@ -1,0 +1,40 @@
+{
+  "width": 256,
+  "height": 256,
+  "sourceImage": "/map/summoners_rift.png",
+  "maskImage": "/map/terrain_mask.png",
+  "mapSpanGameUnits": 14870,
+  "classes": {
+    "0": "void",
+    "1": "wall",
+    "2": "jungle",
+    "3": "brush",
+    "4": "river",
+    "5": "lane",
+    "6": "base_blue",
+    "7": "base_red",
+    "8": "pit"
+  },
+  "classCounts": {
+    "0": 0,
+    "1": 19935,
+    "2": 33303,
+    "3": 4,
+    "4": 4089,
+    "5": 2575,
+    "6": 2337,
+    "7": 2337,
+    "8": 956
+  },
+  "vision": {
+    "championSightRadiusNorm": 0.09,
+    "wardSightRadiusNorm": 0.055,
+    "blueTrinketRadiusNorm": 0.07,
+    "brushHidesUnlessInsideOrWard": true,
+    "wallBlocksVision": true
+  },
+  "notes": [
+    "Classic DDragon map11 minimap (512\u2192256 mask).",
+    "Sample mask with yImg=1-yGame (image top = red side)."
+  ]
+}

@@ -1,0 +1,122 @@
+.fighters.teams {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+
+.team-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  padding: 0.75rem;
+  border-right: 1px solid var(--line);
+}
+
+.team-column:last-child {
+  border-right: 0;
+}
+
+.team-column-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding: 0 0.15rem;
+}
+
+.team-column-head h3 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.team-column.side-blue .team-column-head h3 {
+  color: var(--blue);
+}
+
+.team-column.side-red .team-column-head h3 {
+  color: var(--red);
+}
+
+.team-column-head span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.add-fighter,
+.remove-fighter {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.add-fighter {
+  margin-left: auto;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.8rem;
+}
+
+.add-fighter:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.team-fighters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fighter-wrap {
+  position: relative;
+}
+
+.remove-fighter {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  z-index: 2;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.1rem;
+}
+
+.remove-fighter:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.matchup-size {
+  margin: 0;
+  margin-left: auto;
+  align-self: end;
+  font-family: var(--display);
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .fighters.teams {
+    grid-template-columns: 1fr;
+  }
+
+  .team-column {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .team-column:last-child {
+    border-bottom: 0;
+  }
+}
