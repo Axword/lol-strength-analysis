@@ -19,9 +19,17 @@ export interface GameUnit {
   summonerName: string
   loadout: FighterLoadout
   position: MapPosition
+  /** Provenance of the replay position; placeholders must not enter combat/xH. */
+  positionSource?: string
   /** Current HP fraction 0–1 if known from replay */
   hpPct?: number
   alive?: boolean
+  /** When false, HP is unknown — do not treat as dead/full. */
+  hpKnown?: boolean
+  /** When false, AD/AP/armor/MR overrides are unavailable. */
+  combatStatsKnown?: boolean
+  /** When false, ability ranks are unavailable — calculator must stay blocked. */
+  abilityRanksKnown?: boolean
   /** Cumulative career + live combat stats at this frame */
   career?: import('../engine/careerStats').ChampCareerStats
 }

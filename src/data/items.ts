@@ -1,6 +1,7 @@
 import type { ItemDefinition } from '../engine/types'
 import { ALL_ITEMS, DDRAGON_PATCH } from './generated/allItems'
 import { GAME_ITEMS } from './generatedGameItems'
+import { ITEM_PASSIVES } from './itemPassives'
 
 /**
  * Merge catalogs without letting the sparse GAME_ITEMS override wipe
@@ -30,10 +31,25 @@ function mergeItemCatalogs(
   return out
 }
 
+function attachPassives(
+  catalog: Record<string, ItemDefinition>,
+): Record<string, ItemDefinition> {
+  const out: Record<string, ItemDefinition> = { ...catalog }
+  for (const [id, hooks] of Object.entries(ITEM_PASSIVES)) {
+    const item = out[id]
+    if (!item) continue
+    out[id] = {
+      ...item,
+      onAbilityMagic: hooks.onAbilityMagic ?? item.onAbilityMagic,
+      onAbilityPhysical: hooks.onAbilityPhysical ?? item.onAbilityPhysical,
+    }
+  }
+  return out
+}
+
 /** Full item catalog from lolwiki ingest (DDragon + Meraki stats). */
-export const ITEMS: Record<string, ItemDefinition> = mergeItemCatalogs(
-  ALL_ITEMS,
-  GAME_ITEMS,
+export const ITEMS: Record<string, ItemDefinition> = attachPassives(
+  mergeItemCatalogs(ALL_ITEMS, GAME_ITEMS),
 )
 
 export const ITEM_LIST = Object.values(ITEMS).sort((a, b) =>

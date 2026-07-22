@@ -15,11 +15,12 @@ from __future__ import annotations
 
 import json
 import math
+import argparse
 from bisect import bisect_left
 from pathlib import Path
 
-ROOT = Path("/Users/river/Projects/lol-strength-analysis")
-JSONL = Path("/Users/river/Desktop/events_2970115_1_riot.jsonl")
+ROOT = Path(__file__).resolve().parents[1]
+JSONL = ROOT / "events_riot.jsonl"
 TIMELINE = ROOT / "public/data/fur_vs_g2_timeline.json"
 CHAMP_INDEX = ROOT / "public/data/lolwiki/champions-index.json"
 
@@ -247,10 +248,20 @@ def compact_base(p: dict) -> dict:
 
 
 def main() -> None:
+    global JSONL, TIMELINE
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--jsonl", type=Path, required=True, help="Input canonical rfc461 JSONL")
+    ap.add_argument("--timeline", type=Path, required=True, help="Timeline JSON to enrich")
+    ap.add_argument("-o", "--output", type=Path, help="Output timeline JSON (defaults to --timeline)")
+    args = ap.parse_args()
+    JSONL = args.jsonl
+    TIMELINE = args.output or args.timeline
     if not JSONL.exists():
         raise SystemExit(f"missing {JSONL}")
+    if not args.timeline.exists():
+        raise SystemExit(f"missing {args.timeline}")
     attack_types = load_attack_types()
-    timeline = json.loads(TIMELINE.read_text())
+    timeline = json.loads(args.timeline.read_text())
     frames = timeline["frames"]
 
     grub_kills: list[tuple[int, int]] = []
@@ -514,6 +525,7 @@ def main() -> None:
     timeline["hasTouchDmg"] = True
     timeline["touchModel"] = MODEL_VERSION
     timeline["touchPatch"] = "26.11"
+    TIMELINE.parent.mkdir(parents=True, exist_ok=True)
     TIMELINE.write_text(json.dumps(timeline, separators=(",", ":")))
     size_mb = TIMELINE.stat().st_size / (1024 * 1024)
 

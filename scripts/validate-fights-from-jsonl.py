@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import json
 import math
+import argparse
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-JSONL = Path("/Users/river/Desktop/events_2970115_1_riot.jsonl")
+JSONL = ROOT / "events_riot.jsonl"
 TIMELINE = ROOT / "public/data/fur_vs_g2_timeline.json"
 
 
@@ -88,6 +89,13 @@ def apply_floors(p_blue: float, score) -> tuple[float, str]:
 
 
 def main() -> int:
+    global JSONL, TIMELINE
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--jsonl", type=Path, required=True, help="Input canonical rfc461 JSONL")
+    ap.add_argument("--timeline", type=Path, required=True, help="Timeline JSON with scoreboard")
+    args = ap.parse_args()
+    JSONL = args.jsonl
+    TIMELINE = args.timeline
     if not JSONL.exists():
         print(f"MISSING jsonl: {JSONL}", file=sys.stderr)
         return 2

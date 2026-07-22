@@ -266,6 +266,16 @@
   background: var(--red-soft);
 }
 
+.position-coverage-warning {
+  flex: 1 1 100%;
+  color: var(--red);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
+  background: var(--red-soft);
+  border-radius: 6px;
+}
+
 @media (max-width: 900px) {
   .review-layout {
     grid-template-columns: 1fr;

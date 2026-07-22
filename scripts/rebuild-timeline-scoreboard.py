@@ -9,10 +9,11 @@ from __future__ import annotations
 
 import json
 import math
+import argparse
 from pathlib import Path
 
-ROOT = Path("/Users/river/Projects/lol-strength-analysis")
-JSONL = Path("/Users/river/Desktop/events_2970115_1_riot.jsonl")
+ROOT = Path(__file__).resolve().parents[1]
+JSONL = ROOT / "events_riot.jsonl"
 TIMELINE = ROOT / "public/data/fur_vs_g2_timeline.json"
 OUT = TIMELINE
 MAP_SPAN = 14870.0
@@ -200,6 +201,15 @@ def nearest_camp(gx: float, gz: float, kind: str | None, max_d=1400.0):
 
 
 def main() -> None:
+    global JSONL, TIMELINE, OUT
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--jsonl", type=Path, required=True, help="Input canonical rfc461 JSONL")
+    ap.add_argument("--timeline", type=Path, required=True, help="Timeline JSON to enrich")
+    ap.add_argument("-o", "--output", type=Path, help="Output timeline JSON (defaults to --timeline)")
+    args = ap.parse_args()
+    JSONL = args.jsonl
+    TIMELINE = args.timeline
+    OUT = args.output or args.timeline
     _seed_layout()
     if not JSONL.exists():
         raise SystemExit(f"missing {JSONL}")

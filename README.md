@@ -1,3 +1,13 @@
+# LoL strength analysis
+
+React + TypeScript + Vite app for combat / timeline analysis.
+
+- Product notes: [`PRODUCT.md`](PRODUCT.md), [`DESIGN.md`](DESIGN.md)
+- Replay format research (ROFL1/ROFL2 → why it is not live-stats JSONL): [`docs/rofl-format.md`](docs/rofl-format.md)
+- Combat calculator trust boundary and acceptance evidence: [`docs/combat-trust-boundary.md`](docs/combat-trust-boundary.md)
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
