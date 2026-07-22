@@ -73,12 +73,17 @@ export function mergeUtility(
 export function autosAfterUtility(
   baseAutos: number,
   incoming: ResolvedUtility,
+  opts?: { durationSec?: number },
 ): number {
   if (baseAutos <= 0) return 0
   const asFactor = 1 - Math.min(0.85, incoming.enemyAsSlow)
   // MS slow mainly eats chase/reposition autos, not point-blank ones
   const msFactor = 1 - Math.min(0.45, incoming.enemySlow * 0.55)
-  const hardCcFactor = incoming.hardCc ? 0.65 : 1
+  // Engage hard-CC is a brief lock, not a full-window wither.
+  // Only apply the heavy AA cut in short windows (≤6s).
+  const dur = opts?.durationSec
+  const hardCcFactor =
+    incoming.hardCc && (dur == null || dur <= 6) ? 0.65 : incoming.hardCc ? 0.92 : 1
   return Math.max(0, Math.round(baseAutos * asFactor * msFactor * hardCcFactor))
 }
 

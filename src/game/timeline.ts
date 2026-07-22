@@ -23,6 +23,10 @@ export interface TimelineUnitFrame {
   hp: number
   hpMax: number
   alive: boolean
+  /** Absent on legacy timelines ⇒ treat HP as known (prior behavior). */
+  hpKnown?: boolean
+  combatStatsKnown?: boolean
+  abilityRanksKnown?: boolean
   ad: number
   ap: number
   armor: number
@@ -30,6 +34,7 @@ export interface TimelineUnitFrame {
   as: number
   x: number
   y: number
+  positionSource?: string
   items: number[]
   q: number
   w: number
@@ -46,17 +51,78 @@ export interface TimelineFrame {
   mapObjects?: import('./types').MapObjectsState
 }
 
+export interface TimelineProvenance {
+  source?: string
+  sourceKind?: string
+  artifact?: string
+  gameTimeUnit?: string
+  coordinateSystem?: string
+  coordinateOffset?: { x: number; z: number }
+  positionCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
+  hpCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
+  rosterMapping?: string
+  placeholderPolicy?: string
+  notes?: string
+}
+
 export interface GameTimeline {
   id: string
   name: string
   patch: string
   source: string
+  provenance?: TimelineProvenance
   /** Native stats_update interval in the Riot feed (~1000ms for this file). */
   cadenceMs?: number
   participants: TimelineParticipant[]
   frameCount: number
   durationMs: number
   frames: TimelineFrame[]
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null
+}
+
+/** Parse a user-selected timeline without trusting a JSON type assertion. */
+export function parseGameTimelineJson(text: string): GameTimeline {
+  let value: unknown
+  try {
+    value = JSON.parse(text)
+  } catch {
+    throw new Error('That file is not valid JSON.')
+  }
+
+  if (!isRecord(value)) throw new Error('Timeline JSON must be an object.')
+  if (!Array.isArray(value.participants) || value.participants.length === 0) {
+    throw new Error('Timeline JSON has no participants.')
+  }
+  if (!Array.isArray(value.frames) || value.frames.length === 0) {
+    throw new Error('Timeline JSON has no frames.')
+  }
+  if (
+    typeof value.durationMs !== 'number' ||
+    !Number.isFinite(value.durationMs) ||
+    value.durationMs < 0
+  ) {
+    throw new Error('Timeline durationMs must be a non-negative number.')
+  }
+
+  let previousTime = -Infinity
+  for (let index = 0; index < value.frames.length; index += 1) {
+    const frame = value.frames[index]
+    if (!isRecord(frame) || typeof frame.t !== 'number' || !Number.isFinite(frame.t)) {
+      throw new Error(`Timeline frame ${index + 1} has an invalid timestamp.`)
+    }
+    if (frame.t < previousTime) {
+      throw new Error(`Timeline frame ${index + 1} is out of time order.`)
+    }
+    if (!Array.isArray(frame.units)) {
+      throw new Error(`Timeline frame ${index + 1} has no unit list.`)
+    }
+    previousTime = frame.t
+  }
+
+  return value as unknown as GameTimeline
 }
 
 /** Consumables / trinkets / lane quests — skip in roster + calculator slots. */
@@ -110,39 +176,73 @@ function teamSide(teamID: number): TeamSide {
   return teamID === 100 ? 'blue' : 'red'
 }
 
+function hpIsKnown(u: TimelineUnitFrame): boolean {
+  return u.hpKnown !== false
+}
+
+function combatStatsAreKnown(u: TimelineUnitFrame): boolean {
+  return u.combatStatsKnown !== false
+}
+
+function abilityRanksAreKnown(u: TimelineUnitFrame): boolean {
+  return u.abilityRanksKnown !== false
+}
+
+function unitAlive(u: TimelineUnitFrame): boolean {
+  // Explicit alive is authoritative. Only fall back to hp>0 when HP is known.
+  if (u.alive === false) return false
+  if (!hpIsKnown(u)) return true
+  return u.hp > 0
+}
+
 export function unitToLoadout(
   u: TimelineUnitFrame,
   keystoneID?: number,
 ): FighterLoadout {
-  const hpPct = u.hpMax > 0 ? u.hp / u.hpMax : u.alive ? 1 : 0
+  const knownHp = hpIsKnown(u)
+  const hpPct = knownHp
+    ? u.hpMax > 0
+      ? u.hp / u.hpMax
+      : u.alive
+        ? 1
+        : 0
+    : undefined
+
+  const liveStats: FighterLoadout['liveStats'] = {}
+  if (knownHp) {
+    liveStats.hp = Math.max(0, u.hp)
+    liveStats.hpMax = Math.max(1, u.hpMax)
+  }
+  if (combatStatsAreKnown(u)) {
+    liveStats.armor = u.armor
+    liveStats.mr = u.mr
+    liveStats.ad = u.ad
+    liveStats.ap = u.ap
+    liveStats.attackSpeed = (() => {
+      const base = CHAMPIONS[u.champ]?.stats.attackspeed ?? 0.625
+      return Math.max(0.2, base * ((u.as || 100) / 100))
+    })()
+  }
+
+  const ranksKnown = abilityRanksAreKnown(u)
   return {
     championId: u.champ,
     level: u.level,
     itemIds: combatItemIds(u.items),
     runeId: runeFromKeystone(keystoneID),
-    ranks: {
-      Q: u.q,
-      W: u.w,
-      E: u.e,
-      R: u.r,
-    },
-    abilityRank: Math.max(1, u.q, u.w, u.e),
-    alive: u.alive !== false && u.hp > 0,
-    hpPct,
+    ranks: ranksKnown
+      ? {
+          Q: u.q,
+          W: u.w,
+          E: u.e,
+          R: u.r,
+        }
+      : { Q: 0, W: 0, E: 0, R: 0 },
+    abilityRank: ranksKnown ? Math.max(1, u.q, u.w, u.e) : 1,
+    alive: unitAlive(u),
+    ...(hpPct !== undefined ? { hpPct } : {}),
     position: { x: u.x, y: u.y },
-    liveStats: {
-      hp: Math.max(0, u.hp),
-      hpMax: Math.max(1, u.hpMax),
-      armor: u.armor,
-      mr: u.mr,
-      ad: u.ad,
-      ap: u.ap,
-      // Feed `as` is % of base (100 = baseline). Convert with champ base APS.
-      attackSpeed: (() => {
-        const base = CHAMPIONS[u.champ]?.stats.attackspeed ?? 0.625
-        return Math.max(0.2, base * ((u.as || 100) / 100))
-      })(),
-    },
+    ...(Object.keys(liveStats).length > 0 ? { liveStats } : {}),
   }
 }
 
@@ -183,17 +283,25 @@ function frameDataToSnapshot(
     timeline.participants.map((p) => [p.participantID, p.keystoneID]),
   )
 
-  const units: GameUnit[] = frame.units.map((u) => ({
-    id: `p${u.pid}`,
-    team: teamSide(u.team),
-    role: roleToLane(u.role),
-    summonerName: u.name,
-    loadout: unitToLoadout(u, keystoneByPid.get(u.pid)),
-    position: { x: u.x, y: u.y },
-    hpPct: u.hpMax > 0 ? u.hp / u.hpMax : 0,
-    alive: u.alive !== false && u.hp > 0,
-    career: u.career,
-  }))
+  const units: GameUnit[] = frame.units.map((u) => {
+    const knownHp = hpIsKnown(u)
+    const hpPct = knownHp ? (u.hpMax > 0 ? u.hp / u.hpMax : 0) : undefined
+    return {
+      id: `p${u.pid}`,
+      team: teamSide(u.team),
+      role: roleToLane(u.role),
+      summonerName: u.name,
+      loadout: unitToLoadout(u, keystoneByPid.get(u.pid)),
+      position: { x: u.x, y: u.y },
+      positionSource: u.positionSource,
+      ...(hpPct !== undefined ? { hpPct } : {}),
+      alive: unitAlive(u),
+      hpKnown: u.hpKnown,
+      combatStatsKnown: u.combatStatsKnown,
+      abilityRanksKnown: u.abilityRanksKnown,
+      career: u.career,
+    }
+  })
 
   return {
     id: `${timeline.id}-t${Math.round(gameTimeSec * 1000)}`,
@@ -202,7 +310,9 @@ function frameDataToSnapshot(
     gameTimeSec,
     map: 'summoners_rift',
     units,
-    notes: `Live frame from ${timeline.source}`,
+    notes: timeline.provenance?.notes
+      ? `Live frame from ${timeline.source}. ${timeline.provenance.notes}`
+      : `Live frame from ${timeline.source}`,
     score: frame.score,
     wards: frame.wards,
     mapObjects: frame.mapObjects,
@@ -229,14 +339,16 @@ function lerpFramesToSnapshot(
   const base = a
   const units: GameUnit[] = base.units.map((u) => {
     const v = nextByPid.get(u.pid)
-    const aliveA = u.alive !== false && u.hp > 0
-    const aliveB = v ? v.alive !== false && v.hp > 0 : aliveA
+    const aliveA = unitAlive(u)
+    const aliveB = v ? unitAlive(v) : aliveA
     // Don't lerp through the map on death/respawn teleports
     const canLerp = Boolean(v && aliveA && aliveB)
     const x = canLerp ? lerp(u.x, v!.x, alpha) : u.x
     const y = canLerp ? lerp(u.y, v!.y, alpha) : u.y
-    const hp = canLerp ? lerp(u.hp, v!.hp, alpha) : u.hp
+    const knownHp = hpIsKnown(u)
+    const hp = canLerp && knownHp ? lerp(u.hp, v!.hp, alpha) : u.hp
     const hpMax = u.hpMax > 0 ? u.hpMax : 1
+    const hpPct = knownHp ? hp / hpMax : undefined
     return {
       id: `p${u.pid}`,
       team: teamSide(u.team),
@@ -244,8 +356,12 @@ function lerpFramesToSnapshot(
       summonerName: u.name,
       loadout: unitToLoadout(u, keystoneByPid.get(u.pid)),
       position: { x, y },
-      hpPct: hp / hpMax,
+      positionSource: u.positionSource,
+      ...(hpPct !== undefined ? { hpPct } : {}),
       alive: aliveA,
+      hpKnown: u.hpKnown,
+      combatStatsKnown: u.combatStatsKnown,
+      abilityRanksKnown: u.abilityRanksKnown,
       career: u.career,
     }
   })
@@ -273,7 +389,9 @@ function lerpFramesToSnapshot(
     gameTimeSec,
     map: 'summoners_rift',
     units,
-    notes: `Live frame from ${timeline.source}`,
+    notes: timeline.provenance?.notes
+      ? `Live frame from ${timeline.source}. ${timeline.provenance.notes}`
+      : `Live frame from ${timeline.source}`,
     score: base.score,
     wards: base.wards,
     mapObjects,
@@ -297,4 +415,17 @@ export async function loadFurVsG2Timeline(): Promise<GameTimeline> {
   const res = await fetch('/data/fur_vs_g2_timeline.json')
   if (!res.ok) throw new Error(`Failed to load timeline (${res.status})`)
   return res.json() as Promise<GameTimeline>
+}
+
+export async function loadMakneeStubTimeline(): Promise<GameTimeline> {
+  const res = await fetch('/data/maknee_stub_timeline.json')
+  if (!res.ok) throw new Error(`Failed to load maknee stub timeline (${res.status})`)
+  return res.json() as Promise<GameTimeline>
+}
+
+export type BuiltinTimelineId = 'fur_vs_g2' | 'maknee_stub'
+
+export async function loadBuiltinTimeline(id: BuiltinTimelineId): Promise<GameTimeline> {
+  if (id === 'maknee_stub') return loadMakneeStubTimeline()
+  return loadFurVsG2Timeline()
 }

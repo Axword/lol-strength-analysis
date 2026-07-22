@@ -3,8 +3,10 @@ import { SAMPLE_SNAPSHOTS } from '../data/sampleGames'
 import { CHAMPIONS } from '../data/champions'
 import { parseSnapshotJson } from '../game/parseSnapshot'
 import {
-  loadFurVsG2Timeline,
+  loadBuiltinTimeline,
+  parseGameTimelineJson,
   snapshotAtTime,
+  type BuiltinTimelineId,
   type GameTimeline,
 } from '../game/timeline'
 import { formatGameTime } from '../game/parseSnapshot'
@@ -21,6 +23,7 @@ interface Props {
 }
 
 type SourceMode = 'timeline' | 'sample' | 'import'
+type TimelineChoice = BuiltinTimelineId | 'local'
 
 const PLAY_SPEEDS = [1, 2, 4, 8] as const
 
@@ -28,6 +31,10 @@ export function GameReview({ onSendToCalculator }: Props) {
   const [timeline, setTimeline] = useState<GameTimeline | null>(null)
   const [timelineError, setTimelineError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [timelineChoice, setTimelineChoice] = useState<TimelineChoice>('fur_vs_g2')
+  const [localTimelineName, setLocalTimelineName] = useState<string | null>(null)
+  const [timelineFileError, setTimelineFileError] = useState<string | null>(null)
+  const timelineFileInputRef = useRef<HTMLInputElement>(null)
   /** Continuous playhead in game ms — drives fluid playback via lerp. */
   const [playheadMs, setPlayheadMs] = useState(8 * 60 * 1000)
   const [playing, setPlaying] = useState(false)
@@ -45,12 +52,22 @@ export function GameReview({ onSendToCalculator }: Props) {
   const [showImport, setShowImport] = useState(false)
 
   useEffect(() => {
+    if (timelineChoice === 'local') {
+      setLoading(false)
+      return
+    }
     let cancelled = false
-    loadFurVsG2Timeline()
+    setLoading(true)
+    setTimelineError(null)
+    loadBuiltinTimeline(timelineChoice)
       .then((data) => {
         if (cancelled) return
         setTimeline(data)
-        setPlayheadMs(8 * 60 * 1000)
+        const start =
+          timelineChoice === 'maknee_stub'
+            ? Math.min(60_000, Math.floor((data.durationMs || 0) / 3))
+            : 8 * 60 * 1000
+        setPlayheadMs(start)
         setLoading(false)
       })
       .catch((err: Error) => {
@@ -62,7 +79,7 @@ export function GameReview({ onSendToCalculator }: Props) {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [timelineChoice])
 
   // Fluid playback: advance playhead by wall-clock × speed, interpolate between frames
   const playSpeedRef = useRef(playSpeed)
@@ -121,6 +138,35 @@ export function GameReview({ onSendToCalculator }: Props) {
     [selectedIds, active],
   )
 
+  const placeholderUnits = active?.units.filter(
+    (u) => u.positionSource === 'fountain_placeholder',
+  ) ?? []
+  const frameHasPlaceholderPositions =
+    source === 'timeline' &&
+    (placeholderUnits.length > 0 || timeline?.provenance?.positionCoverage === 'none')
+  const selectedHasPlaceholderPositions = selectedUnits.some(
+    (u) => u.positionSource === 'fountain_placeholder',
+  )
+  const selectedLacksCombatState = selectedUnits.some(
+    (u) =>
+      u.hpKnown === false ||
+      u.combatStatsKnown === false ||
+      u.abilityRanksKnown === false,
+  )
+  const timelineHpUnavailable =
+    source === 'timeline' && timeline?.provenance?.hpCoverage === 'none'
+  const combatStateBlocked =
+    source === 'timeline' && (timelineHpUnavailable || selectedLacksCombatState)
+  const positionBlocked =
+    source === 'timeline' &&
+    (timeline?.provenance?.positionCoverage === 'none' || selectedHasPlaceholderPositions)
+  const calculatorBlocked = positionBlocked || combatStateBlocked
+  const calculatorBlockReason = positionBlocked
+    ? 'Live replay positions are required'
+    : combatStateBlocked
+      ? 'Positions are real but HP, ability ranks, and combat stats are unavailable from this replay feed'
+      : null
+
   function toggleUnit(id: string) {
     setSelectedIds((prev) => {
       if (prev.includes(id)) return prev.filter((x) => x !== id)
@@ -154,6 +200,27 @@ export function GameReview({ onSendToCalculator }: Props) {
     setShowImport(false)
   }
 
+  async function openTimelineFile(file: File) {
+    setTimelineFileError(null)
+    try {
+      const data = parseGameTimelineJson(await file.text())
+      const duration = data.durationMs || data.frames[data.frames.length - 1]?.t || 0
+      const firstFrame = data.frames[0]?.t ?? 0
+      setTimeline(data)
+      setTimelineChoice('local')
+      setLocalTimelineName(file.name)
+      setSource('timeline')
+      setPlayheadMs(Math.min(duration, Math.max(firstFrame, 8 * 60 * 1000)))
+      setSelectedIds([])
+      setPlaying(false)
+      setTimelineError(null)
+    } catch (error) {
+      setTimelineFileError(
+        error instanceof Error ? error.message : 'Could not load that timeline file.',
+      )
+    }
+  }
+
   const blueSelected = selectedUnits.filter((u) => u.team === 'blue')
   const redSelected = selectedUnits.filter((u) => u.team === 'red')
   const blueLiving = blueSelected.filter((u) => u.alive !== false)
@@ -168,7 +235,7 @@ export function GameReview({ onSendToCalculator }: Props) {
       : `Send selected fighters as a ${fightSizeLabel} trade (click champs on the map/roster to pick sides)`
 
   function sendFight(engager: 'blue' | 'red' | 'neither' = 'neither') {
-    if (!canSend || !active) return
+    if (!canSend || calculatorBlocked || !active) return
 
     const matchup: MatchupInput = {
       blue: blueLiving.map((u) => ({
@@ -206,7 +273,7 @@ export function GameReview({ onSendToCalculator }: Props) {
   }
 
   if (loading) {
-    return <p className="timeline-status">Loading FUR vs G2 timeline…</p>
+    return <p className="timeline-status">Loading timeline…</p>
   }
 
   if (!active) {
@@ -293,12 +360,54 @@ export function GameReview({ onSendToCalculator }: Props) {
             }}
           >
             <option value="timeline" disabled={!timeline}>
-              FUR vs G2{timelineError ? ' (failed)' : ''}
+              Timeline{timelineError ? ' (failed)' : ''}
             </option>
             <option value="sample">Samples</option>
             <option value="import">Imported</option>
           </select>
         </label>
+
+        {source === 'timeline' && (
+          <label>
+            Match
+            <select
+              value={timelineChoice}
+              onChange={(e) => {
+                setTimelineChoice(e.target.value as BuiltinTimelineId)
+                setLocalTimelineName(null)
+                setSelectedIds([])
+                setPlaying(false)
+              }}
+            >
+              {timelineChoice === 'local' && (
+                <option value="local" disabled>
+                  {localTimelineName ?? 'Local timeline'}
+                </option>
+              )}
+              <option value="fur_vs_g2">FUR vs G2</option>
+              <option value="maknee_stub">Maknee stub (decoded packets)</option>
+            </select>
+          </label>
+        )}
+
+        <input
+          ref={timelineFileInputRef}
+          type="file"
+          accept=".json,application/json"
+          hidden
+          onChange={(e) => {
+            const file = e.target.files?.[0]
+            if (file) void openTimelineFile(file)
+            e.target.value = ''
+          }}
+        />
+        <button
+          type="button"
+          className="ghost"
+          onClick={() => timelineFileInputRef.current?.click()}
+        >
+          Open timeline JSON
+        </button>
 
         {source === 'sample' && (
           <label>
@@ -367,9 +476,24 @@ export function GameReview({ onSendToCalculator }: Props) {
                 )
                 .join(', ')}
               {!canSend && <em> · need ≥1 per team</em>}
+              {positionBlocked && <em> · live positions required</em>}
+              {combatStateBlocked && !positionBlocked && (
+                <em> · HP/combat state unavailable</em>
+              )}
             </span>
           )}
         </div>
+
+        {frameHasPlaceholderPositions && (
+          <span className="position-coverage-warning">
+            Fountain/scaffold positions shown — xH and calculator handoff are blocked until live positions are available.
+          </span>
+        )}
+        {combatStateBlocked && !positionBlocked && (
+          <span className="position-coverage-warning">
+            Positions are real, but HP, ability ranks, and combat stats are unavailable from this replay feed — calculator handoff is blocked.
+          </span>
+        )}
 
         <div className="send-actions">
           <button
@@ -408,8 +532,8 @@ export function GameReview({ onSendToCalculator }: Props) {
           </button>
           <button
             type="button"
-            disabled={!canSend}
-            title={fightSizeTitle}
+            disabled={!canSend || calculatorBlocked}
+            title={calculatorBlockReason ?? fightSizeTitle}
             onClick={() => sendFight('neither')}
           >
             Send
@@ -418,7 +542,7 @@ export function GameReview({ onSendToCalculator }: Props) {
           <button
             type="button"
             className="ghost"
-            disabled={!canSend}
+            disabled={!canSend || calculatorBlocked}
             onClick={() => sendFight('blue')}
           >
             Blue engages
@@ -426,7 +550,7 @@ export function GameReview({ onSendToCalculator }: Props) {
           <button
             type="button"
             className="ghost"
-            disabled={!canSend}
+            disabled={!canSend || calculatorBlocked}
             onClick={() => sendFight('red')}
           >
             Red engages
@@ -465,6 +589,9 @@ export function GameReview({ onSendToCalculator }: Props) {
       {timelineError && source !== 'timeline' && (
         <p className="timeline-status warn">Timeline warning: {timelineError}</p>
       )}
+      {timelineFileError && (
+        <p className="timeline-status warn">Timeline file: {timelineFileError}</p>
+      )}
 
       <div className="review-layout">
         <MapView
@@ -472,7 +599,7 @@ export function GameReview({ onSendToCalculator }: Props) {
           selectedIds={selectedIds}
           onToggleUnit={toggleUnit}
           onMoveUnit={moveUnit}
-          showXh={showXh}
+          showXh={showXh && !frameHasPlaceholderPositions}
           fogViewer={fogViewer}
         />
         <div className="roster-pane">

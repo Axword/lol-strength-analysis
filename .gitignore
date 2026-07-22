@@ -37,4 +37,7 @@ vision/weights/
 *.pt
 *.onnx
 public/data/touch-vod-stills/
+# ROFL research dumps (derived from local replays)
+docs/rofl-research/*.bin
+docs/rofl-research/fixtures/events_*.jsonl
 /tmp/

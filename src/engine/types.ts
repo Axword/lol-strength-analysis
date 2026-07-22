@@ -2,6 +2,8 @@ export type DamageType = 'physical' | 'magical' | 'true'
 
 export type AbilitySlot = 'P' | 'Q' | 'W' | 'E' | 'R' | 'AA'
 
+export type ChampionForm = 'mini' | 'mega'
+
 export interface ChampionBaseStats {
   hp: number
   hpperlevel: number
@@ -23,6 +25,11 @@ export interface ChampionBaseStats {
   attackdamageperlevel: number
   attackspeedperlevel: number
   attackspeed: number
+  /**
+   * Attack-speed ratio for bonus AS%. When omitted, theorycraft falls back to
+   * `attackspeed` (documented approximation for kits without Meraki ratio).
+   */
+  attackspeedratio?: number
 }
 
 export interface DamagePacket {
@@ -49,6 +56,11 @@ export interface CombatStats {
   ad: number
   ap: number
   attackSpeed: number
+  /**
+   * Champion attack-speed ratio used to convert bonus AS% (items/Hextech/growth)
+   * into attacks/sec. Live-pinned AS ignores further ratio math.
+   */
+  attackSpeedRatio: number
   critChance: number
   critDamage: number
   lethality: number
@@ -110,6 +122,25 @@ export interface ResolvedUtility {
   sources: string[]
 }
 
+/**
+ * Optional execution timing for the bounded timed-manual-1v1 planner.
+ * Absent fields receive deterministic conservative defaults in rotation.ts /
+ * combat.ts. Does not affect the aggregate-window path.
+ */
+export interface AbilityExecutionTiming {
+  /** Seconds the caster is locked after starting this action. */
+  castLockSec?: number
+  /** Delay from action start to damage impact. */
+  impactDelaySec?: number
+  /** Resets the auto-attack timer (e.g. Darius W). */
+  attackReset?: boolean
+  /**
+   * Empowered auto: the ability damage packet already includes the AA
+   * portion — do not emit a separate base-AD AA for the same hit.
+   */
+  empoweredAuto?: boolean
+}
+
 export interface AbilityDefinition {
   slot: Exclude<AbilitySlot, 'AA' | 'P'>
   name: string
@@ -125,6 +156,8 @@ export interface AbilityDefinition {
   /** Max missile travel (uu); defaults to `range` when unset. */
   missileMaxTravelUu?: number
   engageCc?: boolean
+  /** Optional form/state gate for generated kits (for example Gnar R). */
+  available?: (ctx: AbilityContext) => boolean
   /**
    * Non-damage fight effects. Required for slows/CC even when `damage` is empty.
    * Wiki generators must keep abilities that only populate this field.
@@ -141,6 +174,8 @@ export interface AbilityDefinition {
     defender: CombatStats,
     ctx: AbilityContext,
   ) => DamagePacket[]
+  /** Optional timed-execution metadata (manual 1v1 planner only). */
+  execution?: AbilityExecutionTiming
 }
 
 export interface AbilityContext {
@@ -149,6 +184,8 @@ export interface AbilityContext {
   /** @deprecated use ranks — kept for transitional call sites */
   abilityRank: number
   hasEngagerAdvantage: boolean
+  /** Explicit champion form when a kit has mutually exclusive packets. */
+  form?: ChampionForm
 }
 
 export interface ChampionDefinition {
@@ -228,6 +265,8 @@ export interface FighterLoadout {
   runeId: string | null
   /** Per-ability ranks from timeline / manual edit */
   ranks: AbilityRanks
+  /** Explicit form for form-dependent kits; absent uses the kit's documented default. */
+  form?: ChampionForm
   /**
    * @deprecated Prefer `ranks`. Still accepted as a fallback when ranks omitted.
    */
@@ -274,6 +313,16 @@ export interface MatchupInput {
   engager: 'blue' | 'red' | 'neither'
   mode: TradeMode
   xhMode?: XhMode
+  /**
+   * Optional theorycraft fight length in seconds.
+   * When set, overrides the preset window for `mode` (autos, casts, DoTs).
+   */
+  durationSec?: number
+  /**
+   * Fraction of attack-speed autos that actually land (0–1).
+   * Models kiting / disengage — default 1.
+   */
+  aaUptime?: number
   /** Live objective state for both sides (dragons/baron/elder/grubs…) */
   objectives?: {
     blue: import('./objectives').TeamObjectives
@@ -297,6 +346,21 @@ export interface FighterResult {
   /** Abilities omitted due to low HP budget */
   omittedSlots?: AbilitySlot[]
   dead?: boolean
+  /** Deterministic enemy target receiving this fighter's single-target packets. */
+  targetIndex?: number
+}
+
+export interface TargetResult {
+  index: number
+  championId: string
+  championName: string
+  hpStart: number
+  hpMax: number
+  incomingDamage: number
+  sustainHeal: number
+  damageReduction: number
+  hpRemaining: number
+  killed: boolean
 }
 
 export interface SideResult {
@@ -309,7 +373,9 @@ export interface SideResult {
   mitigatedTotal: number
   hpRemaining: number
   hpRemainingPct: number
+  /** Effective outgoing damage from this side into the opposing focus target. */
   damagePctOfEnemy: number
+  /** Whether this side killed an opposing target; targets[] remains own health. */
   kills: boolean
   lockedOut: boolean
   avgXh?: number
@@ -317,6 +383,12 @@ export interface SideResult {
   outgoingUtility?: ResolvedUtility
   /** Utility applied onto this side by the enemy */
   incomingUtility?: ResolvedUtility
+  /** Target-by-target post-sustain results under the declared focus policy. */
+  targets?: TargetResult[]
+  /** Index in the opposing living roster receiving this side's damage. */
+  focusTargetIndex?: number
+  /** Per-owner defensive utility; never max-merged across a team pool. */
+  defensiveUtilityByTarget?: ResolvedUtility[]
 }
 
 export interface StrengthBand {
@@ -347,13 +419,61 @@ export interface XhDodgeBands {
   mix?: number
 }
 
+/** How damage was scheduled for this matchup result. */
+export type CombatResolutionMethod = 'timed_manual_1v1' | 'aggregate_window'
+
+/**
+ * One scheduled / executed combat action for later UI timelines.
+ * All times are seconds from fight start; impactSec <= requested window.
+ */
+export interface TimedCombatEvent {
+  side: 'blue' | 'red'
+  fighterIndex: number
+  slot: AbilitySlot
+  source: string
+  castIndex: number
+  startSec: number
+  impactSec: number
+  attackReset?: boolean
+  /** Raw pre-mitigation damage at impact (omitted for non-damaging markers). */
+  raw?: number
+  /** True when this event was suppressed because the caster already died. */
+  suppressed?: boolean
+}
+
+/**
+ * Serializable event-timing contract for MatchupResult.
+ * Optional / backward-safe — older consumers ignore it.
+ */
+export interface MatchupTimingResult {
+  method: CombatResolutionMethod
+  /** Requested theorycraft / mode window (seconds). */
+  requestedDurationSec: number
+  /** Elapsed time actually resolved (may end early on lethal). */
+  executedDurationSec: number
+  /** When the fight stopped resolving (death or window end). */
+  resolvedSec?: number
+  /** First moment any living focus target reached <= 0 HP (pre-end sustain). */
+  firstLethalSec?: number
+  blueDeathSec?: number
+  redDeathSec?: number
+  events: TimedCombatEvent[]
+  /** Deterministic, stable-sorted caveat codes / short phrases. */
+  caveats: string[]
+}
+
 export interface MatchupResult {
   blue: SideResult
   red: SideResult
   winner: 'blue' | 'red' | 'draw'
-  /** Calibrated P(blue wins fight) when scoreboard is present */
+  /**
+   * Heuristic blue ranking score in [0, 1] (with pRed ≈ 1 − pBlue).
+   * Not a calibrated win probability, odds, or chance — UI must not present it as %.
+   */
   pBlue?: number
   pRed?: number
+  /** Runtime model-confidence contract; calibrated is always false today. */
+  modelTrust?: import('./modelTrust').MatchupModelTrust
   notes: string[]
   xhMode: XhMode
   strengthBand?: StrengthBand
@@ -363,6 +483,10 @@ export interface MatchupResult {
   xhPacketPolicy?: 'typical' | 'mix'
   /** Leftover-HP% winner (legacy poke metric) — not used as primary verdict */
   tradeHpWinner?: 'blue' | 'red' | 'draw'
+  /** Theorycraft assumptions shown under the result (item procs, duration, …) */
+  assumptions?: string[]
+  /** Serializable cast/attack timing (timed manual 1v1 or aggregate fallback). */
+  timing?: MatchupTimingResult
 }
 
 export function normalizeRanks(

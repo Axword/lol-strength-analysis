@@ -1,0 +1,382 @@
+{
+  "source_summary": {
+    "file": "BR1-3263797356.rofl",
+    "version": "16.14.794.5912",
+    "meta": {
+      "gameLength": 1973096,
+      "lastGameChunkId": 68,
+      "lastKeyFrameId": 33
+    },
+    "players": [
+      {
+        "name": "ltetol#br1",
+        "champ": "Gnar",
+        "team": "100",
+        "kda": "7/4/2",
+        "win": "Fail"
+      },
+      {
+        "name": "Ye\u00e2ger#geto",
+        "champ": "Hecarim",
+        "team": "100",
+        "kda": "2/10/13",
+        "win": "Fail"
+      },
+      {
+        "name": "\u30c4\u30c4\u30c4#sexy",
+        "champ": "Galio",
+        "team": "100",
+        "kda": "3/12/11",
+        "win": "Fail"
+      },
+      {
+        "name": "aizen cifer#BR1",
+        "champ": "Samira",
+        "team": "100",
+        "kda": "15/10/6",
+        "win": "Fail"
+      },
+      {
+        "name": "duzinfsdafdsghfa#12345",
+        "champ": "Alistar",
+        "team": "100",
+        "kda": "2/10/16",
+        "win": "Fail"
+      },
+      {
+        "name": "awakening#0000",
+        "champ": "Malphite",
+        "team": "200",
+        "kda": "6/7/22",
+        "win": "Win"
+      },
+      {
+        "name": "haste#zap",
+        "champ": "Sylas",
+        "team": "200",
+        "kda": "13/6/20",
+        "win": "Win"
+      },
+      {
+        "name": "pixel#mari",
+        "champ": "Syndra",
+        "team": "200",
+        "kda": "10/5/22",
+        "win": "Win"
+      },
+      {
+        "name": "heavenly#alx",
+        "champ": "Vayne",
+        "team": "200",
+        "kda": "15/5/11",
+        "win": "Win"
+      },
+      {
+        "name": "nhUwUmi#glhf",
+        "champ": "TahmKench",
+        "team": "200",
+        "kda": "2/6/28",
+        "win": "Win"
+      }
+    ]
+  },
+  "body_header": {
+    "layout": "u8 marker | f32 time_seconds | (keyframes: u32=2, u32=0x50, \u2026)",
+    "keyframe_interval_s": "~60",
+    "chunk_interval_s": "~30"
+  },
+  "counts": {
+    "segments": 99,
+    "chunks_with_time": 66,
+    "keyframes_with_time": 33,
+    "chunk_markers": {
+      "1": 27,
+      "2": 39
+    },
+    "keyframe_markers": {
+      "1": 33
+    }
+  },
+  "cadence": {
+    "chunk_dt_top": [
+      [
+        30.021,
+        4
+      ],
+      [
+        30.005,
+        4
+      ],
+      [
+        30.008,
+        3
+      ],
+      [
+        29.983,
+        3
+      ],
+      [
+        30.01,
+        3
+      ],
+      [
+        30.093,
+        2
+      ],
+      [
+        30.022,
+        2
+      ],
+      [
+        30.003,
+        2
+      ]
+    ],
+    "keyframe_dt_top": [
+      [
+        60.02,
+        4
+      ],
+      [
+        60.012,
+        2
+      ],
+      [
+        60.003,
+        2
+      ],
+      [
+        60.032,
+        2
+      ],
+      [
+        60.007,
+        2
+      ],
+      [
+        60.004,
+        2
+      ],
+      [
+        60.016,
+        1
+      ],
+      [
+        60.0,
+        1
+      ]
+    ],
+    "chunk_t_range": [
+      0.0,
+      1950.6507568359375
+    ],
+    "keyframe_t_range": [
+      0.0,
+      1920.60009765625
+    ]
+  },
+  "early_keyframe_0x29_slots": [
+    {
+      "t": 0.0,
+      "runs": [
+        {
+          "off": 38,
+          "ctx": "00000011f6020052292929292929498a1009f25e6848f329"
+        },
+        {
+          "off": 88,
+          "ctx": "00000019f6020060292929292929498a1009f25e6848f329"
+        },
+        {
+          "off": 154,
+          "ctx": "00000011f6020052292929292929498a1009f25e6848f329"
+        },
+        {
+          "off": 204,
+          "ctx": "00000019f6020060292929292929498a1009f25e6848f329"
+        }
+      ]
+    },
+    {
+      "t": 60.016151428222656,
+      "runs": [
+        {
+          "off": 32,
+          "ctx": "6ab10019f6020050292929292929498a852cecf20e530229"
+        },
+        {
+          "off": 92,
+          "ctx": "fbb10019f6020060292929292929498a852cecf20e530229"
+        },
+        {
+          "off": 152,
+          "ctx": "fbb10019f6020050292929292929498a852cecf20e530229"
+        },
+        {
+          "off": 212,
+          "ctx": "fbb10019f6020060292929292929498a852cecf20e530229"
+        }
+      ]
+    },
+    {
+      "t": 120.01625061035156,
+      "runs": [
+        {
+          "off": 32,
+          "ctx": "6ab10019f6020050292929292929498a529927ea0712b229"
+        },
+        {
+          "off": 92,
+          "ctx": "fbb10019f6020060292929292929498a529927ea0712b229"
+        },
+        {
+          "off": 152,
+          "ctx": "fbb10019f6020050292929292929498a529927ea0712b229"
+        },
+        {
+          "off": 212,
+          "ctx": "fbb10019f6020060292929292929498a529927ea0712b229"
+        }
+      ]
+    },
+    {
+      "t": 180.02780151367188,
+      "runs": [
+        {
+          "off": 32,
+          "ctx": "6ab10019f6020050292929292929498ac2b9635212d24329"
+        },
+        {
+          "off": 92,
+          "ctx": "fbb10019f6020060292929292929498ac2b9635212d24329"
+        },
+        {
+          "off": 152,
+          "ctx": "fbb10019f6020050292929292929498ac2b9635212d24329"
+        },
+        {
+          "off": 212,
+          "ctx": "fbb10019f6020060292929292929498ac2b9635212d24329"
+        }
+      ]
+    },
+    {
+      "t": 240.0311737060547,
+      "runs": [
+        {
+          "off": 32,
+          "ctx": "6ab10019f6020050292929292929498a9ba9219f8812a629"
+        },
+        {
+          "off": 92,
+          "ctx": "fbb10019f6020060292929292929498a9ba9219f8812a629"
+        },
+        {
+          "off": 152,
+          "ctx": "fbb10019f6020050292929292929498a9ba9219f8812a629"
+        },
+        {
+          "off": 212,
+          "ctx": "fbb10019f6020060292929292929498a9ba9219f8812a629"
+        }
+      ]
+    }
+  ],
+  "blocked": [
+    "Inner fields after the time header are still largely opaque (obfuscated / bit-packed).",
+    "End-of-game box-score integers (gold, items) are not present as raw LE u32 in segment bodies.",
+    "No reliable plaintext map-coordinate stream found yet \u2014 cannot emit stats_update."
+  ],
+  "timeline_sample": [
+    {
+      "seg": 0,
+      "file": "seg_000_id1_keyframe.bin",
+      "id_a": 1,
+      "id_b": 3,
+      "type": "keyframe",
+      "size": 139027,
+      "entropy": 5.9795,
+      "marker": 1,
+      "t": 0.0,
+      "ok": true,
+      "head16": "01000000000200000050000000000087",
+      "kf_field_a": 2,
+      "kf_field_b": 80
+    },
+    {
+      "seg": 1,
+      "file": "seg_001_id3_chunk.bin",
+      "id_a": 3,
+      "id_b": 4,
+      "type": "chunk",
+      "size": 123039,
+      "entropy": 6.9654,
+      "marker": 1,
+      "t": 0.0,
+      "ok": true,
+      "head16": "0100000000010000004e02000000006c",
+      "kf_field_a": 1,
+      "kf_field_b": 590
+    },
+    {
+      "seg": 2,
+      "file": "seg_002_id4_chunk.bin",
+      "id_a": 4,
+      "id_b": 5,
+      "type": "chunk",
+      "size": 148496,
+      "entropy": 7.092,
+      "marker": 1,
+      "t": 30.048215866088867,
+      "ok": true,
+      "head16": "01bf62f0410f0000004a014c02004069",
+      "kf_field_a": 15,
+      "kf_field_b": 38535498
+    },
+    {
+      "seg": 3,
+      "file": "seg_003_id2_keyframe.bin",
+      "id_a": 2,
+      "id_b": 5,
+      "type": "keyframe",
+      "size": 182797,
+      "entropy": 6.8632,
+      "marker": 1,
+      "t": 60.016151428222656,
+      "ok": true,
+      "head16": "018a1070420200000050000000000081",
+      "kf_field_a": 2,
+      "kf_field_b": 80
+    },
+    {
+      "seg": 4,
+      "file": "seg_004_id5_chunk.bin",
+      "id_a": 5,
+      "id_b": 6,
+      "type": "chunk",
+      "size": 486780,
+      "entropy": 7.1393,
+      "marker": 2,
+      "t": 60.14082717895508,
+      "ok": true,
+      "head16": "0235907042620000002c02000000007f"
+    },
+    {
+      "seg": 5,
+      "file": "seg_005_id6_chunk.bin",
+      "id_a": 6,
+      "id_b": 7,
+      "type": "chunk",
+      "size": 487966,
+      "entropy": 7.1307,
+      "marker": 2,
+      "t": 90.0716552734375,
+      "ok": true,
+      "head16": "02b024b442210000002c020000000025"
+    },
+    {
+      "_note": "... 93 more segments omitted; regenerate via scripts/rofl2_packet_taxonomy.py"
+    }
+  ],
+  "timeline_count": 99
+}

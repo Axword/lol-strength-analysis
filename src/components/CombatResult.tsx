@@ -25,7 +25,7 @@ function TeamFace({
     <div
       className={`team-face side-${result.side} ${isWinner ? 'is-winner' : ''} ${isLoser ? 'is-loser' : ''}`}
     >
-      {isWinner && <span className="win-tag">Favorite</span>}
+      {isWinner && <span className="win-tag">Stronger</span>}
       {result.lockedOut && <span className="lock-badge">Late react</span>}
 
       <div className="team-icons">
@@ -57,7 +57,7 @@ function TeamFace({
         <div className="hp-meter-labels">
           <strong>{pct(result.hpRemainingPct)}%</strong>
           <span>
-            {fmt(result.hpRemaining)} / {fmt(result.stats.hp)} HP
+            {fmt(result.hpRemaining)} / {fmt(result.stats.hpMax)} HP
           </span>
         </div>
       </div>
@@ -192,20 +192,26 @@ export function CombatResult({ result }: { result: MatchupResult }) {
   const blueWins = result.winner === 'blue'
   const redWins = result.winner === 'red'
   const draw = result.winner === 'draw'
+  const bothLethal = !!(result.blue.kills && result.red.kills)
 
   const pBlue = result.pBlue ?? 0.5
   const pRed = result.pRed ?? 1 - pBlue
-  const favPct = Math.round(Math.max(pBlue, pRed) * 100)
+  const blueScore = Math.round(pBlue * 100)
+  const redScore = Math.round(pRed * 100)
+  const trust = result.modelTrust
+  const trustBadge = trust?.badge ?? 'Experimental · uncalibrated'
 
   const headline = draw
-    ? 'Even fight odds'
+    ? 'Even model score'
     : blueWins
-      ? `Blue favored · ${favPct}%`
-      : `Red favored · ${favPct}%`
+      ? 'Blue model edge'
+      : 'Red model edge'
 
-  const subline = draw
-    ? `Fight odds near coin-flip (B ${Math.round(pBlue * 100)}% / R ${Math.round(pRed * 100)}%)`
-    : `${Math.round(pBlue * 100)}% blue · ${Math.round(pRed * 100)}% red · leftover HP ${pct(result.blue.hpRemainingPct)}% / ${pct(result.red.hpRemainingPct)}%`
+  const leftoverLine = bothLethal
+    ? `Both lethal · overkill ${Math.round(result.blue.damagePctOfEnemy * 100)}% / ${Math.round(result.red.damagePctOfEnemy * 100)}% of enemy HP`
+    : `leftover HP ${pct(result.blue.hpRemainingPct)}% / ${pct(result.red.hpRemainingPct)}%`
+
+  const subline = `heuristic model score B ${blueScore} / R ${redScore} · not a win probability · ${leftoverLine}`
 
   const band = result.strengthBand
 
@@ -215,11 +221,19 @@ export function CombatResult({ result }: { result: MatchupResult }) {
         <p className="eyebrow">
           Trade outcome · xH {result.xhMode.replace('_', ' ')}
         </p>
-        <h2>{headline}</h2>
+        <div className="verdict-head">
+          <h2>{headline}</h2>
+          <span
+            className={`trust-badge ${trust?.class === 'manual_kit_1v1' ? 'manual' : 'experimental'}`}
+            title={trust?.reasons.join(' · ')}
+          >
+            {trustBadge}
+          </span>
+        </div>
         <p className="verdict-sub">{subline}</p>
 
         {band && (
-          <div className="strength-band" aria-label="Strength percentage band">
+          <div className="strength-band" aria-label="Model strength band">
             <p className="band-title">Strength band</p>
             <div className="band-row">
               <BandCell
@@ -327,6 +341,17 @@ export function CombatResult({ result }: { result: MatchupResult }) {
             ))}
           </ul>
         )}
+
+        {result.assumptions && result.assumptions.length > 0 && (
+          <footer className="assumptions">
+            <p className="assumptions-title">Assumptions</p>
+            <ul>
+              {result.assumptions.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+          </footer>
+        )}
       </div>
 
       <div className="details-row">
@@ -354,15 +379,15 @@ function BandCell({
   pBlue?: number
   active?: boolean
 }) {
-  const odds =
+  const score =
     pBlue != null
-      ? `${Math.round(pBlue * 100)}/${Math.round((1 - pBlue) * 100)}`
+      ? `score ${Math.round(pBlue * 100)}/${Math.round((1 - pBlue) * 100)}`
       : null
   return (
     <div className={`band-cell winner-${winner} ${active ? 'active' : ''}`}>
       <span className="band-label">{label}</span>
       <span className="band-hint">{hint}</span>
-      {odds && <span className="band-odds">odds {odds}</span>}
+      {score && <span className="band-score">{score}</span>}
       <div className="band-hp">
         <span className="b">HP {pct(bluePct)}%</span>
         <span className="outcome">

@@ -7,7 +7,7 @@
  * is +6k with baron — that is rejected here.
  */
 
-import type { TeamObjectives } from './objectives'
+import { elementalDragons, type TeamObjectives } from './objectives'
 import type { FighterLoadout, SideResult } from './types'
 
 export interface FightOddsInput {
@@ -75,8 +75,11 @@ export function gameStateLogit(
   if (red.baronActive) obj -= 1.15
   if (blue.elderActive) obj += 1.35
   if (red.elderActive) obj -= 1.35
-  const blueDrakes = Math.max(0, blue.dragonCount - (blue.hasSoul ? 1 : 0))
-  const redDrakes = Math.max(0, red.dragonCount - (red.hasSoul ? 1 : 0))
+  // Fourth elemental kill is a real permanent stack AND grants Soul — do not
+  // subtract one just because hasSoul. Prefer elementalDragons (filters legacy
+  // "elemental" pseudo-label); fall back to dragonCount.
+  const blueDrakes = Math.max(0, elementalDragons(blue).length || blue.dragonCount)
+  const redDrakes = Math.max(0, elementalDragons(red).length || red.dragonCount)
   obj += (blueDrakes - redDrakes) * 0.38
   if (blue.hasSoul) obj += 0.85
   if (red.hasSoul) obj -= 0.85

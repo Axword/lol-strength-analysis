@@ -42,6 +42,34 @@
   color: var(--ink);
 }
 
+.verdict-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.trust-badge.manual {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  color: var(--ink);
+}
+
+.trust-badge.experimental {
+  border-color: color-mix(in srgb, var(--muted) 50%, var(--line));
+}
+
 .verdict-board.winner-blue h2 {
   color: var(--blue);
 }
@@ -307,7 +335,7 @@
   color: var(--muted);
 }
 
-.band-odds {
+.band-score {
   display: block;
   margin-top: 0.15rem;
   font-family: var(--mono);
@@ -690,4 +718,34 @@
   100% {
     transform: scale(1.02);
   }
+}
+
+.assumptions {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed color-mix(in srgb, var(--line) 80%, transparent);
+  text-align: left;
+}
+
+.assumptions-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.assumptions ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.assumptions li {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.35;
 }

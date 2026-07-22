@@ -1,0 +1,196 @@
+[
+  {
+    "file": "BR1-3263797356.rofl",
+    "version": "16.14.794.5912",
+    "unk8": "509c49fd988fca11",
+    "header_u32s": [
+      1,
+      2,
+      3341571,
+      1287936
+    ],
+    "meta": {
+      "gameLength": 1973096,
+      "lastGameChunkId": 68,
+      "lastKeyFrameId": 33
+    },
+    "dict_size": 13053,
+    "preamble_hex": "0200000003000000041100000000000000010000000002000000500000000000871a",
+    "segment_count": 99,
+    "types": {
+      "keyframe": 33,
+      "chunk": 66
+    },
+    "all_size_match": true,
+    "leftover_bytes": 239,
+    "players": [
+      {
+        "name": "ltetol#br1",
+        "champ": "Gnar",
+        "team": "100",
+        "kda": "7/4/2",
+        "win": "Fail"
+      },
+      {
+        "name": "Ye\u00e2ger#geto",
+        "champ": "Hecarim",
+        "team": "100",
+        "kda": "2/10/13",
+        "win": "Fail"
+      },
+      {
+        "name": "\u30c4\u30c4\u30c4#sexy",
+        "champ": "Galio",
+        "team": "100",
+        "kda": "3/12/11",
+        "win": "Fail"
+      },
+      {
+        "name": "aizen cifer#BR1",
+        "champ": "Samira",
+        "team": "100",
+        "kda": "15/10/6",
+        "win": "Fail"
+      },
+      {
+        "name": "duzinfsdafdsghfa#12345",
+        "champ": "Alistar",
+        "team": "100",
+        "kda": "2/10/16",
+        "win": "Fail"
+      },
+      {
+        "name": "awakening#0000",
+        "champ": "Malphite",
+        "team": "200",
+        "kda": "6/7/22",
+        "win": "Win"
+      },
+      {
+        "name": "haste#zap",
+        "champ": "Sylas",
+        "team": "200",
+        "kda": "13/6/20",
+        "win": "Win"
+      },
+      {
+        "name": "pixel#mari",
+        "champ": "Syndra",
+        "team": "200",
+        "kda": "10/5/22",
+        "win": "Win"
+      },
+      {
+        "name": "heavenly#alx",
+        "champ": "Vayne",
+        "team": "200",
+        "kda": "15/5/11",
+        "win": "Win"
+      },
+      {
+        "name": "nhUwUmi#glhf",
+        "champ": "TahmKench",
+        "team": "200",
+        "kda": "2/6/28",
+        "win": "Win"
+      }
+    ]
+  },
+  {
+    "file": "BR1-3258889432.rofl",
+    "version": "16.13.791.5903",
+    "unk8": "d2922873ff56143b",
+    "header_u32s": [
+      1,
+      2,
+      5882115,
+      1962240
+    ],
+    "meta": {
+      "gameLength": 1143503,
+      "lastGameChunkId": 41,
+      "lastKeyFrameId": 20
+    },
+    "dict_size": 22977,
+    "preamble_hex": "0200000003000000041100000000000000010000000002000000da00000000007ca8",
+    "segment_count": 59,
+    "types": {
+      "keyframe": 20,
+      "chunk": 39
+    },
+    "all_size_match": true,
+    "leftover_bytes": 239,
+    "players": [
+      {
+        "name": "JACKZAO2000#12YE",
+        "champ": "Singed",
+        "team": "100",
+        "kda": "15/3/6",
+        "win": "Win"
+      },
+      {
+        "name": "pixel#mari",
+        "champ": "MonkeyKing",
+        "team": "100",
+        "kda": "8/3/11",
+        "win": "Win"
+      },
+      {
+        "name": "bloodborne#zed",
+        "champ": "Zed",
+        "team": "100",
+        "kda": "3/5/3",
+        "win": "Win"
+      },
+      {
+        "name": "Goes007#3694",
+        "champ": "Twitch",
+        "team": "100",
+        "kda": "8/3/6",
+        "win": "Win"
+      },
+      {
+        "name": "Vacas Magras#Vcm",
+        "champ": "Braum",
+        "team": "100",
+        "kda": "3/2/9",
+        "win": "Win"
+      },
+      {
+        "name": "Satsugai#br1",
+        "champ": "Tryndamere",
+        "team": "200",
+        "kda": "1/12/1",
+        "win": "Fail"
+      },
+      {
+        "name": "arklock#BR1",
+        "champ": "Shyvana",
+        "team": "200",
+        "kda": "3/6/3",
+        "win": "Fail"
+      },
+      {
+        "name": "mistercannabis#4142",
+        "champ": "Velkoz",
+        "team": "200",
+        "kda": "6/8/2",
+        "win": "Fail"
+      },
+      {
+        "name": "Vitin#flu",
+        "champ": "Mel",
+        "team": "200",
+        "kda": "4/4/1",
+        "win": "Fail"
+      },
+      {
+        "name": "Monsterrayne#BR1",
+        "champ": "Nautilus",
+        "team": "200",
+        "kda": "2/7/5",
+        "win": "Fail"
+      }
+    ]
+  }
+]

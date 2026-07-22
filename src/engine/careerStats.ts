@@ -76,19 +76,19 @@ export interface DrakeAttribution {
   mountainMitigated: number
   /** Cloud (+ soul) MS % — team buff; not distance-traveled. */
   cloudMsPct: number
-  /** Chemtech blight heal/shield power share of ally heal+shield. */
+  /** Chemtech blight heal/shield power share of ally heal+shield (tracked attribution; not combat-applied). */
   chemHspBonus: number
-  /** Chemtech blight tenacity %. */
+  /** Chemtech blight tenacity % (tracked; not combat-applied). */
   chemTenacityPct: number
   /** Hextech dragon AH (permanent stacks only). */
   hexAh: number
   /** Hextech dragon AS %. */
   hexAsPct: number
-  /** Chemtech soul fight amp share of champ damage. */
+  /** Chemtech soul fight amp share — always 0 without threshold-time evidence. */
   soulBonusDmg: number
-  /** Chemtech soul DR share of damage taken. */
+  /** Chemtech soul DR share — always 0 without threshold-time evidence. */
   soulMitigated: number
-  /** Ocean stacks (regen not quantified without OoC HP series). */
+  /** Ocean stacks (regen disclosed; not quantified without timed HP series). */
   oceanStacks: number
   /** Short quantity lines for the cell. */
   quantities: string[]
@@ -166,6 +166,8 @@ function shareFromPercent(base: number, p: number): number {
 /**
  * Quantify how much each champ converted team dragon buffs into
  * damage amp, mitigation, HSP, etc. Cloud MS is magnitude only (no pathing).
+ * Chemtech Soul amp/DR is never attributed as always-on — requires threshold
+ * timing evidence (zero quantified soul amp/mit this batch).
  */
 export function attributeDrakeBuffs(
   obj: TeamObjectives | null | undefined,
@@ -173,8 +175,11 @@ export function attributeDrakeBuffs(
   gameTimeSec = 25 * 60,
 ): DrakeAttribution {
   const tags = formatDragonTags(obj)
-  if (obj?.baronActive) tags.push('baron OV/AD/AP')
-  if (obj?.elderActive) tags.push('elder burn')
+  if (obj?.baronActive) tags.push('baron AD/AP (no OV)')
+  if (obj?.elderActive) tags.push('elder (unmodeled burn/execute)')
+  if (obj?.hasSoul && obj.soulType === 'chemtech') {
+    tags.push('chem soul ≤50% HP (conditional; unattributed)')
+  }
 
   const empty: DrakeAttribution = {
     infernalBonusDmg: 0,
@@ -194,6 +199,7 @@ export function attributeDrakeBuffs(
   if (!obj) return empty
 
   const mods = combatModsFromObjectives(obj, gameTimeSec)
+  // Applied Cloud Soul passive MS only — permanent Cloud OoC MS is not in mods.movespeedPct.
   const cloudMsPct = mods.movespeedPct
   const chemTenacityPct = mods.tenacity
   const hexAh = mods.abilityHaste
@@ -204,12 +210,19 @@ export function attributeDrakeBuffs(
     const quantities: string[] = []
     if (mods.adPercent > 0) quantities.push(`${pctLabel(mods.adPercent)} AD/AP`)
     if (mods.armorPercent > 0) quantities.push(`${pctLabel(mods.armorPercent)} resists`)
-    if (cloudMsPct > 0) quantities.push(`${pctLabel(cloudMsPct)} MS`)
-    if (chemTenacityPct > 0) quantities.push(`${pctLabel(chemTenacityPct)} tenacity/HSP`)
+    if (cloudMsPct > 0) quantities.push(`${pctLabel(cloudMsPct)} MS (soul)`)
+    if (chemTenacityPct > 0 || mods.healShieldPower > 0) {
+      quantities.push(
+        `${pctLabel(Math.max(chemTenacityPct, mods.healShieldPower))} tenacity/HSP (tracked)`,
+      )
+    }
     if (hexAh > 0) quantities.push(`+${hexAh} AH`)
     if (hexAsPct > 0) quantities.push(`+${pctLabel(hexAsPct)} AS`)
-    if (mods.damageAmp > 0) quantities.push(`${pctLabel(mods.damageAmp)} soul amp`)
-    if (oceanStacks > 0) quantities.push(`ocean ×${oceanStacks}`)
+    // Never quantify always-on Chem Soul amp from mods.damageAmp (stays 0 this batch).
+    if (oceanStacks > 0) quantities.push(`ocean ×${oceanStacks} (unmodeled regen)`)
+    if (obj.hasSoul && obj.soulType === 'chemtech') {
+      quantities.push('chem soul conditional (0 quantified)')
+    }
     return {
       ...empty,
       cloudMsPct,
@@ -234,33 +247,27 @@ export function attributeDrakeBuffs(
     mods.healShieldPower,
   )
 
-  const soulBonusDmg = shareFromPercent(c.dmgToChamps, mods.damageAmp)
-  // DR: damage that would have been taken without the reduction ≈ taken * DR/(1−DR)
-  // Attributed mitigated ≈ taken * DR when DR is applied as incoming *= (1−DR).
-  const soulMitigated =
-    mods.damageReduction > 0 && c.dmgTakenFromChamps > 0
-      ? c.dmgTakenFromChamps * mods.damageReduction
-      : 0
+  // Chem Soul amp/DR: zero without threshold-time evidence (mods.damageAmp stays 0).
+  const soulBonusDmg = 0
+  const soulMitigated = 0
 
   const quantities: string[] = []
   if (infernalBonusDmg > 0) quantities.push(`+${Math.round(infernalBonusDmg)} amp`)
-  if (soulBonusDmg > 0) quantities.push(`+${Math.round(soulBonusDmg)} soul amp`)
   if (mountainMitigated > 0) quantities.push(`+${Math.round(mountainMitigated)} mit`)
-  if (soulMitigated > 0) quantities.push(`+${Math.round(soulMitigated)} soul mit`)
-  if (chemHspBonus > 0) quantities.push(`+${Math.round(chemHspBonus)} HSP`)
-  if (cloudMsPct > 0) quantities.push(`${pctLabel(cloudMsPct)} MS`)
+  if (chemHspBonus > 0) quantities.push(`+${Math.round(chemHspBonus)} HSP (tracked)`)
+  if (cloudMsPct > 0) quantities.push(`${pctLabel(cloudMsPct)} MS (soul)`)
   if (chemTenacityPct > 0 && chemHspBonus <= 0)
-    quantities.push(`${pctLabel(chemTenacityPct)} tenacity`)
+    quantities.push(`${pctLabel(chemTenacityPct)} tenacity (tracked)`)
   if (hexAh > 0) quantities.push(`+${hexAh} AH`)
   if (hexAsPct > 0) quantities.push(`+${pctLabel(hexAsPct)} AS`)
-  if (oceanStacks > 0 && quantities.length === 0) quantities.push(`ocean ×${oceanStacks}`)
+  if (oceanStacks > 0 && quantities.length === 0) {
+    quantities.push(`ocean ×${oceanStacks} (unmodeled regen)`)
+  }
+  if (obj.hasSoul && obj.soulType === 'chemtech') {
+    quantities.push('chem soul conditional (0 quantified)')
+  }
 
-  const sortValue =
-    infernalBonusDmg +
-    mountainMitigated +
-    chemHspBonus +
-    soulBonusDmg +
-    soulMitigated
+  const sortValue = infernalBonusDmg + mountainMitigated + chemHspBonus
 
   return {
     infernalBonusDmg,

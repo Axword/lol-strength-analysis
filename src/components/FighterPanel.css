@@ -75,6 +75,73 @@
   color: var(--ink);
 }
 
+.target-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.55rem 0.6rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+}
+
+.target-stats-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.target-stats-head .field-label {
+  margin: 0;
+  margin-right: auto;
+}
+
+.target-preset {
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.target-preset:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.target-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.target-stats-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.target-stats-grid input {
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 0.3rem 0.4rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .rank-row {
   display: flex;
   flex-direction: column;

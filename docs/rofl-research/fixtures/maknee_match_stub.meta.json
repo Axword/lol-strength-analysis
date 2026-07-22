@@ -1,0 +1,18 @@
+{
+  "counts": {
+    "CreateHero": 20,
+    "CreateTurret": 40,
+    "WaypointGroup": 1200,
+    "BuyItem": 80,
+    "NPCDieMapView": 120,
+    "Replication": 2500,
+    "CastSpellAns": 120,
+    "WaypointGroupWithSpeed": 120,
+    "SwapItem": 12,
+    "RemoveItem": 39,
+    "CreateNeutral": 80,
+    "NPCDieMapViewBroadcast": 1
+  },
+  "events": 4332,
+  "full": false
+}

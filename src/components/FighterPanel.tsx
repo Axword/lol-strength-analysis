@@ -127,6 +127,145 @@ export function FighterPanel({ side, loadout, onChange }: Props) {
         </label>
       </div>
 
+      <div className="target-stats">
+        <div className="target-stats-head">
+          <span className="field-label">Override HP / resists</span>
+          <button
+            type="button"
+            className="target-preset"
+            onClick={() =>
+              onChange({
+                ...loadout,
+                hpPct: 1,
+                alive: true,
+                liveStats: {
+                  ...loadout.liveStats,
+                  hpMax: 3000,
+                  hp: 3000,
+                  armor: 150,
+                  mr: 50,
+                },
+              })
+            }
+          >
+            3000 / 150 / 50
+          </button>
+          {(loadout.liveStats?.hpMax != null ||
+            loadout.liveStats?.armor != null ||
+            loadout.liveStats?.mr != null) && (
+            <button
+              type="button"
+              className="target-preset"
+              onClick={() => {
+                const { hpMax: _h, armor: _a, mr: _m, hp: _hp, ...rest } =
+                  loadout.liveStats ?? {}
+                onChange({
+                  ...loadout,
+                  liveStats: Object.keys(rest).length ? rest : undefined,
+                })
+              }}
+            >
+              Clear
+            </button>
+          )}
+        </div>
+        <div className="target-stats-grid">
+          <label>
+            Max HP
+            <input
+              type="number"
+              min={100}
+              max={12000}
+              step={50}
+              value={loadout.liveStats?.hpMax ?? ''}
+              placeholder="auto"
+              onChange={(e) => {
+                const v = e.target.value
+                if (v === '') {
+                  const next = { ...loadout.liveStats }
+                  delete next.hpMax
+                  delete next.hp
+                  onChange({
+                    ...loadout,
+                    liveStats: Object.keys(next).length ? next : undefined,
+                  })
+                  return
+                }
+                const hpMax = Number(v)
+                if (!Number.isFinite(hpMax)) return
+                const hpPct = loadout.hpPct ?? 1
+                onChange({
+                  ...loadout,
+                  liveStats: {
+                    ...loadout.liveStats,
+                    hpMax,
+                    hp: hpMax * hpPct,
+                  },
+                })
+              }}
+            />
+          </label>
+          <label>
+            Armor
+            <input
+              type="number"
+              min={0}
+              max={500}
+              step={5}
+              value={loadout.liveStats?.armor ?? ''}
+              placeholder="auto"
+              onChange={(e) => {
+                const v = e.target.value
+                if (v === '') {
+                  const next = { ...loadout.liveStats }
+                  delete next.armor
+                  onChange({
+                    ...loadout,
+                    liveStats: Object.keys(next).length ? next : undefined,
+                  })
+                  return
+                }
+                const armor = Number(v)
+                if (!Number.isFinite(armor)) return
+                onChange({
+                  ...loadout,
+                  liveStats: { ...loadout.liveStats, armor },
+                })
+              }}
+            />
+          </label>
+          <label>
+            MR
+            <input
+              type="number"
+              min={0}
+              max={500}
+              step={5}
+              value={loadout.liveStats?.mr ?? ''}
+              placeholder="auto"
+              onChange={(e) => {
+                const v = e.target.value
+                if (v === '') {
+                  const next = { ...loadout.liveStats }
+                  delete next.mr
+                  onChange({
+                    ...loadout,
+                    liveStats: Object.keys(next).length ? next : undefined,
+                  })
+                  return
+                }
+                const mr = Number(v)
+                if (!Number.isFinite(mr)) return
+                onChange({
+                  ...loadout,
+                  liveStats: { ...loadout.liveStats, mr },
+                })
+              }}
+            />
+          </label>
+        </div>
+      </div>
+
       <div className="rank-row">
         <span className="field-label">Ability ranks</span>
         <div className="rank-sliders">

@@ -1,4 +1,4 @@
-import type { AbilityDefinition, ChampionDefinition } from '../engine/types'
+import type { AbilityContext, AbilityDefinition, ChampionDefinition } from '../engine/types'
 import { bonusAd, rankOf } from '../engine/types'
 import { GAME_CHAMPIONS } from './generatedGameChamps'
 
@@ -43,7 +43,8 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 38, armorperlevel: 5, spellblock: 32, spellblockperlevel: 2.05,
       attackrange: 125, hpregen: 5.5, hpregenperlevel: 0.5, mpregen: 6, mpregenperlevel: 0.8,
       crit: 0, critperlevel: 0, attackdamage: 64, attackdamageperlevel: 3.5,
-      attackspeedperlevel: 2.05, attackspeed: 0.675,
+      // attackspeedratio from local Meraki champions-full.json (Gragas ratio ≠ base).
+      attackspeedperlevel: 2.05, attackspeed: 0.675, attackspeedratio: 0.625,
     },
     autos: [1, 3],
     abilities: [
@@ -111,7 +112,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 37, armorperlevel: 5.2, spellblock: 32, spellblockperlevel: 2.05,
       attackrange: 175, hpregen: 10, hpregenperlevel: 0.95, mpregen: 6.6, mpregenperlevel: 0.35,
       crit: 0, critperlevel: 0, attackdamage: 64, attackdamageperlevel: 5,
-      attackspeedperlevel: 1, attackspeed: 0.625,
+      attackspeedperlevel: 1, attackspeed: 0.625, attackspeedratio: 0.625,
     },
     autos: [2, 4],
     passiveDamage: (a, _d, ctx) => {
@@ -150,10 +151,23 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
         range: 300,
         cooldown: 5,
         skillshot: false,
+        // Empowered auto + attack reset: packet already includes AA + bonus.
+        execution: {
+          attackReset: true,
+          empoweredAuto: true,
+          castLockSec: 0.15,
+          impactDelaySec: 0.1,
+        },
         damage: (a, _d, ctx) => {
-          // Meraki: AA + bonus physical [40–60]
-          const bonus = rankValue([40, 45, 50, 55, 60], rankOf(ctx, 'W'))
-          return [{ raw: a.ad + bonus, type: 'physical', source: 'Crippling Strike', slot: 'W' }]
+          // Wiki: bonus physical = 40/45/50/55/60% AD on the empowered basic attack.
+          // Total = AD + bonus = AD × (1 + ratio). One packet only — no second base-AD AA.
+          const ratio = rankValue([0.4, 0.45, 0.5, 0.55, 0.6], rankOf(ctx, 'W'))
+          return [{
+            raw: a.ad * (1 + ratio),
+            type: 'physical',
+            source: 'Crippling Strike',
+            slot: 'W',
+          }]
         },
       },
       {
@@ -197,7 +211,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 21, armorperlevel: 4.7, spellblock: 30, spellblockperlevel: 1.3,
       attackrange: 550, hpregen: 2.5, hpregenperlevel: 0.6, mpregen: 8, mpregenperlevel: 0.8,
       crit: 0, critperlevel: 0, attackdamage: 53, attackdamageperlevel: 3,
-      attackspeedperlevel: 2.2, attackspeed: 0.668,
+      attackspeedperlevel: 2.2, attackspeed: 0.668, attackspeedratio: 0.625,
     },
     autos: [1, 2],
     abilities: [
@@ -274,7 +288,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 38, armorperlevel: 4.2, spellblock: 32, spellblockperlevel: 2.05,
       attackrange: 175, hpregen: 8, hpregenperlevel: 0.5, mpregen: 0, mpregenperlevel: 0,
       crit: 0, critperlevel: 0, attackdamage: 69, attackdamageperlevel: 4.5,
-      attackspeedperlevel: 3.65, attackspeed: 0.625,
+      attackspeedperlevel: 3.65, attackspeed: 0.625, attackspeedratio: 0.625,
     },
     autos: [2, 4],
     abilities: [
@@ -341,7 +355,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 36, armorperlevel: 4.2, spellblock: 32, spellblockperlevel: 2.05,
       attackrange: 125, hpregen: 8.5, hpregenperlevel: 0.55, mpregen: 7.6, mpregenperlevel: 0.7,
       crit: 0, critperlevel: 0, attackdamage: 68, attackdamageperlevel: 4.25,
-      attackspeedperlevel: 3.4, attackspeed: 0.638,
+      attackspeedperlevel: 3.4, attackspeed: 0.638, attackspeedratio: 0.638,
     },
     autos: [3, 5],
     abilities: [
@@ -407,7 +421,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 19, armorperlevel: 5.2, spellblock: 30, spellblockperlevel: 1.3,
       attackrange: 550, hpregen: 5.5, hpregenperlevel: 0.55, mpregen: 8, mpregenperlevel: 0.8,
       crit: 0, critperlevel: 0, attackdamage: 54, attackdamageperlevel: 3.3,
-      attackspeedperlevel: 2, attackspeed: 0.669,
+      attackspeedperlevel: 2, attackspeed: 0.669, attackspeedratio: 0.625,
     },
     autos: [1, 2],
     passiveDamage: (a) => [
@@ -483,7 +497,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 19, armorperlevel: 4.7, spellblock: 30, spellblockperlevel: 1.3,
       attackrange: 625, hpregen: 5.5, hpregenperlevel: 0.55, mpregen: 8, mpregenperlevel: 0.8,
       crit: 0, critperlevel: 0, attackdamage: 50, attackdamageperlevel: 2.65,
-      attackspeedperlevel: 1.36, attackspeed: 0.61,
+      attackspeedperlevel: 1.36, attackspeed: 0.61, attackspeedratio: 0.625,
     },
     autos: [1, 2],
     abilities: [
@@ -549,7 +563,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 37, armorperlevel: 4.95, spellblock: 28, spellblockperlevel: 2.05,
       attackrange: 125, hpregen: 7, hpregenperlevel: 0.55, mpregen: 7.3, mpregenperlevel: 0.55,
       crit: 0, critperlevel: 0, attackdamage: 62, attackdamageperlevel: 4,
-      attackspeedperlevel: 3.4, attackspeed: 0.736,
+      attackspeedperlevel: 3.4, attackspeed: 0.736, attackspeedratio: 0.638,
     },
     autos: [1, 3],
     abilities: [
@@ -613,7 +627,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 34, armorperlevel: 4.7, spellblock: 32, spellblockperlevel: 2.05,
       attackrange: 125, hpregen: 9, hpregenperlevel: 0.9, mpregen: 7.45, mpregenperlevel: 0.5,
       crit: 0, critperlevel: 0, attackdamage: 67, attackdamageperlevel: 4,
-      attackspeedperlevel: 3.48, attackspeed: 0.638,
+      attackspeedperlevel: 3.48, attackspeed: 0.638, attackspeedratio: 0.638,
     },
     autos: [2, 4],
     abilities: [
@@ -684,7 +698,7 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       armor: 24, armorperlevel: 5, spellblock: 30, spellblockperlevel: 1.3,
       attackrange: 550, hpregen: 5.5, hpregenperlevel: 0.5, mpregen: 11.35, mpregenperlevel: 0.8,
       crit: 0, critperlevel: 0, attackdamage: 52, attackdamageperlevel: 3,
-      attackspeedperlevel: 2.13, attackspeed: 0.625,
+      attackspeedperlevel: 2.13, attackspeed: 0.625, attackspeedratio: 0.625,
     },
     autos: [1, 2],
     abilities: [
@@ -737,9 +751,81 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
   }),
 }
 
-export const CHAMPIONS: Record<string, ChampionDefinition> = {
-  ...CORE_CHAMPIONS,
+/**
+ * Gnar's generated Meraki packets contain both mutually-exclusive forms.
+ * Keep the generated catalog as the source, but gate packets at the combat
+ * boundary: explicit form wins; otherwise R-ranked means Mega, else Mini.
+ */
+function gnarForm(ctx: AbilityContext): 'mini' | 'mega' {
+  return ctx.form ?? (rankOf(ctx, 'R') > 0 ? 'mega' : 'mini')
+}
+
+function withGnarForm(champion: ChampionDefinition): ChampionDefinition {
+  if (champion.id !== 'Gnar') return champion
+  return {
+    ...champion,
+    abilities: champion.abilities.map((ability) => {
+      if (!['Q', 'W', 'E', 'R'].includes(ability.slot)) return ability
+      const baseDamage = ability.damage
+      return {
+        ...ability,
+        available:
+          ability.slot === 'R'
+            ? (ctx: AbilityContext) => gnarForm(ctx) === 'mega'
+            : ability.available,
+        damage: (a, d, ctx) => {
+          const form = gnarForm(ctx)
+          if (ability.slot === 'R' && form !== 'mega') return []
+          const packets = baseDamage(a, d, ctx)
+          if (ability.slot === 'Q') {
+            return packets.filter((p) =>
+              form === 'mega'
+                ? /Boulder Toss/i.test(p.source)
+                : /Boomerang Throw/i.test(p.source),
+            )
+          }
+          if (ability.slot === 'W') {
+            return packets.filter((p) =>
+              form === 'mega' ? /Wallop/i.test(p.source) : /Hyper/i.test(p.source),
+            )
+          }
+          if (ability.slot === 'E') {
+            return packets.filter((p) =>
+              form === 'mega' ? /Crunch/i.test(p.source) : /Hop/i.test(p.source),
+            )
+          }
+          return packets
+        },
+      }
+    }),
+  }
+}
+
+const GAME_CHAMPIONS_WITH_FORMS: Record<string, ChampionDefinition> = {
   ...GAME_CHAMPIONS,
+  ...(GAME_CHAMPIONS.Gnar ? { Gnar: withGnarForm(GAME_CHAMPIONS.Gnar) } : {}),
+}
+
+export const CHAMPIONS: Record<string, ChampionDefinition> = {
+  ...GAME_CHAMPIONS_WITH_FORMS,
+  // Curated kits (damage, utility, passives) win over sparse wiki stubs.
+  ...CORE_CHAMPIONS,
+}
+
+/**
+ * Stable IDs of hand-authored CORE kits.
+ * CORE means modeling attention only — not trusted, validated, or calibrated.
+ * Sorted for deterministic consumers; merge precedence remains GAME then CORE.
+ */
+export const CORE_CHAMPION_IDS: readonly string[] = Object.freeze(
+  Object.keys(CORE_CHAMPIONS).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)),
+)
+
+const CORE_CHAMPION_ID_SET: ReadonlySet<string> = new Set(CORE_CHAMPION_IDS)
+
+/** True when the champion has a hand-authored CORE kit (attention ≠ trust). */
+export function isCoreChampion(id: string): boolean {
+  return CORE_CHAMPION_ID_SET.has(id)
 }
 
 export const CHAMPION_LIST = Object.values(CHAMPIONS)
