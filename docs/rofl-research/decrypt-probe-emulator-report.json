@@ -1,0 +1,561 @@
+{
+  "backend": "emulator",
+  "binaryInventory": {
+    "ok": true,
+    "path": "/Applications/League of Legends.app/Contents/LoL/Game/LeagueofLegends.app/Contents/MacOS/LeagueofLegends",
+    "size": 80202480,
+    "fieldCount": 119,
+    "fields": [
+      "mBaseAttackDamage",
+      "mBaseAbilityDamage",
+      "mDodge",
+      "mCrit",
+      "mArmor",
+      "mSpellBlock",
+      "mHPRegenRate",
+      "mPARRegenRate",
+      "mAttackRange",
+      "mFlatPhysicalDamageMod",
+      "mPercentPhysicalDamageMod",
+      "mFlatMagicDamageMod",
+      "mPercentMagicDamageMod",
+      "mFlatMagicReduction",
+      "mPercentMagicReduction",
+      "mAttackSpeedMod",
+      "mFlatCastRangeMod",
+      "mPercentCooldownMod",
+      "mPassiveCooldownEndTime",
+      "mPassiveCooldownTotalTime",
+      "mFlatArmorPenetration",
+      "mPercentArmorPenetration",
+      "mFlatMagicPenetration",
+      "mPercentMagicPenetration",
+      "mPercentLifeStealMod",
+      "mPercentSpellVampMod",
+      "mPercentPhysicalVamp",
+      "mPercentBonusArmorPenetration",
+      "mPercentCritBonusArmorPenetration",
+      "mPercentCritTotalArmorPenetration",
+      "mPercentBonusMagicPenetration",
+      "mPhysicalLethality",
+      "mMagicLethality",
+      "mBaseHPRegenRate",
+      "mPrimaryARBaseRegenRateRep",
+      "mSecondaryARRegenRateRep",
+      "mSecondaryARBaseRegenRateRep",
+      "mPercentCooldownCapMod",
+      "mPercentCCReduction",
+      "mPercentEXPBonus",
+      "mFlatBaseAttackDamageMod",
+      "mPercentBaseAttackDamageMod",
+      "mBaseAttackDamageSansPercentScale",
+      "mFlatBaseHPPoolMod",
+      "mBonusArmor",
+      "mBonusSpellBlock",
+      "mPercentBonusPhysicalDamageMod",
+      "mPercentBasePhysicalDamageAsFlatBonusMod",
+      "mPercentAttackSpeedMod",
+      "mPercentMultiplicativeAttackSpeedMod",
+      "mCritDamageMultiplier",
+      "mAbilityHasteMod",
+      "mPercentOmnivampMod",
+      "mFlatBaseArmorMod",
+      "mFlatBaseSpellBlockMod",
+      "mPercentHealingAmountMod",
+      "mFlatBaseAttackSpeedMod",
+      "mPercentAbilityHasteMod",
+      "mFlatBubbleRadiusMod",
+      "mPercentBubbleRadiusMod",
+      "mMoveSpeed",
+      "mScaleSkinCoef",
+      "mPathfindingRadiusMod",
+      "mPrimaryARRegenRateRep",
+      "mMoveSpeedBaseIncrease",
+      "mIsTargetable",
+      "mIsTargetableToTeamFlags",
+      "mHP",
+      "mMaxHP",
+      "mHPMaxPenalty",
+      "mAllShield",
+      "mPhysicalShield",
+      "mMagicalShield",
+      "mChampSpecificHealth",
+      "mIncomingHealingAllied",
+      "mIncomingHealingEnemy",
+      "mIncomingDamage",
+      "mStopShieldFade",
+      "mGold",
+      "mGoldTotal",
+      "mMinimumGold",
+      "mReplicatedSpellCanCastBitsLower1",
+      "mReplicatedSpellCanCastBitsUpper1",
+      "mInputLocks",
+      "mSkillUpLevelDeltaReplicate",
+      "mEvolvePoints",
+      "mFlags",
+      "mAutobuildItemId",
+      "mPhysicalDamagePercentageModifier",
+      "mMagicalDamagePercentageModifier",
+      "mVisionScore",
+      "mShutdownValue",
+      "mBaseGoldGivenOnDeath",
+      "mCombatType",
+      "mLargePipBitField",
+      "mMediumPipBitField",
+      "mExp",
+      "mLifetime",
+      "mMaxLifetime",
+      "mLifetimeTicks",
+      "mPAR",
+      "mMaxPAR",
+      "mPAREnabled",
+      "mPARState",
+      "mSAR",
+      "mMaxSAR",
+      "mSAREnabled",
+      "mSARState",
+      "mLevelRef",
+      "mNumNeutralMinionsKilled",
+      "mFollowTargetNetID",
+      "mFollowerTargetDelay",
+      "mPercentDamageToBarracksMinionMod",
+      "mFlatDamageReductionFromBarracksMinionMod",
+      "mIncreasedMoveSpeedMinionMod",
+      "mMaxMP",
+      "mMP",
+      "mPalisadesCount",
+      "mMaxPalisadesCount"
+    ],
+    "fixtureNamesPresent": [
+      "mHP",
+      "mLevelRef",
+      "mMaxHP"
+    ],
+    "combatNamesPresent": [
+      "mBaseAttackDamage",
+      "mArmor",
+      "mSpellBlock",
+      "mFlatPhysicalDamageMod",
+      "mPercentPhysicalDamageMod",
+      "mFlatMagicDamageMod",
+      "mPercentMagicDamageMod",
+      "mAttackSpeedMod",
+      "mBonusArmor",
+      "mBonusSpellBlock",
+      "mPercentAttackSpeedMod",
+      "mPercentMultiplicativeAttackSpeedMod",
+      "mMoveSpeed",
+      "mHP",
+      "mMaxHP",
+      "mGold",
+      "mGoldTotal",
+      "mSkillUpLevelDeltaReplicate",
+      "mLevelRef"
+    ],
+    "hasMHP": true,
+    "hasMMaxHP": true
+  },
+  "fixtureNames": [
+    "mHP",
+    "mLevelRef",
+    "mMaxHP"
+  ],
+  "ok": false,
+  "decryptStatus": "blocked_need_packet_accessor",
+  "replication": [],
+  "hpSnapshot": null,
+  "keyframeStructure": {
+    "file": "rofl2_decrypt_kf_19.bin",
+    "size": 224279,
+    "time_s": 1080.3580322265625,
+    "a8_row_count": 3290,
+    "run_count": 60,
+    "run_sizes": [
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6
+    ],
+    "group_count": 10,
+    "group_run_sizes": [
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ]
+    ],
+    "group_row_totals": [
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329
+    ],
+    "player_blobs": [
+      {
+        "index": 0,
+        "start": 0,
+        "end": 2120,
+        "size": 2120
+      },
+      {
+        "index": 1,
+        "start": 6307,
+        "end": 8772,
+        "size": 2465
+      },
+      {
+        "index": 2,
+        "start": 12959,
+        "end": 15404,
+        "size": 2445
+      },
+      {
+        "index": 3,
+        "start": 19591,
+        "end": 22123,
+        "size": 2532
+      },
+      {
+        "index": 4,
+        "start": 26310,
+        "end": 28822,
+        "size": 2512
+      },
+      {
+        "index": 5,
+        "start": 33009,
+        "end": 35500,
+        "size": 2491
+      },
+      {
+        "index": 6,
+        "start": 39687,
+        "end": 42147,
+        "size": 2460
+      },
+      {
+        "index": 7,
+        "start": 46334,
+        "end": 48785,
+        "size": 2451
+      },
+      {
+        "index": 8,
+        "start": 52972,
+        "end": 55331,
+        "size": 2359
+      },
+      {
+        "index": 9,
+        "start": 59518,
+        "end": 61952,
+        "size": 2434
+      }
+    ],
+    "byte1_top": [
+      [
+        40,
+        833
+      ],
+      [
+        41,
+        833
+      ],
+      [
+        46,
+        814
+      ],
+      [
+        45,
+        810
+      ]
+    ],
+    "byte2_top": [
+      [
+        180,
+        2727
+      ],
+      [
+        182,
+        490
+      ],
+      [
+        186,
+        53
+      ],
+      [
+        176,
+        10
+      ],
+      [
+        184,
+        4
+      ],
+      [
+        188,
+        2
+      ]
+    ],
+    "byte7_top": [
+      [
+        77,
+        500
+      ],
+      [
+        201,
+        390
+      ],
+      [
+        95,
+        360
+      ],
+      [
+        85,
+        350
+      ],
+      [
+        223,
+        310
+      ],
+      [
+        205,
+        230
+      ],
+      [
+        209,
+        210
+      ],
+      [
+        73,
+        160
+      ],
+      [
+        75,
+        140
+      ],
+      [
+        91,
+        140
+      ]
+    ],
+    "probeTime_s": 1080.3580322265625
+  },
+  "build": {
+    "roflVersion": "16.14.794.5912",
+    "appVersion": "16.14.7945912+branch.releases-16-14.code.public",
+    "normalizedRofl": "16.14.794.5912",
+    "normalizedApp": "16.14.794.5912",
+    "exactMatch": true
+  },
+  "keyframeCount": 36,
+  "error": "16.14 packet field decrypt requires driving League Deserialize/accessor vtables (maknee-style emulator). Binary Replication strings are present (mHP=True, mMaxHP=True), but a8/player blobs remain encrypted under static scan. No HP values invented.",
+  "rosterFromStatsJson": [
+    {
+      "net_id": 1000000,
+      "name": "casual jogador",
+      "champion": "Renekton",
+      "participantID": 1,
+      "teamID": 100
+    },
+    {
+      "net_id": 1000001,
+      "name": "pixel",
+      "champion": "Mordekaiser",
+      "participantID": 2,
+      "teamID": 100
+    },
+    {
+      "net_id": 1000002,
+      "name": "Cigarro",
+      "champion": "Yasuo",
+      "participantID": 3,
+      "teamID": 100
+    },
+    {
+      "net_id": 1000003,
+      "name": "Ayron",
+      "champion": "Jhin",
+      "participantID": 4,
+      "teamID": 100
+    },
+    {
+      "net_id": 1000004,
+      "name": "nhUwUmi",
+      "champion": "Nami",
+      "participantID": 5,
+      "teamID": 100
+    },
+    {
+      "net_id": 1000005,
+      "name": "awakening",
+      "champion": "Zaahen",
+      "participantID": 6,
+      "teamID": 200
+    },
+    {
+      "net_id": 1000006,
+      "name": "Aphelios",
+      "champion": "Lillia",
+      "participantID": 7,
+      "teamID": 200
+    },
+    {
+      "net_id": 1000007,
+      "name": "haste",
+      "champion": "Zed",
+      "participantID": 8,
+      "teamID": 200
+    },
+    {
+      "net_id": 1000008,
+      "name": "Akuro",
+      "champion": "Ashe",
+      "participantID": 9,
+      "teamID": 200
+    },
+    {
+      "net_id": 1000009,
+      "name": "Sonancia",
+      "champion": "Sona",
+      "participantID": 10,
+      "teamID": 200
+    }
+  ]
+}

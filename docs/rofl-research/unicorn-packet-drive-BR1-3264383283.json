@@ -1,0 +1,474 @@
+{
+  "ok": false,
+  "decryptStatus": "packet_deserialize_partial",
+  "arch": "arm64",
+  "rofl": "/Users/river/Documents/League of Legends/Replays/BR1-3264383283.rofl",
+  "gameVersion": "16.14.794.5912",
+  "chunk": {
+    "index": 36,
+    "id_a": 39,
+    "time_s": 1080.3927001953125,
+    "size": 703286
+  },
+  "typeCountGlobal": 1373,
+  "typeThreshold": 251,
+  "segmentMap": {
+    "segmentCount": 4
+  },
+  "createSmoke": [
+    {
+      "type": 2,
+      "packet": 12901683200,
+      "call": {
+        "x0": 12901683200,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 16,
+      "storedType": 2,
+      "vtable": 4332160008,
+      "deserialize": 4314889716
+    },
+    {
+      "type": 3,
+      "packet": 12901683216,
+      "call": {
+        "x0": 12901683216,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 48,
+      "storedType": 3,
+      "vtable": 4332161784,
+      "deserialize": 4314916720
+    },
+    {
+      "type": 11,
+      "packet": 12901683264,
+      "call": {
+        "x0": 12901683264,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 16,
+      "storedType": 11,
+      "vtable": 4332146848,
+      "deserialize": 4314708612
+    },
+    {
+      "type": 196,
+      "packet": 12901683280,
+      "call": {
+        "x0": 12901683280,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 80,
+      "storedType": 196,
+      "vtable": 4332172552,
+      "deserialize": 4315142780
+    },
+    {
+      "type": 196,
+      "packet": 12901683360,
+      "call": {
+        "x0": 12901683360,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 80,
+      "storedType": 196,
+      "vtable": 4332172552,
+      "deserialize": 4315142780
+    }
+  ],
+  "createsOk": 5,
+  "bestWalk": {
+    "startOff": 0,
+    "packets": [
+      {
+        "offset": 0,
+        "type": 2,
+        "typeBytes": 1,
+        "create": {
+          "packet": 12901683488,
+          "storedType": 2,
+          "vtable": 4332160008,
+          "deserialize": 4314889716,
+          "callError": null
+        },
+        "deserialize": {
+          "ok": true,
+          "consumed": 2,
+          "cursorAfter": 13052674051,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "offset": 3,
+        "type": 135,
+        "typeBytes": 1,
+        "create": {
+          "packet": 12901683504,
+          "storedType": 135,
+          "vtable": 4332143640,
+          "deserialize": 4314386728,
+          "callError": null
+        },
+        "deserialize": {
+          "ok": true,
+          "consumed": 12,
+          "cursorAfter": 13052674064,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "offset": 16,
+        "type": 54,
+        "typeBytes": 1,
+        "create": {
+          "packet": 12901683536,
+          "storedType": 54,
+          "vtable": 4332138400,
+          "deserialize": 4314310672,
+          "callError": null
+        },
+        "deserialize": {
+          "ok": true,
+          "consumed": 6,
+          "cursorAfter": 13052674071,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "offset": 23,
+        "type": 228,
+        "typeBytes": 1,
+        "create": {
+          "packet": 0,
+          "storedType": null,
+          "vtable": null,
+          "deserialize": 0,
+          "callError": null
+        },
+        "status": "create_failed"
+      }
+    ],
+    "okCount": 3,
+    "typeHistogram": {
+      "2": 1,
+      "135": 1,
+      "54": 1,
+      "228": 1
+    },
+    "stoppedAt": 23,
+    "remaining": 703263
+  },
+  "walks": [
+    {
+      "startOff": 13,
+      "packets": [
+        {
+          "offset": 13,
+          "type": 0,
+          "typeBytes": 1,
+          "create": {
+            "packet": 0,
+            "storedType": null,
+            "vtable": null,
+            "deserialize": 0,
+            "callError": null
+          },
+          "status": "create_failed"
+        }
+      ],
+      "okCount": 0,
+      "typeHistogram": {
+        "0": 1
+      },
+      "stoppedAt": 13,
+      "remaining": 703273
+    },
+    {
+      "startOff": 5,
+      "packets": [
+        {
+          "offset": 5,
+          "type": 47,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683440,
+            "storedType": 47,
+            "vtable": 4332180248,
+            "deserialize": 4315314948,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": false,
+            "consumed": 4,
+            "cursorAfter": 13052674058,
+            "x0": 4333638392,
+            "error": "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+          },
+          "status": "deserialize_failed"
+        }
+      ],
+      "okCount": 0,
+      "typeHistogram": {
+        "47": 1
+      },
+      "stoppedAt": 5,
+      "remaining": 703281
+    },
+    {
+      "startOff": 0,
+      "packets": [
+        {
+          "offset": 0,
+          "type": 2,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683488,
+            "storedType": 2,
+            "vtable": 4332160008,
+            "deserialize": 4314889716,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 2,
+            "cursorAfter": 13052674051,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 3,
+          "type": 135,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683504,
+            "storedType": 135,
+            "vtable": 4332143640,
+            "deserialize": 4314386728,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 12,
+            "cursorAfter": 13052674064,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 16,
+          "type": 54,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683536,
+            "storedType": 54,
+            "vtable": 4332138400,
+            "deserialize": 4314310672,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 6,
+            "cursorAfter": 13052674071,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 23,
+          "type": 228,
+          "typeBytes": 1,
+          "create": {
+            "packet": 0,
+            "storedType": null,
+            "vtable": null,
+            "deserialize": 0,
+            "callError": null
+          },
+          "status": "create_failed"
+        }
+      ],
+      "okCount": 3,
+      "typeHistogram": {
+        "2": 1,
+        "135": 1,
+        "54": 1,
+        "228": 1
+      },
+      "stoppedAt": 23,
+      "remaining": 703263
+    },
+    {
+      "startOff": 17,
+      "packets": [
+        {
+          "offset": 17,
+          "type": 212,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683568,
+            "storedType": 212,
+            "vtable": 4332121312,
+            "deserialize": 4313395112,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 13,
+            "cursorAfter": 13052674079,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 31,
+          "type": 81,
+          "typeBytes": 1,
+          "create": {
+            "packet": 0,
+            "storedType": null,
+            "vtable": null,
+            "deserialize": 0,
+            "callError": null
+          },
+          "status": "create_failed"
+        }
+      ],
+      "okCount": 1,
+      "typeHistogram": {
+        "212": 1,
+        "81": 1
+      },
+      "stoppedAt": 31,
+      "remaining": 703255
+    },
+    {
+      "startOff": 21,
+      "packets": [
+        {
+          "offset": 21,
+          "type": 170,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683600,
+            "storedType": 170,
+            "vtable": 4332176688,
+            "deserialize": 4315225736,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 7,
+            "cursorAfter": 13052674077,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 29,
+          "type": 50,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683632,
+            "storedType": 50,
+            "vtable": 4332202112,
+            "deserialize": 4316759468,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 4,
+            "cursorAfter": 13052674082,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 34,
+          "type": 212,
+          "typeBytes": 1,
+          "create": {
+            "packet": 12901683664,
+            "storedType": 212,
+            "vtable": 4332121312,
+            "deserialize": 4313395112,
+            "callError": null
+          },
+          "deserialize": {
+            "ok": true,
+            "consumed": 15,
+            "cursorAfter": 13052674098,
+            "x0": 1,
+            "error": null
+          },
+          "status": "ok"
+        },
+        {
+          "offset": 50,
+          "type": 228,
+          "typeBytes": 1,
+          "create": {
+            "packet": 0,
+            "storedType": null,
+            "vtable": null,
+            "deserialize": 0,
+            "callError": null
+          },
+          "status": "create_failed"
+        }
+      ],
+      "okCount": 3,
+      "typeHistogram": {
+        "170": 1,
+        "50": 1,
+        "212": 1,
+        "228": 1
+      },
+      "stoppedAt": 50,
+      "remaining": 703236
+    }
+  ],
+  "unmappedFaults": [
+    "null-ish fault addr=0x0 access=19"
+  ],
+  "replication": [],
+  "hpSnapshot": {
+    "ok": false,
+    "heroCount": 0,
+    "heroes": [],
+    "acceptance": {
+      "passed": false,
+      "needHeroes": 10
+    }
+  },
+  "nextSteps": [
+    "Sync chunk framing start offset (bestWalk.startOff) across more chunks",
+    "Identify Replication packet type among successfully deserialized types",
+    "Call field getters / UsePacket to decrypt mHP/mMaxHP on hero net_ids",
+    "Emit maknee Replication events into rofl2_to_maknee_events"
+  ],
+  "workDir": "/tmp/lol-unicorn-pkt"
+}

@@ -71,9 +71,21 @@ export interface MapCampState {
   clearedAtMs?: number
 }
 
+export interface MapMinionState {
+  id: string
+  team: TeamSide
+  lane?: string | null
+  minionType: string
+  x: number
+  y: number
+  alive: boolean
+}
+
 export interface MapObjectsState {
   structures: MapStructureState[]
   camps: MapCampState[]
+  /** Lane minions when rfc461 barracks_* events are present. */
+  minions?: MapMinionState[]
 }
 
 export interface GameSnapshot {

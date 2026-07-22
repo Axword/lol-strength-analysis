@@ -3,11 +3,16 @@ import { SAMPLE_SNAPSHOTS } from '../data/sampleGames'
 import { CHAMPIONS } from '../data/champions'
 import { parseSnapshotJson } from '../game/parseSnapshot'
 import {
+  defaultRegistryMatch,
   loadBuiltinTimeline,
-  parseGameTimelineJson,
+  loadMatchRegistry,
+  loadRegisteredTimeline,
+  parseTimelineFile,
   snapshotAtTime,
   type BuiltinTimelineId,
   type GameTimeline,
+  type MatchRegistry,
+  type MatchRegistryEntry,
 } from '../game/timeline'
 import { formatGameTime } from '../game/parseSnapshot'
 import type { GameSnapshot, GameUnit, TeamSide } from '../game/types'
@@ -23,15 +28,156 @@ interface Props {
 }
 
 type SourceMode = 'timeline' | 'sample' | 'import'
-type TimelineChoice = BuiltinTimelineId | 'local'
+export type TimelineChoice =
+  | `match:${string}`
+  | `research:${BuiltinTimelineId}`
+  | 'local'
+  | ''
 
 const PLAY_SPEEDS = [1, 2, 4, 8] as const
+
+function compactCoverage(value: string): string {
+  if (value === 'full_at_sampled_frames') return 'native'
+  if (value === 'kda_total_cs_vision_at_sampled_frames') return 'KDA/CS/vision'
+  return value.replaceAll('_', ' ')
+}
+
+export function MatchPicker({
+  registry,
+  value,
+  localTimelineName,
+  onChange,
+}: {
+  registry: MatchRegistry | null
+  value: TimelineChoice
+  localTimelineName: string | null
+  onChange: (choice: TimelineChoice) => void
+}) {
+  return (
+    <label>
+      Match
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value as TimelineChoice)}
+      >
+        {value === 'local' && (
+          <option value="local" disabled>
+            {localTimelineName ?? 'Local timeline'}
+          </option>
+        )}
+        {!value && (
+          <option value="" disabled>
+            No product match selected
+          </option>
+        )}
+        {registry && registry.matches.length > 0 && (
+          <optgroup label="Published matches">
+            {registry.matches.map((entry) => (
+              <option key={entry.matchCode} value={`match:${entry.matchCode}`}>
+                {entry.matchCode}
+                {entry.matchCode === registry.defaultMatchCode ? ' (default)' : ''}
+              </option>
+            ))}
+          </optgroup>
+        )}
+        <optgroup label="Research fixtures">
+          <option value="research:fur_parity">FUR parity fixture (demo)</option>
+          <option value="research:maknee_stub">Maknee packet fixture (demo)</option>
+        </optgroup>
+      </select>
+    </label>
+  )
+}
+
+export function MatchCoverageBadges({
+  entry,
+  research,
+}: {
+  entry: MatchRegistryEntry | null
+  research: boolean
+}) {
+  const badges = entry
+    ? [
+        ['Pos', entry.coverage.positions],
+        ['Hist', entry.coverage.history],
+        ['HP', entry.coverage.hp],
+        ['Combat', entry.coverage.combat],
+        ['Ranks', entry.coverage.ranks],
+      ]
+    : research
+      ? [
+          ['Pos', 'demo'],
+          ['Hist', 'demo'],
+          ['HP', 'untrusted'],
+          ['Combat', 'untrusted'],
+          ['Ranks', 'untrusted'],
+        ]
+      : []
+  if (badges.length === 0) return null
+  return (
+    <>
+      <div
+        className="match-coverage-badges"
+        aria-label={research ? 'Research fixture coverage' : 'Published match coverage'}
+      >
+        {badges.map(([label, value]) => (
+          <span
+            key={label}
+            className={`coverage-badge ${
+              value === 'none' || value === 'untrusted' ? 'unavailable' : ''
+            }`}
+            title={`${label} coverage: ${value.replaceAll('_', ' ')}`}
+          >
+            <strong>{label}</strong> {compactCoverage(value)}
+          </span>
+        ))}
+        {entry && (
+          <span
+            className={`coverage-badge ${
+              entry.productGates.calculatorReady ? 'ready' : 'unavailable'
+            }`}
+            title="Validated publication result; live frame gates still control calculator handoff"
+          >
+            <strong>Calc</strong>{' '}
+            {entry.productGates.calculatorReady ? 'ready' : 'blocked'}
+          </span>
+        )}
+      </div>
+      {research && (
+        <span className="research-fixture-label">
+          Research fixture · demo only · calculator blocked
+        </span>
+      )}
+    </>
+  )
+}
+
+export function calculatorTrustBlockReason({
+  research,
+  positionBlocked,
+  combatStateBlocked,
+}: {
+  research: boolean
+  positionBlocked: boolean
+  combatStateBlocked: boolean
+}): string | null {
+  if (research) {
+    return 'Research fixtures are demo-only and cannot be sent to the product calculator'
+  }
+  if (positionBlocked) return 'Live replay positions are required'
+  if (combatStateBlocked) {
+    return 'Positions are real but HP, ability ranks, and combat stats are unavailable from this replay feed'
+  }
+  return null
+}
 
 export function GameReview({ onSendToCalculator }: Props) {
   const [timeline, setTimeline] = useState<GameTimeline | null>(null)
   const [timelineError, setTimelineError] = useState<string | null>(null)
+  const [registry, setRegistry] = useState<MatchRegistry | null>(null)
+  const [registryStatus, setRegistryStatus] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
-  const [timelineChoice, setTimelineChoice] = useState<TimelineChoice>('fur_vs_g2')
+  const [timelineChoice, setTimelineChoice] = useState<TimelineChoice>('')
   const [localTimelineName, setLocalTimelineName] = useState<string | null>(null)
   const [timelineFileError, setTimelineFileError] = useState<string | null>(null)
   const timelineFileInputRef = useRef<HTMLInputElement>(null)
@@ -52,22 +198,75 @@ export function GameReview({ onSendToCalculator }: Props) {
   const [showImport, setShowImport] = useState(false)
 
   useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    loadMatchRegistry()
+      .then((loaded) => {
+        if (cancelled) return
+        setRegistry(loaded)
+        const initial = defaultRegistryMatch(loaded)
+        if (initial) {
+          setTimelineChoice(`match:${initial.matchCode}`)
+          setRegistryStatus(null)
+        } else {
+          setRegistryStatus('No product-validated matches are published yet.')
+          setSource('sample')
+          setLoading(false)
+        }
+      })
+      .catch((error: Error) => {
+        if (cancelled) return
+        setRegistry(null)
+        setRegistryStatus(error.message)
+        setSource('sample')
+        setLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!timelineChoice) return
     if (timelineChoice === 'local') {
       setLoading(false)
       return
     }
+    const registered =
+      timelineChoice.startsWith('match:')
+        ? registry?.matches.find(
+            (entry) => entry.matchCode === timelineChoice.slice('match:'.length),
+          )
+        : null
+    if (timelineChoice.startsWith('match:') && !registered) {
+      setTimeline(null)
+      setTimelineError('Selected match is not present in the product registry.')
+      setSource('sample')
+      setLoading(false)
+      return
+    }
+    const researchId = timelineChoice.startsWith('research:')
+      ? (timelineChoice.slice('research:'.length) as BuiltinTimelineId)
+      : null
     let cancelled = false
     setLoading(true)
     setTimelineError(null)
-    loadBuiltinTimeline(timelineChoice)
+    setTimeline(null)
+    const request = registered
+      ? loadRegisteredTimeline(registered)
+      : loadBuiltinTimeline(researchId as BuiltinTimelineId)
+    request
       .then((data) => {
         if (cancelled) return
         setTimeline(data)
         const start =
-          timelineChoice === 'maknee_stub'
+          researchId === 'maknee_stub'
             ? Math.min(60_000, Math.floor((data.durationMs || 0) / 3))
-            : 8 * 60 * 1000
+            : registered || researchId === 'fur_parity'
+              ? Math.min(10 * 60 * 1000, Math.floor((data.durationMs || 0) * 0.4))
+              : 8 * 60 * 1000
         setPlayheadMs(start)
+        setSource('timeline')
         setLoading(false)
       })
       .catch((err: Error) => {
@@ -79,7 +278,7 @@ export function GameReview({ onSendToCalculator }: Props) {
     return () => {
       cancelled = true
     }
-  }, [timelineChoice])
+  }, [timelineChoice, registry])
 
   // Fluid playback: advance playhead by wall-clock × speed, interpolate between frames
   const playSpeedRef = useRef(playSpeed)
@@ -114,7 +313,7 @@ export function GameReview({ onSendToCalculator }: Props) {
     if (source === 'sample') {
       return SAMPLE_SNAPSHOTS.find((s) => s.id === sampleId) ?? SAMPLE_SNAPSHOTS[0]
     }
-    return SAMPLE_SNAPSHOTS[0]
+    return null
   }, [source, timeline, playheadMs, imported, sampleId])
 
   // Allow dragging units only for samples/imports (not live timeline)
@@ -129,6 +328,12 @@ export function GameReview({ onSendToCalculator }: Props) {
   }, [snapshot, source, playheadMs])
 
   const active = mutableSnapshot
+  const selectedRegistryEntry: MatchRegistryEntry | null = useMemo(() => {
+    if (!timelineChoice.startsWith('match:')) return null
+    const code = timelineChoice.slice('match:'.length)
+    return registry?.matches.find((entry) => entry.matchCode === code) ?? null
+  }, [registry, timelineChoice])
+  const isResearchTimeline = timelineChoice.startsWith('research:')
 
   const selectedUnits = useMemo(
     () =>
@@ -160,12 +365,12 @@ export function GameReview({ onSendToCalculator }: Props) {
   const positionBlocked =
     source === 'timeline' &&
     (timeline?.provenance?.positionCoverage === 'none' || selectedHasPlaceholderPositions)
-  const calculatorBlocked = positionBlocked || combatStateBlocked
-  const calculatorBlockReason = positionBlocked
-    ? 'Live replay positions are required'
-    : combatStateBlocked
-      ? 'Positions are real but HP, ability ranks, and combat stats are unavailable from this replay feed'
-      : null
+  const calculatorBlockReason = calculatorTrustBlockReason({
+    research: isResearchTimeline,
+    positionBlocked,
+    combatStateBlocked,
+  })
+  const calculatorBlocked = calculatorBlockReason !== null
 
   function toggleUnit(id: string) {
     setSelectedIds((prev) => {
@@ -203,7 +408,7 @@ export function GameReview({ onSendToCalculator }: Props) {
   async function openTimelineFile(file: File) {
     setTimelineFileError(null)
     try {
-      const data = parseGameTimelineJson(await file.text())
+      const data = parseTimelineFile(await file.text(), file.name)
       const duration = data.durationMs || data.frames[data.frames.length - 1]?.t || 0
       const firstFrame = data.frames[0]?.t ?? 0
       setTimeline(data)
@@ -367,33 +572,28 @@ export function GameReview({ onSendToCalculator }: Props) {
           </select>
         </label>
 
-        {source === 'timeline' && (
-          <label>
-            Match
-            <select
-              value={timelineChoice}
-              onChange={(e) => {
-                setTimelineChoice(e.target.value as BuiltinTimelineId)
-                setLocalTimelineName(null)
-                setSelectedIds([])
-                setPlaying(false)
-              }}
-            >
-              {timelineChoice === 'local' && (
-                <option value="local" disabled>
-                  {localTimelineName ?? 'Local timeline'}
-                </option>
-              )}
-              <option value="fur_vs_g2">FUR vs G2</option>
-              <option value="maknee_stub">Maknee stub (decoded packets)</option>
-            </select>
-          </label>
-        )}
+        <MatchPicker
+          registry={registry}
+          value={timelineChoice}
+          localTimelineName={localTimelineName}
+          onChange={(choice) => {
+            setTimelineChoice(choice)
+            setLocalTimelineName(null)
+            setSelectedIds([])
+            setPlaying(false)
+            if (choice !== 'local') setSource('timeline')
+          }}
+        />
+
+        <MatchCoverageBadges
+          entry={selectedRegistryEntry}
+          research={isResearchTimeline}
+        />
 
         <input
           ref={timelineFileInputRef}
           type="file"
-          accept=".json,application/json"
+          accept=".json,.jsonl,application/json,application/x-ndjson,text/plain"
           hidden
           onChange={(e) => {
             const file = e.target.files?.[0]
@@ -406,7 +606,7 @@ export function GameReview({ onSendToCalculator }: Props) {
           className="ghost"
           onClick={() => timelineFileInputRef.current?.click()}
         >
-          Open timeline JSON
+          Open timeline JSON / JSONL
         </button>
 
         {source === 'sample' && (
@@ -480,6 +680,7 @@ export function GameReview({ onSendToCalculator }: Props) {
               {combatStateBlocked && !positionBlocked && (
                 <em> · HP/combat state unavailable</em>
               )}
+              {isResearchTimeline && <em> · research demo only</em>}
             </span>
           )}
         </div>
@@ -588,6 +789,9 @@ export function GameReview({ onSendToCalculator }: Props) {
 
       {timelineError && source !== 'timeline' && (
         <p className="timeline-status warn">Timeline warning: {timelineError}</p>
+      )}
+      {registryStatus && (
+        <p className="timeline-status warn">Published matches: {registryStatus}</p>
       )}
       {timelineFileError && (
         <p className="timeline-status warn">Timeline file: {timelineFileError}</p>

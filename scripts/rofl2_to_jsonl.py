@@ -24,9 +24,9 @@ Example:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
-import re
 import struct
 import sys
 from pathlib import Path
@@ -44,6 +44,7 @@ from rfc461_emit import (  # noqa: E402
     write_jsonl,
 )
 from rofl2_probe import extract_segments, parse_rofl2  # noqa: E402
+from rofl_metadata import parse_filename_identity  # noqa: E402
 
 ROLE_MAP = {
     "TOP": "TOP",
@@ -65,12 +66,13 @@ def _i(v, default=0):
 
 
 def _game_id_from_path(path: Path, meta_players: list) -> int:
-    m = re.search(r"(\d{5,})", path.stem)
-    if m:
-        return int(m.group(1))
-    if meta_players:
-        return abs(hash(meta_players[0].get("PUUID", path.stem))) % 2_000_000_000
-    return abs(hash(path.stem)) % 2_000_000_000
+    identity = parse_filename_identity(path, required=False)
+    if identity["gameId"] is not None:
+        return int(identity["gameId"])
+    # Research-only fallback for non-standard fixture filenames. Product ingest
+    # requires the true <platform>-<matchCode>.rofl filename contract.
+    seed = str(meta_players[0].get("PUUID") or path.stem) if meta_players else path.stem
+    return int(hashlib.sha256(seed.encode("utf-8")).hexdigest()[:8], 16) % 2_000_000_000
 
 
 def _role(p: dict) -> str:

@@ -1,0 +1,104 @@
+{
+  "events": [
+    {"CreateHero": {"time": 0.0, "net_id": 101, "name": "blue1", "champion": "Gnar"}},
+    {"CreateHero": {"time": 0.0, "net_id": 102, "name": "blue2", "champion": "LeeSin"}},
+    {"CreateHero": {"time": 0.0, "net_id": 103, "name": "blue3", "champion": "Ahri"}},
+    {"CreateHero": {"time": 0.0, "net_id": 104, "name": "blue4", "champion": "Jinx"}},
+    {"CreateHero": {"time": 0.0, "net_id": 105, "name": "blue5", "champion": "Thresh"}},
+    {"CreateHero": {"time": 0.0, "net_id": 201, "name": "red1", "champion": "Darius"}},
+    {"CreateHero": {"time": 0.0, "net_id": 202, "name": "red2", "champion": "Vi"}},
+    {"CreateHero": {"time": 0.0, "net_id": 203, "name": "red3", "champion": "Syndra"}},
+    {"CreateHero": {"time": 0.0, "net_id": 204, "name": "red4", "champion": "Samira"}},
+    {"CreateHero": {"time": 0.0, "net_id": 205, "name": "red5", "champion": "Nautilus"}},
+    {
+      "WaypointGroup": {
+        "time": 600.0,
+        "waypoints": {
+          "1": [{"x": -6000.0, "z": -6000.0}],
+          "2": [{"x": -5500.0, "z": -1000.0}],
+          "3": [{"x": -1000.0, "z": -1000.0}],
+          "4": [{"x": -2000.0, "z": -5500.0}],
+          "5": [{"x": -2500.0, "z": -5200.0}],
+          "6": [{"x": 6000.0, "z": 6000.0}],
+          "7": [{"x": 5500.0, "z": 1000.0}],
+          "8": [{"x": 1000.0, "z": 1000.0}],
+          "9": [{"x": 2000.0, "z": 5500.0}],
+          "10": [{"x": 2500.0, "z": 5200.0}]
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 1120.5}},
+          "102": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 980.0}},
+          "103": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 860.25}},
+          "104": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 910.0}},
+          "105": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 1205.0}},
+          "201": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 1400.0}},
+          "202": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 1050.0}},
+          "203": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 820.0}},
+          "204": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 945.5}},
+          "205": {"primary_index": 32, "secondary_index": 0, "name": "mHP", "data": {"Float": 1310.0}}
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1500.0}},
+          "102": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1400.0}},
+          "103": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1100.0}},
+          "104": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1200.0}},
+          "105": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1600.0}},
+          "201": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1800.0}},
+          "202": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1450.0}},
+          "203": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1050.0}},
+          "204": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1250.0}},
+          "205": {"primary_index": 32, "secondary_index": 1, "name": "mMaxHP", "data": {"Float": 1700.0}}
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {"Float": 70.0}
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 1,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {"Float": 30.0}
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 2,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {"Float": 55.0}
+          }
+        }
+      }
+    }
+  ]
+}

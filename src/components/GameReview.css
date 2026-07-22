@@ -111,6 +111,51 @@
   margin: 0 0.15rem;
 }
 
+.match-coverage-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.coverage-badge {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: baseline;
+  max-width: 12rem;
+  padding: 0.2rem 0.38rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: var(--elevated);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.coverage-badge strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.coverage-badge.ready {
+  color: var(--live);
+  border-color: color-mix(in srgb, var(--live) 38%, var(--line));
+}
+
+.coverage-badge.unavailable {
+  color: var(--muted);
+  opacity: 0.72;
+}
+
+.research-fixture-label {
+  color: var(--warn);
+  font-size: 0.7rem;
+}
+
 .selection-status {
   flex: 1;
   min-width: 10rem;

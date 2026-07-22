@@ -9,6 +9,8 @@ HP / combat / ability semantics (fields omitted + source markers).
 
 This path may seek. It does not decrypt ROFL payloads. Live League control is
 only performed when the user explicitly runs this CLI against an open replay.
+The public function/CLI acquires the global controller lock and completes a
+GET-only same-replay identity preflight before output or Replay API mutation.
 
 Examples:
   npm run rofl:replay-jsonl -- \\
@@ -37,6 +39,8 @@ from pathlib import Path
 from typing import Any, Mapping, Optional, Sequence, TextIO
 
 import rfc461_emit
+import replay_capture_guard
+import rofl_metadata
 import rofl_replay_api_probe as probe
 
 DEFAULT_START_MS = 0
@@ -55,6 +59,15 @@ ABILITY_RANKS_SOURCE = "unavailable_replay_api"
 POSITION_COVERAGE = "full_at_sampled_frames"
 HP_COVERAGE = "none"
 SOURCE = "replay_api_playback"
+LIVECLIENT_HISTORY_FIELDS = (
+    "kills",
+    "deaths",
+    "assists",
+    "totalCreepScore",
+    "visionScore",
+)
+# Comparison hook only. Capture never passes/fails on host-specific timing.
+PRIOR_FRAME_REFERENCE_MS = 2_150.0
 
 
 class ExtractError(RuntimeError):
@@ -63,6 +76,10 @@ class ExtractError(RuntimeError):
     def __init__(self, message: str, *, checkpoint: Optional[dict[str, Any]] = None):
         super().__init__(message)
         self.checkpoint = checkpoint or {}
+
+
+class CaptureGuardError(ExtractError):
+    """Preflight/lock failure that must not mutate output or checkpoint."""
 
 
 def _ms_to_sec(ms: int) -> float:
@@ -413,12 +430,36 @@ def capture_frame_positions(
     identity_retries: int,
     require_distinct: bool = True,
     previous_selection_name: Any = None,
+    selection_key_cache: Optional[dict[str, str]] = None,
 ) -> dict[str, Any]:
     """Capture one frame of focus positions for the given roster."""
+    frame_started = time.perf_counter()
     render_url = f"{base_url.rstrip('/')}/replay/render"
     participants: list[dict[str, Any]] = []
     positions: list[tuple[float, float]] = []
     prev = previous_selection_name
+    cache = selection_key_cache if selection_key_cache is not None else {}
+    cache_size_before = len(cache)
+    pending_cache: dict[str, str] = {}
+    fast_path_attempts = 0
+    fast_path_hits = 0
+    fallback_reasserts = 0
+    selection_attempts = 0
+
+    def timing() -> dict[str, Any]:
+        elapsed_ms = (time.perf_counter() - frame_started) * 1000.0
+        return {
+            "frameMs": round(elapsed_ms, 3),
+            "priorReferenceMs": PRIOR_FRAME_REFERENCE_MS,
+            "ratioToPriorReference": round(
+                elapsed_ms / PRIOR_FRAME_REFERENCE_MS, 4
+            ),
+            "fastPathAttempts": fast_path_attempts,
+            "fastPathHits": fast_path_hits,
+            "fallbackReasserts": fallback_reasserts,
+            "selectionAttempts": selection_attempts,
+            "cacheSizeBefore": cache_size_before,
+        }
 
     for row in roster:
         if not row.get("selectionKeys"):
@@ -427,17 +468,61 @@ def capture_frame_positions(
                 "error": f"no valid selection keys for participant {row.get('participantID')}",
                 "participants": participants,
                 "previousSelectionName": prev,
+                "timing": timing(),
             }
-        steps, classification, used_key = probe.focus_select_roster_member(
-            transport,
-            render_url,
-            row,
-            timeout=timeout,
-            settle_delay=settle_delay,
-            previous_selection_name=prev,
-            final_settle=final_settle,
-            identity_retries=identity_retries,
-        )
+        identity_key = roster_identity_key(row)
+        cached_key = cache.get(identity_key) if identity_key else None
+        if cached_key:
+            fast_path_attempts += 1
+            steps, classification, used_key = probe.focus_select_roster_member(
+                transport,
+                render_url,
+                row,
+                timeout=timeout,
+                settle_delay=settle_delay,
+                previous_selection_name=prev,
+                final_settle=final_settle,
+                identity_retries=0,
+                preferred_key=cached_key,
+            )
+            selection_attempts += 1
+            if classification.get("coordinateProven"):
+                fast_path_hits += 1
+            else:
+                fallback_reasserts += 1
+                failed_body = (
+                    steps.get("readback", {}).get("body")
+                    if steps.get("readback", {}).get("ok")
+                    else {}
+                )
+                fallback_prev = (
+                    failed_body.get("selectionName", prev)
+                    if isinstance(failed_body, Mapping)
+                    else prev
+                )
+                steps, classification, used_key = probe.focus_select_roster_member(
+                    transport,
+                    render_url,
+                    row,
+                    timeout=timeout,
+                    settle_delay=settle_delay,
+                    previous_selection_name=fallback_prev,
+                    final_settle=final_settle,
+                    identity_retries=identity_retries,
+                )
+                selection_attempts += 1
+        else:
+            steps, classification, used_key = probe.focus_select_roster_member(
+                transport,
+                render_url,
+                row,
+                timeout=timeout,
+                settle_delay=settle_delay,
+                previous_selection_name=prev,
+                final_settle=final_settle,
+                identity_retries=identity_retries,
+            )
+            selection_attempts += 1
         read_body = (
             steps["readback"].get("body") if steps.get("readback", {}).get("ok") else {}
         )
@@ -457,11 +542,14 @@ def capture_frame_positions(
                 "participants": participants,
                 "previousSelectionName": prev,
                 "classification": classification,
+                "timing": timing(),
             }
         pos = read_body["cameraPosition"]
         xz = probe._xz_position(pos)  # noqa: SLF001
         positions.append((xz["x"], xz["z"]))
         prev = read_body.get("selectionName")
+        if identity_key and used_key:
+            pending_cache[identity_key] = used_key
         participants.append(
             {
                 **dict(row),
@@ -487,6 +575,7 @@ def capture_frame_positions(
                 ),
                 "participants": participants,
                 "previousSelectionName": prev,
+                "timing": timing(),
             }
 
     missing = [r for r in roster if int(r["participantID"]) not in {
@@ -498,13 +587,40 @@ def capture_frame_positions(
             "error": f"missing participants after capture: {[m.get('participantID') for m in missing]}",
             "participants": participants,
             "previousSelectionName": prev,
+            "timing": timing(),
         }
 
+    # Cache only after all ten identities and coordinates pass the frame gates.
+    cache.update(pending_cache)
+    frame_timing = timing()
+    frame_timing["cacheSizeAfter"] = len(cache)
+    frame_timing["cacheCommitted"] = True
     return {
         "ok": True,
         "error": None,
         "participants": participants,
         "previousSelectionName": prev,
+        "timing": frame_timing,
+    }
+
+
+def summarize_frame_timings(
+    frame_timings: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Machine-neutral benchmark summary; no performance assertion."""
+    values = [
+        float(row["frameMs"])
+        for row in frame_timings
+        if row.get("frameMs") is not None
+    ]
+    return {
+        "frameCount": len(values),
+        "priorReferenceMs": PRIOR_FRAME_REFERENCE_MS,
+        "averageFrameMs": round(sum(values) / len(values), 3) if values else None,
+        "minFrameMs": round(min(values), 3) if values else None,
+        "maxFrameMs": round(max(values), 3) if values else None,
+        "comparisonOnly": True,
+        "machineSpecificAssertion": False,
     }
 
 
@@ -530,7 +646,21 @@ def participants_to_rfc461_rows(
                 ability_ranks_source=ABILITY_RANKS_SOURCE,
                 items=_items_as_rfc461(p.get("items")),
                 ability_levels=(0, 0, 0, 0),
-                extra={"role": role},
+                career=(
+                    dict(p["history"])
+                    if isinstance(p.get("history"), Mapping)
+                    else None
+                ),
+                career_sources=(
+                    dict(p["historySources"])
+                    if isinstance(p.get("historySources"), Mapping)
+                    else None
+                ),
+                career_sample_game_time_ms=p.get("historySampleGameTimeMs"),
+                extra={
+                    "role": role,
+                    "championIdentity": dict(p.get("championIdentity") or {}),
+                },
             )
         )
     return rows
@@ -544,8 +674,12 @@ def game_info_participants(roster: Sequence[Mapping[str, Any]]) -> list[dict[str
                 "participantID": int(p["participantID"]),
                 "teamID": int(p["teamID"]),
                 "championName": p.get("championName") or "Unknown",
+                "championIdentity": dict(p.get("championIdentity") or {}),
                 "playerName": p.get("playerName") or p.get("summonerName") or "",
                 "summonerName": p.get("summonerName") or p.get("playerName") or "",
+                "riotIdGameName": p.get("riotIdGameName"),
+                "riotIdTagLine": p.get("riotIdTagLine"),
+                "puuid": p.get("puuid"),
                 "role": p.get("role") or "NONE",
             }
         )
@@ -553,7 +687,13 @@ def game_info_participants(roster: Sequence[Mapping[str, Any]]) -> list[dict[str
 
 
 def roster_identity_key(row: Mapping[str, Any]) -> str:
-    """Stable summoner identity key (casefold, #tag stripped)."""
+    """Stable PUUID/full-Riot-ID key; plain-name fallback is explicit."""
+    identity = rofl_metadata.stable_identity_from_row(row)
+    riot_id = identity.get("riotId") or {}
+    if riot_id.get("normalized"):
+        return f"riotid:{riot_id['normalized']}"
+    if identity.get("puuid"):
+        return f"puuid:{identity['puuid']}"
     for cand in (
         row.get("expectedSelectionIdentity"),
         row.get("playerName"),
@@ -561,7 +701,7 @@ def roster_identity_key(row: Mapping[str, Any]) -> str:
     ):
         key = probe._player_identity_key(cand)  # noqa: SLF001
         if key:
-            return key
+            return f"name-fallback:{key}"
     return ""
 
 
@@ -584,7 +724,13 @@ def assign_stable_participant_ids(
         seen[key] = 1
         if int(row.get("participantID") or 0) <= 0:
             row["participantID"] = 0
-    rows.sort(key=lambda r: (int(r["teamID"]), int(r.get("participantID") or 0), roster_identity_key(r)))
+    rows.sort(
+        key=lambda r: (
+            int(r["teamID"]),
+            roster_identity_key(r),
+            str((r.get("championIdentity") or {}).get("asset") or ""),
+        )
+    )
     for i, row in enumerate(rows):
         row["participantID"] = i + 1
         # Snapshot identity fields used for stable mapping; dynamics refreshed per frame.
@@ -644,6 +790,16 @@ def merge_dynamic_roster_state(
             row["role"] = live.get("role")
         if "liveclientPosition" in live:
             row["liveclientPosition"] = live.get("liveclientPosition")
+        for history_key in (
+            "history",
+            "historyCoverage",
+            "historySources",
+        ):
+            value = live.get(history_key)
+            if isinstance(value, Mapping):
+                row[history_key] = dict(value)
+        row["historySource"] = live.get("historySource")
+        row["historySampleGameTimeMs"] = live.get("historySampleGameTimeMs")
         merged.append(row)
 
     if len(merged) != 10:
@@ -679,7 +835,10 @@ def _allgamedata_game_time_sec(allgamedata_body: Any) -> Optional[float]:
 
 
 def _roster_identities_complete(
-    rows: Sequence[Mapping[str, Any]], *, expect_n: int = 10
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    expect_n: int = 10,
+    require_history: bool = False,
 ) -> tuple[bool, str]:
     if len(rows) != expect_n:
         return False, f"expected {expect_n} players, got {len(rows)}"
@@ -695,6 +854,20 @@ def _roster_identities_complete(
             return False, f"level missing for {key!r}"
         if "alive" not in row:
             return False, f"alive missing for {key!r}"
+        if require_history:
+            history = row.get("history")
+            if not isinstance(history, Mapping):
+                return False, f"liveclient scores missing for {key!r}"
+            missing_history = [
+                field for field in LIVECLIENT_HISTORY_FIELDS if field not in history
+            ]
+            if missing_history:
+                return (
+                    False,
+                    f"liveclient score fields missing for {key!r}: {missing_history}",
+                )
+            if row.get("historySampleGameTimeMs") is None:
+                return False, f"liveclient score sample time missing for {key!r}"
     return True, ""
 
 
@@ -761,7 +934,14 @@ def wait_liveclient_roster_at_time(
             continue
 
         roster = probe.build_roster_from_liveclient(pl.get("body"), ag.get("body"))
-        complete, complete_err = _roster_identities_complete(roster, expect_n=expect_n)
+        sample_time_ms = int(round(float(observed) * 1000.0))
+        for player in roster:
+            player["historySampleGameTimeMs"] = sample_time_ms
+        complete, complete_err = _roster_identities_complete(
+            roster,
+            expect_n=expect_n,
+            require_history=True,
+        )
         attempt["rosterCount"] = len(roster)
         attempt["identitiesComplete"] = complete
         if not complete:
@@ -786,6 +966,8 @@ def wait_liveclient_roster_at_time(
                 "targetMs": target_ms,
                 "deltaSec": attempt["deltaSec"],
                 "pollAttempts": len(attempts),
+                "historySampleGameTimeMs": sample_time_ms,
+                "historyFields": list(LIVECLIENT_HISTORY_FIELDS),
             },
             "error": None,
         }
@@ -1171,7 +1353,7 @@ def _progress_fields(
     }
 
 
-def extract_replay_api_jsonl(
+def _extract_replay_api_jsonl_after_guard(
     transport: probe.Transport,
     *,
     base_url: str,
@@ -1209,6 +1391,7 @@ def extract_replay_api_jsonl(
         "completedCount": 0,
         "lastCompletedMs": None,
         "nextSampleMs": None,
+        "timing": summarize_frame_timings([]),
     }
     if not probe.is_loopback_url(base_url):
         raise ExtractError(f"refusing non-loopback Replay API URL: {base_url}")
@@ -1247,7 +1430,18 @@ def extract_replay_api_jsonl(
     status["requestedEndMs"] = requested_end_ms
     status["effectiveEndMs"] = sample_ms[-1]
     status["roflGameLengthMs"] = rofl_game_length_ms
-    gid = int(game_id or 0)
+    filename_identity = rofl_metadata.parse_filename_identity(
+        rofl_path,
+        required=False,
+    )
+    filename_game_id = int(filename_identity.get("gameId") or 0)
+    gid = int(game_id or filename_game_id or 0)
+    if filename_game_id and gid != filename_game_id:
+        raise ExtractError(
+            f"--game-id {gid} does not match ROFL filename match {filename_game_id}"
+        )
+    platform_id = str(filename_identity.get("platformId") or "")
+    game_name = str(filename_identity.get("matchCode") or gid or "")
 
     completed_times: list[int] = []
     remaining_ms: list[int] = list(sample_ms)
@@ -1304,9 +1498,12 @@ def extract_replay_api_jsonl(
 
     pending_error: Optional[BaseException] = None
     out_fh: Optional[TextIO] = None
+    selection_key_cache: dict[str, str] = {}
+    frame_timings: list[dict[str, Any]] = []
 
     def _sync_progress() -> None:
         status["framesCaptured"] = len(completed_times)
+        status["timing"] = summarize_frame_timings(frame_timings)
         status.update(
             _progress_fields(
                 sample_ms=sample_ms,
@@ -1351,10 +1548,12 @@ def extract_replay_api_jsonl(
                 source_kind="replay_api_playback",
                 position_coverage=POSITION_COVERAGE,
                 hp_coverage=HP_COVERAGE,
-                roster_mapping="liveclient_playerlist_participantID",
+                roster_mapping="stable_puuid_or_full_riot_id",
                 notes=(
                     "Positions from Replay API focus selection at sampled frames. "
-                    "Level/items/alive refreshed from liveclient after each seek. "
+                    "Level/items/alive and KDA/total-CS/vision scores refreshed "
+                    "from one time-correlated liveclient allgamedata sample after "
+                    "each seek. Total creep score is not lane or jungle CS. "
                     "HP/combat/ability ranks unavailable from Replay API — omitted "
                     "with unavailable_replay_api sources (not dead/full/fake)."
                 ),
@@ -1368,8 +1567,18 @@ def extract_replay_api_jsonl(
                     decoded=[
                         "positions_focus_selection",
                         "alive_level_items_liveclient_per_frame",
+                        "kda_total_cs_vision_liveclient_per_frame",
                     ],
-                    missing=["health", "healthMax", "combatStats", "abilityRanks"],
+                    missing=[
+                        "health",
+                        "healthMax",
+                        "combatStats",
+                        "abilityRanks",
+                        "damageHistory",
+                        "goldHistory",
+                        "objectiveHistory",
+                        "jungleCreepScore",
+                    ],
                     provenance=provenance,
                     extra={
                         "roflGameVersion": rofl.get("version"),
@@ -1379,6 +1588,13 @@ def extract_replay_api_jsonl(
                         "effectiveEndMs": sample_ms[-1],
                         "roflGameLengthMs": rofl_game_length_ms,
                         "stepMs": step_ms,
+                        "careerHistoryCoverage": {
+                            field: {
+                                "coverage": "full_at_sampled_frames",
+                                "source": "liveclient_allgamedata_scores",
+                            }
+                            for field in LIVECLIENT_HISTORY_FIELDS
+                        },
                     },
                 ),
             )
@@ -1387,7 +1603,9 @@ def extract_replay_api_jsonl(
                 rfc461_emit.game_info_line(
                     game_id=gid,
                     participants=game_info_participants(stable_roster),
+                    game_name=game_name,
                     game_version=str(rofl.get("version") or ""),
+                    platform_id=platform_id,
                     stats_update_interval_ms=step_ms,
                 ),
             )
@@ -1467,6 +1685,7 @@ def extract_replay_api_jsonl(
                 final_settle=final_settle,
                 identity_retries=identity_retries,
                 previous_selection_name=prev_sel,
+                selection_key_cache=selection_key_cache,
             )
             if not frame.get("ok"):
                 raise ExtractError(
@@ -1479,6 +1698,8 @@ def extract_replay_api_jsonl(
                     },
                 )
             prev_sel = frame.get("previousSelectionName", prev_sel)
+            if isinstance(frame.get("timing"), Mapping):
+                frame_timings.append(dict(frame["timing"]))
             assert out_fh is not None
             durable_append_jsonl_row(
                 out_fh,
@@ -1538,12 +1759,13 @@ def extract_replay_api_jsonl(
             prev = status.get("error")
             rerr = restore_info.get("error") or "restore GET proof failed"
             status["error"] = f"{prev}; restore: {rerr}" if prev else f"restore: {rerr}"
+        # Put computed ok AFTER **status so restore failures cannot clobber it.
         write_checkpoint_file(
             checkpoint_out,
             {
-                "ok": bool(status.get("ok") and status.get("restoreSucceeded")),
-                "error": status.get("error"),
                 **status,
+                "ok": bool(status.get("ok")),
+                "error": status.get("error"),
             },
         )
 
@@ -1556,22 +1778,84 @@ def extract_replay_api_jsonl(
             write_checkpoint_file(
                 checkpoint_out,
                 {
+                    **status,
                     "ok": False,
                     "error": str(pending_error),
-                    **status,
                     "checkpoint": pending_error.checkpoint,
                 },
             )
         raise pending_error
 
+    # Durable frame schedule is authoritative. Camera/playback restore is best-effort
+    # cleanup of the live client; a mismatch must not discard a complete capture.
     if status.get("ok") and not status.get("restoreSucceeded"):
-        status["ok"] = False
-        raise ExtractError(
-            status.get("error") or "restore failed after successful capture",
-            checkpoint=status,
+        status["restoreWarning"] = status.get("error") or "restore failed after successful capture"
+        write_checkpoint_file(
+            checkpoint_out,
+            {
+                **status,
+                "ok": True,
+                "restoreSucceeded": False,
+                "error": status.get("restoreWarning"),
+            },
         )
+        return status
     write_checkpoint_file(checkpoint_out, {"ok": True, **status})
     return status
+
+
+def extract_replay_api_jsonl(
+    transport: probe.Transport,
+    *,
+    _controller_lock_path: Optional[Path] = None,
+    **capture_kwargs: Any,
+) -> dict[str, Any]:
+    """Public capture path: global lock + GET-only identity proof + capture.
+
+    ``rofl_ingest`` already owns this same guard and therefore calls the
+    unmistakably private ``_extract_replay_api_jsonl_after_guard`` contract.
+    """
+    try:
+        rofl_path = Path(capture_kwargs["rofl_path"])
+        app_path = Path(capture_kwargs["app_path"])
+        base_url = str(capture_kwargs["base_url"])
+        timeout = float(capture_kwargs.get("timeout", probe.DEFAULT_TIMEOUT))
+        metadata = rofl_metadata.inspect_rofl_metadata(rofl_path)
+    except (KeyError, TypeError, ValueError, OSError, rofl_metadata.RoflMetadataError) as exc:
+        raise CaptureGuardError(f"capture preflight metadata failed: {exc}") from exc
+
+    requested_game_id = int(capture_kwargs.get("game_id") or 0)
+    if requested_game_id and requested_game_id != int(metadata["gameId"]):
+        raise CaptureGuardError(
+            f"--game-id {requested_game_id} does not match ROFL {metadata['gameId']}"
+        )
+    if capture_kwargs.get("allow_build_mismatch") is True:
+        raise CaptureGuardError(
+            "public capture cannot bypass app/replay build verification"
+        )
+
+    lock = replay_capture_guard.ReplayControllerLock(
+        _controller_lock_path or replay_capture_guard.controller_lock_path(),
+        error_type=CaptureGuardError,
+    )
+    try:
+        with lock:
+            active = replay_capture_guard.inspect_active_replay(
+                transport,
+                base_url=base_url,
+                timeout=timeout,
+            )
+            replay_capture_guard.verify_active_replay(
+                metadata,
+                active,
+                app_path=app_path,
+            )
+            return _extract_replay_api_jsonl_after_guard(
+                transport,
+                **capture_kwargs,
+            )
+    except replay_capture_guard.ReplayGuardError as exc:
+        raise CaptureGuardError(str(exc)) from exc
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -1660,6 +1944,19 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         )
         print(json.dumps(status, indent=2, default=str))
         return 0 if status.get("ok") else 4
+    except CaptureGuardError as exc:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "error": str(exc),
+                    "captureGuard": True,
+                    "artifactsUnchanged": True,
+                },
+                indent=2,
+            )
+        )
+        return 4
     except ExtractError as exc:
         payload = {
             "ok": False,

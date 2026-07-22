@@ -616,6 +616,22 @@ export function MapView({
             )
           })}
 
+          {(mapObjects.minions ?? []).map((m) => {
+            const { cx, cy } = toSvg({ x: m.x, y: m.y })
+            const fill = m.team === 'blue' ? '#6eb6ff' : '#ff7b7b'
+            return (
+              <g
+                key={m.id}
+                className={`map-minion team-${m.team}`}
+                transform={`translate(${cx}, ${cy})`}
+                pointerEvents="none"
+              >
+                <circle r={2.2 * objScale} fill={fill} opacity={0.85} />
+                <title>{`${m.team} ${m.minionType}${m.lane ? ` · ${m.lane}` : ''}`}</title>
+              </g>
+            )
+          })}
+
           {/* Pit names sit just outside icon so the square art stays clean */}
           <text
             x={MAP_SIZE * (10021 / 14870)}

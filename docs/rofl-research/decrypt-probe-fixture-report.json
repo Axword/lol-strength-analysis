@@ -1,0 +1,836 @@
+{
+  "backend": "fixture",
+  "binaryInventory": {
+    "ok": true,
+    "path": "/Applications/League of Legends.app/Contents/LoL/Game/LeagueofLegends.app/Contents/MacOS/LeagueofLegends",
+    "size": 80202480,
+    "fieldCount": 119,
+    "fields": [
+      "mBaseAttackDamage",
+      "mBaseAbilityDamage",
+      "mDodge",
+      "mCrit",
+      "mArmor",
+      "mSpellBlock",
+      "mHPRegenRate",
+      "mPARRegenRate",
+      "mAttackRange",
+      "mFlatPhysicalDamageMod",
+      "mPercentPhysicalDamageMod",
+      "mFlatMagicDamageMod",
+      "mPercentMagicDamageMod",
+      "mFlatMagicReduction",
+      "mPercentMagicReduction",
+      "mAttackSpeedMod",
+      "mFlatCastRangeMod",
+      "mPercentCooldownMod",
+      "mPassiveCooldownEndTime",
+      "mPassiveCooldownTotalTime",
+      "mFlatArmorPenetration",
+      "mPercentArmorPenetration",
+      "mFlatMagicPenetration",
+      "mPercentMagicPenetration",
+      "mPercentLifeStealMod",
+      "mPercentSpellVampMod",
+      "mPercentPhysicalVamp",
+      "mPercentBonusArmorPenetration",
+      "mPercentCritBonusArmorPenetration",
+      "mPercentCritTotalArmorPenetration",
+      "mPercentBonusMagicPenetration",
+      "mPhysicalLethality",
+      "mMagicLethality",
+      "mBaseHPRegenRate",
+      "mPrimaryARBaseRegenRateRep",
+      "mSecondaryARRegenRateRep",
+      "mSecondaryARBaseRegenRateRep",
+      "mPercentCooldownCapMod",
+      "mPercentCCReduction",
+      "mPercentEXPBonus",
+      "mFlatBaseAttackDamageMod",
+      "mPercentBaseAttackDamageMod",
+      "mBaseAttackDamageSansPercentScale",
+      "mFlatBaseHPPoolMod",
+      "mBonusArmor",
+      "mBonusSpellBlock",
+      "mPercentBonusPhysicalDamageMod",
+      "mPercentBasePhysicalDamageAsFlatBonusMod",
+      "mPercentAttackSpeedMod",
+      "mPercentMultiplicativeAttackSpeedMod",
+      "mCritDamageMultiplier",
+      "mAbilityHasteMod",
+      "mPercentOmnivampMod",
+      "mFlatBaseArmorMod",
+      "mFlatBaseSpellBlockMod",
+      "mPercentHealingAmountMod",
+      "mFlatBaseAttackSpeedMod",
+      "mPercentAbilityHasteMod",
+      "mFlatBubbleRadiusMod",
+      "mPercentBubbleRadiusMod",
+      "mMoveSpeed",
+      "mScaleSkinCoef",
+      "mPathfindingRadiusMod",
+      "mPrimaryARRegenRateRep",
+      "mMoveSpeedBaseIncrease",
+      "mIsTargetable",
+      "mIsTargetableToTeamFlags",
+      "mHP",
+      "mMaxHP",
+      "mHPMaxPenalty",
+      "mAllShield",
+      "mPhysicalShield",
+      "mMagicalShield",
+      "mChampSpecificHealth",
+      "mIncomingHealingAllied",
+      "mIncomingHealingEnemy",
+      "mIncomingDamage",
+      "mStopShieldFade",
+      "mGold",
+      "mGoldTotal",
+      "mMinimumGold",
+      "mReplicatedSpellCanCastBitsLower1",
+      "mReplicatedSpellCanCastBitsUpper1",
+      "mInputLocks",
+      "mSkillUpLevelDeltaReplicate",
+      "mEvolvePoints",
+      "mFlags",
+      "mAutobuildItemId",
+      "mPhysicalDamagePercentageModifier",
+      "mMagicalDamagePercentageModifier",
+      "mVisionScore",
+      "mShutdownValue",
+      "mBaseGoldGivenOnDeath",
+      "mCombatType",
+      "mLargePipBitField",
+      "mMediumPipBitField",
+      "mExp",
+      "mLifetime",
+      "mMaxLifetime",
+      "mLifetimeTicks",
+      "mPAR",
+      "mMaxPAR",
+      "mPAREnabled",
+      "mPARState",
+      "mSAR",
+      "mMaxSAR",
+      "mSAREnabled",
+      "mSARState",
+      "mLevelRef",
+      "mNumNeutralMinionsKilled",
+      "mFollowTargetNetID",
+      "mFollowerTargetDelay",
+      "mPercentDamageToBarracksMinionMod",
+      "mFlatDamageReductionFromBarracksMinionMod",
+      "mIncreasedMoveSpeedMinionMod",
+      "mMaxMP",
+      "mMP",
+      "mPalisadesCount",
+      "mMaxPalisadesCount"
+    ],
+    "fixtureNamesPresent": [
+      "mHP",
+      "mLevelRef",
+      "mMaxHP"
+    ],
+    "combatNamesPresent": [
+      "mBaseAttackDamage",
+      "mArmor",
+      "mSpellBlock",
+      "mFlatPhysicalDamageMod",
+      "mPercentPhysicalDamageMod",
+      "mFlatMagicDamageMod",
+      "mPercentMagicDamageMod",
+      "mAttackSpeedMod",
+      "mBonusArmor",
+      "mBonusSpellBlock",
+      "mPercentAttackSpeedMod",
+      "mPercentMultiplicativeAttackSpeedMod",
+      "mMoveSpeed",
+      "mHP",
+      "mMaxHP",
+      "mGold",
+      "mGoldTotal",
+      "mSkillUpLevelDeltaReplicate",
+      "mLevelRef"
+    ],
+    "hasMHP": true,
+    "hasMMaxHP": true
+  },
+  "fixtureNames": [
+    "mHP",
+    "mLevelRef",
+    "mMaxHP"
+  ],
+  "ok": true,
+  "decryptStatus": "fixture_ok",
+  "replication": [
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1120.5
+            }
+          },
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 980.0
+            }
+          },
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 860.25
+            }
+          },
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 910.0
+            }
+          },
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1205.0
+            }
+          },
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1400.0
+            }
+          },
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1050.0
+            }
+          },
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 820.0
+            }
+          },
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 945.5
+            }
+          },
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1310.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 600.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1500.0
+            }
+          },
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1400.0
+            }
+          },
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1100.0
+            }
+          },
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1200.0
+            }
+          },
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1600.0
+            }
+          },
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1800.0
+            }
+          },
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1450.0
+            }
+          },
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1050.0
+            }
+          },
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1250.0
+            }
+          },
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1700.0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "hpSnapshot": {
+    "ok": true,
+    "time_s": 600.0,
+    "heroCount": 10,
+    "heroes": [
+      {
+        "net_id": 101,
+        "participantID": 1,
+        "teamID": 100,
+        "champion": "Gnar",
+        "name": "blue1",
+        "mHP": 1120.5,
+        "mMaxHP": 1500.0
+      },
+      {
+        "net_id": 102,
+        "participantID": 2,
+        "teamID": 100,
+        "champion": "LeeSin",
+        "name": "blue2",
+        "mHP": 980.0,
+        "mMaxHP": 1400.0
+      },
+      {
+        "net_id": 103,
+        "participantID": 3,
+        "teamID": 100,
+        "champion": "Ahri",
+        "name": "blue3",
+        "mHP": 860.25,
+        "mMaxHP": 1100.0
+      },
+      {
+        "net_id": 104,
+        "participantID": 4,
+        "teamID": 100,
+        "champion": "Jinx",
+        "name": "blue4",
+        "mHP": 910.0,
+        "mMaxHP": 1200.0
+      },
+      {
+        "net_id": 105,
+        "participantID": 5,
+        "teamID": 100,
+        "champion": "Thresh",
+        "name": "blue5",
+        "mHP": 1205.0,
+        "mMaxHP": 1600.0
+      },
+      {
+        "net_id": 201,
+        "participantID": 6,
+        "teamID": 200,
+        "champion": "Darius",
+        "name": "red1",
+        "mHP": 1400.0,
+        "mMaxHP": 1800.0
+      },
+      {
+        "net_id": 202,
+        "participantID": 7,
+        "teamID": 200,
+        "champion": "Vi",
+        "name": "red2",
+        "mHP": 1050.0,
+        "mMaxHP": 1450.0
+      },
+      {
+        "net_id": 203,
+        "participantID": 8,
+        "teamID": 200,
+        "champion": "Syndra",
+        "name": "red3",
+        "mHP": 820.0,
+        "mMaxHP": 1050.0
+      },
+      {
+        "net_id": 204,
+        "participantID": 9,
+        "teamID": 200,
+        "champion": "Samira",
+        "name": "red4",
+        "mHP": 945.5,
+        "mMaxHP": 1250.0
+      },
+      {
+        "net_id": 205,
+        "participantID": 10,
+        "teamID": 200,
+        "champion": "Nautilus",
+        "name": "red5",
+        "mHP": 1310.0,
+        "mMaxHP": 1700.0
+      }
+    ],
+    "acceptance": {
+      "needHeroes": 10,
+      "needHpMaxGt": 100,
+      "passed": true
+    }
+  },
+  "keyframeStructure": {
+    "file": "rofl2_decrypt_kf_19.bin",
+    "size": 224279,
+    "time_s": 1080.3580322265625,
+    "a8_row_count": 3290,
+    "run_count": 60,
+    "run_sizes": [
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6,
+      1,
+      117,
+      117,
+      64,
+      24,
+      6
+    ],
+    "group_count": 10,
+    "group_run_sizes": [
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ],
+      [
+        1,
+        117,
+        117,
+        64,
+        24,
+        6
+      ]
+    ],
+    "group_row_totals": [
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329,
+      329
+    ],
+    "player_blobs": [
+      {
+        "index": 0,
+        "start": 0,
+        "end": 2120,
+        "size": 2120
+      },
+      {
+        "index": 1,
+        "start": 6307,
+        "end": 8772,
+        "size": 2465
+      },
+      {
+        "index": 2,
+        "start": 12959,
+        "end": 15404,
+        "size": 2445
+      },
+      {
+        "index": 3,
+        "start": 19591,
+        "end": 22123,
+        "size": 2532
+      },
+      {
+        "index": 4,
+        "start": 26310,
+        "end": 28822,
+        "size": 2512
+      },
+      {
+        "index": 5,
+        "start": 33009,
+        "end": 35500,
+        "size": 2491
+      },
+      {
+        "index": 6,
+        "start": 39687,
+        "end": 42147,
+        "size": 2460
+      },
+      {
+        "index": 7,
+        "start": 46334,
+        "end": 48785,
+        "size": 2451
+      },
+      {
+        "index": 8,
+        "start": 52972,
+        "end": 55331,
+        "size": 2359
+      },
+      {
+        "index": 9,
+        "start": 59518,
+        "end": 61952,
+        "size": 2434
+      }
+    ],
+    "byte1_top": [
+      [
+        40,
+        833
+      ],
+      [
+        41,
+        833
+      ],
+      [
+        46,
+        814
+      ],
+      [
+        45,
+        810
+      ]
+    ],
+    "byte2_top": [
+      [
+        180,
+        2727
+      ],
+      [
+        182,
+        490
+      ],
+      [
+        186,
+        53
+      ],
+      [
+        176,
+        10
+      ],
+      [
+        184,
+        4
+      ],
+      [
+        188,
+        2
+      ]
+    ],
+    "byte7_top": [
+      [
+        77,
+        500
+      ],
+      [
+        201,
+        390
+      ],
+      [
+        95,
+        360
+      ],
+      [
+        85,
+        350
+      ],
+      [
+        223,
+        310
+      ],
+      [
+        205,
+        230
+      ],
+      [
+        209,
+        210
+      ],
+      [
+        73,
+        160
+      ],
+      [
+        75,
+        140
+      ],
+      [
+        91,
+        140
+      ]
+    ],
+    "probeTime_s": 1080.3580322265625
+  },
+  "build": {
+    "roflVersion": "16.14.794.5912",
+    "appVersion": "16.14.7945912+branch.releases-16-14.code.public",
+    "normalizedRofl": "16.14.794.5912",
+    "normalizedApp": "16.14.794.5912",
+    "exactMatch": true
+  },
+  "keyframeCount": 36,
+  "heroes": [
+    {
+      "net_id": 101,
+      "name": "blue1",
+      "champion": "Gnar",
+      "participantID": 1,
+      "teamID": 100
+    },
+    {
+      "net_id": 102,
+      "name": "blue2",
+      "champion": "LeeSin",
+      "participantID": 2,
+      "teamID": 100
+    },
+    {
+      "net_id": 103,
+      "name": "blue3",
+      "champion": "Ahri",
+      "participantID": 3,
+      "teamID": 100
+    },
+    {
+      "net_id": 104,
+      "name": "blue4",
+      "champion": "Jinx",
+      "participantID": 4,
+      "teamID": 100
+    },
+    {
+      "net_id": 105,
+      "name": "blue5",
+      "champion": "Thresh",
+      "participantID": 5,
+      "teamID": 100
+    },
+    {
+      "net_id": 201,
+      "name": "red1",
+      "champion": "Darius",
+      "participantID": 6,
+      "teamID": 200
+    },
+    {
+      "net_id": 202,
+      "name": "red2",
+      "champion": "Vi",
+      "participantID": 7,
+      "teamID": 200
+    },
+    {
+      "net_id": 203,
+      "name": "red3",
+      "champion": "Syndra",
+      "participantID": 8,
+      "teamID": 200
+    },
+    {
+      "net_id": 204,
+      "name": "red4",
+      "champion": "Samira",
+      "participantID": 9,
+      "teamID": 200
+    },
+    {
+      "net_id": 205,
+      "name": "red5",
+      "champion": "Nautilus",
+      "participantID": 10,
+      "teamID": 200
+    }
+  ]
+}

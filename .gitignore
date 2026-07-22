@@ -37,7 +37,10 @@ vision/weights/
 *.pt
 *.onnx
 public/data/touch-vod-stills/
+# Local durable ROFL ingest working tree (regenerate via rofl:ingest)
+artifacts/rofl/
 # ROFL research dumps (derived from local replays)
 docs/rofl-research/*.bin
 docs/rofl-research/fixtures/events_*.jsonl
 /tmp/
+

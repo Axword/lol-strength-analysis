@@ -1,0 +1,3391 @@
+{
+  "events": [
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 101,
+        "name": "blue1",
+        "champion": "Gnar"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 102,
+        "name": "blue2",
+        "champion": "LeeSin"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 103,
+        "name": "blue3",
+        "champion": "Ahri"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 104,
+        "name": "blue4",
+        "champion": "Jinx"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 105,
+        "name": "blue5",
+        "champion": "Thresh"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 201,
+        "name": "red1",
+        "champion": "Darius"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 202,
+        "name": "red2",
+        "champion": "Vi"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 203,
+        "name": "red3",
+        "champion": "Syndra"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 204,
+        "name": "red4",
+        "champion": "Samira"
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 205,
+        "name": "red5",
+        "champion": "Nautilus"
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 90.0,
+        "net_id": 90010,
+        "skin_name": "SRU_Blue",
+        "name": "SRU_Blue",
+        "position1": {
+          "x": -3900,
+          "z": 6200
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 90.0,
+        "net_id": 90011,
+        "skin_name": "SRU_Red",
+        "name": "SRU_Red",
+        "position1": {
+          "x": 7100,
+          "z": -3900
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 90.0,
+        "net_id": 90012,
+        "skin_name": "SRU_Krug",
+        "name": "SRU_Krug",
+        "position1": {
+          "x": 8400,
+          "z": -2700
+        }
+      }
+    },
+    {
+      "BarrackSpawnUnit": {
+        "time": 65.0,
+        "net_id": 91001,
+        "team_id": 100,
+        "lane": "MID",
+        "minion_type": "melee",
+        "position": {
+          "x": -500,
+          "z": -500
+        }
+      }
+    },
+    {
+      "BarrackSpawnUnit": {
+        "time": 65.0,
+        "net_id": 91002,
+        "team_id": 100,
+        "lane": "MID",
+        "minion_type": "caster",
+        "position": {
+          "x": -400,
+          "z": -400
+        }
+      }
+    },
+    {
+      "BarrackSpawnUnit": {
+        "time": 65.0,
+        "net_id": 91003,
+        "team_id": 200,
+        "lane": "MID",
+        "minion_type": "melee",
+        "position": {
+          "x": 500,
+          "z": 500
+        }
+      }
+    },
+    {
+      "SpawnMinion": {
+        "time": 65.5,
+        "net_id": 91004,
+        "team_id": 200,
+        "lane": "BOT",
+        "minion_type": "cannon",
+        "position": {
+          "x": 3000,
+          "z": -3000
+        }
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 80.0,
+        "killed_net_id": 91001,
+        "killer_net_id": 201
+      }
+    },
+    {
+      "CreateTurret": {
+        "time": 0.0,
+        "net_id": 9001,
+        "owner_net_id": 9001,
+        "name": "Turret_T1_L_03_A"
+      }
+    },
+    {
+      "CreateTurret": {
+        "time": 0.0,
+        "net_id": 9002,
+        "owner_net_id": 9002,
+        "name": "Turret_T2_R_03_A"
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 1.0,
+        "net_id": 7001,
+        "skin_name": "SRU_VoidGrub",
+        "position1": {
+          "x": 500.0,
+          "z": 800.0
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 1.0,
+        "net_id": 7002,
+        "skin_name": "SRU_Horde",
+        "position1": {
+          "x": 520.0,
+          "z": 820.0
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 1.0,
+        "net_id": 7003,
+        "skin_name": "SRU_VoidGrub",
+        "position1": {
+          "x": 540.0,
+          "z": 840.0
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 1.0,
+        "net_id": 7100,
+        "skin_name": "SRU_Dragon_Fire",
+        "position1": {
+          "x": 9800.0,
+          "z": 4400.0
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 1.0,
+        "net_id": 7200,
+        "skin_name": "SRU_Baron",
+        "position1": {
+          "x": 5000.0,
+          "z": 10400.0
+        }
+      }
+    },
+    {
+      "CreateNeutral": {
+        "time": 1.0,
+        "net_id": 7300,
+        "skin_name": "SRU_RiftHerald",
+        "position1": {
+          "x": 5000.0,
+          "z": 10400.0
+        }
+      }
+    },
+    {
+      "WaypointGroup": {
+        "time": 5.0,
+        "waypoints": {
+          "1": [
+            {
+              "x": -7000.0,
+              "z": -7000.0
+            },
+            {
+              "x": -6500.0,
+              "z": -6500.0
+            },
+            {
+              "x": -6000.0,
+              "z": -6000.0
+            }
+          ],
+          "2": [
+            {
+              "x": -7000.0,
+              "z": -7000.0
+            },
+            {
+              "x": -6000.0,
+              "z": -3000.0
+            },
+            {
+              "x": -5500.0,
+              "z": -1000.0
+            }
+          ],
+          "3": [
+            {
+              "x": -7000.0,
+              "z": -7000.0
+            },
+            {
+              "x": -4000.0,
+              "z": -4000.0
+            },
+            {
+              "x": -1000.0,
+              "z": -1000.0
+            }
+          ],
+          "4": [
+            {
+              "x": -7000.0,
+              "z": -7000.0
+            },
+            {
+              "x": -4000.0,
+              "z": -6500.0
+            },
+            {
+              "x": -2000.0,
+              "z": -5500.0
+            }
+          ],
+          "5": [
+            {
+              "x": -7000.0,
+              "z": -7000.0
+            },
+            {
+              "x": -4500.0,
+              "z": -6200.0
+            },
+            {
+              "x": -2500.0,
+              "z": -5200.0
+            }
+          ],
+          "6": [
+            {
+              "x": 7000.0,
+              "z": 7000.0
+            },
+            {
+              "x": 6500.0,
+              "z": 6500.0
+            },
+            {
+              "x": 6000.0,
+              "z": 6000.0
+            }
+          ],
+          "7": [
+            {
+              "x": 7000.0,
+              "z": 7000.0
+            },
+            {
+              "x": 6000.0,
+              "z": 3000.0
+            },
+            {
+              "x": 5500.0,
+              "z": 1000.0
+            }
+          ],
+          "8": [
+            {
+              "x": 7000.0,
+              "z": 7000.0
+            },
+            {
+              "x": 4000.0,
+              "z": 4000.0
+            },
+            {
+              "x": 1000.0,
+              "z": 1000.0
+            }
+          ],
+          "9": [
+            {
+              "x": 7000.0,
+              "z": 7000.0
+            },
+            {
+              "x": 4000.0,
+              "z": 6500.0
+            },
+            {
+              "x": 2000.0,
+              "z": 5500.0
+            }
+          ],
+          "10": [
+            {
+              "x": 7000.0,
+              "z": 7000.0
+            },
+            {
+              "x": 4500.0,
+              "z": 6200.0
+            },
+            {
+              "x": 2500.0,
+              "z": 5200.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1120.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1500.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 6.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 4500.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 980.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1400.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 6.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 4200.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 860.25
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1100.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 7.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 4800.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 910.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1200.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 6.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 5100.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1205.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1600.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 3900.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1400.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1800.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 6.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 4400.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1050.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1450.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 6.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 4100.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 820.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1050.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 7.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 5000.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 945.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1250.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 6.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 5300.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1310.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1700.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mLevelRef",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mGoldTotal",
+            "data": {
+              "Float": 3800.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBaseAttackDamage",
+            "data": {
+              "Float": 65.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatPhysicalDamageMod",
+            "data": {
+              "Float": 40.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mArmor",
+            "data": {
+              "Float": 45.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusArmor",
+            "data": {
+              "Float": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mSpellBlock",
+            "data": {
+              "Float": 35.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mBonusSpellBlock",
+            "data": {
+              "Float": 5.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mAttackSpeedMod",
+            "data": {
+              "Float": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mPercentAttackSpeedMod",
+            "data": {
+              "Float": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 10.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 1,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 80.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.0,
+        "net_id": 101,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.0,
+        "net_id": 101,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.0,
+        "net_id": 101,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.0,
+        "net_id": 101,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.01,
+        "net_id": 102,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.01,
+        "net_id": 102,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.01,
+        "net_id": 102,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.01,
+        "net_id": 102,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.02,
+        "net_id": 103,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.02,
+        "net_id": 103,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.02,
+        "net_id": 103,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.02,
+        "net_id": 103,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.03,
+        "net_id": 104,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.03,
+        "net_id": 104,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.03,
+        "net_id": 104,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.03,
+        "net_id": 104,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.04,
+        "net_id": 105,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.04,
+        "net_id": 105,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.04,
+        "net_id": 105,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.04,
+        "net_id": 105,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.05,
+        "net_id": 201,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.05,
+        "net_id": 201,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.05,
+        "net_id": 201,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.05,
+        "net_id": 201,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.06,
+        "net_id": 202,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.06,
+        "net_id": 202,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.06,
+        "net_id": 202,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.06,
+        "net_id": 202,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.07,
+        "net_id": 203,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.07,
+        "net_id": 203,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.07,
+        "net_id": 203,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.07,
+        "net_id": 203,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.08,
+        "net_id": 204,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.08,
+        "net_id": 204,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.08,
+        "net_id": 204,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.08,
+        "net_id": 204,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.09,
+        "net_id": 205,
+        "slot": 1,
+        "level": 3
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.09,
+        "net_id": 205,
+        "slot": 2,
+        "level": 2
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.09,
+        "net_id": 205,
+        "slot": 3,
+        "level": 1
+      }
+    },
+    {
+      "SkillLevelUp": {
+        "time": 12.09,
+        "net_id": 205,
+        "slot": 4,
+        "level": 1
+      }
+    },
+    {
+      "BuyItem": {
+        "time": 15.0,
+        "net_id": 101,
+        "slot": 0,
+        "item_id": 3078,
+        "entity_gold_after_change": 4000.0
+      }
+    },
+    {
+      "BuyItem": {
+        "time": 15.1,
+        "net_id": 201,
+        "slot": 0,
+        "item_id": 6631,
+        "entity_gold_after_change": 3900.0
+      }
+    },
+    {
+      "CastSpellAns": {
+        "time": 16.0,
+        "caster_net_id": 103,
+        "slot": 0,
+        "level": 3,
+        "spell_name": "AhriQ",
+        "source_position": {
+          "x": -1000.0,
+          "z": -1000.0
+        }
+      }
+    },
+    {
+      "WardPlace": {
+        "time": 18.0,
+        "net_id": 105,
+        "ward_type": "yellowTrinket",
+        "position": {
+          "x": -2000.0,
+          "z": -2000.0
+        }
+      }
+    },
+    {
+      "WardKill": {
+        "time": 40.0,
+        "net_id": 205,
+        "ward_type": "yellowTrinket",
+        "position": {
+          "x": -2000.0,
+          "z": -2000.0
+        }
+      }
+    },
+    {
+      "WaypointGroup": {
+        "time": 60.0,
+        "waypoints": {
+          "1": [
+            {
+              "x": -6000.0,
+              "z": -6000.0
+            },
+            {
+              "x": -5000.0,
+              "z": -3000.0
+            },
+            {
+              "x": -2000.0,
+              "z": 2000.0
+            }
+          ],
+          "2": [
+            {
+              "x": -5500.0,
+              "z": -1000.0
+            },
+            {
+              "x": -2000.0,
+              "z": 0.0
+            },
+            {
+              "x": 0.0,
+              "z": 2000.0
+            }
+          ],
+          "3": [
+            {
+              "x": -1000.0,
+              "z": -1000.0
+            },
+            {
+              "x": 0.0,
+              "z": 0.0
+            },
+            {
+              "x": 500.0,
+              "z": 500.0
+            }
+          ],
+          "4": [
+            {
+              "x": -2000.0,
+              "z": -5500.0
+            },
+            {
+              "x": -500.0,
+              "z": -2000.0
+            },
+            {
+              "x": 0.0,
+              "z": -500.0
+            }
+          ],
+          "5": [
+            {
+              "x": -2500.0,
+              "z": -5200.0
+            },
+            {
+              "x": -800.0,
+              "z": -2000.0
+            },
+            {
+              "x": 200.0,
+              "z": -200.0
+            }
+          ],
+          "6": [
+            {
+              "x": 6000.0,
+              "z": 6000.0
+            },
+            {
+              "x": 5000.0,
+              "z": 3000.0
+            },
+            {
+              "x": 2000.0,
+              "z": -2000.0
+            }
+          ],
+          "7": [
+            {
+              "x": 5500.0,
+              "z": 1000.0
+            },
+            {
+              "x": 2000.0,
+              "z": 0.0
+            },
+            {
+              "x": 0.0,
+              "z": -2000.0
+            }
+          ],
+          "8": [
+            {
+              "x": 1000.0,
+              "z": 1000.0
+            },
+            {
+              "x": 0.0,
+              "z": 0.0
+            },
+            {
+              "x": -500.0,
+              "z": -500.0
+            }
+          ],
+          "9": [
+            {
+              "x": 2000.0,
+              "z": 5500.0
+            },
+            {
+              "x": 500.0,
+              "z": 2000.0
+            },
+            {
+              "x": 0.0,
+              "z": 500.0
+            }
+          ],
+          "10": [
+            {
+              "x": 2500.0,
+              "z": 5200.0
+            },
+            {
+              "x": 800.0,
+              "z": 2000.0
+            },
+            {
+              "x": -200.0,
+              "z": 200.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 300.0,
+        "killed_net_id": 7001,
+        "killer_net_id": 102
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 301.0,
+        "killed_net_id": 7002,
+        "killer_net_id": 102
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 302.0,
+        "killed_net_id": 7003,
+        "killer_net_id": 102
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 200.0,
+        "killed_net_id": 7100,
+        "killer_net_id": 102
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 210.0,
+        "killed_net_id": 7300,
+        "killer_net_id": 201
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 250.0,
+        "killed_net_id": 7200,
+        "killer_net_id": 102
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 180.0,
+        "killed_net_id": 9002,
+        "killer_net_id": 101
+      }
+    },
+    {
+      "NPCDieMapView": {
+        "time": 190.0,
+        "killed_net_id": 201,
+        "killer_net_id": 101
+      }
+    },
+    {
+      "LeaveFog": {
+        "time": 220.0,
+        "net_id": 201
+      }
+    },
+    {
+      "WaypointGroup": {
+        "time": 320.0,
+        "waypoints": {
+          "1": [
+            {
+              "x": -2000.0,
+              "z": 2000.0
+            },
+            {
+              "x": 0.0,
+              "z": 3000.0
+            },
+            {
+              "x": 2000.0,
+              "z": 4000.0
+            }
+          ],
+          "2": [
+            {
+              "x": 0.0,
+              "z": 2000.0
+            },
+            {
+              "x": 1000.0,
+              "z": 3000.0
+            },
+            {
+              "x": 2000.0,
+              "z": 4000.0
+            }
+          ],
+          "3": [
+            {
+              "x": 500.0,
+              "z": 500.0
+            },
+            {
+              "x": 1500.0,
+              "z": 2500.0
+            },
+            {
+              "x": 2000.0,
+              "z": 4000.0
+            }
+          ],
+          "4": [
+            {
+              "x": 0.0,
+              "z": -500.0
+            },
+            {
+              "x": 1000.0,
+              "z": 1500.0
+            },
+            {
+              "x": 2000.0,
+              "z": 3500.0
+            }
+          ],
+          "5": [
+            {
+              "x": 200.0,
+              "z": -200.0
+            },
+            {
+              "x": 1000.0,
+              "z": 1800.0
+            },
+            {
+              "x": 1800.0,
+              "z": 3600.0
+            }
+          ],
+          "6": [
+            {
+              "x": 2000.0,
+              "z": -2000.0
+            },
+            {
+              "x": 1500.0,
+              "z": 1000.0
+            },
+            {
+              "x": 2000.0,
+              "z": 3500.0
+            }
+          ],
+          "7": [
+            {
+              "x": 0.0,
+              "z": -2000.0
+            },
+            {
+              "x": 1000.0,
+              "z": 1000.0
+            },
+            {
+              "x": 2000.0,
+              "z": 3800.0
+            }
+          ],
+          "8": [
+            {
+              "x": -500.0,
+              "z": -500.0
+            },
+            {
+              "x": 1000.0,
+              "z": 2000.0
+            },
+            {
+              "x": 2200.0,
+              "z": 4000.0
+            }
+          ],
+          "9": [
+            {
+              "x": 0.0,
+              "z": 500.0
+            },
+            {
+              "x": 1200.0,
+              "z": 2200.0
+            },
+            {
+              "x": 2000.0,
+              "z": 3900.0
+            }
+          ],
+          "10": [
+            {
+              "x": -200.0,
+              "z": 200.0
+            },
+            {
+              "x": 1000.0,
+              "z": 2000.0
+            },
+            {
+              "x": 1900.0,
+              "z": 3700.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1008.45
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "101": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1500.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 882.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "102": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1400.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 774.225
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "103": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1100.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 819.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "104": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1200.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1084.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "105": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1600.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1260.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "201": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1800.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 945.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "202": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1450.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 738.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "203": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1050.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 850.95
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "204": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1250.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1179.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 320.0,
+        "net_id_to_replication_datas": {
+          "205": {
+            "primary_index": 32,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1700.0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "purpose": "FUR live-stats parity fixture",
+    "gameId": 2970115
+  }
+}

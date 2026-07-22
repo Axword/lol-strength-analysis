@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "goldStandard": "events_*_riot.jsonl (FUR vs G2 live-stats shape)",
+  "notes": [
+    "Product-complete parity for rebuild/enrich/GameReview/calculator/grub touch.",
+    "Esports bus envelopes (champ_select, pause_*, reconnect) are out of scope.",
+    "Void grub touch damage is derived from voidGrubs stacks via objectives.ts — not a raw JSONL field."
+  ],
+  "requiredSchemas": [
+    "game_info",
+    "stats_update",
+    "game_end",
+    "skill_used",
+    "skill_level_up",
+    "champion_kill",
+    "epic_monster_kill",
+    "building_destroyed",
+    "ward_placed",
+    "ward_killed",
+    "item_purchased"
+  ],
+    "optionalSchemas": [
+    "epic_monster_spawn",
+    "neutral_minion_spawn",
+    "barracks_minion_spawn",
+    "barracks_minion_killed",
+    "item_destroyed",
+    "item_sold",
+    "summoner_spell_used",
+    "role_bound_quest_completed",
+    "queued_dragon_info",
+    "queued_epic_monster_info",
+    "turret_plate_destroyed",
+    "turret_plate_gold_earned",
+    "building_gold_grant",
+    "item_active_ability_used",
+    "rofl_coverage"
+  ],
+  "minionLayers": {
+    "jungleCamps": "neutral_minion_spawn + wiki clocks → mapObjects.camps",
+    "laneMinions": "barracks_minion_spawn / barracks_minion_killed → mapObjects.minions",
+    "replayApiNote": "Replay API remains champion-only; lane minions require packet path"
+  },
+  "requiredStatsUpdateParticipantFields": [
+    "participantID",
+    "teamID",
+    "championName",
+    "playerName",
+    "alive",
+    "level",
+    "position",
+    "items",
+    "health",
+    "healthMax",
+    "attackDamage",
+    "abilityPower",
+    "armor",
+    "magicResist",
+    "attackSpeed",
+    "ability1Level",
+    "ability2Level",
+    "ability3Level",
+    "ability4Level",
+    "totalGold"
+  ],
+  "requiredEpicMonsterTypes": ["VoidGrub", "dragon", "baron", "riftHerald"],
+  "calculatorGates": {
+    "hpKnown": true,
+    "combatStatsKnown": true,
+    "abilityRanksKnown": true
+  },
+  "voidGrubDerived": {
+    "sourceSchema": "epic_monster_kill",
+    "monsterType": "VoidGrub",
+    "scoreboardField": "voidGrubs",
+    "touchMath": "src/engine/objectives.ts grubTouchDps(stacks)",
+    "timelineScoreField": "frames[].score.blue|red.voidGrubs"
+  }
+}

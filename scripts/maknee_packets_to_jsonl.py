@@ -16,13 +16,21 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import math
 import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+# Live-stats units/sec — ~base MS so sparse WaypointGroup destinations walk
+# instead of teleporting between 1 Hz samples.
+DEFAULT_MOVE_SPEED = 375.0
+MAX_PATH_DRAIN_SECONDS = 180.0
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from rfc461_emit import (  # noqa: E402
+    barracks_minion_killed_line,
+    barracks_minion_spawn_line,
     building_destroyed_line,
     champion_kill_line,
     coverage_line,
@@ -30,11 +38,16 @@ from rfc461_emit import (  # noqa: E402
     fountain_for_team,
     game_end_line,
     game_info_line,
+    item_purchased_line,
+    neutral_minion_spawn_line,
     participant_row,
     provenance_record,
+    skill_level_up_line,
     skill_used_line,
     stats_update_line,
     to_live_stats_coords,
+    ward_killed_line,
+    ward_placed_line,
     write_jsonl,
 )
 from rofl_replication_fields import (  # noqa: E402
@@ -53,7 +66,39 @@ EPIC_NEUTRALS = {
     "SRU_Dragon_Elder": ("dragon", "elder"),
     "SRU_Baron": ("baron", None),
     "SRU_RiftHerald": ("riftHerald", None),
+    # Void grubs / voidmites — FUR live-stats uses monsterType "VoidGrub"
+    "SRU_VoidGrub": ("VoidGrub", None),
+    "SRU_Horde": ("VoidGrub", None),
 }
+
+# Synthetic 375 u/s path walking is fixture/research movement only.
+POSITION_SYNTHESIS = "waypoint_path_walk_375_ups"
+SYNTHETIC_SOURCE_KIND = "decoded_replay_packets_synthetic_path"
+
+
+def _synthetic_path_provenance() -> Dict[str, Any]:
+    """Provenance for WaypointGroup path-walked positions (not native product)."""
+    prov = provenance_record(
+        source="maknee_decoded_packets",
+        source_kind=SYNTHETIC_SOURCE_KIND,
+        position_coverage="partial",
+        hp_coverage="partial",
+        roster_mapping="CreateHero_order_1_to_10",
+        artifact="maknee-shaped events[]",
+        notes=(
+            "Waypoint coordinates are centered and shifted by +7500 into "
+            "live-stats space; multi-point / sparse destinations are walked "
+            f"at ~{DEFAULT_MOVE_SPEED:g} u/s between stats_update samples "
+            f"({POSITION_SYNTHESIS}). This is synthetic fixture movement, not "
+            "native full_at_sampled_frames product evidence. "
+            "Ability ranks from SkillLevelUp/CastSpellAns when present; "
+            "VoidGrub via CreateNeutral naming."
+        ),
+    )
+    prov["positionSynthesis"] = POSITION_SYNTHESIS
+    prov["researchOnly"] = True
+    prov["publicationBlocked"] = True
+    return prov
 
 
 def _packet_time(payload: dict) -> Optional[float]:
@@ -64,7 +109,6 @@ def _packet_time(payload: dict) -> Optional[float]:
         return float(t)
     except (TypeError, ValueError):
         return None
-
 
 def _rep_value(data: dict) -> Optional[float]:
     if not isinstance(data, dict):
@@ -148,8 +192,29 @@ def _parse_turret_meta(name: str) -> Tuple[int, Optional[str], Optional[str]]:
     return team, lane, tier
 
 
+def _event_time(ev: dict) -> float:
+    if not ev:
+        return 0.0
+    payload = ev.get(next(iter(ev)))
+    if not isinstance(payload, dict):
+        return 0.0
+    t = _packet_time(payload)
+    return 0.0 if t is None else t
+
+
+def _sort_events(events: List[dict]) -> List[dict]:
+    """Stable time order — out-of-order packets otherwise skip early waypoints."""
+    return sorted(events, key=_event_time)
+
+
+def _as_live_point(pt: dict) -> Tuple[float, float]:
+    return to_live_stats_coords(
+        float(pt["x"]), float(pt.get("z", pt.get("y", 0)))
+    )
+
+
 def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
-    events = match["events"]
+    events = _sort_events(list(match["events"]))
     heroes = _heroes(events)
     if not heroes:
         raise SystemExit("no CreateHero packets found")
@@ -159,32 +224,43 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
 
     # Live state
     pos: Dict[int, Tuple[float, float]] = {}  # waypoint_id → xz
+    # Remaining path destinations in live-stats space (walked at DEFAULT_MOVE_SPEED).
+    paths: Dict[int, List[Tuple[float, float]]] = {}
     alive: Dict[int, bool] = {h["net_id"]: True for h in heroes}
     hp: Dict[int, float] = {}
     hp_max: Dict[int, float] = {}
     level: Dict[int, int] = {h["net_id"]: 1 for h in heroes}
     gold: Dict[int, float] = {}
     combat_components: Dict[int, Dict[str, float]] = {}
+    # net_id → [Q,W,E,R] ranks (0-based slots 0..3)
+    ability_ranks: Dict[int, List[int]] = {
+        h["net_id"]: [0, 0, 0, 0] for h in heroes
+    }
     items: Dict[int, Dict[int, int]] = {h["net_id"]: {} for h in heroes}  # slot → item_id
 
     turrets: Dict[int, dict] = {}  # net_id → meta
     neutrals: Dict[int, dict] = {}  # net_id → meta
+    lane_minions: Dict[int, dict] = {}  # net_id → meta
 
     decoded = [
         "CreateHero",
         "WaypointGroup",
         "Replication.mHP",
+        "Replication.combat_when_present",
         "BuyItem/RemoveItem/SwapItem",
         "CastSpellAns",
+        "SkillLevelUp",
         "NPCDieMapView*",
         "CreateTurret",
         "CreateNeutral",
+        "SpawnMinion/BarrackSpawnUnit",
+        "WardPlace/WardKill",
     ]
     missing = [
-        "wards",
-        "HeroDie_packet",  # not present in sampled HF batch; kills via NPCDie on hero ids
-        "full_ability_ranks",
-        "Replication.combat_when_absent",
+        "wards_when_absent",
+        "HeroDie_packet",
+        "summoner_spell_used",
+        "full_liveclient_cooldowns",
     ]
 
     lines: List[dict] = [
@@ -194,27 +270,19 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
             decoded=decoded,
             missing=missing,
             notes=(
-                "Positions from WaypointGroup; HP/gold/level from Replication. "
+                "Positions from WaypointGroup (synthetic path-walk between samples at "
+                f"~{DEFAULT_MOVE_SPEED:g} u/s — not native full_at_sampled_frames); "
+                "HP/gold/level from Replication. "
                 "Combat overrides only when Replication emits combat field names. "
-                "Ability ranks unavailable. "
-                "Plug-in point for future ROFL decryptors that emit the same events[]."
+                "Ability ranks from SkillLevelUp / CastSpellAns levels when present. "
+                "VoidGrub via CreateNeutral SRU_VoidGrub/SRU_Horde → epic_monster_kill. "
+                "Plug-in point for ROFL decryptors that emit the same events[]."
             ),
-            provenance=provenance_record(
-                source="maknee_decoded_packets",
-                source_kind="decoded_replay_packets",
-                position_coverage="partial",
-                hp_coverage="partial",
-                roster_mapping="CreateHero_order_1_to_10",
-                artifact="maknee-shaped events[]",
-                notes=(
-                    "Waypoint coordinates are centered and shifted by +7500 into "
-                    "live-stats space. Ability ranks remain unavailable."
-                ),
-            ),
+            provenance=_synthetic_path_provenance(),
         ),
         game_info_line(
             game_id=game_id,
-            game_name="maknee_match",
+            game_name=str(game_id) if game_id else "maknee_match",
             platform_id="MAKNEE",
             stats_update_interval_ms=int(round(1000 / hz)) if hz > 0 else 1000,
             participants=[
@@ -234,10 +302,65 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
     step = 1.0 / hz if hz > 0 else 1.0
     next_sample = 0.0
     last_t = 0.0
+    last_advance_t = 0.0
     emitted_samples = 0
 
-    def flush_stats(t: float, game_over: bool = False) -> None:
-        nonlocal emitted_samples
+    def advance_paths(dt: float) -> None:
+        if dt <= 0:
+            return
+        for wid, queue in list(paths.items()):
+            remaining = dt
+            while remaining > 1e-9 and queue:
+                cur = pos.get(wid)
+                if cur is None:
+                    pos[wid] = queue.pop(0)
+                    continue
+                tx, tz = queue[0]
+                dx = tx - cur[0]
+                dz = tz - cur[1]
+                dist = math.hypot(dx, dz)
+                if dist < 1e-3:
+                    queue.pop(0)
+                    pos[wid] = (tx, tz)
+                    continue
+                step_u = DEFAULT_MOVE_SPEED * remaining
+                if step_u >= dist:
+                    pos[wid] = (tx, tz)
+                    queue.pop(0)
+                    remaining -= dist / DEFAULT_MOVE_SPEED
+                else:
+                    pos[wid] = (cur[0] + dx / dist * step_u, cur[1] + dz / dist * step_u)
+                    remaining = 0.0
+            if not queue:
+                paths.pop(wid, None)
+
+    def set_path(wid: int, dests: List[Tuple[float, float]]) -> None:
+        if not dests:
+            return
+        if wid not in pos:
+            hero = by_wp.get(wid)
+            if hero is not None:
+                fountain = fountain_for_team(hero["teamID"])
+                pos[wid] = (fountain["x"], fountain["z"])
+            else:
+                pos[wid] = dests[0]
+                dests = dests[1:]
+                if not dests:
+                    return
+        # Drop leading points we already occupy so we do not stutter in place.
+        while dests:
+            dx = dests[0][0] - pos[wid][0]
+            dz = dests[0][1] - pos[wid][1]
+            if math.hypot(dx, dz) < 25.0:
+                pos[wid] = dests.pop(0)
+            else:
+                break
+        if dests:
+            paths[wid] = dests
+        else:
+            paths.pop(wid, None)
+
+    def build_participants() -> List[dict]:
         parts = []
         for h in heroes:
             nid = h["net_id"]
@@ -256,8 +379,9 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
             ]
             h_cur = hp.get(nid)
             h_max = hp_max.get(nid)
-            if h_cur is None and h_max is None:
-                h_cur, h_max = 1.0, 1.0
+            hp_decoded = h_cur is not None or h_max is not None
+            if not hp_decoded:
+                h_cur, h_max = 0.0, 0.0
             elif h_max is None:
                 h_max = max(h_cur or 1.0, 1.0)
             elif h_cur is None:
@@ -271,6 +395,9 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
             combat_source = (
                 "replication_decoded" if resolved is not None else "unavailable"
             )
+            ranks = ability_ranks.get(nid) or [0, 0, 0, 0]
+            ranks_known = any(r > 0 for r in ranks)
+            ranks_source = "cast_or_level_up" if ranks_known else "unavailable"
             parts.append(
                 participant_row(
                     participant_id=h["participantID"],
@@ -283,9 +410,18 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
                     level=int(level.get(nid, 1)),
                     health=float(h_cur),
                     health_max=float(h_max),
-                    health_source="replication_decoded",
+                    health_known=hp_decoded,
+                    health_source=(
+                        "replication_decoded" if hp_decoded else "unavailable"
+                    ),
                     combat_stats_source=combat_source,
-                    ability_ranks_source="unavailable",
+                    ability_ranks_source=ranks_source,
+                    ability_levels=(
+                        int(ranks[0]),
+                        int(ranks[1]),
+                        int(ranks[2]),
+                        int(ranks[3]),
+                    ),
                     items=slot_items,
                     total_gold=gold.get(nid),
                     current_gold=gold.get(nid),
@@ -296,19 +432,25 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
                     attack_speed=None if resolved is None else resolved["attackSpeed"],
                 )
             )
+        return parts
+
+    def flush_stats(t: float, game_over: bool = False) -> None:
+        nonlocal emitted_samples
         lines.append(
             stats_update_line(
                 game_id=game_id,
                 game_time=int(round(t * 1000)),
-                participants=parts,
+                participants=build_participants(),
                 game_over=game_over,
             )
         )
         emitted_samples += 1
 
     def maybe_sample_up_to(t: float) -> None:
-        nonlocal next_sample
+        nonlocal next_sample, last_advance_t
         while next_sample <= t + 1e-9:
+            advance_paths(next_sample - last_advance_t)
+            last_advance_t = next_sample
             flush_stats(next_sample)
             next_sample += step
 
@@ -329,11 +471,8 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
             for wid_s, pts in (payload.get("waypoints") or {}).items():
                 if not pts:
                     continue
-                last = pts[-1]
-                x, z = to_live_stats_coords(
-                    float(last["x"]), float(last.get("z", last.get("y", 0)))
-                )
-                pos[int(wid_s)] = (x, z)
+                dests = [_as_live_point(pt) for pt in pts]
+                set_path(int(wid_s), dests)
 
         elif key == "Replication":
             for nid_s, rep in (payload.get("net_id_to_replication_datas") or {}).items():
@@ -357,10 +496,21 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
 
         elif key == "BuyItem":
             nid = int(payload["net_id"])
+            item_id = int(payload.get("item_id") or 0)
             if nid in items:
-                items[nid][int(payload.get("slot", 0))] = int(payload.get("item_id") or 0)
+                items[nid][int(payload.get("slot", 0))] = item_id
                 if "entity_gold_after_change" in payload:
                     gold[nid] = float(payload["entity_gold_after_change"])
+            hero = by_net.get(nid)
+            if hero and item_id:
+                lines.append(
+                    item_purchased_line(
+                        game_id=game_id,
+                        game_time=int(round(t * 1000)),
+                        participant_id=hero["participantID"],
+                        item_id=item_id,
+                    )
+                )
 
         elif key == "RemoveItem":
             nid = int(payload["net_id"])
@@ -389,6 +539,10 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
             nid = int(payload.get("caster_net_id") or 0)
             hero = by_net.get(nid)
             if hero:
+                slot = int(payload.get("slot") or 0)
+                spell_level = int(payload.get("level") or 0)
+                if 0 <= slot <= 3 and spell_level > 0 and nid in ability_ranks:
+                    ability_ranks[nid][slot] = max(ability_ranks[nid][slot], spell_level)
                 sp = payload.get("source_position") or {}
                 sx, sz = to_live_stats_coords(
                     float(sp.get("x", 0)), float(sp.get("z", 0))
@@ -398,9 +552,70 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
                         game_id=game_id,
                         game_time=int(round(t * 1000)),
                         participant_id=hero["participantID"],
-                        skill_slot=int(payload.get("slot") or 0),
+                        skill_slot=slot,
                         skill_name=payload.get("spell_name") or "",
                         position={"x": sx, "z": sz},
+                    )
+                )
+
+        elif key == "SkillLevelUp":
+            nid = int(payload.get("net_id") or payload.get("participant_net_id") or 0)
+            hero = by_net.get(nid)
+            if hero:
+                slot = int(payload.get("slot") or payload.get("skill_slot") or 0)
+                # Live-stats skillSlot is often 1..4; normalize to 0..3
+                if slot >= 1 and slot <= 4:
+                    slot0 = slot - 1
+                else:
+                    slot0 = slot
+                if 0 <= slot0 <= 3 and nid in ability_ranks:
+                    ability_ranks[nid][slot0] = max(
+                        ability_ranks[nid][slot0],
+                        int(payload.get("level") or ability_ranks[nid][slot0] + 1),
+                    )
+                lines.append(
+                    skill_level_up_line(
+                        game_id=game_id,
+                        game_time=int(round(t * 1000)),
+                        participant_id=hero["participantID"],
+                        skill_slot=slot if slot >= 1 else slot0 + 1,
+                        evolved=bool(payload.get("evolved") or False),
+                    )
+                )
+
+        elif key in ("WardPlace", "WardPlaced"):
+            nid = int(payload.get("net_id") or payload.get("placer_net_id") or 0)
+            hero = by_net.get(nid)
+            if hero:
+                wp = payload.get("position") or {}
+                x, z = to_live_stats_coords(
+                    float(wp.get("x", 0)), float(wp.get("z", wp.get("y", 0)))
+                )
+                lines.append(
+                    ward_placed_line(
+                        game_id=game_id,
+                        game_time=int(round(t * 1000)),
+                        placer_id=hero["participantID"],
+                        ward_type=str(payload.get("ward_type") or "yellowTrinket"),
+                        position={"x": x, "z": z},
+                    )
+                )
+
+        elif key in ("WardKill", "WardKilled"):
+            nid = int(payload.get("net_id") or payload.get("killer_net_id") or 0)
+            hero = by_net.get(nid)
+            if hero:
+                wp = payload.get("position") or {}
+                x, z = to_live_stats_coords(
+                    float(wp.get("x", 0)), float(wp.get("z", wp.get("y", 0)))
+                )
+                lines.append(
+                    ward_killed_line(
+                        game_id=game_id,
+                        game_time=int(round(t * 1000)),
+                        killer_id=hero["participantID"],
+                        ward_type=str(payload.get("ward_type") or "yellowTrinket"),
+                        position={"x": x, "z": z},
                     )
                 )
 
@@ -412,15 +627,61 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
 
         elif key == "CreateNeutral":
             nid = int(payload["net_id"])
-            skin = payload.get("skin_name") or ""
-            p1 = payload.get("position1") or {}
+            skin = payload.get("skin_name") or payload.get("name") or ""
+            p1 = payload.get("position1") or payload.get("position") or {}
             x, z = to_live_stats_coords(float(p1.get("x", 0)), float(p1.get("z", 0)))
             epic = EPIC_NEUTRALS.get(skin)
+            if epic is None and "voidgrub" in skin.lower():
+                epic = ("VoidGrub", None)
+            if epic is None and "horde" in skin.lower():
+                epic = ("VoidGrub", None)
             neutrals[nid] = {
                 "skin": skin,
                 "epic": epic,
                 "position": {"x": x, "z": z},
             }
+            if epic is None and skin:
+                # Jungle camp (non-epic): surface spawn + location for map overlay.
+                lines.append(
+                    neutral_minion_spawn_line(
+                        game_id=game_id,
+                        game_time=int(round(t * 1000)),
+                        monster_type=skin,
+                        position={"x": x, "z": z},
+                        net_id=nid,
+                    )
+                )
+
+        elif key in ("SpawnMinion", "BarrackSpawnUnit"):
+            nid = int(payload.get("net_id") or 0)
+            team = int(payload.get("team_id") or payload.get("teamID") or 0)
+            lane = payload.get("lane")
+            mtype = str(
+                payload.get("minion_type")
+                or payload.get("minionType")
+                or payload.get("skin_name")
+                or "melee"
+            )
+            p1 = payload.get("position") or payload.get("position1") or {}
+            x, z = to_live_stats_coords(float(p1.get("x", 0)), float(p1.get("z", 0)))
+            if nid:
+                lane_minions[nid] = {
+                    "teamID": team,
+                    "lane": lane,
+                    "minionType": mtype,
+                    "position": {"x": x, "z": z},
+                }
+            lines.append(
+                barracks_minion_spawn_line(
+                    game_id=game_id,
+                    game_time=int(round(t * 1000)),
+                    team_id=team,
+                    lane=lane,
+                    minion_type=mtype,
+                    position={"x": x, "z": z},
+                    net_id=nid or None,
+                )
+            )
 
         elif key in ("NPCDieMapView", "NPCDieMapViewBroadcast", "HeroDie"):
             killed = int(payload.get("killed_net_id") or payload.get("net_id") or 0)
@@ -483,20 +744,43 @@ def convert(match: dict, hz: float = 1.0, game_id: int = 0) -> List[dict]:
                     )
                 neutrals.pop(killed, None)
 
+            elif killed in lane_minions:
+                meta = lane_minions.pop(killed)
+                lines.append(
+                    barracks_minion_killed_line(
+                        game_id=game_id,
+                        game_time=int(round(t * 1000)),
+                        team_id=int(meta.get("teamID") or 0),
+                        position=meta.get("position"),
+                        net_id=killed,
+                    )
+                )
+
         elif key == "LeaveFog":
             # Respawn signal heuristic: hero reappears → mark alive
             nid = int(payload.get("net_id") or 0)
             if nid in by_net and not alive.get(nid, True):
                 alive[nid] = True
 
-    # Final samples through last packet time
+    # Final samples through last packet time. Packets that share the last
+    # sample's timestamp are applied after that tick was emitted; refresh the
+    # latest stats_update in place (keep its on-grid gameTime) so cadence stays
+    # stable and terminal Replication/waypoints are included.
     maybe_sample_up_to(last_t)
+    # Keep sampling while champions are still walking toward sparse destinations.
+    drain_start = last_t
+    drain_deadline = drain_start + MAX_PATH_DRAIN_SECONDS
+    drain_t = drain_start
+    while paths and drain_t < drain_deadline:
+        drain_t = min(drain_t + step, drain_deadline)
+        maybe_sample_up_to(drain_t)
+    last_t = drain_t
     if emitted_samples == 0:
         flush_stats(last_t, game_over=True)
     else:
-        # mark last stats_update as game_over
         for row in reversed(lines):
             if row.get("rfc461Schema") == "stats_update":
+                row["participants"] = build_participants()
                 row["gameOver"] = True
                 break
 

@@ -29,27 +29,32 @@ export type DragonType =
   | 'elemental'
 
 export interface TeamObjectives {
-  towers: number
-  inhibs: number
-  kills: number
-  gold: number
-  roleQuests: number
-  voidGrubs: number
+  towers?: number
+  inhibs?: number
+  kills?: number
+  gold?: number
+  roleQuests?: number
+  voidGrubs?: number
   /**
    * One actual elemental type per dragon kill. The fourth entry is a real
    * permanent stack that also grants Soul — not a soul-only sentinel.
    */
-  dragons: DragonType[]
-  dragonCount: number
-  hasSoul: boolean
-  soulType: DragonType | null
-  barons: number
-  baronActive: boolean
+  dragons?: DragonType[]
+  dragonCount?: number
+  hasSoul?: boolean
+  soulType?: DragonType | null
+  barons?: number
+  baronActive?: boolean
   baronEndsAtMs?: number | null
-  elders: number
-  elderActive: boolean
+  elders?: number
+  elderActive?: boolean
   elderEndsAtMs?: number | null
-  heralds: number
+  heralds?: number
+}
+
+export interface ScoreFieldCoverage {
+  coverage: 'known' | 'unavailable'
+  source?: string
 }
 
 export interface ScoreboardState {
@@ -57,8 +62,9 @@ export interface ScoreboardState {
   blue: TeamObjectives
   red: TeamObjectives
   /** blue gold − red gold */
-  goldDelta: number
-  goldLeader: 'blue' | 'red' | 'even'
+  goldDelta?: number
+  goldLeader?: 'blue' | 'red' | 'even'
+  coverage?: Record<string, ScoreFieldCoverage>
 }
 
 /** Wiki V26.11 / current SR — camp is 3 Voidgrubs (no respawn since V25.09). */
@@ -482,10 +488,10 @@ export function combatModsFromObjectives(
     )
   }
 
-  if (obj.voidGrubs > 0) {
+  if ((obj.voidGrubs ?? 0) > 0) {
     pushDisclosed(
       m,
-      `${describeGrubs(obj.voidGrubs)} — structure siege only, not champ DPS`,
+      `${describeGrubs(obj.voidGrubs ?? 0)} — structure siege only, not champ DPS`,
     )
   }
 

@@ -33,6 +33,8 @@ from pathlib import Path
 from typing import Any, Callable, Mapping, Optional
 from urllib.parse import urlparse
 
+import rofl_metadata
+
 DEFAULT_ROFL = Path(
     "/Users/river/Documents/League of Legends/Replays/BR1-3263797356.rofl"
 )
@@ -814,6 +816,7 @@ def focus_select_roster_member(
     previous_selection_name: Optional[Any] = None,
     final_settle: Optional[float] = None,
     identity_retries: int = 0,
+    preferred_key: Optional[str] = None,
 ) -> tuple[dict[str, Any], dict[str, Any], str]:
     """Try player-identity keys then champion internal name; validate identity match.
 
@@ -821,6 +824,11 @@ def focus_select_roster_member(
     short final settle + re-verify rather than sleeping after every POST.
     """
     keys = selection_keys_for_roster_row(row)
+    if preferred_key is not None:
+        preferred = str(preferred_key).strip()
+        # A cached key is only a fast path when it is still valid for this
+        # identity. The caller performs the bounded full-key reassertion.
+        keys = [preferred] if preferred and preferred in keys else []
     expected = str(
         row.get("expectedSelectionIdentity")
         or row.get("playerName")
@@ -1484,19 +1492,85 @@ def _items_from_player(player: Mapping[str, Any]) -> list[Any]:
     return out
 
 
+def _liveclient_identity_aliases(row: Mapping[str, Any]) -> set[str]:
+    identity = rofl_metadata.stable_identity_from_row(row)
+    aliases: set[str] = set()
+    if identity.get("puuid"):
+        aliases.add(f"puuid:{identity['puuid']}")
+    riot_id = identity.get("riotId") or {}
+    if riot_id.get("normalized"):
+        aliases.add(f"riotid:{riot_id['normalized']}")
+    return aliases
+
+
+def _score_number(scores: Mapping[str, Any], keys: tuple[str, ...]) -> Optional[Any]:
+    for key in keys:
+        if key not in scores or scores.get(key) is None:
+            continue
+        value = scores.get(key)
+        if isinstance(value, bool):
+            continue
+        try:
+            number = float(value)
+        except (TypeError, ValueError):
+            continue
+        if not math.isfinite(number) or number < 0:
+            continue
+        return int(number) if number.is_integer() else number
+    return None
+
+
+def liveclient_history_from_player(player: Mapping[str, Any]) -> dict[str, Any]:
+    """Normalize only score fields actually present in allgamedata."""
+    scores = player.get("scores")
+    if not isinstance(scores, Mapping):
+        return {}
+    source_keys: tuple[tuple[str, tuple[str, ...]], ...] = (
+        ("kills", ("kills",)),
+        ("deaths", ("deaths",)),
+        ("assists", ("assists",)),
+        # Live Client Data calls this creepScore. It is total CS, not lane CS.
+        ("totalCreepScore", ("creepScore", "totalCreepScore")),
+        ("visionScore", ("wardScore", "visionScore")),
+    )
+    history: dict[str, Any] = {}
+    for output_key, candidates in source_keys:
+        value = _score_number(scores, candidates)
+        if value is not None:
+            history[output_key] = value
+    if not history:
+        return {}
+    source = "liveclient_allgamedata_scores"
+    return {
+        "history": history,
+        "historyCoverage": {key: "known" for key in history},
+        "historySources": {key: source for key in history},
+        "historySource": source,
+    }
+
+
 def build_roster_from_liveclient(
     playerlist_body: Any, allgamedata_body: Any
 ) -> list[dict[str, Any]]:
-    by_champ: dict[str, dict[str, Any]] = {}
+    all_players: list[dict[str, Any]] = []
+    all_by_alias: dict[str, list[int]] = {}
+    by_champ: dict[str, list[int]] = {}
     if isinstance(allgamedata_body, Mapping):
         for p in allgamedata_body.get("allPlayers") or []:
-            if isinstance(p, Mapping) and p.get("championName"):
-                by_champ[str(p["championName"])] = dict(p)
+            if not isinstance(p, Mapping):
+                continue
+            index = len(all_players)
+            all_players.append(dict(p))
+            for alias in _liveclient_identity_aliases(p):
+                all_by_alias.setdefault(alias, []).append(index)
+            champ = str(p.get("championName") or p.get("champion") or "")
+            if champ:
+                by_champ.setdefault(champ.casefold(), []).append(index)
 
     if isinstance(playerlist_body, list):
         players = playerlist_body
     elif isinstance(allgamedata_body, Mapping):
-        players = list(allgamedata_body.get("allPlayers") or [])
+        players = all_players
     else:
         players = []
 
@@ -1505,8 +1579,29 @@ def build_roster_from_liveclient(
         if not isinstance(raw, Mapping):
             continue
         champ = str(raw.get("championName") or raw.get("champion") or "")
-        merged = dict(by_champ.get(champ) or {})
-        merged.update({k: v for k, v in raw.items() if v is not None})
+        matched_indexes = {
+            candidate
+            for alias in _liveclient_identity_aliases(raw)
+            for candidate in all_by_alias.get(alias, [])
+        }
+        matched_index: Optional[int] = None
+        if len(matched_indexes) == 1:
+            matched_index = next(iter(matched_indexes))
+        elif not matched_indexes:
+            champion_matches = by_champ.get(champ.casefold()) or []
+            if len(champion_matches) == 1:
+                matched_index = champion_matches[0]
+        merged = {k: v for k, v in raw.items() if v is not None}
+        if matched_index is not None:
+            # Dynamic values and scores must come from the same allgamedata
+            # body whose gameData.gameTime was accepted by the caller.
+            merged.update(
+                {
+                    k: v
+                    for k, v in all_players[matched_index].items()
+                    if v is not None
+                }
+            )
         team_raw = merged.get("team") or merged.get("teamID") or merged.get("teamId")
         summoner_name = str(
             merged.get("summonerName")
@@ -1540,14 +1635,24 @@ def build_roster_from_liveclient(
         if level is None and isinstance(merged.get("championStats"), Mapping):
             level = merged["championStats"].get("level")
         internal = champion_internal_name(champ, merged)
+        champion_identity = rofl_metadata.champion_identities(
+            internal or champ,
+            display_name=champ,
+        )
         live_position = merged.get("position") or merged.get("role")
+        riot_id_game_name = str(merged.get("riotIdGameName") or "").strip()
+        riot_id_tag_line = str(merged.get("riotIdTagLine") or "").strip()
         row = {
             "participantID": int(merged.get("participantID") or idx + 1),
             "teamID": _team_id(team_raw),
-            "championName": champ,
-            "championInternalName": internal,
+            "championName": champion_identity.get("display") or champ,
+            "championInternalName": champion_identity.get("asset") or internal,
+            "championIdentity": champion_identity,
             "summonerName": summoner_name,
             "playerName": player_name,
+            "riotIdGameName": riot_id_game_name or None,
+            "riotIdTagLine": riot_id_tag_line or None,
+            "puuid": merged.get("puuid") or merged.get("PUUID"),
             "expectedSelectionIdentity": player_name or summoner_name.split("#", 1)[0],
             "level": level,
             "items": _items_from_player(merged),
@@ -1555,6 +1660,7 @@ def build_roster_from_liveclient(
             "liveclientPosition": live_position,
             "role": normalize_liveclient_role(live_position),
         }
+        row.update(liveclient_history_from_player(merged))
         row["selectionKeys"] = selection_keys_for_roster_row(row)
         rows.append(row)
     return rows

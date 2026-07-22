@@ -200,8 +200,48 @@ def extract_hp_snapshot_from_events(
     by_net = {h["net_id"]: h for h in heroes}
     hp: Dict[int, float] = {}
     hp_max: Dict[int, float] = {}
-    last_t = 0.0
-    sample_t = target_time_s
+    best: Optional[Dict[str, Any]] = None
+
+    def _snapshot(t: float) -> Optional[Dict[str, Any]]:
+        rows: List[Dict[str, Any]] = []
+        for h in heroes:
+            nid = h["net_id"]
+            cur = hp.get(nid)
+            mx = hp_max.get(nid)
+            if cur is None and mx is None:
+                return None
+            if mx is None:
+                mx = max(cur or 1.0, 1.0)
+            if cur is None:
+                cur = mx
+            mx = max(float(mx), float(cur), 1.0)
+            cur = float(cur)
+            if not (0 < cur <= mx and mx > 100):
+                return None
+            rows.append(
+                {
+                    "net_id": nid,
+                    "participantID": h["participantID"],
+                    "teamID": h["teamID"],
+                    "champion": h["champion"],
+                    "name": h["name"],
+                    "mHP": cur,
+                    "mMaxHP": mx,
+                }
+            )
+        if len(rows) < 10:
+            return None
+        return {
+            "ok": True,
+            "time_s": t,
+            "heroCount": len(rows),
+            "heroes": rows,
+            "acceptance": {
+                "needHeroes": 10,
+                "needHpMaxGt": 100,
+                "passed": True,
+            },
+        }
 
     for e in events:
         if not isinstance(e, Mapping) or "Replication" not in e:
@@ -215,7 +255,6 @@ def extract_hp_snapshot_from_events(
             continue
         if target_time_s is not None and t > target_time_s + 1e-6:
             break
-        last_t = t
         for nid_s, rep in (payload.get("net_id_to_replication_datas") or {}).items():
             nid = int(nid_s)
             if nid not in by_net or not isinstance(rep, Mapping):
@@ -228,11 +267,17 @@ def extract_hp_snapshot_from_events(
                 hp[nid] = val
             elif name == "mMaxHP":
                 hp_max[nid] = val
+        snap = _snapshot(t)
+        if snap is not None:
+            best = snap
+            if target_time_s is not None:
+                break
 
-    if sample_t is None:
-        sample_t = last_t
+    if best is not None:
+        return best
 
-    rows: List[Dict[str, Any]] = []
+    # Fail-closed report with whatever partial rows we have.
+    partial = []
     for h in heroes:
         nid = h["net_id"]
         cur = hp.get(nid)
@@ -243,8 +288,8 @@ def extract_hp_snapshot_from_events(
             mx = max(cur or 1.0, 1.0)
         if cur is None:
             cur = mx
-        mx = max(mx, cur, 1.0)
-        rows.append(
+        mx = max(float(mx), float(cur), 1.0)
+        partial.append(
             {
                 "net_id": nid,
                 "participantID": h["participantID"],
@@ -255,20 +300,15 @@ def extract_hp_snapshot_from_events(
                 "mMaxHP": float(mx),
             }
         )
-
-    ok = (
-        len(rows) >= 10
-        and all(0 < r["mHP"] <= r["mMaxHP"] and r["mMaxHP"] > 100 for r in rows)
-    )
     return {
-        "ok": ok,
-        "time_s": sample_t,
-        "heroCount": len(rows),
-        "heroes": rows,
+        "ok": False,
+        "time_s": target_time_s,
+        "heroCount": len(partial),
+        "heroes": partial,
         "acceptance": {
             "needHeroes": 10,
             "needHpMaxGt": 100,
-            "passed": ok,
+            "passed": False,
         },
     }
 
@@ -341,17 +381,6 @@ def decrypt_replication_fields(
         snap = extract_hp_snapshot_from_events(events, target_time_s=target_time_s)
         report["hpSnapshot"] = snap
         # Emit one maknee Replication event aggregating the snapshot.
-        net_map: Dict[str, Any] = {}
-        for row in snap["heroes"]:
-            nid = str(row["net_id"])
-            net_map[nid] = {
-                "primary_index": 32,
-                "secondary_index": 0,
-                "name": "mHP",
-                "data": {"Float": row["mHP"]},
-            }
-        # Attach mMaxHP as separate logical rows by expanding to two events —
-        # maknee streams one name per Replication entry; emit two events.
         t = float(snap.get("time_s") or 0.0)
         rep_hp = {
             "Replication": {
@@ -390,16 +419,70 @@ def decrypt_replication_fields(
         return report
 
     if backend == "emulator":
-        # Bounded spike: binary field table is available; packet accessors are
-        # not yet driven under Unicorn for 16.14. Fail closed — no invented HP.
-        report["decryptStatus"] = "blocked_need_packet_accessor"
+        # Accessor spike (slot offsets) + Unicorn Packet::Packet / Deserialize drive.
+        # Still fail-closed for product HP until Replication field getters yield values.
+        try:
+            from rofl2_accessor_spike import run_accessor_spike
+        except ImportError as e:
+            report["decryptStatus"] = "blocked_need_packet_accessor"
+            report["ok"] = False
+            report["error"] = f"accessor spike import failed: {e}"
+            if rofl is not None:
+                report["rosterFromStatsJson"] = heroes_from_rofl_stats(rofl)
+            return report
+
+        spike = run_accessor_spike(league_binary=league_binary, rofl_path=rofl)
+        report["accessorSpike"] = {
+            k: spike.get(k)
+            for k in (
+                "decryptStatus",
+                "registrar",
+                "unicornSmoke",
+                "slotGetterDrive",
+                "segmentMap",
+            )
+        }
+
+        packet_drive = None
+        if rofl is not None:
+            try:
+                from rofl2_unicorn_packet_drive import drive_rofl
+
+                packet_drive = drive_rofl(
+                    rofl=rofl,
+                    league_binary=league_binary,
+                    max_packets=24,
+                )
+                report["packetDrive"] = {
+                    k: packet_drive.get(k)
+                    for k in (
+                        "decryptStatus",
+                        "createsOk",
+                        "typeThreshold",
+                        "chunk",
+                        "bestWalk",
+                        "createSmoke",
+                        "nextSteps",
+                    )
+                }
+            except Exception as e:  # noqa: BLE001 — research harness
+                report["packetDrive"] = {"error": str(e)}
+
+        # Prefer the most advanced status we actually reached.
+        status = spike.get("decryptStatus", "blocked_need_packet_accessor")
+        if packet_drive and packet_drive.get("decryptStatus"):
+            status = packet_drive["decryptStatus"]
+        report["decryptStatus"] = status
         report["ok"] = False
+        creates_ok = (packet_drive or {}).get("createsOk")
+        best_ok = ((packet_drive or {}).get("bestWalk") or {}).get("okCount")
         report["error"] = (
-            "16.14 packet field decrypt requires driving League Deserialize/"
-            "accessor vtables (maknee-style emulator). Binary Replication "
-            f"strings are present (mHP={binary_inv.get('hasMHP')}, "
-            f"mMaxHP={binary_inv.get('hasMMaxHP')}), but a8/player blobs remain "
-            "encrypted under static scan. No HP values invented."
+            "16.14 Packet::Packet factory is driven under Unicorn "
+            f"(createsOk={creates_ok}, deserializeOkPackets={best_ok}). "
+            f"mHP slot={((spike.get('registrar') or {}).get('mHP') or {}).get('slotOffsetHex')}, "
+            f"mMaxHP slot={((spike.get('registrar') or {}).get('mMaxHP') or {}).get('slotOffsetHex')}. "
+            "Chunk→block framing sync + Replication field getters still required "
+            "before real HP can be emitted. No HP values invented."
         )
         if rofl is not None:
             report["rosterFromStatsJson"] = heroes_from_rofl_stats(rofl)
