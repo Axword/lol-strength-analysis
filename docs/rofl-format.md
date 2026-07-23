@@ -248,7 +248,7 @@ The dominant pattern is **length = 8** with payload `a8 …` (12 bytes on the wi
 
 `byte1` of each `a8` row only takes a handful of flag values (`0x28–0x2e`); `byte2` is almost always `0xb4`. End-of-game gold / HP / map floats do **not** appear as plaintext (or single-byte XOR) in blobs or rows.
 
-**Implication:** static field decode is blocked. Community high-fidelity path (maknee 2025) runs League packet accessors under an emulator so values decrypt on read. Public decoded packets: [maknee/league-of-legends-decoded-replay-packets](https://huggingface.co/datasets/maknee/league-of-legends-decoded-replay-packets) (`WaypointGroup`, `Replication`, …). Downstream mapper in-repo: `scripts/maknee_packets_to_jsonl.py`. Structure probe: `scripts/rofl2_a8_structure.py`.
+**Implication:** static field decode is blocked. Community high-fidelity path (maknee 2025) runs League packet accessors under an emulator so values decrypt on read. Public decoded packets: [maknee/league-of-legends-decoded-replay-packets](https://huggingface.co/datasets/maknee/league-of-legends-decoded-replay-packets) (`WaypointGroup`, `Replication`, …). Downstream mapper in-repo: `scripts/maknee_packets_to_jsonl.py`. Structure probe: `scripts/rofl2_a8_structure.py`. Decrypt research harness: `scripts/rofl2_packet_decrypt_probe.py` (fixture backend proves 10-hero HP acceptance; emulator backend fail-closed on 16.14 until accessors are driven).
 
 **Implication for JSONL:** `scripts/rofl2_to_jsonl.py` can emit roster + timed keyframe skeletons + final box score. Live map positions remain fountain placeholders until an emulator (or equivalent) decrypts these tables.
 
@@ -487,7 +487,16 @@ python3 -m unittest scripts.tests.test_rofl_replay_api_probe
 
 ### Replay API → rfc461 JSONL (bounded seek pilot)
 
-`scripts/rofl_replay_api_to_jsonl.py` / `npm run rofl:replay-jsonl` seeks `[--start-ms, --end-ms]` at `--step-ms` (default 1000), captures all 10 positions via the focus/player-identity primitive, and writes canonical rfc461 JSONL only:
+`scripts/rofl_replay_api_to_jsonl.py` / `npm run rofl:replay-jsonl` is the
+low-level direct capture command; prefer `npm run rofl:ingest` for supported
+phase recovery and publication. Direct capture remains safe: before touching
+output/checkpoints or mutating Replay API state, it acquires the same global
+kernel-backed controller lock as ingest and completes GET-only active replay
+verification for match/build/duration plus all ten stable player/team/champion
+identities. The lock remains held through restore/exit. It then seeks
+`[--start-ms, --end-ms]` at `--step-ms` (default 1000), captures all 10
+positions via the focus/player-identity primitive, and writes canonical rfc461
+JSONL only:
 
 | Field | Contract |
 |-------|----------|
@@ -560,12 +569,123 @@ validation are green.
 7. ~~**Focus-mode coordinate primitive**~~ — selection + focus coords proven; `--capture-current` diagnostic JSON
 8. ~~**rfc461 unknown-HP + Replay API JSONL pilot**~~ — live exact-build positions → JSONL → `GameTimeline` proven
 9. ~~**Crash-safe playback extraction**~~ — per-frame durable writes, strict `--resume`, two-phase state restore
-10. **Field decrypt** (follow-on)  
-   Client-emulator approach (maknee-style) against the matching patch binary.
-11. **Semantic densify**  
+10. **Field decrypt** (in progress)
+   Maknee-style Replication path is wired end-to-end on fixtures; live 16.14
+   packet accessors remain blocked (see §5.3 / decrypt probe reports).
+   **North star:** FUR vs G2 live-stats parity (`events_*_riot.jsonl` schema/field
+   contract) so rebuild/enrich/Game Review/calculator/void-grub touch math behave
+   like the Desktop FUR feed — see [`fur-parity-checklist.json`](rofl-research/fur-parity-checklist.json).
+11. **Semantic densify**
    Point rebuild at maknee/ROFL-derived JSONL; validate map UI.
-12. **Maintenance**  
+12. **Maintenance**
    Pin patch version on every artifact; CI fixture smoke (`npm run rofl:fixture`).
+
+### FUR live-stats parity (product contract)
+
+Gold standard: Desktop FUR live-stats JSONL shape (not a second interchange format).
+Consumers already expect rfc461 schemas; void grub UI damage is **derived**
+(`epic_monster_kill` with `monsterType == "VoidGrub"` → scoreboard `voidGrubs` →
+`grubTouchDps(stacks)` in `src/engine/objectives.ts`).
+
+| Gate | Artifact |
+|------|----------|
+| Checklist | [`docs/rofl-research/fur-parity-checklist.json`](rofl-research/fur-parity-checklist.json) |
+| Fixture parity validator | `npm run rofl:validate-fur -- --jsonl …` |
+| Trusted HP product validator | `npm run rofl:validate-fur -- --jsonl … --strict-product` |
+| Dense fixture | [`fixtures/fur_parity_maknee_events.json`](rofl-research/fixtures/fur_parity_maknee_events.json) |
+| E2E | `npm run rofl:fur-parity` → JSONL → timeline → scoreboard → enrich → report |
+
+Fixture path proves calculator **schema** gates (`hpKnown` + `combatStatsKnown` +
+`abilityRanksKnown`) and scoreboard VoidGrub/dragon/baron on the FUR fixture
+roster. That is schema plumbing, not a real-match product publication.
+`--strict-product` deliberately rejects that fixture path; it is reserved for
+timed same-match stable-identity HP evidence and reports calculator readiness
+separately.
+
+Live ROFL Decrypt remains fail-closed until packet Deserialize binds (no
+invented HP/grubs). `npm run rofl:live-fur` / `rofl:schema-proof` merges live HP
+onto the fixture roster/combat/ranks and stamps `schemaProof` /
+`publicationBlocked` provenance — it must fail `validate-rofl-pipeline.py
+--product`. Real-match calculator readiness requires same-match identity-bound
+positions + HP + combat + ranks under honest product provenance.
+
+### Field decrypt status (2026-07-22)
+
+| Piece | Status |
+|-------|--------|
+| Replication name inventory (16.14 binary) | Done — `docs/rofl-research/replication-fields-16.14.json` (`mHP`/`mMaxHP`/combat mods present) |
+| Fixture/HF names in stub | `mHP`, `mMaxHP`, `mLevelRef` only |
+| Mapper combat overrides | Done — maps confirmed combat Replication names when present (`scripts/rofl_replication_fields.py` → `maknee_packets_to_jsonl.py`) |
+| Mapper skill ranks / VoidGrub / wards / items | Done on fixtures — `SkillLevelUp`/`CastSpellAns`, `SRU_VoidGrub`/`SRU_Horde` → `VoidGrub`, WardPlace/Kill, BuyItem |
+| `rofl2_packet_decrypt_probe.py` fixture backend | Done — 10-hero HP acceptance on `decrypt_hp_acceptance.json` |
+| `rofl2_packet_decrypt_probe.py` emulator backend | **In progress** — Packet::Packet factory driven under Unicorn (`createsOk≥3`); chunk→block framing sync + Replication getters still required (`packet_factory_driven_need_stream_sync` / `packet_deserialize_partial`) |
+| `rofl2_unicorn_packet_drive.py` | Done — block framing synced (`0x10076bc94`); Deserialize on reconstructed buffers; type 107 = Replication candidate |
+| `rofl_replication_apply.py` | Done — `USE_REPLICATION=0x100785924`; post-Deserialize vector apply; CI slots `0x8d8`/`0x900` |
+| `rofl2_replication_decode.py` | Done — multi-chunk apply → `replication_hp_accepted` when ≥10 explicit mMaxHP heroes (`npm run rofl:replication-decode`) |
+| UsePacket map stub | Done — type 107 node at `0x10243a758` (native static map omits 107) |
+| Jungle / lane minions | Done — `neutral_minion_spawn` + `barracks_minion_*` → `mapObjects.camps`/`minions` |
+| `rofl2_to_maknee_events.py` | Done — emits maknee-shaped `events[]` |
+| `fuse_replay_api_hp.py` | Done — injects decrypted HP onto Replay API positions; **static snapshot mode is research/demo only** (`publicationBlocked`) |
+| FUR parity e2e (fixture) | Done — `npm run rofl:fur-parity` / `test:rofl-decrypt` |
+| Live FUR e2e | Done — **schema proof only** (`npm run rofl:schema-proof` / `rofl:live-fur`); not a real-match publish |
+| Live ROFL HP / calculator from Decrypt | Schema gates may light on the fixture merge; **real-match calculator** only after same-match identity-bound positions + HP + combat + ranks pass `--product` |
+
+```bash
+# Live BR1 → accepted HP (fail-closed)
+npm run rofl:replication-decode -- \
+  "$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl" \
+  --json-out docs/rofl-research/replication-decode-BR1-3264361042.json
+
+# Full live FUR pipeline (SCHEMA PROOF ONLY — not a real-match publish)
+npm run rofl:schema-proof -- \
+  "$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl" \
+  --out-dir /tmp/live_fur_schema_proof
+# alias: npm run rofl:live-fur -- …
+
+# Emits live_fur_schema_proof_timeline.json (never live_fur_timeline.json).
+# The command refuses --out-dir at or below public/data.
+# Offline 10-hero HP acceptance (no League process)
+npm run rofl:decrypt-probe -- \
+  --backend fixture \
+  --fixture-events docs/rofl-research/fixtures/decrypt_hp_acceptance.json \
+  --require-acceptance \
+  --json-out /tmp/decrypt_probe.json
+```
+
+### Product ingest and match registry
+
+```bash
+# Resumable inspect → capture → build → product validate → publish
+npm run rofl:ingest -- "$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl" --publish
+
+# Optional trusted HP enrichment during build/default ingest
+npm run rofl:ingest -- "$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl" \
+  --hp-evidence /tmp/BR1-3264361042.trusted-hp.json --publish
+
+# Deterministically rebuild public/data/matches/index.json from published matches
+npm run rofl:registry
+```
+
+Publish writes only product-validated, sanitized timeline/manifest pairs below
+`public/data/matches/<matchCode>/`, then atomically rebuilds the registry.
+Registry rebuild fails clearly if any candidate is missing files, has fixture or
+schema-proof provenance, fails identity consistency, or lacks product gates.
+Legacy timelines are never promoted into the registry. Until validated real
+matches are published, the index is intentionally empty and the UI labels FUR
+parity and Maknee as research fixtures.
+
+Trusted HP evidence uses schema `rofl-trusted-hp-v1`. It must repeat the exact
+platform/match code/game ID/game name, patch/build, ROFL SHA-256, and roster
+hash from the replay ingest manifest. It also carries ten stable PUUID/full
+Riot ID to netId bindings and at least two `replay_game_time` millisecond
+samples. Every HP unit requires explicit `mMaxHP`. Product fusion accepts at
+most 500 ms alignment tolerance and emits per-unit sample time, delta, netId,
+binding, and source annotations. Unmatched frames stay unknown. Static
+snapshots, fixture evidence, and CreateHero/order joins remain
+`publicationBlocked`. HP does not imply combat stats or ability ranks, so
+calculator readiness remains false until those separate sources are proven.
+
+**Honest ceiling:** Replay API still supplies positions only. Type 107 has no native UsePacket map entry on 16.14; product HP is applied from Deserialize vectors with explicit `(5,1)` mMaxHP (never invented). Lane minions require the packet path (not Replay API).
 
 Legal / ToS: unofficial reverse engineering of replay packets sits in a gray area Riot has historically discouraged (anti-cheat rationale). Treat as research; do not ship a cheat client. The official Replay API path is Riot-documented tooling (League Director reference) and is distinct from packet decryption.
 
@@ -580,9 +700,10 @@ Legal / ToS: unofficial reverse engineering of replay packets sits in a gray are
 - Spectator REST / Blowfish era — [loldevs/leaguespec wiki](https://github.com/loldevs/leaguespec/wiki/REST-Service)
 - Local probe outputs — [`docs/rofl-research/extract-summary.json`](rofl-research/extract-summary.json)
 - Packet taxonomy sample — [`docs/rofl-research/taxonomy-BR1-3263797356.json`](rofl-research/taxonomy-BR1-3263797356.json)
-- Scripts — [`scripts/rfc461_emit.py`](../scripts/rfc461_emit.py), [`scripts/rofl2_probe.py`](../scripts/rofl2_probe.py), [`scripts/rofl2_packet_taxonomy.py`](../scripts/rofl2_packet_taxonomy.py), [`scripts/rofl2_a8_structure.py`](../scripts/rofl2_a8_structure.py), [`scripts/rofl2_to_jsonl.py`](../scripts/rofl2_to_jsonl.py), [`scripts/maknee_packets_to_jsonl.py`](../scripts/maknee_packets_to_jsonl.py), [`scripts/rofl_maknee_fixture.py`](../scripts/rofl_maknee_fixture.py), [`scripts/rofl_replay_api_probe.py`](../scripts/rofl_replay_api_probe.py), [`scripts/rofl_replay_api_to_jsonl.py`](../scripts/rofl_replay_api_to_jsonl.py), [`scripts/jsonl_to_timeline.py`](../scripts/jsonl_to_timeline.py), [`scripts/validate-rofl-pipeline.py`](../scripts/validate-rofl-pipeline.py)
+- Scripts — [`scripts/rofl_ingest.py`](../scripts/rofl_ingest.py), [`scripts/rebuild_match_registry.py`](../scripts/rebuild_match_registry.py), [`scripts/rfc461_emit.py`](../scripts/rfc461_emit.py), [`scripts/rofl2_probe.py`](../scripts/rofl2_probe.py), [`scripts/rofl2_packet_taxonomy.py`](../scripts/rofl2_packet_taxonomy.py), [`scripts/rofl2_a8_structure.py`](../scripts/rofl2_a8_structure.py), [`scripts/rofl2_to_jsonl.py`](../scripts/rofl2_to_jsonl.py), [`scripts/maknee_packets_to_jsonl.py`](../scripts/maknee_packets_to_jsonl.py), [`scripts/rofl_maknee_fixture.py`](../scripts/rofl_maknee_fixture.py), [`scripts/rofl_replay_api_probe.py`](../scripts/rofl_replay_api_probe.py), [`scripts/rofl_replay_api_to_jsonl.py`](../scripts/rofl_replay_api_to_jsonl.py), [`scripts/rofl2_packet_decrypt_probe.py`](../scripts/rofl2_packet_decrypt_probe.py), [`scripts/rofl2_accessor_spike.py`](../scripts/rofl2_accessor_spike.py), [`scripts/rofl2_unicorn_packet_drive.py`](../scripts/rofl2_unicorn_packet_drive.py), [`scripts/rofl2_to_maknee_events.py`](../scripts/rofl2_to_maknee_events.py), [`scripts/fuse_replay_api_hp.py`](../scripts/fuse_replay_api_hp.py), [`scripts/rofl_replication_fields.py`](../scripts/rofl_replication_fields.py), [`scripts/validate_fur_parity.py`](../scripts/validate_fur_parity.py), [`scripts/run_fur_parity_e2e.py`](../scripts/run_fur_parity_e2e.py), [`scripts/jsonl_to_timeline.py`](../scripts/jsonl_to_timeline.py), [`scripts/validate-rofl-pipeline.py`](../scripts/validate-rofl-pipeline.py)
 - Official Replay API / League Director — [Riot LoL docs (Replay API)](https://developer.riotgames.com/docs/lol), [RiotGames/leaguedirector](https://github.com/RiotGames/leaguedirector)
-- Fixture — [`docs/rofl-research/fixtures/maknee_match_stub.json`](rofl-research/fixtures/maknee_match_stub.json)
+- Fixture — [`docs/rofl-research/fixtures/maknee_match_stub.json`](rofl-research/fixtures/maknee_match_stub.json), [`docs/rofl-research/fixtures/fur_parity_maknee_events.json`](rofl-research/fixtures/fur_parity_maknee_events.json)
+- FUR parity checklist — [`docs/rofl-research/fur-parity-checklist.json`](rofl-research/fur-parity-checklist.json)
 - Decoded-packet research — [maknee 2025 write-up](https://maknee.github.io/blog/2025/League-Data-Scraping/), [HF decoded packets](https://huggingface.co/datasets/maknee/league-of-legends-decoded-replay-packets)
 
 ---

@@ -60,9 +60,14 @@ export function gameStateLogit(
     return { logit: 0, factors: ['no_scoreboard'] }
   }
 
-  const goldDelta = blue.gold - red.gold // blue − red
-  const goldTerm = (goldDelta / 4000) * 1.45
-  factors.push(`goldΔ ${Math.round(goldDelta)}`)
+  let goldTerm = 0
+  if (blue.gold != null && red.gold != null) {
+    const goldDelta = blue.gold - red.gold // blue − red
+    goldTerm = (goldDelta / 4000) * 1.45
+    factors.push(`goldΔ ${Math.round(goldDelta)}`)
+  } else {
+    factors.push('gold unavailable')
+  }
 
   const lvB = meanLevel(blueLoadouts)
   const lvR = meanLevel(redLoadouts)
@@ -78,13 +83,25 @@ export function gameStateLogit(
   // Fourth elemental kill is a real permanent stack AND grants Soul — do not
   // subtract one just because hasSoul. Prefer elementalDragons (filters legacy
   // "elemental" pseudo-label); fall back to dragonCount.
-  const blueDrakes = Math.max(0, elementalDragons(blue).length || blue.dragonCount)
-  const redDrakes = Math.max(0, elementalDragons(red).length || red.dragonCount)
-  obj += (blueDrakes - redDrakes) * 0.38
+  const blueDrakes =
+    blue.dragons != null || blue.dragonCount != null
+      ? Math.max(0, elementalDragons(blue).length || blue.dragonCount || 0)
+      : null
+  const redDrakes =
+    red.dragons != null || red.dragonCount != null
+      ? Math.max(0, elementalDragons(red).length || red.dragonCount || 0)
+      : null
+  if (blueDrakes != null && redDrakes != null) {
+    obj += (blueDrakes - redDrakes) * 0.38
+  }
   if (blue.hasSoul) obj += 0.85
   if (red.hasSoul) obj -= 0.85
-  obj += (blue.towers - red.towers) * 0.14
-  obj += ((blue.kills - red.kills) / 5) * 0.45
+  if (blue.towers != null && red.towers != null) {
+    obj += (blue.towers - red.towers) * 0.14
+  }
+  if (blue.kills != null && red.kills != null) {
+    obj += ((blue.kills - red.kills) / 5) * 0.45
+  }
   if (blue.baronActive || red.baronActive) {
     factors.push(blue.baronActive ? 'baron blue LIVE' : 'baron red LIVE')
   }
@@ -146,6 +163,8 @@ export function estimateFightOdds(input: FightOddsInput): FightOdds {
   if (
     input.blue &&
     input.red &&
+    input.blue.gold != null &&
+    input.red.gold != null &&
     Math.abs(input.blue.gold - input.red.gold) >= 5000 &&
     combat.weight < 0.55
   ) {
@@ -157,7 +176,12 @@ export function estimateFightOdds(input: FightOddsInput): FightOdds {
   }
 
   // Baron LIVE with gold lead: floor the favorite
-  if (input.red?.baronActive && (input.red.gold - (input.blue?.gold ?? 0)) >= 3000) {
+  if (
+    input.red?.baronActive &&
+    input.red.gold != null &&
+    input.blue?.gold != null &&
+    input.red.gold - input.blue.gold >= 3000
+  ) {
     if (pRed < 0.7) {
       return {
         pBlue: 1 - 0.72,
@@ -170,7 +194,12 @@ export function estimateFightOdds(input: FightOddsInput): FightOdds {
       }
     }
   }
-  if (input.blue?.baronActive && (input.blue.gold - (input.red?.gold ?? 0)) >= 3000) {
+  if (
+    input.blue?.baronActive &&
+    input.blue.gold != null &&
+    input.red?.gold != null &&
+    input.blue.gold - input.red.gold >= 3000
+  ) {
     if (pBlue < 0.7) {
       return {
         pBlue: 0.72,

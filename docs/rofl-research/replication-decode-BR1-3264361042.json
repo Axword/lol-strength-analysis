@@ -1,0 +1,933 @@
+{
+  "ok": true,
+  "decryptStatus": "replication_hp_accepted",
+  "arch": "arm64",
+  "rofl": "/Users/river/Documents/League of Legends/Replays/BR1-3264361042.rofl",
+  "gameVersion": "16.14.794.5912",
+  "useReplication": {
+    "va": "0x100785924",
+    "usePacket": "0x100785b6c",
+    "mapRoot": "0x10243a758",
+    "prologueOk": true,
+    "mapStubNode": "0x301001000",
+    "mapDispatchHits": 1626,
+    "note": "Type 107 is absent from the static UsePacket map on 16.14; Pass-2 stubs the root. Apply walks Deserialize vectors into CI slots."
+  },
+  "chunk": {
+    "scanned": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+    "lastIndex": 48,
+    "id_a": 51,
+    "size": 485705
+  },
+  "replicationType": 107,
+  "pythonReplicationBlocks": 27,
+  "decode": {
+    "blocksTotal": 2500,
+    "replicationPackets": 40,
+    "timeStart": 1440.519775390625,
+    "timeEnd": 1444.731689453125,
+    "channelHist": {
+      "53": 1294,
+      "246": 185,
+      "632": 136,
+      "72": 92,
+      "556": 83,
+      "788": 72,
+      "861": 48,
+      "963": 48,
+      "411": 46,
+      "107": 40,
+      "420": 34,
+      "1133": 34
+    },
+    "unitsApplied": 124
+  },
+  "decodeRows": [
+    {
+      "time": 1440.519775390625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 10101,
+      "deserializeConsumed": 10115,
+      "blobHeadHex": "649c000040ffff03001cffff0f04810200c07944ffff0000803fffffffffffffffff0000803fffff000019003c1c46003c1c46ffffffffffffffff00ffffffff",
+      "packet": 12907549168,
+      "vectorPtr": 12907549216
+    },
+    {
+      "time": 1440.6197509765625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 2810,
+      "deserializeConsumed": 2824,
+      "blobHeadHex": "2c67e80040ffffff0024ffffffffff8f8080080400000030429a999540ff0000803fffffffffffffffff00ffffffffffff03320080774400807744ffffffffff",
+      "packet": 12907559328,
+      "vectorPtr": 12907559376
+    },
+    {
+      "time": 1440.7197265625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 590,
+      "deserializeConsumed": 604,
+      "blobHeadHex": "24b400004000040000040e2d8c40018000020cfddb8444342cf3430080404420b60000400100000004b4ea5944087cdf0040010000000460b612422021020040",
+      "packet": 12907562192,
+      "vectorPtr": 12907562240
+    },
+    {
+      "time": 1440.82080078125,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 121,
+      "deserializeConsumed": 133,
+      "blobHeadHex": "2c84e80040ffffff0021ffffffffff8f80800804000000ae42ffff0000803fffffffffffffffff00ffffffffffff032fcdb4f54400e00345ffffffffffffffff",
+      "packet": 12907562832,
+      "vectorPtr": 12907562880
+    },
+    {
+      "time": 1440.9207763671875,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 14,
+      "deserializeConsumed": 26,
+      "blobHeadHex": "0869e8004001000000043d41b642",
+      "packet": 12907563008,
+      "vectorPtr": 12907563056
+    },
+    {
+      "time": 1441.020751953125,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 1062,
+      "deserializeConsumed": 1076,
+      "blobHeadHex": "01ae0000400300000008ee5f3142282b604601af0000400300000008da21614556d73d4601b00000400300000008ae138a438bc9fd4501b10000400300000008",
+      "packet": 12907563072,
+      "vectorPtr": 12907563120
+    },
+    {
+      "time": 1441.1207275390625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 135,
+      "deserializeConsumed": 148,
+      "blobHeadHex": "0869e80040010000000428d5a5412c3be10040ffffff0021ffffffffff8f808008040000008d42ffff0000803fffffffffffffffff00ffffffffffff032f5c4f",
+      "packet": 12907564192,
+      "vectorPtr": 12907564240
+    },
+    {
+      "time": 1441.2218017578125,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 15,
+      "deserializeConsumed": 27,
+      "blobHeadHex": "083be100400100000005fefea48243",
+      "packet": 12907564384,
+      "vectorPtr": 12907564432
+    },
+    {
+      "time": 1441.32177734375,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 372,
+      "deserializeConsumed": 386,
+      "blobHeadHex": "20b4000040018000020cb1e39e44070c174400143a4420b6000040010000000442c3814404d1d30040080000000400006042040ad80040080000000400009842",
+      "packet": 12907564448,
+      "vectorPtr": 12907564496
+    },
+    {
+      "time": 1441.4217529296875,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 121,
+      "deserializeConsumed": 133,
+      "blobHeadHex": "2c32e90040ffffff0021ffffffffff8f808008040000008d42ffff0000803fffffffffffffffff00ffffffffffff032f5c4fb7430080d143ffffffffffffffff",
+      "packet": 12907564880,
+      "vectorPtr": 12907564928
+    },
+    {
+      "time": 1441.521728515625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 288,
+      "deserializeConsumed": 302,
+      "blobHeadHex": "01ae0000400300000008697435423c2f604601af00004003000000082c3261456adb3d4601b000004003000000083d968a43b4d1fd4501b10000400300000008",
+      "packet": 12907565056,
+      "vectorPtr": 12907565104
+    },
+    {
+      "time": 1441.6217041015625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 132,
+      "deserializeConsumed": 145,
+      "blobHeadHex": "0869e800400100000001ff2c86e80040ffffff0021ffffffffff8f80800804000000ae42ffff0000803fffffffffffffffff00ffffffffffff032f00b0ef4400",
+      "packet": 12907565392,
+      "vectorPtr": 12907565440
+    },
+    {
+      "time": 1441.82275390625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 858,
+      "deserializeConsumed": 872,
+      "blobHeadHex": "20b4000040018000020c59e6c04428023c44f6e9374420b6000040010000000490d79c44087cdf00400100000004c06f0e4220210200403000000008fb741544",
+      "packet": 12907565584,
+      "vectorPtr": 12907565632
+    },
+    {
+      "time": 1441.9227294921875,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 14,
+      "deserializeConsumed": 26,
+      "blobHeadHex": "083be1004001000000046cd22343",
+      "packet": 12907566496,
+      "vectorPtr": 12907566544
+    },
+    {
+      "time": 1442.0228271484375,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 234,
+      "deserializeConsumed": 248,
+      "blobHeadHex": "01ae0000400300000008e48839425033604601af00004003000000087e4261457edf3d4601b00000400300000008cc188b43ddd9fd4501b10000400300000008",
+      "packet": 12907566560,
+      "vectorPtr": 12907566608
+    },
+    {
+      "time": 1442.1239013671875,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 124,
+      "deserializeConsumed": 137,
+      "blobHeadHex": "20b4000040018000020c432ec744551a4444c4fd364420b6000040010000000423efa14420b70000400000000204ea4a194404fed80040080000000400009a42",
+      "packet": 12907566848,
+      "vectorPtr": 12907566896
+    },
+    {
+      "time": 1442.223876953125,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 169,
+      "deserializeConsumed": 183,
+      "blobHeadHex": "083be1004001000000040000803f0832e900400100000004d0a49d432c33e80040ffffff0024ffffffffff8f8080080400000030429a999540ff0000803fffff",
+      "packet": 12907567024,
+      "vectorPtr": 12907567072
+    },
+    {
+      "time": 1442.3267822265625,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 135,
+      "deserializeConsumed": 149,
+      "blobHeadHex": "20b4000040018000020cca9fd544fc81534400b02e4420b600004001000000048768ad4404d1d30040080000000400005c42040ad80040080000000400009642",
+      "packet": 12907567248,
+      "vectorPtr": 12907567296
+    },
+    {
+      "time": 1442.5267333984375,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 355,
+      "deserializeConsumed": 369,
+      "blobHeadHex": "01ae00004003000000085f9d3d426437604601af0000400300000008d052614592e33d4601b000004003000000085b9b8b4306e2fd4501b10000400300000008",
+      "packet": 12907567440,
+      "vectorPtr": 12907567488
+    },
+    {
+      "time": 1442.6278076171875,
+      "param": 0,
+      "netHdr": 0,
+      "vectorSize": 836,
+      "deserializeConsumed": 850,
+      "blobHeadHex": "20b40000400180000008b4e7db44299a5b4420b600004001000000041a80b24420b70000400000000204c3dd1344087cdf00400100000004a0370b422cdfea00",
+      "packet": 12907567856,
+      "vectorPtr": 12907567904
+    }
+  ],
+  "slots": {
+    "mHP": "0x8d8",
+    "mMaxHP": "0x900"
+  },
+  "ciProof": [
+    {
+      "netId": 1073741998,
+      "ciVa": "0x30101ec70",
+      "readHP": 3177.875,
+      "readMaxHP": 3301.867431640625,
+      "match": true
+    },
+    {
+      "netId": 1073741999,
+      "ciVa": "0x30159ded0",
+      "readHP": 381.3378601074219,
+      "readMaxHP": 2656.235107421875,
+      "match": true
+    },
+    {
+      "netId": 1073742000,
+      "ciVa": "0x30101f6f0",
+      "readHP": 1548.0045166015625,
+      "readMaxHP": 1792.9500732421875,
+      "match": true
+    },
+    {
+      "netId": 1073742001,
+      "ciVa": "0x301020170",
+      "readHP": 875.6260986328125,
+      "readMaxHP": 2264.89990234375,
+      "match": true
+    },
+    {
+      "netId": 1073742002,
+      "ciVa": "0x30101ccf0",
+      "readHP": 1437.268798828125,
+      "readMaxHP": 2078.02490234375,
+      "match": true
+    },
+    {
+      "netId": 1073742003,
+      "ciVa": "0x30101d770",
+      "readHP": 906.4598999023438,
+      "readMaxHP": 1952.7950439453125,
+      "match": true
+    },
+    {
+      "netId": 1073742004,
+      "ciVa": "0x30101e1f0",
+      "readHP": 737.7095947265625,
+      "readMaxHP": 745.5999755859375,
+      "match": true
+    },
+    {
+      "netId": 1073742005,
+      "ciVa": "0x301020bf0",
+      "readHP": 599.9192504882812,
+      "readMaxHP": 2050.60009765625,
+      "match": true
+    },
+    {
+      "netId": 1073742006,
+      "ciVa": "0x301021670",
+      "readHP": 1624.412353515625,
+      "readMaxHP": 1651.275146484375,
+      "match": true
+    },
+    {
+      "netId": 1073742007,
+      "ciVa": "0x3010220f0",
+      "readHP": 216.49009704589844,
+      "readMaxHP": 1290.800048828125,
+      "match": true
+    }
+  ],
+  "hpSnapshot": {
+    "ok": true,
+    "heroCount": 10,
+    "heroes": [
+      {
+        "netId": 1073741998,
+        "mHP": 3177.875,
+        "mMaxHP": 3301.867431640625,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 51.48368453979492,
+        "mGoldTotal": 14353.92578125
+      },
+      {
+        "netId": 1073741999,
+        "mHP": 381.3378601074219,
+        "mMaxHP": 2656.235107421875,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 409.2557373046875,
+        "mGoldTotal": 12156.970703125,
+        "combat": {
+          "mFlatMagicDamageMod": 3078.0
+        }
+      },
+      {
+        "netId": 1073742000,
+        "mHP": 1548.0045166015625,
+        "mMaxHP": 1792.9500732421875,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 283.2936706542969,
+        "mGoldTotal": 8128.3330078125
+      },
+      {
+        "netId": 1073742001,
+        "mHP": 875.6260986328125,
+        "mMaxHP": 2264.89990234375,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 202.97215270996094,
+        "mGoldTotal": 11375.6337890625,
+        "combat": {
+          "mFlatMagicDamageMod": 3161.0
+        }
+      },
+      {
+        "netId": 1073742002,
+        "mHP": 1437.268798828125,
+        "mMaxHP": 2078.02490234375,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 756.4249877929688,
+        "mGoldTotal": 8396.6875,
+        "combat": {
+          "mFlatMagicDamageMod": 3108.0
+        }
+      },
+      {
+        "netId": 1073742003,
+        "mHP": 906.4598999023438,
+        "mMaxHP": 1952.7950439453125,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 1078.028076171875,
+        "mGoldTotal": 8218.064453125
+      },
+      {
+        "netId": 1073742004,
+        "mHP": 737.7095947265625,
+        "mMaxHP": 745.5999755859375,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 291.129150390625,
+        "mGoldTotal": 9086.015625
+      },
+      {
+        "netId": 1073742005,
+        "mHP": 599.9192504882812,
+        "mMaxHP": 2050.60009765625,
+        "time": 1444.6317138671875,
+        "explicitMax": true,
+        "mGold": 1179.95849609375,
+        "mGoldTotal": 9169.8154296875
+      },
+      {
+        "netId": 1073742006,
+        "mHP": 1624.412353515625,
+        "mMaxHP": 1651.275146484375,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 1138.41259765625,
+        "mGoldTotal": 16292.9296875
+      },
+      {
+        "netId": 1073742007,
+        "mHP": 216.49009704589844,
+        "mMaxHP": 1290.800048828125,
+        "time": 1444.53173828125,
+        "explicitMax": true,
+        "mGold": 654.16357421875,
+        "mGoldTotal": 10014.298828125
+      }
+    ],
+    "acceptance": {
+      "passed": true,
+      "heroCount": 10,
+      "needHeroes": 10,
+      "heroes": [
+        {
+          "netId": 1073741998,
+          "mHP": 3177.875,
+          "mMaxHP": 3301.867431640625,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 51.48368453979492,
+          "mGoldTotal": 14353.92578125
+        },
+        {
+          "netId": 1073741999,
+          "mHP": 381.3378601074219,
+          "mMaxHP": 2656.235107421875,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 409.2557373046875,
+          "mGoldTotal": 12156.970703125,
+          "combat": {
+            "mFlatMagicDamageMod": 3078.0
+          }
+        },
+        {
+          "netId": 1073742000,
+          "mHP": 1548.0045166015625,
+          "mMaxHP": 1792.9500732421875,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 283.2936706542969,
+          "mGoldTotal": 8128.3330078125
+        },
+        {
+          "netId": 1073742001,
+          "mHP": 875.6260986328125,
+          "mMaxHP": 2264.89990234375,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 202.97215270996094,
+          "mGoldTotal": 11375.6337890625,
+          "combat": {
+            "mFlatMagicDamageMod": 3161.0
+          }
+        },
+        {
+          "netId": 1073742002,
+          "mHP": 1437.268798828125,
+          "mMaxHP": 2078.02490234375,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 756.4249877929688,
+          "mGoldTotal": 8396.6875,
+          "combat": {
+            "mFlatMagicDamageMod": 3108.0
+          }
+        },
+        {
+          "netId": 1073742003,
+          "mHP": 906.4598999023438,
+          "mMaxHP": 1952.7950439453125,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 1078.028076171875,
+          "mGoldTotal": 8218.064453125
+        },
+        {
+          "netId": 1073742004,
+          "mHP": 737.7095947265625,
+          "mMaxHP": 745.5999755859375,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 291.129150390625,
+          "mGoldTotal": 9086.015625
+        },
+        {
+          "netId": 1073742005,
+          "mHP": 599.9192504882812,
+          "mMaxHP": 2050.60009765625,
+          "time": 1444.6317138671875,
+          "explicitMax": true,
+          "mGold": 1179.95849609375,
+          "mGoldTotal": 9169.8154296875
+        },
+        {
+          "netId": 1073742006,
+          "mHP": 1624.412353515625,
+          "mMaxHP": 1651.275146484375,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 1138.41259765625,
+          "mGoldTotal": 16292.9296875
+        },
+        {
+          "netId": 1073742007,
+          "mHP": 216.49009704589844,
+          "mMaxHP": 1290.800048828125,
+          "time": 1444.53173828125,
+          "explicitMax": true,
+          "mGold": 654.16357421875,
+          "mGoldTotal": 10014.298828125
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742002": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1437.268798828125
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742002": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 2078.02490234375
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742002": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 3108.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742003": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 906.4598999023438
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742003": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1952.7950439453125
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742004": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 737.7095947265625
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742004": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 745.5999755859375
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073741998": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 3177.875
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073741998": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 3301.867431640625
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073741999": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 381.3378601074219
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073741999": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 2656.235107421875
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073741999": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 3078.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742000": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1548.0045166015625
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742000": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1792.9500732421875
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742001": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 875.6260986328125
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742001": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 2264.89990234375
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742001": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mFlatMagicDamageMod",
+            "data": {
+              "Float": 3161.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.6317138671875,
+        "net_id_to_replication_datas": {
+          "1073742005": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 599.9192504882812
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.6317138671875,
+        "net_id_to_replication_datas": {
+          "1073742005": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 2050.60009765625
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742006": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 1624.412353515625
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742006": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1651.275146484375
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742007": {
+            "primary_index": 5,
+            "secondary_index": 0,
+            "name": "mHP",
+            "data": {
+              "Float": 216.49009704589844
+            }
+          }
+        }
+      }
+    },
+    {
+      "Replication": {
+        "time": 1444.53173828125,
+        "net_id_to_replication_datas": {
+          "1073742007": {
+            "primary_index": 5,
+            "secondary_index": 1,
+            "name": "mMaxHP",
+            "data": {
+              "Float": 1290.800048828125
+            }
+          }
+        }
+      }
+    }
+  ],
+  "nextSteps": [],
+  "workDir": "/tmp/lol-repl-decode-live"
+}

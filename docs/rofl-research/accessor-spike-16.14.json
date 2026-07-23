@@ -1,0 +1,304 @@
+{
+  "ok": false,
+  "decryptStatus": "accessor_slots_driven_need_packet_deserialize",
+  "arch": "arm64",
+  "binary": "/Applications/League of Legends.app/Contents/LoL/Game/LeagueofLegends.app/Contents/MacOS/LeagueofLegends",
+  "arm64Slice": "/tmp/lol-accessor-spike/LeagueofLegends.arm64",
+  "arm64Size": 38603504,
+  "stringXrefs": {
+    "textVm": 4294967296,
+    "targets": {
+      "mHP": "0x102156f2f",
+      "mMaxHP": "0x102156f33"
+    },
+    "xrefCount": 18,
+    "xrefs": [
+      {
+        "adrpPc": 4295800336,
+        "addPc": 4295800340,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4295800364,
+        "addPc": 4295800368,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296720308,
+        "addPc": 4296720312,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296722504,
+        "addPc": 4296722508,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296735864,
+        "addPc": 4296735868,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296738032,
+        "addPc": 4296738036,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296743996,
+        "addPc": 4296744000,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296745552,
+        "addPc": 4296745556,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296748328,
+        "addPc": 4296748332,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296749496,
+        "addPc": 4296749500,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296750292,
+        "addPc": 4296750296,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296751456,
+        "addPc": 4296751460,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296752252,
+        "addPc": 4296752256,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296753420,
+        "addPc": 4296753424,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4296754788,
+        "addPc": 4296754792,
+        "name": "mHP",
+        "stringVa": 4329926447
+      },
+      {
+        "adrpPc": 4296754980,
+        "addPc": 4296754984,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4313143392,
+        "addPc": 4313143396,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      },
+      {
+        "adrpPc": 4313188100,
+        "addPc": 4313188104,
+        "name": "mMaxHP",
+        "stringVa": 4329926451
+      }
+    ]
+  },
+  "registrar": {
+    "registrarFn": "0x1000cb5e4",
+    "fieldBinderFn": "0x10005e074",
+    "fieldCount": 10,
+    "fields": [
+      {
+        "slotOffset": 2264,
+        "slotOffsetHex": "0x8d8",
+        "name": "mHP",
+        "nameVa": "0x102156f2f",
+        "bindPc": "0x1000cb624"
+      },
+      {
+        "slotOffset": 2304,
+        "slotOffsetHex": "0x900",
+        "name": "mMaxHP",
+        "nameVa": "0x102156f33",
+        "bindPc": "0x1000cb644"
+      },
+      {
+        "slotOffset": 2344,
+        "slotOffsetHex": "0x928",
+        "name": "mHPMaxPenalty",
+        "nameVa": "0x102156f3a",
+        "bindPc": "0x1000cb664"
+      },
+      {
+        "slotOffset": 2424,
+        "slotOffsetHex": "0x978",
+        "name": "mAllShield",
+        "nameVa": "0x102156f48",
+        "bindPc": "0x1000cb684"
+      },
+      {
+        "slotOffset": 2464,
+        "slotOffsetHex": "0x9a0",
+        "name": "mPhysicalShield",
+        "nameVa": "0x102156f53",
+        "bindPc": "0x1000cb6a4"
+      },
+      {
+        "slotOffset": 2504,
+        "slotOffsetHex": "0x9c8",
+        "name": "mMagicalShield",
+        "nameVa": "0x102156f63",
+        "bindPc": "0x1000cb6c4"
+      },
+      {
+        "slotOffset": 2544,
+        "slotOffsetHex": "0x9f0",
+        "name": "mChampSpecificHealth",
+        "nameVa": "0x102156f72",
+        "bindPc": "0x1000cb6e4"
+      },
+      {
+        "slotOffset": 2584,
+        "slotOffsetHex": "0xa18",
+        "name": "mIncomingHealingAllied",
+        "nameVa": "0x102156f87",
+        "bindPc": "0x1000cb704"
+      },
+      {
+        "slotOffset": 2624,
+        "slotOffsetHex": "0xa40",
+        "name": "mIncomingHealingEnemy",
+        "nameVa": "0x102156f9e",
+        "bindPc": "0x1000cb724"
+      },
+      {
+        "slotOffset": 2664,
+        "slotOffsetHex": "0xa68",
+        "name": "mIncomingDamage",
+        "nameVa": "0x102156fb4",
+        "bindPc": "0x1000cb744"
+      }
+    ],
+    "mHP": {
+      "slotOffset": 2264,
+      "slotOffsetHex": "0x8d8",
+      "name": "mHP",
+      "nameVa": "0x102156f2f",
+      "bindPc": "0x1000cb624"
+    },
+    "mMaxHP": {
+      "slotOffset": 2304,
+      "slotOffsetHex": "0x900",
+      "name": "mMaxHP",
+      "nameVa": "0x102156f33",
+      "bindPc": "0x1000cb644"
+    }
+  },
+  "unicornSmoke": {
+    "ok": true,
+    "x0": 66,
+    "error": null,
+    "scratchVa": "0x100001000",
+    "mappedBase": "0x100000000",
+    "mappedSize": 2097152,
+    "note": "Unicorn smoke finished via UcError after ret/brk"
+  },
+  "segmentMap": {
+    "segmentCount": 4,
+    "segments": [
+      {
+        "name": "__TEXT",
+        "ok": true,
+        "vmaddr": "0x100000000",
+        "vmsize": 36143104,
+        "filesize": 36143104
+      },
+      {
+        "name": "__DATA_CONST",
+        "ok": true,
+        "vmaddr": "0x102278000",
+        "vmsize": 1638400,
+        "filesize": 1638400
+      },
+      {
+        "name": "__DATA",
+        "ok": true,
+        "vmaddr": "0x102408000",
+        "vmsize": 1081344,
+        "filesize": 163840
+      },
+      {
+        "name": "__LINKEDIT",
+        "ok": true,
+        "vmaddr": "0x102510000",
+        "vmsize": 671744,
+        "filesize": 658160
+      }
+    ],
+    "ok": true
+  },
+  "slotGetterDrive": {
+    "ok": true,
+    "mHP": 1234.5,
+    "mMaxHP": 1500.0,
+    "expectedHP": 1234.5,
+    "expectedMaxHP": 1500.0,
+    "objectVa": "0x104010000",
+    "mHPSlot": "0x8d8",
+    "mMaxHPSlot": "0x900",
+    "note": "Synthetic CharacterIntermediate slot read via Unicorn LDR stubs; ROFL Deserialize drive still required for live packet HP"
+  },
+  "deserializeInventory": {
+    "strings": {
+      "Deserialize": [],
+      "Replication": [],
+      "mHP": [
+        "0x102156f2f"
+      ],
+      "mMaxHP": [
+        "0x102156f33"
+      ],
+      "UsePacket": [],
+      "WaypointGroup": [],
+      "CreateNeutral": [],
+      "SkillLevelUp": []
+    },
+    "deserializeHits": 0,
+    "replicationHits": 0
+  },
+  "keyframeFeed": {
+    "ok": false,
+    "status": "skipped_no_rofl",
+    "replication": [],
+    "note": "Pass --rofl to inventory keyframe bodies; Deserialize entrypoint not bound"
+  },
+  "nextSteps": [
+    "Bind Replication packet Deserialize / UsePacket vtable entries",
+    "Drive field getters that read CharacterIntermediate slots (mHP=0x8d8, mMaxHP=0x900)",
+    "Feed keyframe/chunk body bytes through Deserialize under Unicorn",
+    "Emit maknee-shaped Replication events once getters return real floats",
+    "Extend to skill ranks + VoidGrub/dragon/baron/building/ward packets"
+  ],
+  "tmpOwned": false,
+  "workDir": "/tmp/lol-accessor-spike"
+}

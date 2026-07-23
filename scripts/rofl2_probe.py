@@ -19,6 +19,8 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+from rofl_metadata import parse_rofl2_metadata_bytes
+
 try:
     import zstandard as zstd
 except ImportError:
@@ -60,20 +62,17 @@ def frame_compressed_size(buf: bytes, off: int) -> int:
 
 def parse_rofl2(path: Path) -> dict:
     data = path.read_bytes()
-    if data[:6] != b"RIOT\x02\x00":
-        raise ValueError(f"not ROFL2 (magic={data[:6]!r})")
+    parsed_metadata = parse_rofl2_metadata_bytes(data)
     unk8 = data[6:14]
-    ver_len = data[14]
-    version = data[15 : 15 + ver_len].decode("ascii")
-    field_off = 15 + ver_len
-    hdr = struct.unpack_from("<IIII", data, field_off)
+    version = parsed_metadata["version"]
+    field_off = int(parsed_metadata["headerOffset"])
+    hdr = tuple(parsed_metadata["headerU32s"])
     zstd_off = data.find(b"\x28\xb5\x2f\xfd", field_off + 16)
     if zstd_off < 0:
         raise ValueError("no zstd payload")
     pad = data[field_off + 16 : zstd_off]
-    meta_len = struct.unpack_from("<I", data, len(data) - 4)[0]
-    meta_start = len(data) - 4 - meta_len
-    meta = json.loads(data[meta_start : len(data) - 4])
+    meta_start = int(parsed_metadata["metadataStart"])
+    meta = parsed_metadata["metadata"]
     return {
         "path": str(path),
         "size": len(data),

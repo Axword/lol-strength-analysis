@@ -9,7 +9,7 @@ can consume either source.
 """
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 # Approximate SR fountain spawns (Riot map units).
 FOUNTAIN = {
@@ -19,6 +19,9 @@ FOUNTAIN = {
 
 LIVE_COORDINATE_SYSTEM = "riot_live_stats_sr"
 COORDINATE_OFFSET = {"x": 7500.0, "z": 7500.0}
+LIVECLIENT_HISTORY_FIELDS = frozenset(
+    {"kills", "deaths", "assists", "totalCreepScore", "visionScore"}
+)
 
 
 def provenance_record(
@@ -142,6 +145,9 @@ def participant_row(
     armor: Optional[float] = None,
     magic_resist: Optional[float] = None,
     attack_speed: Optional[float] = None,
+    career: Optional[Mapping[str, Any]] = None,
+    career_sources: Optional[Mapping[str, str]] = None,
+    career_sample_game_time_ms: Optional[int] = None,
     extra: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Build a participant object for ``stats_update``.
@@ -156,6 +162,10 @@ def participant_row(
     ``magicResist`` / ``attackSpeed``) are only written when provided. Callers
     that lack Replication combat fields should set ``combat_stats_source`` to an
     unavailable marker instead of inventing zeros.
+
+    ``career`` is deliberately limited to the per-seek Live Client Data fields
+    that can be observed honestly. Damage, gold, objectives, and jungle CS are
+    not accepted here, which prevents unknown fields from becoming zero rows.
     """
     a1, a2, a3, a4 = ability_levels or (0, 0, 0, 0)
     row: Dict[str, Any] = {
@@ -197,6 +207,43 @@ def participant_row(
         row["magicResist"] = float(magic_resist)
     if attack_speed is not None:
         row["attackSpeed"] = float(attack_speed)
+    if career is not None:
+        career_row = {
+            key: value
+            for key, value in career.items()
+            if key in LIVECLIENT_HISTORY_FIELDS and value is not None
+        }
+        unsupported = {
+            key
+            for key, value in career.items()
+            if key not in LIVECLIENT_HISTORY_FIELDS and value is not None
+        }
+        if unsupported:
+            raise ValueError(
+                f"unsupported liveclient career fields: {sorted(unsupported)}"
+            )
+        if career_row:
+            sources = {
+                key: str((career_sources or {}).get(key) or "").strip()
+                for key in career_row
+            }
+            if any(not source for source in sources.values()):
+                raise ValueError(
+                    "every emitted liveclient career field requires a source"
+                )
+            if career_sample_game_time_ms is None:
+                raise ValueError(
+                    "liveclient career fields require career_sample_game_time_ms"
+                )
+            row["career"] = career_row
+            row["careerCoverage"] = {key: "known" for key in career_row}
+            row["careerSources"] = sources
+            row["careerSource"] = (
+                next(iter(set(sources.values())))
+                if len(set(sources.values())) == 1
+                else "mixed"
+            )
+            row["careerSampleGameTimeMs"] = int(career_sample_game_time_ms)
     if extra:
         row.update(extra)
     return row
@@ -342,6 +389,171 @@ def epic_monster_kill_line(
         row["dragonType"] = dragon_type
     if position:
         row["position"] = position
+    if extra:
+        row.update(extra)
+    return row
+
+
+def neutral_minion_spawn_line(
+    *,
+    game_id: int,
+    game_time,
+    monster_type: str,
+    position: Optional[Dict[str, float]] = None,
+    net_id: Optional[int] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "neutral_minion_spawn",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "monsterType": monster_type,
+    }
+    if position:
+        row["position"] = position
+    if net_id is not None:
+        row["netId"] = net_id
+    if extra:
+        row.update(extra)
+    return row
+
+
+def barracks_minion_spawn_line(
+    *,
+    game_id: int,
+    game_time,
+    team_id: int,
+    lane: Optional[str] = None,
+    minion_type: str = "melee",
+    position: Optional[Dict[str, float]] = None,
+    net_id: Optional[int] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "barracks_minion_spawn",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "teamID": team_id,
+        "minionType": minion_type,
+    }
+    if lane is not None:
+        row["lane"] = lane
+    if position:
+        row["position"] = position
+    if net_id is not None:
+        row["netId"] = net_id
+    if extra:
+        row.update(extra)
+    return row
+
+
+def barracks_minion_killed_line(
+    *,
+    game_id: int,
+    game_time,
+    team_id: int,
+    position: Optional[Dict[str, float]] = None,
+    net_id: Optional[int] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "barracks_minion_killed",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "teamID": team_id,
+    }
+    if position:
+        row["position"] = position
+    if net_id is not None:
+        row["netId"] = net_id
+    if extra:
+        row.update(extra)
+    return row
+
+
+def skill_level_up_line(
+    *,
+    game_id: int,
+    game_time,
+    participant_id: int,
+    skill_slot: int,
+    evolved: bool = False,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "skill_level_up",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "participant": participant_id,
+        "skillSlot": skill_slot,
+        "evolved": evolved,
+    }
+    if extra:
+        row.update(extra)
+    return row
+
+
+def ward_placed_line(
+    *,
+    game_id: int,
+    game_time,
+    placer_id: int,
+    ward_type: str = "yellowTrinket",
+    position: Optional[Dict[str, float]] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "ward_placed",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "placer": placer_id,
+        "wardType": ward_type,
+    }
+    if position:
+        row["position"] = position
+    if extra:
+        row.update(extra)
+    return row
+
+
+def ward_killed_line(
+    *,
+    game_id: int,
+    game_time,
+    killer_id: int,
+    ward_type: str = "yellowTrinket",
+    position: Optional[Dict[str, float]] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "ward_killed",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "killer": killer_id,
+        "wardType": ward_type,
+    }
+    if position:
+        row["position"] = position
+    if extra:
+        row.update(extra)
+    return row
+
+
+def item_purchased_line(
+    *,
+    game_id: int,
+    game_time,
+    participant_id: int,
+    item_id: int,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    row: Dict[str, Any] = {
+        "rfc461Schema": "item_purchased",
+        "gameID": game_id,
+        "gameTime": game_time,
+        "participantID": participant_id,
+        "itemID": item_id,
+    }
     if extra:
         row.update(extra)
     return row

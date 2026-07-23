@@ -12,46 +12,70 @@ function TeamBlock({
   team,
   goldDelta,
   isGoldLeader,
+  coverage,
 }: {
   side: 'blue' | 'red'
   team: TeamObjectives
-  goldDelta: number
+  goldDelta?: number
   isGoldLeader: boolean
+  coverage?: ScoreboardState['coverage']
 }) {
-  const deltaAbs = Math.abs(goldDelta)
+  const deltaAbs = Math.abs(goldDelta ?? 0)
   const dragons = team.dragons?.length
     ? team.dragons.map((d) => d[0]?.toUpperCase() ?? '?').join('')
     : '—'
 
   return (
     <div className={`sb-team side-${side}`}>
-      <div className="sb-kills" title="Team kills">
-        {team.kills}
+      <div
+        className="sb-kills"
+        title={`Team kills · ${coverage?.kills?.source?.replaceAll('_', ' ') ?? 'source unavailable'}`}
+      >
+        {team.kills ?? '—'}
       </div>
-      <div className="sb-gold" title="Team gold">
-        <span>{Math.round(team.gold / 100) / 10}k</span>
+      <div
+        className="sb-gold"
+        title={
+          team.gold == null
+            ? 'Team gold unavailable'
+            : `Team gold · ${coverage?.gold?.source?.replaceAll('_', ' ') ?? 'source unavailable'}`
+        }
+      >
+        <span>{team.gold == null ? '—' : `${Math.round(team.gold / 100) / 10}k`}</span>
         {isGoldLeader && deltaAbs > 0 && (
           <em className="sb-gold-delta">+{Math.round(deltaAbs)}</em>
         )}
       </div>
-      <div className="sb-towers" title="Towers taken">
+      <div
+        className="sb-towers"
+        title={
+          team.towers == null
+            ? 'Tower history unavailable'
+            : `Towers taken · ${coverage?.objectives?.source?.replaceAll('_', ' ') ?? 'source unavailable'}`
+        }
+      >
         <span className="sb-ico">⌁</span>
-        {team.towers}
+        {team.towers ?? '—'}
       </div>
-      <div className="sb-grubs" title={describeGrubs(team.voidGrubs)}>
+      <div
+        className="sb-grubs"
+        title={team.voidGrubs == null ? 'Void grub history unavailable' : describeGrubs(team.voidGrubs)}
+      >
         <span className="sb-ico">⦿</span>
-        {team.voidGrubs}/{GRUB.maxStacks}
+        {team.voidGrubs == null ? '—' : `${team.voidGrubs}/${GRUB.maxStacks}`}
       </div>
       <div
         className="sb-dragons"
         title={
           team.hasSoul && team.soulType
             ? `Dragons: ${(team.dragons || []).join(', ') || 'none'} · Soul: ${team.soulType}`
-            : `Dragons: ${(team.dragons || []).join(', ') || 'none'}`
+            : team.dragons
+              ? `Dragons: ${team.dragons.join(', ') || 'none'}`
+              : 'Dragon history unavailable'
         }
       >
         <span className="sb-ico">◆</span>
-        {team.dragonCount}
+        {team.dragonCount ?? '—'}
         <span className="sb-drake-types">{dragons}</span>
         {team.hasSoul && (
           <span className="sb-soul">
@@ -63,29 +87,33 @@ function TeamBlock({
         className={`sb-baron ${team.baronActive ? 'active' : ''}`}
         title={
           team.baronActive
-            ? `Baron ACTIVE (${team.barons} taken)`
-            : `Barons taken: ${team.barons}`
+            ? `Baron ACTIVE (${team.barons ?? 0} taken)`
+            : team.barons == null
+              ? 'Baron history unavailable'
+              : `Barons taken: ${team.barons}`
         }
       >
         <span className="sb-ico">♛</span>
-        {team.barons}
+        {team.barons ?? '—'}
         {team.baronActive && <span className="sb-live">LIVE</span>}
       </div>
       <div
         className={`sb-elder ${team.elderActive ? 'active' : ''}`}
         title={
           team.elderActive
-            ? `Elder ACTIVE (${team.elders} taken)`
-            : `Elders taken: ${team.elders}`
+            ? `Elder ACTIVE (${team.elders ?? 0} taken)`
+            : team.elders == null
+              ? 'Elder history unavailable'
+              : `Elders taken: ${team.elders}`
         }
       >
         <span className="sb-ico">✶</span>
-        {team.elders}
+        {team.elders ?? '—'}
         {team.elderActive && <span className="sb-live">LIVE</span>}
       </div>
       <div className="sb-quests" title="Role quests completed">
         <span className="sb-ico">✓</span>
-        {team.roleQuests}
+        {team.roleQuests ?? '—'}
       </div>
     </div>
   )
@@ -112,6 +140,7 @@ export function Scoreboard({ score, gameTimeSec }: Props) {
         team={score.blue}
         goldDelta={score.goldDelta}
         isGoldLeader={score.goldLeader === 'blue'}
+        coverage={score.coverage}
       />
       <div className="sb-center">
         <strong>
@@ -126,6 +155,7 @@ export function Scoreboard({ score, gameTimeSec }: Props) {
         team={score.red}
         goldDelta={score.goldDelta}
         isGoldLeader={score.goldLeader === 'red'}
+        coverage={score.coverage}
       />
     </div>
   )

@@ -41,6 +41,29 @@ export interface TimelineUnitFrame {
   e: number
   r: number
   career?: import('../engine/careerStats').ChampCareerStats
+  /** Audit of the segment from the previous sampled frame to this unit. */
+  motionFromPrevious?: MotionSegmentAudit
+}
+
+export interface MotionSegmentAudit {
+  kind: 'discontinuity'
+  classification: 'death_respawn' | 'recall_or_teleport' | 'unexplained'
+  fromTimeMs: number
+  toTimeMs: number
+  deltaMs: number
+  distanceMapUnits: number
+  plausibleLimitMapUnits: number
+  evidence: string[]
+}
+
+export interface MotionAuditSummary {
+  version: string
+  segmentCount: number
+  discontinuityCount: number
+  deathRespawnCount: number
+  recallTeleportCount: number
+  unexplainedCount: number
+  maxDisplacementMapUnits: number
 }
 
 export interface TimelineFrame {
@@ -55,14 +78,18 @@ export interface TimelineProvenance {
   source?: string
   sourceKind?: string
   artifact?: string
+  matchCode?: string
+  gameId?: number
   gameTimeUnit?: string
   coordinateSystem?: string
   coordinateOffset?: { x: number; z: number }
   positionCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
+  nativePositionCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
   hpCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
   rosterMapping?: string
   placeholderPolicy?: string
   notes?: string
+  motionAudit?: MotionAuditSummary
 }
 
 export interface GameTimeline {
@@ -79,8 +106,66 @@ export interface GameTimeline {
   frames: TimelineFrame[]
 }
 
+export interface MatchRegistryChampion {
+  teamId: 100 | 200
+  display: string | null
+  asset: string | null
+}
+
+export interface MatchRegistryCoverage {
+  positions: string
+  history: string
+  hp: string
+  combat: string
+  ranks: string
+}
+
+export interface MatchRegistryEntry {
+  matchCode: string
+  gameId: number
+  name: string
+  timelineUrl: string
+  manifestUrl: string
+  patch: string
+  durationMs: number
+  roster: {
+    participantCount: number
+    blueCount: number
+    redCount: number
+    champions: MatchRegistryChampion[]
+  }
+  coverage: MatchRegistryCoverage
+  productGates: {
+    productValidated: true
+    stableIdentityComplete: true
+    hpTrusted: boolean
+    calculatorReady: boolean
+  }
+}
+
+export interface MatchRegistry {
+  version: 1
+  defaultMatchCode: string | null
+  matches: MatchRegistryEntry[]
+}
+
+export const MATCH_REGISTRY_URL = '/data/matches/index.json'
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null
+}
+
+import { buildTimelineFromRfc461Jsonl, isLikelyRfc461JsonlFile } from './rfc461Jsonl'
+
+/** Parse a user-selected GameTimeline JSON or rfc461 JSONL. */
+export function parseTimelineFile(text: string, fileName = 'timeline.json'): GameTimeline {
+  if (isLikelyRfc461JsonlFile(fileName, text)) {
+    return buildTimelineFromRfc461Jsonl(text, {
+      artifact: fileName,
+      name: fileName.replace(/\.(jsonl|json)$/i, ''),
+    }) as unknown as GameTimeline
+  }
+  return parseGameTimelineJson(text)
 }
 
 /** Parse a user-selected timeline without trusting a JSON type assertion. */
@@ -123,6 +208,132 @@ export function parseGameTimelineJson(text: string): GameTimeline {
   }
 
   return value as unknown as GameTimeline
+}
+
+function registryError(message: string): never {
+  throw new Error(`Invalid match registry: ${message}`)
+}
+
+function isSafeRegistryUrl(value: unknown, matchCode: string, file: string): value is string {
+  return value === `${matchCode}/${file}`
+}
+
+/** Parse the generated product registry without treating client data as a trust override. */
+export function parseMatchRegistryJson(text: string): MatchRegistry {
+  let value: unknown
+  try {
+    value = JSON.parse(text)
+  } catch {
+    registryError('index is not valid JSON.')
+  }
+  if (!isRecord(value)) registryError('root must be an object.')
+  if (value.version !== 1) registryError('unsupported version.')
+  if (!Array.isArray(value.matches)) registryError('matches must be an array.')
+
+  const seen = new Set<string>()
+  for (const [index, raw] of value.matches.entries()) {
+    if (!isRecord(raw)) registryError(`match ${index + 1} must be an object.`)
+    const code = raw.matchCode
+    if (typeof code !== 'string' || !/^\d{7,}$/.test(code) || seen.has(code)) {
+      registryError(`match ${index + 1} has an invalid or duplicate matchCode.`)
+    }
+    seen.add(code)
+    if (raw.gameId !== Number(code)) registryError(`${code} gameId is inconsistent.`)
+    if (typeof raw.name !== 'string' || raw.name.length === 0) {
+      registryError(`${code} name is missing.`)
+    }
+    if (!isSafeRegistryUrl(raw.timelineUrl, code, 'timeline.json')) {
+      registryError(`${code} timelineUrl is unsafe or inconsistent.`)
+    }
+    if (!isSafeRegistryUrl(raw.manifestUrl, code, 'manifest.json')) {
+      registryError(`${code} manifestUrl is unsafe or inconsistent.`)
+    }
+    if (
+      typeof raw.patch !== 'string' ||
+      raw.patch.length === 0 ||
+      typeof raw.durationMs !== 'number' ||
+      !Number.isFinite(raw.durationMs) ||
+      raw.durationMs <= 0
+    ) {
+      registryError(`${code} patch/duration is invalid.`)
+    }
+    if (
+      !isRecord(raw.roster) ||
+      raw.roster.participantCount !== 10 ||
+      raw.roster.blueCount !== 5 ||
+      raw.roster.redCount !== 5 ||
+      !Array.isArray(raw.roster.champions) ||
+      raw.roster.champions.length !== 10
+    ) {
+      registryError(`${code} roster summary is invalid.`)
+    }
+    const coverage = raw.coverage
+    if (
+      !isRecord(coverage) ||
+      !['positions', 'history', 'hp', 'combat', 'ranks'].every(
+        (field) => typeof coverage[field] === 'string',
+      )
+    ) {
+      registryError(`${code} coverage summary is invalid.`)
+    }
+    if (
+      !isRecord(raw.productGates) ||
+      raw.productGates.productValidated !== true ||
+      raw.productGates.stableIdentityComplete !== true ||
+      typeof raw.productGates.hpTrusted !== 'boolean' ||
+      typeof raw.productGates.calculatorReady !== 'boolean'
+    ) {
+      registryError(`${code} product gates are invalid.`)
+    }
+  }
+  if (
+    value.defaultMatchCode !== null &&
+    (typeof value.defaultMatchCode !== 'string' || !seen.has(value.defaultMatchCode))
+  ) {
+    registryError('defaultMatchCode does not identify a published match.')
+  }
+  if (value.matches.length > 0 && value.defaultMatchCode === null) {
+    registryError('non-empty registry requires defaultMatchCode.')
+  }
+
+  return value as unknown as MatchRegistry
+}
+
+export function defaultRegistryMatch(registry: MatchRegistry): MatchRegistryEntry | null {
+  if (!registry.defaultMatchCode) return null
+  return (
+    registry.matches.find((entry) => entry.matchCode === registry.defaultMatchCode) ?? null
+  )
+}
+
+export async function loadMatchRegistry(
+  fetchImpl: typeof fetch = fetch,
+): Promise<MatchRegistry> {
+  const response = await fetchImpl(MATCH_REGISTRY_URL)
+  if (!response.ok) {
+    throw new Error(`Failed to load published match registry (${response.status})`)
+  }
+  return parseMatchRegistryJson(await response.text())
+}
+
+export async function loadRegisteredTimeline(
+  entry: MatchRegistryEntry,
+  fetchImpl: typeof fetch = fetch,
+): Promise<GameTimeline> {
+  const response = await fetchImpl(`/data/matches/${entry.timelineUrl}`)
+  if (!response.ok) {
+    throw new Error(`Failed to load match ${entry.matchCode} (${response.status})`)
+  }
+  const timeline = parseGameTimelineJson(await response.text())
+  if (
+    timeline.id !== entry.matchCode ||
+    timeline.name !== entry.name ||
+    timeline.provenance?.matchCode !== entry.matchCode ||
+    timeline.provenance?.gameId !== entry.gameId
+  ) {
+    throw new Error(`Match ${entry.matchCode} timeline identity does not match registry`)
+  }
+  return timeline
 }
 
 /** Consumables / trinkets / lane quests — skip in roster + calculator slots. */
@@ -341,8 +552,13 @@ function lerpFramesToSnapshot(
     const v = nextByPid.get(u.pid)
     const aliveA = unitAlive(u)
     const aliveB = v ? unitAlive(v) : aliveA
-    // Don't lerp through the map on death/respawn teleports
-    const canLerp = Boolean(v && aliveA && aliveB)
+    // Keep raw endpoints, but never draw a straight walk through an audited jump.
+    const canLerp = Boolean(
+      v &&
+        aliveA &&
+        aliveB &&
+        v.motionFromPrevious?.kind !== 'discontinuity',
+    )
     const x = canLerp ? lerp(u.x, v!.x, alpha) : u.x
     const y = canLerp ? lerp(u.y, v!.y, alpha) : u.y
     const knownHp = hpIsKnown(u)
@@ -411,21 +627,22 @@ export function findFrameIndex(timeline: GameTimeline, timeMs: number): number {
   return lo
 }
 
-export async function loadFurVsG2Timeline(): Promise<GameTimeline> {
-  const res = await fetch('/data/fur_vs_g2_timeline.json')
-  if (!res.ok) throw new Error(`Failed to load timeline (${res.status})`)
-  return res.json() as Promise<GameTimeline>
-}
-
 export async function loadMakneeStubTimeline(): Promise<GameTimeline> {
   const res = await fetch('/data/maknee_stub_timeline.json')
   if (!res.ok) throw new Error(`Failed to load maknee stub timeline (${res.status})`)
-  return res.json() as Promise<GameTimeline>
+  return parseGameTimelineJson(await res.text())
 }
 
-export type BuiltinTimelineId = 'fur_vs_g2' | 'maknee_stub'
+export async function loadFurParityTimeline(): Promise<GameTimeline> {
+  const res = await fetch('/data/fur_parity_timeline.json')
+  if (!res.ok) throw new Error(`Failed to load FUR parity timeline (${res.status})`)
+  return parseGameTimelineJson(await res.text())
+}
+
+/** Demo-only timelines. Product matches are loaded exclusively through the registry. */
+export type BuiltinTimelineId = 'maknee_stub' | 'fur_parity'
 
 export async function loadBuiltinTimeline(id: BuiltinTimelineId): Promise<GameTimeline> {
   if (id === 'maknee_stub') return loadMakneeStubTimeline()
-  return loadFurVsG2Timeline()
+  return loadFurParityTimeline()
 }

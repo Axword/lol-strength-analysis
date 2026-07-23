@@ -157,6 +157,76 @@ def empty_team_obj():
     }
 
 
+def participant_known_kills(participant: dict) -> int | None:
+    career = participant.get("career")
+    if isinstance(career, dict) and career.get("kills") is not None:
+        try:
+            return int(career["kills"])
+        except (TypeError, ValueError):
+            return None
+    for stat in participant.get("stats") or []:
+        if stat.get("name") != "CHAMPIONS_KILLED" or stat.get("value") is None:
+            continue
+        try:
+            return int(float(stat["value"]))
+        except (TypeError, ValueError):
+            return None
+    return None
+
+
+def score_kill_snapshots(
+    updates: list[tuple[int, list[dict]]],
+) -> list[tuple[int, dict[int, int]]]:
+    """Team kill totals from known participant counters, with regression gate."""
+    snapshots: list[tuple[int, dict[int, int]]] = []
+    previous: dict[int, int] = {}
+    for t, participants in sorted(updates, key=lambda row: row[0]):
+        totals = {100: 0, 200: 0}
+        complete = len(participants) == 10
+        current: dict[int, int] = {}
+        for participant in participants:
+            pid = int(participant["participantID"])
+            kills = participant_known_kills(participant)
+            if kills is None or kills < 0:
+                complete = False
+                break
+            prior = previous.get(pid)
+            if prior is not None and kills < prior:
+                raise ValueError(
+                    "non-monotonic known kills "
+                    f"pid={pid} t={t} value={kills} prior={prior}"
+                )
+            team = int(participant.get("teamID") or 0)
+            if team not in totals:
+                complete = False
+                break
+            current[pid] = kills
+            totals[team] += kills
+        if complete:
+            previous.update(current)
+            snapshots.append((t, totals))
+    return snapshots
+
+
+def participant_kill_source(updates: list[tuple[int, list[dict]]]) -> str:
+    sources: set[str] = set()
+    for _t, participants in updates:
+        for participant in participants:
+            career = participant.get("career")
+            if isinstance(career, dict) and career.get("kills") is not None:
+                sources.add(
+                    str(participant.get("careerSource") or "liveclient_scores")
+                )
+            elif participant_known_kills(participant) is not None:
+                sources.add("riot_live_stats")
+    if not sources:
+        return "unavailable"
+    if len(sources) == 1:
+        source = next(iter(sources))
+        return "liveclient_scores" if "liveclient" in source.casefold() else source
+    return "mixed_authoritative_scores"
+
+
 MONSTER_TO_CAMP = {
     "raptor": "raptors",
     "wolf": "wolves",
@@ -228,6 +298,10 @@ def main() -> None:
     quest_events = []
     ward_events = []
     gold_by_time = []
+    minion_spawn_events = []  # (t, net_id, team, lane, minionType, gx, gz)
+    minion_kill_events = []  # (t, net_id)
+    stats_updates: list[tuple[int, list[dict]]] = []
+    declared_missing: set[str] = set()
 
     with JSONL.open() as f:
         for line in f:
@@ -235,15 +309,26 @@ def main() -> None:
             schema = o.get("rfc461Schema")
             t = int(o.get("gameTime") or 0)
 
-            if schema == "stats_update":
-                g100 = g200 = 0
-                for p in o.get("participants") or []:
-                    tg = int(p.get("totalGold") or 0)
-                    if p.get("teamID") == 100:
-                        g100 += tg
-                    else:
-                        g200 += tg
-                gold_by_time.append((t, {100: g100, 200: g200}))
+            if schema == "rofl_coverage":
+                declared_missing.update(
+                    str(value).replace("_", "").casefold()
+                    for value in o.get("missing") or []
+                )
+
+            elif schema == "stats_update":
+                participants = list(o.get("participants") or [])
+                stats_updates.append((t, participants))
+                if len(participants) == 10 and all(
+                    p.get("totalGold") is not None for p in participants
+                ):
+                    g100 = g200 = 0
+                    for p in participants:
+                        tg = int(p["totalGold"])
+                        if p.get("teamID") == 100:
+                            g100 += tg
+                        elif p.get("teamID") == 200:
+                            g200 += tg
+                    gold_by_time.append((t, {100: g100, 200: g200}))
 
             elif schema == "building_destroyed":
                 pos = o.get("position") or {}
@@ -306,12 +391,38 @@ def main() -> None:
                     }
                 )
 
+            elif schema == "barracks_minion_spawn":
+                pos = o.get("position") or {}
+                minion_spawn_events.append(
+                    (
+                        t,
+                        o.get("netId"),
+                        int(o.get("teamID") or 0),
+                        o.get("lane"),
+                        o.get("minionType") or "melee",
+                        float(pos.get("x") or 0),
+                        float(pos.get("z") or 0),
+                    )
+                )
+
+            elif schema == "barracks_minion_killed":
+                minion_kill_events.append((t, o.get("netId")))
+
     gold_by_time.sort()
     building_events.sort()
     kill_events.sort()
     monster_events.sort()
     quest_events.sort()
     ward_events.sort(key=lambda w: w["t"])
+    minion_spawn_events.sort()
+    minion_kill_events.sort()
+    participant_kill_snapshots = score_kill_snapshots(stats_updates)
+    score_kills_source = participant_kill_source(stats_updates)
+    objective_history_known = (
+        not any("objective" in marker for marker in declared_missing)
+        or bool(building_events or monster_events or quest_events)
+    )
+    event_kills_known = objective_history_known
 
     print(
         "events",
@@ -327,11 +438,30 @@ def main() -> None:
         "ward ops",
         len(gold_by_time),
         "gold snaps",
+        len(minion_spawn_events),
+        "minion spawns",
     )
 
-    def gold_at(ms: int) -> dict:
+    def snapshot_at(
+        rows: list[tuple[int, dict[int, int]]],
+        ms: int,
+    ) -> dict[int, int] | None:
+        if not rows:
+            return None
+        lo, hi = 0, len(rows) - 1
+        best = None
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            if rows[mid][0] <= ms:
+                best = rows[mid][1]
+                lo = mid + 1
+            else:
+                hi = mid - 1
+        return best
+
+    def gold_at(ms: int) -> dict[int, int] | None:
         lo, hi = 0, len(gold_by_time) - 1
-        best = {100: 2500, 200: 2500}
+        best = None
         while lo <= hi:
             mid = (lo + hi) // 2
             if gold_by_time[mid][0] <= ms:
@@ -380,6 +510,9 @@ def main() -> None:
 
     matched_buildings = 0
     matched_camps = 0
+    live_minions: dict = {}  # net_id or synthetic id → state
+    msi = mki = 0
+    minion_seq = 0
 
     for fr in frames:
         t = int(fr["t"])
@@ -517,20 +650,96 @@ def main() -> None:
                     wards.pop(best_i)
             wi += 1
 
+        while msi < len(minion_spawn_events) and minion_spawn_events[msi][0] <= t:
+            _mt, nid, team, lane, mtype, gx, gz = minion_spawn_events[msi]
+            minion_seq += 1
+            mid = str(nid) if nid is not None else f"m{minion_seq}"
+            nx, ny = riot_to_norm(gx, gz)
+            live_minions[mid] = {
+                "id": mid,
+                "team": "blue" if team == 100 else "red",
+                "lane": lane,
+                "minionType": mtype,
+                "x": nx,
+                "y": ny,
+                "alive": True,
+            }
+            msi += 1
+
+        while mki < len(minion_kill_events) and minion_kill_events[mki][0] <= t:
+            _mt, nid = minion_kill_events[mki]
+            mid = str(nid) if nid is not None else None
+            if mid and mid in live_minions:
+                live_minions[mid]["alive"] = False
+            mki += 1
+
         wards = [w for w in wards if w["expiresAtMs"] > t]
 
         g = gold_at(t)
-        blue["gold"] = g.get(100, 0)
-        red["gold"] = g.get(200, 0)
-        gold_delta = blue["gold"] - red["gold"]
+        if g is not None:
+            blue["gold"] = g[100]
+            red["gold"] = g[200]
+        score_kills = snapshot_at(participant_kill_snapshots, t)
 
-        fr["score"] = {
+        def public_team(internal: dict, team_id: int) -> dict:
+            out: dict = {}
+            if objective_history_known:
+                for key, value in internal.items():
+                    if key in {"kills", "gold"}:
+                        continue
+                    out[key] = list(value) if key == "dragons" else value
+            if score_kills is not None:
+                out["kills"] = score_kills[team_id]
+            elif event_kills_known:
+                out["kills"] = internal["kills"]
+            if g is not None:
+                out["gold"] = g[team_id]
+            return out
+
+        public_blue = public_team(blue, 100)
+        public_red = public_team(red, 200)
+        score: dict = {
             "t": t,
-            "blue": {k: (list(v) if k == "dragons" else v) for k, v in blue.items()},
-            "red": {k: (list(v) if k == "dragons" else v) for k, v in red.items()},
-            "goldDelta": gold_delta,
-            "goldLeader": "blue" if gold_delta > 0 else "red" if gold_delta < 0 else "even",
+            "blue": public_blue,
+            "red": public_red,
+            "coverage": {
+                "kills": {
+                    "coverage": (
+                        "known"
+                        if "kills" in public_blue and "kills" in public_red
+                        else "unavailable"
+                    ),
+                    "source": (
+                        score_kills_source
+                        if score_kills is not None
+                        else "champion_kill_events"
+                        if event_kills_known
+                        else None
+                    ),
+                },
+                "gold": {
+                    "coverage": "known" if g is not None else "unavailable",
+                    "source": "stats_update_totalGold" if g is not None else None,
+                },
+                "objectives": {
+                    "coverage": (
+                        "known" if objective_history_known else "unavailable"
+                    ),
+                    "source": (
+                        "rfc461_objective_events"
+                        if objective_history_known
+                        else None
+                    ),
+                },
+            },
         }
+        if g is not None:
+            gold_delta = g[100] - g[200]
+            score["goldDelta"] = gold_delta
+            score["goldLeader"] = (
+                "blue" if gold_delta > 0 else "red" if gold_delta < 0 else "even"
+            )
+        fr["score"] = score
         fr["wards"] = [
             {
                 "id": w["id"],
@@ -581,7 +790,11 @@ def main() -> None:
                 row["respawnsAtMs"] = int(down_until)
             camps_state.append(row)
 
-        fr["mapObjects"] = {"structures": structures_state, "camps": camps_state}
+        fr["mapObjects"] = {
+            "structures": structures_state,
+            "camps": camps_state,
+            "minions": [m for m in live_minions.values() if m.get("alive")],
+        }
 
     timeline["hasScoreboard"] = True
     timeline["hasVision"] = True

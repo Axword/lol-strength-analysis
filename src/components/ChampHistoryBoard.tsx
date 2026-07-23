@@ -48,6 +48,62 @@ function fmt(n: number): string {
   return String(Math.round(n))
 }
 
+function fmtKnown(n: number | undefined): string {
+  return n == null ? '—' : fmt(n)
+}
+
+function sourceLabel(source: string | undefined): string {
+  if (!source) return 'source unavailable'
+  if (source.includes('liveclient')) return 'liveclient scores'
+  if (source === 'riot_live_stats') return 'Riot live stats'
+  if (source.startsWith('touch-v')) return `${source} estimate`
+  return source.replaceAll('_', ' ')
+}
+
+function careerSourceLabel(career: NonNullable<GameUnit['career']>): string {
+  if (career.careerSource) return sourceLabel(career.careerSource)
+  if (
+    career.dmgToChamps != null ||
+    career.dmgTotal != null ||
+    career.gold != null
+  ) {
+    return 'Riot live stats (legacy)'
+  }
+  return 'source unavailable'
+}
+
+function fieldSource(
+  career: NonNullable<GameUnit['career']>,
+  field: string,
+): string {
+  const source = career.fieldSources?.[field]
+  return source ? sourceLabel(source) : careerSourceLabel(career)
+}
+
+export function farmVisionDisplay(career: NonNullable<GameUnit['career']>) {
+  return {
+    cs: fmtKnown(career.cs),
+    vision: fmtKnown(career.visionScore),
+    jungleCs: fmtKnown(career.jungleCs),
+    source: fieldSource(career, career.cs != null ? 'cs' : 'visionScore'),
+  }
+}
+
+function UnavailableCell({
+  career,
+  field,
+}: {
+  career: NonNullable<GameUnit['career']>
+  field: string
+}) {
+  return (
+    <td title={`${field} unavailable from ${careerSourceLabel(career)}`}>
+      —
+      <em>unavailable · {careerSourceLabel(career)}</em>
+    </td>
+  )
+}
+
 function pct(n: number): string {
   return `${Math.round(n * 100)}%`
 }
@@ -101,12 +157,12 @@ function sortValue(
   tab: BoardTab,
   obj: GameSnapshot['score'],
   gameTimeSec: number,
-): number | string {
+): number | string | null {
   const c = unit.career
   if (key === 'champ') {
     return CHAMPIONS[unit.loadout.championId]?.name ?? unit.loadout.championId
   }
-  if (!c) return 0
+  if (!c) return null
   const teamObj = unit.team === 'blue' ? obj?.blue : obj?.red
   const dmgFocus = tab === 'champs' ? c.dmgToChamps : c.dmgTotal
   const takenFocus = tab === 'champs' ? c.dmgTakenFromChamps : c.dmgTaken
@@ -116,25 +172,31 @@ function sortValue(
 
   switch (key) {
     case 'dmg':
-      return dmgFocus
+      return dmgFocus ?? null
     case 'taken':
-      return takenFocus
+      return takenFocus ?? null
     case 'mitigated':
-      return c.selfMitigated
+      return c.selfMitigated ?? null
     case 'ccOrTurret':
-      return tab === 'champs' ? c.ccToChamps : c.dmgToTurrets
+      return (tab === 'champs' ? c.ccToChamps : c.dmgToTurrets) ?? null
     case 'drake':
-      return drake.sortValue
+      return teamObj?.dragons == null ? null : drake.sortValue
     case 'grub':
-      return grub.sortValue
+      return teamObj?.voidGrubs == null ? null : grub.sortValue
     case 'as':
       return attackSpeedDisplay(unit).aps
     case 'ah':
       return abilityHaste(unit, teamObj, gameTimeSec)
     case 'gold':
-      return c.gold
+      return c.gold ?? null
     case 'extra':
-      return tab === 'champs' ? sustain.sortValue : c.cs
+      return tab === 'champs'
+        ? c.healOnTeammates != null ||
+          c.shieldOnTeammates != null ||
+          c.hpRegen != null
+          ? sustain.sortValue
+          : null
+        : c.cs ?? null
     default:
       return 0
   }
@@ -150,6 +212,9 @@ function DrakeCell({
   gameTimeSec: number
 }) {
   const c = unit.career!
+  if (teamObj?.dragons == null) {
+    return <UnavailableCell career={c} field="objective history" />
+  }
   const drake = attributeDrakeBuffs(teamObj, c, gameTimeSec)
   const title = [
     drake.tags.length ? `Buffs: ${drake.tags.join(', ')}` : 'No dragon buffs',
@@ -206,6 +271,9 @@ function GrubCell({
   onToggle: () => void
 }) {
   const c = unit.career!
+  if (teamObj?.voidGrubs == null) {
+    return <UnavailableCell career={c} field="void grub history" />
+  }
   const grub = attributeGrubTouchFromCareer(c, teamObj?.voidGrubs ?? 0)
   const a = grub.audit
 
@@ -321,31 +389,56 @@ function StatCell({
   const sustain = attributeSustain(c, omnivampFromItems(unit.loadout.itemIds))
   const ah = abilityHaste(unit, teamObj, gameTimeSec)
   const as = attackSpeedDisplay(unit)
+  const farm = farmVisionDisplay(c)
 
   switch (keyName) {
     case 'dmg':
+      if (dmgFocus == null) return <UnavailableCell career={c} field="damage" />
       return (
-        <td title="Damage dealt">
+        <td title={`Damage dealt · ${fieldSource(c, tab === 'champs' ? 'dmgToChamps' : 'dmgTotal')}`}>
           {fmt(dmgFocus)}
           {tab === 'champs' && (
             <em>
-              {fmt(c.physToChamps)}/{fmt(c.magicToChamps)}/{fmt(c.trueToChamps)}
+              {fmtKnown(c.physToChamps)}/{fmtKnown(c.magicToChamps)}/{fmtKnown(c.trueToChamps)}
             </em>
           )}
         </td>
       )
     case 'taken':
-      return <td title="Damage taken">{fmt(takenFocus)}</td>
+      return takenFocus == null ? (
+        <UnavailableCell career={c} field="damage taken" />
+      ) : (
+        <td title={`Damage taken · ${fieldSource(c, tab === 'champs' ? 'dmgTakenFromChamps' : 'dmgTaken')}`}>
+          {fmt(takenFocus)}
+          <em>{fieldSource(c, tab === 'champs' ? 'dmgTakenFromChamps' : 'dmgTaken')}</em>
+        </td>
+      )
     case 'mitigated':
-      return <td title="Self-mitigated">{fmt(c.selfMitigated)}</td>
+      return c.selfMitigated == null ? (
+        <UnavailableCell career={c} field="self-mitigated damage" />
+      ) : (
+        <td title={`Self-mitigated · ${fieldSource(c, 'selfMitigated')}`}>
+          {fmt(c.selfMitigated)}
+          <em>{fieldSource(c, 'selfMitigated')}</em>
+        </td>
+      )
     case 'ccOrTurret':
       return tab === 'champs' ? (
-        <td title="CC to champions (s)">{c.ccToChamps.toFixed(1)}s</td>
+        c.ccToChamps == null ? (
+          <UnavailableCell career={c} field="CC to champions" />
+        ) : (
+          <td title={`CC to champions · ${fieldSource(c, 'ccToChamps')}`}>
+            {c.ccToChamps.toFixed(1)}s
+            <em>{fieldSource(c, 'ccToChamps')}</em>
+          </td>
+        )
+      ) : c.dmgToTurrets == null ? (
+        <UnavailableCell career={c} field="structure and objective damage" />
       ) : (
         <td title="Turret / building / objectives">
           {fmt(c.dmgToTurrets)}
           <em>
-            bld {fmt(c.dmgToBuildings)} · obj {fmt(c.dmgToObjectives)}
+            bld {fmtKnown(c.dmgToBuildings)} · obj {fmtKnown(c.dmgToObjectives)}
           </em>
         </td>
       )
@@ -370,6 +463,7 @@ function StatCell({
         </td>
       )
     case 'gold':
+      if (c.gold == null) return <UnavailableCell career={c} field="gold history" />
       return (
         <td title="Total gold earned · shop value of current items · unspent gold in bag">
           {fmt(c.gold)}
@@ -380,6 +474,17 @@ function StatCell({
         </td>
       )
     case 'extra':
+      if (
+        tab === 'champs' &&
+        c.healOnTeammates == null &&
+        c.shieldOnTeammates == null &&
+        c.hpRegen == null
+      ) {
+        return <UnavailableCell career={c} field="sustain history" />
+      }
+      if (tab === 'all' && c.cs == null && c.visionScore == null) {
+        return <UnavailableCell career={c} field="farm and vision history" />
+      }
       return (
         <td title="Ally heal + shield; live regen; LS / SV / item omnivamp">
           {tab === 'champs' ? (
@@ -397,12 +502,9 @@ function StatCell({
             </>
           ) : (
             <>
-              CS {c.cs}
+              CS {farm.cs}
               <em>
-                vis {c.visionScore}
-                {sustain.supportTotal > 0
-                  ? ` · sustain ${fmt(sustain.supportTotal)}`
-                  : ` · regen ${fmt(sustain.hpRegen)}/s`}
+                vis {farm.vision} · jungle {farm.jungleCs} · {farm.source}
               </em>
             </>
           )}
@@ -451,7 +553,9 @@ function Row({
         <div>
           <strong>{champ?.name ?? unit.loadout.championId}</strong>
           <span>
-            {unit.team} · lv{unit.loadout.level} · {c.kills}/{c.deaths}/{c.assists}
+            {unit.team} · lv{unit.loadout.level} · {fmtKnown(c.kills)}/
+            {fmtKnown(c.deaths)}/{fmtKnown(c.assists)} ·{' '}
+            {careerSourceLabel(c)}
           </span>
         </div>
       </td>
@@ -540,7 +644,10 @@ export function ChampHistoryBoard({ snapshot }: Props) {
       const va = sortValue(a, sortKey, tab, snapshot.score, snapshot.gameTimeSec)
       const vb = sortValue(b, sortKey, tab, snapshot.score, snapshot.gameTimeSec)
       let cmp = 0
-      if (typeof va === 'string' && typeof vb === 'string') {
+      if (va == null || vb == null) {
+        if (va == null && vb != null) return 1
+        if (vb == null && va != null) return -1
+      } else if (typeof va === 'string' && typeof vb === 'string') {
         cmp = va.localeCompare(vb)
       } else {
         cmp = Number(va) - Number(vb)
@@ -617,24 +724,28 @@ export function ChampHistoryBoard({ snapshot }: Props) {
           <div className="hist-meta">
             <span>
               Blue objs:{' '}
-              {blueDrake.quantities.length
+              {blueObj?.dragons == null
+                ? 'unavailable'
+                : blueDrake.quantities.length
                 ? blueDrake.quantities.join(' · ')
                 : blueDrake.tags.length
                   ? blueDrake.tags.join(' · ')
                   : 'no dragons'}
               {(blueObj?.voidGrubs ?? 0) > 0
-                ? ` · ${grubAttributionNote(blueObj!.voidGrubs)}`
+                ? ` · ${grubAttributionNote(blueObj?.voidGrubs ?? 0)}`
                 : ''}
             </span>
             <span>
               Red objs:{' '}
-              {redDrake.quantities.length
+              {redObj?.dragons == null
+                ? 'unavailable'
+                : redDrake.quantities.length
                 ? redDrake.quantities.join(' · ')
                 : redDrake.tags.length
                   ? redDrake.tags.join(' · ')
                   : 'no dragons'}
               {(redObj?.voidGrubs ?? 0) > 0
-                ? ` · ${grubAttributionNote(redObj!.voidGrubs)}`
+                ? ` · ${grubAttributionNote(redObj?.voidGrubs ?? 0)}`
                 : ''}
             </span>
             <span className="hist-order-note" title={orderNote}>

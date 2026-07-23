@@ -2,6 +2,7 @@
 """Mocked tests for Replay API → rfc461 JSONL extractor + unknown-HP timeline."""
 from __future__ import annotations
 
+import io
 import json
 import sys
 import tempfile
@@ -31,6 +32,21 @@ _probe_tests = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_probe_tests)
 FakeTransport = _probe_tests.FakeTransport
 _stub_rofl_app = _probe_tests._stub_rofl_app
+
+# Existing extractor tests exercise the guarded controller's private durable
+# capture implementation. Dedicated tests below retain and exercise the public
+# lock + identity-preflight entry point.
+_public_extract_replay_api_jsonl = extract.extract_replay_api_jsonl
+extract.extract_replay_api_jsonl = extract._extract_replay_api_jsonl_after_guard
+
+_ingest_test_path = Path(__file__).resolve().parent / "test_rofl_ingest.py"
+_ingest_spec = importlib.util.spec_from_file_location(
+    "test_rofl_ingest_guard_helpers",
+    _ingest_test_path,
+)
+assert _ingest_spec and _ingest_spec.loader
+_ingest_tests = importlib.util.module_from_spec(_ingest_spec)
+_ingest_spec.loader.exec_module(_ingest_tests)
 
 CHAMPS = [
     # champ, team, name, tag, riot liveclient position
@@ -80,6 +96,13 @@ def _ten_players() -> list[dict[str, Any]]:
                 "items": [{"itemID": 1001 + i}],
                 "isDead": False,
                 "participantID": i + 1,
+                "scores": {
+                    "kills": 0,
+                    "deaths": 0,
+                    "assists": 0,
+                    "creepScore": 0,
+                    "wardScore": 0,
+                },
             }
         )
     return players
@@ -219,6 +242,208 @@ class SeekingTransport(FakeTransport):
         ):
             pass
         return result
+
+
+class PublicCaptureGuardTests(unittest.TestCase):
+    def _guard_fixture(self, root: Path):
+        rofl = _ingest_tests.write_rofl(root)
+        app = _ingest_tests.write_app(root)
+        metadata = _ingest_tests.rofl_metadata.inspect_rofl_metadata(rofl)
+        return rofl, app, metadata
+
+    def _capture_kwargs(
+        self,
+        rofl: Path,
+        app: Path,
+        out: Path,
+        lock_path: Path,
+        *,
+        checkpoint: Optional[Path] = None,
+    ) -> dict[str, Any]:
+        return {
+            "base_url": "https://127.0.0.1:2999",
+            "rofl_path": rofl,
+            "app_path": app,
+            "out_path": out,
+            "start_ms": 60_000,
+            "end_ms": 61_000,
+            "step_ms": 1_000,
+            "game_id": int(_ingest_tests.MATCH_CODE),
+            "checkpoint_out": checkpoint,
+            "_controller_lock_path": lock_path,
+        }
+
+    def test_wrong_active_replay_preserves_output_checkpoint_and_never_posts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl, app, metadata = self._guard_fixture(root)
+            out = root / "existing.jsonl"
+            checkpoint = root / "existing.checkpoint.json"
+            out.write_bytes(b"existing-output\n")
+            checkpoint.write_bytes(b"existing-checkpoint\n")
+            transport = _ingest_tests.PreflightTransport(
+                duration_ms=metadata["durationMs"],
+                wrong_first_champion=True,
+            )
+            with self.assertRaises(extract.CaptureGuardError) as ctx:
+                _public_extract_replay_api_jsonl(
+                    transport,
+                    **self._capture_kwargs(
+                        rofl,
+                        app,
+                        out,
+                        root / "controller.lock",
+                        checkpoint=checkpoint,
+                    ),
+                )
+            self.assertIn("wrong active replay champion", str(ctx.exception))
+            self.assertEqual(out.read_bytes(), b"existing-output\n")
+            self.assertEqual(
+                checkpoint.read_bytes(),
+                b"existing-checkpoint\n",
+            )
+            self.assertTrue(transport.calls)
+            self.assertTrue(
+                all(method == "GET" for method, _url, _body in transport.calls)
+            )
+
+    def test_ingest_lock_contends_with_public_capture_before_get_or_write(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl, app, metadata = self._guard_fixture(root)
+            out = root / "existing.jsonl"
+            checkpoint = root / "existing.checkpoint.json"
+            out.write_bytes(b"output-before\n")
+            checkpoint.write_bytes(b"checkpoint-before\n")
+            lock_path = root / "controller.lock"
+            self.assertEqual(
+                _ingest_tests.ingest.controller_lock_path(artifact_root=root),
+                extract.replay_capture_guard.controller_lock_path(
+                    artifact_root=root
+                ),
+            )
+            owner = _ingest_tests.ingest.ReplayControllerLock(lock_path).acquire()
+            transport = _ingest_tests.PreflightTransport(
+                duration_ms=metadata["durationMs"],
+            )
+            try:
+                with self.assertRaises(extract.CaptureGuardError) as ctx:
+                    _public_extract_replay_api_jsonl(
+                        transport,
+                        **self._capture_kwargs(
+                            rofl,
+                            app,
+                            out,
+                            lock_path,
+                            checkpoint=checkpoint,
+                        ),
+                    )
+            finally:
+                owner.release()
+            self.assertIn("already locked", str(ctx.exception))
+            self.assertEqual(transport.calls, [])
+            self.assertEqual(out.read_bytes(), b"output-before\n")
+            self.assertEqual(
+                checkpoint.read_bytes(),
+                b"checkpoint-before\n",
+            )
+
+    def test_public_guard_holds_lock_through_internal_capture(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl, app, metadata = self._guard_fixture(root)
+            lock_path = root / "controller.lock"
+            transport = _ingest_tests.PreflightTransport(
+                duration_ms=metadata["durationMs"],
+            )
+
+            def internal(_transport, **_kwargs):
+                with self.assertRaises(
+                    extract.replay_capture_guard.ReplayGuardError
+                ):
+                    extract.replay_capture_guard.ReplayControllerLock(
+                        lock_path
+                    ).acquire()
+                return {"ok": True, "restoreSucceeded": True}
+
+            with mock.patch.object(
+                extract,
+                "_extract_replay_api_jsonl_after_guard",
+                internal,
+            ):
+                result = _public_extract_replay_api_jsonl(
+                    transport,
+                    **self._capture_kwargs(
+                        rofl,
+                        app,
+                        root / "new.jsonl",
+                        lock_path,
+                    ),
+                )
+            self.assertTrue(result["ok"])
+            self.assertEqual(len(transport.calls), 4)
+            self.assertTrue(
+                all(method == "GET" for method, _url, _body in transport.calls)
+            )
+            released = extract.replay_capture_guard.ReplayControllerLock(
+                lock_path
+            ).acquire()
+            released.release()
+
+    def test_cli_guard_failure_does_not_rewrite_checkpoint(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl, app, metadata = self._guard_fixture(root)
+            out = root / "cli.jsonl"
+            checkpoint = root / "cli.checkpoint.json"
+            out.write_bytes(b"cli-output\n")
+            checkpoint.write_bytes(b"cli-checkpoint\n")
+            transport = _ingest_tests.PreflightTransport(
+                duration_ms=metadata["durationMs"],
+                wrong_first_champion=True,
+            )
+            with mock.patch.object(
+                extract,
+                "extract_replay_api_jsonl",
+                _public_extract_replay_api_jsonl,
+            ), mock.patch.object(
+                extract.probe,
+                "default_http_transport",
+                transport,
+            ), mock.patch.object(
+                extract.replay_capture_guard,
+                "controller_lock_path",
+                return_value=root / "controller.lock",
+            ), mock.patch("sys.stdout", new=io.StringIO()):
+                code = extract.main(
+                    [
+                        "--rofl",
+                        str(rofl),
+                        "--app",
+                        str(app),
+                        "--out",
+                        str(out),
+                        "--start-ms",
+                        "60000",
+                        "--end-ms",
+                        "61000",
+                        "--step-ms",
+                        "1000",
+                        "--game-id",
+                        _ingest_tests.MATCH_CODE,
+                        "--checkpoint-out",
+                        str(checkpoint),
+                    ]
+                )
+            self.assertEqual(code, 4)
+            self.assertEqual(out.read_bytes(), b"cli-output\n")
+            self.assertEqual(
+                checkpoint.read_bytes(),
+                b"cli-checkpoint\n",
+            )
+            self.assertTrue(
+                all(method == "GET" for method, _url, _body in transport.calls)
+            )
 
 
 def _players_at(
@@ -789,15 +1014,29 @@ class ExtractorMockTests(unittest.TestCase):
             ]
             info = next(r for r in lines if r["rfc461Schema"] == "game_info")
             roles = [p["role"] for p in info["participants"]]
-            self.assertEqual(roles, EXPECTED_ROLES)
+            expected_by_name = {
+                name: EXPECTED_ROLES[index]
+                for index, (_champ, _team, name, _tag, _position) in enumerate(
+                    CHAMPS
+                )
+            }
+            self.assertEqual(
+                {p["playerName"]: p["role"] for p in info["participants"]},
+                expected_by_name,
+            )
             self.assertNotIn("NONE", roles)
             stats = next(r for r in lines if r["rfc461Schema"] == "stats_update")
-            self.assertEqual([p["role"] for p in stats["participants"]], EXPECTED_ROLES)
+            self.assertEqual(
+                {p["playerName"]: p["role"] for p in stats["participants"]},
+                expected_by_name,
+            )
             tl = jsonl_to_timeline.build_timeline(
                 out, timeline_id="roles", name="roles", patch="test"
             )
-            frame_roles = [u["role"] for u in tl["frames"][0]["units"]]
-            self.assertEqual(frame_roles, EXPECTED_ROLES)
+            self.assertEqual(
+                {u["name"]: u["role"] for u in tl["frames"][0]["units"]},
+                expected_by_name,
+            )
 
 
 class RestoreTwoPhaseTests(unittest.TestCase):

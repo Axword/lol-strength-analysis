@@ -44,6 +44,10 @@ MODEL_VERSION = "touch-v5"
 HIGH_CONF_MIN_AA = 3
 HIGH_CONF_MAX_FAR_SHARE = 0.30
 MAP_SIZE = 14870.0
+MOTION_AUDIT_VERSION = "motion-audit-v1"
+MAX_CONTINUOUS_SPEED = 1500.0
+MOTION_DISTANCE_SLACK = 350.0
+SCORE_FIELDS = ("kills", "deaths", "assists", "cs", "visionScore")
 
 # Blue (100) structures — this match + SR layout. Red = 180° rotate.
 _BLUE_STRUCTURES: list[tuple[float, float]] = [
@@ -195,11 +199,18 @@ def touch_confidence(*, have_structure_map: bool, aa_n: int, far_n: int) -> str:
 
 
 def stats_map(p: dict) -> dict[str, float]:
-    out = {k: 0.0 for k in CAREER_KEYS}
+    """Return only counters explicitly present in the authoritative stats list."""
+    out: dict[str, float] = {}
     for s in p.get("stats") or []:
         name = s.get("name")
-        if name in out:
-            out[name] = float(s.get("value") or 0)
+        if name not in CAREER_KEYS or s.get("value") is None:
+            continue
+        try:
+            value = float(s["value"])
+        except (TypeError, ValueError):
+            continue
+        if math.isfinite(value):
+            out[name] = value
     return out
 
 
@@ -215,36 +226,244 @@ def load_attack_types() -> dict[str, str]:
 
 
 def compact_base(p: dict) -> dict:
+    liveclient = p.get("career")
+    if isinstance(liveclient, dict):
+        field_map = {
+            "kills": "kills",
+            "deaths": "deaths",
+            "assists": "assists",
+            "totalCreepScore": "cs",
+            "visionScore": "visionScore",
+        }
+        sources = p.get("careerSources") or {}
+        out: dict = {
+            "careerSource": p.get("careerSource") or "liveclient_scores",
+            "careerCoverage": "scores_only",
+            "fieldSources": {},
+            "unavailableFields": [
+                "damage",
+                "gold",
+                "jungleCs",
+                "objectives",
+            ],
+        }
+        for source_key, output_key in field_map.items():
+            if source_key not in liveclient or liveclient.get(source_key) is None:
+                continue
+            value = liveclient[source_key]
+            out[output_key] = (
+                round(float(value), 1)
+                if output_key == "visionScore"
+                else int(value)
+            )
+            out["fieldSources"][output_key] = (
+                sources.get(source_key)
+                or p.get("careerSource")
+                or "liveclient_scores"
+            )
+        return out
+
     sm = stats_map(p)
-    return {
-        "kills": int(sm["CHAMPIONS_KILLED"]),
-        "deaths": int(sm["NUM_DEATHS"]),
-        "assists": int(sm["ASSISTS"]),
-        "cs": int(sm["MINIONS_KILLED"] + sm["NEUTRAL_MINIONS_KILLED"]),
-        "jungleCs": int(sm["NEUTRAL_MINIONS_KILLED"]),
-        "visionScore": round(sm["VISION_SCORE"], 1),
-        "dmgTotal": round(sm["TOTAL_DAMAGE_DEALT"]),
-        "dmgToChamps": round(sm["TOTAL_DAMAGE_DEALT_TO_CHAMPIONS"]),
-        "physToChamps": round(sm["PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS"]),
-        "magicToChamps": round(sm["MAGIC_DAMAGE_DEALT_TO_CHAMPIONS"]),
-        "trueToChamps": round(sm["TRUE_DAMAGE_DEALT_TO_CHAMPIONS"]),
-        "dmgTaken": round(sm["TOTAL_DAMAGE_TAKEN"]),
-        "dmgTakenFromChamps": round(sm["TOTAL_DAMAGE_TAKEN_FROM_CHAMPIONS"]),
-        "selfMitigated": round(sm["TOTAL_DAMAGE_SELF_MITIGATED"]),
-        "dmgToTurrets": round(sm["TOTAL_DAMAGE_DEALT_TO_TURRETS"]),
-        "dmgToBuildings": round(sm["TOTAL_DAMAGE_DEALT_TO_BUILDINGS"]),
-        "dmgToObjectives": round(sm["TOTAL_DAMAGE_DEALT_TO_OBJECTIVES"]),
-        "ccToChamps": round(sm["TOTAL_TIME_CROWD_CONTROL_DEALT_TO_CHAMPIONS"], 1),
-        "healOnTeammates": round(sm["TOTAL_HEAL_ON_TEAMMATES"]),
-        "shieldOnTeammates": round(sm["TOTAL_DAMAGE_SHIELDED_ON_TEAMMATES"]),
-        "asPct": round(float(p.get("attackSpeed") or 100), 1),
-        "cdr": round(float(p.get("cooldownReduction") or 0), 1),
-        "lifeSteal": round(float(p.get("lifeSteal") or 0), 1),
-        "spellVamp": round(float(p.get("spellVamp") or 0), 1),
-        "hpRegen": round(float(p.get("healthRegen") or 0), 1),
-        "gold": int(p.get("totalGold") or 0),
-        "goldBag": int(p.get("currentGold") or 0),
+    stat_fields = {
+        "kills": ("CHAMPIONS_KILLED", int),
+        "deaths": ("NUM_DEATHS", int),
+        "assists": ("ASSISTS", int),
+        "visionScore": ("VISION_SCORE", lambda value: round(value, 1)),
+        "dmgTotal": ("TOTAL_DAMAGE_DEALT", round),
+        "dmgToChamps": ("TOTAL_DAMAGE_DEALT_TO_CHAMPIONS", round),
+        "physToChamps": ("PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS", round),
+        "magicToChamps": ("MAGIC_DAMAGE_DEALT_TO_CHAMPIONS", round),
+        "trueToChamps": ("TRUE_DAMAGE_DEALT_TO_CHAMPIONS", round),
+        "dmgTaken": ("TOTAL_DAMAGE_TAKEN", round),
+        "dmgTakenFromChamps": ("TOTAL_DAMAGE_TAKEN_FROM_CHAMPIONS", round),
+        "selfMitigated": ("TOTAL_DAMAGE_SELF_MITIGATED", round),
+        "dmgToTurrets": ("TOTAL_DAMAGE_DEALT_TO_TURRETS", round),
+        "dmgToBuildings": ("TOTAL_DAMAGE_DEALT_TO_BUILDINGS", round),
+        "dmgToObjectives": ("TOTAL_DAMAGE_DEALT_TO_OBJECTIVES", round),
+        "ccToChamps": (
+            "TOTAL_TIME_CROWD_CONTROL_DEALT_TO_CHAMPIONS",
+            lambda value: round(value, 1),
+        ),
+        "healOnTeammates": ("TOTAL_HEAL_ON_TEAMMATES", round),
+        "shieldOnTeammates": ("TOTAL_DAMAGE_SHIELDED_ON_TEAMMATES", round),
     }
+    out = {
+        "careerSource": "riot_live_stats",
+        "careerCoverage": (
+            "full" if all(key in sm for key in CAREER_KEYS) else "partial"
+        ),
+        "fieldSources": {},
+    }
+    for output_key, (source_key, cast) in stat_fields.items():
+        if source_key in sm:
+            out[output_key] = cast(sm[source_key])
+            out["fieldSources"][output_key] = "riot_live_stats"
+    if "MINIONS_KILLED" in sm and "NEUTRAL_MINIONS_KILLED" in sm:
+        out["cs"] = int(sm["MINIONS_KILLED"] + sm["NEUTRAL_MINIONS_KILLED"])
+        out["fieldSources"]["cs"] = "riot_live_stats"
+    if "NEUTRAL_MINIONS_KILLED" in sm:
+        out["jungleCs"] = int(sm["NEUTRAL_MINIONS_KILLED"])
+        out["fieldSources"]["jungleCs"] = "riot_live_stats"
+    direct_fields = {
+        "asPct": ("attackSpeed", lambda value: round(float(value), 1)),
+        "cdr": ("cooldownReduction", lambda value: round(float(value), 1)),
+        "lifeSteal": ("lifeSteal", lambda value: round(float(value), 1)),
+        "spellVamp": ("spellVamp", lambda value: round(float(value), 1)),
+        "hpRegen": ("healthRegen", lambda value: round(float(value), 1)),
+        "gold": ("totalGold", int),
+        "goldBag": ("currentGold", int),
+    }
+    for output_key, (source_key, cast) in direct_fields.items():
+        if source_key in p and p.get(source_key) is not None:
+            out[output_key] = cast(p[source_key])
+            out["fieldSources"][output_key] = "riot_live_stats"
+    return out
+
+
+def validate_monotonic_known_scores(
+    updates_raw: list[tuple[int, list[dict]]],
+) -> None:
+    """Reject regressions only for cumulative score fields that are known."""
+    previous: dict[tuple[int, str], tuple[float, int]] = {}
+    for t, participants in sorted(updates_raw, key=lambda row: row[0]):
+        for participant in participants:
+            pid = int(participant["participantID"])
+            career = compact_base(participant)
+            for field in SCORE_FIELDS:
+                if career.get(field) is None:
+                    continue
+                value = float(career[field])
+                key = (pid, field)
+                prior = previous.get(key)
+                if prior is not None and value < prior[0]:
+                    raise ValueError(
+                        "non-monotonic known score "
+                        f"pid={pid} field={field} t={t} "
+                        f"value={value} prior={prior[0]}@{prior[1]}"
+                    )
+                previous[key] = (value, t)
+
+
+def _relocation_event_kind(event: dict) -> str | None:
+    text = json.dumps(event, sort_keys=True, ensure_ascii=True).casefold()
+    if "teleport" in text:
+        return "teleport"
+    if "recall" in text:
+        return "recall"
+    return None
+
+
+def audit_motion_discontinuities(
+    timeline: dict,
+    relocation_events: dict[int, list[tuple[int, str]]] | None = None,
+) -> dict:
+    """Annotate only implausible segments; never modify raw frame coordinates."""
+    relocation_events = relocation_events or {}
+    previous: dict[int, tuple[int, dict]] = {}
+    segment_count = 0
+    discontinuities = 0
+    death_respawn = 0
+    recall_teleport = 0
+    unexplained = 0
+    max_distance = 0.0
+
+    for frame in timeline.get("frames") or []:
+        t = int(frame.get("t") or 0)
+        for unit in frame.get("units") or []:
+            unit.pop("motionFromPrevious", None)
+            pid = int(unit["pid"])
+            prior = previous.get(pid)
+            if prior is not None:
+                prev_t, prev = prior
+                delta_ms = max(1, t - prev_t)
+                distance = math.hypot(
+                    float(unit.get("x") or 0) - float(prev.get("x") or 0),
+                    float(unit.get("y") or 0) - float(prev.get("y") or 0),
+                ) * MAP_SIZE
+                max_distance = max(max_distance, distance)
+                segment_count += 1
+                plausible_limit = (
+                    MOTION_DISTANCE_SLACK
+                    + MAX_CONTINUOUS_SPEED * (delta_ms / 1000.0)
+                )
+                if distance > plausible_limit:
+                    evidence: list[str] = []
+                    prev_alive = prev.get("alive")
+                    now_alive = unit.get("alive")
+                    if (
+                        isinstance(prev_alive, bool)
+                        and isinstance(now_alive, bool)
+                        and prev_alive != now_alive
+                    ):
+                        classification = "death_respawn"
+                        evidence.append(
+                            f"alive_transition:{str(prev_alive).lower()}->{str(now_alive).lower()}"
+                        )
+                        death_respawn += 1
+                    else:
+                        nearby = [
+                            (event_t, kind)
+                            for event_t, kind in relocation_events.get(pid, [])
+                            if prev_t - 250 <= event_t <= t + 250
+                        ]
+                        if nearby:
+                            classification = "recall_or_teleport"
+                            evidence.extend(
+                                f"{kind}_event@{event_t}" for event_t, kind in nearby
+                            )
+                            recall_teleport += 1
+                        else:
+                            classification = "unexplained"
+                            evidence.append("no_relocation_evidence")
+                            unexplained += 1
+                    unit["motionFromPrevious"] = {
+                        "kind": "discontinuity",
+                        "classification": classification,
+                        "fromTimeMs": prev_t,
+                        "toTimeMs": t,
+                        "deltaMs": delta_ms,
+                        "distanceMapUnits": round(distance, 1),
+                        "plausibleLimitMapUnits": round(plausible_limit, 1),
+                        "evidence": evidence,
+                    }
+                    discontinuities += 1
+            previous[pid] = (t, unit)
+
+    summary = {
+        "version": MOTION_AUDIT_VERSION,
+        "segmentCount": segment_count,
+        "discontinuityCount": discontinuities,
+        "deathRespawnCount": death_respawn,
+        "recallTeleportCount": recall_teleport,
+        "unexplainedCount": unexplained,
+        "maxDisplacementMapUnits": round(max_distance, 1),
+        "maxContinuousSpeedUnitsPerSec": MAX_CONTINUOUS_SPEED,
+        "distanceSlackMapUnits": MOTION_DISTANCE_SLACK,
+    }
+    provenance = timeline.setdefault("provenance", {})
+    provenance["motionAudit"] = summary
+
+    marker_text = " ".join(
+        str(value or "").casefold()
+        for value in (
+            timeline.get("source"),
+            provenance.get("source"),
+            provenance.get("sourceKind"),
+            provenance.get("positionCoverage"),
+        )
+    )
+    if "synthetic" in marker_text or "path_walk" in marker_text:
+        provenance["nativePositionCoverage"] = "none"
+        if provenance.get("positionCoverage") in {
+            "full",
+            "full_at_sampled_frames",
+        }:
+            provenance["positionCoverage"] = "synthetic_sampled_frames"
+    else:
+        provenance["nativePositionCoverage"] = provenance.get(
+            "positionCoverage", "unknown"
+        )
+    return summary
 
 
 def main() -> None:
@@ -270,6 +489,7 @@ def main() -> None:
         (o, int(round(x)), int(round(z))) for x, z, o in structures
     }
     skill_casts: dict[int, list[int]] = {}
+    relocation_events: dict[int, list[tuple[int, str]]] = {}
     # Timed structure mutations applied during the stats loop
     structure_events: list[tuple[int, str, float, float, int]] = []
 
@@ -280,6 +500,20 @@ def main() -> None:
             o = json.loads(line)
             schema = o.get("rfc461Schema")
             t = int(o.get("gameTime") or 0)
+            if schema in {
+                "summoner_spell_used",
+                "recall",
+                "recall_completed",
+                "teleport",
+            }:
+                relocation_kind = _relocation_event_kind(o)
+                relocation_pid = o.get("participantID")
+                if relocation_pid is None:
+                    relocation_pid = o.get("participant")
+                if relocation_kind and relocation_pid is not None:
+                    relocation_events.setdefault(int(relocation_pid), []).append(
+                        (t, relocation_kind)
+                    )
 
             if schema == "epic_monster_kill" and o.get("monsterType") == "VoidGrub":
                 grub_kills.append((t, int(o.get("killerTeamID") or 0)))
@@ -321,6 +555,9 @@ def main() -> None:
     structure_events.sort(key=lambda e: e[0])
     grub_kills.sort()
     updates_raw.sort(key=lambda x: x[0])
+    validate_monotonic_known_scores(updates_raw)
+    for events in relocation_events.values():
+        events.sort()
 
     # Apply all upserts from the match onto the seed (refine coords) before sim,
     # then re-seed live state and apply removes in time order during the loop.
@@ -359,6 +596,7 @@ def main() -> None:
     have_map = len(live) > 0
 
     updates: list[tuple[int, dict[int, dict]]] = []
+    has_touch = False
 
     for t, participants in updates_raw:
         while gi < len(grub_kills) and grub_kills[gi][0] <= t:
@@ -388,6 +626,10 @@ def main() -> None:
             tick = tick_table[min(MAX_STACKS, stacks)]
 
             career = compact_base(p)
+            if career.get("careerCoverage") != "full":
+                by_pid[pid] = career
+                continue
+            has_touch = True
             turret_dmg = float(
                 next(
                     (
@@ -504,6 +746,14 @@ def main() -> None:
             career["touchRefreshMite"] = mite_n
             career["touchConfidence"] = conf
             career["touchModel"] = MODEL_VERSION
+            career.setdefault("fieldSources", {}).update(
+                {
+                    "touchDmg": MODEL_VERSION,
+                    "touchTick": MODEL_VERSION,
+                    "touchStacks": MODEL_VERSION,
+                    "touchBurnSec": MODEL_VERSION,
+                }
+            )
             by_pid[pid] = career
 
         updates.append((t, by_pid))
@@ -514,17 +764,40 @@ def main() -> None:
         t = fr["t"]
         while ui + 1 < len(updates) and updates[ui + 1][0] <= t:
             ui += 1
-        by_pid = updates[ui][1] if updates else {}
+        by_pid = updates[ui][1] if updates and updates[ui][0] <= t else {}
         for u in fr["units"]:
             career = by_pid.get(u["pid"])
             if career:
                 u["career"] = career
                 attached += 1
 
-    timeline["hasCareerStats"] = True
-    timeline["hasTouchDmg"] = True
-    timeline["touchModel"] = MODEL_VERSION
-    timeline["touchPatch"] = "26.11"
+    coverage_counts = {"full": 0, "scores_only": 0, "partial": 0}
+    for _t, by_pid in updates:
+        for career in by_pid.values():
+            mode = career.get("careerCoverage")
+            if mode in coverage_counts:
+                coverage_counts[mode] += 1
+    timeline["hasCareerStats"] = attached > 0
+    timeline["careerCoverage"] = {
+        "fullRows": coverage_counts["full"],
+        "scoreOnlyRows": coverage_counts["scores_only"],
+        "partialRows": coverage_counts["partial"],
+        "scoreFields": list(SCORE_FIELDS),
+        "unsupportedScoreOnlyFields": [
+            "damage",
+            "gold",
+            "jungleCs",
+            "objectives",
+        ],
+    }
+    timeline["hasTouchDmg"] = has_touch
+    if has_touch:
+        timeline["touchModel"] = MODEL_VERSION
+        timeline["touchPatch"] = "26.11"
+    else:
+        timeline.pop("touchModel", None)
+        timeline.pop("touchPatch", None)
+    motion_summary = audit_motion_discontinuities(timeline, relocation_events)
     TIMELINE.parent.mkdir(parents=True, exist_ok=True)
     TIMELINE.write_text(json.dumps(timeline, separators=(",", ":")))
     size_mb = TIMELINE.stat().st_size / (1024 * 1024)
@@ -541,7 +814,9 @@ def main() -> None:
 
     print(
         f"wrote {TIMELINE} ({size_mb:.2f} MB), career cells={attached}, "
-        f"max touchDmg={max_touch}, endframe high_conf={highs}"
+        f"max touchDmg={max_touch}, endframe high_conf={highs}, "
+        f"motion discontinuities={motion_summary['discontinuityCount']} "
+        f"unexplained={motion_summary['unexplainedCount']}"
     )
 
 

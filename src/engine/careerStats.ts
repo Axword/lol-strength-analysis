@@ -9,28 +9,41 @@ import {
   grubTouchGoldEquivalent,
 } from './objectives'
 
-/** Compact career snapshot attached to timeline units. */
+export type CareerCoverage = 'full' | 'scores_only' | 'partial'
+
+/**
+ * Compact cumulative snapshot attached to timeline units.
+ *
+ * Every metric is optional because replay sources can honestly expose only a
+ * subset. Missing is unavailable, never numeric zero.
+ */
 export interface ChampCareerStats {
-  kills: number
-  deaths: number
-  assists: number
-  cs: number
-  jungleCs: number
-  visionScore: number
-  dmgTotal: number
-  dmgToChamps: number
-  physToChamps: number
-  magicToChamps: number
-  trueToChamps: number
-  dmgTaken: number
-  dmgTakenFromChamps: number
-  selfMitigated: number
-  dmgToTurrets: number
-  dmgToBuildings: number
-  dmgToObjectives: number
-  ccToChamps: number
-  healOnTeammates: number
-  shieldOnTeammates: number
+  careerSource?: string
+  careerCoverage?: CareerCoverage
+  fieldSources?: Record<string, string>
+  unavailableFields?: string[]
+  kills?: number
+  deaths?: number
+  assists?: number
+  /** Total creep score. This is not lane CS. */
+  cs?: number
+  /** Neutral/jungle split only when explicitly supplied by an authoritative feed. */
+  jungleCs?: number
+  visionScore?: number
+  dmgTotal?: number
+  dmgToChamps?: number
+  physToChamps?: number
+  magicToChamps?: number
+  trueToChamps?: number
+  dmgTaken?: number
+  dmgTakenFromChamps?: number
+  selfMitigated?: number
+  dmgToTurrets?: number
+  dmgToBuildings?: number
+  dmgToObjectives?: number
+  ccToChamps?: number
+  healOnTeammates?: number
+  shieldOnTeammates?: number
   /**
    * Cumulative Touch-of-the-Void true damage from wiki burn model
    * (structure AA refresh + Hunger mite uptime). Monotonic in time.
@@ -54,13 +67,13 @@ export interface ChampCareerStats {
   touchConfidence?: 'high' | 'medium' | 'low'
   touchModel?: string
   /** Feed attack speed as % of base (100 = baseline). */
-  asPct: number
-  cdr: number
-  lifeSteal: number
-  spellVamp: number
-  hpRegen: number
+  asPct?: number
+  cdr?: number
+  lifeSteal?: number
+  spellVamp?: number
+  hpRegen?: number
   /** Lifetime gold earned (Riot totalGold). */
-  gold: number
+  gold?: number
   /** Unspent gold in inventory (Riot currentGold). */
   goldBag?: number
 }
@@ -237,10 +250,10 @@ export function attributeDrakeBuffs(
   }
 
   const infernalBonusDmg =
-    shareFromPercent(c.physToChamps, mods.adPercent) +
-    shareFromPercent(c.magicToChamps, mods.apPercent)
+    shareFromPercent(c.physToChamps ?? 0, mods.adPercent) +
+    shareFromPercent(c.magicToChamps ?? 0, mods.apPercent)
 
-  const mountainMitigated = shareFromPercent(c.selfMitigated, mods.armorPercent)
+  const mountainMitigated = shareFromPercent(c.selfMitigated ?? 0, mods.armorPercent)
 
   const chemHspBonus = shareFromPercent(
     (c.healOnTeammates || 0) + (c.shieldOnTeammates || 0),

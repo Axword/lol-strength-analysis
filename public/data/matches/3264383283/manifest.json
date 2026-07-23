@@ -1,0 +1,943 @@
+{
+  "manifestVersion": 4,
+  "createdAt": "2026-07-22T16:25:29.287069Z",
+  "updatedAt": "2026-07-22T16:27:55.268313Z",
+  "match": {
+    "platformId": "BR1",
+    "matchCode": "3264383283",
+    "gameId": 3264383283,
+    "gameName": "3264383283"
+  },
+  "rofl": {
+    "basename": "BR1-3264383283.rofl",
+    "sha256": "252ce894c922da2fa8447ae72e0df5deed1a2578d7de769cea191b75ff7abf36",
+    "sizeBytes": 18187816,
+    "format": "ROFL2",
+    "formatVersion": 2,
+    "patch": "16.14",
+    "build": "16.14.794.5912",
+    "durationMs": 2155367
+  },
+  "rosterHash": "7a93aebb6530839bf2ab2c24e319b86d42302421b722fe4d4266be743fec1876",
+  "participants": [
+    {
+      "sourceRecordIndex": 0,
+      "teamId": 100,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+        "key": "puuid:3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+        "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+        "riotId": {
+          "gameName": "casual jogador",
+          "tagLine": "2709",
+          "full": "casual jogador#2709",
+          "normalized": "casual jogador#2709"
+        },
+        "stable": true
+      },
+      "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+      "riotId": {
+        "gameName": "casual jogador",
+        "tagLine": "2709",
+        "full": "casual jogador#2709",
+        "normalized": "casual jogador#2709"
+      },
+      "champion": {
+        "raw": "Renekton",
+        "display": "Renekton",
+        "asset": "Renekton",
+        "model": "Renekton",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "TOP"
+    },
+    {
+      "sourceRecordIndex": 2,
+      "teamId": 100,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+        "key": "puuid:49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+        "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+        "riotId": {
+          "gameName": "Cigarro",
+          "tagLine": "lony",
+          "full": "Cigarro#lony",
+          "normalized": "cigarro#lony"
+        },
+        "stable": true
+      },
+      "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+      "riotId": {
+        "gameName": "Cigarro",
+        "tagLine": "lony",
+        "full": "Cigarro#lony",
+        "normalized": "cigarro#lony"
+      },
+      "champion": {
+        "raw": "Yasuo",
+        "display": "Yasuo",
+        "asset": "Yasuo",
+        "model": "Yasuo",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "MIDDLE"
+    },
+    {
+      "sourceRecordIndex": 4,
+      "teamId": 100,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+        "key": "puuid:81d821ca-5d53-505d-b6fd-1478f35a3856",
+        "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+        "riotId": {
+          "gameName": "nhUwUmi",
+          "tagLine": "glhf",
+          "full": "nhUwUmi#glhf",
+          "normalized": "nhuwumi#glhf"
+        },
+        "stable": true
+      },
+      "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+      "riotId": {
+        "gameName": "nhUwUmi",
+        "tagLine": "glhf",
+        "full": "nhUwUmi#glhf",
+        "normalized": "nhuwumi#glhf"
+      },
+      "champion": {
+        "raw": "Nami",
+        "display": "Nami",
+        "asset": "Nami",
+        "model": "Nami",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "UTILITY"
+    },
+    {
+      "sourceRecordIndex": 1,
+      "teamId": 100,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+        "key": "puuid:c6931d39-01bc-587b-b12a-ad5663b40ebe",
+        "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+        "riotId": {
+          "gameName": "pixel",
+          "tagLine": "mari",
+          "full": "pixel#mari",
+          "normalized": "pixel#mari"
+        },
+        "stable": true
+      },
+      "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+      "riotId": {
+        "gameName": "pixel",
+        "tagLine": "mari",
+        "full": "pixel#mari",
+        "normalized": "pixel#mari"
+      },
+      "champion": {
+        "raw": "Mordekaiser",
+        "display": "Mordekaiser",
+        "asset": "Mordekaiser",
+        "model": "Mordekaiser",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "JUNGLE"
+    },
+    {
+      "sourceRecordIndex": 3,
+      "teamId": 100,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+        "key": "puuid:f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+        "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+        "riotId": {
+          "gameName": "Ayron",
+          "tagLine": "001",
+          "full": "Ayron#001",
+          "normalized": "ayron#001"
+        },
+        "stable": true
+      },
+      "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+      "riotId": {
+        "gameName": "Ayron",
+        "tagLine": "001",
+        "full": "Ayron#001",
+        "normalized": "ayron#001"
+      },
+      "champion": {
+        "raw": "Jhin",
+        "display": "Jhin",
+        "asset": "Jhin",
+        "model": "Jhin",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "BOTTOM"
+    },
+    {
+      "sourceRecordIndex": 6,
+      "teamId": 200,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+        "key": "puuid:0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+        "puuid": "0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+        "riotId": {
+          "gameName": "Aphelios",
+          "tagLine": "fofo",
+          "full": "Aphelios#fofo",
+          "normalized": "aphelios#fofo"
+        },
+        "stable": true
+      },
+      "puuid": "0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+      "riotId": {
+        "gameName": "Aphelios",
+        "tagLine": "fofo",
+        "full": "Aphelios#fofo",
+        "normalized": "aphelios#fofo"
+      },
+      "champion": {
+        "raw": "Lillia",
+        "display": "Lillia",
+        "asset": "Lillia",
+        "model": "Lillia",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "JUNGLE"
+    },
+    {
+      "sourceRecordIndex": 9,
+      "teamId": 200,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+        "key": "puuid:2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+        "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+        "riotId": {
+          "gameName": "Sonancia",
+          "tagLine": "UEL",
+          "full": "Sonancia#UEL",
+          "normalized": "sonancia#uel"
+        },
+        "stable": true
+      },
+      "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+      "riotId": {
+        "gameName": "Sonancia",
+        "tagLine": "UEL",
+        "full": "Sonancia#UEL",
+        "normalized": "sonancia#uel"
+      },
+      "champion": {
+        "raw": "Sona",
+        "display": "Sona",
+        "asset": "Sona",
+        "model": "Sona",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "UTILITY"
+    },
+    {
+      "sourceRecordIndex": 5,
+      "teamId": 200,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+        "key": "puuid:2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+        "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+        "riotId": {
+          "gameName": "awakening",
+          "tagLine": "0000",
+          "full": "awakening#0000",
+          "normalized": "awakening#0000"
+        },
+        "stable": true
+      },
+      "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+      "riotId": {
+        "gameName": "awakening",
+        "tagLine": "0000",
+        "full": "awakening#0000",
+        "normalized": "awakening#0000"
+      },
+      "champion": {
+        "raw": "Zaahen",
+        "display": "Zaahen",
+        "asset": "Zaahen",
+        "model": null,
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": false,
+        "modelResolution": "unresolved_no_zero_damage_fallback",
+        "resolved": true
+      },
+      "role": "TOP"
+    },
+    {
+      "sourceRecordIndex": 7,
+      "teamId": 200,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "7523c6e7-9c22-5c51-b775-013559bcecec",
+        "key": "puuid:7523c6e7-9c22-5c51-b775-013559bcecec",
+        "puuid": "7523c6e7-9c22-5c51-b775-013559bcecec",
+        "riotId": {
+          "gameName": "haste",
+          "tagLine": "zap",
+          "full": "haste#zap",
+          "normalized": "haste#zap"
+        },
+        "stable": true
+      },
+      "puuid": "7523c6e7-9c22-5c51-b775-013559bcecec",
+      "riotId": {
+        "gameName": "haste",
+        "tagLine": "zap",
+        "full": "haste#zap",
+        "normalized": "haste#zap"
+      },
+      "champion": {
+        "raw": "Zed",
+        "display": "Zed",
+        "asset": "Zed",
+        "model": "Zed",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "MIDDLE"
+    },
+    {
+      "sourceRecordIndex": 8,
+      "teamId": 200,
+      "sourceIdentity": {
+        "kind": "puuid",
+        "value": "f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+        "key": "puuid:f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+        "puuid": "f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+        "riotId": {
+          "gameName": "Akuro",
+          "tagLine": "2265",
+          "full": "Akuro#2265",
+          "normalized": "akuro#2265"
+        },
+        "stable": true
+      },
+      "puuid": "f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+      "riotId": {
+        "gameName": "Akuro",
+        "tagLine": "2265",
+        "full": "Akuro#2265",
+        "normalized": "akuro#2265"
+      },
+      "champion": {
+        "raw": "Ashe",
+        "display": "Ashe",
+        "asset": "Ashe",
+        "model": "Ashe",
+        "rawResolved": true,
+        "displayResolved": true,
+        "assetResolved": null,
+        "assetResolution": "normalized_unverified",
+        "modelResolved": true,
+        "modelResolution": "normalized_identity",
+        "resolved": true
+      },
+      "role": "BOTTOM"
+    }
+  ],
+  "postGameSummary": {
+    "source": "rofl_metadata_statsJson",
+    "scope": "end_game_static",
+    "scrubbableFrameHistory": false,
+    "notes": "Trailing ROFL statsJson is an end-game summary only and is never copied into sampled rfc461 frame history.",
+    "participants": [
+      {
+        "sourceRecordIndex": 6,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+          "key": "puuid:0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+          "puuid": "0a452f80-f9f0-527e-89be-ce6fdf5e2fbd",
+          "riotId": {
+            "gameName": "Aphelios",
+            "tagLine": "fofo",
+            "full": "Aphelios#fofo",
+            "normalized": "aphelios#fofo"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Lillia",
+          "display": "Lillia",
+          "asset": "Lillia",
+          "model": "Lillia",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 1,
+          "deaths": 7,
+          "assists": 3,
+          "minionsKilled": 51,
+          "neutralMinionsKilled": 217,
+          "visionScore": 35,
+          "goldEarned": 12808,
+          "damageToChampions": 5564,
+          "damageTaken": 38171
+        }
+      },
+      {
+        "sourceRecordIndex": 9,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+          "key": "puuid:2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+          "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+          "riotId": {
+            "gameName": "Sonancia",
+            "tagLine": "UEL",
+            "full": "Sonancia#UEL",
+            "normalized": "sonancia#uel"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Sona",
+          "display": "Sona",
+          "asset": "Sona",
+          "model": "Sona",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 7,
+          "deaths": 11,
+          "assists": 23,
+          "minionsKilled": 50,
+          "neutralMinionsKilled": 0,
+          "visionScore": 98,
+          "goldEarned": 13546,
+          "damageToChampions": 22635,
+          "damageTaken": 38852
+        }
+      },
+      {
+        "sourceRecordIndex": 5,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+          "key": "puuid:2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+          "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+          "riotId": {
+            "gameName": "awakening",
+            "tagLine": "0000",
+            "full": "awakening#0000",
+            "normalized": "awakening#0000"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Zaahen",
+          "display": "Zaahen",
+          "asset": "Zaahen",
+          "model": null,
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": false,
+          "modelResolution": "unresolved_no_zero_damage_fallback",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 9,
+          "deaths": 13,
+          "assists": 9,
+          "minionsKilled": 198,
+          "neutralMinionsKilled": 4,
+          "visionScore": 20,
+          "goldEarned": 14015,
+          "damageToChampions": 47745,
+          "damageTaken": 78466
+        }
+      },
+      {
+        "sourceRecordIndex": 0,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+          "key": "puuid:3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+          "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+          "riotId": {
+            "gameName": "casual jogador",
+            "tagLine": "2709",
+            "full": "casual jogador#2709",
+            "normalized": "casual jogador#2709"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Renekton",
+          "display": "Renekton",
+          "asset": "Renekton",
+          "model": "Renekton",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 6,
+          "deaths": 6,
+          "assists": 10,
+          "minionsKilled": 308,
+          "neutralMinionsKilled": 0,
+          "visionScore": 14,
+          "goldEarned": 16513,
+          "damageToChampions": 45239,
+          "damageTaken": 46816
+        }
+      },
+      {
+        "sourceRecordIndex": 2,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+          "key": "puuid:49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+          "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+          "riotId": {
+            "gameName": "Cigarro",
+            "tagLine": "lony",
+            "full": "Cigarro#lony",
+            "normalized": "cigarro#lony"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Yasuo",
+          "display": "Yasuo",
+          "asset": "Yasuo",
+          "model": "Yasuo",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 3,
+          "deaths": 12,
+          "assists": 4,
+          "minionsKilled": 236,
+          "neutralMinionsKilled": 4,
+          "visionScore": 28,
+          "goldEarned": 14133,
+          "damageToChampions": 21035,
+          "damageTaken": 34872
+        }
+      },
+      {
+        "sourceRecordIndex": 7,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "7523c6e7-9c22-5c51-b775-013559bcecec",
+          "key": "puuid:7523c6e7-9c22-5c51-b775-013559bcecec",
+          "puuid": "7523c6e7-9c22-5c51-b775-013559bcecec",
+          "riotId": {
+            "gameName": "haste",
+            "tagLine": "zap",
+            "full": "haste#zap",
+            "normalized": "haste#zap"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Zed",
+          "display": "Zed",
+          "asset": "Zed",
+          "model": "Zed",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 23,
+          "deaths": 8,
+          "assists": 6,
+          "minionsKilled": 216,
+          "neutralMinionsKilled": 9,
+          "visionScore": 6,
+          "goldEarned": 19946,
+          "damageToChampions": 70533,
+          "damageTaken": 50446
+        }
+      },
+      {
+        "sourceRecordIndex": 4,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+          "key": "puuid:81d821ca-5d53-505d-b6fd-1478f35a3856",
+          "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+          "riotId": {
+            "gameName": "nhUwUmi",
+            "tagLine": "glhf",
+            "full": "nhUwUmi#glhf",
+            "normalized": "nhuwumi#glhf"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Nami",
+          "display": "Nami",
+          "asset": "Nami",
+          "model": "Nami",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 1,
+          "deaths": 12,
+          "assists": 30,
+          "minionsKilled": 32,
+          "neutralMinionsKilled": 0,
+          "visionScore": 54,
+          "goldEarned": 11995,
+          "damageToChampions": 11827,
+          "damageTaken": 34694
+        }
+      },
+      {
+        "sourceRecordIndex": 1,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+          "key": "puuid:c6931d39-01bc-587b-b12a-ad5663b40ebe",
+          "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+          "riotId": {
+            "gameName": "pixel",
+            "tagLine": "mari",
+            "full": "pixel#mari",
+            "normalized": "pixel#mari"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Mordekaiser",
+          "display": "Mordekaiser",
+          "asset": "Mordekaiser",
+          "model": "Mordekaiser",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 10,
+          "deaths": 9,
+          "assists": 14,
+          "minionsKilled": 64,
+          "neutralMinionsKilled": 152,
+          "visionScore": 50,
+          "goldEarned": 16696,
+          "damageToChampions": 36696,
+          "damageTaken": 64706
+        }
+      },
+      {
+        "sourceRecordIndex": 3,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+          "key": "puuid:f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+          "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+          "riotId": {
+            "gameName": "Ayron",
+            "tagLine": "001",
+            "full": "Ayron#001",
+            "normalized": "ayron#001"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Jhin",
+          "display": "Jhin",
+          "asset": "Jhin",
+          "model": "Jhin",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 31,
+          "deaths": 13,
+          "assists": 6,
+          "minionsKilled": 205,
+          "neutralMinionsKilled": 16,
+          "visionScore": 16,
+          "goldEarned": 27400,
+          "damageToChampions": 87022,
+          "damageTaken": 52312
+        }
+      },
+      {
+        "sourceRecordIndex": 8,
+        "sourceIdentity": {
+          "kind": "puuid",
+          "value": "f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+          "key": "puuid:f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+          "puuid": "f8156cfa-d9c2-5a42-a6ae-61410818de0b",
+          "riotId": {
+            "gameName": "Akuro",
+            "tagLine": "2265",
+            "full": "Akuro#2265",
+            "normalized": "akuro#2265"
+          },
+          "stable": true
+        },
+        "champion": {
+          "raw": "Ashe",
+          "display": "Ashe",
+          "asset": "Ashe",
+          "model": "Ashe",
+          "rawResolved": true,
+          "displayResolved": true,
+          "assetResolved": null,
+          "assetResolution": "normalized_unverified",
+          "modelResolved": true,
+          "modelResolution": "normalized_identity",
+          "resolved": true
+        },
+        "finalStats": {
+          "kills": 12,
+          "deaths": 13,
+          "assists": 9,
+          "minionsKilled": 254,
+          "neutralMinionsKilled": 8,
+          "visionScore": 49,
+          "goldEarned": 18499,
+          "damageToChampions": 38979,
+          "damageTaken": 38624
+        }
+      }
+    ]
+  },
+  "capture": {
+    "startMs": 60000,
+    "endMs": 2155367,
+    "effectiveEndMs": 2155000,
+    "stepMs": 1000,
+    "cadenceMs": 1000,
+    "sampleCount": 2096
+  },
+  "sourceCoverage": {
+    "positions": "full_at_sampled_frames",
+    "levelItemsAlive": "full_at_sampled_frames",
+    "hp": "none",
+    "combatStats": "none",
+    "abilityRanks": "none",
+    "careerHistory": "none",
+    "careerHistoryFields": {},
+    "careerHistoryUnsupported": [
+      "kills",
+      "deaths",
+      "assists",
+      "totalCreepScore",
+      "visionScore",
+      "damage",
+      "gold",
+      "objectives",
+      "jungleCreepScore"
+    ]
+  },
+  "artifacts": {
+    "manifest": {
+      "path": "manifest.json",
+      "format": "rofl-ingest-manifest",
+      "version": 4
+    },
+    "events": {
+      "path": "events.rfc461.jsonl",
+      "format": "rfc461-jsonl",
+      "version": 2
+    },
+    "checkpoint": {
+      "path": "capture.checkpoint.json",
+      "format": "replay-api-capture-checkpoint",
+      "version": 1
+    },
+    "trustedHpEvidence": {
+      "path": "hp-evidence.json",
+      "format": "rofl-trusted-hp-v1",
+      "version": 1,
+      "optional": true
+    },
+    "trustedHpEvents": {
+      "path": "events.hp-trusted.rfc461.jsonl",
+      "format": "rfc461-jsonl",
+      "version": 2,
+      "optional": true
+    },
+    "timeline": {
+      "path": "timeline.json",
+      "format": "GameTimeline",
+      "version": 1
+    },
+    "validation": {
+      "path": "validation.json",
+      "format": "rofl-product-validation",
+      "version": 1
+    }
+  },
+  "phase": {
+    "current": "publish",
+    "status": "complete",
+    "completed": [
+      "inspect",
+      "capture",
+      "build",
+      "validate",
+      "publish"
+    ]
+  },
+  "validation": {
+    "ok": true,
+    "path": "validation.json",
+    "calculatorReady": false,
+    "hpTrusted": false,
+    "hpCoverage": "none",
+    "motionAudit": {
+      "version": "motion-audit-v1",
+      "segmentCount": 20950,
+      "discontinuityCount": 628,
+      "deathRespawnCount": 100,
+      "recallTeleportCount": 0,
+      "unexplainedCount": 528,
+      "maxDisplacementMapUnits": 17291.4,
+      "maxContinuousSpeedUnitsPerSec": 1500.0,
+      "distanceSlackMapUnits": 350.0
+    }
+  },
+  "productGates": {
+    "rosterCount": true,
+    "stableIdentityComplete": true,
+    "missingStableIdentityCount": 0,
+    "activeReplayIdentityVerified": true,
+    "captureComplete": true,
+    "productValidated": true,
+    "hpTrusted": false,
+    "calculatorReady": false
+  },
+  "importNote": {
+    "source": "codex_desktop_1hz_capture",
+    "eventsBasename": "events_BR1-3264383283_replay_api_1hz.jsonl",
+    "timelineBasename": "BR1-3264383283_replay_api_timeline_1hz.json",
+    "importedAt": "2026-07-22T16:25:29.288297Z",
+    "scoresPresent": false,
+    "notes": "Imported prior native 1Hz Replay API capture into product artifacts; app consumes rebuilt timeline.json, not JSONL. Prior generation lacked liveclient KDA/CS/vision."
+  },
+  "motionQA": {
+    "version": "motion-audit-v1",
+    "segmentCount": 20950,
+    "discontinuityCount": 628,
+    "deathRespawnCount": 100,
+    "recallTeleportCount": 0,
+    "unexplainedCount": 528,
+    "maxDisplacementMapUnits": 17291.4,
+    "maxContinuousSpeedUnitsPerSec": 1500.0,
+    "distanceSlackMapUnits": 350.0
+  },
+  "trustedHp": null,
+  "publication": {
+    "directory": "public/data/matches/3264383283",
+    "timeline": "timeline.json",
+    "manifest": "manifest.json"
+  }
+}

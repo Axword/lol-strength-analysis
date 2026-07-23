@@ -1,0 +1,1316 @@
+{
+  "ok": false,
+  "decryptStatus": "replication_candidate_deserialized_need_field_getters",
+  "arch": "arm64",
+  "rofl": "/Users/river/Documents/League of Legends/Replays/BR1-3264361042.rofl",
+  "gameVersion": "16.14.794.5912",
+  "chunk": {
+    "index": 27,
+    "id_a": 30,
+    "time_s": 810.3822021484375,
+    "size": 393700
+  },
+  "typeCountGlobal": 1373,
+  "typeThreshold": 251,
+  "segmentMap": {
+    "segmentCount": 4
+  },
+  "createSmoke": [
+    {
+      "type": 2,
+      "packet": 12901683200,
+      "call": {
+        "x0": 12901683200,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 16,
+      "storedType": 2,
+      "vtable": 4332160008,
+      "deserialize": 4314889716
+    },
+    {
+      "type": 3,
+      "packet": 12901683216,
+      "call": {
+        "x0": 12901683216,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 48,
+      "storedType": 3,
+      "vtable": 4332161784,
+      "deserialize": 4314916720
+    },
+    {
+      "type": 11,
+      "packet": 12901683264,
+      "call": {
+        "x0": 12901683264,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 16,
+      "storedType": 11,
+      "vtable": 4332146848,
+      "deserialize": 4314708612
+    },
+    {
+      "type": 196,
+      "packet": 12901683280,
+      "call": {
+        "x0": 12901683280,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 80,
+      "storedType": 196,
+      "vtable": 4332172552,
+      "deserialize": 4315142780
+    },
+    {
+      "type": 107,
+      "packet": 12901683360,
+      "call": {
+        "x0": 12901683360,
+        "pc": 13086228736,
+        "error": null,
+        "returned": true
+      },
+      "heapDelta": 48,
+      "storedType": 107,
+      "vtable": 4332115584,
+      "deserialize": 4313641040
+    }
+  ],
+  "createsOk": 5,
+  "blockFraming": {
+    "entry": "0x10076bc94",
+    "pythonBlocks": 128,
+    "unicornBlocks": 128,
+    "timeStart": 810.3822021484375,
+    "timeEnd": 810.5492553710938,
+    "channelMatch": true,
+    "pythonChannelHist": {
+      "632": 12,
+      "72": 12,
+      "788": 7,
+      "53": 7,
+      "1194": 6,
+      "649": 6,
+      "330": 6,
+      "888": 6,
+      "648": 6,
+      "109": 6,
+      "532": 6,
+      "556": 5,
+      "427": 3,
+      "411": 3,
+      "645": 2
+    },
+    "stop": null,
+    "replicationTypeCandidate": 107
+  },
+  "deserialize": {
+    "okCount": 45,
+    "attempted": 48,
+    "typeHistogram": {
+      "632": 8,
+      "1194": 6,
+      "788": 3,
+      "645": 2,
+      "288": 2,
+      "738": 2,
+      "72": 2,
+      "535": 2,
+      "920": 2,
+      "351": 2,
+      "682": 2,
+      "487": 2,
+      "556": 2,
+      "427": 2,
+      "172": 1,
+      "398": 1,
+      "908": 1,
+      "243": 1,
+      "107": 1,
+      "411": 1
+    },
+    "replicationCandidates": 1,
+    "rows": [
+      {
+        "time": 810.3822021484375,
+        "channel": 197,
+        "param": 1073742003,
+        "size": 152,
+        "type": 197,
+        "deserialize": {
+          "ok": false,
+          "consumed": 82,
+          "x0": 4333638392,
+          "error": "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+        },
+        "status": "deserialize_failed"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 35,
+        "param": 1073742003,
+        "size": 13,
+        "type": 35,
+        "deserialize": {
+          "ok": false,
+          "consumed": 6,
+          "x0": 4333638392,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+        },
+        "status": "deserialize_failed"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769214,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 645,
+        "param": 0,
+        "size": 15,
+        "type": 645,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 288,
+        "param": 0,
+        "size": 6,
+        "type": 288,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 738,
+        "param": 0,
+        "size": 10,
+        "type": 738,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 72,
+        "param": 0,
+        "size": 9,
+        "type": 72,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 535,
+        "param": 1073742003,
+        "size": 15,
+        "type": 535,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 920,
+        "param": 1073769214,
+        "size": 6,
+        "type": 920,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 172,
+        "param": 1073769214,
+        "size": 6,
+        "type": 172,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 351,
+        "param": 1073742003,
+        "size": 13,
+        "type": 351,
+        "deserialize": {
+          "ok": true,
+          "consumed": 11,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 682,
+        "param": 0,
+        "size": 10,
+        "type": 682,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 487,
+        "param": 1073769214,
+        "size": 37,
+        "type": 487,
+        "deserialize": {
+          "ok": true,
+          "consumed": 35,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769292,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769263,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769173,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769134,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 645,
+        "param": 0,
+        "size": 15,
+        "type": 645,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 288,
+        "param": 0,
+        "size": 6,
+        "type": 288,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 738,
+        "param": 0,
+        "size": 10,
+        "type": 738,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 72,
+        "param": 0,
+        "size": 9,
+        "type": 72,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 535,
+        "param": 1073742003,
+        "size": 15,
+        "type": 535,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 920,
+        "param": 1073769134,
+        "size": 6,
+        "type": 920,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 351,
+        "param": 1073742003,
+        "size": 13,
+        "type": 351,
+        "deserialize": {
+          "ok": true,
+          "consumed": 11,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 682,
+        "param": 0,
+        "size": 10,
+        "type": 682,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 487,
+        "param": 1073769134,
+        "size": 37,
+        "type": 487,
+        "deserialize": {
+          "ok": true,
+          "consumed": 35,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 788,
+        "param": 0,
+        "size": 7,
+        "type": 788,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 788,
+        "param": 0,
+        "size": 7,
+        "type": 788,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 788,
+        "param": 0,
+        "size": 7,
+        "type": 788,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 398,
+        "param": 1073742003,
+        "size": 11,
+        "type": 398,
+        "deserialize": {
+          "ok": true,
+          "consumed": 9,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 556,
+        "param": 0,
+        "size": 76,
+        "type": 556,
+        "deserialize": {
+          "ok": true,
+          "consumed": 74,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769156,
+        "size": 20,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 18,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769156,
+        "size": 24,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 22,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 290,
+        "param": 0,
+        "size": 460,
+        "type": 290,
+        "deserialize": {
+          "ok": false,
+          "consumed": 32,
+          "x0": 12901691640,
+          "error": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+        },
+        "status": "deserialize_failed"
+      }
+    ]
+  },
+  "bestWalk": {
+    "startOff": 0,
+    "okCount": 45,
+    "typeHistogram": {
+      "632": 8,
+      "1194": 6,
+      "788": 3,
+      "645": 2,
+      "288": 2,
+      "738": 2,
+      "72": 2,
+      "535": 2,
+      "920": 2,
+      "351": 2,
+      "682": 2,
+      "487": 2,
+      "556": 2,
+      "427": 2,
+      "172": 1,
+      "398": 1,
+      "908": 1,
+      "243": 1,
+      "107": 1,
+      "411": 1
+    },
+    "packets": [
+      {
+        "time": 810.3822021484375,
+        "channel": 197,
+        "param": 1073742003,
+        "size": 152,
+        "type": 197,
+        "deserialize": {
+          "ok": false,
+          "consumed": 82,
+          "x0": 4333638392,
+          "error": "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+        },
+        "status": "deserialize_failed"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 35,
+        "param": 1073742003,
+        "size": 13,
+        "type": 35,
+        "deserialize": {
+          "ok": false,
+          "consumed": 6,
+          "x0": 4333638392,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+        },
+        "status": "deserialize_failed"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769214,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 645,
+        "param": 0,
+        "size": 15,
+        "type": 645,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 288,
+        "param": 0,
+        "size": 6,
+        "type": 288,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 738,
+        "param": 0,
+        "size": 10,
+        "type": 738,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 72,
+        "param": 0,
+        "size": 9,
+        "type": 72,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 535,
+        "param": 1073742003,
+        "size": 15,
+        "type": 535,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 920,
+        "param": 1073769214,
+        "size": 6,
+        "type": 920,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 172,
+        "param": 1073769214,
+        "size": 6,
+        "type": 172,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 351,
+        "param": 1073742003,
+        "size": 13,
+        "type": 351,
+        "deserialize": {
+          "ok": true,
+          "consumed": 11,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 682,
+        "param": 0,
+        "size": 10,
+        "type": 682,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 487,
+        "param": 1073769214,
+        "size": 37,
+        "type": 487,
+        "deserialize": {
+          "ok": true,
+          "consumed": 35,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769292,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769263,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769173,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769134,
+        "size": 23,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 21,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 645,
+        "param": 0,
+        "size": 15,
+        "type": 645,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 288,
+        "param": 0,
+        "size": 6,
+        "type": 288,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 738,
+        "param": 0,
+        "size": 10,
+        "type": 738,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 72,
+        "param": 0,
+        "size": 9,
+        "type": 72,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 535,
+        "param": 1073742003,
+        "size": 15,
+        "type": 535,
+        "deserialize": {
+          "ok": true,
+          "consumed": 13,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 920,
+        "param": 1073769134,
+        "size": 6,
+        "type": 920,
+        "deserialize": {
+          "ok": true,
+          "consumed": 4,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 351,
+        "param": 1073742003,
+        "size": 13,
+        "type": 351,
+        "deserialize": {
+          "ok": true,
+          "consumed": 11,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 682,
+        "param": 0,
+        "size": 10,
+        "type": 682,
+        "deserialize": {
+          "ok": true,
+          "consumed": 8,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 487,
+        "param": 1073769134,
+        "size": 37,
+        "type": 487,
+        "deserialize": {
+          "ok": true,
+          "consumed": 35,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 1194,
+        "param": 1073742003,
+        "size": 64,
+        "type": 1194,
+        "deserialize": {
+          "ok": true,
+          "consumed": 62,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 788,
+        "param": 0,
+        "size": 7,
+        "type": 788,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 788,
+        "param": 0,
+        "size": 7,
+        "type": 788,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 788,
+        "param": 0,
+        "size": 7,
+        "type": 788,
+        "deserialize": {
+          "ok": true,
+          "consumed": 5,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 398,
+        "param": 1073742003,
+        "size": 11,
+        "type": 398,
+        "deserialize": {
+          "ok": true,
+          "consumed": 9,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 556,
+        "param": 0,
+        "size": 76,
+        "type": 556,
+        "deserialize": {
+          "ok": true,
+          "consumed": 74,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769156,
+        "size": 20,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 18,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 632,
+        "param": 1073769156,
+        "size": 24,
+        "type": 632,
+        "deserialize": {
+          "ok": true,
+          "consumed": 22,
+          "x0": 1,
+          "error": null
+        },
+        "status": "ok"
+      },
+      {
+        "time": 810.3822021484375,
+        "channel": 290,
+        "param": 0,
+        "size": 460,
+        "type": 290,
+        "deserialize": {
+          "ok": false,
+          "consumed": 32,
+          "x0": 12901691640,
+          "error": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+        },
+        "status": "deserialize_failed"
+      }
+    ]
+  },
+  "unmappedFaults": [
+    "null-ish fault addr=0x0 access=19",
+    "null-ish fault addr=0x0 access=21"
+  ],
+  "replication": [],
+  "hpSnapshot": {
+    "ok": false,
+    "heroCount": 0,
+    "heroes": [],
+    "acceptance": {
+      "passed": false,
+      "needHeroes": 10
+    }
+  },
+  "nextSteps": [
+    "Confirm type 107 == Replication via UsePacket / field-name tables",
+    "Bind CharacterIntermediate and call mHP/mMaxHP getters (slots 0x8d8/0x900)",
+    "Emit maknee Replication events into rofl2_to_maknee_events",
+    "Map SpawnMinion / BarrackSpawnUnit type ids if minion tracking is needed"
+  ],
+  "workDir": "/tmp/lol-unicorn-pkt"
+}
