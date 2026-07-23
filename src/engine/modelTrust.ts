@@ -5,7 +5,7 @@
  * (generated kits and/or NvM). Never claims calibrated win probability,
  * and never implies full item/rune/passive validation.
  */
-import { CHAMPIONS, isCoreChampion } from '../data/champions'
+import { CHAMPIONS, isCoreChampion, resolveChampionId } from '../data/champions'
 import { GAME_CHAMPIONS } from '../data/generatedGameChamps'
 import type { FighterLoadout, MatchupInput } from './types'
 
@@ -54,8 +54,11 @@ function compareCodePoint(a: string, b: string): number {
 }
 
 export function championModelingTier(championId: string): ChampionModelingTier {
-  if (isCoreChampion(championId)) return 'core'
-  if (championId in GAME_CHAMPIONS || championId in CHAMPIONS) return 'generated'
+  const resolved = resolveChampionId(championId)
+  if (isCoreChampion(resolved) || isCoreChampion(championId)) return 'core'
+  if (resolved in GAME_CHAMPIONS || championId in GAME_CHAMPIONS) return 'generated'
+  // Meraki-generated kits (and any other CHAMPIONS entry) stay experimental.
+  if (resolved in CHAMPIONS || championId in CHAMPIONS) return 'generated'
   return 'unresolved'
 }
 

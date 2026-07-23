@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SAMPLE_SNAPSHOTS } from '../data/sampleGames'
-import { CHAMPIONS } from '../data/champions'
+import { getChampion, resolveChampionId } from '../data/champions'
 import { parseSnapshotJson } from '../game/parseSnapshot'
 import {
   defaultRegistryMatch,
@@ -89,6 +89,33 @@ export function MatchPicker({
   )
 }
 
+export function calcCoverageBadge(entry: MatchRegistryEntry): {
+  text: string
+  title: string
+  ready: boolean
+} {
+  if (entry.productGates.calculatorReady) {
+    return {
+      text: 'ready',
+      title: 'Match-level calculatorReady: every frame has trusted HP, combat, and ranks',
+      ready: true,
+    }
+  }
+  if (entry.coverage.hp === 'partial' && entry.productGates.hpTrusted) {
+    return {
+      text: 'partial HP · Send per frame',
+      title:
+        'Match-level calculatorReady stays false while early frames lack explicit HP (e.g. MonkeyKing before firstAll10). Send still works when the selected units on the current playhead have hpKnown, combatStatsKnown, and abilityRanksKnown.',
+      ready: false,
+    }
+  }
+  return {
+    text: 'blocked',
+    title: 'Validated publication result; live frame gates still control calculator handoff',
+    ready: false,
+  }
+}
+
 export function MatchCoverageBadges({
   entry,
   research,
@@ -114,6 +141,7 @@ export function MatchCoverageBadges({
         ]
       : []
   if (badges.length === 0) return null
+  const calcBadge = entry ? calcCoverageBadge(entry) : null
   return (
     <>
       <div
@@ -131,15 +159,12 @@ export function MatchCoverageBadges({
             <strong>{label}</strong> {compactCoverage(value)}
           </span>
         ))}
-        {entry && (
+        {entry && calcBadge && (
           <span
-            className={`coverage-badge ${
-              entry.productGates.calculatorReady ? 'ready' : 'unavailable'
-            }`}
-            title="Validated publication result; live frame gates still control calculator handoff"
+            className={`coverage-badge ${calcBadge.ready ? 'ready' : 'unavailable'}`}
+            title={calcBadge.title}
           >
-            <strong>Calc</strong>{' '}
-            {entry.productGates.calculatorReady ? 'ready' : 'blocked'}
+            <strong>Calc</strong> {calcBadge.text}
           </span>
         )}
       </div>
@@ -156,17 +181,40 @@ export function calculatorTrustBlockReason({
   research,
   positionBlocked,
   combatStateBlocked,
+  missingFieldLabel,
 }: {
   research: boolean
   positionBlocked: boolean
   combatStateBlocked: boolean
+  /** Concrete per-selection gap, e.g. "MonkeyKing HP unknown before densify". */
+  missingFieldLabel?: string | null
 }): string | null {
   if (research) {
     return 'Research fixtures are demo-only and cannot be sent to the product calculator'
   }
   if (positionBlocked) return 'Live replay positions are required'
   if (combatStateBlocked) {
+    if (missingFieldLabel) {
+      return `Selected fighters are missing trusted ${missingFieldLabel} at this playhead — move later or pick units with known HP, ranks, and combat`
+    }
     return 'Positions are real but HP, ability ranks, and combat stats are unavailable from this replay feed'
+  }
+  return null
+}
+
+export function selectedCombatTrustGap(
+  units: Array<{
+    loadout: { championId: string }
+    hpKnown?: boolean
+    combatStatsKnown?: boolean
+    abilityRanksKnown?: boolean
+  }>,
+): string | null {
+  for (const unit of units) {
+    const champ = unit.loadout.championId
+    if (unit.hpKnown === false) return `${champ} HP`
+    if (unit.abilityRanksKnown === false) return `${champ} ability ranks`
+    if (unit.combatStatsKnown === false) return `${champ} combat stats`
   }
   return null
 }
@@ -287,22 +335,28 @@ export function GameReview({ onSendToCalculator }: Props) {
     if (!playing || !timeline || source !== 'timeline') return
     let raf = 0
     let last = performance.now()
+    let stopped = false
     const endMs = timeline.durationMs || timeline.frames[timeline.frames.length - 1]?.t || 0
     const tick = (now: number) => {
+      if (stopped) return
       const dt = Math.min(0.05, (now - last) / 1000) // clamp hitch spikes
       last = now
       setPlayheadMs((ms) => {
         const next = ms + dt * playSpeedRef.current * 1000
         if (next >= endMs) {
-          setPlaying(false)
+          stopped = true
           return endMs
         }
         return next
       })
-      raf = requestAnimationFrame(tick)
+      if (!stopped) raf = requestAnimationFrame(tick)
+      else setPlaying(false)
     }
     raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
+    return () => {
+      stopped = true
+      cancelAnimationFrame(raf)
+    }
   }, [playing, timeline, source])
 
   const snapshot: GameSnapshot | null = useMemo(() => {
@@ -316,18 +370,26 @@ export function GameReview({ onSendToCalculator }: Props) {
     return null
   }, [source, timeline, playheadMs, imported, sampleId])
 
-  // Allow dragging units only for samples/imports (not live timeline)
-  const [mutableSnapshot, setMutableSnapshot] = useState<GameSnapshot | null>(null)
+  // Editable copy only for sample/import drag. Timeline uses the memoized
+  // snapshot directly — never mirror playhead into state via useEffect (that
+  // double-render path can trip max update depth while scrubbing).
+  const [editedSnapshot, setEditedSnapshot] = useState<GameSnapshot | null>(null)
   useEffect(() => {
-    if (!snapshot) return
     if (source === 'timeline') {
-      setMutableSnapshot(snapshot)
+      setEditedSnapshot((prev) => (prev == null ? prev : null))
       return
     }
-    setMutableSnapshot(structuredClone(snapshot))
-  }, [snapshot, source, playheadMs])
+    if (!snapshot) {
+      setEditedSnapshot((prev) => (prev == null ? prev : null))
+      return
+    }
+    // Re-clone when source / sample / import identity changes — not on playhead.
+    setEditedSnapshot(structuredClone(snapshot))
+    // snapshot is from the render that changed source/sampleId/imported
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- avoid playhead churn
+  }, [source, sampleId, imported])
 
-  const active = mutableSnapshot
+  const active = source === 'timeline' ? snapshot : editedSnapshot ?? snapshot
   const selectedRegistryEntry: MatchRegistryEntry | null = useMemo(() => {
     if (!timelineChoice.startsWith('match:')) return null
     const code = timelineChoice.slice('match:'.length)
@@ -358,6 +420,7 @@ export function GameReview({ onSendToCalculator }: Props) {
       u.combatStatsKnown === false ||
       u.abilityRanksKnown === false,
   )
+  const selectedTrustGap = selectedCombatTrustGap(selectedUnits)
   const timelineHpUnavailable =
     source === 'timeline' && timeline?.provenance?.hpCoverage === 'none'
   const combatStateBlocked =
@@ -369,6 +432,7 @@ export function GameReview({ onSendToCalculator }: Props) {
     research: isResearchTimeline,
     positionBlocked,
     combatStateBlocked,
+    missingFieldLabel: selectedLacksCombatState ? selectedTrustGap : null,
   })
   const calculatorBlocked = calculatorBlockReason !== null
 
@@ -381,11 +445,12 @@ export function GameReview({ onSendToCalculator }: Props) {
 
   function moveUnit(id: string, x: number, y: number) {
     if (source === 'timeline') return
-    setMutableSnapshot((prev) => {
-      if (!prev) return prev
+    setEditedSnapshot((prev) => {
+      const base = prev ?? snapshot
+      if (!base) return prev
       return {
-        ...prev,
-        units: prev.units.map((u) =>
+        ...base,
+        units: base.units.map((u) =>
           u.id === id ? { ...u, position: { x, y } } : u,
         ),
       }
@@ -445,12 +510,14 @@ export function GameReview({ onSendToCalculator }: Props) {
     const matchup: MatchupInput = {
       blue: blueLiving.map((u) => ({
         ...u.loadout,
+        championId: resolveChampionId(u.loadout.championId),
         position: u.position,
         alive: true,
         hpPct: u.hpPct ?? u.loadout.hpPct,
       })),
       red: redLiving.map((u) => ({
         ...u.loadout,
+        championId: resolveChampionId(u.loadout.championId),
         position: u.position,
         alive: true,
         hpPct: u.hpPct ?? u.loadout.hpPct,
@@ -468,10 +535,10 @@ export function GameReview({ onSendToCalculator }: Props) {
     }
 
     const blueNames = blueLiving
-      .map((u) => CHAMPIONS[u.loadout.championId]?.name ?? u.loadout.championId)
+      .map((u) => getChampion(u.loadout.championId)?.name ?? u.loadout.championId)
       .join(' + ')
     const redNames = redLiving
-      .map((u) => CHAMPIONS[u.loadout.championId]?.name ?? u.loadout.championId)
+      .map((u) => getChampion(u.loadout.championId)?.name ?? u.loadout.championId)
       .join(' + ')
     const label = `${blueSelected.length}v${redSelected.length} ${blueNames} vs ${redNames} · ${active.name}`
     onSendToCalculator(matchup, label)
@@ -511,9 +578,10 @@ export function GameReview({ onSendToCalculator }: Props) {
                 step={50}
                 value={Math.min(playheadMs, durationMs)}
                 onChange={(e) => {
-                  setPlaying(false)
-                  setPlayheadMs(Number(e.target.value))
-                  setSelectedIds([])
+                  const next = Number(e.target.value)
+                  setPlaying((p) => (p ? false : p))
+                  setPlayheadMs(next)
+                  setSelectedIds((ids) => (ids.length ? [] : ids))
                 }}
               />
               <span>{formatGameTime(durationMs / 1000)}</span>
@@ -540,9 +608,9 @@ export function GameReview({ onSendToCalculator }: Props) {
                   type="button"
                   className="ghost"
                   onClick={() => {
-                    setPlaying(false)
+                    setPlaying((p) => (p ? false : p))
                     setPlayheadMs(m * 60 * 1000)
-                    setSelectedIds([])
+                    setSelectedIds((ids) => (ids.length ? [] : ids))
                   }}
                 >
                   {m}m
@@ -671,14 +739,20 @@ export function GameReview({ onSendToCalculator }: Props) {
               {selectedUnits
                 .map(
                   (u) =>
-                    CHAMPIONS[u.loadout.championId]?.name ??
+                    getChampion(u.loadout.championId)?.name ??
                     u.loadout.championId,
                 )
                 .join(', ')}
               {!canSend && <em> · need ≥1 per team</em>}
               {positionBlocked && <em> · live positions required</em>}
               {combatStateBlocked && !positionBlocked && (
-                <em> · HP/combat state unavailable</em>
+                <em>
+                  {' '}
+                  ·{' '}
+                  {selectedTrustGap
+                    ? `missing ${selectedTrustGap} at this playhead`
+                    : 'HP/combat state unavailable'}
+                </em>
               )}
               {isResearchTimeline && <em> · research demo only</em>}
             </span>
@@ -692,7 +766,9 @@ export function GameReview({ onSendToCalculator }: Props) {
         )}
         {combatStateBlocked && !positionBlocked && (
           <span className="position-coverage-warning">
-            Positions are real, but HP, ability ranks, and combat stats are unavailable from this replay feed — calculator handoff is blocked.
+            {selectedTrustGap
+              ? `Positions are real, but selected fighters are missing trusted ${selectedTrustGap} at this playhead — Send unlocks when the playhead (or picks) have known HP, ranks, and combat.`
+              : 'Positions are real, but HP, ability ranks, and combat stats are unavailable from this replay feed — calculator handoff is blocked.'}
           </span>
         )}
 

@@ -1,0 +1,3657 @@
+{
+  "ok": true,
+  "phase": "B-E3",
+  "probeVersion": "e3-emulator-pathpacket-v1",
+  "provenance": "offline_rofl2_025b_research",
+  "productEligible": false,
+  "pureBrowserDecoderDerived": false,
+  "pureDecoderConfig": {
+    "decoderVersion": "pathpacket-compressed-v1",
+    "kind": "compressed_path_packet",
+    "productEligible": false,
+    "runtime": {
+      "browserSafe": true,
+      "requiresLeagueBinary": false,
+      "requiresUnicorn": false,
+      "vercelNote": "Ship pure TS/WASM parser + this config via CDN/Blob + Worker; do not upload League binary or Unicorn to Vercel Functions (4.5MB limit / native deps)"
+    },
+    "header": {
+      "parsingType": "u16le",
+      "entityId": "u32le",
+      "speed": "f32le",
+      "optionalByteIfBit0": true,
+      "waypointCount": "parsingType >> 1"
+    },
+    "coordinates": {
+      "encoding": "absolute_u16_or_relative_u8_bitmask",
+      "transform": {
+        "x": "i16(encoded)*2 + 7358",
+        "z": "i16(encoded)*2 + 7412"
+      },
+      "constants": {
+        "x0": 7358.0,
+        "z0": 7412.0
+      }
+    },
+    "acceptance": {
+      "minStableHeroParams": 5,
+      "minComparedSamples": 80,
+      "maxMedianError": 120.0,
+      "maxP95Error": 350.0,
+      "maxMaxError": 800.0,
+      "requireFullConsume": true
+    },
+    "provenance": "offline_rofl2_025b_research",
+    "attribution": "Path layout/transform from public 2026 research method (Mowokuma/ROFL docs; no source vendored). Riot Replay API has no raw ROFL packet decode."
+  },
+  "riotGithubNotes": {
+    "riotReplayApi": "camera/playback only; no raw ROFL packet decode",
+    "mowokumaMethod": "Unicorn movement Deserialize → dynamic payload buffer → PathPacket compressed coords (x=i16*2+7358,z=i16*2+7412); Windows patch mov netid example 980 — not present on this ROFL; no source vendored",
+    "vercel": "Browser Worker/WASM or Blob background worker for pure decoder; never ship League binary / Unicorn as Vercel Function dependency"
+  },
+  "channels": [
+    {
+      "channel": 351,
+      "channelHex": "0x15f",
+      "histogram": {
+        "channel": 351,
+        "channelHex": "0x15f",
+        "heroBlockCount": 10046,
+        "payloadSizeHistogram": [
+          {
+            "size": 9,
+            "count": 5024
+          },
+          {
+            "size": 8,
+            "count": 3524
+          },
+          {
+            "size": 7,
+            "count": 1301
+          },
+          {
+            "size": 6,
+            "count": 197
+          }
+        ],
+        "firstByteHistogram": [
+          {
+            "byte": 173,
+            "count": 310
+          },
+          {
+            "byte": 4,
+            "count": 307
+          },
+          {
+            "byte": 148,
+            "count": 298
+          },
+          {
+            "byte": 59,
+            "count": 290
+          },
+          {
+            "byte": 7,
+            "count": 285
+          },
+          {
+            "byte": 23,
+            "count": 282
+          },
+          {
+            "byte": 19,
+            "count": 281
+          },
+          {
+            "byte": 175,
+            "count": 278
+          },
+          {
+            "byte": 131,
+            "count": 277
+          },
+          {
+            "byte": 3,
+            "count": 275
+          },
+          {
+            "byte": 171,
+            "count": 271
+          },
+          {
+            "byte": 147,
+            "count": 269
+          }
+        ],
+        "prefix6HistogramTop": [
+          {
+            "hex": "3baac84e28fb",
+            "count": 37
+          },
+          {
+            "hex": "94ab4d5928fb",
+            "count": 36
+          },
+          {
+            "hex": "87aac84e28fb",
+            "count": 34
+          },
+          {
+            "hex": "3babc84e28fb",
+            "count": 34
+          },
+          {
+            "hex": "94aa4db9287b",
+            "count": 34
+          },
+          {
+            "hex": "afaac84e28fb",
+            "count": 34
+          },
+          {
+            "hex": "2faa4db9287b",
+            "count": 32
+          },
+          {
+            "hex": "bfab4d5928fb",
+            "count": 31
+          }
+        ],
+        "sampleCount": 80,
+        "redactedSamplePrefixes": [
+          {
+            "time": 60.429,
+            "paramHex": "0x400000b5",
+            "len": 7,
+            "prefixHex": "53abc84e28fb64"
+          },
+          {
+            "time": 63.071,
+            "paramHex": "0x400000b0",
+            "len": 7,
+            "prefixHex": "7ca8c08e40665e"
+          },
+          {
+            "time": 63.906,
+            "paramHex": "0x400000b0",
+            "len": 7,
+            "prefixHex": "7dabc84e28fb65"
+          },
+          {
+            "time": 64.173,
+            "paramHex": "0x400000b0",
+            "len": 7,
+            "prefixHex": "6daac08e40665e"
+          },
+          {
+            "time": 64.442,
+            "paramHex": "0x400000b0",
+            "len": 7,
+            "prefixHex": "d3aac08e40665e"
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b0",
+            "len": 6,
+            "prefixHex": "d0aa9e64b1cc"
+          }
+        ]
+      },
+      "rawPathPacket": {
+        "attempted": 80,
+        "parsed": 0,
+        "fullConsume": 0,
+        "entityMatchesParam": 0,
+        "failureHistogram": {
+          "payload shorter than PathPacket header": 80
+        }
+      },
+      "unicorn": {
+        "ok": true,
+        "factory": {
+          "packet": true,
+          "storedType": 351,
+          "vtable": "0x10237f010",
+          "deserialize": "0x1014866b8",
+          "usePacket": "0x1015019a0",
+          "heapDelta": 32,
+          "callError": null
+        },
+        "pathFromRaw": 0,
+        "pathFromBuffers": 0,
+        "note": "call return / consumed alone is not semantic success; PathPacket full-consume + oracle gates required",
+        "error": null,
+        "sampleRows": [
+          {
+            "time": 60.429,
+            "paramHex": "0x400000b5",
+            "payloadLen": 7,
+            "prefixHex": "53abc84e28fb64",
+            "deserialize": {
+              "ok": true,
+              "consumed": 4,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x400004060000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x5555551e0c0c0c44"
+              },
+              {
+                "off": 24,
+                "before": "0x6c66",
+                "after": "0x566"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 63.071,
+            "paramHex": "0x400000b0",
+            "payloadLen": 7,
+            "prefixHex": "7ca8c08e40665e",
+            "deserialize": {
+              "ok": false,
+              "consumed": 7,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x400000270000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x555555290c849e8c"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 63.906,
+            "paramHex": "0x400000b0",
+            "payloadLen": 7,
+            "prefixHex": "7dabc84e28fb65",
+            "deserialize": {
+              "ok": true,
+              "consumed": 4,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x400004240000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x5555551e0c0c0c44"
+              },
+              {
+                "off": 24,
+                "before": "0x6c66",
+                "after": "0x566"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.173,
+            "paramHex": "0x400000b0",
+            "payloadLen": 7,
+            "prefixHex": "6daac08e40665e",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x400010740000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x5555551e0c0c7a42"
+              },
+              {
+                "off": 24,
+                "before": "0x6c66",
+                "after": "0x566"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.442,
+            "paramHex": "0x400000b0",
+            "payloadLen": 7,
+            "prefixHex": "d3aac08e40665e",
+            "deserialize": {
+              "ok": false,
+              "consumed": 7,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x4000000f0000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x555555290c849e8c"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b0",
+            "payloadLen": 6,
+            "prefixHex": "d0aa9e64b1cc",
+            "deserialize": {
+              "ok": false,
+              "consumed": 6,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x400000530000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x555555550cbdd464"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b0",
+            "payloadLen": 8,
+            "prefixHex": "13aac84e28fb3c65",
+            "deserialize": {
+              "ok": true,
+              "consumed": 7,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x400000500000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x5555553c0cd5ea4c"
+              },
+              {
+                "off": 24,
+                "before": "0x6c66",
+                "after": "0x6ce5"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b0",
+            "payloadLen": 8,
+            "prefixHex": "85abc84e28fb1265",
+            "deserialize": {
+              "ok": true,
+              "consumed": 8,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x15f",
+                "after": "0x4000006f0000015f"
+              },
+              {
+                "off": 16,
+                "before": "0x555555550c0c0c0c",
+                "after": "0x555555120cd5ea4c"
+              },
+              {
+                "off": 24,
+                "before": "0x6c66",
+                "after": "0x6c65"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          }
+        ],
+        "decodedQaCount": 0
+      },
+      "objectFieldCorrelation": {
+        "ok": true,
+        "top": [
+          {
+            "field": "i16scale@26",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@28",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@30",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@32",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@34",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@36",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@38",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@40",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@42",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@44",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@46",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          },
+          {
+            "field": "i16scale@48",
+            "validPoints": 33,
+            "assignmentCount": 8,
+            "comparedSamples": 33,
+            "medianError": 569.414,
+            "p95Error": 7122.205,
+            "maxError": 10094.555
+          }
+        ],
+        "rowsScored": 33
+      },
+      "oracleQa": null,
+      "accepted": false,
+      "failureSignatures": [
+        "payload_too_small_for_pathpacket_header:mode=9",
+        "raw_pathpacket_parse_zero",
+        "unicorn_no_pathpacket_buffer",
+        "oracle_gates_not_met"
+      ]
+    },
+    {
+      "channel": 259,
+      "channelHex": "0x103",
+      "histogram": {
+        "channel": 259,
+        "channelHex": "0x103",
+        "heroBlockCount": 8717,
+        "payloadSizeHistogram": [
+          {
+            "size": 9,
+            "count": 6047
+          },
+          {
+            "size": 5,
+            "count": 971
+          },
+          {
+            "size": 8,
+            "count": 747
+          },
+          {
+            "size": 10,
+            "count": 527
+          },
+          {
+            "size": 13,
+            "count": 219
+          },
+          {
+            "size": 11,
+            "count": 70
+          },
+          {
+            "size": 14,
+            "count": 61
+          },
+          {
+            "size": 12,
+            "count": 24
+          },
+          {
+            "size": 15,
+            "count": 24
+          },
+          {
+            "size": 4,
+            "count": 15
+          },
+          {
+            "size": 6,
+            "count": 12
+          }
+        ],
+        "firstByteHistogram": [
+          {
+            "byte": 71,
+            "count": 478
+          },
+          {
+            "byte": 67,
+            "count": 463
+          },
+          {
+            "byte": 69,
+            "count": 456
+          },
+          {
+            "byte": 68,
+            "count": 451
+          },
+          {
+            "byte": 66,
+            "count": 430
+          },
+          {
+            "byte": 64,
+            "count": 423
+          },
+          {
+            "byte": 195,
+            "count": 365
+          },
+          {
+            "byte": 3,
+            "count": 353
+          },
+          {
+            "byte": 197,
+            "count": 348
+          },
+          {
+            "byte": 196,
+            "count": 334
+          },
+          {
+            "byte": 0,
+            "count": 334
+          },
+          {
+            "byte": 199,
+            "count": 329
+          }
+        ],
+        "prefix6HistogramTop": [
+          {
+            "hex": "45b7df150c0c",
+            "count": 22
+          },
+          {
+            "hex": "c3f7c9150c0c",
+            "count": 22
+          },
+          {
+            "hex": "03b6c9150c0c",
+            "count": 20
+          },
+          {
+            "hex": "c2c7df150c0c",
+            "count": 20
+          },
+          {
+            "hex": "03b6df150c0c",
+            "count": 20
+          },
+          {
+            "hex": "c7a7c9150c0c",
+            "count": 20
+          },
+          {
+            "hex": "45f7c9150c0c",
+            "count": 19
+          },
+          {
+            "hex": "4497c9150c0c",
+            "count": 19
+          }
+        ],
+        "sampleCount": 80,
+        "redactedSamplePrefixes": [
+          {
+            "time": 60.128,
+            "paramHex": "0x400000af",
+            "len": 9,
+            "prefixHex": "02d6df152c14960ae6"
+          },
+          {
+            "time": 61.133,
+            "paramHex": "0x400000af",
+            "len": 9,
+            "prefixHex": "87d6df15ad0c8e0ae6"
+          },
+          {
+            "time": 62.603,
+            "paramHex": "0x400000af",
+            "len": 9,
+            "prefixHex": "47d7df150c0c8e0ae6"
+          },
+          {
+            "time": 63.906,
+            "paramHex": "0x400000b0",
+            "len": 9,
+            "prefixHex": "82da4c15ad0c8e0a78"
+          },
+          {
+            "time": 64.073,
+            "paramHex": "0x400000af",
+            "len": 9,
+            "prefixHex": "03c6df150c0c8e0ae6"
+          },
+          {
+            "time": 64.809,
+            "paramHex": "0x400000b0",
+            "len": 10,
+            "prefixHex": "40f54c150c0c8e0a783c"
+          }
+        ]
+      },
+      "rawPathPacket": {
+        "attempted": 80,
+        "parsed": 0,
+        "fullConsume": 0,
+        "entityMatchesParam": 0,
+        "failureHistogram": {
+          "payload shorter than PathPacket header": 69,
+          "implausible speed 3.424231985083238e-37": 3,
+          "implausible speed -1.8206340074539185": 2,
+          "implausible speed 1.3696927940332951e-36": 2,
+          "implausible speed 0.015139235183596611": 1,
+          "implausible speed -2.2030486701400676e-13": 1,
+          "implausible speed -0.8636906147003174": 1,
+          "implausible speed 0.027348782867193222": 1
+        }
+      },
+      "unicorn": {
+        "ok": true,
+        "factory": {
+          "packet": true,
+          "storedType": 259,
+          "vtable": "0x10237ef40",
+          "deserialize": "0x101485860",
+          "usePacket": "0x101501744",
+          "heapDelta": 48,
+          "callError": null
+        },
+        "pathFromRaw": 0,
+        "pathFromBuffers": 0,
+        "note": "call return / consumed alone is not semantic success; PathPacket full-consume + oracle gates required",
+        "error": null,
+        "sampleRows": [
+          {
+            "time": 60.128,
+            "paramHex": "0x400000af",
+            "payloadLen": 9,
+            "prefixHex": "02d6df152c14960ae6",
+            "deserialize": {
+              "ok": false,
+              "consumed": 8,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x4000001100000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0x96142c1510101010"
+              },
+              {
+                "off": 24,
+                "before": "0xffffffff00000066",
+                "after": "0xffffffff0000000a"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.133,
+            "paramHex": "0x400000af",
+            "payloadLen": 9,
+            "prefixHex": "87d6df15ad0c8e0ae6",
+            "deserialize": {
+              "ok": false,
+              "consumed": 9,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x40019f5500000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0xc0c0c0cd1860f2c"
+              },
+              {
+                "off": 24,
+                "before": "0xffffffff00000066",
+                "after": "0xffffffff000000e5"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 62.603,
+            "paramHex": "0x400000af",
+            "payloadLen": 9,
+            "prefixHex": "47d7df150c0c8e0ae6",
+            "deserialize": {
+              "ok": false,
+              "consumed": 9,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x4001883d00000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0xc0c0c0cd1860f2c"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 63.906,
+            "paramHex": "0x400000b0",
+            "payloadLen": 9,
+            "prefixHex": "82da4c15ad0c8e0a78",
+            "deserialize": {
+              "ok": false,
+              "consumed": 9,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x8553d38900000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0xc0c0c0c5414942a"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.073,
+            "paramHex": "0x400000af",
+            "payloadLen": 9,
+            "prefixHex": "03c6df150c0c8e0ae6",
+            "deserialize": {
+              "ok": true,
+              "consumed": 8,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x4000002400000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0x8e0c0c1510101010"
+              },
+              {
+                "off": 24,
+                "before": "0xffffffff00000066",
+                "after": "0xffffffff0000000a"
+              },
+              {
+                "off": 32,
+                "before": "0x55",
+                "after": "0x2e"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.809,
+            "paramHex": "0x400000b0",
+            "payloadLen": 10,
+            "prefixHex": "40f54c150c0c8e0a783c",
+            "deserialize": {
+              "ok": false,
+              "consumed": 9,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x40001eb900000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0xc0c0c0cf6306f0c"
+              }
+            ],
+            "rawPathError": "implausible speed 0.015139235183596611",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.876,
+            "paramHex": "0x400000b0",
+            "payloadLen": 9,
+            "prefixHex": "c5b74c150c0c8c1a5c",
+            "deserialize": {
+              "ok": false,
+              "consumed": 9,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x4000002a00000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0x1a8c0c0c54141415"
+              },
+              {
+                "off": 24,
+                "before": "0xffffffff00000066",
+                "after": "0xbfffffff0000005c"
+              },
+              {
+                "off": 32,
+                "before": "0x55",
+                "after": "0xe0"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.909,
+            "paramHex": "0x400000b1",
+            "payloadLen": 8,
+            "prefixHex": "438b4d150c0c080a",
+            "deserialize": {
+              "ok": false,
+              "consumed": 5,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x103",
+                "after": "0x4000000a00000103"
+              },
+              {
+                "off": 16,
+                "before": "0xc0c0c0c14141414",
+                "after": "0x100e0c0c54141415"
+              },
+              {
+                "off": 24,
+                "before": "0xffffffff00000066",
+                "after": "0xffffffff0000000c"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          }
+        ],
+        "decodedQaCount": 0
+      },
+      "objectFieldCorrelation": {
+        "ok": true,
+        "top": [
+          {
+            "field": "i16scale@8",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1053.634,
+            "p95Error": 3883.173,
+            "maxError": 4273.829
+          },
+          {
+            "field": "i16scale@26",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1224.615,
+            "p95Error": 2967.496,
+            "maxError": 4719.63
+          },
+          {
+            "field": "i16scale@28",
+            "validPoints": 6,
+            "assignmentCount": 4,
+            "comparedSamples": 6,
+            "medianError": 1535.501,
+            "p95Error": 6512.91,
+            "maxError": 8577.636
+          },
+          {
+            "field": "i16scale@34",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@36",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@38",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@40",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@42",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@44",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@46",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@48",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          },
+          {
+            "field": "i16scale@50",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 1535.819,
+            "p95Error": 3775.028,
+            "maxError": 4013.35
+          }
+        ],
+        "rowsScored": 15
+      },
+      "oracleQa": null,
+      "accepted": false,
+      "failureSignatures": [
+        "payload_too_small_for_pathpacket_header:mode=9",
+        "raw_pathpacket_parse_zero",
+        "unicorn_no_pathpacket_buffer",
+        "oracle_gates_not_met"
+      ]
+    },
+    {
+      "channel": 1194,
+      "channelHex": "0x4aa",
+      "histogram": {
+        "channel": 1194,
+        "channelHex": "0x4aa",
+        "heroBlockCount": 8246,
+        "payloadSizeHistogram": [
+          {
+            "size": 60,
+            "count": 6903
+          },
+          {
+            "size": 29,
+            "count": 794
+          },
+          {
+            "size": 44,
+            "count": 201
+          },
+          {
+            "size": 104,
+            "count": 89
+          },
+          {
+            "size": 116,
+            "count": 87
+          },
+          {
+            "size": 88,
+            "count": 86
+          },
+          {
+            "size": 17,
+            "count": 78
+          },
+          {
+            "size": 105,
+            "count": 6
+          },
+          {
+            "size": 16,
+            "count": 1
+          },
+          {
+            "size": 20,
+            "count": 1
+          }
+        ],
+        "firstByteHistogram": [
+          {
+            "byte": 192,
+            "count": 550
+          },
+          {
+            "byte": 195,
+            "count": 546
+          },
+          {
+            "byte": 215,
+            "count": 536
+          },
+          {
+            "byte": 167,
+            "count": 531
+          },
+          {
+            "byte": 214,
+            "count": 523
+          },
+          {
+            "byte": 243,
+            "count": 518
+          },
+          {
+            "byte": 199,
+            "count": 518
+          },
+          {
+            "byte": 240,
+            "count": 517
+          },
+          {
+            "byte": 198,
+            "count": 515
+          },
+          {
+            "byte": 246,
+            "count": 509
+          },
+          {
+            "byte": 163,
+            "count": 509
+          },
+          {
+            "byte": 247,
+            "count": 504
+          }
+        ],
+        "prefix6HistogramTop": [
+          {
+            "hex": "c04cdc5aa6fc",
+            "count": 459
+          },
+          {
+            "hex": "d64cdc5aa6fc",
+            "count": 455
+          },
+          {
+            "hex": "d74cdc5aa6fc",
+            "count": 453
+          },
+          {
+            "hex": "c34cdc5aa6fc",
+            "count": 450
+          },
+          {
+            "hex": "c64cdc5aa6fc",
+            "count": 445
+          },
+          {
+            "hex": "f34cdc5aa6fc",
+            "count": 442
+          },
+          {
+            "hex": "a74cdc5aa6fc",
+            "count": 435
+          },
+          {
+            "hex": "f04cdc5aa6fc",
+            "count": 435
+          }
+        ],
+        "sampleCount": 80,
+        "redactedSamplePrefixes": [
+          {
+            "time": 60.462,
+            "paramHex": "0x400000af",
+            "len": 60,
+            "prefixHex": "d74cdc5aa6fc67efdae4afe4e4dee4af"
+          },
+          {
+            "time": 60.966,
+            "paramHex": "0x400000b4",
+            "len": 60,
+            "prefixHex": "a74cdc5aa6fc67efdae4afe4e4dee4e4"
+          },
+          {
+            "time": 61.266,
+            "paramHex": "0x400000b4",
+            "len": 60,
+            "prefixHex": "a74cdc5aa6fc67efdae4afe4e4dee4af"
+          },
+          {
+            "time": 61.5,
+            "paramHex": "0x400000b4",
+            "len": 60,
+            "prefixHex": "c04cdc5aa6fc67efdae4afe4e4dee4e4"
+          },
+          {
+            "time": 61.533,
+            "paramHex": "0x400000af",
+            "len": 60,
+            "prefixHex": "c04cdc5aa6fc67efdae4afe4e4dee4af"
+          },
+          {
+            "time": 61.767,
+            "paramHex": "0x400000b4",
+            "len": 60,
+            "prefixHex": "f34cdc5aa6fc67efdae4afe4e4dee4e4"
+          }
+        ]
+      },
+      "rawPathPacket": {
+        "attempted": 80,
+        "parsed": 0,
+        "fullConsume": 0,
+        "entityMatchesParam": 0,
+        "failureHistogram": {
+          "implausible speed -3.2309127719730786e+22": 76,
+          "implausible speed -3.246847958397747e+16": 4
+        }
+      },
+      "unicorn": {
+        "ok": true,
+        "factory": {
+          "packet": true,
+          "storedType": 1194,
+          "vtable": "0x10237aaa0",
+          "deserialize": "0x101333f2c",
+          "usePacket": "0x1013a258c",
+          "heapDelta": 48,
+          "callError": null
+        },
+        "pathFromRaw": 0,
+        "pathFromBuffers": 0,
+        "note": "call return / consumed alone is not semantic success; PathPacket full-consume + oracle gates required",
+        "error": null,
+        "sampleRows": [
+          {
+            "time": 60.462,
+            "paramHex": "0x400000af",
+            "payloadLen": 60,
+            "prefixHex": "d74cdc5aa6fc67efdae4afe4",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x4003a790000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xc3c3c3c300003c54"
+              }
+            ],
+            "rawPathError": "implausible speed -3.2309127719730786e+22",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 60.966,
+            "paramHex": "0x400000b4",
+            "payloadLen": 60,
+            "prefixHex": "a74cdc5aa6fc67efdae4afe4",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x4000007e000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xc3c3c3a300006dad"
+              }
+            ],
+            "rawPathError": "implausible speed -3.2309127719730786e+22",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.266,
+            "paramHex": "0x400000b4",
+            "payloadLen": 60,
+            "prefixHex": "a74cdc5aa6fc67efdae4afe4",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x4000007e000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xc3c3c3a300006dad"
+              }
+            ],
+            "rawPathError": "implausible speed -3.2309127719730786e+22",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.5,
+            "paramHex": "0x400000b4",
+            "payloadLen": 60,
+            "prefixHex": "c04cdc5aa6fc67efdae4afe4",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x4003a7f0000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xc3c3c3c300003c54"
+              }
+            ],
+            "rawPathError": "implausible speed -3.2309127719730786e+22",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.533,
+            "paramHex": "0x400000af",
+            "payloadLen": 60,
+            "prefixHex": "c04cdc5aa6fc67efdae4afe4",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x4003a7f0000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xc3c3c3c300003c54"
+              }
+            ],
+            "rawPathError": "implausible speed -3.2309127719730786e+22",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.767,
+            "paramHex": "0x400000b4",
+            "payloadLen": 60,
+            "prefixHex": "f34cdc5aa6fc67efdae4afe4",
+            "deserialize": {
+              "ok": true,
+              "consumed": 6,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x4003a7ed000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xc3c3c3c300003c54"
+              }
+            ],
+            "rawPathError": "implausible speed -3.2309127719730786e+22",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.968,
+            "paramHex": "0x400000b2",
+            "payloadLen": 29,
+            "prefixHex": "d0583a703733d2b3e6da40af",
+            "deserialize": {
+              "ok": true,
+              "consumed": 8,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x40000053000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0x5810186f0000b83a"
+              }
+            ],
+            "rawPathError": "implausible speed -3.246847958397747e+16",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.968,
+            "paramHex": "0x400000b1",
+            "payloadLen": 29,
+            "prefixHex": "f7b73a703733d2b3e6da40af",
+            "deserialize": {
+              "ok": true,
+              "consumed": 29,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 32,
+            "newAllocs": [
+              {
+                "ptr": "0x301002b00",
+                "size": 32
+              }
+            ],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x4aa",
+                "after": "0x40000002000004aa"
+              },
+              {
+                "off": 16,
+                "before": "0xc3c3c3c30000b8b8",
+                "after": "0xf5a2a310000b8b8"
+              },
+              {
+                "off": 24,
+                "before": "0x0",
+                "after": "0x301002b00"
+              },
+              {
+                "off": 32,
+                "before": "0x0",
+                "after": "0x1400000014"
+              },
+              {
+                "off": 48,
+                "before": "0x0",
+                "after": "0x1d1"
+              },
+              {
+                "off": 56,
+                "before": "0x0",
+                "after": "0x400000b1400000b2"
+              }
+            ],
+            "rawPathError": "implausible speed -3.246847958397747e+16",
+            "rawPath": null,
+            "bufferCandidates": [
+              {
+                "objOff": 24,
+                "ptr": "0x301002b00",
+                "size": 20,
+                "sizeOff": 32,
+                "prefixHex": "d101000000000000b2000040b10000400000a041"
+              },
+              {
+                "objOff": null,
+                "ptr": "0x301002b00",
+                "size": 32,
+                "sizeOff": null,
+                "prefixHex": "d101000000000000b2000040b10000400000a04100000000",
+                "source": "new_alloc"
+              }
+            ],
+            "pathFromBuffers": []
+          }
+        ],
+        "decodedQaCount": 0
+      },
+      "objectFieldCorrelation": {
+        "ok": true,
+        "top": [
+          {
+            "field": "i16scale@8",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 5826.759,
+            "p95Error": 5826.759,
+            "maxError": 11873.84
+          },
+          {
+            "field": "i16scale@10",
+            "validPoints": 20,
+            "assignmentCount": 5,
+            "comparedSamples": 20,
+            "medianError": 6228.465,
+            "p95Error": 6899.029,
+            "maxError": 6917.897
+          },
+          {
+            "field": "i16scale@48",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6451.217,
+            "p95Error": 6920.804,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@24",
+            "validPoints": 38,
+            "assignmentCount": 5,
+            "comparedSamples": 38,
+            "medianError": 6451.217,
+            "p95Error": 6920.804,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@26",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@28",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@30",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@32",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@34",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@36",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@38",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          },
+          {
+            "field": "i16scale@40",
+            "validPoints": 40,
+            "assignmentCount": 6,
+            "comparedSamples": 40,
+            "medianError": 6886.167,
+            "p95Error": 7459.967,
+            "maxError": 10093.346
+          }
+        ],
+        "rowsScored": 40
+      },
+      "oracleQa": null,
+      "accepted": false,
+      "failureSignatures": [
+        "raw_pathpacket_parse_zero",
+        "unicorn_no_pathpacket_buffer",
+        "oracle_gates_not_met"
+      ]
+    },
+    {
+      "channel": 921,
+      "channelHex": "0x399",
+      "histogram": {
+        "channel": 921,
+        "channelHex": "0x399",
+        "heroBlockCount": 6912,
+        "payloadSizeHistogram": [
+          {
+            "size": 23,
+            "count": 2394
+          },
+          {
+            "size": 22,
+            "count": 1372
+          },
+          {
+            "size": 24,
+            "count": 1140
+          },
+          {
+            "size": 18,
+            "count": 895
+          },
+          {
+            "size": 19,
+            "count": 673
+          },
+          {
+            "size": 21,
+            "count": 193
+          },
+          {
+            "size": 20,
+            "count": 158
+          },
+          {
+            "size": 17,
+            "count": 77
+          },
+          {
+            "size": 25,
+            "count": 10
+          }
+        ],
+        "firstByteHistogram": [
+          {
+            "byte": 127,
+            "count": 601
+          },
+          {
+            "byte": 223,
+            "count": 597
+          },
+          {
+            "byte": 87,
+            "count": 577
+          },
+          {
+            "byte": 215,
+            "count": 575
+          },
+          {
+            "byte": 199,
+            "count": 566
+          },
+          {
+            "byte": 71,
+            "count": 565
+          },
+          {
+            "byte": 255,
+            "count": 555
+          },
+          {
+            "byte": 95,
+            "count": 531
+          },
+          {
+            "byte": 63,
+            "count": 303
+          },
+          {
+            "byte": 135,
+            "count": 303
+          },
+          {
+            "byte": 151,
+            "count": 301
+          },
+          {
+            "byte": 23,
+            "count": 299
+          }
+        ],
+        "prefix6HistogramTop": [
+          {
+            "hex": "ff1bd866a80c",
+            "count": 4
+          },
+          {
+            "hex": "5f1ad86ca80d",
+            "count": 4
+          },
+          {
+            "hex": "df1bd864a80d",
+            "count": 4
+          },
+          {
+            "hex": "d71bdaa4a80d",
+            "count": 3
+          },
+          {
+            "hex": "df9a18a5e80c",
+            "count": 3
+          },
+          {
+            "hex": "5f1bd8aa280c",
+            "count": 3
+          },
+          {
+            "hex": "ff1a1aabe80c",
+            "count": 3
+          },
+          {
+            "hex": "bf1bd86ca80c",
+            "count": 3
+          }
+        ],
+        "sampleCount": 80,
+        "redactedSamplePrefixes": [
+          {
+            "time": 61.166,
+            "paramHex": "0x400000b6",
+            "len": 21,
+            "prefixHex": "5f1b186ca80c1b51a87e332646182c2b"
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "len": 22,
+            "prefixHex": "df9b1866680c5651a87e33266f66827b"
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "len": 21,
+            "prefixHex": "5f1b586aa80c5651a87e3326bc36c013"
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "len": 23,
+            "prefixHex": "c71a1aaba80de656513da87373dca039"
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b1",
+            "len": 22,
+            "prefixHex": "1f1a5aa4e80c5651f7a86c7380140b37"
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "len": 23,
+            "prefixHex": "bf9bd8aca80c6a5651f7a86c7380140b"
+          }
+        ]
+      },
+      "rawPathPacket": {
+        "attempted": 80,
+        "parsed": 0,
+        "fullConsume": 0,
+        "entityMatchesParam": 0,
+        "failureHistogram": {
+          "implausible speed -1.1620673702277505e-14": 4,
+          "implausible speed -1.1617449894880255e-14": 4,
+          "implausible speed -1.1653228566572277e-14": 3,
+          "implausible speed -4.2400404676038477e-26": 3,
+          "implausible speed -1.8687049452878295e-14": 3,
+          "implausible speed 1.1186631181231655e+38": 2,
+          "implausible speed -1.165495227861994e-14": 2,
+          "implausible speed -1.8686903763211367e-14": 2
+        }
+      },
+      "unicorn": {
+        "ok": true,
+        "factory": {
+          "packet": true,
+          "storedType": 921,
+          "vtable": "0x10237ecd0",
+          "deserialize": "0x101480850",
+          "usePacket": "0x101500d5c",
+          "heapDelta": 112,
+          "callError": null
+        },
+        "pathFromRaw": 0,
+        "pathFromBuffers": 0,
+        "note": "call return / consumed alone is not semantic success; PathPacket full-consume + oracle gates required",
+        "error": null,
+        "sampleRows": [
+          {
+            "time": 61.166,
+            "paramHex": "0x400000b6",
+            "payloadLen": 21,
+            "prefixHex": "5f1b186ca80c1b51a87e3326",
+            "deserialize": {
+              "ok": false,
+              "consumed": 13,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4f37f06200000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x33"
+              }
+            ],
+            "rawPathError": "implausible speed 1.1186571348123324e+38",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "payloadLen": 22,
+            "prefixHex": "df9b1866680c5651a87e3326",
+            "deserialize": {
+              "ok": true,
+              "consumed": 21,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4000000600000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x1e"
+              },
+              {
+                "off": 56,
+                "before": "0xe7e7e7e700000066",
+                "after": "0x42e7e75100000067"
+              }
+            ],
+            "rawPathError": "implausible speed 1.1186631181231655e+38",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "payloadLen": 21,
+            "prefixHex": "5f1b586aa80c5651a87e3326",
+            "deserialize": {
+              "ok": false,
+              "consumed": 11,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4006f06200000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x7e"
+              }
+            ],
+            "rawPathError": "implausible speed 1.1186631181231655e+38",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "payloadLen": 23,
+            "prefixHex": "c71a1aaba80de656513da873",
+            "deserialize": {
+              "ok": false,
+              "consumed": 12,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4118f1b800000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0xa8"
+              }
+            ],
+            "rawPathError": "implausible speed 0.051108263432979584",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b1",
+            "payloadLen": 22,
+            "prefixHex": "1f1a5aa4e80c5651f7a86c73",
+            "deserialize": {
+              "ok": false,
+              "consumed": 9,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4000004000000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x2e"
+              }
+            ],
+            "rawPathError": "implausible speed -2.7457782548296825e-14",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "payloadLen": 23,
+            "prefixHex": "bf9bd8aca80c6a5651f7a86c",
+            "deserialize": {
+              "ok": false,
+              "consumed": 23,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4000133100000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x51"
+              },
+              {
+                "off": 56,
+                "before": "0xe7e7e7e700000066",
+                "after": "0x42e7e7f7000000e5"
+              }
+            ],
+            "rawPathError": "implausible speed -4.245870034550467e+33",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.968,
+            "paramHex": "0x400000b1",
+            "payloadLen": 18,
+            "prefixHex": "479ad8a2e80ce65651a8a850",
+            "deserialize": {
+              "ok": false,
+              "consumed": 18,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x401c64bd00000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x2e"
+              }
+            ],
+            "rawPathError": "implausible speed -1.1620673702277505e-14",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 62.937,
+            "paramHex": "0x400000b0",
+            "payloadLen": 23,
+            "prefixHex": "971bd9a4680c784851a8a86c",
+            "deserialize": {
+              "ok": false,
+              "consumed": 12,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x399",
+                "after": "0x4000005a00000399"
+              },
+              {
+                "off": 16,
+                "before": "0x55",
+                "after": "0x1e"
+              }
+            ],
+            "rawPathError": "implausible speed -1.1617544762570348e-14",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          }
+        ],
+        "decodedQaCount": 0
+      },
+      "objectFieldCorrelation": {
+        "ok": true,
+        "top": [],
+        "rowsScored": 6
+      },
+      "oracleQa": null,
+      "accepted": false,
+      "failureSignatures": [
+        "raw_pathpacket_parse_zero",
+        "unicorn_no_pathpacket_buffer",
+        "oracle_gates_not_met"
+      ]
+    },
+    {
+      "channel": 398,
+      "channelHex": "0x18e",
+      "histogram": {
+        "channel": 398,
+        "channelHex": "0x18e",
+        "heroBlockCount": 6862,
+        "payloadSizeHistogram": [
+          {
+            "size": 7,
+            "count": 5998
+          },
+          {
+            "size": 6,
+            "count": 820
+          },
+          {
+            "size": 11,
+            "count": 42
+          },
+          {
+            "size": 10,
+            "count": 2
+          }
+        ],
+        "firstByteHistogram": [
+          {
+            "byte": 230,
+            "count": 819
+          },
+          {
+            "byte": 228,
+            "count": 784
+          },
+          {
+            "byte": 226,
+            "count": 729
+          },
+          {
+            "byte": 224,
+            "count": 727
+          },
+          {
+            "byte": 100,
+            "count": 449
+          },
+          {
+            "byte": 98,
+            "count": 435
+          },
+          {
+            "byte": 34,
+            "count": 434
+          },
+          {
+            "byte": 102,
+            "count": 420
+          },
+          {
+            "byte": 96,
+            "count": 414
+          },
+          {
+            "byte": 36,
+            "count": 396
+          },
+          {
+            "byte": 38,
+            "count": 395
+          },
+          {
+            "byte": 32,
+            "count": 392
+          }
+        ],
+        "prefix6HistogramTop": [
+          {
+            "hex": "20c2d6353a66",
+            "count": 25
+          },
+          {
+            "hex": "a0c293c98e3c",
+            "count": 23
+          },
+          {
+            "hex": "e4c2f8f5fdf0",
+            "count": 23
+          },
+          {
+            "hex": "a4c293c98e3c",
+            "count": 22
+          },
+          {
+            "hex": "e6c3f8f5fdf0",
+            "count": 22
+          },
+          {
+            "hex": "22c3f8f5fdf0",
+            "count": 21
+          },
+          {
+            "hex": "60c3f8f5fdf0",
+            "count": 20
+          },
+          {
+            "hex": "26c2d6353a66",
+            "count": 19
+          }
+        ],
+        "sampleCount": 80,
+        "redactedSamplePrefixes": [
+          {
+            "time": 60.966,
+            "paramHex": "0x400000af",
+            "len": 7,
+            "prefixHex": "e4c292617a6ffb"
+          },
+          {
+            "time": 61.166,
+            "paramHex": "0x400000b6",
+            "len": 7,
+            "prefixHex": "20c3ec44d6495e"
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "len": 7,
+            "prefixHex": "e0c2be0aafe05e"
+          },
+          {
+            "time": 62.403,
+            "paramHex": "0x400000b1",
+            "len": 6,
+            "prefixHex": "62c246b77adb"
+          },
+          {
+            "time": 64.173,
+            "paramHex": "0x400000b0",
+            "len": 7,
+            "prefixHex": "e2c21404ecfa5c"
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b1",
+            "len": 7,
+            "prefixHex": "64c3930d4608e6"
+          }
+        ]
+      },
+      "rawPathPacket": {
+        "attempted": 80,
+        "parsed": 0,
+        "fullConsume": 0,
+        "entityMatchesParam": 0,
+        "failureHistogram": {
+          "payload shorter than PathPacket header": 79,
+          "implausible speed 4.1573058893354684e+20": 1
+        }
+      },
+      "unicorn": {
+        "ok": true,
+        "factory": {
+          "packet": true,
+          "storedType": 398,
+          "vtable": "0x10237ee70",
+          "deserialize": "0x101485070",
+          "usePacket": "0x1015014ec",
+          "heapDelta": 32,
+          "callError": null
+        },
+        "pathFromRaw": 0,
+        "pathFromBuffers": 0,
+        "note": "call return / consumed alone is not semantic success; PathPacket full-consume + oracle gates required",
+        "error": null,
+        "sampleRows": [
+          {
+            "time": 60.966,
+            "paramHex": "0x400000af",
+            "payloadLen": 7,
+            "prefixHex": "e4c292617a6ffb",
+            "deserialize": {
+              "ok": false,
+              "consumed": 7,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x461aaa780000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0x6655555537"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.166,
+            "paramHex": "0x400000b6",
+            "payloadLen": 7,
+            "prefixHex": "20c3ec44d6495e",
+            "deserialize": {
+              "ok": false,
+              "consumed": 7,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x40000bee0000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0x5e5555cf6c"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 61.634,
+            "paramHex": "0x400000b2",
+            "payloadLen": 7,
+            "prefixHex": "e0c2be0aafe05e",
+            "deserialize": {
+              "ok": false,
+              "consumed": 7,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x4000006b0000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0x5e552398ea"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 62.403,
+            "paramHex": "0x400000b1",
+            "payloadLen": 6,
+            "prefixHex": "62c246b77adb",
+            "deserialize": {
+              "ok": false,
+              "consumed": 6,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x400000430000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0xa155b9dab7"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.173,
+            "paramHex": "0x400000b0",
+            "payloadLen": 7,
+            "prefixHex": "e2c21404ecfa5c",
+            "deserialize": {
+              "ok": false,
+              "consumed": 7,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x400000280000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0x5c5508d682"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b1",
+            "payloadLen": 7,
+            "prefixHex": "64c3930d4608e6",
+            "deserialize": {
+              "ok": false,
+              "consumed": 4,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x40000bae0000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0x905555551e"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.709,
+            "paramHex": "0x400000b2",
+            "payloadLen": 7,
+            "prefixHex": "26c371f7333ce6",
+            "deserialize": {
+              "ok": false,
+              "consumed": 4,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x4000003e0000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0xf75555551e"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.876,
+            "paramHex": "0x400000b5",
+            "payloadLen": 7,
+            "prefixHex": "66c393af5ed574",
+            "deserialize": {
+              "ok": false,
+              "consumed": 4,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x18e",
+                "after": "0x40000b990000018e"
+              },
+              {
+                "off": 16,
+                "before": "0x6655555555",
+                "after": "0x905555551e"
+              }
+            ],
+            "rawPathError": "payload shorter than PathPacket header",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          }
+        ],
+        "decodedQaCount": 0
+      },
+      "objectFieldCorrelation": {
+        "ok": true,
+        "top": [
+          {
+            "field": "i16scale@20",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 401.713,
+            "p95Error": 401.713,
+            "maxError": 3749.597
+          },
+          {
+            "field": "i16scale@28",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@30",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@32",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@34",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@36",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@38",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@40",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@42",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@44",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@46",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          },
+          {
+            "field": "i16scale@48",
+            "validPoints": 3,
+            "assignmentCount": 3,
+            "comparedSamples": 3,
+            "medianError": 481.917,
+            "p95Error": 481.917,
+            "maxError": 3312.303
+          }
+        ],
+        "rowsScored": 3
+      },
+      "oracleQa": null,
+      "accepted": false,
+      "failureSignatures": [
+        "payload_too_small_for_pathpacket_header:mode=7",
+        "raw_pathpacket_parse_zero",
+        "unicorn_no_pathpacket_buffer",
+        "oracle_gates_not_met"
+      ]
+    },
+    {
+      "channel": 632,
+      "channelHex": "0x278",
+      "histogram": {
+        "channel": 632,
+        "channelHex": "0x278",
+        "heroBlockCount": 6855,
+        "payloadSizeHistogram": [
+          {
+            "size": 18,
+            "count": 3285
+          },
+          {
+            "size": 17,
+            "count": 2272
+          },
+          {
+            "size": 19,
+            "count": 422
+          },
+          {
+            "size": 13,
+            "count": 308
+          },
+          {
+            "size": 14,
+            "count": 297
+          },
+          {
+            "size": 20,
+            "count": 164
+          },
+          {
+            "size": 21,
+            "count": 45
+          },
+          {
+            "size": 22,
+            "count": 39
+          },
+          {
+            "size": 16,
+            "count": 22
+          },
+          {
+            "size": 23,
+            "count": 1
+          }
+        ],
+        "firstByteHistogram": [
+          {
+            "byte": 68,
+            "count": 3452
+          },
+          {
+            "byte": 4,
+            "count": 997
+          },
+          {
+            "byte": 20,
+            "count": 218
+          },
+          {
+            "byte": 180,
+            "count": 204
+          },
+          {
+            "byte": 156,
+            "count": 199
+          },
+          {
+            "byte": 44,
+            "count": 195
+          },
+          {
+            "byte": 172,
+            "count": 192
+          },
+          {
+            "byte": 28,
+            "count": 189
+          },
+          {
+            "byte": 148,
+            "count": 185
+          },
+          {
+            "byte": 52,
+            "count": 180
+          },
+          {
+            "byte": 108,
+            "count": 177
+          },
+          {
+            "byte": 116,
+            "count": 177
+          }
+        ],
+        "prefix6HistogramTop": [
+          {
+            "hex": "048dec1ccae6",
+            "count": 4
+          },
+          {
+            "hex": "04813e180de4",
+            "count": 3
+          },
+          {
+            "hex": "04897c1ccae6",
+            "count": 3
+          },
+          {
+            "hex": "0481601fcae6",
+            "count": 3
+          },
+          {
+            "hex": "0489241fcae6",
+            "count": 3
+          },
+          {
+            "hex": "ac82621c0de4",
+            "count": 3
+          },
+          {
+            "hex": "4488ed12e3e8",
+            "count": 2
+          },
+          {
+            "hex": "4484e113e3e8",
+            "count": 2
+          }
+        ],
+        "sampleCount": 80,
+        "redactedSamplePrefixes": [
+          {
+            "time": 60.295,
+            "paramHex": "0x400000af",
+            "len": 17,
+            "prefixHex": "440cec17bcffb256cae78151735a8f32"
+          },
+          {
+            "time": 60.832,
+            "paramHex": "0x400000b4",
+            "len": 17,
+            "prefixHex": "44806517bcffb256caec8181425e94bc"
+          },
+          {
+            "time": 62.303,
+            "paramHex": "0x400000af",
+            "len": 17,
+            "prefixHex": "44802612bcffb256cae781518fea9d32"
+          },
+          {
+            "time": 62.904,
+            "paramHex": "0x400000b4",
+            "len": 17,
+            "prefixHex": "44846e14bcffb256caec81818e0be7bc"
+          },
+          {
+            "time": 63.672,
+            "paramHex": "0x400000b5",
+            "len": 17,
+            "prefixHex": "448ce7139caa9a22caed81aec101dfd6"
+          },
+          {
+            "time": 63.906,
+            "paramHex": "0x400000b5",
+            "len": 17,
+            "prefixHex": "048bef1be6e9f350caed81814fc660f0"
+          }
+        ]
+      },
+      "rawPathPacket": {
+        "attempted": 80,
+        "parsed": 0,
+        "fullConsume": 0,
+        "entityMatchesParam": 0,
+        "failureHistogram": {
+          "implausible speed -1.956899380801016e+27": 14,
+          "implausible speed -1.9110345515634922e+24": 9,
+          "implausible speed -5.0066809015479764e+29": 6,
+          "implausible speed -5.007749289741061e+29": 5,
+          "implausible speed -7.81972533827712e+27": 4,
+          "implausible speed -7.820850442091664e+27": 4,
+          "implausible speed -7.82186457029386e+27": 4,
+          "implausible speed -1.2514983312470177e+29": 4
+        }
+      },
+      "unicorn": {
+        "ok": true,
+        "factory": {
+          "packet": true,
+          "storedType": 632,
+          "vtable": "0x10236ee00",
+          "deserialize": "0x101193850",
+          "usePacket": "0x1011d3830",
+          "heapDelta": 64,
+          "callError": null
+        },
+        "pathFromRaw": 0,
+        "pathFromBuffers": 0,
+        "note": "call return / consumed alone is not semantic success; PathPacket full-consume + oracle gates required",
+        "error": null,
+        "sampleRows": [
+          {
+            "time": 60.295,
+            "paramHex": "0x400000af",
+            "payloadLen": 17,
+            "prefixHex": "440cec17bcffb256cae78151",
+            "deserialize": {
+              "ok": true,
+              "consumed": 16,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x4000315300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x11111156000000b2"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x12cad9d9d9d9"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0x51735a8f408080e7"
+              },
+              {
+                "off": 40,
+                "before": "0x1e1e1e1e000000a1",
+                "after": "0x49a81e1e00000032"
+              },
+              {
+                "off": 48,
+                "before": "0xa6a6a6a6",
+                "after": "0xd4d4d4d4"
+              }
+            ],
+            "rawPathError": "implausible speed -1.9110345515634922e+24",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 60.832,
+            "paramHex": "0x400000b4",
+            "payloadLen": 17,
+            "prefixHex": "44806517bcffb256caec8181",
+            "deserialize": {
+              "ok": false,
+              "consumed": 15,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x4000265300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x11111156000000b2"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x125e7ae5a0ca"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0x7d7d7d7d40808094"
+              }
+            ],
+            "rawPathError": "implausible speed -1.956899380801016e+27",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 62.303,
+            "paramHex": "0x400000af",
+            "payloadLen": 17,
+            "prefixHex": "44802612bcffb256cae78151",
+            "deserialize": {
+              "ok": true,
+              "consumed": 17,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x4000265300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x11111156000000b2"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x1281c6d98dca"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0x8fea9d3240808051"
+              },
+              {
+                "off": 40,
+                "before": "0x1e1e1e1e000000a1",
+                "after": "0x49a81e1e00000078"
+              },
+              {
+                "off": 48,
+                "before": "0xa6a6a6a6",
+                "after": "0xe4a6a6f7"
+              }
+            ],
+            "rawPathError": "implausible speed -1.9110345515634922e+24",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 62.904,
+            "paramHex": "0x400000b4",
+            "payloadLen": 17,
+            "prefixHex": "44846e14bcffb256caec8181",
+            "deserialize": {
+              "ok": false,
+              "consumed": 17,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x40002e5300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x111133b2000000f1"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x12bc7ae521ca"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0x7d7d7d7d00000000"
+              }
+            ],
+            "rawPathError": "implausible speed -1.956899380801016e+27",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 63.672,
+            "paramHex": "0x400000b5",
+            "payloadLen": 17,
+            "prefixHex": "448ce7139caa9a22caed81ae",
+            "deserialize": {
+              "ok": false,
+              "consumed": 17,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x401d425300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x112d3f4a00000022"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x120ac6d9d9ae"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0x7d7d7d7d00000000"
+              }
+            ],
+            "rawPathError": "implausible speed -7.81972533827712e+27",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 63.906,
+            "paramHex": "0x400000b5",
+            "payloadLen": 17,
+            "prefixHex": "048bef1be6e9f350caed8181",
+            "deserialize": {
+              "ok": false,
+              "consumed": 17,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x40002b8300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x11111112000000f3"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x125077777777"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0xcaed818180808080"
+              },
+              {
+                "off": 40,
+                "before": "0x1e1e1e1e000000a1",
+                "after": "0xc660f0690000004f"
+              },
+              {
+                "off": 48,
+                "before": "0xa6a6a6a6",
+                "after": "0x2e2e2e2e"
+              }
+            ],
+            "rawPathError": "implausible speed -7.826729198067026e+27",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.374,
+            "paramHex": "0x400000af",
+            "payloadLen": 17,
+            "prefixHex": "44844213bcffb256cae78151",
+            "deserialize": {
+              "ok": true,
+              "consumed": 17,
+              "x0": 1,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": true
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x40002e5300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x11111156000000b2"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x1281c6d98dca"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0xdb2fc3240808051"
+              },
+              {
+                "off": 40,
+                "before": "0x1e1e1e1e000000a1",
+                "after": "0x49a81e1e000000a1"
+              },
+              {
+                "off": 48,
+                "before": "0xa6a6a6a6",
+                "after": "0xe4a6a6f7"
+              }
+            ],
+            "rawPathError": "implausible speed -1.9110345515634922e+24",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          },
+          {
+            "time": 64.475,
+            "paramHex": "0x400000b5",
+            "payloadLen": 18,
+            "prefixHex": "44825f1ac40bcdd420caed81",
+            "deserialize": {
+              "ok": false,
+              "consumed": 15,
+              "x0": 0,
+              "returned": true,
+              "error": null,
+              "fullPayloadConsume": false
+            },
+            "heapDelta": 0,
+            "newAllocs": [],
+            "objectQwordDiffs": [
+              {
+                "off": 8,
+                "before": "0x278",
+                "after": "0x8c7884d300000278"
+              },
+              {
+                "off": 16,
+                "before": "0x11111111000000f1",
+                "after": "0x11111111000000ef"
+              },
+              {
+                "off": 24,
+                "before": "0x1287d9d9d9d9",
+                "after": "0x8478a590aca"
+              },
+              {
+                "off": 32,
+                "before": "0x7d7d7d7d80808080",
+                "after": "0x7d7d7d7d40808094"
+              }
+            ],
+            "rawPathError": "implausible speed -2635059.25",
+            "rawPath": null,
+            "bufferCandidates": [],
+            "pathFromBuffers": []
+          }
+        ],
+        "decodedQaCount": 0
+      },
+      "objectFieldCorrelation": {
+        "ok": true,
+        "top": [
+          {
+            "field": "i16scale@40",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 830.707,
+            "p95Error": 6930.584,
+            "maxError": 9678.678
+          },
+          {
+            "field": "i16scale@52",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 957.992,
+            "p95Error": 4477.586,
+            "maxError": 6920.804
+          },
+          {
+            "field": "i16scale@54",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 957.992,
+            "p95Error": 4477.586,
+            "maxError": 6920.804
+          },
+          {
+            "field": "i16scale@8",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 1089.148,
+            "p95Error": 6151.265,
+            "maxError": 6151.265
+          },
+          {
+            "field": "i16scale@16",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 4172.758,
+            "p95Error": 6843.778,
+            "maxError": 7104.517
+          },
+          {
+            "field": "i16@20",
+            "validPoints": 16,
+            "assignmentCount": 4,
+            "comparedSamples": 16,
+            "medianError": 4179.949,
+            "p95Error": 7743.88,
+            "maxError": 9902.624
+          },
+          {
+            "field": "i16scale@28",
+            "validPoints": 5,
+            "assignmentCount": 3,
+            "comparedSamples": 5,
+            "medianError": 4274.634,
+            "p95Error": 4282.24,
+            "maxError": 4811.82
+          },
+          {
+            "field": "i16@42",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 4819.826,
+            "p95Error": 8163.636,
+            "maxError": 10911.487
+          },
+          {
+            "field": "i16@10",
+            "validPoints": 15,
+            "assignmentCount": 4,
+            "comparedSamples": 15,
+            "medianError": 5266.371,
+            "p95Error": 12688.614,
+            "maxError": 13769.885
+          },
+          {
+            "field": "i16@18",
+            "validPoints": 16,
+            "assignmentCount": 4,
+            "comparedSamples": 16,
+            "medianError": 8054.231,
+            "p95Error": 8350.753,
+            "maxError": 8417.538
+          },
+          {
+            "field": "i16@28",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 8149.391,
+            "p95Error": 10305.961,
+            "maxError": 10369.127
+          },
+          {
+            "field": "i16@8",
+            "validPoints": 19,
+            "assignmentCount": 5,
+            "comparedSamples": 19,
+            "medianError": 9046.539,
+            "p95Error": 11768.363,
+            "maxError": 11822.234
+          }
+        ],
+        "rowsScored": 19
+      },
+      "oracleQa": null,
+      "accepted": false,
+      "failureSignatures": [
+        "raw_pathpacket_parse_zero",
+        "unicorn_no_pathpacket_buffer",
+        "oracle_gates_not_met"
+      ]
+    }
+  ],
+  "winner": null,
+  "winnerFound": false,
+  "endToEndWallMs": 17016.344,
+  "keep": "discard",
+  "reason": "E3 discard: no channel produced PathPacket buffers that pass oracle gates under current Unicorn stubs",
+  "nextSingleVariableHypothesis": "E4: derive arm64 mov_decrypt payload_offset/size_offset (Mowokuma-style patch config) and/or extend Unicorn stubs so Deserialize materializes the dynamic path buffer; channel 351 is identity-strong but ciphertext-sized (6–9B) under current stubs",
+  "speedRun": {
+    "runId": "speed-fcb762dc3300",
+    "ts": "2026-07-22T18:12:52.630716Z",
+    "matchCode": "3264361042",
+    "backend": "offline-025b",
+    "hypothesis": "E3 PathPacket after Unicorn Deserialize buffer",
+    "diffLabel": "phase-b-e3-pathpacket",
+    "wallMs": 17016.344,
+    "keep": "discard",
+    "reason": "E3 discard: no channel produced PathPacket buffers that pass oracle gates under current Unicorn stubs",
+    "productEligible": false,
+    "decoderVersion": "offline-025b-v1",
+    "provenance": "offline_rofl2_025b_research",
+    "phase": "B-E3",
+    "winnerFound": false,
+    "winner": null,
+    "pureBrowserDecoderDerived": false,
+    "endToEndWallMs": 17016.344,
+    "nextSingleVariableHypothesis": "E4: derive arm64 mov_decrypt payload_offset/size_offset (Mowokuma-style patch config) and/or extend Unicorn stubs so Deserialize materializes the dynamic path buffer; channel 351 is identity-strong but ciphertext-sized (6–9B) under current stubs",
+    "statsUpdateCount": 0,
+    "source": "offline_e3_emulator_pathpacket",
+    "researchKeep": "discard"
+  }
+}

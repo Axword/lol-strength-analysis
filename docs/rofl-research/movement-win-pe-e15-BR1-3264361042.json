@@ -1,0 +1,410 @@
+{
+  "ok": false,
+  "probeVersion": "e15-win-pe-position-writers-v1",
+  "hypothesis": "phase-b-e15-position-writers",
+  "matchCode": "3264361042",
+  "wallMs": 15260.442,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e15-win-pe-position-writers-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "scan": {
+    "e14Pinned": {
+      "getPositionVa": "0x1403030c0",
+      "pathControllerInHero": "0x28d0",
+      "positionInPathController": "0x20",
+      "heroGetPositionSlot": "0x28f0",
+      "pathSetPositionCoreVa": "0x140389200"
+    },
+    "nonStackMovssPlus20": 223,
+    "vector3ClustersPlus20Plus28": 64,
+    "kindCounts": {
+      "other_vector3_store": 44,
+      "direction_normalize": 6,
+      "direction_normalize_likely": 7,
+      "struct_field_copy": 5,
+      "scale_inplace": 2
+    },
+    "pathControllerRegionWriters": [
+      {
+        "storeVa": "0x14038930b",
+        "dest": "dword ptr [rsi + 0x20]",
+        "src": "xmm0",
+        "kind": "direction_normalize",
+        "inPathControllerRegion": true,
+        "isPathSetPositionCore": true,
+        "hasSqrtOrNormHelper": true,
+        "loadsFromRdx": false
+      }
+    ],
+    "absoluteWritersToPc20": [],
+    "absoluteWritersToPc20Count": 0,
+    "pathSetCoreCallers": [
+      "0x14035d39d",
+      "0x1403738e5",
+      "0x1403891eb",
+      "0x14038c11d",
+      "0x14038c225"
+    ],
+    "pathSetAbsoluteVa": "0x1403891a0",
+    "pathSetAbsoluteCallersCount": 30,
+    "pathSetAbsoluteCallersSample": [
+      "0x14026cb00",
+      "0x140270d11",
+      "0x14029ae52",
+      "0x1402ab04f",
+      "0x1402b3d68",
+      "0x1402baeff",
+      "0x1402bd0f2",
+      "0x1402fad57",
+      "0x1402fb6e2",
+      "0x1402fca6a",
+      "0x1402fe63b",
+      "0x140324d0e",
+      "0x1403336aa",
+      "0x140334490",
+      "0x14033b597",
+      "0x14033b79a",
+      "0x140342fb3",
+      "0x1403430de",
+      "0x14042ee0e",
+      "0x1406ba6d2"
+    ],
+    "absoluteSlot": {
+      "offsetInPathController": "0xa0",
+      "heroAbsolute": "0x2970",
+      "writerPrimary": "0x1403891a0",
+      "writerBehavior": "copy rdx Vector3 \u2192 PC+0xa0/+0xa4/+0xa8; if flags clear, call PathSetPositionCore which writes *direction* into PC+0x20",
+      "getterVa": "0x140305350",
+      "getterDisasm": "lea rax, [rcx + 0xa0] ; ret",
+      "getterBytesHex": "488d81a0000000c3",
+      "getterPatternOk": true,
+      "directE8CallersOfAbsGetter": 0,
+      "dwordCopySitesA0A4A8": 33,
+      "dwordCopySitesSample": [
+        {
+          "storeVa": "0x14025b17a",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14025eb14",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x140360c0d",
+          "op": "dword ptr [rcx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x1403891be",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x1405da441",
+          "op": "dword ptr [rax + 0xa0], ecx"
+        },
+        {
+          "storeVa": "0x140908148",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x1409082e5",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090b178",
+          "op": "dword ptr [rcx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090dba5",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090de10",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090f034",
+          "op": "dword ptr [rsi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090f467",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        }
+      ]
+    },
+    "conclusionPc20": "GetPosition slot PC+0x20 has no absolute map-XYZ writers in the PathController region; only PathSetPositionCore direction normalize writes the Vector3 there. Absolute map XYZ is stored at PC+0xa0."
+  },
+  "absoluteVsDirectionProof": {
+    "ok": true,
+    "error": null,
+    "input": [
+      3500.0,
+      100.0,
+      7200.0
+    ],
+    "slotA0": [
+      3500.0,
+      100.0,
+      7200.0
+    ],
+    "slot20": [
+      0.4371927082538605,
+      0.0,
+      0.8993678092956543
+    ],
+    "absGetter": [
+      3500.0,
+      100.0,
+      7200.0
+    ],
+    "getPosition": [
+      0.4371927082538605,
+      0.0,
+      0.8993678092956543
+    ],
+    "a0HoldsAbsolute": true,
+    "slot20HoldsDirection": true,
+    "absGetterMatchesA0": true,
+    "getPositionMatches20": true
+  },
+  "evaluations": [
+    {
+      "opcode": 58,
+      "slot": "PC+0xa0 (absolute, not GetPosition)",
+      "source": "Deserialize+END_READ \u2192 PathSetAbsolute \u2192 abs getter +0xa0",
+      "captured": 120,
+      "applied": 120,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 60,
+          "heroes": 1,
+          "median": 369.1096694605076,
+          "p95": 599.1651640565022,
+          "max": 717.7971295681997,
+          "ok": false
+        },
+        "holdout": {
+          "n": 60,
+          "heroes": 1,
+          "median": 2310.9260364404818,
+          "p95": 3838.156351589759,
+          "max": 3881.070356984501,
+          "ok": false
+        },
+        "roundTripOk": 120,
+        "roundTripN": 120
+      }
+    },
+    {
+      "opcode": 908,
+      "slot": "PC+0xa0 (absolute, not GetPosition)",
+      "source": "Deserialize +16/+20 \u2192 PathSetAbsolute \u2192 abs getter +0xa0",
+      "captured": 100,
+      "applied": 100,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 47,
+          "heroes": 10,
+          "median": 140.3578003726348,
+          "p95": 484.19784818271205,
+          "max": 818.3513064444377,
+          "ok": false
+        },
+        "holdout": {
+          "n": 50,
+          "heroes": 10,
+          "median": 191.3141567370572,
+          "p95": 789.7405767378236,
+          "max": 2642.9777922262006,
+          "ok": false
+        },
+        "roundTripOk": 100,
+        "roundTripN": 100
+      }
+    }
+  ],
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "winnerSlotNote": "Any winner here is PC+0xa0 absolute path; GetPosition+0x20 remains direction-only with no absolute writers",
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "oracleTolS": 0.5
+    },
+    "cadenceHonesty": "No 1Hz claim. Absolute PathSetAbsolute is whatever cadence packet sources provide (DI sparse; 908 higher)."
+  },
+  "blocker": {
+    "kind": "no_absolute_pc20_writers",
+    "alias": "position_slot_not_absolute_store",
+    "detail": "GetPosition slot PC+0x20 is direction/facing (PathSetPositionCore); no absolute map-XYZ stores into that slot. Absolute world XYZ is written to PC+0xa0 by PathSetAbsolute@0x1403891a0 (getter lea rax,[rcx+0xa0] @0x140305350). Driving PathSetAbsolute with reconstructed packet XYZ round-trips +0xa0 but fails Replay API gates \u2014 same packet floats as E14, not live positions.",
+    "relatedAbsoluteSlot": {
+      "offsetInPathController": "0xa0",
+      "heroAbsolute": "0x2970",
+      "writerPrimary": "0x1403891a0",
+      "writerBehavior": "copy rdx Vector3 \u2192 PC+0xa0/+0xa4/+0xa8; if flags clear, call PathSetPositionCore which writes *direction* into PC+0x20",
+      "getterVa": "0x140305350",
+      "getterDisasm": "lea rax, [rcx + 0xa0] ; ret",
+      "getterBytesHex": "488d81a0000000c3",
+      "getterPatternOk": true,
+      "directE8CallersOfAbsGetter": 0,
+      "dwordCopySitesA0A4A8": 33,
+      "dwordCopySitesSample": [
+        {
+          "storeVa": "0x14025b17a",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14025eb14",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x140360c0d",
+          "op": "dword ptr [rcx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x1403891be",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x1405da441",
+          "op": "dword ptr [rax + 0xa0], ecx"
+        },
+        {
+          "storeVa": "0x140908148",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x1409082e5",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090b178",
+          "op": "dword ptr [rcx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090dba5",
+          "op": "dword ptr [rdi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090de10",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090f034",
+          "op": "dword ptr [rsi + 0xa0], eax"
+        },
+        {
+          "storeVa": "0x14090f467",
+          "op": "dword ptr [rbx + 0xa0], eax"
+        }
+      ]
+    },
+    "relatedQaBestNearMiss": {
+      "opcode": 908,
+      "source": "Deserialize +16/+20 \u2192 PathSetAbsolute \u2192 abs getter +0xa0",
+      "n": 50,
+      "heroes": 10,
+      "median": 191.3141567370572,
+      "p95": 789.7405767378236,
+      "max": 2642.9777922262006,
+      "ok": false
+    },
+    "relatedBlockerIfAskingA0": "writers_values_not_oracle",
+    "nextHint": "Path integration / nav waypoint state may produce live positions; packet XYZ through PathSetAbsolute is not oracle-live"
+  },
+  "minimalStubIfContinuingA0": {
+    "pathController": "alloc \u22650xc0; clear +0x50/+0xb9 flags",
+    "writer": "0x1403891a0",
+    "validateHook": "0x141181330 \u2192 return true",
+    "absGetter": "0x140305350",
+    "note": "still needs oracle-true XYZ source; packet fields fail gates"
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "createHeroBindingDecoded": false,
+    "productEligible": false
+  }
+}

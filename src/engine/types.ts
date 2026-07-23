@@ -41,7 +41,7 @@ export interface DamagePacket {
   xH?: number
   rawBeforeXh?: number
   fighterIndex?: number
-  /** Skipped due to HP budget / death */
+  /** Skipped due to death / no surviving window / lockout */
   omitted?: boolean
 }
 
@@ -343,8 +343,12 @@ export interface FighterResult {
   mitigatedTotal: number
   lockedOut: boolean
   avgXh?: number
-  /** Abilities omitted due to low HP budget */
+  /** Abilities omitted (death / no surviving window / lockout) — not rank 0 */
   omittedSlots?: AbilitySlot[]
+  /** Short per-slot omit reasons (rank 0, lockout, died before cast, …) */
+  omissionNotes?: string[]
+  /** Survival-window note when effective fight time < requested window */
+  budgetNote?: string | null
   dead?: boolean
   /** Deterministic enemy target receiving this fighter's single-target packets. */
   targetIndex?: number

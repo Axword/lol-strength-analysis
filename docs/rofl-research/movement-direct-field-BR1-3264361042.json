@@ -1,0 +1,787 @@
+{
+  "ok": true,
+  "phase": "B-E4",
+  "probeVersion": "e4-direct-field-351-v1",
+  "provenance": "offline_rofl2_025b_research",
+  "productEligible": false,
+  "pureBrowserDecoderDerived": false,
+  "browserSafe": false,
+  "pureDecoderConfig": {
+    "decoderVersion": "ch351-direct-field-v1",
+    "channel": 351,
+    "productEligible": false,
+    "browserSafe": false,
+    "requiresLeagueBinary": true,
+    "requiresUnicorn": true,
+    "movementProven": false,
+    "note": "No pure movement decoder derived: channel 351 fields are direct encrypted entity-reference samples, not proven map coordinates.",
+    "layoutConstantsFromBinary": {
+      "storedTypeOff": 8,
+      "innerEntityOff": 12,
+      "field10Off": 16,
+      "field14Off": 20,
+      "objectSize": 32,
+      "schemaBits": "payload[0] bits 3..5"
+    }
+  },
+  "channel351": {
+    "channel": 351,
+    "channelHex": "0x15f",
+    "factory": {
+      "channel": 351,
+      "ok": true,
+      "heapDelta": 32,
+      "storedType": 351,
+      "vtable": "0x10237f010",
+      "deserialize": "0x1014866b8",
+      "usePacket": "0x1015019a0",
+      "initialObjPrefix": "10f03702010000005f010000000000000c0c0c0c55555555666c0000000000000000000000000000",
+      "matches351Layout": true
+    },
+    "binary": {
+      "deserialize": "0x1014866b8",
+      "usePacketExpected": "0x1015019a0",
+      "jumpTableSchema": [
+        0,
+        10,
+        13,
+        23,
+        26,
+        28,
+        34,
+        53
+      ],
+      "entityLutVa": "0x10205cd30",
+      "entityLutSha256": "328528d693ab5d96a815b6706694025a980e609019304aeb2e5e32797011c04b",
+      "entityLutPrefixHex": "d75682dc83028f2935042171799e927f",
+      "readers": {
+        "schema0": "0x10152137c",
+        "schema2": "0x101521284",
+        "schema5": "0x10152156c",
+        "schema7": "0x101521474"
+      },
+      "deserializeDisasmHead": [
+        {
+          "va": "0x1014866b8",
+          "mnemonic": "stp",
+          "op": "x22, x21, [sp, #-0x30]!"
+        },
+        {
+          "va": "0x1014866bc",
+          "mnemonic": "stp",
+          "op": "x20, x19, [sp, #0x10]"
+        },
+        {
+          "va": "0x1014866c0",
+          "mnemonic": "stp",
+          "op": "x29, x30, [sp, #0x20]"
+        },
+        {
+          "va": "0x1014866c4",
+          "mnemonic": "add",
+          "op": "x29, sp, #0x20"
+        },
+        {
+          "va": "0x1014866c8",
+          "mnemonic": "mov",
+          "op": "x20, x2"
+        },
+        {
+          "va": "0x1014866cc",
+          "mnemonic": "mov",
+          "op": "x21, x1"
+        },
+        {
+          "va": "0x1014866d0",
+          "mnemonic": "mov",
+          "op": "x19, x0"
+        },
+        {
+          "va": "0x1014866d4",
+          "mnemonic": "bl",
+          "op": "#0x101775b60"
+        },
+        {
+          "va": "0x1014866d8",
+          "mnemonic": "cbz",
+          "op": "w0, #0x1014866f0"
+        },
+        {
+          "va": "0x1014866dc",
+          "mnemonic": "ldr",
+          "op": "x22, [x21]"
+        },
+        {
+          "va": "0x1014866e0",
+          "mnemonic": "sub",
+          "op": "x8, x20, x22"
+        },
+        {
+          "va": "0x1014866e4",
+          "mnemonic": "cmp",
+          "op": "x8, #2"
+        },
+        {
+          "va": "0x1014866e8",
+          "mnemonic": "b.hs",
+          "op": "#0x101486700"
+        },
+        {
+          "va": "0x1014866ec",
+          "mnemonic": "mov",
+          "op": "w0, #0"
+        },
+        {
+          "va": "0x1014866f0",
+          "mnemonic": "ldp",
+          "op": "x29, x30, [sp, #0x20]"
+        },
+        {
+          "va": "0x1014866f4",
+          "mnemonic": "ldp",
+          "op": "x20, x19, [sp, #0x10]"
+        },
+        {
+          "va": "0x1014866f8",
+          "mnemonic": "ldp",
+          "op": "x22, x21, [sp], #0x30"
+        },
+        {
+          "va": "0x1014866fc",
+          "mnemonic": "ret",
+          "op": ""
+        }
+      ]
+    },
+    "inventory": {
+      "blockCount": 10795,
+      "heroParamBlockCount": 10083,
+      "payloadSizeHistogram": [
+        {
+          "size": 9,
+          "count": 5062
+        },
+        {
+          "size": 8,
+          "count": 3978
+        },
+        {
+          "size": 7,
+          "count": 1523
+        },
+        {
+          "size": 6,
+          "count": 232
+        }
+      ],
+      "schemaHistogram": [
+        {
+          "schema": 0,
+          "count": 2766
+        },
+        {
+          "schema": 5,
+          "count": 2698
+        },
+        {
+          "schema": 2,
+          "count": 2692
+        },
+        {
+          "schema": 7,
+          "count": 2639
+        }
+      ],
+      "deserializeOk": 9988,
+      "deserializeFail": 807,
+      "innerEntityNonzero": 10795,
+      "uniqueInnerEntityIds": 159,
+      "provenHeroInnerCount": 0,
+      "innerBands": {
+        "net_0x4000xxxx": 2789,
+        "net_0x400000xx": 5433,
+        "net_0x40000xxx": 2573
+      },
+      "topInnerEntityIds": [
+        {
+          "idHex": "0x4000006c",
+          "count": 321
+        },
+        {
+          "idHex": "0x40000050",
+          "count": 298
+        },
+        {
+          "idHex": "0x40000076",
+          "count": 298
+        },
+        {
+          "idHex": "0x4000002e",
+          "count": 292
+        },
+        {
+          "idHex": "0x4000005e",
+          "count": 290
+        },
+        {
+          "idHex": "0x40000008",
+          "count": 288
+        },
+        {
+          "idHex": "0x4000005a",
+          "count": 284
+        },
+        {
+          "idHex": "0x40000059",
+          "count": 284
+        },
+        {
+          "idHex": "0x40000024",
+          "count": 284
+        },
+        {
+          "idHex": "0x4000003f",
+          "count": 281
+        },
+        {
+          "idHex": "0x40000033",
+          "count": 278
+        },
+        {
+          "idHex": "0x40000048",
+          "count": 274
+        },
+        {
+          "idHex": "0x4000005c",
+          "count": 273
+        },
+        {
+          "idHex": "0x4000006f",
+          "count": 272
+        },
+        {
+          "idHex": "0x40000032",
+          "count": 269
+        }
+      ],
+      "changedWordOffsets": {
+        "12": 10795,
+        "16": 10750,
+        "20": 10353,
+        "24": 9746
+      },
+      "schemaOkHistogram": {
+        "0": 2532,
+        "5": 2430,
+        "2": 2569,
+        "7": 2457
+      },
+      "consumedOkHistogram": {
+        "8": 2466,
+        "5": 1964,
+        "7": 1490,
+        "6": 1418,
+        "4": 1411,
+        "9": 1239
+      }
+    },
+    "objectLayout": {
+      "+0x08": "u32 storedType (0x15f)",
+      "+0x0c": "u32 innerEntityId (LUT-varint decrypted; not blockParam)",
+      "+0x10": "u32 encrypted direct field (SIMD byte scramble) or schema default",
+      "+0x14": "u32 second encrypted field (secondary jump table)",
+      "+0x18": "u8 tertiary field / default",
+      "heapAllocations": 0,
+      "dynamicPathBuffer": false
+    },
+    "writeExamples": [
+      {
+        "time": 0.0,
+        "paramHex": "0x400000ae",
+        "payloadLen": 7,
+        "schema": 0,
+        "consumed": 5,
+        "innerHex": "0x4000103d",
+        "field10Hex": "0xc0c0c44",
+        "field14Hex": "0x5555558a",
+        "w15PreSimd": null,
+        "changedWords": [
+          {
+            "off": 12,
+            "before": "0x0",
+            "after": "0x4000103d"
+          },
+          {
+            "off": 16,
+            "before": "0xc0c0c0c",
+            "after": "0xc0c0c44"
+          },
+          {
+            "off": 20,
+            "before": "0x55555555",
+            "after": "0x5555558a"
+          },
+          {
+            "off": 24,
+            "before": "0x6c66",
+            "after": "0x6c28"
+          }
+        ]
+      },
+      {
+        "time": 0.0,
+        "paramHex": "0x400000af",
+        "payloadLen": 7,
+        "schema": 0,
+        "consumed": 7,
+        "innerHex": "0x40000073",
+        "field10Hex": "0xcac3675",
+        "field14Hex": "0x555555f6",
+        "w15PreSimd": 1603563,
+        "changedWords": [
+          {
+            "off": 12,
+            "before": "0x0",
+            "after": "0x40000073"
+          },
+          {
+            "off": 16,
+            "before": "0xc0c0c0c",
+            "after": "0xcac3675"
+          },
+          {
+            "off": 20,
+            "before": "0x55555555",
+            "after": "0x555555f6"
+          },
+          {
+            "off": 24,
+            "before": "0x6c66",
+            "after": "0x6ce5"
+          }
+        ]
+      },
+      {
+        "time": 0.0,
+        "paramHex": "0x400000af",
+        "payloadLen": 9,
+        "schema": 0,
+        "consumed": 6,
+        "innerHex": "0x40001055",
+        "field10Hex": "0xc0cbc56",
+        "field14Hex": "0x5555558a",
+        "w15PreSimd": 6531,
+        "changedWords": [
+          {
+            "off": 12,
+            "before": "0x0",
+            "after": "0x40001055"
+          },
+          {
+            "off": 16,
+            "before": "0xc0c0c0c",
+            "after": "0xc0cbc56"
+          },
+          {
+            "off": 20,
+            "before": "0x55555555",
+            "after": "0x5555558a"
+          },
+          {
+            "off": 24,
+            "before": "0x6c66",
+            "after": "0x6c67"
+          }
+        ]
+      },
+      {
+        "time": 0.0,
+        "paramHex": "0x400000b0",
+        "payloadLen": 7,
+        "schema": 5,
+        "consumed": 7,
+        "innerHex": "0x4000002b",
+        "field10Hex": "0xcd5ea4c",
+        "field14Hex": "0x55555565",
+        "w15PreSimd": 1268740,
+        "changedWords": [
+          {
+            "off": 12,
+            "before": "0x0",
+            "after": "0x4000002b"
+          },
+          {
+            "off": 16,
+            "before": "0xc0c0c0c",
+            "after": "0xcd5ea4c"
+          },
+          {
+            "off": 20,
+            "before": "0x55555555",
+            "after": "0x55555565"
+          },
+          {
+            "off": 24,
+            "before": "0x6c66",
+            "after": "0x6ce5"
+          }
+        ]
+      },
+      {
+        "time": 0.0,
+        "paramHex": "0x400000b0",
+        "payloadLen": 7,
+        "schema": 2,
+        "consumed": 6,
+        "innerHex": "0x40001006",
+        "field10Hex": "0xc0c0b15",
+        "field14Hex": "0x5555558a",
+        "w15PreSimd": 12527,
+        "changedWords": [
+          {
+            "off": 12,
+            "before": "0x0",
+            "after": "0x40001006"
+          },
+          {
+            "off": 16,
+            "before": "0xc0c0c0c",
+            "after": "0xc0c0b15"
+          },
+          {
+            "off": 20,
+            "before": "0x55555555",
+            "after": "0x5555558a"
+          }
+        ]
+      },
+      {
+        "time": 0.0,
+        "paramHex": "0x400000b1",
+        "payloadLen": 7,
+        "schema": 7,
+        "consumed": 5,
+        "innerHex": "0x40001024",
+        "field10Hex": "0xc0c0c44",
+        "field14Hex": "0x5555558a",
+        "w15PreSimd": null,
+        "changedWords": [
+          {
+            "off": 12,
+            "before": "0x0",
+            "after": "0x40001024"
+          },
+          {
+            "off": 16,
+            "before": "0xc0c0c0c",
+            "after": "0xc0c0c44"
+          },
+          {
+            "off": 20,
+            "before": "0x55555555",
+            "after": "0x5555558a"
+          },
+          {
+            "off": 24,
+            "before": "0x6c66",
+            "after": "0x6c28"
+          }
+        ]
+      }
+    ],
+    "coordinateHypotheses": [
+      {
+        "key": "f10_packed14",
+        "sampleCount": 400,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 1,
+          "comparedSamples": 40,
+          "medianError": 1165.787,
+          "p95Error": 8855.193,
+          "maxError": 10162.964,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "f10_f32_x_only",
+        "sampleCount": 400,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "f10_i16_map",
+        "sampleCount": 400,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "f10_i16_pair",
+        "sampleCount": 400,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "f10_u16_pair",
+        "sampleCount": 400,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "w15_i16_map",
+        "sampleCount": 257,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "w15_i16_pair",
+        "sampleCount": 257,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "w15_packed14",
+        "sampleCount": 257,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "w15_u16_pair",
+        "sampleCount": 257,
+        "heroParams": 10,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      }
+    ],
+    "falseCorrelationGuard": [
+      {
+        "key": "f10_i16_map",
+        "sampleCount": 48,
+        "heroParams": 6,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "w15_i16_map",
+        "sampleCount": 48,
+        "heroParams": 6,
+        "oracleQa": {
+          "assignmentCount": 0,
+          "comparedSamples": 0,
+          "medianError": null,
+          "p95Error": null,
+          "maxError": null,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      },
+      {
+        "key": "f10_packed14",
+        "sampleCount": 48,
+        "heroParams": 6,
+        "oracleQa": {
+          "assignmentCount": 2,
+          "comparedSamples": 16,
+          "medianError": 939.641,
+          "p95Error": 10725.873,
+          "maxError": 11820.649,
+          "methodPassed": null,
+          "productEligible": false,
+          "grouping": "blockParam"
+        },
+        "accepted": false
+      }
+    ],
+    "movementProven": false,
+    "semantic": {
+      "isMovement": false,
+      "conclusion": "channel_351_direct_field_non_hero_entity_reference",
+      "evidence": [
+        "Deserialize writes stored type at +0x8 and entity id at +0xc after LUT varint precheck",
+        "Schemas 0/2/5/7 call encrypted 4-byte readers into +0x10; no heap vector/path buffer",
+        "inner entity ids decoded on 10795/10795 blocks; proven-hero inners=0",
+        "coordinate interpretations of +0x10 / pre-SIMD w15 fail oracle gates"
+      ]
+    },
+    "corrSampleCount": 400
+  },
+  "fallbackChannels": [
+    {
+      "factory": {
+        "channel": 259,
+        "ok": true,
+        "heapDelta": 48,
+        "storedType": 259,
+        "vtable": "0x10237ef40",
+        "deserialize": "0x101485860",
+        "usePacket": "0x101501744",
+        "initialObjPrefix": "40ef3702010000000301000000000000141414140c0c0c0c66000000ffffffff5500000000000000",
+        "matches351Layout": false
+      },
+      "probedDeep": false,
+      "reason": "heapDelta=48 != 32; skip deep direct-field probe (no broad brute force)"
+    },
+    {
+      "factory": {
+        "channel": 1194,
+        "ok": true,
+        "heapDelta": 48,
+        "storedType": 1194,
+        "vtable": "0x10237aaa0",
+        "deserialize": "0x101333f2c",
+        "usePacket": "0x1013a258c",
+        "initialObjPrefix": "a0aa370201000000aa04000000000000b8b80000c3c3c3c300000000000000000000000000000000",
+        "matches351Layout": false
+      },
+      "probedDeep": false,
+      "reason": "heapDelta=48 != 32; skip deep direct-field probe (no broad brute force)"
+    }
+  ],
+  "winnerFound": false,
+  "endToEndWallMs": 7818.323,
+  "keep": "discard",
+  "reason": "E4 discard: channel 351 is direct-field non-hero entity packet; no coordinate field passes gates; 259/1194 layouts do not match",
+  "nextSingleVariableHypothesis": "E5: search movement among non-hero-param channels / UsePacket-driven types with PathPacket or 025B after confirming factory wire id from binary registrar (not identity-cadence hero-param ranking alone)",
+  "acceptance": {
+    "minHeroes": 5,
+    "minCompared": 80,
+    "median": 120.0,
+    "p95": 350.0,
+    "max": 800.0
+  },
+  "speedRun": {
+    "runId": "speed-d34cc1d07ca1",
+    "ts": "2026-07-22T18:21:27.573919Z",
+    "matchCode": "3264361042",
+    "backend": "offline-025b",
+    "hypothesis": "E4 channel 351 direct-field from arm64 Deserialize",
+    "diffLabel": "phase-b-e4-direct-field",
+    "wallMs": 7818.323,
+    "keep": "discard",
+    "reason": "E4 discard: channel 351 is direct-field non-hero entity packet; no coordinate field passes gates; 259/1194 layouts do not match",
+    "productEligible": false,
+    "decoderVersion": "offline-025b-v1",
+    "provenance": "offline_rofl2_025b_research",
+    "phase": "B-E4",
+    "winnerFound": false,
+    "pureBrowserDecoderDerived": false,
+    "semantic": {
+      "isMovement": false,
+      "conclusion": "channel_351_direct_field_non_hero_entity_reference",
+      "evidence": [
+        "Deserialize writes stored type at +0x8 and entity id at +0xc after LUT varint precheck",
+        "Schemas 0/2/5/7 call encrypted 4-byte readers into +0x10; no heap vector/path buffer",
+        "inner entity ids decoded on 10795/10795 blocks; proven-hero inners=0",
+        "coordinate interpretations of +0x10 / pre-SIMD w15 fail oracle gates"
+      ]
+    },
+    "inventory": {
+      "blockCount": 10795,
+      "provenHeroInnerCount": 0,
+      "uniqueInnerEntityIds": 159,
+      "innerBands": {
+        "net_0x4000xxxx": 2789,
+        "net_0x400000xx": 5433,
+        "net_0x40000xxx": 2573
+      }
+    },
+    "endToEndWallMs": 7818.323,
+    "nextSingleVariableHypothesis": "E5: search movement among non-hero-param channels / UsePacket-driven types with PathPacket or 025B after confirming factory wire id from binary registrar (not identity-cadence hero-param ranking alone)",
+    "statsUpdateCount": 0,
+    "source": "offline_e4_direct_field",
+    "researchKeep": "discard"
+  }
+}

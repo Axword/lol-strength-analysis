@@ -1,0 +1,928 @@
+{
+  "ok": true,
+  "status": "timed_hp_samples_emitted",
+  "arch": "arm64",
+  "rofl": "/Users/river/Documents/League of Legends/Replays/BR1-3264361042.rofl",
+  "replicationType": 107,
+  "useReplicationPrologueOk": false,
+  "decode": {
+    "chunksScanned": 55,
+    "replicationPackets": 5537,
+    "targetChunkIndices": [
+      0,
+      14,
+      27,
+      40,
+      54
+    ],
+    "acceptanceHits": 33,
+    "firstAcceptanceChunk": 22,
+    "postAcceptTargets": [
+      22,
+      30,
+      38,
+      46,
+      54
+    ]
+  },
+  "sampleCount": 5,
+  "samples": [
+    {
+      "gameTimeMs": 671325,
+      "units": [
+        {
+          "netId": 1073741998,
+          "mHP": 1641.876220703125,
+          "mMaxHP": 1744.360107421875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073741999,
+          "mHP": 1422.655029296875,
+          "mMaxHP": 1422.655029296875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742000,
+          "mHP": 1038.6551513671875,
+          "mMaxHP": 1305.25,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742001,
+          "mHP": 805.6998291015625,
+          "mMaxHP": 1130.1800537109375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742002,
+          "mHP": 1573.9075927734375,
+          "mMaxHP": 1773.85009765625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742003,
+          "mHP": 441.9527587890625,
+          "mMaxHP": 1538.4500732421875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742004,
+          "mHP": 90.73365020751953,
+          "mMaxHP": 907.8250122070312,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742005,
+          "mHP": 1292.6473388671875,
+          "mMaxHP": 1555.9200439453125,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742006,
+          "mHP": 557.0029907226562,
+          "mMaxHP": 675.0,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742007,
+          "mHP": 840.495361328125,
+          "mMaxHP": 1393.8800048828125,
+          "mMaxHPExplicit": true
+        }
+      ],
+      "chunkIndex": 22
+    },
+    {
+      "gameTimeMs": 911206,
+      "units": [
+        {
+          "netId": 1073741998,
+          "mHP": 632.405517578125,
+          "mMaxHP": 2842.45166015625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073741999,
+          "mHP": 1158.6978759765625,
+          "mMaxHP": 1514.72509765625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742000,
+          "mHP": 48.39026641845703,
+          "mMaxHP": 1305.25,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742001,
+          "mHP": 944.580322265625,
+          "mMaxHP": 1685.47998046875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742002,
+          "mHP": 1387.55810546875,
+          "mMaxHP": 2078.02490234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742003,
+          "mHP": 1287.609375,
+          "mMaxHP": 1761.0250244140625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742004,
+          "mHP": 834.1919555664062,
+          "mMaxHP": 907.8250122070312,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742005,
+          "mHP": 1762.780517578125,
+          "mMaxHP": 1921.260009765625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742006,
+          "mHP": 778.0740966796875,
+          "mMaxHP": 1445.739990234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742007,
+          "mHP": 1392.59375,
+          "mMaxHP": 1393.8800048828125,
+          "mMaxHPExplicit": true
+        }
+      ],
+      "chunkIndex": 30
+    },
+    {
+      "gameTimeMs": 1151387,
+      "units": [
+        {
+          "netId": 1073741998,
+          "mHP": 534.5640869140625,
+          "mMaxHP": 2989.390380859375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073741999,
+          "mHP": 1572.221435546875,
+          "mMaxHP": 1917.655029296875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742000,
+          "mHP": 1522.1226806640625,
+          "mMaxHP": 1792.9500732421875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742001,
+          "mHP": 1893.050048828125,
+          "mMaxHP": 1893.050048828125,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742002,
+          "mHP": 848.7662353515625,
+          "mMaxHP": 2078.02490234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742003,
+          "mHP": 2242.439453125,
+          "mMaxHP": 2452.794921875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742004,
+          "mHP": 714.478515625,
+          "mMaxHP": 1891.375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742005,
+          "mHP": 74.47976684570312,
+          "mMaxHP": 2183.72021484375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742006,
+          "mHP": 372.5605163574219,
+          "mMaxHP": 1651.275146484375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742007,
+          "mHP": 650.9661865234375,
+          "mMaxHP": 1393.8800048828125,
+          "mMaxHPExplicit": true
+        }
+      ],
+      "chunkIndex": 38
+    },
+    {
+      "gameTimeMs": 1393559,
+      "units": [
+        {
+          "netId": 1073741998,
+          "mHP": 3166.155029296875,
+          "mMaxHP": 3378.395263671875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073741999,
+          "mHP": 1888.70068359375,
+          "mMaxHP": 1917.655029296875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742000,
+          "mHP": 276.93743896484375,
+          "mMaxHP": 1792.9500732421875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742001,
+          "mHP": 2.6028339862823486,
+          "mMaxHP": 2002.18994140625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742002,
+          "mHP": 276.246826171875,
+          "mMaxHP": 2078.02490234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742003,
+          "mHP": 2221.990234375,
+          "mMaxHP": 2221.990234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742004,
+          "mHP": 405.0841064453125,
+          "mMaxHP": 1891.375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742005,
+          "mHP": 1922.7650146484375,
+          "mMaxHP": 2183.72021484375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742006,
+          "mHP": 1742.341064453125,
+          "mMaxHP": 1759.344970703125,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742007,
+          "mHP": 451.87799072265625,
+          "mMaxHP": 1942.60009765625,
+          "mMaxHPExplicit": true
+        }
+      ],
+      "chunkIndex": 46
+    },
+    {
+      "gameTimeMs": 1625898,
+      "units": [
+        {
+          "netId": 1073741998,
+          "mHP": 2647.226806640625,
+          "mMaxHP": 3706.335205078125,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073741999,
+          "mHP": 1298.38037109375,
+          "mMaxHP": 2776.025146484375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742000,
+          "mHP": 1991.3577880859375,
+          "mMaxHP": 2059.900146484375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742001,
+          "mHP": 1758.9058837890625,
+          "mMaxHP": 2264.89990234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742002,
+          "mHP": 1662.8875732421875,
+          "mMaxHP": 2078.02490234375,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742003,
+          "mHP": 817.5399169921875,
+          "mMaxHP": 2362.4150390625,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742004,
+          "mHP": 2589.4501953125,
+          "mMaxHP": 2589.4501953125,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742005,
+          "mHP": 71.901123046875,
+          "mMaxHP": 2320.6201171875,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742006,
+          "mHP": 1359.3082275390625,
+          "mMaxHP": 1759.344970703125,
+          "mMaxHPExplicit": true
+        },
+        {
+          "netId": 1073742007,
+          "mHP": 247.0623016357422,
+          "mMaxHP": 1942.60009765625,
+          "mMaxHPExplicit": true
+        }
+      ],
+      "chunkIndex": 54
+    }
+  ],
+  "identityBinding": {
+    "method": "stable_identity_to_net_id",
+    "complete": true,
+    "createHeroDecoded": true,
+    "createHeroOrderFallback": false,
+    "participants": [
+      {
+        "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+        "fullRiotId": "awakening#0000",
+        "netId": 1073741998,
+        "champion": "Zaahen"
+      },
+      {
+        "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+        "fullRiotId": "pixel#mari",
+        "netId": 1073741999,
+        "champion": "MonkeyKing"
+      },
+      {
+        "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+        "fullRiotId": "Cigarro#lony",
+        "netId": 1073742000,
+        "champion": "Yasuo"
+      },
+      {
+        "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+        "fullRiotId": "Ayron#001",
+        "netId": 1073742001,
+        "champion": "Ezreal"
+      },
+      {
+        "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+        "fullRiotId": "nhUwUmi#glhf",
+        "netId": 1073742002,
+        "champion": "Sona"
+      },
+      {
+        "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+        "fullRiotId": "casual jogador#2709",
+        "netId": 1073742003,
+        "champion": "Renekton"
+      },
+      {
+        "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+        "fullRiotId": "Sonancia#UEL",
+        "netId": 1073742004,
+        "champion": "Lillia"
+      },
+      {
+        "puuid": "64af397f-88c5-5e42-9e6c-c903dc717888",
+        "fullRiotId": "haste#zapp",
+        "netId": 1073742005,
+        "champion": "Leblanc"
+      },
+      {
+        "puuid": "057fefa4-4209-50d8-850e-9f91bf016bbb",
+        "fullRiotId": "Love Her#Lucy",
+        "netId": 1073742006,
+        "champion": "Ashe"
+      },
+      {
+        "puuid": "e5117f5e-b77b-57a1-a6bd-37b5c457b20b",
+        "fullRiotId": "amo seios#Lucy",
+        "netId": 1073742007,
+        "champion": "Morgana"
+      }
+    ],
+    "note": "create_hero_champion_match"
+  },
+  "evidence": {
+    "schema": "rofl-trusted-hp-v1",
+    "match": {
+      "platformId": "BR1",
+      "matchCode": "3264361042",
+      "gameId": 3264361042,
+      "gameName": "3264361042"
+    },
+    "rofl": {
+      "patch": "16.14",
+      "build": "16.14.794.5912",
+      "sha256": "0573d815aa080fe927b706948414801af4c2213a8289e11a924b37a2cbbfcfcd",
+      "basename": "BR1-3264361042.rofl"
+    },
+    "rosterHash": "539e0fe6c427710eaf975ad73ef4f522d7ed130310bdfbd7edac054a6d2ba0fc",
+    "provenance": {
+      "sourceKind": "rofl2_replication_decrypt_timed_identity_bound",
+      "timed": true,
+      "staticSnapshot": false,
+      "fixture": false,
+      "createHeroOrderFallback": false,
+      "hpFieldIndices": {
+        "mHP": [
+          5,
+          0
+        ],
+        "mMaxHP": [
+          5,
+          1
+        ],
+        "bank0": "unmapped",
+        "bank0Pairs": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "combatTrusted": false,
+      "abilityRanksTrusted": false
+    },
+    "identityBinding": {
+      "method": "stable_identity_to_net_id",
+      "complete": true,
+      "createHeroDecoded": true,
+      "createHeroOrderFallback": false,
+      "participants": [
+        {
+          "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+          "fullRiotId": "awakening#0000",
+          "netId": 1073741998,
+          "champion": "Zaahen"
+        },
+        {
+          "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+          "fullRiotId": "pixel#mari",
+          "netId": 1073741999,
+          "champion": "MonkeyKing"
+        },
+        {
+          "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+          "fullRiotId": "Cigarro#lony",
+          "netId": 1073742000,
+          "champion": "Yasuo"
+        },
+        {
+          "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+          "fullRiotId": "Ayron#001",
+          "netId": 1073742001,
+          "champion": "Ezreal"
+        },
+        {
+          "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+          "fullRiotId": "nhUwUmi#glhf",
+          "netId": 1073742002,
+          "champion": "Sona"
+        },
+        {
+          "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+          "fullRiotId": "casual jogador#2709",
+          "netId": 1073742003,
+          "champion": "Renekton"
+        },
+        {
+          "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+          "fullRiotId": "Sonancia#UEL",
+          "netId": 1073742004,
+          "champion": "Lillia"
+        },
+        {
+          "puuid": "64af397f-88c5-5e42-9e6c-c903dc717888",
+          "fullRiotId": "haste#zapp",
+          "netId": 1073742005,
+          "champion": "Leblanc"
+        },
+        {
+          "puuid": "057fefa4-4209-50d8-850e-9f91bf016bbb",
+          "fullRiotId": "Love Her#Lucy",
+          "netId": 1073742006,
+          "champion": "Ashe"
+        },
+        {
+          "puuid": "e5117f5e-b77b-57a1-a6bd-37b5c457b20b",
+          "fullRiotId": "amo seios#Lucy",
+          "netId": 1073742007,
+          "champion": "Morgana"
+        }
+      ],
+      "note": "create_hero_champion_match"
+    },
+    "timing": {
+      "unit": "milliseconds",
+      "clock": "replay_game_time",
+      "toleranceMs": 100
+    },
+    "samples": [
+      {
+        "gameTimeMs": 671325,
+        "units": [
+          {
+            "netId": 1073741998,
+            "mHP": 1641.876220703125,
+            "mMaxHP": 1744.360107421875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073741999,
+            "mHP": 1422.655029296875,
+            "mMaxHP": 1422.655029296875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742000,
+            "mHP": 1038.6551513671875,
+            "mMaxHP": 1305.25,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742001,
+            "mHP": 805.6998291015625,
+            "mMaxHP": 1130.1800537109375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742002,
+            "mHP": 1573.9075927734375,
+            "mMaxHP": 1773.85009765625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742003,
+            "mHP": 441.9527587890625,
+            "mMaxHP": 1538.4500732421875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742004,
+            "mHP": 90.73365020751953,
+            "mMaxHP": 907.8250122070312,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742005,
+            "mHP": 1292.6473388671875,
+            "mMaxHP": 1555.9200439453125,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742006,
+            "mHP": 557.0029907226562,
+            "mMaxHP": 675.0,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742007,
+            "mHP": 840.495361328125,
+            "mMaxHP": 1393.8800048828125,
+            "mMaxHPExplicit": true
+          }
+        ],
+        "chunkIndex": 22
+      },
+      {
+        "gameTimeMs": 911206,
+        "units": [
+          {
+            "netId": 1073741998,
+            "mHP": 632.405517578125,
+            "mMaxHP": 2842.45166015625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073741999,
+            "mHP": 1158.6978759765625,
+            "mMaxHP": 1514.72509765625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742000,
+            "mHP": 48.39026641845703,
+            "mMaxHP": 1305.25,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742001,
+            "mHP": 944.580322265625,
+            "mMaxHP": 1685.47998046875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742002,
+            "mHP": 1387.55810546875,
+            "mMaxHP": 2078.02490234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742003,
+            "mHP": 1287.609375,
+            "mMaxHP": 1761.0250244140625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742004,
+            "mHP": 834.1919555664062,
+            "mMaxHP": 907.8250122070312,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742005,
+            "mHP": 1762.780517578125,
+            "mMaxHP": 1921.260009765625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742006,
+            "mHP": 778.0740966796875,
+            "mMaxHP": 1445.739990234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742007,
+            "mHP": 1392.59375,
+            "mMaxHP": 1393.8800048828125,
+            "mMaxHPExplicit": true
+          }
+        ],
+        "chunkIndex": 30
+      },
+      {
+        "gameTimeMs": 1151387,
+        "units": [
+          {
+            "netId": 1073741998,
+            "mHP": 534.5640869140625,
+            "mMaxHP": 2989.390380859375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073741999,
+            "mHP": 1572.221435546875,
+            "mMaxHP": 1917.655029296875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742000,
+            "mHP": 1522.1226806640625,
+            "mMaxHP": 1792.9500732421875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742001,
+            "mHP": 1893.050048828125,
+            "mMaxHP": 1893.050048828125,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742002,
+            "mHP": 848.7662353515625,
+            "mMaxHP": 2078.02490234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742003,
+            "mHP": 2242.439453125,
+            "mMaxHP": 2452.794921875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742004,
+            "mHP": 714.478515625,
+            "mMaxHP": 1891.375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742005,
+            "mHP": 74.47976684570312,
+            "mMaxHP": 2183.72021484375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742006,
+            "mHP": 372.5605163574219,
+            "mMaxHP": 1651.275146484375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742007,
+            "mHP": 650.9661865234375,
+            "mMaxHP": 1393.8800048828125,
+            "mMaxHPExplicit": true
+          }
+        ],
+        "chunkIndex": 38
+      },
+      {
+        "gameTimeMs": 1393559,
+        "units": [
+          {
+            "netId": 1073741998,
+            "mHP": 3166.155029296875,
+            "mMaxHP": 3378.395263671875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073741999,
+            "mHP": 1888.70068359375,
+            "mMaxHP": 1917.655029296875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742000,
+            "mHP": 276.93743896484375,
+            "mMaxHP": 1792.9500732421875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742001,
+            "mHP": 2.6028339862823486,
+            "mMaxHP": 2002.18994140625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742002,
+            "mHP": 276.246826171875,
+            "mMaxHP": 2078.02490234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742003,
+            "mHP": 2221.990234375,
+            "mMaxHP": 2221.990234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742004,
+            "mHP": 405.0841064453125,
+            "mMaxHP": 1891.375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742005,
+            "mHP": 1922.7650146484375,
+            "mMaxHP": 2183.72021484375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742006,
+            "mHP": 1742.341064453125,
+            "mMaxHP": 1759.344970703125,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742007,
+            "mHP": 451.87799072265625,
+            "mMaxHP": 1942.60009765625,
+            "mMaxHPExplicit": true
+          }
+        ],
+        "chunkIndex": 46
+      },
+      {
+        "gameTimeMs": 1625898,
+        "units": [
+          {
+            "netId": 1073741998,
+            "mHP": 2647.226806640625,
+            "mMaxHP": 3706.335205078125,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073741999,
+            "mHP": 1298.38037109375,
+            "mMaxHP": 2776.025146484375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742000,
+            "mHP": 1991.3577880859375,
+            "mMaxHP": 2059.900146484375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742001,
+            "mHP": 1758.9058837890625,
+            "mMaxHP": 2264.89990234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742002,
+            "mHP": 1662.8875732421875,
+            "mMaxHP": 2078.02490234375,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742003,
+            "mHP": 817.5399169921875,
+            "mMaxHP": 2362.4150390625,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742004,
+            "mHP": 2589.4501953125,
+            "mMaxHP": 2589.4501953125,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742005,
+            "mHP": 71.901123046875,
+            "mMaxHP": 2320.6201171875,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742006,
+            "mHP": 1359.3082275390625,
+            "mMaxHP": 1759.344970703125,
+            "mMaxHPExplicit": true
+          },
+          {
+            "netId": 1073742007,
+            "mHP": 247.0623016357422,
+            "mMaxHP": 1942.60009765625,
+            "mMaxHPExplicit": true
+          }
+        ],
+        "chunkIndex": 54
+      }
+    ],
+    "fieldIndices": {
+      "mHP": [
+        5,
+        0
+      ],
+      "mMaxHP": [
+        5,
+        1
+      ],
+      "bank0Unmapped": true
+    },
+    "combatInventory": {
+      "trusted": false,
+      "note": "primary-1 combat-ish floats may appear on type-107 vectors; not product-trusted until a separate proof pass",
+      "observedKeys": [
+        "mFlatMagicDamageMod"
+      ],
+      "observationCounts": {
+        "mFlatMagicDamageMod": 5
+      }
+    }
+  },
+  "productEligible": false,
+  "fuseDryRun": {
+    "ok": false,
+    "accepted": false,
+    "productEligible": false,
+    "blockers": [
+      "canonical roster identities do not match replay manifest"
+    ],
+    "reason": "reject:canonical roster identities do not match replay manifest"
+  },
+  "combatTrusted": false,
+  "fieldIndices": {
+    "mHP": [
+      5,
+      0
+    ],
+    "mMaxHP": [
+      5,
+      1
+    ],
+    "bank0Unmapped": true
+  },
+  "workDir": "/tmp/lol-timed-hp-br1c",
+  "blocker": "reject:canonical roster identities do not match replay manifest",
+  "bindMethod": "castspell_ans_champion_string"
+}

@@ -1,4 +1,9 @@
-import type { MatchupResult, SideResult } from '../engine/types'
+import type {
+  MatchupResult,
+  MatchupTimingResult,
+  SideResult,
+  TimedCombatEvent,
+} from '../engine/types'
 import { championIconUrl } from '../data/champions'
 import './CombatResult.css'
 
@@ -8,6 +13,14 @@ function fmt(n: number): string {
 
 function pct(n: number): number {
   return Math.round(n * 100)
+}
+
+/** Fight clock as S:mmm (seconds:milliseconds), e.g. 1:150 = 1.150s. */
+function formatFightClock(sec: number): string {
+  const ms = Math.max(0, Math.round(sec * 1000))
+  const s = Math.floor(ms / 1000)
+  const rem = ms % 1000
+  return `${s}:${String(rem).padStart(3, '0')}`
 }
 
 function TeamFace({
@@ -68,8 +81,13 @@ function TeamFace({
           <strong>{fmt(result.mitigatedTotal)}</strong>
         </div>
         <div>
-          <span>Of enemy</span>
-          <strong>{pct(result.damagePctOfEnemy)}%</strong>
+          <span>Of enemy start</span>
+          <strong>
+            {pct(result.damagePctOfEnemy)}%
+            {result.damagePctOfEnemy > 1e-9
+              ? ` · ${fmt(result.mitigatedTotal / result.damagePctOfEnemy)} HP`
+              : ''}
+          </strong>
         </div>
         {result.avgXh != null && (
           <div>
@@ -116,9 +134,19 @@ function FighterBars({ result }: { result: SideResult }) {
               <span className="name">
                 {f.championName}
                 {f.dead ? ' (dead)' : ''}
-                {f.omittedSlots?.length && !f.dead
-                  ? ` −${f.omittedSlots.join('/')}`
-                  : ''}
+                {f.omittedSlots?.length && !f.dead ? (
+                  <span
+                    className="omit-chip"
+                    title={
+                      (f.omissionNotes ?? [])
+                        .filter((n) => /omitted /i.test(n))
+                        .join(' · ') ||
+                      `omitted ${f.omittedSlots.join('/')}`
+                    }
+                  >
+                    {` −${f.omittedSlots.join('/')}`}
+                  </span>
+                ) : null}
               </span>
               <div className="bar-track">
                 <div
@@ -133,17 +161,60 @@ function FighterBars({ result }: { result: SideResult }) {
   )
 }
 
-function SideDetails({ result }: { result: SideResult }) {
+function SideDetails({
+  result,
+  timing,
+}: {
+  result: SideResult
+  timing?: MatchupTimingResult
+}) {
+  const focus = result.targets?.[0]
+  const startHp = focus?.hpStart ?? result.stats.hp
+  const startMax = focus?.hpMax ?? result.stats.hpMax
+  const leftHp = focus?.hpRemaining ?? result.hpRemaining
+  const enemyStartApprox =
+    result.damagePctOfEnemy > 1e-9
+      ? result.mitigatedTotal / result.damagePctOfEnemy
+      : null
+
+  const timed =
+    timing?.method === 'timed_manual_1v1'
+      ? timing.events.filter((e) => e.side === result.side)
+      : null
+
   return (
     <details className={`side-details side-${result.side}`}>
       <summary>
         {result.side === 'blue' ? 'Blue' : 'Red'} ability log &amp; stats
+        {timing?.method === 'timed_manual_1v1' && timing.firstLethalSec != null
+          ? ` · stop ${formatFightClock(timing.firstLethalSec)}`
+          : ''}
       </summary>
 
       <dl className="stat-strip">
         <div>
-          <dt>Team HP</dt>
-          <dd>{fmt(result.stats.hp)}</dd>
+          <dt>Start HP</dt>
+          <dd>
+            {fmt(startHp)} / {fmt(startMax)}
+          </dd>
+        </div>
+        <div>
+          <dt>Leftover HP</dt>
+          <dd>
+            {fmt(leftHp)} / {fmt(startMax)}
+          </dd>
+        </div>
+        <div>
+          <dt>Dealt (mitigated)</dt>
+          <dd>
+            {fmt(result.mitigatedTotal)}
+            {enemyStartApprox != null ? (
+              <span className="stat-hint">
+                {' '}
+                of ~{fmt(enemyStartApprox)} enemy start
+              </span>
+            ) : null}
+          </dd>
         </div>
         <div>
           <dt>Avg AD / AP</dt>
@@ -163,28 +234,111 @@ function SideDetails({ result }: { result: SideResult }) {
         </div>
       </dl>
 
-      <ul className="packet-list">
-        {result.packets.map((p, i) => (
-          <li key={`${p.source}-${i}`}>
-            <span className={`slot slot-${p.slot}`}>{p.slot}</span>
-            <span className="src">
-              {p.source}
-              {p.skillshot ? ' · skillshot' : ''}
-              {p.xH != null && p.skillshot ? ` · xH ${Math.round(p.xH * 100)}%` : ''}
-            </span>
-            <span className={`type type-${p.type}`}>{p.type}</span>
-            <span className="raw">
-              {p.rawBeforeXh != null && p.skillshot && p.raw !== p.rawBeforeXh
-                ? `${fmt(p.rawBeforeXh)}→${fmt(p.raw)}`
-                : fmt(p.raw)}
-            </span>
-          </li>
-        ))}
-        {result.packets.length === 0 && (
-          <li className="empty">No damage packets.</li>
-        )}
-      </ul>
+      {timed != null ? (
+        <ul className="packet-list timed-log">
+          {timed.map((e, i) => (
+              <TimedLogRow
+                key={`${e.side}-${e.slot}-${e.castIndex}-${e.impactSec}-${i}`}
+                event={e}
+                packet={matchPacketForEvent(result, e)}
+              />
+            ))}
+          {timed.length === 0 && <li className="empty">No timed actions.</li>}
+        </ul>
+      ) : (
+        <ul className="packet-list">
+          {result.packets.map((p, i) => (
+            <li key={`${p.source}-${i}`}>
+              <span className="t-clock" title="No per-cast clock on aggregate_window">
+                —:—
+              </span>
+              <span className={`slot slot-${p.slot}`}>{p.slot}</span>
+              <span className="src">
+                {p.source}
+                {p.skillshot ? ' · skillshot' : ''}
+                {p.xH != null && p.skillshot
+                  ? ` · xH ${Math.round(p.xH * 100)}%`
+                  : ''}
+              </span>
+              <span className={`type type-${p.type}`}>{p.type}</span>
+              <span className="raw">
+                {p.rawBeforeXh != null && p.skillshot && p.raw !== p.rawBeforeXh
+                  ? `${fmt(p.rawBeforeXh)}→${fmt(p.raw)}`
+                  : fmt(p.raw)}
+              </span>
+            </li>
+          ))}
+          {result.packets.length === 0 && (
+            <li className="empty">No damage packets.</li>
+          )}
+        </ul>
+      )}
     </details>
+  )
+}
+
+function matchPacketForEvent(
+  result: SideResult,
+  event: TimedCombatEvent,
+): SideResult['packets'][number] | undefined {
+  const bySource = result.packets.filter(
+    (p) => p.slot === event.slot && p.source === event.source,
+  )
+  if (bySource.length === 1) return bySource[0]
+  if (bySource.length > 1) {
+    return bySource[Math.min(event.castIndex - 1, bySource.length - 1)]
+  }
+  const bySlot = result.packets.filter((p) => p.slot === event.slot)
+  if (!bySlot.length) return undefined
+  return bySlot[Math.min(event.castIndex - 1, bySlot.length - 1)]
+}
+
+function TimedLogRow({
+  event,
+  packet,
+}: {
+  event: TimedCombatEvent
+  packet?: SideResult['packets'][number]
+}) {
+  const raw =
+    event.suppressed
+      ? 0
+      : event.raw != null
+        ? event.raw
+        : packet?.raw
+  return (
+    <li className={event.suppressed ? 'suppressed' : undefined}>
+      <span
+        className="t-clock"
+        title={`cast ${formatFightClock(event.startSec)} → impact ${formatFightClock(event.impactSec)}`}
+      >
+        {formatFightClock(event.impactSec)}
+      </span>
+      <span className={`slot slot-${event.slot}`}>{event.slot}</span>
+      <span className="src">
+        {event.source}
+        {event.suppressed ? ' · suppressed' : ''}
+        {packet?.skillshot ? ' · skillshot' : ''}
+        {packet?.xH != null && packet.skillshot
+          ? ` · xH ${Math.round(packet.xH * 100)}%`
+          : ''}
+        {event.attackReset ? ' · reset' : ''}
+      </span>
+      <span className={`type type-${packet?.type ?? 'physical'}`}>
+        {packet?.type ?? (event.suppressed ? '—' : 'hit')}
+      </span>
+      <span className="raw">
+        {event.suppressed
+          ? '—'
+          : packet?.rawBeforeXh != null &&
+              packet.skillshot &&
+              packet.raw !== packet.rawBeforeXh
+            ? `${fmt(packet.rawBeforeXh)}→${fmt(packet.raw)}`
+            : raw != null
+              ? fmt(raw)
+              : '—'}
+      </span>
+    </li>
   )
 }
 
@@ -209,7 +363,7 @@ export function CombatResult({ result }: { result: MatchupResult }) {
 
   const leftoverLine = bothLethal
     ? `Both lethal · overkill ${Math.round(result.blue.damagePctOfEnemy * 100)}% / ${Math.round(result.red.damagePctOfEnemy * 100)}% of enemy HP`
-    : `leftover HP ${pct(result.blue.hpRemainingPct)}% / ${pct(result.red.hpRemainingPct)}%`
+    : `leftover HP ${pct(result.blue.hpRemainingPct)}% (${fmt(result.blue.hpRemaining)}/${fmt(result.blue.stats.hpMax)}) / ${pct(result.red.hpRemainingPct)}% (${fmt(result.red.hpRemaining)}/${fmt(result.red.stats.hpMax)})`
 
   const subline = `heuristic model score B ${blueScore} / R ${redScore} · not a win probability · ${leftoverLine}`
 
@@ -355,8 +509,8 @@ export function CombatResult({ result }: { result: MatchupResult }) {
       </div>
 
       <div className="details-row">
-        <SideDetails result={result.blue} />
-        <SideDetails result={result.red} />
+        <SideDetails result={result.blue} timing={result.timing} />
+        <SideDetails result={result.red} timing={result.timing} />
       </div>
     </section>
   )

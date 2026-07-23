@@ -1,0 +1,528 @@
+{
+  "ok": false,
+  "probeVersion": "e17-win-pe-path-integrator-v1",
+  "hypothesis": "phase-b-e17-path-integrator",
+  "matchCode": "3264361042",
+  "wallMs": 12635.797,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e17-win-pe-path-integrator-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "pinned": {
+    "reconstruct": "encode_type || marker || wire (E11)",
+    "pathSetAbsolute": "0x1403891a0",
+    "absGetter": "0x140305350",
+    "absOffset": "0xa0",
+    "updatePc": "0x14036ddb0",
+    "pathApply": "0x14038ac80",
+    "pathApplySlot": "PC+0x40 (not +0xa0)",
+    "packetDeserCallsPathSetAbsolute": {
+      "58": false,
+      "420": false,
+      "908": false,
+      "1104": false
+    },
+    "integrateDtS": 0.03333333333333333
+  },
+  "framing1104": {
+    "opcode": 1104,
+    "samples": 1,
+    "rawOk": 0,
+    "reconOk": 1,
+    "avgConsumedRaw": 5.0,
+    "avgConsumedRecon": 30.0,
+    "markerHex": "c6fa",
+    "encodeTypeHex": "fe55",
+    "formula": "reconstructed = encode_type(1104) || 0xc6fa || wire_payload",
+    "validated": true
+  },
+  "setMovementDriver": {
+    "opcode": 1104,
+    "name": "PKT_S2C_SetMovementDriver_s",
+    "nBlocks": 6,
+    "nRows": 6,
+    "structurallyDecodedCount": 0,
+    "pathBlobRecovered": false,
+    "speedRecovered": false,
+    "netIdRecovered": false,
+    "rowHead": [
+      {
+        "t": 1219.1340741296299,
+        "param": 1073741999,
+        "paramProvenHero": true,
+        "wireSize": 28,
+        "constructOk": true,
+        "retAl": 1,
+        "consumed": 30,
+        "writeCount": 38,
+        "speedCandidates": [],
+        "countCandidates": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "mapWritePairs": [],
+        "buffers": [
+          {
+            "name": "buf+0x10",
+            "ptr": "0x300010080",
+            "countOrBytes": 3,
+            "mapPairs": []
+          },
+          {
+            "name": "buf+0x20",
+            "ptr": "0x300010100",
+            "countOrBytes": 3,
+            "mapPairs": []
+          }
+        ],
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            5.0,
+            10.0,
+            5.0
+          ]
+        },
+        "pathHits": [],
+        "decoded": {
+          "waypoints": [],
+          "speed": null,
+          "netId": null,
+          "kind": null,
+          "hasPath": false,
+          "hasSpeed": false,
+          "hasNetId": false
+        },
+        "structurallyDecoded": false
+      },
+      {
+        "t": 1221.8310742577305,
+        "param": 1073741999,
+        "paramProvenHero": true,
+        "wireSize": 2,
+        "constructOk": true,
+        "retAl": 1,
+        "consumed": 4,
+        "writeCount": 4,
+        "speedCandidates": [],
+        "countCandidates": [],
+        "mapWritePairs": [],
+        "buffers": [
+          {
+            "name": "buf+0x10",
+            "ptr": "0x0",
+            "countOrBytes": 0
+          },
+          {
+            "name": "buf+0x20",
+            "ptr": "0x0",
+            "countOrBytes": 0
+          }
+        ],
+        "bufFloatHeads": {
+          "buf+0x10": [],
+          "buf+0x20": []
+        },
+        "pathHits": [],
+        "decoded": {
+          "waypoints": [],
+          "speed": null,
+          "netId": null,
+          "kind": null,
+          "hasPath": false,
+          "hasSpeed": false,
+          "hasNetId": false
+        },
+        "structurallyDecoded": false
+      },
+      {
+        "t": 1226.0100744562224,
+        "param": 1073741999,
+        "paramProvenHero": true,
+        "wireSize": 28,
+        "constructOk": true,
+        "retAl": 1,
+        "consumed": 30,
+        "writeCount": 38,
+        "speedCandidates": [],
+        "countCandidates": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "mapWritePairs": [],
+        "buffers": [
+          {
+            "name": "buf+0x10",
+            "ptr": "0x300010080",
+            "countOrBytes": 3,
+            "mapPairs": []
+          },
+          {
+            "name": "buf+0x20",
+            "ptr": "0x300010100",
+            "countOrBytes": 3,
+            "mapPairs": []
+          }
+        ],
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            5.0,
+            10.0,
+            5.0
+          ]
+        },
+        "pathHits": [],
+        "decoded": {
+          "waypoints": [],
+          "speed": null,
+          "netId": null,
+          "kind": null,
+          "hasPath": false,
+          "hasSpeed": false,
+          "hasNetId": false
+        },
+        "structurallyDecoded": false
+      },
+      {
+        "t": 1229.0180745990947,
+        "param": 1073741999,
+        "paramProvenHero": true,
+        "wireSize": 28,
+        "constructOk": true,
+        "retAl": 1,
+        "consumed": 30,
+        "writeCount": 38,
+        "speedCandidates": [],
+        "countCandidates": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "mapWritePairs": [],
+        "buffers": [
+          {
+            "name": "buf+0x10",
+            "ptr": "0x300010080",
+            "countOrBytes": 3,
+            "mapPairs": []
+          },
+          {
+            "name": "buf+0x20",
+            "ptr": "0x300010100",
+            "countOrBytes": 3,
+            "mapPairs": []
+          }
+        ],
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            4.0,
+            3.5,
+            3.0
+          ]
+        },
+        "pathHits": [],
+        "decoded": {
+          "waypoints": [],
+          "speed": null,
+          "netId": null,
+          "kind": null,
+          "hasPath": false,
+          "hasSpeed": false,
+          "hasNetId": false
+        },
+        "structurallyDecoded": false
+      }
+    ],
+    "rowSummary": [
+      {
+        "t": 1219.1340741296299,
+        "param": 1073741999,
+        "wireSize": 28,
+        "structurallyDecoded": false,
+        "hasPath": false,
+        "hasSpeed": false,
+        "hasNetId": false,
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            5.0,
+            10.0,
+            5.0
+          ]
+        },
+        "pathHitCount": 0
+      },
+      {
+        "t": 1221.8310742577305,
+        "param": 1073741999,
+        "wireSize": 2,
+        "structurallyDecoded": false,
+        "hasPath": false,
+        "hasSpeed": false,
+        "hasNetId": false,
+        "bufFloatHeads": {
+          "buf+0x10": [],
+          "buf+0x20": []
+        },
+        "pathHitCount": 0
+      },
+      {
+        "t": 1226.0100744562224,
+        "param": 1073741999,
+        "wireSize": 28,
+        "structurallyDecoded": false,
+        "hasPath": false,
+        "hasSpeed": false,
+        "hasNetId": false,
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            5.0,
+            10.0,
+            5.0
+          ]
+        },
+        "pathHitCount": 0
+      },
+      {
+        "t": 1229.0180745990947,
+        "param": 1073741999,
+        "wireSize": 28,
+        "structurallyDecoded": false,
+        "hasPath": false,
+        "hasSpeed": false,
+        "hasNetId": false,
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            4.0,
+            3.5,
+            3.0
+          ]
+        },
+        "pathHitCount": 0
+      },
+      {
+        "t": 1231.034006864531,
+        "param": 1073741999,
+        "wireSize": 28,
+        "structurallyDecoded": false,
+        "hasPath": false,
+        "hasSpeed": false,
+        "hasNetId": false,
+        "bufFloatHeads": {
+          "buf+0x10": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "buf+0x20": [
+            3.0,
+            2.75,
+            2.5
+          ]
+        },
+        "pathHitCount": 0
+      },
+      {
+        "t": 1232.972006956581,
+        "param": 1073741999,
+        "wireSize": 2,
+        "structurallyDecoded": false,
+        "hasPath": false,
+        "hasSpeed": false,
+        "hasNetId": false,
+        "bufFloatHeads": {
+          "buf+0x10": [],
+          "buf+0x20": []
+        },
+        "pathHitCount": 0
+      }
+    ]
+  },
+  "integration": {
+    "attempted": false,
+    "sampleCount": 0,
+    "appliedOk": 0,
+    "dtS": 0.03333333333333333,
+    "note": "Fixed-dt polyline walk only when structural path+speed+netId recovered; never invent waypoints"
+  },
+  "negativeControls": {
+    "opcode908Poke": {
+      "opcode": 908,
+      "source": "908 +16/+20 \u2192 PathSetAbsolute \u2192 abs getter (negative control)",
+      "captured": 40,
+      "applied": 40,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 17,
+          "heroes": 10,
+          "median": 141.5399735984613,
+          "p95": 556.3626717805014,
+          "max": 818.3513064444377,
+          "ok": false
+        },
+        "holdout": {
+          "n": 20,
+          "heroes": 10,
+          "median": 217.45124274974881,
+          "p95": 789.7405767378236,
+          "max": 2642.9777922262006,
+          "ok": false
+        },
+        "roundTripOk": 40,
+        "roundTripN": 40
+      },
+      "expectWinner": false
+    },
+    "faceDirection": {
+      "opcode": 420,
+      "name": "FaceDirection (negative control)",
+      "sampled": 40,
+      "mapRangePairHits": 3,
+      "directionishHits": 14,
+      "expectPositionCarrier": false
+    }
+  },
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "qa": {
+      "winnerFound": false,
+      "reason": "no_structural_path"
+    },
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "oracleTolS": 0.5
+    },
+    "cadenceHonesty": "Integration samples are synthetic 1Hz along decoded paths only when structurally proven; 1104 itself is sparse (6 blocks on this match)"
+  },
+  "blocker": {
+    "kind": "waypoints_not_structurally_decoded",
+    "detail": "SetMovementDriver (1104) reconstructed Deserialize does not release map-range waypoint path blobs (E11 small scalars 0/1/2\u2026 persist; PathPacket full-consume=0). Cannot tick-integrate into PC+0xa0.",
+    "pathBlobRecovered": false,
+    "speedRecovered": false,
+    "netIdRecovered": false,
+    "negativeControls": {
+      "opcode908": false,
+      "faceDirectionExpectPosition": false
+    }
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "createHeroBindingDecoded": false,
+    "productEligible": false
+  }
+}

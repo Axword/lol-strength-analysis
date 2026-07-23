@@ -1,4 +1,4 @@
-import { CHAMPIONS } from '../data/champions'
+import { getChampion } from '../data/champions'
 import { ITEMS } from '../data/items'
 import type { ObjectiveCombatMods } from './objectives'
 import { applyObjectiveModsToStats } from './objectives'
@@ -13,7 +13,7 @@ import type { CombatStats, FighterLoadout } from './types'
 import { normalizeRanks } from './types'
 
 export function buildStats(loadout: FighterLoadout): CombatStats {
-  const champ = CHAMPIONS[loadout.championId]
+  const champ = getChampion(loadout.championId)
   if (!champ) throw new Error(`Unknown champion: ${loadout.championId}`)
 
   const level = Math.min(18, Math.max(1, loadout.level))

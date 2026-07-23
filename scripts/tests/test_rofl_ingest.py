@@ -636,6 +636,11 @@ class PhaseRecoveryAndPublishTests(unittest.TestCase):
                 {
                     "puuid": participant["puuid"],
                     "fullRiotId": participant["riotId"]["full"],
+                    "champion": (
+                        (participant.get("champion") or {}).get("asset")
+                        or (participant.get("champion") or {}).get("raw")
+                        or f"Champion{index}"
+                    ),
                     "netId": 1000 + index,
                 }
                 for index, participant in enumerate(

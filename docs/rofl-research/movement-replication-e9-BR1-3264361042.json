@@ -1,0 +1,785 @@
+{
+  "ok": false,
+  "positionClaimProven": false,
+  "probeVersion": "e9-replication-position-v1",
+  "hypothesis": "phase-b-e9-replication-position",
+  "matchCode": "3264361042",
+  "wallMs": 18840.989,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "channel107Blocks": 14801,
+  "framingParity": {
+    "samplesRequested": 200,
+    "samplesAttempted": 200,
+    "deserializeOk": 200,
+    "parityCounts": {
+      "transformed": 200
+    },
+    "overheadCounts": {
+      "12": 73,
+      "13": 66,
+      "14": 38,
+      "11": 23
+    },
+    "overheadMode": 12,
+    "pureByteParity": false,
+    "framing": {
+      "type": 107,
+      "typeByteHex": "6b",
+      "markerByteHex": "a6",
+      "reconstructedPrefixHex": "6ba6",
+      "deserializeCursorAfterType": 1,
+      "formula": "reconstructed = encode_type(107) || 0xA6 || wire_payload",
+      "note": "Prefix equals Unicorn block_extract output on channel-107. Post-Deserialize vector is encrypt-at-rest transformed (never exact/suffix of body on observed samples)."
+    },
+    "sampleRows": [
+      {
+        "time": 0.0,
+        "chunkIndex": 0,
+        "wireLen": 7467,
+        "framedLen": 7469,
+        "vectorSize": 7456,
+        "consumed": 7468,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "6488000040ffff03002200004040ff8f80a0080481020000c841ffff0000803f",
+        "bodyHeadHex": "a6a5fa83954ce45c"
+      },
+      {
+        "time": 0.16700000793207437,
+        "chunkIndex": 0,
+        "wireLen": 96,
+        "framedLen": 98,
+        "vectorSize": 86,
+        "consumed": 97,
+        "overhead": 11,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "01b2000040180f000018f0c00180c0ffff09000048420000a042000082420000",
+        "bodyHeadHex": "a60dfb71be4ca547"
+      },
+      {
+        "time": 0.2670000126818195,
+        "chunkIndex": 0,
+        "wireLen": 1563,
+        "framedLen": 1565,
+        "vectorSize": 1552,
+        "consumed": 1564,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "0488000040e00000000c00003b430000704200007042048b000040e00000000c",
+        "bodyHeadHex": "a60dfa3fbe4cf70c"
+      },
+      {
+        "time": 26.236922730575316,
+        "chunkIndex": 0,
+        "wireLen": 117,
+        "framedLen": 119,
+        "vectorSize": 106,
+        "consumed": 118,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "20af000040000000020400602e4420b00000400000000204ccec144420b30000",
+        "bodyHeadHex": "a6f5fa846fbc0b0f"
+      },
+      {
+        "time": 46.28695232456084,
+        "chunkIndex": 1,
+        "wireLen": 24,
+        "framedLen": 26,
+        "vectorSize": 14,
+        "consumed": 25,
+        "overhead": 11,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "046602004008000000040000a042",
+        "bodyHeadHex": "a66dfbe96d430b43"
+      },
+      {
+        "time": 58.048952883225866,
+        "chunkIndex": 1,
+        "wireLen": 127,
+        "framedLen": 129,
+        "vectorSize": 116,
+        "consumed": 128,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "20af0000400180000008bc1b1344cb1e9943043802004020000000048f808008",
+        "bodyHeadHex": "a605fb5486950bb5"
+      },
+      {
+        "time": 66.14582697651349,
+        "chunkIndex": 2,
+        "wireLen": 490,
+        "framedLen": 492,
+        "vectorSize": 478,
+        "consumed": 491,
+        "overhead": 13,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "01b5000040000200000400007042083a0200400100000004743a52422ce30300",
+        "bodyHeadHex": "a6a3f85774940bae"
+      },
+      {
+        "time": 73.76582733844407,
+        "chunkIndex": 2,
+        "wireLen": 75,
+        "framedLen": 77,
+        "vectorSize": 64,
+        "consumed": 76,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "05b00000400800000003f0e10101000000048e80800804880200400800000004",
+        "bodyHeadHex": "a6a5fac111be0b48"
+      },
+      {
+        "time": 81.29582769609988,
+        "chunkIndex": 2,
+        "wireLen": 114,
+        "framedLen": 116,
+        "vectorSize": 103,
+        "consumed": 115,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "04b00000400002000004e6262b4121b10000400300000008f1a8074348ea1e44",
+        "bodyHeadHex": "a6fbf81c11b70bf4"
+      },
+      {
+        "time": 89.92782810609788,
+        "chunkIndex": 2,
+        "wireLen": 117,
+        "framedLen": 119,
+        "vectorSize": 106,
+        "consumed": 118,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "01ae0000400800000003f1e10124af0000400004000004373332410100000004",
+        "bodyHeadHex": "a62dfa5f7f400b1d"
+      },
+      {
+        "time": 97.45241697703023,
+        "chunkIndex": 3,
+        "wireLen": 58,
+        "framedLen": 60,
+        "vectorSize": 47,
+        "consumed": 59,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "20b2000040008048000900107243000040400320b5000040010000000425650e",
+        "bodyHeadHex": "a623fb5853460b96"
+      },
+      {
+        "time": 105.28541734907776,
+        "chunkIndex": 3,
+        "wireLen": 120,
+        "framedLen": 122,
+        "vectorSize": 109,
+        "consumed": 121,
+        "overhead": 12,
+        "containment": {
+          "exactEquality": false,
+          "suffix": false,
+          "suffixOffset": null,
+          "findOffset": null,
+          "hdr12Equality": false,
+          "transformed": true
+        },
+        "blobHeadHex": "2cb10000400000040004d122db3f0000200004a245363f0100000004ce8b0644",
+        "bodyHeadHex": "a67dfac1364bd4f0"
+      }
+    ]
+  },
+  "decodeMeta": {
+    "deserializeOk": 14801,
+    "positionUpdates": 30761,
+    "packetsWithPositions": 4237
+  },
+  "positionFieldIndices": {
+    "candidatePrimary": 0,
+    "candidateSecondaryA": 0,
+    "candidateSecondaryB": 1,
+    "proven": false,
+    "semantic": "unclassified_bank0_pair",
+    "rejection": {
+      "oracleGatesOk": false,
+      "blobOracleFloatHits": 0,
+      "drift": {
+        "halfSecondSteps": 26589,
+        "medianStep": 1.4425,
+        "p95Step": 2.079,
+        "note": "Near-constant ~1.44 unit steps at 0.5s cadence are inconsistent with champion locomotion; reinforces oracle rejection of position claim."
+      }
+    }
+  },
+  "candidateBank0Updates": 30761,
+  "cadence": {
+    "perHero": {
+      "0x400000ae": {
+        "count": 3029,
+        "medianDt": 0.501,
+        "meanDt": 0.4807,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000af": {
+        "count": 3207,
+        "medianDt": 0.501,
+        "meanDt": 0.4868,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000b0": {
+        "count": 3195,
+        "medianDt": 0.501,
+        "meanDt": 0.4887,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000b1": {
+        "count": 3294,
+        "medianDt": 0.501,
+        "meanDt": 0.4739,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000b2": {
+        "count": 3067,
+        "medianDt": 0.501,
+        "meanDt": 0.509,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000b3": {
+        "count": 3098,
+        "medianDt": 0.501,
+        "meanDt": 0.5039,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000b4": {
+        "count": 3070,
+        "medianDt": 0.501,
+        "meanDt": 0.5085,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      },
+      "0x400000b5": {
+        "count": 3028,
+        "medianDt": 0.501,
+        "meanDt": 0.5171,
+        "minDt": 0.1,
+        "maxDt": 4.514
+      },
+      "0x400000b6": {
+        "count": 2772,
+        "medianDt": 0.501,
+        "meanDt": 0.4895,
+        "minDt": 0.1,
+        "maxDt": 1.506
+      },
+      "0x400000b7": {
+        "count": 3001,
+        "medianDt": 0.501,
+        "meanDt": 0.5202,
+        "minDt": 0.1,
+        "maxDt": 1.527
+      }
+    },
+    "heroesPresent": 10,
+    "missingHeroes": [],
+    "globalMedianDt": 0.501,
+    "globalMeanDt": 0.4976,
+    "totalUpdates": 30761,
+    "noDownsample": true
+  },
+  "drift": {
+    "halfSecondSteps": 26589,
+    "medianStep": 1.4425,
+    "p95Step": 2.079,
+    "note": "Near-constant ~1.44 unit steps at 0.5s cadence are inconsistent with champion locomotion; reinforces oracle rejection of position claim."
+  },
+  "blobOracleScan": {
+    "hits": 0,
+    "packetsScanned": 54,
+    "toleranceUnits": 40.0,
+    "sampleStrideS": 30.0,
+    "interpretation": "zero hits \u21d2 type-107 plaintext vectors do not carry oracle-aligned x/z float pairs under this scan"
+  },
+  "goldRegression": {
+    "ok": true,
+    "goldEmissions": 0,
+    "positionStateEmissions": 0,
+    "fieldIndices": {
+      "primary": 0,
+      "secondaryA": 0,
+      "secondaryB": 1,
+      "semantic": "unclassified_not_gold_not_proven_position",
+      "formerIncorrectLabels": [
+        "mGold",
+        "mGoldTotal"
+      ],
+      "rejectedPositionClaim": true
+    }
+  },
+  "oracleQA": {
+    "comparedUpdates": 0,
+    "heroesCompared": 0,
+    "medianError": null,
+    "p95Error": null,
+    "maxError": null,
+    "snappedDiscontinuities": 0,
+    "ok": false,
+    "assignmentCount": 0,
+    "assignment": [],
+    "label": "research_only_not_product"
+  },
+  "furSemantic": {
+    "ok": true,
+    "comparisonKind": "cross_match_semantic_only",
+    "disallowed": [
+      "exact_byte_compare",
+      "exact_value_compare",
+      "paired_replay_treat_as_same_match",
+      "oracle_numeric_qa_against_fur"
+    ],
+    "allowed": [
+      "rfc461_schema_names",
+      "field_presence_and_nullability",
+      "position_vs_gold_separation",
+      "cadence_distribution_shape",
+      "coordinate_range_plausibility",
+      "participant_invariants_count_role_keys"
+    ],
+    "fur": {
+      "path": "/Users/river/Desktop/events_2970115_1_riot.jsonl",
+      "gameID": 426848,
+      "platformID": "LOLTMNT01",
+      "patchNote": "16.13 (FUR\u2013G2 / LOLTMNT01); not BR1 16.14",
+      "statsUpdateCount": 1469,
+      "schemaTop": [
+        [
+          "skill_used",
+          2448
+        ],
+        [
+          "stats_update",
+          1469
+        ],
+        [
+          "champ_select",
+          451
+        ],
+        [
+          "item_active_ability_used",
+          267
+        ],
+        [
+          "item_purchased",
+          227
+        ],
+        [
+          "item_destroyed",
+          227
+        ],
+        [
+          "ward_placed",
+          218
+        ],
+        [
+          "channeling_ended",
+          205
+        ],
+        [
+          "channeling_started",
+          199
+        ],
+        [
+          "skill_level_up",
+          134
+        ],
+        [
+          "champion_level_up",
+          124
+        ],
+        [
+          "building_gold_grant",
+          120
+        ]
+      ],
+      "statsCadenceMedianS": 1.002,
+      "statsCadenceMeanS": 0.9999,
+      "positionRange": {
+        "xMin": 130.0,
+        "xMax": 14589.0,
+        "zMin": 135.0,
+        "zMax": 14673.0
+      },
+      "participantKeySample": [
+        "XP",
+        "XPForNextLevel",
+        "ability1CooldownRemaining",
+        "ability1Level",
+        "ability1Name",
+        "ability2CooldownRemaining",
+        "ability2Level",
+        "ability2Name",
+        "ability3CooldownRemaining",
+        "ability3Level",
+        "ability3Name",
+        "ability4CooldownRemaining",
+        "ability4Level",
+        "ability4Name",
+        "abilityPower",
+        "accountID",
+        "alive",
+        "armor",
+        "armorPenetration",
+        "armorPenetrationPercent",
+        "armorPenetrationPercentBonus",
+        "attackDamage",
+        "attackSpeed",
+        "ccReduction",
+        "championName",
+        "cooldownReduction",
+        "currentGold",
+        "goldPerSecond",
+        "goldStats",
+        "health",
+        "healthMax",
+        "healthRegen",
+        "items",
+        "level",
+        "lifeSteal",
+        "magicPenetration",
+        "magicPenetrationPercent",
+        "magicPenetrationPercentBonus",
+        "magicResist",
+        "participantID",
+        "playerName",
+        "position",
+        "primaryAbilityResource",
+        "primaryAbilityResourceMax",
+        "primaryAbilityResourceRegen",
+        "puuid",
+        "respawnTimer",
+        "riotId",
+        "role",
+        "roleBoundQuestComplete",
+        "shutdownValue",
+        "skinID",
+        "spellVamp",
+        "stats",
+        "summonerSpell1CooldownRemaining",
+        "summonerSpell1Name",
+        "summonerSpell2CooldownRemaining",
+        "summonerSpell2Name",
+        "teamID",
+        "totalGold",
+        "ultimateCooldownRemaining",
+        "ultimateName"
+      ],
+      "goldVsPosition": "FUR stats_update keeps position.{x,z} distinct from currentGold/totalGold; BR1 (0,0)/(0,1) map pairs align with position semantics, not gold."
+    },
+    "br1ReplicationPositions": {
+      "matchCode": "3264361042",
+      "patchNote": "16.14",
+      "nativeCadence": {
+        "perHero": {
+          "0x400000ae": {
+            "count": 3029,
+            "medianDt": 0.501,
+            "meanDt": 0.4807,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000af": {
+            "count": 3207,
+            "medianDt": 0.501,
+            "meanDt": 0.4868,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000b0": {
+            "count": 3195,
+            "medianDt": 0.501,
+            "meanDt": 0.4887,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000b1": {
+            "count": 3294,
+            "medianDt": 0.501,
+            "meanDt": 0.4739,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000b2": {
+            "count": 3067,
+            "medianDt": 0.501,
+            "meanDt": 0.509,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000b3": {
+            "count": 3098,
+            "medianDt": 0.501,
+            "meanDt": 0.5039,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000b4": {
+            "count": 3070,
+            "medianDt": 0.501,
+            "meanDt": 0.5085,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          },
+          "0x400000b5": {
+            "count": 3028,
+            "medianDt": 0.501,
+            "meanDt": 0.5171,
+            "minDt": 0.1,
+            "maxDt": 4.514
+          },
+          "0x400000b6": {
+            "count": 2772,
+            "medianDt": 0.501,
+            "meanDt": 0.4895,
+            "minDt": 0.1,
+            "maxDt": 1.506
+          },
+          "0x400000b7": {
+            "count": 3001,
+            "medianDt": 0.501,
+            "meanDt": 0.5202,
+            "minDt": 0.1,
+            "maxDt": 1.527
+          }
+        },
+        "heroesPresent": 10,
+        "missingHeroes": [],
+        "globalMedianDt": 0.501,
+        "globalMeanDt": 0.4976,
+        "totalUpdates": 30761,
+        "noDownsample": true
+      },
+      "positionRange": {
+        "xMin": 1.0199999809265137,
+        "xMax": 3605.17578125,
+        "zMin": 501.0199890136719,
+        "zMax": 15968.2119140625
+      }
+    },
+    "semanticAlignment": {
+      "positionFieldsPresentInFur": true,
+      "goldSeparateFromPositionInFur": true,
+      "br1Bank0GoldLabelRemoved": true,
+      "br1Bank0ProvenAsPosition": false,
+      "furStatsApprox1Hz": true,
+      "br1Bank0FinerThanFur1Hz": true,
+      "crossMatchNote": "FUR shows position.{x,z} \u2260 currentGold/totalGold. BR1 bank0 pairs fail same-match position QA; gold mapping removed; semantics remain open."
+    }
+  },
+  "meetInMiddle": {
+    "method": "meet_in_the_middle",
+    "sides": {
+      "A_roflType107": {
+        "matchCode": "3264361042",
+        "patch": "16.14",
+        "role": "candidate_decoded_replication_positions"
+      },
+      "B_br1ReplayApi": {
+        "matchCode": "3264361042",
+        "patch": "16.14",
+        "path": "artifacts/rofl/3264361042/events.rfc461.jsonl",
+        "role": "exact_numeric_timestamp_oracle"
+      },
+      "C_furOfficialJsonl": {
+        "gameID": 426848,
+        "platformID": "LOLTMNT01",
+        "patch": "16.13",
+        "path": "/Users/river/Desktop/events_2970115_1_riot.jsonl",
+        "role": "schema_cadence_field_presence_oracle_only"
+      }
+    },
+    "allowedComparisons": [
+      "rfc461_schema_names",
+      "field_presence_and_nullability",
+      "position_vs_gold_separation",
+      "cadence_distribution_shape",
+      "coordinate_range_plausibility",
+      "participant_invariants_count_role_keys"
+    ],
+    "disallowedComparisons": [
+      "exact_byte_compare",
+      "exact_value_compare",
+      "paired_replay_treat_as_same_match",
+      "oracle_numeric_qa_against_fur"
+    ],
+    "furRofl": {
+      "available": false,
+      "searched": false,
+      "blocker": false,
+      "note": "FUR\u2013G2 ROFL is unavailable by design; JSONL is the schema contract only."
+    }
+  },
+  "identity": {
+    "stableNetIdKeys": [
+      "0x400000ae",
+      "0x400000af",
+      "0x400000b0",
+      "0x400000b1",
+      "0x400000b2",
+      "0x400000b3",
+      "0x400000b4",
+      "0x400000b5",
+      "0x400000b6",
+      "0x400000b7"
+    ],
+    "provenHeroNetIds": [
+      "0x400000ae",
+      "0x400000af",
+      "0x400000b0",
+      "0x400000b1",
+      "0x400000b2",
+      "0x400000b3",
+      "0x400000b4",
+      "0x400000b5",
+      "0x400000b6",
+      "0x400000b7"
+    ],
+    "createHeroBindingDecoded": false,
+    "puuidBindingDecoded": false,
+    "fullRiotIdBindingDecoded": false,
+    "oracleAssignmentIsProductIdentity": false,
+    "productEligible": false,
+    "blocker": "standalone_identity_binding_not_decoded_from_create_hero_or_riot_id"
+  },
+  "pureDecoder": {
+    "byteParityWithUnicornBlob": false,
+    "status": "blocked_encrypt_at_rest_transform",
+    "patchManifest": {
+      "framingConstants": {
+        "replicationType": 107,
+        "typeByte": "6b",
+        "markerByte": "a6",
+        "reconstructedPrefix": "6ba6",
+        "deserializeCursorAfterType": 1
+      },
+      "positionFieldIndices": {
+        "primary": 0,
+        "secondaryX": 0,
+        "secondaryZ": 1
+      },
+      "buildHashNote": "arm64 LeagueofLegends thin from local universal; no binary vendored",
+      "noBinaryRuntimeInManifest": true,
+      "pureDecoderStatus": "blocked_encrypt_at_rest_transform"
+    }
+  },
+  "browserSafe": false,
+  "browserNotes": {
+    "candidate": "TypeScript/WASM Worker with local File \u2192 pure type-107 framing+decrypt",
+    "uploadNeededForDecode": false,
+    "jsonlMayUploadToAuthenticatedStorage": true,
+    "currentBrowserSafe": false,
+    "blocker": "post-Deserialize vector is transformed; pure decrypt not yet derived"
+  },
+  "productEligible": false,
+  "emit": {
+    "waypointEvents": 30761,
+    "rfc461Frames1Hz": 1566,
+    "dir": "docs/rofl-research/e9-emit-3264361042",
+    "note": "research audit emit of bank0 candidates; not product positions"
+  },
+  "fieldAudit": {
+    "removedGoldMappingFor_0_0_and_0_1": true,
+    "doNotEmitBank0AsPosition": true,
+    "hpFieldsUnchanged": {
+      "mHP": [
+        5,
+        0
+      ],
+      "mMaxHP": [
+        5,
+        1
+      ]
+    },
+    "combatPrimary1NoOverlapWithBank0": true,
+    "expandedScope": false
+  },
+  "blocker": "type107_bank0_pair_not_oracle_positions; native_position_source_still_open"
+}

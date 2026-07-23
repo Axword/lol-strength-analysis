@@ -17,7 +17,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 MAP_SPAN = 14870.0
 
@@ -128,6 +128,33 @@ def _ability_ranks_known(participant: dict) -> bool:
     return True
 
 
+def game_info_champion_name(participant: Mapping[str, Any]) -> str:
+    """Authoritative champion id from game_info (nested champion or flat name)."""
+    nested = participant.get("champion")
+    if isinstance(nested, Mapping):
+        raw = (
+            nested.get("asset")
+            or nested.get("raw")
+            or nested.get("display")
+            or nested.get("model")
+            or ""
+        )
+        if raw:
+            return champ_id(str(raw))
+    return champ_id(str(participant.get("championName") or "Unknown"))
+
+
+def game_info_summoner_name(participant: Mapping[str, Any]) -> str:
+    if participant.get("summonerName"):
+        return str(participant["summonerName"])
+    if participant.get("playerName"):
+        return str(participant["playerName"])
+    riot = participant.get("riotId")
+    if isinstance(riot, Mapping) and riot.get("full"):
+        return str(riot["full"])
+    return ""
+
+
 def build_timeline(
     jsonl_path: Path,
     *,
@@ -161,18 +188,23 @@ def build_timeline(
     if not stats_rows:
         raise SystemExit("JSONL missing stats_update rows")
 
+    # game_info is the authoritative identity roster. Capture stats_update rows can
+    # carry scrambled championName/playerName on the correct participantID (HP/ranks
+    # still fuse by pid). Never trust per-frame champ labels over game_info.
+    roster_by_pid: Dict[int, Dict[str, Any]] = {}
     participants = []
     for p in game_info.get("participants") or []:
-        participants.append(
-            {
-                "participantID": int(p["participantID"]),
-                "summonerName": p.get("summonerName") or p.get("playerName") or "",
-                "championName": champ_id(p.get("championName") or "Unknown"),
-                "teamID": int(p.get("teamID") or 100),
-                "role": p.get("role") or "NONE",
-                "keystoneID": p.get("keystoneID"),
-            }
-        )
+        pid = int(p["participantID"])
+        entry = {
+            "participantID": pid,
+            "summonerName": game_info_summoner_name(p),
+            "championName": game_info_champion_name(p),
+            "teamID": int(p.get("teamID") or 100),
+            "role": p.get("role") or "NONE",
+            "keystoneID": p.get("keystoneID"),
+        }
+        participants.append(entry)
+        roster_by_pid[pid] = entry
 
     source = "live_stats_jsonl"
     if coverage and coverage.get("source"):
@@ -183,6 +215,8 @@ def build_timeline(
         t = canonical_game_time_ms(row.get("gameTime") or 0)
         units = []
         for p in row.get("participants") or []:
+            pid = int(p["participantID"])
+            roster = roster_by_pid.get(pid)
             pos = p.get("position") or {}
             nx, ny = riot_to_norm(float(pos.get("x") or 0), float(pos.get("z") or 0))
             hp_known = _health_known(p)
@@ -198,11 +232,23 @@ def build_timeline(
                 hp = 0.0
                 hp_max = 0.0
             unit: Dict[str, Any] = {
-                "pid": int(p["participantID"]),
-                "champ": champ_id(p.get("championName") or "Unknown"),
-                "name": p.get("playerName") or p.get("summonerName") or "",
-                "team": int(p.get("teamID") or 100),
-                "role": p.get("role") or "NONE",
+                "pid": pid,
+                "champ": (
+                    roster["championName"]
+                    if roster
+                    else champ_id(p.get("championName") or "Unknown")
+                ),
+                "name": (
+                    roster["summonerName"]
+                    if roster
+                    else (p.get("playerName") or p.get("summonerName") or "")
+                ),
+                "team": (
+                    int(roster["teamID"])
+                    if roster
+                    else int(p.get("teamID") or 100)
+                ),
+                "role": (roster["role"] if roster else (p.get("role") or "NONE")),
                 "level": int(p.get("level") or 1),
                 "hp": round(hp),
                 "hpMax": round(hp_max),
@@ -248,7 +294,7 @@ def build_timeline(
         provenance = {
             "source": source,
             "sourceKind": "rfc461_jsonl",
-            "artifact": str(jsonl_path),
+            "artifact": Path(jsonl_path).name,
             "gameTimeUnit": "milliseconds",
             "coordinateSystem": "riot_live_stats_sr",
             "coordinateOffset": {"x": 7500.0, "z": 7500.0},
@@ -258,6 +304,10 @@ def build_timeline(
             "placeholderPolicy": "explicit_positionSource_only",
             "notes": "No rofl_coverage row was present; treating this as a native live-stats JSONL feed.",
         }
+    # Never publish absolute local paths in timeline provenance.
+    artifact = provenance.get("artifact")
+    if isinstance(artifact, str) and ("/" in artifact or "\\" in artifact):
+        provenance["artifact"] = Path(artifact).name
 
     return {
         "id": timeline_id,

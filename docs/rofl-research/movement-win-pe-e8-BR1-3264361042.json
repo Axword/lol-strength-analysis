@@ -1,0 +1,940 @@
+{
+  "ok": false,
+  "phase": "B-E8",
+  "probeVersion": "e8-rtti-registration-v1",
+  "matchCode": "3264361042",
+  "provenance": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e8-rtti-registration-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "windowsRealBinaryValidated": true,
+  "imageBase": "0x140000000",
+  "rtti": {
+    "factoryCoverageRatio": 0.0,
+    "factoryRttiOk": 0,
+    "factoryCount": 218,
+    "validColCount": 109,
+    "validColSamples": [
+      {
+        "va": "0x141cd26a8",
+        "name": "std::exception"
+      },
+      {
+        "va": "0x141cd2720",
+        "name": "std::bad_alloc"
+      },
+      {
+        "va": "0x141cd27a0",
+        "name": "std::bad_array_new_length"
+      },
+      {
+        "va": "0x141cd2878",
+        "name": "std::ios_base"
+      },
+      {
+        "va": "0x141cd2970",
+        "name": "std::std::D::DU?$char_traits::?$basic_ios"
+      },
+      {
+        "va": "0x141cd29f8",
+        "name": "std::std::D::DU?$char_traits::?$basic_streambuf"
+      },
+      {
+        "va": "0x141cd2a70",
+        "name": "std::std::D::DU?$char_traits::?$basic_ostream"
+      },
+      {
+        "va": "0x141cd2b78",
+        "name": "std::2::D::V?$allocator::std::D::DU?$char_traits::?$basic_stringbuf"
+      },
+      {
+        "va": "0x141cd2bf8",
+        "name": "std::2::D::V?$allocator::std::D::DU?$char_traits::?$basic_ostringstream"
+      },
+      {
+        "va": "0x141cd2c90",
+        "name": "std::runtime_error"
+      },
+      {
+        "va": "0x141cd2d60",
+        "name": "std::_System_error"
+      },
+      {
+        "va": "0x141cd2de8",
+        "name": "std::system_error"
+      }
+    ],
+    "note": "Strict COL validation only (signature=1, pSelf, TD bounds, .?AV/.?AU name). No string-proximity class naming. Packet factory vptrs are RTTI-stripped on this PE.",
+    "perOpcode": [
+      {
+        "opcode": 18,
+        "vptr": null,
+        "rttiOk": false,
+        "reason": "missing_vptr"
+      },
+      {
+        "opcode": 30,
+        "vptr": null,
+        "rttiOk": false,
+        "reason": "missing_vptr"
+      },
+      {
+        "opcode": 35,
+        "vptr": "0x141b00478",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 41,
+        "vptr": "0x141b06858",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 53,
+        "vptr": "0x141b016f0",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 58,
+        "vptr": "0x141a18628",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 62,
+        "vptr": "0x141b052e8",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 69,
+        "vptr": "0x141b09100",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 72,
+        "vptr": "0x141b06410",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 79,
+        "vptr": "0x141b04280",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 80,
+        "vptr": "0x141b055b0",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 101,
+        "vptr": "0x141b03fe8",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 103,
+        "vptr": "0x141b04280",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 107,
+        "vptr": "0x141b01078",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 109,
+        "vptr": "0x141b00bb0",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 110,
+        "vptr": "0x141b05378",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 116,
+        "vptr": "0x141b06e38",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 124,
+        "vptr": "0x141b03770",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 125,
+        "vptr": "0x141b068b8",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 129,
+        "vptr": "0x141b037a0",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 130,
+        "vptr": "0x141b05288",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 131,
+        "vptr": "0x141b08778",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 134,
+        "vptr": "0x141b04800",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 149,
+        "vptr": "0x141b05848",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 156,
+        "vptr": "0x141b04a68",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 172,
+        "vptr": "0x141b00508",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 173,
+        "vptr": "0x141b034c8",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 174,
+        "vptr": "0x141b02270",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 181,
+        "vptr": "0x141b06ae0",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      },
+      {
+        "opcode": 186,
+        "vptr": "0x141b06ba0",
+        "rttiOk": false,
+        "reason": "col_in_text",
+        "className": null,
+        "mangled": null,
+        "colVa": null
+      }
+    ]
+  },
+  "semanticRegistration": {
+    "hub": "0x1406f78b0",
+    "mapped": {
+      "PKT_S2C_SetMovementDriver_s": {
+        "pkt": "PKT_S2C_SetMovementDriver_s",
+        "typeDescriptorVa": "0x141e63a50",
+        "nameVa": "0x141e63a60",
+        "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_S2C_SetMovementDriver_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_S2C_SetMovementDriver_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_S2C_SetMovementDriver_s@@@Z@Z@",
+        "demangled": "MakeFunction<...PKT_S2C_SetMovementDriver_s...>",
+        "ok": true,
+        "typeidStub": "0x1402c4850",
+        "vtable": "0x141a1f590",
+        "leaSites": [
+          "0x140240838",
+          "0x1402c2840"
+        ],
+        "opcode": 1104,
+        "evidence": {
+          "kind": "ctor_caller_to_register_wrapper",
+          "vtableCtor": "0x140240830",
+          "vtableLea": "0x140240838",
+          "ctorCallSite": "0x140252df6",
+          "wrapperVa": "0x1402431e0",
+          "hub": "0x1406f78b0"
+        },
+        "blocker": null,
+        "factoryPresent": true,
+        "roflBlocks": 6,
+        "factory": {
+          "objectSize": 64,
+          "ctorVa": "0x140e9dd60",
+          "vptr": "0x141b05438",
+          "deserializeVa": "0x14101eb10",
+          "useOrGetSizeVa": "0x1406d3ef0"
+        }
+      },
+      "PKT_DirectInputMovementDriverServerTurnData_s": {
+        "pkt": "PKT_DirectInputMovementDriverServerTurnData_s",
+        "typeDescriptorVa": "0x141e63920",
+        "nameVa": "0x141e63930",
+        "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_DirectInputMovementDriverServerTurnData_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_DirectInputMovementDriverServerTurnData_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_DirectInputMovementDriverServerTurnData_s@@@Z@Z@",
+        "demangled": "MakeFunction<...PKT_DirectInputMovementDriverServerTurnData_s...>",
+        "ok": true,
+        "typeidStub": "0x1402c43b0",
+        "vtable": "0x141a1f5c0",
+        "leaSites": [
+          "0x14023ffb8",
+          "0x1402c1f00"
+        ],
+        "opcode": 58,
+        "evidence": {
+          "kind": "ctor_caller_to_register_wrapper",
+          "vtableCtor": "0x14023ffb0",
+          "vtableLea": "0x14023ffb8",
+          "ctorCallSite": "0x140252e45",
+          "wrapperVa": "0x140242300",
+          "hub": "0x1406f78b0"
+        },
+        "blocker": null,
+        "factoryPresent": true,
+        "roflBlocks": 220,
+        "factory": {
+          "objectSize": 28,
+          "ctorVa": "0x140e7b600",
+          "vptr": "0x141a18628",
+          "deserializeVa": "0x140ef41e0",
+          "useOrGetSizeVa": "0x140279fb0"
+        }
+      },
+      "PKT_S2C_AddFollowTargetPosition_s": {
+        "pkt": "PKT_S2C_AddFollowTargetPosition_s",
+        "typeDescriptorVa": "0x141e64870",
+        "nameVa": "0x141e64880",
+        "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_S2C_AddFollowTargetPosition_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_S2C_AddFollowTargetPosition_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_S2C_AddFollowTargetPosition_s@@@Z@Z@",
+        "demangled": "MakeFunction<...PKT_S2C_AddFollowTargetPosition_s...>",
+        "ok": true,
+        "typeidStub": "0x1402c44c0",
+        "vtable": "0x141a1f2f0",
+        "leaSites": [
+          "0x140240038",
+          "0x1402c2120"
+        ],
+        "opcode": 513,
+        "evidence": {
+          "kind": "ctor_caller_to_register_wrapper",
+          "vtableCtor": "0x140240030",
+          "vtableLea": "0x140240038",
+          "ctorCallSite": "0x1402529a4",
+          "wrapperVa": "0x1402423e0",
+          "hub": "0x1406f78b0"
+        },
+        "blocker": null,
+        "factoryPresent": false,
+        "roflBlocks": 0
+      },
+      "PKT_S2C_AddFollowTargetTeleport_s": {
+        "pkt": "PKT_S2C_AddFollowTargetTeleport_s",
+        "typeDescriptorVa": "0x141e64760",
+        "nameVa": "0x141e64770",
+        "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_S2C_AddFollowTargetTeleport_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_S2C_AddFollowTargetTeleport_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_S2C_AddFollowTargetTeleport_s@@@Z@Z@",
+        "demangled": "MakeFunction<...PKT_S2C_AddFollowTargetTeleport_s...>",
+        "ok": true,
+        "typeidStub": "0x1402c44d0",
+        "vtable": "0x141a1f320",
+        "leaSites": [
+          "0x140240078",
+          "0x1402c2140"
+        ],
+        "opcode": 840,
+        "evidence": {
+          "kind": "ctor_caller_to_register_wrapper",
+          "vtableCtor": "0x140240070",
+          "vtableLea": "0x140240078",
+          "ctorCallSite": "0x1402529f3",
+          "wrapperVa": "0x140242450",
+          "hub": "0x1406f78b0"
+        },
+        "blocker": null,
+        "factoryPresent": false,
+        "roflBlocks": 0
+      },
+      "PKT_S2C_FaceDirection_s": {
+        "pkt": "PKT_S2C_FaceDirection_s",
+        "typeDescriptorVa": "0x141e66390",
+        "nameVa": "0x141e663a0",
+        "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_S2C_FaceDirection_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_S2C_FaceDirection_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_S2C_FaceDirection_s@@@Z@Z@",
+        "demangled": "MakeFunction<...PKT_S2C_FaceDirection_s...>",
+        "ok": true,
+        "typeidStub": "0x1402c4620",
+        "vtable": "0x141a1ede0",
+        "leaSites": [
+          "0x140252048",
+          "0x1402c23e0"
+        ],
+        "opcode": 420,
+        "evidence": {
+          "kind": "inline_hub_after_vtable_lea",
+          "leaVa": "0x140252048",
+          "callVa": "0x1402520ad",
+          "hub": "0x1406f78b0"
+        },
+        "blocker": null,
+        "factoryPresent": true,
+        "roflBlocks": 13353,
+        "factory": {
+          "objectSize": 36,
+          "ctorVa": "0x140e8c0a0",
+          "vptr": "0x141b00060",
+          "deserializeVa": "0x140f06290",
+          "useOrGetSizeVa": "0x140375ac0"
+        }
+      },
+      "PKT_S2C_SyncCircularMovementRestriction_s": {
+        "pkt": "PKT_S2C_SyncCircularMovementRestriction_s",
+        "typeDescriptorVa": "0x141e68910",
+        "nameVa": "0x141e68920",
+        "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_S2C_SyncCircularMovementRestriction_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_S2C_SyncCircularMovementRestriction_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_S2C_SyncCircularMovementRestriction_s@@@Z@Z@",
+        "demangled": "MakeFunction<...PKT_S2C_SyncCircularMovementRestriction_s...>",
+        "ok": true,
+        "typeidStub": "0x1402c4950",
+        "vtable": "0x141a1e6c0",
+        "leaSites": [
+          "0x140250688",
+          "0x1402c2a40"
+        ],
+        "opcode": 450,
+        "evidence": {
+          "kind": "inline_hub_after_vtable_lea",
+          "leaVa": "0x140250688",
+          "callVa": "0x1402506ff",
+          "hub": "0x1406f78b0"
+        },
+        "blocker": null,
+        "factoryPresent": true,
+        "roflBlocks": 12,
+        "factory": {
+          "objectSize": 32,
+          "ctorVa": "0x140ea2b90",
+          "vptr": "0x141b04858",
+          "deserializeVa": "0x1410268e0",
+          "useOrGetSizeVa": "0x140304940"
+        }
+      }
+    },
+    "mappedOk": [
+      "PKT_S2C_SetMovementDriver_s",
+      "PKT_DirectInputMovementDriverServerTurnData_s",
+      "PKT_S2C_AddFollowTargetPosition_s",
+      "PKT_S2C_AddFollowTargetTeleport_s",
+      "PKT_S2C_FaceDirection_s",
+      "PKT_S2C_SyncCircularMovementRestriction_s"
+    ],
+    "primaryMovementCandidate": "PKT_S2C_SetMovementDriver_s",
+    "blockCountOrderingAmongMapped": [
+      {
+        "opcode": 420,
+        "blocks": 13353,
+        "pkt": "PKT_S2C_FaceDirection_s"
+      },
+      {
+        "opcode": 58,
+        "blocks": 220,
+        "pkt": "PKT_DirectInputMovementDriverServerTurnData_s"
+      },
+      {
+        "opcode": 450,
+        "blocks": 12,
+        "pkt": "PKT_S2C_SyncCircularMovementRestriction_s"
+      },
+      {
+        "opcode": 1104,
+        "blocks": 6,
+        "pkt": "PKT_S2C_SetMovementDriver_s"
+      },
+      {
+        "opcode": 513,
+        "blocks": 0,
+        "pkt": "PKT_S2C_AddFollowTargetPosition_s"
+      },
+      {
+        "opcode": 840,
+        "blocks": 0,
+        "pkt": "PKT_S2C_AddFollowTargetTeleport_s"
+      }
+    ],
+    "selectionCriterion": "register_mov_r8d_imm_to_hub_not_frequency",
+    "noWaypointGroupString": true
+  },
+  "driveReports": [
+    {
+      "pkt": "PKT_S2C_SetMovementDriver_s",
+      "opcode": 1104,
+      "objectSize": 64,
+      "ctorVa": "0x140e9dd60",
+      "vptr": "0x141b05438",
+      "deserializeVa": "0x14101eb10",
+      "vtableSlotNote": "slot[2]=GetSize (returns objectSize); slot[1]=Deserialize",
+      "blocks": 6,
+      "probed": 6,
+      "factoryOk": 6,
+      "deserRetAlNonzero": 0,
+      "plaintextMaplikeXyz": 0,
+      "netIdFieldTop": [
+        [
+          "0x40000053",
+          4
+        ],
+        [
+          "0x0",
+          2
+        ]
+      ],
+      "fieldCaptureExamples": [
+        {
+          "time": 1219.1340741296299,
+          "netIdField": 1073741907,
+          "blockParam": 1073741999,
+          "retAl": 0,
+          "consumed": 5,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "3854b041010000005004000053000040000000000000000000000000000000000000000000000000",
+          "plaintextXyz": null
+        },
+        {
+          "time": 1221.8310742577305,
+          "netIdField": 0,
+          "blockParam": 1073741999,
+          "retAl": 0,
+          "consumed": 2,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "3854b041010000005004000000000000000000000000000000000000000000000000000000000000",
+          "plaintextXyz": null
+        },
+        {
+          "time": 1226.0100744562224,
+          "netIdField": 1073741907,
+          "blockParam": 1073741999,
+          "retAl": 0,
+          "consumed": 5,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "3854b041010000005004000053000040000000000000000000000000000000000000000000000000",
+          "plaintextXyz": null
+        }
+      ],
+      "registrationEvidence": {
+        "kind": "ctor_caller_to_register_wrapper",
+        "vtableCtor": "0x140240830",
+        "vtableLea": "0x140240838",
+        "ctorCallSite": "0x140252df6",
+        "wrapperVa": "0x1402431e0",
+        "hub": "0x1406f78b0"
+      }
+    },
+    {
+      "pkt": "PKT_DirectInputMovementDriverServerTurnData_s",
+      "opcode": 58,
+      "objectSize": 28,
+      "ctorVa": "0x140e7b600",
+      "vptr": "0x141a18628",
+      "deserializeVa": "0x140ef41e0",
+      "vtableSlotNote": "slot[2]=GetSize (returns objectSize); slot[1]=Deserialize",
+      "blocks": 24,
+      "probed": 24,
+      "factoryOk": 24,
+      "deserRetAlNonzero": 9,
+      "plaintextMaplikeXyz": 0,
+      "netIdFieldTop": [
+        [
+          "0x40000050",
+          24
+        ]
+      ],
+      "fieldCaptureExamples": [
+        {
+          "time": 1219.1670741311973,
+          "netIdField": 1073741904,
+          "blockParam": 1073741999,
+          "retAl": 0,
+          "consumed": 10,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "2886a141010000003a000000500000409c8f9889898989a08989898900000000",
+          "plaintextXyz": null
+        },
+        {
+          "time": 1219.2000741327647,
+          "netIdField": 1073741904,
+          "blockParam": 1073741999,
+          "retAl": 0,
+          "consumed": 10,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "2886a141010000003a00000050000040868f98ab341914338989898900000000",
+          "plaintextXyz": null
+        },
+        {
+          "time": 1219.267074135947,
+          "netIdField": 1073741904,
+          "blockParam": 1073741999,
+          "retAl": 1,
+          "consumed": 2,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "2886a141010000003a0000005000004089898989898989898989898900000000",
+          "plaintextXyz": null
+        }
+      ],
+      "registrationEvidence": {
+        "kind": "ctor_caller_to_register_wrapper",
+        "vtableCtor": "0x14023ffb0",
+        "vtableLea": "0x14023ffb8",
+        "ctorCallSite": "0x140252e45",
+        "wrapperVa": "0x140242300",
+        "hub": "0x1406f78b0"
+      }
+    },
+    {
+      "pkt": "PKT_S2C_AddFollowTargetPosition_s",
+      "opcode": 513,
+      "ok": false,
+      "blocks": 0,
+      "blocker": "no_factory_for_opcode"
+    },
+    {
+      "pkt": "PKT_S2C_AddFollowTargetTeleport_s",
+      "opcode": 840,
+      "ok": false,
+      "blocks": 0,
+      "blocker": "no_factory_for_opcode"
+    },
+    {
+      "pkt": "PKT_S2C_FaceDirection_s",
+      "opcode": 420,
+      "objectSize": 36,
+      "ctorVa": "0x140e8c0a0",
+      "vptr": "0x141b00060",
+      "deserializeVa": "0x140f06290",
+      "vtableSlotNote": "slot[2]=GetSize (returns objectSize); slot[1]=Deserialize",
+      "blocks": 24,
+      "probed": 24,
+      "factoryOk": 24,
+      "deserRetAlNonzero": 20,
+      "plaintextMaplikeXyz": 0,
+      "netIdFieldTop": [
+        [
+          "0x4000002f",
+          7
+        ],
+        [
+          "0x4000001a",
+          7
+        ],
+        [
+          "0x40000027",
+          6
+        ],
+        [
+          "0x47a147b2",
+          2
+        ],
+        [
+          "0x40003032",
+          1
+        ],
+        [
+          "0x4157d632",
+          1
+        ]
+      ],
+      "fieldCaptureExamples": [
+        {
+          "time": 1.336493968963623,
+          "netIdField": 1073741871,
+          "blockParam": 1073742009,
+          "retAl": 1,
+          "consumed": 2,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "6000b04101000000a40100002f000040890000003434343434343434343434348e8e165e",
+          "plaintextXyz": null
+        },
+        {
+          "time": 1.336493968963623,
+          "netIdField": 1073741850,
+          "blockParam": 1073742010,
+          "retAl": 1,
+          "consumed": 14,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "6000b04101000000a40100001a00004012000000e542bd3d23c1d543d29ddf328e8e8e8e",
+          "plaintextXyz": null
+        },
+        {
+          "time": 1.336493968963623,
+          "netIdField": 1073741871,
+          "blockParam": 1073742011,
+          "retAl": 1,
+          "consumed": 14,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "6000b04101000000a40100002f000040890000001843f2e92342bf43f29af2bc8e8e16c0",
+          "plaintextXyz": null
+        }
+      ],
+      "registrationEvidence": {
+        "kind": "inline_hub_after_vtable_lea",
+        "leaVa": "0x140252048",
+        "callVa": "0x1402520ad",
+        "hub": "0x1406f78b0"
+      }
+    },
+    {
+      "pkt": "PKT_S2C_SyncCircularMovementRestriction_s",
+      "opcode": 450,
+      "objectSize": 32,
+      "ctorVa": "0x140ea2b90",
+      "vptr": "0x141b04858",
+      "deserializeVa": "0x1410268e0",
+      "vtableSlotNote": "slot[2]=GetSize (returns objectSize); slot[1]=Deserialize",
+      "blocks": 12,
+      "probed": 12,
+      "factoryOk": 12,
+      "deserRetAlNonzero": 0,
+      "plaintextMaplikeXyz": 0,
+      "netIdFieldTop": [
+        [
+          "0x4000001c",
+          12
+        ]
+      ],
+      "fieldCaptureExamples": [
+        {
+          "time": 15.006922197178937,
+          "netIdField": 1073741852,
+          "blockParam": 1073741998,
+          "retAl": 0,
+          "consumed": 1,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "5848b04101000000c20100001c00004000000000000000000000000000000000",
+          "plaintextXyz": null
+        },
+        {
+          "time": 15.006922197178937,
+          "netIdField": 1073741852,
+          "blockParam": 1073741999,
+          "retAl": 0,
+          "consumed": 1,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "5848b04101000000c20100001c00004000000000000000000000000000000000",
+          "plaintextXyz": null
+        },
+        {
+          "time": 15.006922197178937,
+          "netIdField": 1073741852,
+          "blockParam": 1073742000,
+          "retAl": 0,
+          "consumed": 1,
+          "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+          "objectAfterHex": "5848b04101000000c20100001c00004000000000000000000000000000000000",
+          "plaintextXyz": null
+        }
+      ],
+      "registrationEvidence": {
+        "kind": "inline_hub_after_vtable_lea",
+        "leaVa": "0x140250688",
+        "callVa": "0x1402506ff",
+        "hub": "0x1406f78b0"
+      }
+    }
+  ],
+  "oracleQa": null,
+  "pathSampleCount": 0,
+  "winnerFound": false,
+  "structuralBlocker": {
+    "kind": "registration_mapped_but_plaintext_positions_not_oracle_validated",
+    "detail": "MakeFunction registration maps movement PKT_* structs to factory opcodes via mov r8d,imm \u2192 call 0x1406f78b0, but constructed Windows-ABI Deserialize does not yet yield \u226580 maplike plaintext XYZ samples across \u22655 heroes. DirectInput (58) presence path reads 3\u00d7f32 through encrypt-at-rest helpers but often fails full consume / faults mid-helper; SetMovementDriver (1104) vector path does not materialize waypoint buffers under current Unicorn hooks. Packet factory vptrs remain RTTI-stripped (0 COL hits).",
+    "directInput": {
+      "plaintextMaplikeXyz": 0,
+      "factoryOk": 24,
+      "blocks": 24
+    },
+    "setMovementDriver": {
+      "plaintextMaplikeXyz": 0,
+      "factoryOk": 6,
+      "blocks": 6
+    }
+  },
+  "fullMatchDecode": null,
+  "pureBrowserDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "osNeutralArchitecture": "Offline per-patch PE RTTI/registration discovery \u2192 shared wire parser when proven; Unicorn/Windows PE remain research-only.",
+  "endToEndWallMs": 14910.902,
+  "keep": "discard",
+  "reason": "Semantic opcodes identified via registration; oracle position decode not yet proven",
+  "nextSingleVariableHypothesis": "Complete DirectInput/SetMovementDriver decrypt-access-release under Windows ABI (hook remaining unmapped helpers; capture 3xf32 / waypoint vectors before re-encrypt) then bind handler target netId without using blockParam.",
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "speedRun": {
+    "hypothesis": "phase-b-e8-rtti-registration",
+    "diffLabel": "e8-rtti+registration-map"
+  }
+}
