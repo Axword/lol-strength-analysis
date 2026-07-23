@@ -604,7 +604,7 @@
 
 .stat-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.4rem;
   margin: 0 0 0.9rem;
 }
@@ -629,6 +629,16 @@
   color: var(--ink);
 }
 
+.stat-strip .stat-hint {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .packet-list {
   list-style: none;
   margin: 0;
@@ -636,18 +646,31 @@
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  max-height: 240px;
+  max-height: 320px;
   overflow: auto;
 }
 
 .packet-list li {
   display: grid;
-  grid-template-columns: 2rem 1fr auto auto;
-  gap: 0.5rem;
+  grid-template-columns: 3.25rem 2rem 1fr auto auto;
+  gap: 0.45rem;
   align-items: center;
   padding: 0.35rem 0.4rem;
   background: var(--surface);
   font-size: 0.8rem;
+}
+
+.packet-list.timed-log li.suppressed {
+  opacity: 0.45;
+}
+
+.packet-list .t-clock {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .packet-list li.empty {

@@ -1,0 +1,653 @@
+{
+  "ok": false,
+  "probeVersion": "create-hero-discover-v1",
+  "ts": "2026-07-23T09:31:22.760908Z",
+  "matchCode": "3264361042",
+  "wallMs": 4537.172,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "/tmp/League-of-Legends-16.14-win.exe",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "create-hero-discover-v1"
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "rosterChampions": [
+    "Zaahen",
+    "MonkeyKing",
+    "Yasuo",
+    "Ezreal",
+    "Sona",
+    "Renekton",
+    "Lillia",
+    "Leblanc",
+    "Ashe",
+    "Morgana"
+  ],
+  "plaintextChampionHitsInRofl": [],
+  "spawnShapedOpcodeCount": 7,
+  "spawnShapedOpcodes": [
+    204,
+    403,
+    450,
+    610,
+    696,
+    765,
+    1074
+  ],
+  "candidates": [
+    {
+      "opcode": 204,
+      "lifetimeCount": 12,
+      "sizeRange": [
+        1,
+        1
+      ],
+      "timeRange": [
+        15.006922197178937,
+        15.006922197178937
+      ],
+      "framing": {
+        "opcode": 204,
+        "samples": 10,
+        "rawOk": 0,
+        "reconOk": 10,
+        "avgConsumedRaw": 1.0,
+        "avgConsumedRecon": 2.0,
+        "markerHex": "a6",
+        "encodeTypeHex": "cc",
+        "formula": "reconstructed = encode_type(204) || 0xa6 || wire_payload",
+        "validated": true
+      },
+      "framingValidated": true,
+      "heroesDecoded": 10,
+      "championsRecovered": 0,
+      "distinctChampions": [],
+      "createHeroCandidate": false,
+      "perHeroHead": [
+        {
+          "netId": 1073741998,
+          "time": 15.006922197178937,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073741999,
+          "time": 15.006922197178937,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073742000,
+          "time": 15.006922197178937,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        }
+      ]
+    },
+    {
+      "opcode": 403,
+      "lifetimeCount": 10,
+      "sizeRange": [
+        9,
+        9
+      ],
+      "timeRange": [
+        4.310365758603439,
+        5.512365815695375
+      ],
+      "framing": {
+        "opcode": 403,
+        "samples": 10,
+        "rawOk": 0,
+        "reconOk": 10,
+        "avgConsumedRaw": 6.6,
+        "avgConsumedRecon": 10.0,
+        "markerHex": "a6",
+        "encodeTypeHex": "fb98",
+        "formula": "reconstructed = encode_type(403) || 0xa6 || wire_payload",
+        "validated": true
+      },
+      "framingValidated": true,
+      "heroesDecoded": 10,
+      "championsRecovered": 0,
+      "distinctChampions": [],
+      "createHeroCandidate": false,
+      "perHeroHead": [
+        {
+          "netId": 1073741998,
+          "time": 4.310365758603439,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 10,
+          "bodyLen": 10,
+          "hits": {
+            "stringHits": [],
+            "idHits": [
+              "LeBlanc",
+              "Leblanc"
+            ]
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073741999,
+          "time": 4.610365772852674,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 10,
+          "bodyLen": 10,
+          "hits": {
+            "stringHits": [],
+            "idHits": [
+              "LeBlanc",
+              "Leblanc"
+            ]
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073742000,
+          "time": 4.911365787149407,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 10,
+          "bodyLen": 10,
+          "hits": {
+            "stringHits": [],
+            "idHits": [
+              "LeBlanc",
+              "Leblanc"
+            ]
+          },
+          "chosenChampion": null
+        }
+      ]
+    },
+    {
+      "opcode": 450,
+      "lifetimeCount": 12,
+      "sizeRange": [
+        1,
+        1
+      ],
+      "timeRange": [
+        15.006922197178937,
+        15.006922197178937
+      ],
+      "framing": {
+        "opcode": 450,
+        "samples": 10,
+        "rawOk": 0,
+        "reconOk": 10,
+        "avgConsumedRaw": 1.0,
+        "avgConsumedRecon": 2.0,
+        "markerHex": "a6",
+        "encodeTypeHex": "fbc7",
+        "formula": "reconstructed = encode_type(450) || 0xa6 || wire_payload",
+        "validated": true
+      },
+      "framingValidated": true,
+      "heroesDecoded": 10,
+      "championsRecovered": 0,
+      "distinctChampions": [],
+      "createHeroCandidate": false,
+      "perHeroHead": [
+        {
+          "netId": 1073741998,
+          "time": 15.006922197178937,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073741999,
+          "time": 15.006922197178937,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073742000,
+          "time": 15.006922197178937,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        }
+      ]
+    },
+    {
+      "opcode": 610,
+      "lifetimeCount": 13,
+      "sizeRange": [
+        7,
+        7
+      ],
+      "timeRange": [
+        0.0,
+        0.0
+      ],
+      "framing": {
+        "opcode": 610,
+        "samples": 10,
+        "rawOk": 0,
+        "reconOk": 10,
+        "avgConsumedRaw": 7.0,
+        "avgConsumedRecon": 8.0,
+        "markerHex": "a6",
+        "encodeTypeHex": "fc67",
+        "formula": "reconstructed = encode_type(610) || 0xa6 || wire_payload",
+        "validated": true
+      },
+      "framingValidated": true,
+      "heroesDecoded": 10,
+      "championsRecovered": 0,
+      "distinctChampions": [],
+      "createHeroCandidate": false,
+      "perHeroHead": [
+        {
+          "netId": 1073741998,
+          "time": 0.0,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 8,
+          "bodyLen": 8,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073741999,
+          "time": 0.0,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 8,
+          "bodyLen": 8,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073742000,
+          "time": 0.0,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 8,
+          "bodyLen": 8,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        }
+      ]
+    },
+    {
+      "opcode": 696,
+      "framingValidated": false,
+      "blocker": "factory_missing",
+      "lifetimeCount": 20,
+      "perHeroHead": []
+    },
+    {
+      "opcode": 765,
+      "lifetimeCount": 10,
+      "sizeRange": [
+        1,
+        1
+      ],
+      "timeRange": [
+        900.0077704516007,
+        900.0077704516007
+      ],
+      "framing": {
+        "opcode": 765,
+        "samples": 10,
+        "rawOk": 0,
+        "reconOk": 10,
+        "avgConsumedRaw": 1.0,
+        "avgConsumedRecon": 2.0,
+        "markerHex": "a6",
+        "encodeTypeHex": "fd02",
+        "formula": "reconstructed = encode_type(765) || 0xa6 || wire_payload",
+        "validated": true
+      },
+      "framingValidated": true,
+      "heroesDecoded": 10,
+      "championsRecovered": 0,
+      "distinctChampions": [],
+      "createHeroCandidate": false,
+      "perHeroHead": [
+        {
+          "netId": 1073741998,
+          "time": 900.0077704516007,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073741999,
+          "time": 900.0077704516007,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073742000,
+          "time": 900.0077704516007,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 2,
+          "bodyLen": 2,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        }
+      ]
+    },
+    {
+      "opcode": 1074,
+      "lifetimeCount": 10,
+      "sizeRange": [
+        17,
+        17
+      ],
+      "timeRange": [
+        1622.2543164872332,
+        1622.2543164872332
+      ],
+      "framing": {
+        "opcode": 1074,
+        "samples": 10,
+        "rawOk": 10,
+        "reconOk": 10,
+        "avgConsumedRaw": 14.3,
+        "avgConsumedRecon": 18.0,
+        "markerHex": "a6",
+        "encodeTypeHex": "fe37",
+        "formula": "reconstructed = encode_type(1074) || 0xa6 || wire_payload",
+        "validated": false
+      },
+      "framingValidated": false,
+      "heroesDecoded": 10,
+      "championsRecovered": 0,
+      "distinctChampions": [],
+      "createHeroCandidate": false,
+      "perHeroHead": [
+        {
+          "netId": 1073741998,
+          "time": 1622.2543164872332,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 18,
+          "bodyLen": 18,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073741999,
+          "time": 1622.2543164872332,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 18,
+          "bodyLen": 18,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        },
+        {
+          "netId": 1073742000,
+          "time": 1622.2543164872332,
+          "constructOk": true,
+          "retAl": 1,
+          "consumed": 18,
+          "bodyLen": 18,
+          "hits": {
+            "stringHits": [],
+            "idHits": []
+          },
+          "chosenChampion": null
+        }
+      ]
+    }
+  ],
+  "createHeroEvents": [],
+  "identityBinding": {
+    "method": "stable_identity_to_net_id",
+    "complete": false,
+    "createHeroDecoded": false,
+    "createHeroOrderFallback": true,
+    "participants": [
+      {
+        "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+        "fullRiotId": "awakening#0000",
+        "netId": 1073741998,
+        "champion": "Zaahen",
+        "researchOnlyOrderIndex": 0
+      },
+      {
+        "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+        "fullRiotId": "pixel#mari",
+        "netId": 1073741999,
+        "champion": "MonkeyKing",
+        "researchOnlyOrderIndex": 1
+      },
+      {
+        "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+        "fullRiotId": "Cigarro#lony",
+        "netId": 1073742000,
+        "champion": "Yasuo",
+        "researchOnlyOrderIndex": 2
+      },
+      {
+        "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+        "fullRiotId": "Ayron#001",
+        "netId": 1073742001,
+        "champion": "Ezreal",
+        "researchOnlyOrderIndex": 3
+      },
+      {
+        "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+        "fullRiotId": "nhUwUmi#glhf",
+        "netId": 1073742002,
+        "champion": "Sona",
+        "researchOnlyOrderIndex": 4
+      },
+      {
+        "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+        "fullRiotId": "casual jogador#2709",
+        "netId": 1073742003,
+        "champion": "Renekton",
+        "researchOnlyOrderIndex": 5
+      },
+      {
+        "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+        "fullRiotId": "Sonancia#UEL",
+        "netId": 1073742004,
+        "champion": "Lillia",
+        "researchOnlyOrderIndex": 6
+      },
+      {
+        "puuid": "64af397f-88c5-5e42-9e6c-c903dc717888",
+        "fullRiotId": "haste#zapp",
+        "netId": 1073742005,
+        "champion": "Leblanc",
+        "researchOnlyOrderIndex": 7
+      },
+      {
+        "puuid": "057fefa4-4209-50d8-850e-9f91bf016bbb",
+        "fullRiotId": "Love Her#Lucy",
+        "netId": 1073742006,
+        "champion": "Ashe",
+        "researchOnlyOrderIndex": 8
+      },
+      {
+        "puuid": "e5117f5e-b77b-57a1-a6bd-37b5c457b20b",
+        "fullRiotId": "amo seios#Lucy",
+        "netId": 1073742007,
+        "champion": "Morgana",
+        "researchOnlyOrderIndex": 9
+      }
+    ],
+    "note": "replication_netid_order_fallback_research_only",
+    "blocker": "create_hero_bind_unavailable"
+  },
+  "blocker": {
+    "kind": "champion_not_structurally_decoded",
+    "detail": "spawn-shaped opcodes Deserialize under E11 framing but do not release champion strings or unique champion IDs per netId"
+  },
+  "productEligible": false,
+  "createHeroOrderFallback": true,
+  "exhaustedAvenues": [
+    {
+      "avenue": "pkt_s2c_create_hero_rtti",
+      "result": "absent",
+      "detail": "No PKT_S2C_CreateHero / CreateHero TypeDescriptor on 16.14 PE"
+    },
+    {
+      "avenue": "start_hero_spawn_string",
+      "result": "not_a_packet",
+      "detail": "StartHeroSpawn is a tooltip/game string, not a MakeFunction packet handler"
+    },
+    {
+      "avenue": "spawn_shaped_opcodes_e11_deser",
+      "result": "no_champion_fields",
+      "detail": "Opcodes [204, 403, 450, 610, 696, 765, 1074] cover 10 hero params; E11 framing validates; object/heap yield no champion strings or unique IDs"
+    },
+    {
+      "avenue": "plaintext_champion_in_rofl",
+      "result": "absent",
+      "detail": "Champion/skin ASCII not present in decrypted chunk payload"
+    },
+    {
+      "avenue": "keyframe_netid_nearby_champ_id",
+      "result": "insufficient",
+      "detail": "u16/u32 champ IDs near netId bytes in type=2 keyframes do not yield 10 distinct roster-matched associations"
+    },
+    {
+      "avenue": "ae_b7_order_fallback",
+      "result": "research_only",
+      "detail": "Intentionally rejected for product (createHeroOrderFallback)"
+    }
+  ],
+  "note": "Product bind requires champion-matched CreateHero rows. AE..B7 order / CreateHero-order fallback remains research-only."
+}

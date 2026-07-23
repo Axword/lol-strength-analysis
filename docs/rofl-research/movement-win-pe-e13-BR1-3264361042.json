@@ -1,0 +1,488 @@
+{
+  "ok": false,
+  "probeVersion": "e13-win-pe-keyframe-positions-v1",
+  "hypothesis": "phase-b-e13-keyframe-positions",
+  "matchCode": "3264361042",
+  "wallMs": 33835.814,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e13-win-pe-keyframe-positions-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "inventory": {
+    "chunkCount": 55,
+    "keyframeCount": 28,
+    "headerU8Counts": {
+      "1": 28
+    },
+    "headerLayout": "u8 | f32_le gameTime (offset 1); observed u8=1 on all keyframes",
+    "timeFirst": 0.0,
+    "timeLast": 1620.5084228515625,
+    "cadence": {
+      "dtMedian": 60.01054382324219,
+      "dtMean": 60.0188304759838,
+      "dtMin": 60.000030517578125,
+      "dtMax": 60.12461853027344,
+      "note": "~60s keyframe anchors; not a 1Hz native stream"
+    },
+    "sizeMedian": 207704.5,
+    "sizeMin": 136180,
+    "sizeMax": 262955
+  },
+  "structure": {
+    "ok": true,
+    "layoutEvidence": [
+      "plaintext header u8|f32 time",
+      "10 player groups: ~2.0\u20132.5KB opaque blob + a8 table runs (329 rows/group)",
+      "each player blob contains exactly one proven hero netId AE..B7 in order"
+    ],
+    "midKeyframe": {
+      "time": 840.2952270507812,
+      "size": 207453,
+      "a8RowCount": 3290,
+      "playerBlobCount": 10,
+      "playerBlobSizes": [
+        2103,
+        2444,
+        2495,
+        2537,
+        2377,
+        2410,
+        2396,
+        2442,
+        2416,
+        2420
+      ],
+      "netIdsPerBlob": [
+        {
+          "blobIndex": 0,
+          "netIds": [
+            "0x400000ae"
+          ]
+        },
+        {
+          "blobIndex": 1,
+          "netIds": [
+            "0x400000af"
+          ]
+        },
+        {
+          "blobIndex": 2,
+          "netIds": [
+            "0x400000b0"
+          ]
+        },
+        {
+          "blobIndex": 3,
+          "netIds": [
+            "0x400000b1"
+          ]
+        },
+        {
+          "blobIndex": 4,
+          "netIds": [
+            "0x400000b2"
+          ]
+        },
+        {
+          "blobIndex": 5,
+          "netIds": [
+            "0x400000b3"
+          ]
+        },
+        {
+          "blobIndex": 6,
+          "netIds": [
+            "0x400000b4"
+          ]
+        },
+        {
+          "blobIndex": 7,
+          "netIds": [
+            "0x400000b5"
+          ]
+        },
+        {
+          "blobIndex": 8,
+          "netIds": [
+            "0x400000b6"
+          ]
+        },
+        {
+          "blobIndex": 9,
+          "netIds": [
+            "0x400000b7"
+          ]
+        }
+      ]
+    },
+    "netIdOrderMatchesAE_to_B7": {
+      "matches": 27,
+      "keyed": 27
+    },
+    "blockExtractNote": "extract_blocks_py(full keyframe body) yields many ghost channels (e.g. 491) with no MSVC factory / zero type-1 presence \u2014 not native chunk framing. Native layout is a8/player-blob, not chunk block stream."
+  },
+  "ghostBlockExtract": {
+    "topHeroChannelsFromExtractBlocksPy": [
+      {
+        "opcode": 491,
+        "heroBlocks": 102480,
+        "hasFactory": false
+      },
+      {
+        "opcode": 921,
+        "heroBlocks": 10979,
+        "hasFactory": true
+      },
+      {
+        "opcode": 774,
+        "heroBlocks": 8117,
+        "hasFactory": true
+      },
+      {
+        "opcode": 636,
+        "heroBlocks": 1120,
+        "hasFactory": true
+      },
+      {
+        "opcode": 282,
+        "heroBlocks": 1120,
+        "hasFactory": true
+      },
+      {
+        "opcode": 473,
+        "heroBlocks": 840,
+        "hasFactory": false
+      },
+      {
+        "opcode": 210,
+        "heroBlocks": 690,
+        "hasFactory": true
+      },
+      {
+        "opcode": 401,
+        "heroBlocks": 560,
+        "hasFactory": true
+      },
+      {
+        "opcode": 49,
+        "heroBlocks": 560,
+        "hasFactory": false
+      },
+      {
+        "opcode": 53,
+        "heroBlocks": 430,
+        "hasFactory": true
+      },
+      {
+        "opcode": 130,
+        "heroBlocks": 358,
+        "hasFactory": true
+      },
+      {
+        "opcode": 1146,
+        "heroBlocks": 280,
+        "hasFactory": false
+      }
+    ],
+    "dominantGhost491": {
+      "heroBlocks": 102480,
+      "hasFactory": false,
+      "interpretation": "false parse of a8/blob structure; not a real packet type"
+    }
+  },
+  "blobStaticQa": {
+    "modes": {
+      "blob_index": {
+        "swap": false,
+        "train": {
+          "n": 14,
+          "heroes": 4,
+          "median": 10338.874300710619,
+          "p95": 11666.13241558614,
+          "max": 19923.532324129035,
+          "ok": false
+        },
+        "holdout": {
+          "n": 9,
+          "heroes": 3,
+          "median": 11855.639526802934,
+          "p95": 18973.04166998151,
+          "max": 18973.04166998151,
+          "ok": false
+        },
+        "winner": false
+      },
+      "nearest": {
+        "swap": false,
+        "train": {
+          "n": 14,
+          "heroes": 4,
+          "median": 500.57348132919395,
+          "p95": 10513.692020766366,
+          "max": 10571.001278195583,
+          "ok": false
+        },
+        "holdout": {
+          "n": 9,
+          "heroes": 3,
+          "median": 500.57348132919395,
+          "p95": 10240.57968197834,
+          "max": 10240.57968197834,
+          "ok": false
+        },
+        "winner": false
+      }
+    },
+    "i16NearNetId": {
+      "n": 270,
+      "heroes": 10,
+      "median": 431.4676429445336,
+      "p95": 2378.78960818312,
+      "max": 3731.607165985457,
+      "ok": false
+    },
+    "mapPairCountTotal": 23
+  },
+  "filteredBlockEvals": [
+    {
+      "opcode": 636,
+      "samples": 280,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 0,
+        "n": 8,
+        "validated": true
+      },
+      "mapWrites": 0,
+      "skipped": "no_map_pairs"
+    },
+    {
+      "opcode": 401,
+      "samples": 280,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 0,
+        "n": 8,
+        "validated": true
+      },
+      "mapWrites": 0,
+      "skipped": "no_map_pairs"
+    },
+    {
+      "opcode": 774,
+      "samples": 280,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 0,
+        "n": 8,
+        "validated": true
+      },
+      "mapWrites": 33,
+      "skipped": "no_map_pairs"
+    },
+    {
+      "opcode": 282,
+      "samples": 280,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 0,
+        "n": 8,
+        "validated": true
+      },
+      "mapWrites": 0,
+      "skipped": "no_map_pairs"
+    },
+    {
+      "opcode": 130,
+      "samples": 257,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 1,
+        "n": 8,
+        "validated": true
+      },
+      "offX": 24,
+      "offZ": 32,
+      "swap": false,
+      "train": {
+        "n": 29,
+        "heroes": 10,
+        "median": 351.84379277687293,
+        "p95": 8490.776997944502,
+        "max": 8490.776997944502,
+        "ok": false
+      },
+      "holdout": {
+        "n": 20,
+        "heroes": 10,
+        "median": 488.68754153603993,
+        "p95": 10170.804981053463,
+        "max": 10183.742135504717,
+        "ok": false
+      },
+      "winner": false,
+      "encodeTypeHex": "82"
+    },
+    {
+      "opcode": 921,
+      "samples": 280,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 3,
+        "n": 8,
+        "validated": true
+      },
+      "mapWrites": 65,
+      "skipped": "no_map_pairs"
+    },
+    {
+      "opcode": 53,
+      "samples": 280,
+      "heroes": 10,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 0,
+        "rawOk": 0,
+        "n": 8,
+        "validated": false
+      },
+      "skipped": "framing_invalid"
+    },
+    {
+      "opcode": 210,
+      "samples": 135,
+      "heroes": 8,
+      "framing": {
+        "markerHex": "a6",
+        "reconOk": 8,
+        "rawOk": 0,
+        "n": 8,
+        "validated": true
+      },
+      "mapWrites": 0,
+      "skipped": "no_map_pairs"
+    }
+  ],
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "oracleTolS": 0.5
+    },
+    "cadenceHonesty": "Positions \u2014 if present \u2014 would be ~60s keyframe anchors only; native continuous/1Hz stream remains open. Product would need keyframe anchors + movement deltas or Replay API backup."
+  },
+  "blocker": {
+    "kind": "keyframes_floats_not_oracle_positions",
+    "detail": "keyframe layout is a8/player-blobs (~60s); map-range floats exist but fail Replay API gates; extract_blocks_py ghost channels (e.g. 491 n=102480) are not real factories \u2014 framing differs from type-1 chunks",
+    "bestNearMiss": {
+      "source": "block:130",
+      "offX": 24,
+      "offZ": 32,
+      "n": 20,
+      "heroes": 10,
+      "median": 488.68754153603993,
+      "p95": 10170.804981053463,
+      "max": 10183.742135504717,
+      "ok": false
+    },
+    "framingDiffersFromChunks": true
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "createHeroBindingDecoded": false,
+    "productEligible": false,
+    "note": "blob netId order AE..B7 is structural, not CreateHero/PUUID product bind"
+  }
+}

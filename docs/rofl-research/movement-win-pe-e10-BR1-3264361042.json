@@ -1,0 +1,268 @@
+{
+  "ok": false,
+  "probeVersion": "e10-win-pe-regcapture-v1",
+  "hypothesis": "phase-b-e10-win-pe-regcapture",
+  "matchCode": "3264361042",
+  "wallMs": 20217.93,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e10-win-pe-regcapture-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "opcodesPrioritized": [
+    351,
+    259,
+    1194,
+    921,
+    398,
+    632,
+    210,
+    243,
+    774,
+    861,
+    197,
+    908,
+    788,
+    535,
+    920,
+    1104,
+    58,
+    420
+  ],
+  "opcodesWithHeroSamples": [
+    210,
+    197,
+    921,
+    908,
+    632,
+    259,
+    351,
+    243,
+    774,
+    398,
+    535,
+    788,
+    861,
+    420,
+    1194,
+    58
+  ],
+  "sampleCounts": {
+    "210": {
+      "train": 10,
+      "holdout": 6
+    },
+    "197": {
+      "train": 10,
+      "holdout": 6
+    },
+    "921": {
+      "train": 10,
+      "holdout": 6
+    },
+    "908": {
+      "train": 10,
+      "holdout": 6
+    },
+    "632": {
+      "train": 10,
+      "holdout": 6
+    },
+    "259": {
+      "train": 10,
+      "holdout": 6
+    },
+    "351": {
+      "train": 10,
+      "holdout": 6
+    },
+    "243": {
+      "train": 10,
+      "holdout": 6
+    },
+    "774": {
+      "train": 10,
+      "holdout": 6
+    },
+    "398": {
+      "train": 10,
+      "holdout": 6
+    },
+    "535": {
+      "train": 10,
+      "holdout": 6
+    },
+    "788": {
+      "train": 10,
+      "holdout": 6
+    },
+    "861": {
+      "train": 10,
+      "holdout": 6
+    },
+    "420": {
+      "train": 10,
+      "holdout": 6
+    },
+    "1194": {
+      "train": 10,
+      "holdout": 6
+    },
+    "58": {
+      "train": 10,
+      "holdout": 6
+    }
+  },
+  "trainCapture": {
+    "label": "train",
+    "opcodesAttempted": 15,
+    "samplesAttempted": 150,
+    "constructOk": 150,
+    "deserializeRuns": 150,
+    "faultPcs": {
+      "0x0": 262,
+      "0x1410b6c2d": 18,
+      "0x1410a7c3a": 12,
+      "0x1410a88c6": 6,
+      "0x14109b916": 2
+    },
+    "hitCounts": {
+      "rawHits": 736,
+      "oracleTagged": 69
+    }
+  },
+  "holdoutCapture": {
+    "label": "holdout",
+    "opcodesAttempted": 15,
+    "samplesAttempted": 90,
+    "constructOk": 90,
+    "deserializeRuns": 90,
+    "faultPcs": {
+      "0x0": 158,
+      "0x14109b916": 8,
+      "0x1410a7c3a": 6,
+      "0x1410b6c2d": 4,
+      "0x1410a88c6": 2
+    },
+    "hitCounts": {
+      "rawHits": 511,
+      "oracleTagged": 9
+    }
+  },
+  "fallbackCapture": null,
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "rankedTop": [],
+    "trainPairKeys": 0,
+    "holdoutPairKeys": 4,
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "searchTol": 150.0
+    }
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "stableNetIdKeys": true,
+    "createHeroBindingDecoded": false,
+    "productEligible": false,
+    "note": "oracle assignment is QA/search only"
+  },
+  "browserNotes": {
+    "ifRegisterCaptureOnly": "browserSafe=false; remote Blob / background-worker fallback only",
+    "uploadLeagueBinary": false
+  },
+  "blocker": "no_stable_register_xz_pair_passed_train_holdout_gates; plaintext_coords_not_observed_in_bounded_deserialize_capture",
+  "method": {
+    "style": "maknee_int3_register_capture_analogue",
+    "sampleEveryInsns": 48,
+    "maxInsns": 80000,
+    "maxXmm": 8,
+    "interpretations": [
+      "xmm_f32_lanes",
+      "gpr_low32_f32",
+      "obj_write_f32",
+      "i16_2_plus_center"
+    ],
+    "noLearnedAffine": true,
+    "axisSwapRequiresBothSplitsImprove": true
+  }
+}

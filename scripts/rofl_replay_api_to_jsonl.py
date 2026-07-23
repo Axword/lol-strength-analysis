@@ -30,13 +30,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import sys
 import time
 import traceback
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Mapping, Optional, Sequence, TextIO
+from typing import Any, Dict, List, Mapping, Optional, Sequence, TextIO
+from urllib.parse import urlsplit
 
 import rfc461_emit
 import replay_capture_guard
@@ -46,7 +48,8 @@ import rofl_replay_api_probe as probe
 DEFAULT_START_MS = 0
 DEFAULT_END_MS = 0
 DEFAULT_STEP_MS = 1000
-DEFAULT_FINAL_SETTLE = 0.08
+# Proven product default (exp-a3/a6): zero final settle with compact selection.
+DEFAULT_FINAL_SETTLE = 0.0
 DEFAULT_IDENTITY_RETRIES = 1
 DEFAULT_SEEK_TIMEOUT = 8.0
 DEFAULT_SEEK_TIME_TOL = 1e-3
@@ -68,6 +71,19 @@ LIVECLIENT_HISTORY_FIELDS = (
 )
 # Comparison hook only. Capture never passes/fails on host-specific timing.
 PRIOR_FRAME_REFERENCE_MS = 2_150.0
+CACHED_SELECTION_STRATEGY_FULL = "full"
+CACHED_SELECTION_STRATEGY_COMPACT = "compact"
+CACHED_SELECTION_STRATEGIES = frozenset(
+    {
+        CACHED_SELECTION_STRATEGY_FULL,
+        CACHED_SELECTION_STRATEGY_COMPACT,
+    }
+)
+# Product default after matched 2.2× keep: compact + full identity fallback.
+DEFAULT_CACHED_SELECTION_STRATEGY = CACHED_SELECTION_STRATEGY_COMPACT
+# Full detach/select/attach uses 3 render POSTs; compact hit uses 1.
+FULL_SELECTION_RENDER_POSTS = 3
+COMPACT_SELECTION_RENDER_POSTS = 1
 
 
 class ExtractError(RuntimeError):
@@ -99,6 +115,41 @@ def _sample_times_ms(start_ms: int, end_ms: int, step_ms: int) -> list[int]:
     if not out:
         raise ExtractError("empty sample schedule")
     return out
+
+
+def resolve_sample_schedule_ms(
+    start_ms: int,
+    end_ms: int,
+    step_ms: int,
+    *,
+    rofl_game_length_ms: Optional[int] = None,
+) -> dict[str, Any]:
+    """Build the capture sample grid, clamping to ROFL gameLength when known.
+
+    Matches product capture: ``scheduleEnd = min(requestedEnd, gameLength)``,
+    then on-grid samples while ``t <= scheduleEnd``. ``effectiveEndMs`` is the
+    last emitted sample (floor onto the step grid), not raw gameLength.
+    """
+    requested_end_ms = int(end_ms)
+    length: Optional[int] = None
+    if rofl_game_length_ms is not None:
+        try:
+            parsed = int(rofl_game_length_ms)
+        except (TypeError, ValueError):
+            parsed = 0
+        if parsed > 0:
+            length = parsed
+    schedule_end_ms = (
+        min(requested_end_ms, length) if length is not None else requested_end_ms
+    )
+    sample_ms = _sample_times_ms(int(start_ms), schedule_end_ms, int(step_ms))
+    return {
+        "sampleTimesMs": sample_ms,
+        "requestedEndMs": requested_end_ms,
+        "scheduleEndMs": schedule_end_ms,
+        "effectiveEndMs": int(sample_ms[-1]),
+        "roflGameLengthMs": length,
+    }
 
 
 def _items_as_rfc461(items: Any) -> list[dict[str, Any]]:
@@ -419,6 +470,39 @@ def restore_extractor_state(
     return result
 
 
+def normalize_cached_selection_strategy(value: Any) -> str:
+    text = str(value if value is not None else DEFAULT_CACHED_SELECTION_STRATEGY)
+    text = text.strip().casefold()
+    if text in ("", "compact", "composite", "cached-compact", "default"):
+        return CACHED_SELECTION_STRATEGY_COMPACT
+    if text in ("full", "legacy"):
+        return CACHED_SELECTION_STRATEGY_FULL
+    raise ExtractError(
+        f"unknown cached selection strategy {value!r}; "
+        f"expected one of {sorted(CACHED_SELECTION_STRATEGIES)}"
+    )
+
+
+def _expected_selection_identity(row: Mapping[str, Any]) -> str:
+    expected = str(
+        row.get("expectedSelectionIdentity")
+        or row.get("playerName")
+        or row.get("summonerName")
+        or ""
+    ).strip()
+    if "#" in expected:
+        expected = expected.split("#", 1)[0].strip()
+    return expected
+
+
+def _count_selection_render_posts(steps: Mapping[str, Any]) -> int:
+    count = 0
+    for key in ("detach", "select", "attach", "compact"):
+        if isinstance(steps.get(key), Mapping):
+            count += 1
+    return count
+
+
 def capture_frame_positions(
     transport: probe.Transport,
     *,
@@ -431,8 +515,10 @@ def capture_frame_positions(
     require_distinct: bool = True,
     previous_selection_name: Any = None,
     selection_key_cache: Optional[dict[str, str]] = None,
+    cached_selection_strategy: str = DEFAULT_CACHED_SELECTION_STRATEGY,
 ) -> dict[str, Any]:
     """Capture one frame of focus positions for the given roster."""
+    strategy = normalize_cached_selection_strategy(cached_selection_strategy)
     frame_started = time.perf_counter()
     render_url = f"{base_url.rstrip('/')}/replay/render"
     participants: list[dict[str, Any]] = []
@@ -445,6 +531,10 @@ def capture_frame_positions(
     fast_path_hits = 0
     fallback_reasserts = 0
     selection_attempts = 0
+    compact_attempts = 0
+    compact_hits = 0
+    compact_fallbacks = 0
+    selection_render_posts = 0
 
     def timing() -> dict[str, Any]:
         elapsed_ms = (time.perf_counter() - frame_started) * 1000.0
@@ -459,6 +549,13 @@ def capture_frame_positions(
             "fallbackReasserts": fallback_reasserts,
             "selectionAttempts": selection_attempts,
             "cacheSizeBefore": cache_size_before,
+            "cachedSelectionStrategy": strategy,
+            "compactAttempts": compact_attempts,
+            "compactHits": compact_hits,
+            "compactFallbacks": compact_fallbacks,
+            "selectionRenderPosts": selection_render_posts,
+            "selectionRenderPostSavings": compact_hits
+            * (FULL_SELECTION_RENDER_POSTS - COMPACT_SELECTION_RENDER_POSTS),
         }
 
     for row in roster:
@@ -472,7 +569,54 @@ def capture_frame_positions(
             }
         identity_key = roster_identity_key(row)
         cached_key = cache.get(identity_key) if identity_key else None
-        if cached_key:
+        expected_identity = _expected_selection_identity(row)
+        steps: dict[str, Any]
+        classification: dict[str, Any]
+        used_key: str
+        if cached_key and strategy == CACHED_SELECTION_STRATEGY_COMPACT:
+            fast_path_attempts += 1
+            compact_attempts += 1
+            steps, classification = probe.focus_select_compact(
+                transport,
+                render_url,
+                cached_key,
+                timeout=timeout,
+                settle_delay=final_settle,
+                expected_player_identity=expected_identity or None,
+                previous_selection_name=prev,
+            )
+            selection_attempts += 1
+            selection_render_posts += _count_selection_render_posts(steps)
+            used_key = cached_key
+            if classification.get("coordinateProven"):
+                fast_path_hits += 1
+                compact_hits += 1
+            else:
+                compact_fallbacks += 1
+                fallback_reasserts += 1
+                failed_body = (
+                    steps.get("readback", {}).get("body")
+                    if steps.get("readback", {}).get("ok")
+                    else {}
+                )
+                fallback_prev = (
+                    failed_body.get("selectionName", prev)
+                    if isinstance(failed_body, Mapping)
+                    else prev
+                )
+                steps, classification, used_key = probe.focus_select_roster_member(
+                    transport,
+                    render_url,
+                    row,
+                    timeout=timeout,
+                    settle_delay=settle_delay,
+                    previous_selection_name=fallback_prev,
+                    final_settle=final_settle,
+                    identity_retries=identity_retries,
+                )
+                selection_attempts += 1
+                selection_render_posts += _count_selection_render_posts(steps)
+        elif cached_key:
             fast_path_attempts += 1
             steps, classification, used_key = probe.focus_select_roster_member(
                 transport,
@@ -486,6 +630,7 @@ def capture_frame_positions(
                 preferred_key=cached_key,
             )
             selection_attempts += 1
+            selection_render_posts += _count_selection_render_posts(steps)
             if classification.get("coordinateProven"):
                 fast_path_hits += 1
             else:
@@ -511,6 +656,7 @@ def capture_frame_positions(
                     identity_retries=identity_retries,
                 )
                 selection_attempts += 1
+                selection_render_posts += _count_selection_render_posts(steps)
         else:
             steps, classification, used_key = probe.focus_select_roster_member(
                 transport,
@@ -523,6 +669,7 @@ def capture_frame_positions(
                 identity_retries=identity_retries,
             )
             selection_attempts += 1
+            selection_render_posts += _count_selection_render_posts(steps)
         read_body = (
             steps["readback"].get("body") if steps.get("readback", {}).get("ok") else {}
         )
@@ -604,6 +751,104 @@ def capture_frame_positions(
     }
 
 
+STAGE_TIMING_KEYS = (
+    "seekMs",
+    "focusAssertMs",
+    "liveclientWaitMs",
+    "selectMs",
+    "emitMs",
+    "totalFrameMs",
+)
+
+
+def _percentile(values: Sequence[float], pct: float) -> Optional[float]:
+    """Linear-interpolation percentile; comparison-only helper."""
+    if not values:
+        return None
+    if len(values) == 1:
+        return round(float(values[0]), 3)
+    ordered = sorted(float(v) for v in values)
+    rank = (len(ordered) - 1) * (float(pct) / 100.0)
+    low = int(math.floor(rank))
+    high = int(math.ceil(rank))
+    if low == high:
+        return round(ordered[low], 3)
+    weight = rank - low
+    return round(ordered[low] * (1.0 - weight) + ordered[high] * weight, 3)
+
+
+def _stage_timing_summary(values: Sequence[float]) -> dict[str, Any]:
+    if not values:
+        return {
+            "count": 0,
+            "totalMs": 0.0,
+            "meanMs": None,
+            "p50Ms": None,
+            "p95Ms": None,
+            "maxMs": None,
+        }
+    total = float(sum(values))
+    return {
+        "count": len(values),
+        "totalMs": round(total, 3),
+        "meanMs": round(total / len(values), 3),
+        "p50Ms": _percentile(values, 50),
+        "p95Ms": _percentile(values, 95),
+        "maxMs": round(max(values), 3),
+    }
+
+
+def normalize_http_endpoint(url: str) -> str:
+    """Reduce absolute Replay API URLs to a stable path key."""
+    text = str(url or "")
+    for prefix in ("https://127.0.0.1:2999", "http://127.0.0.1:2999"):
+        if text.startswith(prefix):
+            text = text[len(prefix) :]
+            break
+    if "://" in text:
+        text = urlsplit(text).path or text
+    return text or "/"
+
+
+class CountingTransport:
+    """Wrap a Transport and tally method/endpoint pairs (comparison-only)."""
+
+    def __init__(self, transport: probe.Transport) -> None:
+        self._transport = transport
+        self.counts: dict[str, int] = {}
+
+    def reset(self) -> None:
+        self.counts = {}
+
+    def snapshot(self) -> dict[str, int]:
+        return dict(self.counts)
+
+    def snapshot_and_reset(self) -> dict[str, int]:
+        snap = self.snapshot()
+        self.reset()
+        return snap
+
+    def __call__(
+        self,
+        method: str,
+        url: str,
+        *,
+        body: Any = None,
+        timeout: float,
+    ) -> dict[str, Any]:
+        key = f"{str(method).upper()} {normalize_http_endpoint(url)}"
+        self.counts[key] = int(self.counts.get(key) or 0) + 1
+        return self._transport(method, url, body=body, timeout=timeout)
+
+
+def merge_http_counts(*parts: Mapping[str, int]) -> dict[str, int]:
+    merged: dict[str, int] = {}
+    for part in parts:
+        for key, value in part.items():
+            merged[key] = int(merged.get(key) or 0) + int(value)
+    return merged
+
+
 def summarize_frame_timings(
     frame_timings: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
@@ -613,12 +858,68 @@ def summarize_frame_timings(
         for row in frame_timings
         if row.get("frameMs") is not None
     ]
+    total_values = [
+        float(row["totalFrameMs"])
+        for row in frame_timings
+        if row.get("totalFrameMs") is not None
+    ]
+    stages = {
+        key: _stage_timing_summary(
+            [
+                float(row[key])
+                for row in frame_timings
+                if row.get(key) is not None
+            ]
+        )
+        for key in STAGE_TIMING_KEYS
+    }
+    http_totals: dict[str, int] = {}
+    compact_attempts = 0
+    compact_hits = 0
+    compact_fallbacks = 0
+    selection_render_posts = 0
+    selection_render_post_savings = 0
+    strategies: set[str] = set()
+    for row in frame_timings:
+        counts = row.get("httpCounts")
+        if isinstance(counts, Mapping):
+            http_totals = merge_http_counts(http_totals, counts)  # type: ignore[arg-type]
+        compact_attempts += int(row.get("compactAttempts") or 0)
+        compact_hits += int(row.get("compactHits") or 0)
+        compact_fallbacks += int(row.get("compactFallbacks") or 0)
+        selection_render_posts += int(row.get("selectionRenderPosts") or 0)
+        selection_render_post_savings += int(
+            row.get("selectionRenderPostSavings") or 0
+        )
+        strategy = row.get("cachedSelectionStrategy")
+        if strategy:
+            strategies.add(str(strategy))
     return {
         "frameCount": len(values),
         "priorReferenceMs": PRIOR_FRAME_REFERENCE_MS,
         "averageFrameMs": round(sum(values) / len(values), 3) if values else None,
         "minFrameMs": round(min(values), 3) if values else None,
         "maxFrameMs": round(max(values), 3) if values else None,
+        "p50FrameMs": _percentile(values, 50),
+        "p95FrameMs": _percentile(values, 95),
+        "averageTotalFrameMs": (
+            round(sum(total_values) / len(total_values), 3) if total_values else None
+        ),
+        "p50TotalFrameMs": _percentile(total_values, 50),
+        "p95TotalFrameMs": _percentile(total_values, 95),
+        "maxTotalFrameMs": round(max(total_values), 3) if total_values else None,
+        "stages": stages,
+        "httpCounts": http_totals,
+        "cachedSelectionStrategy": (
+            next(iter(strategies)) if len(strategies) == 1 else sorted(strategies)
+        ),
+        "compact": {
+            "attempts": compact_attempts,
+            "hits": compact_hits,
+            "fallbacks": compact_fallbacks,
+            "selectionRenderPosts": selection_render_posts,
+            "selectionRenderPostSavings": selection_render_post_savings,
+        },
         "comparisonOnly": True,
         "machineSpecificAssertion": False,
     }
@@ -686,6 +987,92 @@ def game_info_participants(roster: Sequence[Mapping[str, Any]]) -> list[dict[str
     return out
 
 
+def enrich_roster_puuids_from_rofl_metadata(
+    roster: Sequence[Mapping[str, Any]],
+    rofl_meta: Mapping[str, Any],
+) -> List[dict[str, Any]]:
+    """Backfill missing PUUID / Riot ID from ROFL statsJson at capture time.
+
+    Liveclient often leaves ``puuid`` null while ROFL ``statsJson`` already has
+    stable PUUID + Riot ID. Matching is by champion asset (unique in a match)
+    or full Riot ID when present — never invents identities.
+    """
+    meta_rows = list(rofl_meta.get("participants") or [])
+    by_champ: Dict[str, Mapping[str, Any]] = {}
+    by_riot: Dict[str, Mapping[str, Any]] = {}
+    for raw in meta_rows:
+        identity = raw.get("sourceIdentity") if isinstance(raw, Mapping) else None
+        if not isinstance(identity, Mapping):
+            identity = rofl_metadata.stable_identity_from_row(raw)
+        champ = raw.get("champion") if isinstance(raw, Mapping) else None
+        asset = ""
+        if isinstance(champ, Mapping):
+            asset = str(champ.get("asset") or champ.get("raw") or "").strip()
+        if not asset and isinstance(raw, Mapping):
+            asset = str(raw.get("championName") or "").strip()
+        riot = identity.get("riotId") if isinstance(identity, Mapping) else None
+        full = ""
+        if isinstance(riot, Mapping):
+            full = str(riot.get("full") or riot.get("normalized") or "").strip()
+        elif identity.get("key", "").startswith("riotid:"):
+            full = str(identity.get("key") or "")[7:]
+        if asset:
+            key = asset.casefold()
+            if key in by_champ:
+                by_champ.pop(key, None)
+            else:
+                by_champ[key] = raw if isinstance(raw, Mapping) else {}
+                # stash resolved identity on a copy
+                row_copy = dict(by_champ[key])
+                row_copy["_resolvedIdentity"] = identity
+                by_champ[key] = row_copy
+        if full:
+            by_riot[full.casefold()] = {
+                **(dict(raw) if isinstance(raw, Mapping) else {}),
+                "_resolvedIdentity": identity,
+            }
+
+    out: List[dict[str, Any]] = []
+    for row in roster:
+        copied = dict(row)
+        if copied.get("puuid"):
+            out.append(copied)
+            continue
+        match: Optional[Mapping[str, Any]] = None
+        riot_name = str(copied.get("riotIdGameName") or "").strip()
+        riot_tag = str(copied.get("riotIdTagLine") or "").strip()
+        if riot_name and riot_tag:
+            match = by_riot.get(f"{riot_name}#{riot_tag}".casefold())
+        if match is None:
+            champ = str(copied.get("championName") or "").strip()
+            if champ:
+                match = by_champ.get(champ.casefold())
+        if match is None:
+            out.append(copied)
+            continue
+        identity = match.get("_resolvedIdentity") or {}
+        if not isinstance(identity, Mapping):
+            identity = {}
+        puuid = str(identity.get("puuid") or "").strip()
+        riot = identity.get("riotId") if isinstance(identity.get("riotId"), Mapping) else {}
+        if puuid:
+            copied["puuid"] = puuid
+        game_name = str(riot.get("gameName") or "").strip()
+        tag = str(riot.get("tagLine") or "").strip()
+        full = str(riot.get("full") or "").strip()
+        if game_name:
+            copied["riotIdGameName"] = game_name
+        if tag:
+            copied["riotIdTagLine"] = tag
+        if full and "#" in full:
+            # Prefer ROFL statsJson Riot ID over liveclient placeholders
+            # (e.g. awakening#0000) so capture-time game_info is fuse-ready.
+            copied["summonerName"] = full
+            copied["playerName"] = full
+        out.append(copied)
+    return out
+
+
 def roster_identity_key(row: Mapping[str, Any]) -> str:
     """Stable PUUID/full-Riot-ID key; plain-name fallback is explicit."""
     identity = rofl_metadata.stable_identity_from_row(row)
@@ -705,10 +1092,117 @@ def roster_identity_key(row: Mapping[str, Any]) -> str:
     return ""
 
 
+_CHAMP_ALIASES = {
+    "wukong": "MonkeyKing",
+    "monkeyking": "MonkeyKing",
+    "leblanc": "Leblanc",
+}
+
+
+def _normalize_champ_asset(name: str) -> str:
+    raw = str(name or "").strip()
+    if not raw:
+        return ""
+    return _CHAMP_ALIASES.get(raw.casefold(), raw)
+
+
+def _rofl_meta_identity_maps(
+    rofl_meta: Mapping[str, Any],
+) -> tuple[Dict[str, Mapping[str, Any]], Dict[str, Mapping[str, Any]]]:
+    """Build identity-key and champion→ROFL participant maps (sourceRecordIndex order)."""
+    meta_rows = list(rofl_meta.get("participants") or [])
+    if len(meta_rows) != 10:
+        raise ExtractError(
+            f"ROFL metadata must list 10 participants for source-order pids, got {len(meta_rows)}"
+        )
+    by_identity: Dict[str, Mapping[str, Any]] = {}
+    by_champ: Dict[str, Mapping[str, Any]] = {}
+    seen_src: set[int] = set()
+    for raw in meta_rows:
+        if not isinstance(raw, Mapping):
+            raise ExtractError("ROFL metadata participant is not an object")
+        try:
+            src = int(raw.get("sourceRecordIndex"))
+        except (TypeError, ValueError) as exc:
+            raise ExtractError(
+                "ROFL metadata participant missing sourceRecordIndex"
+            ) from exc
+        if src < 0 or src > 9 or src in seen_src:
+            raise ExtractError(f"invalid/duplicate sourceRecordIndex {src!r}")
+        seen_src.add(src)
+        identity = raw.get("sourceIdentity")
+        if not isinstance(identity, Mapping):
+            identity = rofl_metadata.stable_identity_from_row(raw)
+        key = str(identity.get("key") or "").strip()
+        if not key:
+            raise ExtractError("ROFL metadata participant lacks stable identity key")
+        if key in by_identity:
+            raise ExtractError(f"duplicate ROFL metadata identity {key!r}")
+        by_identity[key] = raw
+        champ = raw.get("champion") if isinstance(raw.get("champion"), Mapping) else {}
+        asset = _normalize_champ_asset(
+            str(
+                (champ or {}).get("asset")
+                or (champ or {}).get("raw")
+                or raw.get("championName")
+                or ""
+            )
+        )
+        if asset:
+            ckey = asset.casefold()
+            if ckey in by_champ:
+                by_champ.pop(ckey, None)
+            else:
+                by_champ[ckey] = raw
+    if seen_src != set(range(10)):
+        raise ExtractError("ROFL metadata sourceRecordIndex must cover 0..9")
+    return by_identity, by_champ
+
+
+def _match_live_to_rofl_meta(
+    live: Mapping[str, Any],
+    *,
+    by_identity: Mapping[str, Mapping[str, Any]],
+    by_champ: Mapping[str, Mapping[str, Any]],
+) -> Mapping[str, Any]:
+    key = roster_identity_key(live)
+    if key and key in by_identity:
+        return by_identity[key]
+    # Riot-ID key forms may differ (puuid vs riotid); try riot full directly.
+    riot_name = str(live.get("riotIdGameName") or "").strip()
+    riot_tag = str(live.get("riotIdTagLine") or "").strip()
+    if riot_name and riot_tag:
+        riot_key = f"riotid:{riot_name}#{riot_tag}".casefold()
+        for meta_key, meta in by_identity.items():
+            if meta_key.casefold() == riot_key:
+                return meta
+            identity = meta.get("sourceIdentity")
+            if isinstance(identity, Mapping):
+                riot = identity.get("riotId")
+                if isinstance(riot, Mapping) and str(riot.get("normalized") or "").casefold() == f"{riot_name}#{riot_tag}".casefold():
+                    return meta
+    champ = _normalize_champ_asset(str(live.get("championName") or ""))
+    if champ:
+        match = by_champ.get(champ.casefold())
+        if match is not None:
+            return match
+    raise ExtractError(
+        f"liveclient row has no ROFL sourceRecordIndex match: "
+        f"champ={live.get('championName')!r} identity={key!r}"
+    )
+
+
 def assign_stable_participant_ids(
     live_rows: Sequence[Mapping[str, Any]],
+    *,
+    rofl_meta: Optional[Mapping[str, Any]] = None,
 ) -> list[dict[str, Any]]:
-    """One-time identity→participantID roster (static champs/teams/names only)."""
+    """One-time identity→participantID roster (static champs/teams/names only).
+
+    When ``rofl_meta`` is provided, participantIDs follow ROFL ``statsJson``
+    ``sourceRecordIndex`` (CreateHero / CastSpellAns order). Riot-ID sort alone
+    scrambles champ↔pid vs that order (e.g. pixel/MonkeyKing landing on pid5).
+    """
     rows = [dict(r) for r in live_rows]
     if len(rows) != 10:
         raise ExtractError(f"expected 10 liveclient participants, got {len(rows)}")
@@ -724,6 +1218,60 @@ def assign_stable_participant_ids(
         seen[key] = 1
         if int(row.get("participantID") or 0) <= 0:
             row["participantID"] = 0
+
+    if rofl_meta is not None:
+        by_identity, by_champ = _rofl_meta_identity_maps(rofl_meta)
+        assigned: list[Optional[dict[str, Any]]] = [None] * 10
+        used_src: set[int] = set()
+        for live in rows:
+            meta = _match_live_to_rofl_meta(
+                live, by_identity=by_identity, by_champ=by_champ
+            )
+            src = int(meta["sourceRecordIndex"])
+            if src in used_src:
+                raise ExtractError(f"duplicate live match for sourceRecordIndex {src}")
+            used_src.add(src)
+            identity = meta.get("sourceIdentity")
+            if not isinstance(identity, Mapping):
+                identity = rofl_metadata.stable_identity_from_row(meta)
+            riot = identity.get("riotId") if isinstance(identity.get("riotId"), Mapping) else {}
+            full = str(riot.get("full") or "").strip()
+            game_name = str(riot.get("gameName") or "").strip()
+            tag = str(riot.get("tagLine") or "").strip()
+            champ_obj = meta.get("champion") if isinstance(meta.get("champion"), Mapping) else {}
+            asset = _normalize_champ_asset(
+                str(
+                    (champ_obj or {}).get("asset")
+                    or (champ_obj or {}).get("raw")
+                    or live.get("championName")
+                    or ""
+                )
+            )
+            row = dict(live)
+            row["participantID"] = src + 1
+            if asset:
+                row["championName"] = asset
+                identity_blob = dict(row.get("championIdentity") or {})
+                identity_blob["asset"] = asset
+                identity_blob["raw"] = asset
+                if (champ_obj or {}).get("display"):
+                    identity_blob["display"] = champ_obj["display"]
+                row["championIdentity"] = identity_blob
+            if identity.get("puuid") and not row.get("puuid"):
+                row["puuid"] = identity["puuid"]
+            if game_name:
+                row["riotIdGameName"] = game_name
+            if tag:
+                row["riotIdTagLine"] = tag
+            if full and "#" in full:
+                row["summonerName"] = full
+                row["playerName"] = game_name or full.split("#", 1)[0]
+            row["_identityKey"] = roster_identity_key(row)
+            assigned[src] = row
+        if any(slot is None for slot in assigned):
+            raise ExtractError("incomplete ROFL sourceRecordIndex roster assignment")
+        return [slot for slot in assigned if slot is not None]
+
     rows.sort(
         key=lambda r: (
             int(r["teamID"]),
@@ -736,6 +1284,131 @@ def assign_stable_participant_ids(
         # Snapshot identity fields used for stable mapping; dynamics refreshed per frame.
         row["_identityKey"] = roster_identity_key(row)
     return rows
+
+
+def remap_rfc461_rows_to_rofl_source_order(
+    rows: Sequence[Mapping[str, Any]],
+    rofl_meta: Mapping[str, Any],
+) -> List[dict[str, Any]]:
+    """Remap an existing capture onto CreateHero/sourceRecordIndex participantIDs.
+
+    Scrambled liveclient Riot-ID pid order keeps dynamics (position/items/level)
+    on the wrong participantID relative to game_info / CastSpellAns. Rebuild the
+    roster by stable identity so each stats row carries the matching champ labels
+    and dynamics on the CreateHero pid.
+    """
+    by_identity, by_champ = _rofl_meta_identity_maps(rofl_meta)
+    # identity key → (pid, champ, player, full Riot ID, team, role)
+    target: Dict[str, dict[str, Any]] = {}
+    for meta in by_identity.values():
+        src = int(meta["sourceRecordIndex"])
+        identity = meta.get("sourceIdentity")
+        if not isinstance(identity, Mapping):
+            identity = rofl_metadata.stable_identity_from_row(meta)
+        key = str(identity.get("key") or "").strip()
+        riot = identity.get("riotId") if isinstance(identity.get("riotId"), Mapping) else {}
+        full = str(riot.get("full") or "").strip()
+        game_name = str(riot.get("gameName") or "").strip()
+        champ_obj = meta.get("champion") if isinstance(meta.get("champion"), Mapping) else {}
+        asset = _normalize_champ_asset(
+            str((champ_obj or {}).get("asset") or (champ_obj or {}).get("raw") or "")
+        )
+        target[key] = {
+            "participantID": src + 1,
+            "teamID": int(meta.get("teamId") or meta.get("teamID") or 0),
+            "championName": asset,
+            "playerName": game_name or (full.split("#", 1)[0] if full else ""),
+            "summonerName": full,
+            "puuid": identity.get("puuid"),
+            "riotIdGameName": game_name or None,
+            "riotIdTagLine": str(riot.get("tagLine") or "") or None,
+            "role": meta.get("role") or "NONE",
+            "championIdentity": dict(champ_obj) if champ_obj else {"asset": asset, "raw": asset},
+            "_identityKey": key,
+        }
+        # Also index by riotid for captures that only have Riot ID keys.
+        if full and "#" in full:
+            target[f"riotid:{full.casefold()}"] = target[key]
+
+    def _row_identity(participant: Mapping[str, Any]) -> str:
+        key = roster_identity_key(participant)
+        if key:
+            return key
+        raise ExtractError(
+            f"capture participant lacks identity for remap: {participant.get('championName')!r}"
+        )
+
+    def _remap_participants(
+        participants: Sequence[Mapping[str, Any]],
+        *,
+        keep_dynamics: bool,
+    ) -> list[dict[str, Any]]:
+        by_pid: dict[int, dict[str, Any]] = {}
+        for raw in participants:
+            live = dict(raw)
+            key = _row_identity(live)
+            meta_row = None
+            if key in target:
+                meta_row = target[key]
+            else:
+                # Fall back through ROFL match helpers (champ alias / riot fields).
+                matched = _match_live_to_rofl_meta(
+                    live, by_identity=by_identity, by_champ=by_champ
+                )
+                src = int(matched["sourceRecordIndex"])
+                meta_row = next(
+                    value
+                    for value in target.values()
+                    if int(value["participantID"]) == src + 1
+                )
+            pid = int(meta_row["participantID"])
+            if pid in by_pid:
+                raise ExtractError(f"duplicate remap onto participantID {pid}")
+            if keep_dynamics:
+                fused = dict(live)
+            else:
+                fused = {}
+            fused["participantID"] = pid
+            fused["teamID"] = int(meta_row["teamID"] or fused.get("teamID") or 100)
+            fused["championName"] = meta_row["championName"]
+            fused["playerName"] = meta_row["playerName"]
+            fused["summonerName"] = meta_row["summonerName"] or fused.get("summonerName")
+            if meta_row.get("puuid"):
+                fused["puuid"] = meta_row["puuid"]
+            if meta_row.get("riotIdGameName"):
+                fused["riotIdGameName"] = meta_row["riotIdGameName"]
+            if meta_row.get("riotIdTagLine"):
+                fused["riotIdTagLine"] = meta_row["riotIdTagLine"]
+            if meta_row.get("role") and meta_row["role"] != "NONE":
+                fused["role"] = meta_row["role"]
+            fused["championIdentity"] = dict(meta_row.get("championIdentity") or {})
+            by_pid[pid] = fused
+        if set(by_pid) != set(range(1, 11)):
+            raise ExtractError("remapped roster must cover participantIDs 1..10")
+        return [by_pid[pid] for pid in range(1, 11)]
+
+    out: List[dict[str, Any]] = []
+    for original in rows:
+        row = dict(original)
+        schema = row.get("rfc461Schema")
+        if schema == "game_info":
+            row["participants"] = _remap_participants(
+                list(row.get("participants") or []),
+                keep_dynamics=False,
+            )
+            # game_info uses the flat capture shape from game_info_participants.
+            row["participants"] = game_info_participants(row["participants"])
+            out.append(row)
+            continue
+        if schema == "stats_update":
+            row["participants"] = _remap_participants(
+                list(row.get("participants") or []),
+                keep_dynamics=True,
+            )
+            out.append(row)
+            continue
+        out.append(row)
+    return out
 
 
 def merge_dynamic_roster_state(
@@ -1375,8 +2048,16 @@ def _extract_replay_api_jsonl_after_guard(
     game_id: int = 0,
     resume: bool = False,
     checkpoint_out: Optional[Path] = None,
+    cached_selection_strategy: str = DEFAULT_CACHED_SELECTION_STRATEGY,
+    defer_liveclient: bool = False,
 ) -> dict[str, Any]:
-    """Seek+capture bounded range → durable rfc461 JSONL. Always attempts restore."""
+    """Seek+capture bounded range → durable rfc461 JSONL. Always attempts restore.
+
+    ``defer_liveclient`` (research/bench): skip per-frame liveclient wait and
+    emit positions + identity from the initial roster only. Dynamic
+    level/items/KDA are omitted. Identity-proven focus positions still required.
+    """
+    strategy = normalize_cached_selection_strategy(cached_selection_strategy)
     status: dict[str, Any] = {
         "ok": False,
         "out": str(out_path),
@@ -1391,6 +2072,9 @@ def _extract_replay_api_jsonl_after_guard(
         "completedCount": 0,
         "lastCompletedMs": None,
         "nextSampleMs": None,
+        "cachedSelectionStrategy": strategy,
+        "finalSettle": float(final_settle),
+        "deferLiveclient": bool(defer_liveclient),
         "timing": summarize_frame_timings([]),
     }
     if not probe.is_loopback_url(base_url):
@@ -1420,16 +2104,18 @@ def _extract_replay_api_jsonl_after_guard(
             rofl_game_length_ms = parsed_length
     except (TypeError, ValueError):
         rofl_game_length_ms = None
-    schedule_end_ms = (
-        min(requested_end_ms, rofl_game_length_ms)
-        if rofl_game_length_ms is not None
-        else requested_end_ms
+    schedule = resolve_sample_schedule_ms(
+        start_ms,
+        requested_end_ms,
+        step_ms,
+        rofl_game_length_ms=rofl_game_length_ms,
     )
-    sample_ms = _sample_times_ms(start_ms, schedule_end_ms, step_ms)
+    sample_ms = list(schedule["sampleTimesMs"])
     status["sampleTimesMs"] = sample_ms
-    status["requestedEndMs"] = requested_end_ms
-    status["effectiveEndMs"] = sample_ms[-1]
-    status["roflGameLengthMs"] = rofl_game_length_ms
+    status["requestedEndMs"] = schedule["requestedEndMs"]
+    status["effectiveEndMs"] = schedule["effectiveEndMs"]
+    status["roflGameLengthMs"] = schedule["roflGameLengthMs"]
+    status["scheduleEndMs"] = schedule["scheduleEndMs"]
     filename_identity = rofl_metadata.parse_filename_identity(
         rofl_path,
         required=False,
@@ -1540,23 +2226,91 @@ def _extract_replay_api_jsonl_after_guard(
             out_path.parent.mkdir(parents=True, exist_ok=True)
             out_fh = out_path.open("a", encoding="utf-8")
         else:
-            stable_roster = assign_stable_participant_ids(initial_live)
+            rofl_meta: Optional[dict[str, Any]] = None
+            try:
+                rofl_meta = rofl_metadata.inspect_rofl_metadata(rofl_path)
+            except rofl_metadata.RoflMetadataError:
+                # Capture continues; fuse-time backfill remains a safety net.
+                rofl_meta = None
+            if rofl_meta is not None:
+                # Enrich PUUID/Riot ID first so sourceRecordIndex matching can
+                # join on stable identity (not scrambled liveclient order).
+                enriched = enrich_roster_puuids_from_rofl_metadata(
+                    initial_live, rofl_meta
+                )
+                stable_roster = assign_stable_participant_ids(
+                    enriched, rofl_meta=rofl_meta
+                )
+            else:
+                stable_roster = assign_stable_participant_ids(initial_live)
             out_path.parent.mkdir(parents=True, exist_ok=True)
             out_fh = out_path.open("w", encoding="utf-8")
-            provenance = rfc461_emit.provenance_record(
-                source=SOURCE,
-                source_kind="replay_api_playback",
-                position_coverage=POSITION_COVERAGE,
-                hp_coverage=HP_COVERAGE,
-                roster_mapping="stable_puuid_or_full_riot_id",
-                notes=(
+            if defer_liveclient:
+                decoded = ["positions_focus_selection"]
+                missing = [
+                    "health",
+                    "healthMax",
+                    "combatStats",
+                    "abilityRanks",
+                    "damageHistory",
+                    "goldHistory",
+                    "objectiveHistory",
+                    "jungleCreepScore",
+                    "alive_level_items_liveclient_per_frame",
+                    "kda_total_cs_vision_liveclient_per_frame",
+                ]
+                notes = (
+                    "Positions-only research/bench capture: Replay API focus "
+                    "selection at sampled frames; per-frame liveclient wait deferred. "
+                    "Identity from initial liveclient roster only. "
+                    "Level/items/alive/KDA/CS/vision omitted this run. "
+                    "HP/combat/ability ranks unavailable from Replay API."
+                )
+                career = {
+                    field: {
+                        "coverage": "unavailable_deferred_liveclient",
+                        "source": "deferred",
+                    }
+                    for field in LIVECLIENT_HISTORY_FIELDS
+                }
+            else:
+                decoded = [
+                    "positions_focus_selection",
+                    "alive_level_items_liveclient_per_frame",
+                    "kda_total_cs_vision_liveclient_per_frame",
+                ]
+                missing = [
+                    "health",
+                    "healthMax",
+                    "combatStats",
+                    "abilityRanks",
+                    "damageHistory",
+                    "goldHistory",
+                    "objectiveHistory",
+                    "jungleCreepScore",
+                ]
+                notes = (
                     "Positions from Replay API focus selection at sampled frames. "
                     "Level/items/alive and KDA/total-CS/vision scores refreshed "
                     "from one time-correlated liveclient allgamedata sample after "
                     "each seek. Total creep score is not lane or jungle CS. "
                     "HP/combat/ability ranks unavailable from Replay API — omitted "
                     "with unavailable_replay_api sources (not dead/full/fake)."
-                ),
+                )
+                career = {
+                    field: {
+                        "coverage": "full_at_sampled_frames",
+                        "source": "liveclient_allgamedata_scores",
+                    }
+                    for field in LIVECLIENT_HISTORY_FIELDS
+                }
+            provenance = rfc461_emit.provenance_record(
+                source=SOURCE,
+                source_kind="replay_api_playback",
+                position_coverage=POSITION_COVERAGE,
+                hp_coverage=HP_COVERAGE,
+                roster_mapping="stable_puuid_or_full_riot_id",
+                notes=notes,
                 artifact=str(rofl_path),
             )
             durable_append_jsonl_row(
@@ -1564,21 +2318,8 @@ def _extract_replay_api_jsonl_after_guard(
                 rfc461_emit.coverage_line(
                     source=SOURCE,
                     game_id=gid,
-                    decoded=[
-                        "positions_focus_selection",
-                        "alive_level_items_liveclient_per_frame",
-                        "kda_total_cs_vision_liveclient_per_frame",
-                    ],
-                    missing=[
-                        "health",
-                        "healthMax",
-                        "combatStats",
-                        "abilityRanks",
-                        "damageHistory",
-                        "goldHistory",
-                        "objectiveHistory",
-                        "jungleCreepScore",
-                    ],
+                    decoded=decoded,
+                    missing=missing,
                     provenance=provenance,
                     extra={
                         "roflGameVersion": rofl.get("version"),
@@ -1588,13 +2329,10 @@ def _extract_replay_api_jsonl_after_guard(
                         "effectiveEndMs": sample_ms[-1],
                         "roflGameLengthMs": rofl_game_length_ms,
                         "stepMs": step_ms,
-                        "careerHistoryCoverage": {
-                            field: {
-                                "coverage": "full_at_sampled_frames",
-                                "source": "liveclient_allgamedata_scores",
-                            }
-                            for field in LIVECLIENT_HISTORY_FIELDS
-                        },
+                        "cachedSelectionStrategy": strategy,
+                        "finalSettle": float(final_settle),
+                        "deferLiveclient": bool(defer_liveclient),
+                        "careerHistoryCoverage": career,
                     },
                 ),
             )
@@ -1612,8 +2350,20 @@ def _extract_replay_api_jsonl_after_guard(
             _sync_progress()
 
         prev_sel = original_render.get("selectionName")
+        counting: Optional[CountingTransport] = None
+        if isinstance(transport, CountingTransport):
+            counting = transport
+        else:
+            counting = CountingTransport(transport)
+            transport = counting
+
         for t_ms in remaining_ms:
             target_sec = _ms_to_sec(t_ms)
+            frame_started = time.perf_counter()
+            http_by_stage: dict[str, dict[str, int]] = {}
+            counting.reset()
+
+            seek_started = time.perf_counter()
             seek = probe.seek_to_time(
                 transport,
                 playback_url,
@@ -1624,6 +2374,8 @@ def _extract_replay_api_jsonl_after_guard(
                 seek_timeout=seek_timeout,
                 pause_first=False,
             )
+            seek_ms = (time.perf_counter() - seek_started) * 1000.0
+            http_by_stage["seek"] = counting.snapshot_and_reset()
             if not seek.get("ok"):
                 raise ExtractError(
                     f"seek to {t_ms}ms failed: {seek.get('error')}",
@@ -1636,12 +2388,15 @@ def _extract_replay_api_jsonl_after_guard(
                 )
 
             # Seek may reset render — re-assert and GET-verify focus before select.
+            focus_started = time.perf_counter()
             focus = ensure_camera_mode_focus(
                 transport,
                 render_url,
                 timeout=timeout,
                 settle_delay=final_settle,
             )
+            focus_assert_ms = (time.perf_counter() - focus_started) * 1000.0
+            http_by_stage["focusAssert"] = counting.snapshot_and_reset()
             if not focus.get("ok"):
                 raise ExtractError(
                     f"focus re-assert at {t_ms}ms failed: {focus.get('error')}",
@@ -1653,29 +2408,48 @@ def _extract_replay_api_jsonl_after_guard(
                 )
 
             # Dynamic state AFTER settle — correlated to target t_ms, never stale.
-            live_wait = wait_liveclient_roster_at_time(
-                transport,
-                base,
-                target_ms=int(t_ms),
-                timeout=timeout,
-                poll_interval=0.05,
-                time_tol_sec=liveclient_time_tol_sec,
-                wait_timeout=liveclient_wait_timeout,
-            )
-            if not live_wait.get("ok"):
-                raise ExtractError(
-                    f"liveclient time correlation at {t_ms}ms failed: {live_wait.get('error')}",
-                    checkpoint={
-                        **status,
-                        "failedAtMs": t_ms,
-                        "framesCaptured": status["framesCaptured"],
-                        "liveclient": live_wait.get("evidence"),
-                    },
+            # Research/bench: defer_liveclient skips the wait and keeps initial roster.
+            live_started = time.perf_counter()
+            if defer_liveclient:
+                liveclient_wait_ms = 0.0
+                http_by_stage["liveclientWait"] = counting.snapshot_and_reset()
+                # Positions-only: drop career/history so emit does not invent
+                # sample times for deferred liveclient scores.
+                frame_roster = []
+                for row in stable_roster:
+                    cleaned = dict(row)
+                    cleaned.pop("history", None)
+                    cleaned.pop("historySources", None)
+                    cleaned.pop("historyCoverage", None)
+                    cleaned.pop("historySampleGameTimeMs", None)
+                    frame_roster.append(cleaned)
+            else:
+                live_wait = wait_liveclient_roster_at_time(
+                    transport,
+                    base,
+                    target_ms=int(t_ms),
+                    timeout=timeout,
+                    poll_interval=0.05,
+                    time_tol_sec=liveclient_time_tol_sec,
+                    wait_timeout=liveclient_wait_timeout,
                 )
-            frame_roster = merge_dynamic_roster_state(
-                stable_roster, live_wait["roster"]
-            )
+                liveclient_wait_ms = (time.perf_counter() - live_started) * 1000.0
+                http_by_stage["liveclientWait"] = counting.snapshot_and_reset()
+                if not live_wait.get("ok"):
+                    raise ExtractError(
+                        f"liveclient time correlation at {t_ms}ms failed: {live_wait.get('error')}",
+                        checkpoint={
+                            **status,
+                            "failedAtMs": t_ms,
+                            "framesCaptured": status["framesCaptured"],
+                            "liveclient": live_wait.get("evidence"),
+                        },
+                    )
+                frame_roster = merge_dynamic_roster_state(
+                    stable_roster, live_wait["roster"]
+                )
 
+            select_started = time.perf_counter()
             frame = capture_frame_positions(
                 transport,
                 base_url=base,
@@ -1686,7 +2460,10 @@ def _extract_replay_api_jsonl_after_guard(
                 identity_retries=identity_retries,
                 previous_selection_name=prev_sel,
                 selection_key_cache=selection_key_cache,
+                cached_selection_strategy=strategy,
             )
+            select_ms = (time.perf_counter() - select_started) * 1000.0
+            http_by_stage["select"] = counting.snapshot_and_reset()
             if not frame.get("ok"):
                 raise ExtractError(
                     f"capture at {t_ms}ms failed: {frame.get('error')}",
@@ -1698,9 +2475,8 @@ def _extract_replay_api_jsonl_after_guard(
                     },
                 )
             prev_sel = frame.get("previousSelectionName", prev_sel)
-            if isinstance(frame.get("timing"), Mapping):
-                frame_timings.append(dict(frame["timing"]))
             assert out_fh is not None
+            emit_started = time.perf_counter()
             durable_append_jsonl_row(
                 out_fh,
                 rfc461_emit.stats_update_line(
@@ -1709,6 +2485,30 @@ def _extract_replay_api_jsonl_after_guard(
                     participants=participants_to_rfc461_rows(frame["participants"]),
                 ),
             )
+            emit_ms = (time.perf_counter() - emit_started) * 1000.0
+            http_by_stage["emit"] = counting.snapshot_and_reset()
+            total_frame_ms = (time.perf_counter() - frame_started) * 1000.0
+
+            frame_timing: dict[str, Any] = {}
+            if isinstance(frame.get("timing"), Mapping):
+                frame_timing.update(dict(frame["timing"]))
+            # Preserve legacy frameMs (select-path internal). Overlay stage split.
+            frame_timing.update(
+                {
+                    "seekMs": round(seek_ms, 3),
+                    "focusAssertMs": round(focus_assert_ms, 3),
+                    "liveclientWaitMs": round(liveclient_wait_ms, 3),
+                    "selectMs": round(select_ms, 3),
+                    "emitMs": round(emit_ms, 3),
+                    "appendMs": round(emit_ms, 3),
+                    "totalFrameMs": round(total_frame_ms, 3),
+                    "httpCountsByStage": http_by_stage,
+                    "httpCounts": merge_http_counts(*http_by_stage.values()),
+                }
+            )
+            if frame_timing.get("frameMs") is None:
+                frame_timing["frameMs"] = round(select_ms, 3)
+            frame_timings.append(frame_timing)
             completed_times.append(int(t_ms))
             _sync_progress()
 
@@ -1873,7 +2673,10 @@ def build_arg_parser() -> argparse.ArgumentParser:
         "--final-settle",
         type=float,
         default=DEFAULT_FINAL_SETTLE,
-        help="Short settle before selection GET (default efficient path)",
+        help=(
+            "Settle before selection GET (product default 0.0 from matched "
+            "compact speed keep; pass 0.08 for legacy settle)"
+        ),
     )
     ap.add_argument("--identity-retries", type=int, default=DEFAULT_IDENTITY_RETRIES)
     ap.add_argument("--seek-timeout", type=float, default=DEFAULT_SEEK_TIMEOUT)
@@ -1890,6 +2693,14 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=DEFAULT_LIVECLIENT_WAIT_TIMEOUT,
         help="Bounded poll timeout waiting for liveclient gameTime match",
     )
+    ap.add_argument(
+        "--defer-liveclient",
+        action="store_true",
+        help=(
+            "Research/bench: skip per-frame liveclient wait; emit identity-proven "
+            "positions only (no per-frame level/items/KDA/CS/vision)"
+        ),
+    )
     ap.add_argument("--allow-build-mismatch", action="store_true")
     ap.add_argument("--game-id", type=int, default=0)
     ap.add_argument(
@@ -1905,6 +2716,17 @@ def build_arg_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         help="Optional path for progress/failure checkpoint JSON (updated per frame)",
+    )
+    ap.add_argument(
+        "--cached-selection-strategy",
+        default=DEFAULT_CACHED_SELECTION_STRATEGY,
+        choices=sorted(CACHED_SELECTION_STRATEGIES),
+        help=(
+            "Cached-selection path after the first proven frame. "
+            "'compact' (product default) tries one composite render POST per "
+            "cached identity and falls back to full on any unproven readback. "
+            "'full' keeps detach/select/attach every frame."
+        ),
     )
     return ap
 
@@ -1941,6 +2763,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             game_id=args.game_id,
             resume=bool(args.resume),
             checkpoint_out=args.checkpoint_out,
+            cached_selection_strategy=args.cached_selection_strategy,
+            defer_liveclient=bool(args.defer_liveclient),
         )
         print(json.dumps(status, indent=2, default=str))
         return 0 if status.get("ok") else 4

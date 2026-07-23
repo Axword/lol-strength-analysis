@@ -1,0 +1,94 @@
+{
+  "events": [
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073741998,
+        "name": "",
+        "champion": "Zaahen",
+        "participantID": 1
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073741999,
+        "name": "",
+        "champion": "MonkeyKing",
+        "participantID": 2
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742000,
+        "name": "",
+        "champion": "Yasuo",
+        "participantID": 3
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742001,
+        "name": "",
+        "champion": "Ezreal",
+        "participantID": 4
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742002,
+        "name": "",
+        "champion": "Sona",
+        "participantID": 5
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742003,
+        "name": "",
+        "champion": "Renekton",
+        "participantID": 6
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742004,
+        "name": "",
+        "champion": "Lillia",
+        "participantID": 7
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742005,
+        "name": "",
+        "champion": "Leblanc",
+        "participantID": 8
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742006,
+        "name": "",
+        "champion": "Ashe",
+        "participantID": 9
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742007,
+        "name": "",
+        "champion": "Morgana",
+        "participantID": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "ok": true,
+  "schema": "rofl-ability-ranks-probe-v1",
+  "skillLevelUpName": "SkillLevelUp",
+  "opcodeMapped": true,
+  "mappedPkt": "PKT_NPC_UpgradeSpellAns_s",
+  "mappedOpcode": 636,
+  "castSpellAnsMapped": true,
+  "castSpellAnsOpcode": 197,
+  "castSpellAnsPkt": "PKT_NPC_CastSpellAns_s",
+  "castSpellAnsBlockCount": 4442,
+  "castSpellAnsLevelSlotDecoded": false,
+  "upgradeSpellAnsMapped": true,
+  "upgradeSpellAnsOpcode": 636,
+  "upgradeSpellAnsBlockCount": 148,
+  "upgradeSpellAnsDecoded": true,
+  "levelSlotEvidence": "docs/rofl-research/castspell-level-slot-BR1-3264361042.json",
+  "upgradeEvidence": "docs/rofl-research/upgrade-spell-ranks-BR1-3264361042.json",
+  "eventCount": 148,
+  "finalRanksByChampion": {
+    "Zaahen": {
+      "netId": 1073741998,
+      "netIdHex": "0x400000ae",
+      "ranks": [
+        5,
+        5,
+        5,
+        3
+      ]
+    },
+    "MonkeyKing": {
+      "netId": 1073741999,
+      "netIdHex": "0x400000af",
+      "ranks": [
+        5,
+        3,
+        5,
+        3
+      ]
+    },
+    "Yasuo": {
+      "netId": 1073742000,
+      "netIdHex": "0x400000b0",
+      "ranks": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    "Ezreal": {
+      "netId": 1073742001,
+      "netIdHex": "0x400000b1",
+      "ranks": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    "Sona": {
+      "netId": 1073742002,
+      "netIdHex": "0x400000b2",
+      "ranks": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    "Renekton": {
+      "netId": 1073742003,
+      "netIdHex": "0x400000b3",
+      "ranks": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    "Lillia": {
+      "netId": 1073742004,
+      "netIdHex": "0x400000b4",
+      "ranks": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    "Leblanc": {
+      "netId": 1073742005,
+      "netIdHex": "0x400000b5",
+      "ranks": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    "Ashe": {
+      "netId": 1073742006,
+      "netIdHex": "0x400000b6",
+      "ranks": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    "Morgana": {
+      "netId": 1073742007,
+      "netIdHex": "0x400000b7",
+      "ranks": [
+        5,
+        5,
+        1,
+        2
+      ]
+    }
+  },
+  "fieldLayout": {
+    "levelOffset": 16,
+    "slotOffset": 17,
+    "capture": "first_mem_write_before_cipher",
+    "levelRange": [
+      1,
+      5
+    ],
+    "slotRange": [
+      0,
+      3
+    ]
+  },
+  "plaintextHits": {
+    "SkillLevelUp": 0,
+    "mSkillUpLevel": 0,
+    "SkillUp": 0
+  },
+  "roflOpcodeCount": 217,
+  "blocker": null,
+  "abilityRanksTrusted": true,
+  "productEligible": true,
+  "dependsOnGateA": false,
+  "abilityRanksSource": "rofl2_upgrade_spell_ans_636_first_write",
+  "note": "Ability ranks proven via PKT_NPC_UpgradeSpellAns_s opcode 636 first-write decode; CastSpellAns stays identity-only; SkillLevelUp name absent on 16.14 PE."
+}

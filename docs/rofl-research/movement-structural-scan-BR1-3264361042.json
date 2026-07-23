@@ -1,0 +1,635 @@
+{
+  "ok": true,
+  "phase": "B-E5",
+  "probeVersion": "e5-structural-roflx-v1",
+  "provenance": "offline_rofl2_025b_research",
+  "attribution": {
+    "roflX": "Toastaspiring/ROFL-X (MIT) — MOVEMENT_PATH layout facts only; no code copied",
+    "layoutPrior": {
+      "objectSize": 48,
+      "payloadPtrOff": 24,
+      "payloadSizeOff": 32,
+      "parser": "PathPacket compressed coords"
+    }
+  },
+  "productEligible": false,
+  "browserSafe": false,
+  "pureBrowserDecoderDerived": false,
+  "extraAllocatorHooks": [
+    "vector_alloc@0x10162eb4c",
+    "vector_free@0x10162ebac"
+  ],
+  "inventory": {
+    "uniqueOpcodes": 217,
+    "totalBlocks": 1155661,
+    "factoryOk": 217,
+    "sizeHistogram": [
+      {
+        "size": 16,
+        "classes": 6
+      },
+      {
+        "size": 32,
+        "classes": 128
+      },
+      {
+        "size": 48,
+        "classes": 40
+      },
+      {
+        "size": 64,
+        "classes": 14
+      },
+      {
+        "size": 80,
+        "classes": 6
+      },
+      {
+        "size": 96,
+        "classes": 6
+      },
+      {
+        "size": 112,
+        "classes": 4
+      },
+      {
+        "size": 128,
+        "classes": 2
+      },
+      {
+        "size": 144,
+        "classes": 3
+      },
+      {
+        "size": 160,
+        "classes": 3
+      },
+      {
+        "size": 192,
+        "classes": 3
+      },
+      {
+        "size": 336,
+        "classes": 1
+      },
+      {
+        "size": 640,
+        "classes": 1
+      }
+    ],
+    "size48Classes": 40,
+    "size48UniqueDeserialize": 40,
+    "priorArtOpcodes": {
+      "roflx_15_5_example": {
+        "opcode": 980,
+        "blockCount": 0
+      },
+      "roflx_16_8_candidate": {
+        "opcode": 982,
+        "blockCount": 0
+      },
+      "public_025b": {
+        "opcode": 603,
+        "blockCount": 0
+      }
+    }
+  },
+  "size48Ranked": [
+    {
+      "opcode": 855,
+      "blockCount": 1092,
+      "deserialize": "0x101491050",
+      "usePacket": "0x101504630",
+      "signature": {
+        "str_x_18": 1,
+        "str_w_20": 2,
+        "stride18": 1,
+        "alloc_then_str_x18": 1,
+        "bl": [
+          4319566688,
+          4318227372,
+          4318227276
+        ],
+        "score": 7,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": true
+      }
+    },
+    {
+      "opcode": 946,
+      "blockCount": 504,
+      "deserialize": "0x101192d68",
+      "usePacket": "0x1011d35a4",
+      "signature": {
+        "str_x_18": 1,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 4,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 1159,
+      "blockCount": 80,
+      "deserialize": "0x101192e90",
+      "usePacket": "0x1011d3628",
+      "signature": {
+        "str_x_18": 1,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 4,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 149,
+      "blockCount": 3,
+      "deserialize": "0x10134b63c",
+      "usePacket": "0x1013a55e8",
+      "signature": {
+        "str_x_18": 1,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 4,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 556,
+      "blockCount": 37151,
+      "deserialize": "0x1012edd70",
+      "usePacket": "0x101399630",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 107,
+      "blockCount": 14801,
+      "deserialize": "0x1011cf050",
+      "usePacket": "0x1011d063c",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 259,
+      "blockCount": 14737,
+      "deserialize": "0x101485860",
+      "usePacket": "0x101501744",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 420,
+      "blockCount": 13353,
+      "deserialize": "0x101185c10",
+      "usePacket": "0x1011d18fc",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 1194,
+      "blockCount": 9040,
+      "deserialize": "0x101333f2c",
+      "usePacket": "0x1013a258c",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 210,
+      "blockCount": 7256,
+      "deserialize": "0x1014a0adc",
+      "usePacket": "0x101503638",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 243,
+      "blockCount": 7074,
+      "deserialize": "0x10133b6cc",
+      "usePacket": "0x1013a3614",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 774,
+      "blockCount": 5141,
+      "deserialize": "0x1011bada4",
+      "usePacket": "0x1011d5ac4",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 109,
+      "blockCount": 4406,
+      "deserialize": "0x10119f500",
+      "usePacket": "0x1011d4e08",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688,
+          4313766940
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 648,
+      "blockCount": 3815,
+      "deserialize": "0x101275790",
+      "usePacket": "0x10129278c",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 888,
+      "blockCount": 3815,
+      "deserialize": "0x1012756d8",
+      "usePacket": "0x101292680",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 173,
+      "blockCount": 2664,
+      "deserialize": "0x1012ee354",
+      "usePacket": "0x101399818",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 330,
+      "blockCount": 2178,
+      "deserialize": "0x1014f65c0",
+      "usePacket": "0x101513dcc",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 130,
+      "blockCount": 669,
+      "deserialize": "0x10133ac38",
+      "usePacket": "0x1013a3540",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 1209,
+      "blockCount": 392,
+      "deserialize": "0x10135326c",
+      "usePacket": "0x1013a5f34",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    },
+    {
+      "opcode": 577,
+      "blockCount": 250,
+      "deserialize": "0x10117cd64",
+      "usePacket": "0x1011d0a48",
+      "signature": {
+        "str_x_18": 0,
+        "str_w_20": 0,
+        "stride18": 0,
+        "alloc_then_str_x18": 0,
+        "bl": [
+          4319566688
+        ],
+        "score": 0,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": false
+      }
+    }
+  ],
+  "extendedSignatureHits": [],
+  "runtimeProbes": [
+    {
+      "opcode": 855,
+      "samplesTried": 20,
+      "deserializeOk": 20,
+      "heapPtrAt18": 0,
+      "pathFullConsume": 0,
+      "heroPathCount": 0,
+      "pathSamples": [],
+      "examples": [
+        {
+          "time": 64.909,
+          "payloadLen": 18,
+          "ok": true,
+          "consumed": 3,
+          "ptr18": "0x0",
+          "size20": 0,
+          "newAllocs": [],
+          "path": null
+        },
+        {
+          "time": 69.856,
+          "payloadLen": 18,
+          "ok": true,
+          "consumed": 3,
+          "ptr18": "0x0",
+          "size20": 0,
+          "newAllocs": [],
+          "path": null
+        },
+        {
+          "time": 75.972,
+          "payloadLen": 18,
+          "ok": true,
+          "consumed": 3,
+          "ptr18": "0x0",
+          "size20": 0,
+          "newAllocs": [],
+          "path": null
+        },
+        {
+          "time": 82.939,
+          "payloadLen": 18,
+          "ok": true,
+          "consumed": 3,
+          "ptr18": "0x0",
+          "size20": 0,
+          "newAllocs": [],
+          "path": null
+        }
+      ],
+      "heapDelta": 48,
+      "signature": {
+        "str_x_18": 1,
+        "str_w_20": 2,
+        "stride18": 1,
+        "alloc_then_str_x18": 1,
+        "bl": [
+          4319566688,
+          4318227372,
+          4318227276
+        ],
+        "score": 7,
+        "byteBufferCandidate": false,
+        "weakByteBufferShape": false,
+        "vectorStrideRejected": true
+      },
+      "deserialize": "0x101491050",
+      "oracleQa": null,
+      "accepted": false
+    }
+  ],
+  "winner": null,
+  "winnerFound": false,
+  "structuralBlocker": {
+    "kind": "no_roflx_byte_buffer_movement_class",
+    "detail": "Among observed opcodes, no Deserialize both (1) matches ROFL-X byte-buffer pointer@+0x18 + size@+0x20 with alloc→store and (2) materializes a PathPacket-full-consume buffer under hooked allocators. Closest size-48 alloc→+0x18 hit is a 0x18-stride element vector (not a PathPacket byte payload).",
+    "closestOpcode": 855,
+    "closestDeserialize": "0x101491050",
+    "size48ClassCount": 40,
+    "strongByteBufferSize48": 0,
+    "vectorStrideSize48": [
+      {
+        "opcode": 855,
+        "deserialize": "0x101491050",
+        "blocks": 1092
+      }
+    ],
+    "priorArtOpcodesAbsent": [
+      "roflx_15_5_example",
+      "roflx_16_8_candidate",
+      "public_025b"
+    ]
+  },
+  "falsePositiveGuard": {
+    "str_x_18": 0,
+    "str_w_20": 1,
+    "stride18": 0,
+    "alloc_then_str_x18": 0,
+    "score": 4,
+    "byteBufferCandidate": false,
+    "weakByteBufferShape": false,
+    "vectorStrideRejected": false
+  },
+  "endToEndWallMs": 4523.226,
+  "keep": "discard",
+  "reason": "E5 discard: no ROFL-X byte-buffer MOVEMENT_PATH class among observed 16.14 opcodes; closest alloc→+0x18 is vector stride",
+  "nextSingleVariableHypothesis": "E6: resolve arm64 movement via UsePacket/world bind or Windows-offset remap of MOVEMENT_PATH fields (ROFL-X), after confirming registrar type name — not opcode frequency alone",
+  "speedRun": {
+    "runId": "speed-2e2ccae65da1",
+    "ts": "2026-07-22T18:34:25.197035Z",
+    "matchCode": "3264361042",
+    "backend": "offline-025b",
+    "hypothesis": "E5 ROFL-X structural MOVEMENT_PATH factory scan",
+    "diffLabel": "phase-b-e5-structural",
+    "wallMs": 4523.226,
+    "keep": "discard",
+    "reason": "E5 discard: no ROFL-X byte-buffer MOVEMENT_PATH class among observed 16.14 opcodes; closest alloc→+0x18 is vector stride",
+    "productEligible": false,
+    "decoderVersion": "offline-025b-v1",
+    "provenance": "offline_rofl2_025b_research",
+    "phase": "B-E5",
+    "winnerFound": false,
+    "winner": null,
+    "structuralBlocker": {
+      "kind": "no_roflx_byte_buffer_movement_class",
+      "detail": "Among observed opcodes, no Deserialize both (1) matches ROFL-X byte-buffer pointer@+0x18 + size@+0x20 with alloc→store and (2) materializes a PathPacket-full-consume buffer under hooked allocators. Closest size-48 alloc→+0x18 hit is a 0x18-stride element vector (not a PathPacket byte payload).",
+      "closestOpcode": 855,
+      "closestDeserialize": "0x101491050",
+      "size48ClassCount": 40,
+      "strongByteBufferSize48": 0,
+      "vectorStrideSize48": [
+        {
+          "opcode": 855,
+          "deserialize": "0x101491050",
+          "blocks": 1092
+        }
+      ],
+      "priorArtOpcodesAbsent": [
+        "roflx_15_5_example",
+        "roflx_16_8_candidate",
+        "public_025b"
+      ]
+    },
+    "pureBrowserDecoderDerived": false,
+    "browserSafe": false,
+    "endToEndWallMs": 4523.226,
+    "nextSingleVariableHypothesis": "E6: resolve arm64 movement via UsePacket/world bind or Windows-offset remap of MOVEMENT_PATH fields (ROFL-X), after confirming registrar type name — not opcode frequency alone",
+    "statsUpdateCount": 0,
+    "source": "offline_e5_structural_roflx",
+    "researchKeep": "discard"
+  }
+}

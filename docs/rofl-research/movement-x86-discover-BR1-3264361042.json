@@ -1,0 +1,1148 @@
+{
+  "ok": true,
+  "phase": "B-E6",
+  "probeVersion": "e6-x86-discovery-v1",
+  "provenance": "offline_rofl2_025b_research",
+  "attribution": {
+    "roflX": "Toastaspiring/ROFL-X (MIT) \u2014 layout/prior opcode facts only",
+    "ctorTechnique": "Independent implementation of public constructor id@object+8 + RIP-relative vtable recovery (quomark-style facts; no source copied; upstream license not established)"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "macos",
+    "arch": "x86_64",
+    "format": "macho64",
+    "sha256": "6c9e39198a9d4812e0ffee3d28616051bd07c773d64ba0481ba027b47fb8b34e",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x100000000",
+    "textSize": 39079936,
+    "segmentCount": 5,
+    "probeVersion": "e6-x86-discovery-v1",
+    "windowsStatus": "format_support_tested_synthetic_pe"
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "factoryStubs": 907,
+    "uniqueFactoryOpcodes": 842,
+    "coveredOpcodes": 187,
+    "coverageRatio": 0.8618,
+    "missingOpcodesSample": [
+      35,
+      101,
+      197,
+      209,
+      217,
+      232,
+      343,
+      386,
+      403,
+      487,
+      550,
+      564,
+      610,
+      627,
+      680,
+      744,
+      751,
+      778,
+      805,
+      873
+    ],
+    "constructorIdMatchesKey": 187,
+    "priorArt980": {
+      "opcode": 980,
+      "objectSize": 32,
+      "stubVa": "0x1012dc407",
+      "operatorNewVa": "0x10176f500",
+      "vtableLea": "0x102648230",
+      "vptr": "0x102648240",
+      "deserializeVa": "0x10148b5e0",
+      "useVa": "0x1014f0f30",
+      "virt": [
+        "0x1018d3070",
+        "0x10148b5e0",
+        "0x1014f0f30",
+        "0x1014f0f40",
+        "0x1014f0f50",
+        "0x1014f0f60"
+      ]
+    },
+    "priorArt982": null
+  },
+  "movementRanked": [
+    {
+      "opcode": 660,
+      "objectSize": 32,
+      "stubVa": "0x1012d960b",
+      "vptr": "0x10263af30",
+      "deserializeVa": "0x101339180",
+      "useVa": "0x101339190",
+      "blocks": 1721,
+      "payloadSizeCardinality": 2,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 19.0,
+      "e6DeserializeVaInvalid": "0x101339180",
+      "correctedDeserializeVa": "0x1014894f0",
+      "correctedVptr": "0x102647ee0"
+    },
+    {
+      "opcode": 54,
+      "objectSize": 32,
+      "stubVa": "0x1012d6957",
+      "vptr": "0x10263c530",
+      "deserializeVa": "0x10133c720",
+      "useVa": "0x10133c730",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 17.0
+    },
+    {
+      "opcode": 556,
+      "objectSize": 48,
+      "stubVa": "0x1012d8c4b",
+      "vptr": "0x102644638",
+      "deserializeVa": "0x101445c30",
+      "useVa": "0x1014e61a0",
+      "blocks": 37151,
+      "payloadSizeCardinality": 26,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 14,
+        "off18": 1,
+        "off20": 1,
+        "off28": 3,
+        "calls": 6,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 321,
+      "objectSize": 28,
+      "stubVa": "0x1012d5168",
+      "vptr": "0x10263ad80",
+      "deserializeVa": "0x101338e50",
+      "useVa": "0x101338e60",
+      "blocks": 456,
+      "payloadSizeCardinality": 2,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 780,
+      "objectSize": 28,
+      "stubVa": "0x1012da47e",
+      "vptr": "0x10263bd70",
+      "deserializeVa": "0x10133b350",
+      "useVa": "0x10133b360",
+      "blocks": 261,
+      "payloadSizeCardinality": 2,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 58,
+      "objectSize": 28,
+      "stubVa": "0x1012d697c",
+      "vptr": "0x10263c530",
+      "deserializeVa": "0x10133c720",
+      "useVa": "0x10133c730",
+      "blocks": 220,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 599,
+      "objectSize": 28,
+      "stubVa": "0x1012d5c97",
+      "vptr": "0x10263aea0",
+      "deserializeVa": "0x101339070",
+      "useVa": "0x101339080",
+      "blocks": 138,
+      "payloadSizeCardinality": 3,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 424,
+      "objectSize": 28,
+      "stubVa": "0x1012d8142",
+      "vptr": "0x10263ca68",
+      "deserializeVa": "0x10133d580",
+      "useVa": "0x10133d590",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 663,
+      "objectSize": 28,
+      "stubVa": "0x1012d9630",
+      "vptr": "0x10263af30",
+      "deserializeVa": "0x101339180",
+      "useVa": "0x101339190",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 1224,
+      "objectSize": 28,
+      "stubVa": "0x1012de8d0",
+      "vptr": "0x10263cca8",
+      "deserializeVa": "0x10133db80",
+      "useVa": "0x10133db90",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 16.0
+    },
+    {
+      "opcode": 774,
+      "objectSize": 40,
+      "stubVa": "0x1012da38d",
+      "vptr": "0x10263ce48",
+      "deserializeVa": "0x10133e000",
+      "useVa": "0x10133e010",
+      "blocks": 5141,
+      "payloadSizeCardinality": 4,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 15.0
+    },
+    {
+      "opcode": 632,
+      "objectSize": 52,
+      "stubVa": "0x1012d937b",
+      "vptr": "0x10263bff0",
+      "deserializeVa": "0x10133b7d0",
+      "useVa": "0x10133b7e0",
+      "blocks": 56622,
+      "payloadSizeCardinality": 3,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 14.0
+    },
+    {
+      "opcode": 420,
+      "objectSize": 36,
+      "stubVa": "0x1012dfaee",
+      "vptr": "0x10263b0e0",
+      "deserializeVa": "0x101339490",
+      "useVa": "0x1013394a0",
+      "blocks": 13353,
+      "payloadSizeCardinality": 1,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 14.0
+    },
+    {
+      "opcode": 173,
+      "objectSize": 48,
+      "stubVa": "0x1012d485d",
+      "vptr": "0x102644680",
+      "deserializeVa": "0x101446020",
+      "useVa": "0x1014e6390",
+      "blocks": 2664,
+      "payloadSizeCardinality": 5,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 14,
+        "off18": 1,
+        "off20": 1,
+        "off28": 3,
+        "calls": 6,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 14.0
+    },
+    {
+      "opcode": 290,
+      "objectSize": 32,
+      "stubVa": "0x1012d4f4e",
+      "vptr": "0x102642140",
+      "deserializeVa": "0x10142f580",
+      "useVa": "0x1014df8f0",
+      "blocks": 10616,
+      "payloadSizeCardinality": 18,
+      "deserScore": {
+        "ok": true,
+        "score": 8,
+        "movementish": false,
+        "off10": 1,
+        "off18": 1,
+        "off20": 1,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 13.0
+    },
+    {
+      "opcode": 577,
+      "objectSize": 40,
+      "stubVa": "0x1012d5b96",
+      "vptr": "0x10263a988",
+      "deserializeVa": "0x101338300",
+      "useVa": "0x101338310",
+      "blocks": 250,
+      "payloadSizeCardinality": 5,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 13.0
+    },
+    {
+      "opcode": 1026,
+      "objectSize": 40,
+      "stubVa": "0x1012dca33",
+      "vptr": "0x10263c1e0",
+      "deserializeVa": "0x10133bdd0",
+      "useVa": "0x10133bde0",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 13.0
+    },
+    {
+      "opcode": 1135,
+      "objectSize": 32,
+      "stubVa": "0x1012ddac7",
+      "vptr": "0x10264f288",
+      "deserializeVa": "0x1016022b0",
+      "useVa": "0x101645b00",
+      "blocks": 77,
+      "payloadSizeCardinality": 26,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 8,
+        "off18": 3,
+        "off20": 2,
+        "off28": 0,
+        "calls": 5,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 388,
+      "objectSize": 48,
+      "stubVa": "0x1012d5484",
+      "vptr": "0x102642970",
+      "deserializeVa": "0x101431760",
+      "useVa": "0x1014e0d80",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 8,
+        "off18": 3,
+        "off20": 2,
+        "off28": 2,
+        "calls": 10,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 673,
+      "objectSize": 48,
+      "stubVa": "0x1012d5eaa",
+      "vptr": "0x1026501e8",
+      "deserializeVa": "0x10160a1f0",
+      "useVa": "0x101649160",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 8,
+        "off18": 3,
+        "off20": 2,
+        "off28": 3,
+        "calls": 10,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 158,
+      "objectSize": 48,
+      "stubVa": "0x1012d6c67",
+      "vptr": "0x10264ebc8",
+      "deserializeVa": "0x1015f7ca0",
+      "useVa": "0x101644510",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 2,
+        "off18": 1,
+        "off20": 1,
+        "off28": 4,
+        "calls": 6,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 315,
+      "objectSize": 48,
+      "stubVa": "0x1012d7520",
+      "vptr": "0x102647c18",
+      "deserializeVa": "0x101487200",
+      "useVa": "0x1014efe80",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 1,
+        "off18": 4,
+        "off20": 3,
+        "off28": 8,
+        "calls": 10,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 328,
+      "objectSize": 48,
+      "stubVa": "0x1012d75cd",
+      "vptr": "0x1026430f8",
+      "deserializeVa": "0x101439070",
+      "useVa": "0x1014e2460",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 8,
+        "off18": 8,
+        "off20": 2,
+        "off28": 2,
+        "calls": 9,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 507,
+      "objectSize": 20,
+      "stubVa": "0x1012d8775",
+      "vptr": "0x10263b518",
+      "deserializeVa": "0x101339db0",
+      "useVa": "0x101339dc0",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 12.0
+    },
+    {
+      "opcode": 513,
+      "objectSize": 36,
+      "stubVa": "0x1012d879a",
+      "vptr": "0x10263b518",
+      "deserializeVa": "0x101339db0",
+      "useVa": "0x101339dc0",
+      "blocks": 0,
+      "payloadSizeCardinality": 0,
+      "deserScore": {
+        "ok": true,
+        "score": 7,
+        "movementish": true,
+        "off10": 2,
+        "off18": 0,
+        "off20": 2,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "rankScore": 12.0
+    }
+  ],
+  "emulateReports": [
+    {
+      "opcode": 660,
+      "objectSize": 32,
+      "deserializeVa": "0x101339180",
+      "rankScore": 19.0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": [
+        {
+          "time": 144.352,
+          "payloadLen": 14,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 144.486,
+          "payloadLen": 24,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 144.753,
+          "payloadLen": 24,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        }
+      ]
+    },
+    {
+      "opcode": 556,
+      "objectSize": 48,
+      "deserializeVa": "0x101445c30",
+      "rankScore": 16.0,
+      "deserScore": {
+        "ok": true,
+        "score": 9,
+        "movementish": false,
+        "off10": 14,
+        "off18": 1,
+        "off20": 1,
+        "off28": 3,
+        "calls": 6,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      },
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": [
+        {
+          "time": 60.02,
+          "payloadLen": 69,
+          "ok": false,
+          "consumed": 3,
+          "error": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 60.128,
+          "payloadLen": 75,
+          "ok": true,
+          "consumed": 7,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 60.195,
+          "payloadLen": 114,
+          "ok": true,
+          "consumed": 7,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        }
+      ]
+    },
+    {
+      "opcode": 321,
+      "objectSize": 28,
+      "deserializeVa": "0x101338e50",
+      "rankScore": 16.0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": [
+        {
+          "time": 338.014,
+          "payloadLen": 3,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 382.094,
+          "payloadLen": 4,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 388.711,
+          "payloadLen": 4,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        }
+      ]
+    },
+    {
+      "opcode": 780,
+      "objectSize": 28,
+      "deserializeVa": "0x10133b350",
+      "rankScore": 16.0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": [
+        {
+          "time": 110.276,
+          "payloadLen": 2,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 110.276,
+          "payloadLen": 2,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        },
+        {
+          "time": 110.276,
+          "payloadLen": 2,
+          "ok": false,
+          "consumed": 0,
+          "error": null,
+          "pathHits": [],
+          "allocs": []
+        }
+      ]
+    },
+    {
+      "opcode": 58,
+      "objectSize": 28,
+      "deserializeVa": "0x10133c720",
+      "rankScore": 16.0,
+      "deserScore": {
+        "ok": true,
+        "score": 11,
+        "movementish": true,
+        "off10": 2,
+        "off18": 2,
+        "off20": 0,
+        "off28": 0,
+        "calls": 1,
+        "callNew": 1,
+        "ptrStoreAfterNew": 1
+      },
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": []
+    },
+    {
+      "opcode": 980,
+      "objectSize": 32,
+      "deserializeVa": "0x10148b5e0",
+      "skipped": "no_rofl_payloads",
+      "deserScore": {
+        "ok": true,
+        "score": 5,
+        "movementish": false,
+        "off10": 19,
+        "off18": 5,
+        "off20": 0,
+        "off28": 0,
+        "calls": 10,
+        "callNew": 0,
+        "ptrStoreAfterNew": 0
+      }
+    }
+  ],
+  "winner": null,
+  "winnerFound": false,
+  "structuralBlocker": {
+    "kind": "x86_movement_path_not_proven",
+    "detail": "Constructor/vtable discovery on exact-patch x86_64 succeeded with high ROFL opcode coverage, but no candidate produced PathPacket buffers that pass oracle gates under Unicorn x86 Deserialize. Prior-art opcode 980 exists as a factory type but objectSize=32 (not classic 48) and blocks=0 on this ROFL.",
+    "topRanked": [
+      {
+        "opcode": 660,
+        "objectSize": 32,
+        "blocks": 1721,
+        "rankScore": 19.0,
+        "movementish": true
+      },
+      {
+        "opcode": 54,
+        "objectSize": 32,
+        "blocks": 0,
+        "rankScore": 17.0,
+        "movementish": true
+      },
+      {
+        "opcode": 556,
+        "objectSize": 48,
+        "blocks": 37151,
+        "rankScore": 16.0,
+        "movementish": false
+      },
+      {
+        "opcode": 321,
+        "objectSize": 28,
+        "blocks": 456,
+        "rankScore": 16.0,
+        "movementish": true
+      },
+      {
+        "opcode": 780,
+        "objectSize": 28,
+        "blocks": 261,
+        "rankScore": 16.0,
+        "movementish": true
+      },
+      {
+        "opcode": 58,
+        "objectSize": 28,
+        "blocks": 220,
+        "rankScore": 16.0,
+        "movementish": true
+      },
+      {
+        "opcode": 599,
+        "objectSize": 28,
+        "blocks": 138,
+        "rankScore": 16.0,
+        "movementish": true
+      },
+      {
+        "opcode": 424,
+        "objectSize": 28,
+        "blocks": 0,
+        "rankScore": 16.0,
+        "movementish": true
+      }
+    ]
+  },
+  "pureDecoderConfig": {
+    "decoderVersion": "e6-pending-wire-v0",
+    "productEligible": false,
+    "browserSafe": false,
+    "requiresLeagueBinary": true,
+    "requiresUnicorn": true,
+    "osNeutralWireGoal": true,
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "architecture": "Offline per-patch manifests derived on PE (Windows) or Mach-O x86_64 (Mac universal thin). One shared TS/WASM PathPacket/wire decoder in browser Worker; optional Blob+background worker for unknown patches. Never ship League binary or Unicorn to Vercel/browser.",
+    "windowsStatus": "format_support_tested_synthetic_pe"
+  },
+  "productEligible": false,
+  "browserSafe": false,
+  "pureBrowserDecoderDerived": false,
+  "osNeutralArchitectureDocumented": true,
+  "windowsFormatSupport": "tested_via_synthetic_pe_fixtures",
+  "windowsRealBinaryValidated": false,
+  "endToEndWallMs": 15739.476,
+  "keep": "discard",
+  "reason": "E6 discard: x86 constructor map ok, but MOVEMENT_PATH PathPacket not proven under Unicorn for observed opcodes",
+  "nextSingleVariableHypothesis": "E7: run same scanner against a real Windows 16.14 PE (format already supported) or deepen x86 Deserialize alloc hooks / UsePacket bind for top-ranked size-48 types (556/107) without assuming ARM64 offsets",
+  "speedRun": {
+    "runId": "speed-9723833d9127",
+    "ts": "2026-07-22T18:48:50.004413Z",
+    "matchCode": "3264361042",
+    "backend": "offline-025b",
+    "hypothesis": "E6: exact-patch x86_64 constructor/vtable MOVEMENT_PATH discovery",
+    "diffLabel": "phase-b-e6-x86",
+    "wallMs": 15739.476,
+    "keep": "discard",
+    "reason": "E6 discard: x86 constructor map ok, but MOVEMENT_PATH PathPacket not proven under Unicorn for observed opcodes",
+    "productEligible": false,
+    "decoderVersion": "offline-025b-v1",
+    "provenance": "offline_rofl2_025b_research",
+    "phase": "B-E6",
+    "winnerFound": false,
+    "winner": null,
+    "constructorCoverage": {
+      "roflOpcodes": 217,
+      "factoryStubs": 907,
+      "uniqueFactoryOpcodes": 842,
+      "coveredOpcodes": 187,
+      "coverageRatio": 0.8618,
+      "missingOpcodesSample": [
+        35,
+        101,
+        197,
+        209,
+        217,
+        232,
+        343,
+        386,
+        403,
+        487,
+        550,
+        564,
+        610,
+        627,
+        680,
+        744,
+        751,
+        778,
+        805,
+        873
+      ],
+      "constructorIdMatchesKey": 187,
+      "priorArt980": {
+        "opcode": 980,
+        "objectSize": 32,
+        "stubVa": 4314743815,
+        "operatorNewVa": 4319540480,
+        "vtableLea": 4335108656,
+        "vptr": 4335108672,
+        "virt": [
+          4320997488,
+          4316509664,
+          4316925744,
+          4316925760,
+          4316925776,
+          4316925792
+        ],
+        "deserializeVa": 4316509664,
+        "useVa": 4316925744
+      },
+      "priorArt982": null
+    },
+    "structuralBlocker": {
+      "kind": "x86_movement_path_not_proven",
+      "detail": "Constructor/vtable discovery on exact-patch x86_64 succeeded with high ROFL opcode coverage, but no candidate produced PathPacket buffers that pass oracle gates under Unicorn x86 Deserialize. Prior-art opcode 980 exists as a factory type but objectSize=32 (not classic 48) and blocks=0 on this ROFL.",
+      "topRanked": [
+        {
+          "opcode": 660,
+          "objectSize": 32,
+          "blocks": 1721,
+          "rankScore": 19.0,
+          "movementish": true
+        },
+        {
+          "opcode": 54,
+          "objectSize": 32,
+          "blocks": 0,
+          "rankScore": 17.0,
+          "movementish": true
+        },
+        {
+          "opcode": 556,
+          "objectSize": 48,
+          "blocks": 37151,
+          "rankScore": 16.0,
+          "movementish": false
+        },
+        {
+          "opcode": 321,
+          "objectSize": 28,
+          "blocks": 456,
+          "rankScore": 16.0,
+          "movementish": true
+        },
+        {
+          "opcode": 780,
+          "objectSize": 28,
+          "blocks": 261,
+          "rankScore": 16.0,
+          "movementish": true
+        },
+        {
+          "opcode": 58,
+          "objectSize": 28,
+          "blocks": 220,
+          "rankScore": 16.0,
+          "movementish": true
+        },
+        {
+          "opcode": 599,
+          "objectSize": 28,
+          "blocks": 138,
+          "rankScore": 16.0,
+          "movementish": true
+        },
+        {
+          "opcode": 424,
+          "objectSize": 28,
+          "blocks": 0,
+          "rankScore": 16.0,
+          "movementish": true
+        }
+      ]
+    },
+    "binaryManifest": {
+      "kind": "league_packet_discovery_binary",
+      "patch": "16.14",
+      "platform": "macos",
+      "arch": "x86_64",
+      "format": "macho64",
+      "sha256": "6c9e39198a9d4812e0ffee3d28616051bd07c773d64ba0481ba027b47fb8b34e",
+      "pathNote": "local derivation only; never commit Riot binaries",
+      "derivationStatus": "derived_offline",
+      "textVa": "0x100000000",
+      "textSize": 39079936,
+      "segmentCount": 5,
+      "probeVersion": "e6-x86-discovery-v1",
+      "windowsStatus": "format_support_tested_synthetic_pe"
+    },
+    "pureBrowserDecoderDerived": false,
+    "browserSafe": false,
+    "windowsFormatSupport": "tested_via_synthetic_pe_fixtures",
+    "windowsRealBinaryValidated": false,
+    "endToEndWallMs": 15739.476,
+    "nextSingleVariableHypothesis": "E7: run same scanner against a real Windows 16.14 PE (format already supported) or deepen x86 Deserialize alloc hooks / UsePacket bind for top-ranked size-48 types (556/107) without assuming ARM64 offsets",
+    "statsUpdateCount": 0,
+    "source": "offline_e6_x86_discovery",
+    "researchKeep": "discard"
+  },
+  "e6FabricatedObjectNegatives": {
+    "status": "invalid",
+    "reason": "E6 unicorn_x86_try_deserialize fabricated a zero object with only opcode@+8 and never called stubVa; vtable recovery could bleed into the next factory stub (wrong Deserialize for opcode 660: 0x101339180 vs true 0x1014894f0).",
+    "replacement": "E7a constructed factory\u2192Deserialize drive",
+    "supersededBy": "docs/rofl-research/movement-x86-e7a-constructed-BR1-3264361042.json"
+  },
+  "note": "E6 PathPacket negatives are invalid due to fabricated objects; see E7a for constructed-object results."
+}

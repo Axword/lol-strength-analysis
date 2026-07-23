@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent, WheelEvent as ReactWheelEvent } from 'react'
-import { championIconUrl } from '../data/champions'
+import { championIconUrl, getChampion } from '../data/champions'
 import { itemIconUrl } from '../data/items'
-import { CHAMPIONS } from '../data/champions'
 import { campIconUrl, campMarkerSize, structureIconUrl, structureMarkerSize } from '../data/mapIcons'
 import { SR_CAMPS, SR_STRUCTURES } from '../data/srLayout'
 import { formatGameTime } from '../game/parseSnapshot'
@@ -704,7 +703,7 @@ export function MapView({
           {snapshot.units.map((unit) => {
             const { cx, cy } = toSvg(unit.position)
             const selected = selectedIds.includes(unit.id)
-            const champ = CHAMPIONS[unit.loadout.championId]
+            const champ = getChampion(unit.loadout.championId)
             const order = selectedIds.indexOf(unit.id)
             const r = (selected ? 18 : 15) * markerScale
             const img = 26 * markerScale
@@ -845,7 +844,7 @@ export function UnitRoster({
   return (
     <ul className="unit-roster">
       {snapshot.units.map((unit) => {
-        const champ = CHAMPIONS[unit.loadout.championId]
+        const champ = getChampion(unit.loadout.championId)
         const selected = selectedIds.includes(unit.id)
         return (
           <li key={unit.id}>

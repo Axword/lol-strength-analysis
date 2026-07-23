@@ -108,6 +108,175 @@ def _stable_identity(row: Mapping[str, Any], *, label: str) -> str:
     raise DecryptError(f"{label} lacks stable PUUID/full Riot ID")
 
 
+def _riot_id_full(row: Mapping[str, Any]) -> str:
+    riot = row.get("riotId")
+    if isinstance(riot, Mapping):
+        full = str(riot.get("full") or "").strip()
+        if full and "#" in full:
+            return full
+    game_name = str(row.get("riotIdGameName") or "").strip()
+    tag = str(row.get("riotIdTagLine") or "").strip()
+    if game_name and tag:
+        return f"{game_name}#{tag}"
+    for key in ("fullRiotId", "summonerName", "playerName"):
+        value = str(row.get(key) or "").strip()
+        if value and "#" in value:
+            return value
+    return ""
+
+
+def _champion_name(row: Mapping[str, Any]) -> str:
+    champ = row.get("champion")
+    if isinstance(champ, Mapping):
+        return str(
+            champ.get("raw") or champ.get("display") or champ.get("asset") or ""
+        ).strip()
+    return str(row.get("championName") or champ or "").strip()
+
+
+def backfill_game_info_identities_from_manifest(
+    rows: Sequence[Mapping[str, Any]],
+    replay_manifest: Mapping[str, Any],
+) -> List[dict]:
+    """Fill missing game_info PUUID/Riot ID fields from the same-match manifest.
+
+    Replay API / liveclient captures often carry ``awakening#0000`` in
+    summonerName while leaving ``puuid`` null. Product fuse keys roster by
+    PUUID from ROFL ``statsJson`` in the manifest — backfill closes that gap
+    without inventing identities.
+    """
+    manifest_rows = replay_manifest.get("participants")
+    if not isinstance(manifest_rows, list) or len(manifest_rows) != 10:
+        raise DecryptError("replay manifest participants must contain exactly 10 rows")
+
+    by_riot: Dict[str, Mapping[str, Any]] = {}
+    by_champ: Dict[str, Mapping[str, Any]] = {}
+    for index, raw in enumerate(manifest_rows):
+        row = _object(raw, f"replay manifest participants[{index}]")
+        riot_full = _riot_id_full(row)
+        if riot_full:
+            key = riot_full.casefold()
+            if key in by_riot:
+                raise DecryptError(f"duplicate manifest Riot ID {riot_full!r}")
+            by_riot[key] = row
+        champ = _champion_name(row)
+        if champ:
+            ckey = champ.casefold()
+            if ckey in by_champ:
+                # Ambiguous champion duplicate — Riot ID match only.
+                by_champ.pop(ckey, None)
+            else:
+                by_champ[ckey] = row
+
+    out: List[dict] = []
+    for row in rows:
+        copied = dict(row)
+        if copied.get("rfc461Schema") != "game_info":
+            out.append(copied)
+            continue
+        participants = copied.get("participants")
+        if not isinstance(participants, list) or len(participants) != 10:
+            raise DecryptError("canonical game_info must list exactly 10 participants")
+        patched: List[dict] = []
+        used_keys: set[str] = set()
+        for index, raw_participant in enumerate(participants):
+            participant = dict(_object(raw_participant, f"game_info participants[{index}]"))
+            try:
+                existing = _stable_identity(
+                    participant, label=f"game_info participants[{index}]"
+                )
+            except DecryptError:
+                existing = ""
+            if existing.startswith("puuid:"):
+                patched.append(participant)
+                used_keys.add(existing)
+                continue
+            riot_full = _riot_id_full(participant)
+            match = by_riot.get(riot_full.casefold()) if riot_full else None
+            if match is None:
+                champ = _champion_name(participant)
+                match = by_champ.get(champ.casefold()) if champ else None
+            if match is None:
+                raise DecryptError(
+                    f"game_info participants[{index}] has no ROFL/manifest identity match"
+                )
+            puuid = str(match.get("puuid") or "").strip()
+            riot = match.get("riotId") if isinstance(match.get("riotId"), Mapping) else {}
+            game_name = str(riot.get("gameName") or "").strip()
+            tag = str(riot.get("tagLine") or "").strip()
+            full = str(riot.get("full") or "").strip()
+            if not puuid and not (full and "#" in full):
+                raise DecryptError(
+                    f"manifest identity for game_info participants[{index}] is incomplete"
+                )
+            if puuid:
+                participant["puuid"] = puuid
+            if game_name:
+                participant["riotIdGameName"] = game_name
+            if tag:
+                participant["riotIdTagLine"] = tag
+            if full and "#" in full:
+                participant["riotId"] = {
+                    "gameName": game_name or full.split("#", 1)[0],
+                    "tagLine": tag or full.split("#", 1)[1],
+                    "full": full,
+                    "normalized": full.casefold(),
+                }
+                if not participant.get("summonerName"):
+                    participant["summonerName"] = full
+                if not participant.get("playerName"):
+                    participant["playerName"] = full
+            key = _stable_identity(
+                participant, label=f"game_info participants[{index}]"
+            )
+            if key in used_keys:
+                raise DecryptError(f"duplicate backfilled identity {key!r}")
+            used_keys.add(key)
+            patched.append(participant)
+        copied["participants"] = patched
+        out.append(copied)
+    return out
+
+
+def align_hp_samples_to_stats_frames(
+    samples: Sequence[Mapping[str, Any]],
+    frame_times_ms: Sequence[int],
+    *,
+    max_delta_ms: int = MAX_PRODUCT_TIME_TOLERANCE_MS,
+) -> List[dict]:
+    """Snap decrypt sample times onto Replay API 1Hz frame times within tolerance."""
+    if not frame_times_ms:
+        raise DecryptError("cannot align HP samples without stats_update frame times")
+    frames = sorted({int(t) for t in frame_times_ms})
+    aligned: List[dict] = []
+    used: set[int] = set()
+    for index, raw in enumerate(samples):
+        sample = dict(_object(raw, f"HP sample[{index}]"))
+        try:
+            source_t = int(sample.get("gameTimeMs"))
+        except (TypeError, ValueError):
+            raise DecryptError(f"HP sample[{index}] is untimed") from None
+        nearest = min(frames, key=lambda frame: abs(frame - source_t))
+        delta = abs(nearest - source_t)
+        if delta > int(max_delta_ms):
+            continue
+        if nearest in used:
+            continue
+        used.add(nearest)
+        sample["gameTimeMs"] = nearest
+        sample["alignment"] = {
+            "sourceGameTimeMs": source_t,
+            "snappedToFrameMs": nearest,
+            "deltaMs": delta,
+        }
+        aligned.append(sample)
+    if len(aligned) < 2:
+        raise DecryptError(
+            "fewer than two HP samples align to Replay API frames within tolerance"
+        )
+    return aligned
+
+
 def _identity_rows(
     rows: Any,
     *,
@@ -317,6 +486,7 @@ def _validate_product_sources(
     net_ids: set[int] = set()
     pid_to_net: Dict[int, int] = {}
     pid_to_identity: Dict[int, str] = {}
+    pid_to_roster_label: Dict[int, Dict[str, str]] = {}
     for identity, row in binding_identities.items():
         try:
             net_id = int(row.get("netId"))
@@ -328,6 +498,17 @@ def _validate_product_sources(
         participant_id = pid_by_identity[identity]
         pid_to_net[participant_id] = net_id
         pid_to_identity[participant_id] = identity
+        champ = str(row.get("champion") or "").strip()
+        full = str(row.get("fullRiotId") or "").strip()
+        if not champ or not full or "#" not in full:
+            raise DecryptError(
+                f"binding {identity!r} missing champion/fullRiotId for roster labels"
+            )
+        pid_to_roster_label[participant_id] = {
+            "championName": champ,
+            "fullRiotId": full,
+            "playerName": full.split("#", 1)[0],
+        }
 
     timing = _object(hp_evidence.get("timing"), "HP evidence timing")
     if timing.get("unit") != "milliseconds" or timing.get("clock") != "replay_game_time":
@@ -391,6 +572,7 @@ def _validate_product_sources(
         game_info,
         pid_to_net,
         pid_to_identity,
+        pid_to_roster_label,
         samples,
         tolerance_ms,
     )
@@ -512,14 +694,44 @@ def fuse_product(
     time_tolerance_ms: Optional[int] = None,
 ) -> tuple[List[dict], dict[str, Any]]:
     """Fuse only timed, same-match, identity-bound Replication HP evidence."""
+    working_rows = backfill_game_info_identities_from_manifest(rows, replay_manifest)
+    evidence = dict(hp_evidence)
+    frame_times = [
+        int(row.get("gameTime") or 0)
+        for row in working_rows
+        if row.get("rfc461Schema") == "stats_update"
+    ]
+    timing = dict(evidence.get("timing") or {})
+    try:
+        evidence_tol = int(timing.get("toleranceMs"))
+    except (TypeError, ValueError):
+        raise DecryptError("HP evidence toleranceMs missing/invalid") from None
+    if not 0 <= evidence_tol <= MAX_PRODUCT_TIME_TOLERANCE_MS:
+        raise DecryptError(
+            f"HP evidence tolerance must be 0..{MAX_PRODUCT_TIME_TOLERANCE_MS}ms"
+        )
+    evidence["samples"] = align_hp_samples_to_stats_frames(
+        list(evidence.get("samples") or []),
+        frame_times,
+        max_delta_ms=MAX_PRODUCT_TIME_TOLERANCE_MS,
+    )
+    timing["toleranceMs"] = evidence_tol
+    timing["unit"] = timing.get("unit") or "milliseconds"
+    timing["clock"] = timing.get("clock") or "replay_game_time"
+    timing["alignmentNote"] = (
+        "Replication decrypt times snapped to nearest Replay API 1Hz frame "
+        f"within {MAX_PRODUCT_TIME_TOLERANCE_MS}ms"
+    )
+    evidence["timing"] = timing
     (
         coverage,
         _game_info,
         pid_to_net,
         pid_to_identity,
+        pid_to_roster_label,
         samples,
         evidence_tolerance,
-    ) = _validate_product_sources(rows, replay_manifest, hp_evidence)
+    ) = _validate_product_sources(working_rows, replay_manifest, evidence)
     tolerance_ms = evidence_tolerance
     if time_tolerance_ms is not None:
         requested = int(time_tolerance_ms)
@@ -530,7 +742,7 @@ def fuse_product(
             )
         tolerance_ms = requested
 
-    stats = [row for row in rows if row.get("rfc461Schema") == "stats_update"]
+    stats = [row for row in working_rows if row.get("rfc461Schema") == "stats_update"]
     if not stats:
         raise DecryptError("product fusion requires stats_update frames")
     expected_pids = set(pid_to_net)
@@ -567,13 +779,38 @@ def fuse_product(
                     "HP-only fusion requires combat and ability ranks to remain unknown"
                 )
 
+    def _apply_roster_labels(participant: Mapping[str, Any], pid: int) -> dict:
+        fused = dict(participant)
+        labels = pid_to_roster_label[pid]
+        # Capture frames can scramble championName/playerName onto the wrong
+        # participantID while HP still binds correctly by identity→pid→netId.
+        fused["championName"] = labels["championName"]
+        fused["playerName"] = labels["playerName"]
+        fused["summonerName"] = labels["fullRiotId"]
+        champ = fused.get("champion")
+        if isinstance(champ, Mapping):
+            nested = dict(champ)
+            nested["raw"] = labels["championName"]
+            nested["asset"] = labels["championName"]
+            fused["champion"] = nested
+        return fused
+
     out: List[dict] = []
     fused_frames = 0
     fused_rows = 0
     sample_times_used: set[int] = set()
-    for original in rows:
+    for original in working_rows:
         if original.get("rfc461Schema") == "rofl_coverage":
             out.append(dict(original))
+            continue
+        if original.get("rfc461Schema") == "game_info":
+            gi = dict(original)
+            gi_participants = []
+            for participant in original.get("participants") or []:
+                pid = int(participant["participantID"])
+                gi_participants.append(_apply_roster_labels(participant, pid))
+            gi["participants"] = gi_participants
+            out.append(gi)
             continue
         if original.get("rfc461Schema") != "stats_update":
             out.append(dict(original))
@@ -597,6 +834,10 @@ def fuse_product(
         delta_ms = abs(sample_time - frame_time)
         if nearest is None:
             unmatched = dict(original)
+            unmatched["participants"] = [
+                _apply_roster_labels(participant, int(participant["participantID"]))
+                for participant in original.get("participants") or []
+            ]
             unmatched["hpEvidence"] = {
                 "source": TRUSTED_HEALTH_SOURCE,
                 "coverage": "unknown_no_aligned_sample",
@@ -612,7 +853,7 @@ def fuse_product(
             pid = int(participant["participantID"])
             net_id = pid_to_net[pid]
             hp, hp_max = nearest["byNetId"][net_id]
-            fused = dict(participant)
+            fused = _apply_roster_labels(participant, pid)
             fused["health"] = hp
             fused["healthMax"] = hp_max
             fused["healthSource"] = TRUSTED_HEALTH_SOURCE
@@ -646,7 +887,7 @@ def fuse_product(
     hp_coverage = "full" if fused_frames == len(stats) else "partial"
     evidence_sha = hashlib.sha256(
         json.dumps(
-            hp_evidence,
+            evidence,
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
@@ -664,7 +905,7 @@ def fuse_product(
             "hpFixtureEvidence": False,
             "hpCreateHeroOrderFallback": False,
             "hpIdentityBinding": TRUSTED_BINDING_METHOD,
-            "hpRosterHash": hp_evidence["rosterHash"],
+            "hpRosterHash": evidence["rosterHash"],
             "hpTimeUnit": "milliseconds",
             "hpTimeClock": "replay_game_time",
             "hpTimeToleranceMs": tolerance_ms,
@@ -715,10 +956,11 @@ def fuse_product(
         "sampleTimesUsed": len(sample_times_used),
         "timeToleranceMs": tolerance_ms,
         "identityBinding": TRUSTED_BINDING_METHOD,
-        "rosterHash": hp_evidence["rosterHash"],
+        "rosterHash": evidence["rosterHash"],
         "evidenceSha256": evidence_sha,
         "combatStatsKnown": False,
         "abilityRanksKnown": False,
+        "alignedEvidence": evidence,
     }
     return out, summary
 
@@ -906,6 +1148,13 @@ def main() -> int:
         except (OSError, json.JSONDecodeError, DecryptError, ValueError) as exc:
             print(f"product fuse error: {exc}", file=sys.stderr)
             return 1
+        aligned = summary.pop("alignedEvidence", None)
+        if isinstance(aligned, dict):
+            tmp = args.hp_evidence.with_name(
+                f".{args.hp_evidence.name}.{os.getpid()}.tmp"
+            )
+            tmp.write_text(json.dumps(aligned, indent=2) + "\n", encoding="utf-8")
+            os.replace(tmp, args.hp_evidence)
         _write_jsonl(args.output, fused)
         print(json.dumps({"output": str(args.output), **summary}, indent=2))
         return 0

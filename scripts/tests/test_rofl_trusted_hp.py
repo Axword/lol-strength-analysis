@@ -172,6 +172,7 @@ def hp_evidence(times: tuple[int, ...] = TIMES) -> dict:
                 {
                     "puuid": f"puuid-{index}",
                     "fullRiotId": f"Player {index}#BR1",
+                    "champion": f"Champion{index}",
                     "netId": 1000 + index,
                 }
                 for index in range(1, 11)
@@ -228,6 +229,10 @@ class TrustedHpFusionTests(unittest.TestCase):
                 participant["abilityRanksSource"],
                 "unavailable_replay_api",
             )
+            pid = int(participant["participantID"])
+            self.assertEqual(participant["championName"], f"Champion{pid}")
+            self.assertEqual(participant["playerName"], f"Player {pid}")
+            self.assertEqual(participant["summonerName"], f"Player {pid}#BR1")
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -260,6 +265,56 @@ class TrustedHpFusionTests(unittest.TestCase):
         self.assertTrue(strict["trustedHpGate"]["ok"])
         self.assertFalse(strict["trustedHpGate"]["calculatorReady"])
 
+    def test_scrambled_capture_labels_rewritten_from_binding(self) -> None:
+        """Replay capture can put Wukong's name on Sona's pid; HP still binds by identity.
+
+        Product fuse must rewrite champion/player labels from the validated binding
+        so timeline units never show MonkeyKing wearing another champ's HP.
+        """
+        rows = replay_rows()
+        for row in rows:
+            if row.get("rfc461Schema") != "stats_update":
+                continue
+            # Rotate blue labels: pid2 gets pid5's name, pid5 gets pid2's name.
+            by_pid = {int(p["participantID"]): p for p in row["participants"]}
+            by_pid[2]["championName"] = "Sona"
+            by_pid[2]["playerName"] = "Player 5"
+            by_pid[2]["summonerName"] = "Player 5#BR1"
+            by_pid[5]["championName"] = "MonkeyKing"
+            by_pid[5]["playerName"] = "Player 2"
+            by_pid[5]["summonerName"] = "Player 2#BR1"
+        evidence = hp_evidence()
+        evidence["identityBinding"]["participants"][1]["champion"] = "MonkeyKing"
+        evidence["identityBinding"]["participants"][4]["champion"] = "Sona"
+        fused, _summary = fuse.fuse_product(
+            rows,
+            replay_manifest=replay_manifest(),
+            hp_evidence=evidence,
+        )
+        stats = next(row for row in fused if row.get("rfc461Schema") == "stats_update")
+        by_pid = {int(p["participantID"]): p for p in stats["participants"]}
+        self.assertEqual(by_pid[2]["championName"], "MonkeyKing")
+        self.assertEqual(by_pid[2]["playerName"], "Player 2")
+        self.assertEqual(by_pid[5]["championName"], "Sona")
+        self.assertEqual(by_pid[5]["playerName"], "Player 5")
+
+        # Timeline must also prefer game_info over scrambled stats labels.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            jsonl = root / "events.jsonl"
+            # Pretend game_info is correct while stats stay scrambled (pre-fuse path).
+            scrambled = copy.deepcopy(rows)
+            rfc461_emit.write_jsonl(jsonl, scrambled)
+            timeline = jsonl_to_timeline.build_timeline(
+                jsonl,
+                timeline_id=MATCH_CODE,
+                name=MATCH_CODE,
+                patch=PATCH,
+            )
+        unit_by_pid = {u["pid"]: u for u in timeline["frames"][0]["units"]}
+        self.assertEqual(unit_by_pid[2]["champ"], "Champion2")
+        self.assertEqual(unit_by_pid[5]["champ"], "Champion5")
+
     def test_unmatched_frame_remains_unknown_and_coverage_is_partial(self) -> None:
         fused, summary = fuse.fuse_product(
             replay_rows((60_000, 61_000, 62_000)),
@@ -286,18 +341,59 @@ class TrustedHpFusionTests(unittest.TestCase):
         evidence = hp_evidence((60_500, 999_000))
         evidence["timing"]["toleranceMs"] = 500
         fused, summary = fuse.fuse_product(
-            replay_rows(),
+            replay_rows((60_000, 61_000, 999_000)),
             replay_manifest=replay_manifest(),
             hp_evidence=evidence,
         )
-        self.assertEqual(summary["fusedFrames"], 1)
-        self.assertEqual(summary["sampleTimesUsed"], 1)
+        self.assertEqual(summary["fusedFrames"], 2)
+        self.assertEqual(summary["sampleTimesUsed"], 2)
         self.assertEqual(summary["coverage"], "partial")
         stats = [row for row in fused if row.get("rfc461Schema") == "stats_update"]
         self.assertEqual(
             [row["hpEvidence"]["coverage"] for row in stats],
-            ["known_at_sampled_frame", "unknown_no_aligned_sample"],
+            [
+                "known_at_sampled_frame",
+                "unknown_no_aligned_sample",
+                "known_at_sampled_frame",
+            ],
         )
+
+    def test_backfill_null_puuid_from_manifest_riot_id(self) -> None:
+        rows = replay_rows()
+        for participant in rows[1]["participants"]:
+            participant.pop("puuid")
+        manifest = replay_manifest()
+        for index, participant in enumerate(manifest["participants"], start=1):
+            participant["riotId"] = {"full": f"Player {index}#BR1"}
+        fused, summary = fuse.fuse_product(
+            rows,
+            replay_manifest=manifest,
+            hp_evidence=hp_evidence(),
+        )
+        self.assertTrue(summary["ok"])
+        game_info = next(row for row in fused if row.get("rfc461Schema") == "game_info")
+        self.assertEqual(game_info["participants"][0]["puuid"], "puuid-1")
+        self.assertEqual(
+            fused[2]["participants"][0]["healthIdentityKey"],
+            "puuid:puuid-1",
+        )
+
+    def test_decrypt_times_snap_onto_replay_api_frame_grid(self) -> None:
+        evidence = hp_evidence((60_325, 61_206))
+        evidence["timing"]["toleranceMs"] = 100
+        fused, summary = fuse.fuse_product(
+            replay_rows(),
+            replay_manifest=replay_manifest(),
+            hp_evidence=evidence,
+        )
+        self.assertEqual(summary["fusedFrames"], 2)
+        self.assertEqual(
+            [s["gameTimeMs"] for s in summary["alignedEvidence"]["samples"]],
+            [60_000, 61_000],
+        )
+        stats = [row for row in fused if row.get("rfc461Schema") == "stats_update"]
+        self.assertEqual(stats[0]["participants"][0]["healthSampleGameTimeMs"], 60_000)
+        self.assertEqual(stats[0]["participants"][0]["healthSampleDeltaMs"], 0)
 
     def test_match_patch_hash_and_roster_mismatches_fail(self) -> None:
         scenarios = (

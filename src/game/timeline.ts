@@ -1,5 +1,5 @@
 import type { FighterLoadout } from '../engine/types'
-import { CHAMPIONS } from '../data/champions'
+import { getChampion, resolveChampionId } from '../data/champions'
 import { KEYSTONE_ID_TO_SLUG, resolveRuneId } from '../data/runes'
 import type { GameSnapshot, GameUnit, LaneRole, TeamSide } from './types'
 import { formatGameTime } from './parseSnapshot'
@@ -430,14 +430,14 @@ export function unitToLoadout(
     liveStats.ad = u.ad
     liveStats.ap = u.ap
     liveStats.attackSpeed = (() => {
-      const base = CHAMPIONS[u.champ]?.stats.attackspeed ?? 0.625
+      const base = getChampion(u.champ)?.stats.attackspeed ?? 0.625
       return Math.max(0.2, base * ((u.as || 100) / 100))
     })()
   }
 
   const ranksKnown = abilityRanksAreKnown(u)
   return {
-    championId: u.champ,
+    championId: resolveChampionId(u.champ),
     level: u.level,
     itemIds: combatItemIds(u.items),
     runeId: runeFromKeystone(keystoneID),

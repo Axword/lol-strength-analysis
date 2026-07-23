@@ -1,0 +1,339 @@
+{
+  "ok": false,
+  "probeVersion": "e14-win-pe-position-getters-v1",
+  "hypothesis": "phase-b-e14-position-getters",
+  "matchCode": "3264361042",
+  "wallMs": 20533.64,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e14-win-pe-position-getters-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "discovery": {
+    "getPositionStringVa": "0x141a32258",
+    "getPositionStringXrefs": [
+      "0x1403850f5"
+    ],
+    "mPositionStringVa": "0x141a95bb3",
+    "mPositionStringXrefs": 0,
+    "mPositionNote": "mPosition string exists but has zero RIP LEA xrefs \u2014 not a CI registrar field like mHP/mMoveSpeed; position is PathController-embedded Vector3",
+    "getPositionVa": "0x1403030c0",
+    "getPositionBytesHex": "488d4120c3",
+    "getPositionDisasm": "lea rax, [rcx + 0x20] ; ret",
+    "leaRaxRcx20RetCount": 1,
+    "pathControllerInHero": "0x28d0",
+    "positionInPathController": "0x20",
+    "heroAbsolutePosition": "0x28f0",
+    "leaRegRegPlus28d0Count": 71,
+    "getPositionCallers": 59,
+    "callersWith28d0BeforeGetSample40": 19,
+    "pathSetPositionCoreVa": "0x140389200",
+    "pathSetPositionWritesSlot20": true,
+    "ciAnalogy": {
+      "mHP": "CharacterIntermediate registrar slots (arm64 0x8d8/0x900; Win binder near mHP)",
+      "position": "not CI string field; PathController subobject at hero+0x28d0, XYZ at +0x20"
+    }
+  },
+  "getterGeometryProof": {
+    "ok": true,
+    "rax": "0x3000128f0",
+    "expected": "0x3000128f0",
+    "xyz": [
+      1111.0,
+      22.0,
+      3333.0
+    ]
+  },
+  "pathSetPositionCoreIsDirection": {
+    "ok": true,
+    "wroteNormalizedDirection": true,
+    "input": [
+      1111.0,
+      22.0,
+      3333.0
+    ],
+    "slotAfter": [
+      0.3162277638912201,
+      0.0,
+      0.9486833214759827
+    ],
+    "note": "PathSetPositionCore \u2260 absolute map XYZ writer"
+  },
+  "packetUseVtable": {
+    "58": {
+      "vtableEntry": "0x141a18630",
+      "slots": {
+        "+0": "0x140ef41e0",
+        "+8": "0x140279fb0",
+        "+16": "0x140262f40",
+        "+24": "0x140218620",
+        "+32": "0x14026b080",
+        "+40": "0x140f26930"
+      },
+      "virtPlus8Head": [
+        "mov eax, 0x1c",
+        "ret ",
+        "int3 "
+      ],
+      "note": "virt+8 is typically mov eax, objectSize; ret \u2014 not PathController apply"
+    },
+    "908": {
+      "vtableEntry": "0x141b06b18",
+      "slots": {
+        "+0": "0x1410a7b60",
+        "+8": "0x140279fd0",
+        "+16": "0x140eb84c0",
+        "+24": "0x140218620",
+        "+32": "0x140ebda00",
+        "+40": "0x1401edca0"
+      },
+      "virtPlus8Head": [
+        "mov eax, 0x50",
+        "ret ",
+        "int3 "
+      ],
+      "note": "virt+8 is typically mov eax, objectSize; ret \u2014 not PathController apply"
+    },
+    "1104": {
+      "vtableEntry": "0x141b05440",
+      "slots": {
+        "+0": "0x14101eb10",
+        "+8": "0x1406d3ef0",
+        "+16": "0x140ebaec0",
+        "+24": "0x140218620",
+        "+32": "0x140ed14f0",
+        "+40": "0x1401edca0"
+      },
+      "virtPlus8Head": [
+        "mov eax, 0x40",
+        "ret ",
+        "int3 "
+      ],
+      "note": "virt+8 is typically mov eax, objectSize; ret \u2014 not PathController apply"
+    }
+  },
+  "evaluations": [
+    {
+      "opcode": 58,
+      "source": "Deserialize+END_READ \u2192 absolute GetPosition-slot poke \u2192 GetPosition",
+      "captured": 120,
+      "getterSamples": 120,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 60,
+          "heroes": 1,
+          "median": 369.1096694605076,
+          "p95": 599.1651640565022,
+          "max": 717.7971295681997,
+          "ok": false
+        },
+        "holdout": {
+          "n": 60,
+          "heroes": 1,
+          "median": 2310.9260364404818,
+          "p95": 3838.156351589759,
+          "max": 3881.070356984501,
+          "ok": false
+        },
+        "roundTripOk": 120,
+        "roundTripN": 120
+      }
+    },
+    {
+      "opcode": 908,
+      "source": "Deserialize MEM_WRITE +16/+20 \u2192 absolute GetPosition-slot poke \u2192 GetPosition",
+      "captured": 100,
+      "getterSamples": 100,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 47,
+          "heroes": 10,
+          "median": 140.3578003726348,
+          "p95": 484.19784818271205,
+          "max": 818.3513064444377,
+          "ok": false
+        },
+        "holdout": {
+          "n": 50,
+          "heroes": 10,
+          "median": 191.3141567370572,
+          "p95": 789.7405767378236,
+          "max": 2642.9777922262006,
+          "ok": false
+        },
+        "roundTripOk": 100,
+        "roundTripN": 100
+      }
+    }
+  ],
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "oracleTolS": 0.5
+    },
+    "cadenceHonesty": "No native 1Hz claim. DirectInput remains sparse/single-hero; 908 is higher coverage but still not oracle live positions."
+  },
+  "blocker": {
+    "kind": "getters_found_but_values_not_oracle",
+    "detail": "GetPosition@PathController+0x20 (hero+0x28F0) proven; packet virt Use is size/clone not world-apply; absolute slot poke of reconstructed packet XYZ round-trips through GetPosition but fails Replay API live-position gates (PathSetPositionCore normalizes direction\u2260absolute; true locomotion apply needs full AIBase/PathController heap)",
+    "bestNearMiss": {
+      "opcode": 908,
+      "source": "Deserialize MEM_WRITE +16/+20 \u2192 absolute GetPosition-slot poke \u2192 GetPosition",
+      "n": 50,
+      "heroes": 10,
+      "median": 191.3141567370572,
+      "p95": 789.7405767378236,
+      "max": 2642.9777922262006,
+      "ok": false
+    },
+    "packetUseNotWorldApply": true,
+    "useVtable": {
+      "58": {
+        "vtableEntry": "0x141a18630",
+        "slots": {
+          "+0": "0x140ef41e0",
+          "+8": "0x140279fb0",
+          "+16": "0x140262f40",
+          "+24": "0x140218620",
+          "+32": "0x14026b080",
+          "+40": "0x140f26930"
+        },
+        "virtPlus8Head": [
+          "mov eax, 0x1c",
+          "ret ",
+          "int3 "
+        ],
+        "note": "virt+8 is typically mov eax, objectSize; ret \u2014 not PathController apply"
+      },
+      "908": {
+        "vtableEntry": "0x141b06b18",
+        "slots": {
+          "+0": "0x1410a7b60",
+          "+8": "0x140279fd0",
+          "+16": "0x140eb84c0",
+          "+24": "0x140218620",
+          "+32": "0x140ebda00",
+          "+40": "0x1401edca0"
+        },
+        "virtPlus8Head": [
+          "mov eax, 0x50",
+          "ret ",
+          "int3 "
+        ],
+        "note": "virt+8 is typically mov eax, objectSize; ret \u2014 not PathController apply"
+      },
+      "1104": {
+        "vtableEntry": "0x141b05440",
+        "slots": {
+          "+0": "0x14101eb10",
+          "+8": "0x1406d3ef0",
+          "+16": "0x140ebaec0",
+          "+24": "0x140218620",
+          "+32": "0x140ed14f0",
+          "+40": "0x1401edca0"
+        },
+        "virtPlus8Head": [
+          "mov eax, 0x40",
+          "ret ",
+          "int3 "
+        ],
+        "note": "virt+8 is typically mov eax, objectSize; ret \u2014 not PathController apply"
+      }
+    }
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "createHeroBindingDecoded": false,
+    "productEligible": false,
+    "note": "PathController slot is geometric; not CreateHero/PUUID product bind"
+  },
+  "method": {
+    "static": "GetPosition lea rax,[rcx+0x20]; PathController at hero+0x28d0",
+    "applyFallback": "packet virt Use is not world-apply; absolute XYZ poked into proven GetPosition slot hero+0x28f0 then read via GetPosition@0x1403030c0; PathSetPositionCore@0x140389200 writes normalized direction only",
+    "noLearnedAffine": true
+  }
+}

@@ -1,0 +1,964 @@
+{
+  "ok": false,
+  "probeVersion": "e16-win-pe-pathsetabsolute-callers-v1",
+  "hypothesis": "phase-b-e16-pathsetabsolute-callers",
+  "matchCode": "3264361042",
+  "wallMs": 15993.877,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e16-win-pe-pathsetabsolute-callers-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "pathSetAbsolute": {
+    "va": "0x1403891a0",
+    "absGetterVa": "0x140305350",
+    "absOffset": "0xa0",
+    "callerCount": 30,
+    "kindCounts": {
+      "hero_pathcontroller_snap": 4,
+      "normalized_or_facing_vec": 11,
+      "after_pathcontroller_update": 2,
+      "temp_pc_stub_then_set": 6,
+      "unknown": 7
+    },
+    "callers": [
+      {
+        "callVa": "0x14026cb00",
+        "funcGuess": "0x14026c73a",
+        "kind": "hero_pathcontroller_snap",
+        "rcx": "rcx, [rsi + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x51]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x140270d11",
+        "funcGuess": "0x140270ca0",
+        "kind": "hero_pathcontroller_snap",
+        "rcx": "rcx, [rbx + 0x28d0]",
+        "rdx": "rdx, rdi",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14029ae52",
+        "funcGuess": "0x14029aaa0",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, qword ptr [rsi + 0x18]",
+        "rdx": "rdx, [rsp + 0x30]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1402ab04f",
+        "funcGuess": "0x1402aafc0",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rbx + 0x28d0]",
+        "rdx": "rdx, [rsp + 0x20]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1402b3d68",
+        "funcGuess": null,
+        "kind": "after_pathcontroller_update",
+        "rcx": "rcx, [rdi + 0x28d0]",
+        "rdx": "rdx, [rsp + 0x38]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": true,
+        "nearInitStub": true,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1402baeff",
+        "funcGuess": null,
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rdi + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x71]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1402bd0f2",
+        "funcGuess": "0x1402bcfa0",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rdi + 0x28d0]",
+        "rdx": "rdx, [rsp + 0x68]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1402fad57",
+        "funcGuess": "0x1402fa7d0",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rbx + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x51]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": true
+      },
+      {
+        "callVa": "0x1402fb6e2",
+        "funcGuess": "0x1402fafd0",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rbx + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x31]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": true
+      },
+      {
+        "callVa": "0x1402fca6a",
+        "funcGuess": "0x1402fc886",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rbx + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x69]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": true
+      },
+      {
+        "callVa": "0x1402fe63b",
+        "funcGuess": "0x1402fe3f0",
+        "kind": "temp_pc_stub_then_set",
+        "rcx": "rcx, [rsp + 0xa0]",
+        "rdx": "rdx, r15",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": true,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x140324d0e",
+        "funcGuess": "0x140324a40",
+        "kind": "unknown",
+        "rcx": "rcx, r11",
+        "rdx": "rdx, [rsp + 0x2c]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1403336aa",
+        "funcGuess": "0x140333600",
+        "kind": "unknown",
+        "rcx": "?",
+        "rdx": "?",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x140334490",
+        "funcGuess": "0x140334000",
+        "kind": "unknown",
+        "rcx": "?",
+        "rdx": "?",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14033b597",
+        "funcGuess": "0x14033b420",
+        "kind": "temp_pc_stub_then_set",
+        "rcx": "rcx, [rsp + 0x40]",
+        "rdx": "rdx, [rsp + 0x30]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": true,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14033b79a",
+        "funcGuess": "0x14033b620",
+        "kind": "temp_pc_stub_then_set",
+        "rcx": "rcx, [rsp + 0x40]",
+        "rdx": "rdx, [rsp + 0x30]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": true,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x140342fb3",
+        "funcGuess": "0x140342ea0",
+        "kind": "after_pathcontroller_update",
+        "rcx": "rcx, rsi",
+        "rdx": "rdx, rbx",
+        "hasHeroPathController": true,
+        "nearUpdatePc": true,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1403430de",
+        "funcGuess": "0x140342ea0",
+        "kind": "unknown",
+        "rcx": "rcx, rsi",
+        "rdx": "rdx, [rsp + 0x20]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14042ee0e",
+        "funcGuess": "0x14042ec19",
+        "kind": "temp_pc_stub_then_set",
+        "rcx": "rcx, [rbp + 0x70]",
+        "rdx": "rdx, [rsp + 0x30]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": true,
+        "nearNormHelper": false,
+        "hasSqrt": true
+      },
+      {
+        "callVa": "0x1406ba6d2",
+        "funcGuess": "0x1406ba5f0",
+        "kind": "unknown",
+        "rcx": "?",
+        "rdx": "?",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1406ea4e2",
+        "funcGuess": null,
+        "kind": "hero_pathcontroller_snap",
+        "rcx": "rcx, [rax + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x70]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1406eb02f",
+        "funcGuess": "0x1406eaa10",
+        "kind": "hero_pathcontroller_snap",
+        "rcx": "rcx, [r15 + 0x28d0]",
+        "rdx": "rdx, [rbp - 0x10]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14091a353",
+        "funcGuess": "0x140919d2b",
+        "kind": "temp_pc_stub_then_set",
+        "rcx": "rcx, [rbp + 0x10]",
+        "rdx": "rdx, [r14 + 0x6c]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": true,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14092e046",
+        "funcGuess": "0x14092e020",
+        "kind": "unknown",
+        "rcx": "rcx, rdi",
+        "rdx": "rdx, rax",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x140973452",
+        "funcGuess": "0x140973110",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [r13 + 0x28d0]",
+        "rdx": "rdx, r14",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1409737fa",
+        "funcGuess": "0x1409736e0",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rsi + 0x28d0]",
+        "rdx": "rdx, [rsp + 0x30]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14097e1e1",
+        "funcGuess": "0x14097e0d0",
+        "kind": "unknown",
+        "rcx": "rcx, rdi",
+        "rdx": "rdx, [rsp + 0x20]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x140986116",
+        "funcGuess": "0x140985b10",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [r14 + 0x28d0]",
+        "rdx": "rdx, [rsp + 0x60]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x14098eeb9",
+        "funcGuess": "0x14098eb60",
+        "kind": "normalized_or_facing_vec",
+        "rcx": "rcx, [rsi + 0x28d0]",
+        "rdx": "rdx, [rsp + 0x50]",
+        "hasHeroPathController": true,
+        "nearUpdatePc": false,
+        "nearInitStub": false,
+        "nearNormHelper": true,
+        "hasSqrt": false
+      },
+      {
+        "callVa": "0x1409ff97f",
+        "funcGuess": "0x1409ff7a0",
+        "kind": "temp_pc_stub_then_set",
+        "rcx": "rcx, [rsp + 0x60]",
+        "rdx": "rdx, [rsp + 0x38]",
+        "hasHeroPathController": false,
+        "nearUpdatePc": false,
+        "nearInitStub": true,
+        "nearNormHelper": false,
+        "hasSqrt": false
+      }
+    ],
+    "aibaseSetPositionVa": "0x140270ca0",
+    "aibaseSetPositionNote": "0x140270ca0: AIBase-ish setpos; lea PC+0x28d0 then PathSetAbsolute; 0 E8 callers (vtable/indirect)"
+  },
+  "packetReachability": {
+    "58": {
+      "deserializeVa": "0x140ef41e0",
+      "vtable": "0x141a18630",
+      "slots": [
+        "0x140ef41e0",
+        "0x140279fb0",
+        "0x140262f40",
+        "0x140218620",
+        "0x14026b080",
+        "0x140f26930",
+        "0x1401e3f70",
+        "0x140279fa0"
+      ],
+      "deserCallsPathSetAbsolute": false,
+      "deserCallTargetsSample": [
+        "0x141232060",
+        "0x140f21130",
+        "0x140e64bf0",
+        "0x141232060",
+        "0x140f21130",
+        "0x140e63bb0",
+        "0x140e63bb0",
+        "0x140e63bb0",
+        "0x140e63bb0",
+        "0x140f21130",
+        "0x140e64ba0",
+        "0x140f21130"
+      ]
+    },
+    "420": {
+      "deserializeVa": "0x140f06290",
+      "vtable": "0x141b00068",
+      "slots": [
+        "0x140f06290",
+        "0x140375ac0",
+        "0x1403668a0",
+        "0x140218620",
+        "0x140ec6880",
+        "0x1401edca0",
+        "0x140ef3e10",
+        "0x140304950"
+      ],
+      "deserCallsPathSetAbsolute": false,
+      "deserCallTargetsSample": [
+        "0x189e2edf7",
+        "0x141232060",
+        "0x140f21130",
+        "0x140f21130",
+        "0x140e66ea0",
+        "0x140e66ea0",
+        "0x140f21130",
+        "0x140e64670",
+        "0x140e64670"
+      ]
+    },
+    "908": {
+      "deserializeVa": "0x1410a7b60",
+      "vtable": "0x141b06b18",
+      "slots": [
+        "0x1410a7b60",
+        "0x140279fd0",
+        "0x140eb84c0",
+        "0x140218620",
+        "0x140ebda00",
+        "0x1401edca0",
+        "0x1410a7810",
+        "0x140279fc0"
+      ],
+      "deserCallsPathSetAbsolute": false,
+      "deserCallTargetsSample": [
+        "0x189fd06cb",
+        "0x141232060",
+        "0x140f21130",
+        "0x1419cb440",
+        "0x14107c430",
+        "0x140f21130",
+        "0x140eb4360",
+        "0x1419661b4",
+        "0x140e77d90",
+        "0x141966484",
+        "0x141966148",
+        "0x141232060"
+      ]
+    },
+    "1104": {
+      "deserializeVa": "0x14101eb10",
+      "vtable": "0x141b05440",
+      "slots": [
+        "0x14101eb10",
+        "0x1406d3ef0",
+        "0x140ebaec0",
+        "0x140218620",
+        "0x140ed14f0",
+        "0x1401edca0",
+        "0x140ffbab0",
+        "0x140279f90"
+      ],
+      "deserCallsPathSetAbsolute": false,
+      "deserCallTargetsSample": [
+        "0x141232060",
+        "0x140f21130",
+        "0xc4ca76f6",
+        "0x140332b30",
+        "0x140f90b50",
+        "0x140f21130",
+        "0x140332b30",
+        "0x140f90d90",
+        "0x140f90d90",
+        "0x140f90d90",
+        "0x140f21130",
+        "0x165d7cf1c"
+      ]
+    }
+  },
+  "pathControllerLayout": {
+    "+0x20": "GetPosition / facing direction (PathSetPositionCore)",
+    "+0x40/+0x44/+0x48": "PATH_APPLY path vector from UpdatePC blob+0x40",
+    "+0x50/+0xb9": "flags gating PathSetPositionCore",
+    "+0xa0/+0xa4/+0xa8": "absolute world XYZ (PathSetAbsolute snaps + integrators)",
+    "heroPathController": "0x28d0"
+  },
+  "pathApply": {
+    "pathApplyVa": "0x14038ac80",
+    "updatePcVa": "0x14036ddb0",
+    "writes": [
+      "0x14038acbc: movss dword ptr [rbx + 0x40], xmm0",
+      "0x14038acc7: movss dword ptr [rbx + 0x48], xmm0",
+      "0x14038accc: movss dword ptr [rbx + 0x44], xmm1"
+    ],
+    "writesAbsoluteA0": false,
+    "note": "UpdatePC/PATH_APPLY updates PC+0x40 path vector; absolute +0xa0 is separate"
+  },
+  "integrationWriters": [
+    {
+      "storeVa": "0x1403bb6b8",
+      "dest": "dword ptr [rdi + 0xa0]",
+      "funcGuess": "0x1403bb490",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "movss dword ptr [rdi + 0xa4], xmm1",
+        "movss dword ptr [rdi + 0x9c], xmm0",
+        "jmp 0x1403bb6d0",
+        "movss xmm0, dword ptr [rip + 0x1bbaf88]",
+        "movss dword ptr [rdi + 0x9c], xmm0",
+        "movss xmm1, dword ptr [rip + 0x1bbaf7c]"
+      ]
+    },
+    {
+      "storeVa": "0x1403c3230",
+      "dest": "dword ptr [rdi + 0xa0]",
+      "funcGuess": "0x1403c30cf",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "movss xmm0, dword ptr [rbx]",
+        "addss xmm0, dword ptr [rdi + 0x90]",
+        "addss xmm2, xmm3",
+        "mov qword ptr [rdi + 0xb4], rax",
+        "movss dword ptr [rdi + 0xa4], xmm1",
+        "addss xmm0, xmm5"
+      ]
+    },
+    {
+      "storeVa": "0x1406b8ede",
+      "dest": "dword ptr [rdi + 0xa0]",
+      "funcGuess": "0x1406b8e70",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "call 0x14118d570",
+        "movss xmm0, dword ptr [rdi + 0x9c]",
+        "addss xmm0, dword ptr [rbx]",
+        "movss dword ptr [rdi + 0x9c], xmm0",
+        "movss xmm1, dword ptr [rbx + 4]",
+        "addss xmm1, dword ptr [rdi + 0xa0]"
+      ]
+    },
+    {
+      "storeVa": "0x1406b9486",
+      "dest": "dword ptr [rcx + 0xa0]",
+      "funcGuess": "0x1406b9290",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "mulss xmm0, dword ptr [rbx + 0x2c]",
+        "movaps xmm1, xmm7",
+        "mulss xmm7, dword ptr [rbx + 0x80]",
+        "mulss xmm1, dword ptr [rbx + 0x84]",
+        "addss xmm7, xmm6",
+        "addss xmm1, xmm0"
+      ]
+    },
+    {
+      "storeVa": "0x14092ca92",
+      "dest": "dword ptr [rbx + 0xa0]",
+      "funcGuess": "0x14092c7b0",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "mov eax, dword ptr [r14 + 8]",
+        "movss dword ptr [rbx + 0x8c], xmm9",
+        "movss dword ptr [rbx + 0x90], xmm0",
+        "movss dword ptr [rbx + 0x94], xmm8",
+        "movss dword ptr [rbx + 0x98], xmm5",
+        "movss dword ptr [rbx + 0x9c], xmm4"
+      ]
+    },
+    {
+      "storeVa": "0x1409b9434",
+      "dest": "dword ptr [rbx + 0xa0]",
+      "funcGuess": "0x1409b9380",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "xor al, al",
+        "movss xmm0, dword ptr [rbx + 0xa0]",
+        "movaps xmm6, xmmword ptr [rsp + 0x20]",
+        "cvtdq2ps xmm1, xmm1",
+        "mulss xmm1, dword ptr [rbx + 0x190]",
+        "subss xmm0, xmm1"
+      ]
+    },
+    {
+      "storeVa": "0x1409c2e59",
+      "dest": "dword ptr [rbx + 0xa0]",
+      "funcGuess": "0x1409c2890",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "movaps xmm1, xmm6",
+        "subss xmm1, xmm7",
+        "comiss xmm13, xmm1",
+        "jae 0x1409c2e63",
+        "movss dword ptr [rbx + 0x94], xmm10",
+        "movss dword ptr [rbx + 0x9c], xmm7"
+      ]
+    },
+    {
+      "storeVa": "0x140be6971",
+      "dest": "dword ptr [rdx + 0xa0]",
+      "funcGuess": "0x140be6890",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "jmp 0x140be6971",
+        "cvttss2si ecx, xmm2",
+        "cvttss2si eax, xmm3",
+        "movaps xmm1, xmm2",
+        "cmp eax, ecx",
+        "je 0x140be6be5"
+      ]
+    },
+    {
+      "storeVa": "0x140bf4f4d",
+      "dest": "dword ptr [rdi + 0xa0]",
+      "funcGuess": "0x140bf4ae0",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "comiss xmm0, xmm1",
+        "jb 0x140bf4f55",
+        "movaps xmm0, xmm11",
+        "mulss xmm0, dword ptr [rdi + 0x78]",
+        "mulss xmm0, xmm12",
+        "addss xmm0, dword ptr [rdi + 0xa0]"
+      ]
+    },
+    {
+      "storeVa": "0x1411c8ca8",
+      "dest": "dword ptr [rdi + rsi + 0xa0]",
+      "funcGuess": null,
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "subss xmm0, dword ptr [rbx + 0x48]",
+        "addss xmm3, dword ptr [rbx + 0x50]",
+        "mulss xmm1, xmm0",
+        "addss xmm1, dword ptr [rbx + 0x48]",
+        "movss dword ptr [rdi + rsi + 0xa4], xmm4",
+        "movss dword ptr [rdi + rsi + 0xa8], xmm3"
+      ]
+    },
+    {
+      "storeVa": "0x1411c979e",
+      "dest": "dword ptr [rdi + rsi + 0xa0]",
+      "funcGuess": null,
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "subss xmm0, dword ptr [rbx + 0x48]",
+        "addss xmm3, dword ptr [rbx + 0x50]",
+        "mulss xmm1, xmm0",
+        "addss xmm1, dword ptr [rbx + 0x48]",
+        "movss dword ptr [rdi + rsi + 0xa4], xmm4",
+        "movss dword ptr [rdi + rsi + 0xa8], xmm3"
+      ]
+    },
+    {
+      "storeVa": "0x1411e398c",
+      "dest": "dword ptr [rax + 0xa0]",
+      "funcGuess": null,
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "movaps xmm0, xmm2",
+        "mov rax, qword ptr [rdi + 0x30]",
+        "addss xmm0, dword ptr [rax + 0x9c]",
+        "movss dword ptr [rax + 0x9c], xmm0",
+        "movaps xmm0, xmm4",
+        "addss xmm1, dword ptr [rax + 0xa0]"
+      ]
+    },
+    {
+      "storeVa": "0x1411e5f58",
+      "dest": "dword ptr [rcx + 0xa0]",
+      "funcGuess": "0x1411e5c60",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "movaps xmmword ptr [rsp + 0x120], xmm15",
+        "movss dword ptr [rsp + 0x38], xmm0",
+        "jbe 0x1411e5fa0",
+        "movss xmm2, dword ptr [rcx + 0xac]",
+        "subss xmm1, xmm12",
+        "comiss xmm1, xmm7"
+      ]
+    },
+    {
+      "storeVa": "0x1412eecde",
+      "dest": "dword ptr [rbx + 0xa0]",
+      "funcGuess": "0x1412ee840",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "mulss xmm1, xmm9",
+        "movss dword ptr [rbx + 0x9c], xmm0",
+        "movss xmm0, dword ptr [rsp + 0x68]",
+        "addss xmm1, dword ptr [rbx + 0xa0]",
+        "mulss xmm0, xmm9",
+        "addss xmm0, dword ptr [rbx + 0xa4]"
+      ]
+    },
+    {
+      "storeVa": "0x1416149a3",
+      "dest": "dword ptr [rbx + rsi*4 + 0xa0]",
+      "funcGuess": "0x141614800",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "comiss xmm8, xmm0",
+        "jbe 0x1416149ac",
+        "movss dword ptr [rbx + rsi*4 + 0xa0], xmm8",
+        "movss dword ptr [rbx + 0x3b8], xmm7",
+        "jmp 0x141614872",
+        "addss xmm6, dword ptr [rbx + rsi*4 + 0xa0]"
+      ]
+    },
+    {
+      "storeVa": "0x141741669",
+      "dest": "dword ptr [rdi + 0xa0]",
+      "funcGuess": "0x141741440",
+      "kind": "integrate_add_into_a0",
+      "recentOps": [
+        "movaps xmm6, xmmword ptr [rsp + 0x30]",
+        "movaps xmm7, xmmword ptr [rsp + 0x20]",
+        "movss dword ptr [rdi + 0x7c], xmm0",
+        "movss xmm1, dword ptr [rbx + 0x8a]",
+        "movss dword ptr [rdi + 0x9c], xmm1",
+        "movss xmm0, dword ptr [rbx + 0x8e]"
+      ]
+    }
+  ],
+  "integrationStubProof": {
+    "integratorVa": "0x1406b8e70",
+    "ok": true,
+    "error": null,
+    "beforeA0": [
+      1000.0,
+      50.0,
+      2000.0
+    ],
+    "delta": [
+      10.0,
+      0.0,
+      20.0
+    ],
+    "afterA0": [
+      1000.0,
+      70.0,
+      2015.0
+    ],
+    "mutatedA0": true,
+    "note": "Stub shows addss stores into the +0xa0 neighborhood; axis packing on a synthetic object is not identity to PathController \u2014 full sim required for oracle deltas"
+  },
+  "waypointDecode": {
+    "structurallyProvenFromRofl": false,
+    "note": "No waypoint list recovered under reconstructed framing without float fishing; naive constant-speed walk not attempted"
+  },
+  "evaluations": [
+    {
+      "opcode": 58,
+      "source": "DI END_READ \u2192 PathSetAbsolute \u2192 abs getter (snap path)",
+      "captured": 120,
+      "applied": 120,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 60,
+          "heroes": 1,
+          "median": 369.1096694605076,
+          "p95": 599.1651640565022,
+          "max": 717.7971295681997,
+          "ok": false
+        },
+        "holdout": {
+          "n": 60,
+          "heroes": 1,
+          "median": 2310.9260364404818,
+          "p95": 3838.156351589759,
+          "max": 3881.070356984501,
+          "ok": false
+        },
+        "roundTripOk": 120,
+        "roundTripN": 120
+      }
+    },
+    {
+      "opcode": 908,
+      "source": "908 +16/+20 \u2192 PathSetAbsolute \u2192 abs getter (snap path)",
+      "captured": 100,
+      "applied": 100,
+      "qa": {
+        "winnerFound": false,
+        "swap": false,
+        "train": {
+          "n": 47,
+          "heroes": 10,
+          "median": 140.3578003726348,
+          "p95": 484.19784818271205,
+          "max": 818.3513064444377,
+          "ok": false
+        },
+        "holdout": {
+          "n": 50,
+          "heroes": 10,
+          "median": 191.3141567370572,
+          "p95": 789.7405767378236,
+          "max": 2642.9777922262006,
+          "ok": false
+        },
+        "roundTripOk": 100,
+        "roundTripN": 100
+      }
+    }
+  ],
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "continuousPositionModel": "integrated_and_snapped",
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "oracleTolS": 0.5
+    },
+    "cadenceHonesty": "PathSetAbsolute snaps are event-driven; continuous Replay API 1Hz positions are consistent with tick integration into +0xa0, not with packet XYZ carriers tested in E11\u2013E15"
+  },
+  "blocker": {
+    "kind": "position_is_integrated_not_stored",
+    "detail": "PathSetAbsolute callers are AIBase/PathController gameplay snaps ({'hero_pathcontroller_snap': 4, 'normalized_or_facing_vec': 11, 'after_pathcontroller_update': 2, 'temp_pc_stub_then_set': 6, 'unknown': 7}); packet Deserialize for 58/420/908/1104 does not call PathSetAbsolute. Continuous +0xa0 updates include addss-integrators (e.g. 0x1403bb490). Feeding reconstructed packet XYZ through PathSetAbsolute still fails oracle \u2014 those fields are not live positions.",
+    "secondary": "pathsetabsolute_callers_not_rofl_reachable",
+    "relatedSnapQa": "callers_values_not_oracle",
+    "relatedBestNearMiss": {
+      "opcode": 908,
+      "n": 50,
+      "heroes": 10,
+      "median": 191.3141567370572,
+      "p95": 789.7405767378236,
+      "max": 2642.9777922262006,
+      "ok": false
+    },
+    "integrationProof": {
+      "integratorVa": "0x1406b8e70",
+      "ok": true,
+      "error": null,
+      "beforeA0": [
+        1000.0,
+        50.0,
+        2000.0
+      ],
+      "delta": [
+        10.0,
+        0.0,
+        20.0
+      ],
+      "afterA0": [
+        1000.0,
+        70.0,
+        2015.0
+      ],
+      "mutatedA0": true,
+      "note": "Stub shows addss stores into the +0xa0 neighborhood; axis packing on a synthetic object is not identity to PathController \u2014 full sim required for oracle deltas"
+    },
+    "waypointsStructurallyDecoded": false,
+    "integrationSimulation": "integration_requires_full_sim"
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "createHeroBindingDecoded": false,
+    "productEligible": false
+  }
+}

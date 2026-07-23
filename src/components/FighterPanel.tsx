@@ -1,8 +1,14 @@
 import { useState } from 'react'
-import { CHAMPION_LIST, championIconUrl } from '../data/champions'
+import {
+  CHAMPION_LIST,
+  championIconUrl,
+  getChampion,
+  resolveChampionId,
+} from '../data/champions'
 import { ITEMS_BY_CATEGORY, itemIconUrl, ITEM_LIST, resolveItem } from '../data/items'
 import { RUNE_LIST, resolveRuneId } from '../data/runes'
 import { SUMMONER_LIST } from '../data/generated/allSummoners'
+import { buildStats } from '../engine/stats'
 import type { FighterLoadout } from '../engine/types'
 import './FighterPanel.css'
 
@@ -26,7 +32,11 @@ interface Props {
 export function FighterPanel({ side, loadout, onChange }: Props) {
   const [itemFilter, setItemFilter] = useState('')
   const [runeFilter, setRuneFilter] = useState('')
-  const champ = CHAMPION_LIST.find((c) => c.id === loadout.championId)!
+  const resolvedId = resolveChampionId(loadout.championId)
+  const champ =
+    getChampion(loadout.championId) ??
+    CHAMPION_LIST.find((c) => c.id === resolvedId) ??
+    CHAMPION_LIST[0]
   const activeRune = resolveRuneId(loadout.runeId)
 
   const filteredItems = ITEM_LIST.filter((item) =>
@@ -37,8 +47,19 @@ export function FighterPanel({ side, loadout, onChange }: Props) {
     `${rune.name} ${rune.tree}`.toLowerCase().includes(runeFilter.toLowerCase()),
   )
 
+  const resolvedStats = buildStats(loadout)
+  const hpMax = Math.max(1, Math.round(resolvedStats.hpMax))
+  const hpNow = Math.max(
+    0,
+    Math.round(
+      loadout.liveStats?.hp != null && Number.isFinite(loadout.liveStats.hp)
+        ? loadout.liveStats.hp
+        : hpMax * (loadout.hpPct ?? 1),
+    ),
+  )
+
   function setChampion(championId: string) {
-    onChange({ ...loadout, championId })
+    onChange({ ...loadout, championId: resolveChampionId(championId) })
   }
 
   function toggleItem(itemId: string) {
@@ -58,12 +79,20 @@ export function FighterPanel({ side, loadout, onChange }: Props) {
     onChange({ ...loadout, summonerSpells: next })
   }
 
+  if (!champ) {
+    return (
+      <section className={`fighter-panel side-${side}`}>
+        <p className="champ-title">Unknown champion: {loadout.championId}</p>
+      </section>
+    )
+  }
+
   return (
     <section className={`fighter-panel side-${side}`}>
       <header className="fighter-header">
         <img
           className="champ-portrait"
-          src={championIconUrl(loadout.championId)}
+          src={championIconUrl(resolvedId)}
           alt={champ.name}
           width={64}
           height={64}
@@ -74,7 +103,7 @@ export function FighterPanel({ side, loadout, onChange }: Props) {
           </label>
           <select
             id={`${side}-champ`}
-            value={loadout.championId}
+            value={resolvedId}
             onChange={(e) => setChampion(e.target.value)}
           >
             {CHAMPION_LIST.map((c) => (
@@ -124,6 +153,9 @@ export function FighterPanel({ side, loadout, onChange }: Props) {
             }}
           />
           <span className="level-value">{Math.round((loadout.hpPct ?? 1) * 100)}</span>
+          <span className="hp-abs" title="Current HP / max HP at fight start">
+            {hpNow.toLocaleString()} / {hpMax.toLocaleString()} HP
+          </span>
         </label>
       </div>
 
