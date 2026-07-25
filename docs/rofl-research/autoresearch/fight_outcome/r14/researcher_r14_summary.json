@@ -1,0 +1,178 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r14",
+  "slug": "action-noecho",
+  "room": "f5",
+  "mandate": "Honest actionCoverage F1; reject zero-dmg log-echo",
+  "model": "Auto",
+  "utc": "2026-07-24T15:50:35.550Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r14",
+  "branch": "adv/fo-r14-action-noecho",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "freezeOk": true,
+  "hypothesesAutoPicked": [
+    "F5H1 Honest F1 — GOAL-action-replay-95; reject zero-dmg log-echo",
+    "F5H2 Secondary only — actionCoverage 0.15 of windowScore; never sole gate",
+    "F5H3 Wire emit proof — basic_attack/damage_dealt source+amount PE-proven",
+    "F5H4 Coverage gaps — disclose missing classes; do not invent",
+    "F5H5 Suite join — feed honest F1 into fightAgreement scorer"
+  ],
+  "n_experiments": 8,
+  "experiments": [
+    {
+      "id": "E01",
+      "hypothesis": "F5H3 Wire emit proof: R41 basic_attack/damage_dealt source+amount PE rates",
+      "f5": "H3",
+      "keep": true,
+      "metrics": {
+        "withSourceNetId": 53369,
+        "withAmount": 53369,
+        "wireProof": true
+      },
+      "path": "experiments/E01_wire_emit_proof.json"
+    },
+    {
+      "id": "E02",
+      "hypothesis": "F5H1 Honest F1 non-echo damage model on 2970110-g1-c1",
+      "f5": "H1",
+      "keep": true,
+      "metrics": {
+        "actionCoverage": 1,
+        "echoCount": 0,
+        "gateEligible": true
+      },
+      "path": "experiments/E02_honest_f1.json"
+    },
+    {
+      "id": "E03",
+      "hypothesis": "F5H1 Reject zero-dmg echo even when F1≈1.0",
+      "f5": "H1",
+      "keep": false,
+      "rejectReason": "zero_damage_log_echo: shareHint=0 modelActions must not earn actionReplayGate / fightOutcomeGate secondary credit",
+      "metrics": {
+        "echoActionCoverage": 1,
+        "gateEligible": false,
+        "rejectedAsGateEvidence": true
+      },
+      "path": "experiments/E03_zero_dmg_echo_reject.json"
+    },
+    {
+      "id": "E04",
+      "hypothesis": "F5H4 Disclose missing action classes; do not invent AA/item/summoner",
+      "f5": "H4",
+      "keep": true,
+      "metrics": {
+        "windows": 6,
+        "eventedAaInSlim": true
+      },
+      "path": "experiments/E04_coverage_gaps.json"
+    },
+    {
+      "id": "E05",
+      "hypothesis": "F5H2 actionCoverage is 0.15 of windowScore; never sole gate evidence; echo credit=0",
+      "f5": "H2",
+      "keep": true,
+      "metrics": {
+        "maxLiftFromActionF1Alone": 0.15,
+        "echoCreditForFightAgreement": 0
+      },
+      "path": "experiments/E05_secondary_only.json"
+    },
+    {
+      "id": "E06",
+      "hypothesis": "F5H5 Feed honest F1 into fightAgreement; echo credit stays 0",
+      "f5": "H5",
+      "keep": true,
+      "metrics": {
+        "faZero": 0.34937129854089544,
+        "faHonest": 0.3743712985408954,
+        "delta": 0.024999999999999967,
+        "echoDoesNotLiftFa": true
+      },
+      "path": "experiments/E06_suite_join_S0.json"
+    },
+    {
+      "id": "E07",
+      "hypothesis": "F5H5 Research-drop harness F1 join (measure; near_hp_drop not product)",
+      "f5": "H5",
+      "keep": false,
+      "metrics": {
+        "faHarness": 0.6017529013010008,
+        "faZero": 0.6017529013010008,
+        "delta": 0,
+        "meanActionCoverage": 0.5127329192546582
+      },
+      "path": "experiments/E07_suite_join_research.json"
+    },
+    {
+      "id": "E08",
+      "hypothesis": "F5H1+H3 Criterion table: honest KEEP vs echo REJECT",
+      "f5": "H1+H3",
+      "keep": true,
+      "metrics": {
+        "honestActionCoverage": 1,
+        "echoActionCoverage": 1,
+        "honestGateEligible": true
+      },
+      "path": "experiments/E08_criterion_table.json"
+    }
+  ],
+  "keeps": [
+    "E01",
+    "E02",
+    "E04",
+    "E05",
+    "E06",
+    "E08"
+  ],
+  "discards": [
+    "E03",
+    "E07"
+  ],
+  "headline": {
+    "honest_c1_full_actionCoverage": 1,
+    "echo_c1_full_actionCoverage": 1,
+    "echo_rejected_as_gate_evidence": true,
+    "echo_fightAgreement_credit": 0,
+    "wire_sourceAndAmount": {
+      "withSourceNetId": 53369,
+      "withAmount": 53369,
+      "damageTruth_c1": 64,
+      "sourceResolved_c1": 64,
+      "amountResolved_c1": 64
+    },
+    "S0_product_fa_f1_zero": 0.34937129854089544,
+    "S0_product_fa_honest_partial": 0.3743712985408954,
+    "S0_delta_fa": 0.024999999999999967,
+    "actionReplayGate": false,
+    "fightOutcomeGate": false
+  },
+  "findings": [
+    "Honest non-echo damage F1 on 2970110-g1-c1-full = 1.0000 (matched=64/64; shareHintMin=0.8487789034843445).",
+    "Zero-dmg echo F1 = 1.0000 but REJECTED as gate evidence (forbid #13); fightAgreement actionF1 credit forced to 0.",
+    "R41 emit wire: withSourceNetId=53369 withAmount=53369 (PE UnitApplyDamage).",
+    "Slim skill audits disclose aaTruth=0 / no item actives — gaps disclosed, not invented.",
+    "actionCoverage weight = 0.15 of windowScore; max sole-term lift 0.15 — never sole gate.",
+    "S0 product FA rises by 0.0250 when honest c1-full F1 joined; echo join does not lift FA.",
+    "No invent. No parent code edit. No fightOutcomeGate / actionReplayGate claim."
+  ],
+  "blocker": "S0 fightAgreement still << 0.95 (lethal/path dominate); actionCoverage secondary only; full-suite PE damage F1 not yet joined for c2/c3; actionReplayGate false",
+  "confidence": "actionCoverage ≥0.95 means log-matched F1 under GOAL-action-replay-95 — NOT win odds / NOT calibrated probability. fightAgreement is kill-window suite agreement — NOT odds %.",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r14/results.jsonl",
+    "experiments": "docs/rofl-research/autoresearch/fight_outcome/r14/experiments/",
+    "audits": "docs/rofl-research/autoresearch/fight_outcome/r14/audits/",
+    "summary": "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json",
+    "script": "scripts/fo_r14_action_noecho_audit.ts",
+    "parent_mirror": "/Users/river/Projects/lol-strength-analysis/docs/rofl-research/autoresearch/fight_outcome/r14"
+  },
+  "npm": {
+    "isolation": "cd /Users/river/.codex/worktrees/rofl-fo-r14 && git branch --show-current  # adv/fo-r14-action-noecho",
+    "run": "npx --yes tsx scripts/fo_r14_action_noecho_audit.ts"
+  },
+  "status": "complete"
+}

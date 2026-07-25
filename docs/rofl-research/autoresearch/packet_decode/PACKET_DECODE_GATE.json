@@ -1,0 +1,49 @@
+{
+  "packetDecodeGate": true,
+  "setAt": "2026-07-24T00:41:40Z",
+  "cycle": "C10",
+  "true": 10,
+  "false": 0,
+  "decision": "SET_GATE_TRUE",
+  "criteria": {
+    "A_cleanRoom": true,
+    "B_researchEmitter": true,
+    "C_actionReplay": true,
+    "D_calculatorReadyFalse": true,
+    "E_shipFreeze9683": true,
+    "F_reviewerMajority": true
+  },
+  "e2e": {
+    "killWindow": "20 passed",
+    "r40_matchedDamagingAa": 5,
+    "r43_sourceResolved_eq_damageTruth": "64==64",
+    "r44_matchedDamage": 64,
+    "r44_echo": 0,
+    "r45_truthSourceAmount": "64/64",
+    "composite": 0.9683,
+    "shipGate": true,
+    "productShipGate": true,
+    "calculatorReady": false
+  },
+  "best_branch": "adv/pkt-r44-model-damage-match",
+  "best_line": [
+    "R28",
+    "R32",
+    "R39",
+    "R40",
+    "R41",
+    "R42",
+    "R43",
+    "R44",
+    "R45",
+    "R46"
+  ],
+  "npm_reproduce": [
+    "npm run test:kill-window",
+    "npm run rofl:aa-bridge-r40 -- --allow-parent",
+    "npm run rofl:r43-damage-bridge-audit -- --allow-parent",
+    "npm run rofl:r44-model-damage-bridge -- --allow-parent",
+    "npm run rofl:r45-truth-source-amount -- --allow-parent"
+  ],
+  "note": "Research gate only. Not calculatorReady. Not public match publish."
+}

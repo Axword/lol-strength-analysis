@@ -1,0 +1,124 @@
+{
+  "schema": "researcher_r01_summary_v1",
+  "researcher": "R01",
+  "slug": "digest-path",
+  "model": "Auto (human override)",
+  "utc": "2026-07-24T15:40:00Z",
+  "branch": "adv/fo-r01-digest-path",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r01",
+  "never_edited_parent_code": true,
+  "room": "f1",
+  "hypothesis_auto_picked": [
+    "1 Single digest CLI",
+    "2 Source preserve",
+    "3 DIGEST.md smoke",
+    "4 Identity bind",
+    "5 Second host doc (gap)",
+    "6 Failure modes"
+  ],
+  "goal_focus": "digestCleanGate",
+  "digestCleanGate": false,
+  "digestCleanGate_progress": {
+    "one_command_path_documented": true,
+    "path1_2970132_validate_product_green": true,
+    "sources_preserved_hp_combat_ranks": true,
+    "identity_puuid_netid_pid": true,
+    "living_post_seed_disclosed": true,
+    "hold_forward_hold_across_disclosed": true,
+    "DIGEST_md_updated": true,
+    "second_host": false,
+    "second_host_note": "2970110 validate fails combat honesty (unavailable_replay_api)",
+    "reviewer_affirm": false,
+    "coverage_stamp_lag_footgun": "documented + stamp_digest_path1_provenance.py KEEP"
+  },
+  "calculatorReadyGate_path1": true,
+  "unfreeze_0_9683": true,
+  "pBlue_pRed": "model edge never odds %",
+  "experiments": [
+    {
+      "id": "e01",
+      "name": "validate Path1 final",
+      "result": "exit 0 calculatorReady true livingOkSlots 14725 hpHoldAcrossRespawn true",
+      "artifact": "experiments/e01_validate_path1_final.json"
+    },
+    {
+      "id": "e02",
+      "name": "jsonl_to_timeline rebuild + validate",
+      "result": "exit 0 calculatorReady true but hpHoldAcrossRespawn false (coverage lag)",
+      "artifact": "experiments/e02_validate_rebuild.json"
+    },
+    {
+      "id": "e03",
+      "name": "rofl_coverage provenance audit",
+      "result": "coverage lacks hpHoldAcrossRespawn/calculatorReadyPolicy stamps",
+      "artifact": "experiments/e03_rofl_coverage.json"
+    },
+    {
+      "id": "e04",
+      "name": "identity PUUID→netId→pid",
+      "result": "10/10 identityComplete; table written",
+      "artifact": "experiments/e04_identity_bind.json"
+    },
+    {
+      "id": "e05",
+      "name": "second host 2970110 validate",
+      "result": "exit 1 combat honesty fail — gap disclosed",
+      "artifact": "experiments/e05_second_host_2970110.json"
+    },
+    {
+      "id": "e06",
+      "name": "source preserve census",
+      "result": "wipe_detected false; events==timeline source counts",
+      "artifact": "experiments/e06_source_preserve.json"
+    },
+    {
+      "id": "e07",
+      "name": "stamp rebuild provenance + validate",
+      "result": "exit 0 hpHoldAcrossRespawn true livingOk 14725",
+      "artifact": "experiments/e07_validate_stamped.json",
+      "keep_script": "scripts/stamp_digest_path1_provenance.py"
+    },
+    {
+      "id": "e08",
+      "name": "DIGEST.md + fingerprints",
+      "result": "DIGEST corrected (-o/--output); fingerprints match parent smoke",
+      "artifact": "experiments/e08_fingerprints.json"
+    },
+    {
+      "id": "e09",
+      "name": "--out abbreviation footgun",
+      "result": "argparse abbreviates --out→--output today; document canonical --output only",
+      "artifact": "experiments/e09_wrong_out_flag.txt"
+    },
+    {
+      "id": "e10",
+      "name": "failure modes catalog",
+      "result": "6 modes including PE invent refuse + coverage lag",
+      "artifact": "experiments/e10_failure_modes.json"
+    }
+  ],
+  "experiment_count": 10,
+  "fingerprints_path1": {
+    "events.g1.path1-final.rfc461.jsonl": {
+      "bytes": 114456779,
+      "sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8"
+    },
+    "timeline.g1.path1-final.json": {
+      "bytes": 9064216,
+      "sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4"
+    }
+  },
+  "keepable_artifacts": [
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r01/researcher_r01_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r01/experiments/",
+    "scripts/stamp_digest_path1_provenance.py"
+  ],
+  "verdict": "keep_digest_path_partial",
+  "next_for_digestCleanGate": [
+    "Reviewer affirm on DIGEST + Path1 evidence",
+    "Second host PE/combat honesty or explicit permanent disclose-accept",
+    "Optional: bake hold-across into rfc461 rofl_coverage to drop stamp helper"
+  ],
+  "notes": "Did not write into parent checkout code or mutate symlinked artifacts/rofl. Outputs mirrored to parent docs/.../fight_outcome/r01/ and DIGEST.md."
+}

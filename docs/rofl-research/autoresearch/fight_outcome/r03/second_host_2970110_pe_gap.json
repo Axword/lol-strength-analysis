@@ -1,0 +1,19 @@
+{
+  "utc": "2026-07-24T15:39:52Z",
+  "researcher": "R03",
+  "match": "2970110-g1",
+  "attempted": true,
+  "invent_refused": true,
+  "command": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970110/events.g1.fused.rfc461.jsonl --timeline artifacts/rofl/2970110/timeline.g1.product-fuse.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+  "exit": 1,
+  "fail_message": "product gate: combatStatsKnown=true without valid non-placeholder combat evidence (t=97029 pid=3 source='unavailable_replay_api')",
+  "pe_gap": {
+    "path1_living_package_present": false,
+    "combatStatsKnown_slots_missing_source": 593,
+    "hpSource_tags_on_timeline": [],
+    "prior_product_ready_fur": "7/10",
+    "missing_class_note": "Camille/Jhin/Leona historically wire-absent on this host under frozen PE; do not invent densify for digestClean second host"
+  },
+  "claim": "second_host_digest_validate_not_ready",
+  "disclosure": "R03 documents PE/combat honesty gap; digestCleanGate must not require 2970110 green until a same-match Path1 living package exists."
+}

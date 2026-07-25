@@ -1,0 +1,197 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T16:03:26.756Z",
+  "researcher": "r04",
+  "suite": "S1",
+  "match": "2970137-g1",
+  "proxied": false,
+  "harnessSuite": "2970137-g1-holdout",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/s1_current_law.json",
+  "markSelection": "cusum_engage_then_skills",
+  "harnessMode": "gate_action",
+  "harnessHypothesis": "BEST: finish AA + AA-at-mark + nearKill 1.5s + drop marks + markMinGap 0.4",
+  "n": 6,
+  "fightAgreement": 0.4169776331222436,
+  "fightPassRate": 0,
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S1_2970137-g1_c1_full",
+      "windowOk": false,
+      "windowScore": 0.55,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.6666666666666666,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 114.54285714285713,
+        "maeHpFull": 122.47735999999998,
+        "maeHp": 122.47735999999998,
+        "pathCap": 130,
+        "lethalErrorSec": 1.870000000000001,
+        "segment": "full",
+        "matchup": "Vayne→Ambessa"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.326056,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0.7223809523809523,
+        "pathBand": 0.7273015873015874,
+        "actionF1": 0,
+        "earlyMaeHp": 77.76190476190476,
+        "maeHpBurst": 114.54285714285713,
+        "maeHpFull": 122.47735999999998,
+        "maeHp": 114.54285714285713,
+        "pathCap": 90,
+        "lethalErrorSec": null,
+        "segment": "burst",
+        "matchup": "Vayne→Ambessa"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.498,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.32,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 62.49056592007568,
+        "maeHpFull": 54.9916980096666,
+        "maeHp": 54.9916980096666,
+        "pathCap": 130,
+        "lethalErrorSec": 2.771000000000001,
+        "segment": "full",
+        "matchup": "Cassiopeia→Viktor"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.504545,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.36363636363636365,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 62.49056592007568,
+        "maeHpFull": 54.9916980096666,
+        "maeHp": 62.49056592007568,
+        "pathCap": 90,
+        "lethalErrorSec": 2.771000000000001,
+        "segment": "burst",
+        "matchup": "Cassiopeia→Viktor"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.373511,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.356684413145288,
+        "actionF1": 0.34782608695652173,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 451.9209423333476,
+        "maeHpFull": 213.63102629111256,
+        "maeHp": 213.63102629111256,
+        "pathCap": 130,
+        "lethalErrorSec": null,
+        "segment": "full",
+        "matchup": "Anivia→Sylas"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.249754,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0.6990159718396626,
+        "pathBand": 0,
+        "actionF1": 0.5,
+        "earlyMaeHp": 80.09840281603374,
+        "maeHpBurst": 451.9209423333476,
+        "maeHpFull": 213.63102629111256,
+        "maeHp": 451.9209423333476,
+        "pathCap": 90,
+        "lethalErrorSec": null,
+        "segment": "burst",
+        "matchup": "Anivia→Sylas"
+      }
+    }
+  ],
+  "failingAudits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c1_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c1_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c2_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c2_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c3_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r25/docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c3_burst.json"
+  ],
+  "law": {
+    "lethalTolSec": 0.75,
+    "earlyMaeCap": 50,
+    "burstMaeCap": 90,
+    "fullMaeCap": 130,
+    "endHpFloor": 40,
+    "weights": {
+      "lethalHit": 0.4,
+      "earlyBand": 0.25,
+      "pathBand": 0.2,
+      "actionCoverageF1": 0.15
+    }
+  },
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S1 holdout — do not tune on S1"
+  ],
+  "confidence": "fightAgreement ≥0.95 means kill-window suite agreement under GOAL §B — NOT calibrated win odds"
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r48",
+  "slug": "s0-passrate-c2c3",
+  "wave": 4,
+  "model": "Auto",
+  "utc": "2026-07-24T17:25:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r48",
+  "branch": "adv/fo-r48-s0-passrate-c2c3",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "move_agent_to_root": "blocked_for_subagent; worked via absolute worktree paths",
+  "mandate": "lift S0 pass 0.667→↑ fixing c2_burst path + c3 early residual; KEEP iff S0 FA↑ and S1 flat+; no pathFollow product; FA≠odds",
+  "product_selector": "cusum_engage_then_skills",
+  "hypothesesAutoPicked": [
+    { "id": "H0", "title": "Baseline remesaure compound stack", "result": "MEASURED_S0_FA_0.9304_pass_0.667_S1_0.7628" },
+    { "id": "H1", "title": "Soft finish AA / pulse / gap", "result": "DISCARD_noop_kit_dump" },
+    { "id": "H2", "title": "Global killerMarkShare", "result": "DISCARD_Galio_regress_c2_miss" },
+    { "id": "H3", "title": "Olaf-gated share", "result": "DISCARD_c2_miss_kill_cliff" },
+    { "id": "H4", "title": "Olaf finish-preserve share", "result": "PARTIAL_c3_help_c2_worse" },
+    { "id": "H5", "title": "Long-window min gate", "result": "DISCARD_bleeds_c2" },
+    { "id": "H6", "title": "Olaf→Camille victim-gated share 0.62", "result": "KEEP" },
+    { "id": "H7", "title": "Ally local widen", "result": "PARTIAL_c3_153_not_enough" },
+    { "id": "H8", "title": "pathFollow product", "result": "FORBIDDEN" }
+  ],
+  "n_experiments": 48,
+  "track": "path",
+  "S0": {
+    "before_FA": 0.930409557022156,
+    "after_FA": 0.9429646346199966,
+    "delta_FA": 0.0125550775978406,
+    "before_pass": 0.6666666666666666,
+    "after_pass": 0.8333333333333334,
+    "match": "2970132-g1"
+  },
+  "S1": {
+    "before_FA": 0.7627693321171581,
+    "after_FA": 0.7627693321171581,
+    "delta_FA": 0.0,
+    "before_pass": 0.5,
+    "after_pass": 0.5,
+    "match": "2970137-g1",
+    "tuned": false,
+    "note": "Olaf→Camille gate absent on S1; exact flat"
+  },
+  "windows": {
+    "c3_full": {
+      "before_maeHp": 159.29375,
+      "after_maeHp": 129.804674612,
+      "pathCap": 130,
+      "before_pathOk": false,
+      "after_pathOk": true,
+      "lethalErrorSec_after": 0.4566639084657744
+    },
+    "c2_burst": {
+      "before_maeHp": 111.59164037216308,
+      "after_maeHp": 111.59164037216308,
+      "pathCap": 90,
+      "pathOk": false,
+      "note": "unchanged; kit-dump cliff; R40 floor ~101 without pathFollow"
+    }
+  },
+  "product_KEEP": {
+    "keep": true,
+    "reason": "S0 FA 0.9304→0.9430 (+0.0126); pass 0.667→0.833; S1 FA flat 0.7628; c3_full pathOk; no invent; no pathFollow",
+    "defaults": {
+      "killerMarkShare": 0.62,
+      "killerMarkShareChamps": "Olaf",
+      "killerMarkShareVictimChamps": "Camille",
+      "killerMarkShareFinishPreserve": false
+    },
+    "files": ["scripts/crosscheck_action_aligned.ts"],
+    "ablate": "--killer-mark-share 1"
+  },
+  "verdict": "KEEP",
+  "sharper_blocker": "c2_burst pathMae 111.6>90 remains (Olaf→Trundle kit-dump finish cliff; share<1 miss-kill; pathFollow forbidden). passRate 0.833≪0.95; fightOutcomeGate false.",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r48/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r48/NOTES.md",
+    "e0": "docs/rofl-research/autoresearch/fight_outcome/r48/experiments/e0_s0_baseline.json",
+    "e51_keep": "docs/rofl-research/autoresearch/fight_outcome/r48/experiments/e51_keep_default.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r48/experiments/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r48/experiments/fight_agreement_S1.json",
+    "ablate": "docs/rofl-research/autoresearch/fight_outcome/r48/experiments/e52_ablate_share1.json"
+  },
+  "next": "Orchestrator PARENT_MERGE harness killerMarkShare Olaf→Camille defaults; residual c2_burst pathMae needs S1-safe temporal spread — not pathFollow"
+}

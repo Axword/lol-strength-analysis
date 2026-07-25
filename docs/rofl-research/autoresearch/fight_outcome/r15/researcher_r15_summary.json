@@ -1,0 +1,102 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r15",
+  "slug": "action-wire",
+  "room": "f5",
+  "model": "Auto",
+  "utc": "2026-07-24T15:55:09.521288Z",
+  "status": "scored",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r15",
+  "branch": "adv/fo-r15-action-wire",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "reject_zero_dmg_log_echo": true,
+  "hypotheses_autopicked": [
+    {
+      "id": 1,
+      "title": "Honest F1",
+      "applied": true
+    },
+    {
+      "id": 2,
+      "title": "Secondary only",
+      "applied": true
+    },
+    {
+      "id": 3,
+      "title": "Wire emit proof",
+      "applied": true
+    },
+    {
+      "id": 4,
+      "title": "Coverage gaps",
+      "applied": true
+    },
+    {
+      "id": 5,
+      "title": "Suite join",
+      "applied": true
+    }
+  ],
+  "suite": "S0",
+  "match": "2970132-g1",
+  "path1Host": true,
+  "R05_reference": {
+    "fightAgreement": 0.2279317568764,
+    "fightPassRate": 0.0,
+    "note": "product cusum Path1; much worse than 2970110 proxy 0.42"
+  },
+  "wire_emit_proof": {
+    "pass": true,
+    "windowsWithPeSourceAmount": 6,
+    "nWindows": 6,
+    "emit": "docs/rofl-research/autoresearch/product_ready/r08/emit/emit_2970132_basic_attack_damage.jsonl",
+    "identity": "docs/rofl-research/autoresearch/product_ready/r06/castspell-identity-2970132-g1-pid-stamped.json",
+    "wireRematchF1_damage_dealt": 1.0,
+    "note": "PE source+amount proven; wire KEEP only \u2014 not actionReplayGate"
+  },
+  "actionCoverage": {
+    "secondaryOnly": true,
+    "weightInWindowScore": 0.15,
+    "e0_echo_harnessMean": 0.904407263383708,
+    "e0_echo_rejectedAsGateEvidence": true,
+    "e1_damaging_harnessMean": 0.4906982625936875,
+    "e1_honestF1_joined": 0.4906982625936875,
+    "honestF1OrZero": 0.4906982625936875,
+    "gate95": false,
+    "actionReplayGate": false
+  },
+  "fightAgreement": {
+    "e0_echo_actionF1_forced_0": 0.25076447970912286,
+    "e0_passRate": 0.16666666666666666,
+    "e1_damaging": 0.15688694467659525,
+    "e1_passRate": 0,
+    "best_for_gate_claim": null,
+    "note": "Neither meets FA\u22650.95; E1 honest F1 does not rescue lethal/path fails"
+  },
+  "keeps": [
+    "wire_emit_proof (PE source+amount on Path1 windows)"
+  ],
+  "discards": [
+    "e0_echo as gate evidence",
+    "e1_damaging as FA KEEP (regress + gate95 false)"
+  ],
+  "findings": [
+    "Path1 2970132 emit has PE-proven damage_dealt sourceNetId+amount on all 6 kill windows (wireEmitProofPass=true).",
+    "Zero-dmg modelAaEcho mean AC\u22480.90 must not enter fightOutcomeGate / actionReplayGate (REJECT).",
+    "Honest emitDamaging mean AC\u22480.49 with shareHint>0 and echo=0; joined as 0.15 secondary.",
+    "E1 FA 0.157 < R05 0.228 \u2014 damaging AA marks over-damage HP path; no FA KEEP.",
+    "Galio\u2192Trundle + Olaf lethal timing remain primary FA blockers (same as R05)."
+  ],
+  "blocker": "S0 FA\u226a0.95 on Path1; honest actionCoverage F1 0.49\u226a0.95; wire proof alone \u2260 fightOutcomeGate",
+  "confidence": "fightAgreement / actionCoverage are suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "wire_emit_proof": "docs/rofl-research/autoresearch/fight_outcome/r15/wire_emit_proof.json",
+    "action_coverage_f1": "docs/rofl-research/autoresearch/fight_outcome/r15/action_coverage_f1.json",
+    "eval_e0": "docs/rofl-research/autoresearch/fight_outcome/r15/eval_e0_echo.json",
+    "eval_e1": "docs/rofl-research/autoresearch/fight_outcome/r15/eval_e1_damaging.json",
+    "fight_agreement_e0": "docs/rofl-research/autoresearch/fight_outcome/r15/fight_agreement_e0_echo.json",
+    "fight_agreement_e1": "docs/rofl-research/autoresearch/fight_outcome/r15/fight_agreement_e1_damaging.json",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r15/leaderboard.json"
+  }
+}

@@ -74,6 +74,14 @@ export interface TimelineFrame {
   mapObjects?: import('./types').MapObjectsState
 }
 
+export type TimelineActionCoverage =
+  | 'none'
+  | 'partial'
+  | 'full'
+  | 'research_overlay'
+  | 'unknown'
+  | string
+
 export interface TimelineProvenance {
   source?: string
   sourceKind?: string
@@ -86,11 +94,57 @@ export interface TimelineProvenance {
   positionCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
   nativePositionCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
   hpCoverage?: 'none' | 'partial' | 'full' | 'unknown' | string
+  /** Product AA fold density — never invent events to raise this. */
+  aaCoverage?: TimelineActionCoverage
+  /** Product damage_dealt fold density — PE-proven amounts only when claimed. */
+  damageCoverage?: TimelineActionCoverage
   rosterMapping?: string
   placeholderPolicy?: string
   notes?: string
   motionAudit?: MotionAuditSummary
 }
+
+/** Optional skill_used rows (rfc461 / research). Absent ⇒ Send stays continuous. */
+export interface TimelineSkillUsedEvent {
+  tMs: number
+  participantId: number
+  skillSlot: number
+}
+
+/**
+ * Identity-bound basic_attack / damage_dealt for product timeline fuse (P4 T1).
+ * netId is required — participantId alone (order/CreateHero ordinal) is rejected.
+ * Never invent from HPΔ; amount only when PE-proven / disclosed.
+ * Parallel to skillUsed — do not collapse kinds into skillUsed.
+ */
+export interface TimelineBasicAttackEvent {
+  tMs: number
+  participantId: number
+  netId: number
+  targetParticipantId?: number
+  targetNetId?: number
+  sourceKind?: string
+  fieldSource?: string
+  researchOnly?: boolean
+}
+
+export interface TimelineDamageDealtEvent {
+  tMs: number
+  participantId: number
+  netId: number
+  targetParticipantId?: number
+  targetNetId?: number
+  /** Present only when PE/string-table proven — never inferred from HPΔ. */
+  amount?: number
+  sourceKind?: string
+  fieldSource?: string
+  researchOnly?: boolean
+}
+
+/** Unified discriminant form (optional alternate to parallel arrays). */
+export type TimelineActionEvent =
+  | ({ kind: 'basic_attack' } & TimelineBasicAttackEvent)
+  | ({ kind: 'damage_dealt' } & TimelineDamageDealtEvent)
 
 export interface GameTimeline {
   id: string
@@ -104,6 +158,26 @@ export interface GameTimeline {
   frameCount: number
   durationMs: number
   frames: TimelineFrame[]
+  /**
+   * Optional skill_used events for kill-window Send.
+   * Never invent — only when the timeline JSON actually includes them.
+   */
+  skillUsed?: TimelineSkillUsedEvent[]
+  /**
+   * Optional identity-bound basic_attack rows from decode bridge / product fuse.
+   * Absent ⇒ OK (unknown). Never invent from HPΔ or skillUsed echo.
+   */
+  basicAttack?: TimelineBasicAttackEvent[]
+  /**
+   * Optional identity-bound damage_dealt rows. Absent ⇒ OK (unknown).
+   * amount only when PE-proven; never invent from HPΔ.
+   */
+  damageDealt?: TimelineDamageDealtEvent[]
+  /**
+   * Optional unified action channel (kind discriminant). Coexists with
+   * basicAttack/damageDealt; parsers accept either. Never merges into skillUsed.
+   */
+  actionEvents?: TimelineActionEvent[]
 }
 
 export interface MatchRegistryChampion {
@@ -207,7 +281,114 @@ export function parseGameTimelineJson(text: string): GameTimeline {
     previousTime = frame.t
   }
 
+  if (value.skillUsed !== undefined) {
+    assertTimelineSkillUsedEvents(value.skillUsed, 'skillUsed')
+  }
+  if (value.basicAttack !== undefined) {
+    assertTimelineIdentityActionEvents(value.basicAttack, 'basicAttack', false)
+  }
+  if (value.damageDealt !== undefined) {
+    assertTimelineIdentityActionEvents(value.damageDealt, 'damageDealt', true)
+  }
+  if (value.actionEvents !== undefined) {
+    assertTimelineUnifiedActionEvents(value.actionEvents)
+  }
+
   return value as unknown as GameTimeline
+}
+
+function assertFiniteNumber(value: unknown, label: string): number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    throw new Error(`${label} must be a finite number.`)
+  }
+  return value
+}
+
+/** skillUsed stays a parallel channel — no netId required (legacy kill-window). */
+function assertTimelineSkillUsedEvents(raw: unknown, field: string): void {
+  if (!Array.isArray(raw)) {
+    throw new Error(`Timeline ${field} must be an array when present.`)
+  }
+  for (let i = 0; i < raw.length; i += 1) {
+    const ev = raw[i]
+    if (!isRecord(ev)) {
+      throw new Error(`Timeline ${field}[${i}] must be an object.`)
+    }
+    assertFiniteNumber(ev.tMs, `${field}[${i}].tMs`)
+    assertFiniteNumber(ev.participantId, `${field}[${i}].participantId`)
+    assertFiniteNumber(ev.skillSlot, `${field}[${i}].skillSlot`)
+  }
+}
+
+/**
+ * Product AA/damage events require identity-bound netId.
+ * participantId without netId = order-only / CreateHero ordinal → reject.
+ */
+function assertTimelineIdentityActionEvents(
+  raw: unknown,
+  field: string,
+  allowAmount: boolean,
+): void {
+  if (!Array.isArray(raw)) {
+    throw new Error(`Timeline ${field} must be an array when present.`)
+  }
+  for (let i = 0; i < raw.length; i += 1) {
+    const ev = raw[i]
+    if (!isRecord(ev)) {
+      throw new Error(`Timeline ${field}[${i}] must be an object.`)
+    }
+    assertFiniteNumber(ev.tMs, `${field}[${i}].tMs`)
+    assertFiniteNumber(ev.participantId, `${field}[${i}].participantId`)
+    if (ev.netId === undefined || ev.netId === null) {
+      throw new Error(
+        `Timeline ${field}[${i}] rejected: participantId without netId (order-only pid).`,
+      )
+    }
+    assertFiniteNumber(ev.netId, `${field}[${i}].netId`)
+    if (ev.targetParticipantId !== undefined) {
+      assertFiniteNumber(ev.targetParticipantId, `${field}[${i}].targetParticipantId`)
+    }
+    if (ev.targetNetId !== undefined) {
+      assertFiniteNumber(ev.targetNetId, `${field}[${i}].targetNetId`)
+    }
+    if (allowAmount && ev.amount !== undefined) {
+      assertFiniteNumber(ev.amount, `${field}[${i}].amount`)
+    }
+    if (!allowAmount && ev.amount !== undefined) {
+      throw new Error(`Timeline ${field}[${i}].amount is not valid on basicAttack.`)
+    }
+    if (ev.sourceKind !== undefined && typeof ev.sourceKind !== 'string') {
+      throw new Error(`Timeline ${field}[${i}].sourceKind must be a string when present.`)
+    }
+    if (ev.researchOnly !== undefined && typeof ev.researchOnly !== 'boolean') {
+      throw new Error(`Timeline ${field}[${i}].researchOnly must be a boolean when present.`)
+    }
+  }
+}
+
+function assertTimelineUnifiedActionEvents(raw: unknown): void {
+  if (!Array.isArray(raw)) {
+    throw new Error('Timeline actionEvents must be an array when present.')
+  }
+  for (let i = 0; i < raw.length; i += 1) {
+    const ev = raw[i]
+    if (!isRecord(ev)) {
+      throw new Error(`Timeline actionEvents[${i}] must be an object.`)
+    }
+    const kind = ev.kind
+    if (kind !== 'basic_attack' && kind !== 'damage_dealt') {
+      throw new Error(
+        `Timeline actionEvents[${i}].kind must be basic_attack or damage_dealt.`,
+      )
+    }
+    const rest: Record<string, unknown> = { ...ev }
+    delete rest.kind
+    assertTimelineIdentityActionEvents(
+      [rest],
+      `actionEvents#${i}`,
+      kind === 'damage_dealt',
+    )
+  }
 }
 
 function registryError(message: string): never {
@@ -387,16 +568,27 @@ function teamSide(teamID: number): TeamSide {
   return teamID === 100 ? 'blue' : 'red'
 }
 
-function hpIsKnown(u: TimelineUnitFrame): boolean {
+/** Product honesty: undefined must NOT mean known. Requires explicit `true`. */
+export function hpIsKnown(u: { hpKnown?: boolean }): boolean {
+  return u.hpKnown === true
+}
+
+/** Product honesty: undefined must NOT mean known. Requires explicit `true`. */
+export function combatStatsAreKnown(u: { combatStatsKnown?: boolean }): boolean {
+  return u.combatStatsKnown === true
+}
+
+/** Product honesty: undefined must NOT mean known. Requires explicit `true`. */
+export function abilityRanksAreKnown(u: { abilityRanksKnown?: boolean }): boolean {
+  return u.abilityRanksKnown === true
+}
+
+/**
+ * Disclosed legacy compatibility for hand-built / pre-flag snapshots only.
+ * Product timelines and rfc461 ingest must use the fail-closed helpers above.
+ */
+export function legacyFailOpenHpIsKnown(u: { hpKnown?: boolean }): boolean {
   return u.hpKnown !== false
-}
-
-function combatStatsAreKnown(u: TimelineUnitFrame): boolean {
-  return u.combatStatsKnown !== false
-}
-
-function abilityRanksAreKnown(u: TimelineUnitFrame): boolean {
-  return u.abilityRanksKnown !== false
 }
 
 function unitAlive(u: TimelineUnitFrame): boolean {
@@ -436,25 +628,51 @@ export function unitToLoadout(
   }
 
   const ranksKnown = abilityRanksAreKnown(u)
+  // H3 / G_send: unknown ranks must omit overrides — never QWER=0 or abilityRank:1 fakes.
+  const rankFields = ranksKnown
+    ? {
+        ranks: {
+          Q: u.q,
+          W: u.w,
+          E: u.e,
+          R: u.r,
+        } as const,
+        abilityRank: Math.max(1, u.q, u.w, u.e),
+      }
+    : {}
+
   return {
     championId: resolveChampionId(u.champ),
     level: u.level,
     itemIds: combatItemIds(u.items),
     runeId: runeFromKeystone(keystoneID),
-    ranks: ranksKnown
-      ? {
-          Q: u.q,
-          W: u.w,
-          E: u.e,
-          R: u.r,
-        }
-      : { Q: 0, W: 0, E: 0, R: 0 },
-    abilityRank: ranksKnown ? Math.max(1, u.q, u.w, u.e) : 1,
+    ...rankFields,
     alive: unitAlive(u),
     ...(hpPct !== undefined ? { hpPct } : {}),
     position: { x: u.x, y: u.y },
     ...(Object.keys(liveStats).length > 0 ? { liveStats } : {}),
   }
+}
+
+/** True when loadout carries proven QWER ranks (product import honesty). */
+export function loadoutHasProvenRanks(loadout: {
+  ranks?: { Q: number; W: number; E: number; R: number }
+  abilityRank?: number
+}): boolean {
+  return loadout.ranks != null
+}
+
+/**
+ * Detects the pre-H3 fake: QWER all-zero + abilityRank 1 (or missing) looking like a trusted kit.
+ * Used by acceptance — unknown path must omit ranks entirely, not emit this shape.
+ */
+export function loadoutLooksLikeFakeZeroRanks(loadout: {
+  ranks?: { Q: number; W: number; E: number; R: number }
+  abilityRank?: number
+}): boolean {
+  const r = loadout.ranks
+  if (!r) return false
+  return r.Q === 0 && r.W === 0 && r.E === 0 && r.R === 0 && (loadout.abilityRank === 1 || loadout.abilityRank == null)
 }
 
 export function frameToSnapshot(

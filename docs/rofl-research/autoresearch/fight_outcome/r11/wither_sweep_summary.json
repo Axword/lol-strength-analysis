@@ -1,0 +1,123 @@
+{
+  "t": "2026-07-24T15:51:00.005Z",
+  "researcher": "r11",
+  "baselineProductFa": 0.4217420179369753,
+  "results": [
+    {
+      "experiment": "e_wither_default",
+      "hypothesis": "default autosAfterUtility caps",
+      "env": {},
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_wither_as_harder",
+      "hypothesis": "stronger AS wither cap 0.95",
+      "env": {
+        "UTILITY_AS_WITHER_CAP": "0.95"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_wither_as_softer",
+      "hypothesis": "softer AS wither cap 0.55",
+      "env": {
+        "UTILITY_AS_WITHER_CAP": "0.55"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_hardcc_short_055",
+      "hypothesis": "harder short-window hardCC AA cut 0.55",
+      "env": {
+        "UTILITY_HARDCC_SHORT": "0.55"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_hardcc_short_080",
+      "hypothesis": "softer short-window hardCC AA cut 0.80",
+      "env": {
+        "UTILITY_HARDCC_SHORT": "0.80"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_hardcc_long_075",
+      "hypothesis": "harder long-window hardCC AA cut 0.75",
+      "env": {
+        "UTILITY_HARDCC_LONG": "0.75"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_ms_cap_070",
+      "hypothesis": "stronger MS slow AA cut cap 0.70",
+      "env": {
+        "UTILITY_MS_WITHER_CAP": "0.70"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    },
+    {
+      "experiment": "e_combo_as95_hc055",
+      "hypothesis": "combo harder wither + hardCC",
+      "env": {
+        "UTILITY_AS_WITHER_CAP": "0.95",
+        "UTILITY_HARDCC_SHORT": "0.55"
+      },
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "lethalHitCount": 2,
+      "meanEarlyBand": 0.5394444444444445,
+      "keep": false
+    }
+  ],
+  "best": {
+    "experiment": "e_wither_default",
+    "hypothesis": "default autosAfterUtility caps",
+    "env": {},
+    "fightAgreement": 0.4217420179369753,
+    "fightPassRate": 0.16666666666666666,
+    "deltaVsBaseline04217": 0,
+    "lethalHitCount": 2,
+    "meanEarlyBand": 0.5394444444444445,
+    "keep": false
+  },
+  "anyKeep": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win odds / pBlue%"
+}

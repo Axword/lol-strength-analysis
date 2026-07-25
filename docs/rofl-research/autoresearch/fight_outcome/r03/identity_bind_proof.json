@@ -1,0 +1,31 @@
+{
+  "utc": "2026-07-24T15:39:52Z",
+  "researcher": "R03",
+  "match": "2970132-g1",
+  "ok": true,
+  "method": "stable_identity_to_net_id",
+  "complete": true,
+  "createHeroOrderFallback": false,
+  "identityOracleProven": true,
+  "evidence": "artifacts/rofl/2970132/trusted-hp-perhero.g1.hold-across-death.json",
+  "manifest": "artifacts/rofl/2970132/replay-manifest.g1.json",
+  "manifest_gates": {
+    "stableIdentityComplete": true,
+    "activeReplayIdentityVerified": true,
+    "captureComplete": true
+  },
+  "bindings": [
+    { "participantID": 1, "puuid": "d62acbf0-3789-5644-ad7d-d0bd5de96b0c", "fullRiotId": "GEN Kiin#eProd", "netId": 1073741998, "champion": "Olaf" },
+    { "participantID": 2, "puuid": "26e416f6-c017-5ef4-af1d-349a4d2f2809", "fullRiotId": "GEN Canyon#eProd", "netId": 1073741999, "champion": "JarvanIV" },
+    { "participantID": 3, "puuid": "dc20fd1d-f1e3-5dcd-8f6d-3865740692e7", "fullRiotId": "GEN Chovy#eProd", "netId": 1073742000, "champion": "Galio" },
+    { "participantID": 4, "puuid": "3462f12f-1fe2-5662-9ba7-48cafe966e7b", "fullRiotId": "GEN Ruler#eProd", "netId": 1073742001, "champion": "Seraphine" },
+    { "participantID": 5, "puuid": "7d48b778-5a84-5005-94ff-16a49adcfcba", "fullRiotId": "GEN Duro#eProd", "netId": 1073742002, "champion": "Shen" },
+    { "participantID": 6, "puuid": "eaa17a03-bb63-5943-a5b8-f9cf2adf4d6c", "fullRiotId": "JDG Xiaoxu#eProd", "netId": 1073742003, "champion": "Jayce" },
+    { "participantID": 7, "puuid": "00da3a3d-4f6e-5515-9489-e5ff94a142c3", "fullRiotId": "JDG JunJia#eProd", "netId": 1073742004, "champion": "Trundle" },
+    { "participantID": 8, "puuid": "483a03fc-6c46-529a-90f7-c6b951dad629", "fullRiotId": "JDG HongQ#eProd", "netId": 1073742005, "champion": "Orianna" },
+    { "participantID": 9, "puuid": "9ba5fc1f-ce82-5363-831c-6cbcc358eb03", "fullRiotId": "JDG GALA#eProd", "netId": 1073742006, "champion": "Ziggs" },
+    { "participantID": 10, "puuid": "30ac5dfb-c83d-59bb-bf4c-c717d5330018", "fullRiotId": "JDG Vampire#eProd", "netId": 1073742007, "champion": "Camille" }
+  ],
+  "fail_closed_on_scramble": true,
+  "note": "Join is PUUID/full Riot ID → netId → participantID; never CreateHero order invent."
+}

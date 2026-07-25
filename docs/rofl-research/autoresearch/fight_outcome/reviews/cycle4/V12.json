@@ -1,0 +1,100 @@
+{
+  "reviewer": "V12",
+  "cycle": 4,
+  "role": "Anti-odds / wording (agreement ≠ win %)",
+  "utc": "2026-07-24T16:09:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "criteria": {
+    "A_anti_odds_wording": true,
+    "A_full": "partial — pBlue/pRed + FA + actionCoverage labeling honest; other A limbs deferred to V1/V14",
+    "B_metric_thresholds": false,
+    "C_unfreeze_disclosure": true,
+    "D_digestCleanGate": true,
+    "E_suites_wired": true,
+    "F_holdout": false,
+    "G_calculator_path": true,
+    "H_anti_gaming": true,
+    "I_majority_e2e": false
+  },
+  "anti_odds": {
+    "fightAgreement_means": "mean(windowScore) on kill-window suite (GOAL §B)",
+    "fightAgreement_does_not_mean": "calibrated win probability / odds % / bookmaker posterior / map win %",
+    "actionCoverage_does_not_mean": "win odds — secondary 0.15 term only (R14)",
+    "pBlue_pRed": "heuristic model edge only",
+    "calculatorReady_does_not_mean": "fights match or win odds",
+    "criterionG_does_not_mean": "fightAgreement≥0.95 or win odds — G is Send↔harness path honesty only",
+    "idleFollowActual_FA_lift_does_not_mean": "win % rose — FA 0.4107 is still suite agreement",
+    "wording_scan": {
+      "suspect_files_claiming_odds_without_negation": 0,
+      "researcher_confidence_disclaimers": [
+        "r22/r23/r25 confidence: fightAgreement NOT win probability / odds %",
+        "r29 anti-odds KEEP: Faq model-edge-not-odds + engine comment strips; test:anti-odds green",
+        "STATUS/HEARTBEAT/BRIEF/DIGEST label FA as NOT win odds; pBlue/pRed model edge"
+      ],
+      "product_ui": {
+        "Send_chip": "model edge only · not odds %",
+        "CombatResult_subline": "not a win probability",
+        "modelTrust_calibrated": false,
+        "Faq_model_edge_not_odds": true
+      },
+      "r17_send_smoke_noOddsCopy": true,
+      "r16_e9_no_odds_copy": true,
+      "r29_anti_odds_audit": true
+    },
+    "verdict": "PASS anti-odds separation — wording honest; FA 0.4107 and G proven do NOT unlock fightOutcomeGate or turn FA into odds %"
+  },
+  "measured": {
+    "S0_Path1_product_fightAgreement": 0.4107,
+    "S0_Path1_product_fightPassRate": 0.167,
+    "S0_source": "BRIEF/STATUS/R25 Path1 remesaure idleFollowActual AUTHORITATIVE",
+    "S1_current_law_fightAgreement": 0.417,
+    "S1_current_law_fightPassRate": 0.0,
+    "R23_research_best_e7": 0.25,
+    "R23_product_KEEP": false,
+    "R23_note": "S1 flat/regress — research-only; still agreement≠odds",
+    "gate_needs": "S0+S1 fightAgreement≥0.95 AND fightPassRate≥0.95",
+    "note": "These are suite agreement rates — NOT win %"
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle4/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B confidence wording",
+    "docs/rofl-research/autoresearch/fight_outcome/r25/researcher_r25_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r23/researcher_r23_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r29/researcher_r29_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/CYCLE3_FINAL.json"
+  ],
+  "failures": [
+    {
+      "criterion": "B",
+      "detail": "S0 Path1 product FA 0.4107 / pass 0.167 ≪ 0.95; R23 research 0.250 still ≪ bars (agreement metric, not odds)"
+    },
+    {
+      "criterion": "F",
+      "detail": "Holdout S1 FA 0.417 / pass 0 unmet; cannot claim fightOutcomeGate on S0 alone"
+    },
+    {
+      "criterion": "I",
+      "detail": "No ≥11/15 fightOutcomeGate majority + parent e2e this cycle"
+    }
+  ],
+  "blocker": "B+F: Path1 S0 FA 0.4107 ≪ 0.95 (suite agreement, not win %). Anti-odds wording clean; G proven is not the blocker.",
+  "sharper_blocker": "Lift Path1 product FA via R21/R24/R26/R28/R30 then re-measure S1 without S1 tune; keep every score JSON confidence line as agreement≠odds; do not read FA 0.4107 or R23 0.250 as win %.",
+  "cycle3_delta": {
+    "anti_odds_still_PASS": true,
+    "G_still_proven": true,
+    "authoritative_S0_now_0_4107": true,
+    "R23_research_0_250_no_KEEP": true,
+    "digestCleanGate_reaffirm_true": "C3 12/15 majority; no concrete §D failure — flip C3 dissent to reaffirm"
+  },
+  "notes": "V12 anti-odds lens C4: artifacts still disclose fightAgreement as kill-window suite agreement — NOT win probability / odds %. R29 KEEP strengthens Faq/engine wording. Affirm A_anti_odds + D (reaffirm) + G + H. Deny fightOutcomeGate on concrete B/F/I — never because FA 0.4107 'looks like ~41% odds'.",
+  "one_line_vote": "V12: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — anti-odds PASS; DC reaffirm; FA 0.4107≪0.95 (agreement≠win%)"
+}

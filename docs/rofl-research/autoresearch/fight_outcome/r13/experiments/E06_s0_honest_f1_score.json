@@ -1,0 +1,69 @@
+{
+  "id": "E06",
+  "hypothesis": "H5 Suite join — S0 with HONEST F1 (echo rejected; missing→0)",
+  "suite": "S0",
+  "markSelection": "cusum_engage_then_skills",
+  "fightAgreement": 0.3476599177030975,
+  "fightPassRate": 0.16666666666666666,
+  "n": 6,
+  "weight": 0.15,
+  "f1ByWindow": {
+    "1:full": 0.5555555555555556,
+    "1:burst": 0.6666666666666665,
+    "2:full": 0.42857142857142855,
+    "2:burst": 0.5714285714285715,
+    "3:full": 0.32,
+    "3:burst": 0.8
+  },
+  "windows": [
+    {
+      "id": "S0_2970110-g1_c1_full",
+      "windowOk": true,
+      "windowScore": 0.9333333333333335,
+      "actionF1": 0.5555555555555556,
+      "actionF1Weight": 0.15,
+      "actionF1Role": "secondary"
+    },
+    {
+      "id": "S0_2970110-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.22605035925925915,
+      "actionF1": 0.6666666666666665,
+      "actionF1Weight": 0.15,
+      "actionF1Role": "secondary"
+    },
+    {
+      "id": "S0_2970110-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.3142857142857143,
+      "actionF1": 0.42857142857142855,
+      "actionF1Weight": 0.15,
+      "actionF1Role": "secondary"
+    },
+    {
+      "id": "S0_2970110-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.12011786365046095,
+      "actionF1": 0.5714285714285715,
+      "actionF1Weight": 0.15,
+      "actionF1Role": "secondary"
+    },
+    {
+      "id": "S0_2970110-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.048,
+      "actionF1": 0.32,
+      "actionF1Weight": 0.15,
+      "actionF1Role": "secondary"
+    },
+    {
+      "id": "S0_2970110-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.444172235689817,
+      "actionF1": 0.8,
+      "actionF1Weight": 0.15,
+      "actionF1Role": "secondary"
+    }
+  ],
+  "note": "Honest F1 secondary only. fightAgreement ≪ 0.95 — does not claim gate."
+}

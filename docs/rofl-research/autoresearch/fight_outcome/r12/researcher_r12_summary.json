@@ -1,0 +1,84 @@
+{
+  "researcher": "r12",
+  "slug": "planner-death",
+  "model": "Auto",
+  "utc": "2026-07-24T15:49:30Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r12",
+  "branch": "adv/fo-r12-planner-death",
+  "room": "f4",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "f4_hypotheses_auto_picked": [
+    {
+      "id": "F4.H1",
+      "title": "Death-coupled truncate",
+      "priority": 1,
+      "result": "audited_present; AA-strip experiments no KEEP"
+    },
+    {
+      "id": "F4.H2",
+      "title": "No HP% ability bans",
+      "priority": 2,
+      "result": "acceptance_pass (abilityBudget + timed no surviveSec cliffs)"
+    },
+    {
+      "id": "F4.H4",
+      "title": "Front-loaded scoring",
+      "priority": 3,
+      "result": "weight 0/1/2 flat on 0.4s pulses; product weight=1 kept"
+    }
+  ],
+  "f4_hypotheses_deferred": [
+    "F4.H3 Utility-only keep (whole-window path disclosed; not this sweep)",
+    "F4.H5 Engage t=0 (short-window product path; not S0 pulse focus)",
+    "F4.H6 Parity with Send (F6 room)"
+  ],
+  "n_experiments": 11,
+  "suite": "S0-2970110-g1",
+  "markSelection": "cusum_engage_then_skills",
+  "baseline": {
+    "experiment": "e0",
+    "fightAgreement": 0.4848229030957609,
+    "fightPassRate": 0.16666666666666666,
+    "composite": 2.1040313467290845,
+    "note": "product cusum densestride1.0/win1.2 — this harness from_eval; STATUS ref 0.4217 was R04 suite scorer"
+  },
+  "status_product_FA_reference": 0.4217,
+  "best_fightAgreement": 0.48525718823285774,
+  "best_fightAgreement_delta_vs_e0": 0.0004342851370968475,
+  "best_experiment": "e7",
+  "keeps": [],
+  "discards": ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "e10"],
+  "ties_no_improve": ["e4", "e5", "e6", "e7"],
+  "reason_no_keep": "No config meaningfully beat e0 FA=0.4848 without hard fails; e7 timed_short +0.0004 is noise; e10 stops c3 false-kill but hard-fails check03 early and drops FA/passRate",
+  "engine_overlay_touched": true,
+  "engine_changes": [
+    "src/engine/rotation.ts: research frontLoadWeight getter/setter (default 1)",
+    "src/engine/killWindowOverlay.ts: pulseMode + killerPulseShare (defaults timed_full / 1)",
+    "scripts/crosscheck_action_aligned.ts: CLI --front-load-weight --pulse-mode --killer-pulse-share"
+  ],
+  "parity_gate": "defaults unchanged; harness==engine via simulateKillWindowSeries",
+  "product_selectors_changed": false,
+  "product_default_still": [
+    "cusum_engage_then_skills",
+    "post_engage_killer_skills"
+  ],
+  "best_json_updated": false,
+  "acceptance": {
+    "combat_invariants_passed": 363,
+    "notes": "death-coupled post-lethal suppress; low-HP still casts; long-window weave not AA-pad"
+  },
+  "blocker": "S0 FA 0.4848 << 0.95 (STATUS ref 0.4217); check2 path MAE ~323 stuck; check3 full false-kill actualEndHp=210 modelEndHp=0 on product pulses — front-load weight irrelevant at pulseSec≈0.4",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r12/results.jsonl",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r12/leaderboard.json",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r12/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r12/NOTES.md",
+    "sweep": "scripts/r12_planner_death_sweep.sh",
+    "scorer": "scripts/fight_agreement_from_eval.ts"
+  },
+  "verdict": "NO_KEEP",
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "next": "F3/F5: mark/pulse honesty for survivor windows without starving true lethals; F9 2970132 windows; do not re-sweep front-load weight on short pulses"
+}

@@ -1,0 +1,226 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970137",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "full",
+  "matchup": "Anivia→Sylas",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.894,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 3.933,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 5.302,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 8.311,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 11.417,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 14.89,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 15.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 15.325,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 15.825,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 18.531,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 18.965,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 15.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 15.074,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 15.825,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 15.875,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.531,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4,
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.581,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.965,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.015,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 20.125119724355553,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 21.285239448711106,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 22.44535917306666,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 23.605478897422213,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 11,
+    "modelCount": 12,
+    "matchedCount": 4,
+    "precision": 0.3333333333333333,
+    "recall": 0.36363636363636365,
+    "actionCoverage": 0.34782608695652173,
+    "matches": [
+      {
+        "truthIdx": 6,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 9,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 6,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7
+    ],
+    "unmatchedModel": [
+      1,
+      3,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 11,
+      "modelCount": 4,
+      "matchedCount": 4,
+      "actionCoverage": 0.5333333333333333
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 8,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=16 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=1 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

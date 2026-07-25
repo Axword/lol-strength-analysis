@@ -168,6 +168,25 @@
   font-weight: 500;
 }
 
+.send-honesty-chip {
+  flex: 1 1 100%;
+  order: 20;
+  margin: 0.15rem 0 0;
+  padding: 0.28rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, var(--accent));
+  background: color-mix(in srgb, var(--elevated) 88%, var(--accent-soft));
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.send-honesty-chip-kw {
+  color: var(--ink);
+  opacity: 0.85;
+}
+
 .send-actions {
   display: flex;
   flex-wrap: wrap;
@@ -319,6 +338,73 @@
   border: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
   background: var(--red-soft);
   border-radius: 6px;
+}
+
+.research-action-overlay {
+  margin-top: 0.65rem;
+  border-top: 1px solid var(--line);
+  padding: 0.55rem 0.65rem 0.7rem;
+  background: color-mix(in srgb, var(--elevated) 88%, #1a1510);
+}
+
+.research-action-overlay-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.45rem;
+}
+
+.research-action-overlay-head strong {
+  color: var(--warn);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.research-action-overlay-head span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+.research-action-overlay-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.research-action-overlay-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 14rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.research-action-overlay-list li {
+  padding: 0.18rem 0.3rem;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.research-action-overlay-list li[data-kind='basic_attack'] {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+.research-action-overlay-list li[data-kind='damage_dealt'] {
+  border-color: color-mix(in srgb, var(--warn) 30%, var(--line));
+}
+
+.research-action-overlay-list code {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink);
+  white-space: pre-wrap;
 }
 
 @media (max-width: 900px) {

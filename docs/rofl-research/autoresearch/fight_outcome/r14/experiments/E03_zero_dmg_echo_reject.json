@@ -1,0 +1,13 @@
+{
+  "id": "E03",
+  "hypothesis": "F5H1 Reject zero-dmg echo even when F1≈1.0",
+  "f5": "H1",
+  "echoActionCoverage": 1,
+  "echoCount": 64,
+  "damagingCount": 0,
+  "gateEligible": false,
+  "rejectedAsGateEvidence": true,
+  "keep": false,
+  "rejectReason": "zero_damage_log_echo: shareHint=0 modelActions must not earn actionReplayGate / fightOutcomeGate secondary credit",
+  "note": "Echo F1 must NEVER be treated as KEEP / gate progress"
+}

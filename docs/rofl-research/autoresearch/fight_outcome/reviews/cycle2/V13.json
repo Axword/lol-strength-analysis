@@ -1,0 +1,149 @@
+{
+  "reviewer": "V13",
+  "cycle": 2,
+  "role": "Reproducibility (digest + suite commands)",
+  "utc": "2026-07-24T15:54:11Z",
+  "cwd": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "head": "e93d8b2",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.93,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": null
+  },
+  "blocker": "GOAL §B/F: product fightAgreement ≪ 0.95 on Path1 S0 (FA 0.228 / pass 0) and S1 (FA 0.328 / pass 0); not calibrated win odds",
+  "reproduce_commands": [
+    {
+      "from": "DIGEST.md Path1 validate",
+      "cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+      "exit": 0,
+      "result": "productPublication.ok=true; calculatorReady=true; calculatorReadyPolicy=living_post_seed_v1; livingOkSlots=14725/14725; peHp=10 peCombat=10; ranksDensity=1.0; hpHoldAcrossRespawn=true; hpTrustedParticipantRows=16301"
+    },
+    {
+      "from": "DIGEST.md fingerprints",
+      "cmd": "sha256+bytes check on Path1 events+timeline",
+      "exit": 0,
+      "result": "events 114456779 sha256=823aa35f…0b9bf8 MATCH; timeline 9064216 sha256=fb542736…edc4fe4 MATCH"
+    },
+    {
+      "from": "npm fight:agreement default",
+      "cmd": "npm run fight:agreement",
+      "exit": 0,
+      "result": "suite entry wired; without --from-eval/--run-harness prints awaiting_eval (score API ready). Accidental r04 status write removed."
+    },
+    {
+      "from": "V13 Cycle2 re-score S0 Path1 product (R05 eval)",
+      "cmd": "npx --yes tsx scripts/fight_agreement_suite.ts --suite-label S0 --from-eval docs/rofl-research/autoresearch/fight_outcome/r05/s0_eval_cusum.json --out-dir /tmp/v13_c2_fight_out --mark-selection cusum_engage_then_skills",
+      "exit": 0,
+      "result": "fightAgreement=0.2279317568764 fightPassRate=0.0000 n=6 seriesId=2970132 in eval; scorer labels match=2970110-g1 proxied=true (label footgun) — numeric FA matches R05 Path1 cusum AUTHORITATIVE 0.228; meetsThresholds=false"
+    },
+    {
+      "from": "V13 Cycle2 re-score S1 product (R04 harness)",
+      "cmd": "npx --yes tsx scripts/fight_agreement_suite.ts --suite-label S1 --from-eval docs/rofl-research/autoresearch/fight_outcome/r04/harness_eval_S1_2970137_g1.json --out-dir /tmp/v13_c2_fight_out --mark-selection cusum_engage_then_skills",
+      "exit": 0,
+      "result": "fightAgreement=0.3279491037780255 fightPassRate=0.0000 n=6 match=2970137-g1 meetsThresholds=false"
+    },
+    {
+      "from": "R17 Send smoke (attempted)",
+      "cmd": "npm run fo:send-smoke",
+      "exit": 1,
+      "result": "Missing script fo:send-smoke on parent — R17 artifact claims smoke; G left null (not sole false)"
+    }
+  ],
+  "npm_matrix": {
+    "DIGEST_validate_path1_living_post_seed": "PASS",
+    "DIGEST_fingerprints": "PASS",
+    "fight:agreement_entry": "PASS_awaiting_eval_or_from_eval",
+    "fight:agreement_S0_from_eval_r05_path1": "PASS_score_below_gate_FA_0.228",
+    "fight:agreement_S1_from_eval_r04": "PASS_score_below_gate_FA_0.328",
+    "fo:send-smoke": "MISSING_ON_PARENT"
+  },
+  "digest": {
+    "path1_validate": true,
+    "fingerprints_match": true,
+    "living_post_seed_v1": true,
+    "hold_forward_disclosed": true,
+    "hpHoldAcrossRespawn": true,
+    "sources_on_frames": "DIGEST e06 census + R01 source-preserve; hp/combat/ranks sources disclosed",
+    "identity": "DIGEST pid↔champ↔RiotID↔netId table; never participant-order",
+    "second_host_2970110": "not digest-clean (combat honesty fail disclosed) — GOAL §D.4 prefer ≠ require",
+    "rebuild_stamp_footgun": "disclosed; stamp_digest_path1_provenance.py exists; Path1 final smoke does not need stamp",
+    "R14_honest_F1": "honest PE damage F1=1.0 on 2970110-g1-c1; zero-dmg echo REJECTED; FA credit only honest; secondary ≤0.15 — does not change §D digest package; does not lift B to gate",
+    "DIGEST_header_self_mark": "DIGEST.md still says digestCleanGate:false pending majority — circular pending cleared by personal §D affirm (same as C1 V2/V13)",
+    "digestCleanGate_vote_basis": "Personally affirm GOAL §D for ≥1 match (2970132 Path1): one documented macOS validate path + hashes + living policy + sources/identity disclosed; R14 honesty strengthens H not D"
+  },
+  "suite": {
+    "product_selector": "cusum_engage_then_skills",
+    "S0": {
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0.0,
+      "n": 6,
+      "match_truth": "2970132-g1 Path1 (R05 eval seriesId=2970132; BRIEF authoritative 0.228)",
+      "scorer_label_footgun": "suite output still stamps match=2970110-g1 proxied=true — ignore label; use R05 window parts (Galio→Trundle earlyMaeHp=116 etc.)",
+      "meetsThresholds": false,
+      "proxy_2970110_r04": 0.4217,
+      "note": "Path1 S0 is worse than 2970110 proxy; gate uses Path1 as preferred host"
+    },
+    "S1": {
+      "fightAgreement": 0.3279491037780255,
+      "fightPassRate": 0.0,
+      "n": 6,
+      "match": "2970137-g1",
+      "meetsThresholds": false,
+      "note": "Personal re-score matches R04 check×segment; BRIEF R06 member FA≈0.478 is different aggregation — still ≪0.95"
+    },
+    "S2_committed_r06": {
+      "fightAgreement": 0.6335,
+      "fightPassRate": 0.3333,
+      "n": 3,
+      "meetsThresholds": false,
+      "personally_rescored": false
+    },
+    "R14_action_join": {
+      "honest_c1_F1": 1.0,
+      "echo_rejected": true,
+      "S0_proxy_fa_with_honest_partial": 0.3744,
+      "delta_vs_zero_f1": 0.025,
+      "gate_lift": false
+    },
+    "confidence_wording": "fightAgreement is kill-window suite agreement under GOAL §B — NOT win probability / odds % / calibrated posterior"
+  },
+  "honesty": {
+    "packetDecodeGate": true,
+    "calculatorReadyGate_path1": true,
+    "unfreeze_0_9683": true,
+    "baselineComposite": 0.9683,
+    "pBlue_pRed": "model edge only — never odds %",
+    "R14_echo_forbid": true
+  },
+  "failures": [
+    "B: Path1 S0 product fightAgreement 0.2279 / pass 0.0 ≪ 0.95 (personally re-scored from r05 s0_eval_cusum)",
+    "B/F: S1 product fightAgreement 0.3279 / pass 0.0 ≪ 0.95 (holdout required; no S0-alone claim)",
+    "G deferred: fo:send-smoke missing on parent this cwd (R17 worktree-only); null ≠ sole false"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B §D",
+    "personal validate --product Path1 exit 0 + fingerprint MATCH (Cycle2)",
+    "npm run fight:agreement + --from-eval r05/r04 → /tmp/v13_c2_fight_out",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json (FA 0.2279)",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json (honest F1=1.0; echo REJECTED)",
+    "docs/canvases/_data/crosschecks-2970132-g1.json (Path1 S0 windows now present)",
+    "docs/rofl-research/autoresearch/packet_decode/PACKET_DECODE_GATE.json true",
+    "docs/rofl-research/autoresearch/best.json composite 0.9683"
+  ],
+  "notes": "Cycle2 V13 reproducibility: Path1 DIGEST one-command validate + sha256/bytes personally green again → digestCleanGate=true (≥1 match; second-host prefer still open/disclosed). R14 honest F1 does not alter §D and does not rescue B (secondary ≤0.15). Suite npm entry works; Path1 S0 re-score FA 0.228 + S1 FA 0.328 miss gate by a wide margin → fightOutcomeGate=false on concrete B+F. G not personally green on parent (script missing). fightAgreement ≠ odds.",
+  "one_line_vote": "V13: digestCleanGate=true (Path1 validate+fingerprints); fightOutcomeGate=false (S0 FA 0.228 / S1 FA 0.328 ≪ 0.95)."
+}

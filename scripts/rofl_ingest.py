@@ -1060,8 +1060,14 @@ def build_phase(
             "evidence": "ranks-evidence.json",
             "events": "events.ranks-trusted.rfc461.jsonl",
             "abilityRanksTrusted": True,
+            "abilityRanksSource": ranks_summary.get("abilityRanksSource")
+            or "rofl2_upgrade_spell_ans_636_first_write",
             "identityBinding": ranks_summary.get("identityBinding")
             or "stable_identity_to_net_id",
+            "evidenceSha256": ranks_summary.get("evidenceSha256"),
+            "opcode": ranks_summary.get("opcode") or 636,
+            "pkt": ranks_summary.get("pkt") or "PKT_NPC_UpgradeSpellAns_s",
+            "heroesHit": ranks_summary.get("heroesHit"),
         }
     else:
         source_coverage.setdefault("abilityRanks", "none")
@@ -1228,16 +1234,28 @@ def publish_phase(
     if not paths.timeline.is_file() or not paths.validation.is_file():
         raise IngestError("timeline/validation missing; run build and validate first")
     validation = load_json(paths.validation)
-    if not (
-        validation.get("ok")
-        and (validation.get("productPublication") or {}).get("ok")
-    ):
-        raise IngestError("publication refused: product validation did not pass")
+    product_publication = validation.get("productPublication")
+    if not isinstance(product_publication, dict):
+        raise IngestError(
+            "publication refused: validation.json missing productPublication "
+            "(run validate --product first; artifacts-first latch)"
+        )
+    if not (validation.get("ok") and product_publication.get("ok")):
+        raise IngestError(
+            "publication refused: productPublication.ok is not true "
+            "(public/data/matches write blocked without --product green)"
+        )
 
     manifest = load_json(paths.manifest)
     gates = manifest.get("productGates") or {}
     if not gates.get("productValidated"):
         raise IngestError("publication refused: manifest product gate is not validated")
+    # Honesty latch: never publish a calculatorReady claim that validation refused.
+    if gates.get("calculatorReady") and not product_publication.get("calculatorReady"):
+        raise IngestError(
+            "publication refused: manifest calculatorReady=true but "
+            "productPublication.calculatorReady is false"
+        )
     manifest["publication"] = {
         "directory": f"public/data/matches/{metadata['matchCode']}",
         "timeline": "timeline.json",
@@ -1273,6 +1291,15 @@ def publish_phase(
     atomic_write_json(target_timeline, timeline, compact=True)
     atomic_write_json(target_manifest, manifest)
     atomic_write_json(paths.manifest, manifest)
+    # Product honesty: ship UpgradeSpellAns evidence beside published match.
+    if paths.ranks_evidence.is_file():
+        target_ranks = target / "ranks-evidence.json"
+        target_ranks.write_bytes(paths.ranks_evidence.read_bytes())
+        publication = dict(manifest.get("publication") or {})
+        publication["ranksEvidence"] = "ranks-evidence.json"
+        manifest["publication"] = publication
+        atomic_write_json(target_manifest, manifest)
+        atomic_write_json(paths.manifest, manifest)
     try:
         registry_result = match_registry.rebuild_registry(
             publish_root,

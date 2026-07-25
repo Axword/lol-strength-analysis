@@ -1,0 +1,71 @@
+{
+  "reviewer": "V3",
+  "role": "fightAgreement metric honesty (no gaming)",
+  "cycle": 4,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:09:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "metric_honesty": {
+    "authoritative_S0": {
+      "host": "2970132-g1 Path1 product cusum_engage_then_skills + idleFollowActual",
+      "fightAgreement": 0.4106910062451652,
+      "fightPassRate": 0.16666666666666666,
+      "n": 6,
+      "windowOk": "1/6 (c3_burst only)",
+      "grain": "check×segment",
+      "source": "r25/fight_agreement_S0.json + s0_path1_remeasure.json",
+      "status_best": 0.4106910062451652,
+      "supersedes_R05": 0.2279
+    },
+    "research_not_product": {
+      "r23_best_research_FA": 0.25028620072867436,
+      "r23_product_KEEP": false,
+      "r23_S1_flat_or_regress": true,
+      "note": "preEngageOpener research peak 0.250; product Path1 stays R25 0.4107"
+    },
+    "S1_current_law": {
+      "fightAgreement": 0.4169776331222436,
+      "fightPassRate": 0,
+      "tuned": false,
+      "source": "r25/fight_agreement_S1.json"
+    },
+    "fa_not_odds": true,
+    "echo_rejected": true,
+    "gate_bar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "meets_thresholds": false
+  },
+  "evidence": [
+    "Specialty B/H: scorer law unchanged (0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1; lethal≤0.75).",
+    "Authoritative product S0 Path1 FA 0.4106910062451652 / pass 0.1667 / 1/6 windowOk (R25 personally confirmed; BRIEF 0.4107; bit-match R19 idleFollowActual KEEP).",
+    "Do not cite R05 0.2279 as current product FA after R19 KEEP + R25 remesaure.",
+    "R23 research e7 FA 0.250 + e5 0.2326 correctly NO product KEEP (S1 flat/regress) — not Path1 product gate evidence.",
+    "R22 Camille Q wiki KEEP disclosed no FA lift — honest non-gaming.",
+    "R14 zero-dmg echo still REJECTED as gate evidence (H); R29 anti-odds: FA ≠ odds / pBlue%.",
+    "D reaffirm: Path1 validate+hashes personally green this cycle → §D.1–7 affirm; digestCleanGate=true.",
+    "G AFFIRM: proven (R16/R17) — does not move FA.",
+    "C AFFIRM: best.json 0.9683 preserved; no FA-beating product KEEP this cycle."
+  ],
+  "failures": [
+    "B_thresholds: S0 Path1 product FA 0.4107 / pass 0.167 ≪ 0.95; R23 research 0.250 still ≪ 0.95 and not product.",
+    "F_holdout: S1 current-law FA 0.417 / pass 0 below bar.",
+    "I_majority_e2e: FO cannot pass while B fails."
+  ],
+  "notes": "V3 C4 metric honesty: Path1 product FA 0.4107 canonical (R25); R23 research 0.250 correctly non-KEEP. G proven ≠ metric pass. digestClean reaffirm true on personal §D. fightOutcomeGate false solely on unmet B (+F/I). fightAgreement ≠ win odds.",
+  "one_line_vote": "V3: metric law honest (R25 Path1 FA 0.4107 canonical; R23 research-only) → fightOutcomeGate=false; digestCleanGate=true; G=true."
+}

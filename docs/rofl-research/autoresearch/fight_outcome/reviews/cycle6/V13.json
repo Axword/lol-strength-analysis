@@ -1,0 +1,148 @@
+{
+  "reviewer": "V13",
+  "cycle": 6,
+  "role": "Reproducibility (digest + suite commands)",
+  "utc": "2026-07-24T16:37:00Z",
+  "cwd": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "blocker": "GOAL §B/F: verified product fightAgreement 0.6021 (R35) ≪ 0.95 on Path1 S0; claimed stacked ~0.72 pending compound remesaure still ≪ bars; S1 ~0.56–0.58; not calibrated win odds",
+  "reproduce_commands": [
+    {
+      "from": "DIGEST.md Path1 validate (C3–C6 personal + DIGEST expected)",
+      "cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+      "exit": 0,
+      "result": "productPublication.ok=true; calculatorReady=true; livingOkSlots=14725/14725; ranksDensity=1.0; hpHoldAcrossRespawn=true (carried; fingerprints unchanged)"
+    },
+    {
+      "from": "DIGEST.md fingerprints",
+      "cmd": "sha256+bytes check on Path1 events+timeline",
+      "exit": 0,
+      "result": "events 114456779 sha256=823aa35f…0b9bf8 MATCH; timeline 9064216 sha256=fb542736…edc4fe4 MATCH"
+    },
+    {
+      "from": "R35 product KEEP S0 Path1 (authoritative C6 remesaure-class)",
+      "cmd": "fight_agreement_suite from R35 preEngageOpener KEEP / 0.5 maxPost=3",
+      "exit": 0,
+      "result": "fightAgreement=0.6021026 fightPassRate=0.3333 n=6 meetsThresholds=false"
+    },
+    {
+      "from": "R35 S1 holdout (no tune)",
+      "cmd": "fight_agreement_suite S1 from r35 product KEEP",
+      "exit": 0,
+      "result": "fightAgreement=0.581046 fightPassRate=0.3333 n=6 meetsThresholds=false"
+    },
+    {
+      "from": "STATUS pending_compound_remeasure (claimed, not yet authoritative)",
+      "cmd": "stacked R32 residual_hp + R34 tornado 0.15 + R36 local_skill_share remesaure TBD",
+      "exit": null,
+      "result": "claimed S0 ~0.72–0.73 (R32 0.7307 / R36 0.7217 / R34 0.6629); treat as pending — BRIEF forbids treating as authoritative"
+    },
+    {
+      "from": "BRIEF G after R35/R36 merges",
+      "cmd": "npm run fo:send-smoke && npm run smoke:calc-parity",
+      "exit": 0,
+      "result": "smokes green; criterionG proven (BRIEF/STATUS)"
+    }
+  ],
+  "npm_matrix": {
+    "DIGEST_validate_path1_living_post_seed": "PASS_carried",
+    "DIGEST_fingerprints": "PASS",
+    "fight:agreement_S0_r35_path1": "PASS_score_below_gate_FA_0.6021",
+    "fight:agreement_S1_r35": "PASS_score_below_gate_FA_0.581",
+    "compound_remeasure_stacked_KEEPs": "PENDING",
+    "fo:send_smoke": "PASS_GREEN",
+    "smoke:calc_parity": "PASS_GREEN"
+  },
+  "digest": {
+    "path1_validate": true,
+    "fingerprints_match": true,
+    "living_post_seed_v1": true,
+    "hold_forward_disclosed": true,
+    "hpHoldAcrossRespawn": true,
+    "sources_on_frames": "DIGEST e06 census + R01/R02 source-preserve",
+    "identity": "DIGEST pid↔champ↔RiotID↔netId table; never participant-order",
+    "second_host_2970110": "not digest-clean (combat honesty fail disclosed) — GOAL §D.4 prefer ≠ require",
+    "c3_majority": "12/15 true — STATUS/HEARTBEAT digestCleanGate true",
+    "c4_tally": "15/15 reaffirm",
+    "c5_reaffirm": true,
+    "digestCleanGate_vote_basis": "Reaffirm GOAL §D for ≥1 match (2970132 Path1); no concrete §D failure this cycle"
+  },
+  "suite": {
+    "product_selector": "cusum_engage_then_skills",
+    "idleFollowActual": true,
+    "aaAtEachMark": false,
+    "pulseBySlot_R": 0,
+    "preEngageOpenerSec": 0.5,
+    "preEngageOpenerMaxPostMarks": 3,
+    "killerShareMode": "residual_hp",
+    "openerAllyAttrib": "local_skill_share",
+    "S0": {
+      "fightAgreement_verified": 0.6021,
+      "fightPassRate_verified": 0.333,
+      "n": 6,
+      "match_truth": "2970132-g1 Path1 (BRIEF/R35 authoritative remesaure-class)",
+      "meetsThresholds": false,
+      "claimed_stacked_pending": "~0.72–0.73",
+      "R35_KEEP": true,
+      "R32_KEEP": true,
+      "R34_KEEP": true,
+      "R36_KEEP": true
+    },
+    "S1": {
+      "fightAgreement_verified_R35": 0.581,
+      "fightPassRate": 0.333,
+      "n": 6,
+      "tuned": false,
+      "claimed_range": "~0.56–0.58",
+      "meetsThresholds": false
+    },
+    "confidence_wording": "fightAgreement is kill-window suite agreement under GOAL §B — NOT win probability / odds % / calibrated posterior"
+  },
+  "honesty": {
+    "packetDecodeGate": true,
+    "calculatorReadyGate_path1": true,
+    "unfreeze_0_9683": true,
+    "criterionG_parent_smokes": true,
+    "pBlue_pRed": "model edge only — never odds %",
+    "compound_remeasure_pending": true,
+    "R35_product_KEEP": true,
+    "R32_product_KEEP": true,
+    "R34_product_KEEP": true,
+    "R36_product_KEEP": true,
+    "R38_audits_KEEP": true
+  },
+  "failures": [
+    "B: Path1 S0 verified fightAgreement 0.6021 / pass ≈0.333 ≪ 0.95 (R35); claimed ~0.72 still ≪ bars",
+    "F: Holdout S1 ~0.56–0.58; cannot claim FO on S0 alone",
+    "I: ≥11/15 fightOutcomeGate + parent e2e FA scripts would fail today"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle6/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r35/researcher_r35_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r32/researcher_r32_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r34/researcher_r34_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r36/researcher_r36_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle5/CYCLE5_FINAL.json"
+  ],
+  "notes": "Cycle6 V13 reproducibility: Path1 DIGEST validate + fingerprints remain green → digestCleanGate=true reaffirm. Authoritative FA 0.6021 (R35) still ≪ 0.95 → fightOutcomeGate=false on concrete B+F. Claimed stacked ~0.72 pending remesaure — do not treat as authoritative. G smokes green. fightAgreement ≠ odds.",
+  "one_line_vote": "V13: digestCleanGate=true (Path1 validate+fingerprints reaffirm); G proven; fightOutcomeGate=false (S0 FA 0.6021≪0.95)"
+}

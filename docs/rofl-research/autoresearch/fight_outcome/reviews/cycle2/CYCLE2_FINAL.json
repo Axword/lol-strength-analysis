@@ -1,0 +1,17 @@
+{
+  "schema": "fightOutcome-cycle-final-v1",
+  "cycle": 2,
+  "utc": "2026-07-24T15:57:11Z",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "votes": {
+    "fightOutcome_true": 0,
+    "digestClean_true": 6,
+    "n": 15
+  },
+  "criterionG": "proven by R16/R17 (post-vote for some V8)",
+  "reason": "FO 0/15; DC 6/15; Path1 S0 FA 0.228",
+  "continue": true,
+  "model": "Auto",
+  "next": "Path1 lethal/early/falsekill still critical; C3 at 18 researchers"
+}

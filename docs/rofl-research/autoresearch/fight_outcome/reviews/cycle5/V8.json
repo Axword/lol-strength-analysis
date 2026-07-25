@@ -1,0 +1,75 @@
+{
+  "reviewer": "V8",
+  "cycle": 5,
+  "phase": "C",
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T16:18:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "criterionG_detail": {
+    "affirmed": true,
+    "basis": "Personally re-ran BOTH parent smokes this cycle — fo:send-smoke 8/8; smoke:calc-parity 11/11",
+    "brief_status_claim": {
+      "BRIEF": "G proven (fo:send-smoke 8/8 + smoke:calc-parity 11/11 after R19/R30 smoke parity fixes)",
+      "STATUS_criterionG_proven": true,
+      "note": "C4 V8 dissent on E2 resolved by idleFollowActual+engageSec parity restore; R30 also mirrored product defaults in fo_r16"
+    },
+    "r17_parent": {
+      "smokeCommand": "npm run fo:send-smoke",
+      "result": "8 pass / 0 fail",
+      "script": "scripts/fo_r17_send_parity_smoke.ts",
+      "endHpAgree_E1": true,
+      "path1_Galio_Trundle_E2": true,
+      "E2_detail": "Path1 pin endHp agree calc=series=1137.1948051948048 (C4 Δ≈71 closed)",
+      "deadExcluded_E3": true,
+      "knownFlags_E4": true,
+      "noOdds_E6": true,
+      "researcher_proven_for_V8": true
+    },
+    "r16_parent": {
+      "smokeCommand": "npm run smoke:calc-parity",
+      "result": "11/11 PASS",
+      "script": "scripts/fo_r16_calc_parity_smoke.ts",
+      "packageJsonPresent": true,
+      "allPass": true
+    },
+    "status": {
+      "criterionG_proven": true,
+      "fightOutcomeGate": false,
+      "note": "G live-green; FO still false on B/F — parity ≠ FA lift"
+    },
+    "residual_disclosed": "Parity restored after C4 E2 idleFollowActual/engageSec drift. G affirmed. Do not sell calc parity as Path1 FA≥0.95."
+  },
+  "evidence": [
+    "GOAL V8 = Calculator↔harness parity (F6 / Criterion G)",
+    "Personally reproduced C5: `npm run fo:send-smoke` → 8/8; `npm run smoke:calc-parity` → 11/11",
+    "PARENT_MERGE — G restore 16:13:07Z 8/8; R30 also fixed fo_r16 seriesFromMatchup product defaults",
+    "BRIEF/STATUS — criterionG_proven true; S0 Path1 product FA 0.5897≪0.95; R24 research 0.503 NO product KEEP",
+    "r30 — KEEP aaAtEachMark=false + R-pulse 0; FA 0.411→0.590; S1 0.417→0.562; FO evidence false",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (no concrete §D failure)",
+    "R14 — honest F1 KEEP secondary; echo REJECTED — supports H, not B"
+  ],
+  "failures": [
+    "B: S0 Path1 fightAgreement 0.5897 ≪ 0.95 and fightPassRate 0.333 — G green does not flip FO",
+    "F: S1 holdout unmet (R30 current-law ≈0.562 / pass 0.333) — no FO on S0 alone",
+    "I: No ≥11/15 FO majority + parent e2e STATUS flip while B/F fail"
+  ],
+  "blocker": "G closed. Continue Path1 lethal/early/falsekill residuals (Galio miss-kill c1; Camille earlyPoisoned c3; c2 pathMae). Do not sell parity as FA lift.",
+  "notes": "C5 V8: G affirmed after personal fo:send-smoke 8/8 + smoke:calc-parity 11/11 (C4 E2 dissent closed). Voted fightOutcomeGate false for concrete B/F/I. digestCleanGate true on §D reaffirm. Parity ≠ FA. fightAgreement ≠ win odds.",
+  "one_line_vote": "V8: fightOutcomeGate=false digestCleanGate=true — G=true live (8/8+11/11); B fails S0 FA 0.590≪0.95"
+}

@@ -1,0 +1,12 @@
+{
+  "tag": "e4",
+  "hyp": "R35-e4 host-gated lead/far/maxMarks on 2970132",
+  "S0_FA": 0.3933561175998283,
+  "S0_pass": 0.16666666666666666,
+  "S1_FA": 0.3596653802413328,
+  "S1_pass": 0,
+  "galio_killed": true,
+  "galio_lethErr": -3.6400000000000006,
+  "galio_marks": 4,
+  "galio_endHp": 0
+}

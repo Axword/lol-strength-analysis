@@ -1,0 +1,76 @@
+{
+  "reviewer": "V6",
+  "cycle": 8,
+  "phase": "C",
+  "role": "S1 holdout auditor",
+  "utc": "2026-07-24T17:05:42Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "one_liner": "V6: fightOutcomeGate=false digestCleanGate=true (conf 0.98) — S1 FA 0.7628 / pass 0.500 ≪0.95; S0 0.9304 also ≪0.95; FA≠odds",
+  "s1_lens": {
+    "members": ["S1-2970137-g1", "S1-2970120-g1"],
+    "authoritative_member_freeze": "S1-2970137-g1",
+    "nWindows": 6,
+    "authoritative_compound_remeasure": {
+      "source": "r43/experiments/fight_agreement_S1_stack_r43.json",
+      "protocol": "cusum_engage_then_skills + idleFollowActual + aaAtEachMark=false + pulseBySlot R=0 + residual_hp + preEngage 0.5/3 share0.18 slots=[2] + preBurst 2.5 delay0.3 + earlyMaePreEngageOnly + truthPreBurstRemap + Galio tornado 0.15 + local_skill_share + zeroDead + Anivia CORE Q-fold7",
+      "fightAgreement": 0.7627693321171581,
+      "fightPassRate": 0.5,
+      "meetsThresholds": false,
+      "gateMet": false
+    },
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "no_s1_tuning_claim": true,
+    "idleFollowActual": true,
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/r43/audits/stack_s1/S1_2970137-g1_c1_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r43/audits/stack_s1/S1_2970137-g1_c1_burst.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r43/audits/stack_s1/S1_2970137-g1_c3_burst.json"
+    ],
+    "cycle8_delta": {
+      "S0_compound_FA": 0.930409557022156,
+      "S0_pass": 0.6666666666666666,
+      "S1_compound_FA": 0.7627693321171581,
+      "S1_pass": 0.5,
+      "wave3_closed": true,
+      "r43_anivia_KEEP": true,
+      "still_far_below_095": true
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "BRIEF C8 — S0 FA 0.9304 pass 0.667; S1 FA 0.7628 pass 0.500; both ≪0.95; FA≠odds",
+    "r43 fight_agreement_S1_stack_r43.json — S1 FA 0.7627693321171581 / passRate 0.5; meetsThresholds false",
+    "r43 fight_agreement_S0_stack_r43.json — S0 FA 0.930409557022156 / passRate 0.6667; meetsThresholds false",
+    "GOAL §B/§F — S1 must hit FA≥0.95 AND passRate≥0.95; no fightOutcomeGate on S0 alone",
+    "STATUS — fightOutcomeGate false; best_fightAgreement 0.9304; best_fightAgreement_S1 0.7628; digestCleanGate true; criterionG_proven true",
+    "DIGEST — Path1 2970132 living_post_seed_v1 intact; digestCleanGate reaffirm true",
+    "BRIEF G — G true; calculatorReady Path1; G orthogonal to holdout FA"
+  ],
+  "failures": [
+    "B/F: S1 FA 0.7628 / pass 0.500 ≪ 0.95 (compound remesaure post R43)",
+    "B: S0 FA 0.9304 / pass 0.667 also ≪ 0.95 — not gate-ready",
+    "I: ≥11/15 FO majority + parent e2e not met while B/F fail"
+  ],
+  "blocker": "S1 Vayne→Ambessa miss-kills (c1) + Anivia c3_burst pathMae; absorb wave4 then remesaure — do not invent pins or sell FA as odds",
+  "notes": "V6 S1 holdout lens (Cycle8). Authoritative compound remesaure (stack R43) locks S1 FA 0.7628 / pass 0.500 and S0 FA 0.9304 / pass 0.667 — both ≪0.95. digestCleanGate true on Path1 DIGEST reaffirm. G proven orthogonal. fightAgreement ≠ win odds / ≠ pBlue%."
+}

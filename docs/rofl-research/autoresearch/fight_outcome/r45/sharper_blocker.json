@@ -1,0 +1,28 @@
+{
+  "schema": "fightOutcome-sharper-blocker-v1",
+  "researcher": "r45",
+  "utc": "2026-07-24T16:53:00Z",
+  "suite": "S2",
+  "match": "2954868-g1",
+  "fightAgreement": 0.40750780944418485,
+  "fightPassRate": 0.0,
+  "n": 6,
+  "gate": { "fightAgreement": 0.9, "fightPassRate": 0.8333333333333334 },
+  "blocker": "lethal_timing_misskill_earlyPoisoned_transfer",
+  "one_liner": "S2 transfer FA 0.4075 pass 0 — Camille→Vayne late kill, Cassio miss-kill, LeeSin earlyPoisoned; not density/idleFollow.",
+  "windows": [
+    {
+      "id": "c1_Camille_Vayne",
+      "issue": "kills but |lethErr| 1.24 full / 3.77 burst > tol 0.75"
+    },
+    {
+      "id": "c2_Cassio_Ambessa",
+      "issue": "miss-kill; burst pathMae 145.6 > 90"
+    },
+    {
+      "id": "c3_LeeSin_Ziggs",
+      "issue": "earlyPoisoned; pathMae 161/329; lethErr 8.75/16.5s"
+    }
+  ],
+  "fa_not_odds": true
+}

@@ -1,0 +1,84 @@
+{
+  "reviewer": "V6",
+  "cycle": 4,
+  "phase": "C",
+  "role": "S1 holdout auditor",
+  "utc": "2026-07-24T16:09:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "s1_lens": {
+    "members": ["S1-2970137-g1", "S1-2970120-g1"],
+    "authoritative_member_freeze": "S1-2970137-g1",
+    "nWindows": 6,
+    "authoritative_current_law": {
+      "source": "r25/S1_score_freeze.json current-law remesaure",
+      "protocol": "cusum_engage_then_skills + idleFollowActual KEEP + lethal≤0.75s",
+      "fightAgreement": 0.4169776331222436,
+      "fightPassRate": 0,
+      "gateMet": false,
+      "note": "BRIEF S1 FA 0.417 / pass 0; bit-match R19 S1 e4; tuneForbidden"
+    },
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "no_s1_tuning_claim": true,
+    "idleFollowActual": true,
+    "r23_holdout": {
+      "s1_e0_product_FA": 0.514250324110164,
+      "s1_e5_sparse_flat": 0.514250324110164,
+      "s1_e7_death_coupled_REGRESS": 0.39002496720620833,
+      "product_KEEP": false,
+      "note": "R23 preEngageOpener research FA 0.250; S1 never improves → NO product KEEP"
+    },
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c1_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c1_burst.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c2_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c2_burst.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c3_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/S1_2970137-g1_c3_burst.json"
+    ],
+    "cycle4_delta": {
+      "S0_path1_product_FA": 0.4106910062451652,
+      "S0_path1_pass": 0.16666666666666666,
+      "r25_verdict": "REMEASURE_ONLY_NO_KEEP; idle closed; blocker=lethal",
+      "r23_no_product_KEEP": true,
+      "r22_Camille_Q_no_FA_lift": true
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "GOAL §B/§F — S1 must hit FA≥0.95 AND passRate≥0.95; no fightOutcomeGate on S0 alone",
+    "r25/S1_score_freeze.json — current-law FA≈0.417 / pass 0; tuneForbidden; gateMet false; all 6 windows fail",
+    "BRIEF C4 — S0 Path1 product FA 0.4107 / pass 0.167; S1 0.417 / pass 0; G proven; digestCleanGate true",
+    "r23 — research FA 0.250 (preEngageOpener); S1 flat/regress → keeps=[]; NO product KEEP; Galio W 0.334s pre-CUSUM",
+    "r22 Camille Q wiki KEEP — no Path1 FA lift (Camille not S0 killer)",
+    "STATUS — fightOutcomeGate false; best_fightAgreement 0.4107 from r25_S0_path1_remeasure",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (C3 12/15; no new §D failure)"
+  ],
+  "failures": [
+    "B/F: S1 current-law FA≈0.417 / pass 0 ≪ 0.95 (R25); cannot claim FO",
+    "F: R23 research lift on S0 does not rescue holdout — S1 never improves; no KEEP",
+    "I: ≥11/15 + parent e2e not met while holdout fails"
+  ],
+  "blocker": "S1 FA≈0.417 and pass 0 far below 0.95; lift Path1 S0 lethal (Galio miss-kill / Olaf lethErr / check03 earlyPoisoned — open R21/R24/R26/R28/R30) then re-measure S1 without tuning on holdout",
+  "notes": "V6 S1 holdout lens (Cycle4). Authoritative freeze is R25 current-law FA≈0.417 / pass 0 under cusum_engage_then_skills + idleFollowActual, tuneForbidden — all 6 windows fail. R23 proves preEngageOpener is research-only (S1 flat/regress). digestCleanGate true on §D reaffirm (no concrete §D failure). G cited proven orthogonal to holdout. fightAgreement ≠ win odds / ≠ pBlue%.",
+  "one_line_vote": "V6: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — S1 current-law FA≈0.417 / pass 0 ≪0.95; R23 no KEEP"
+}

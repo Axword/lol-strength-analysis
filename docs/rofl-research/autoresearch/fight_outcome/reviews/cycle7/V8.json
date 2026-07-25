@@ -1,0 +1,66 @@
+{
+  "reviewer": "V8",
+  "cycle": 7,
+  "phase": "C",
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T16:52:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "one_liner": "V8: fightOutcomeGate=false digestCleanGate=true — G=true (fo:send-smoke 8/8); B fails S0 FA 0.7766 / pass 0.333 ≪0.95; FA≠odds",
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "criterionG_detail": {
+    "affirmed": true,
+    "basis": "BRIEF + STATUS + r17 send_parity_smoke.json: fo:send-smoke 8/8; calculatorReady Path1 living_post_seed_v1",
+    "brief_status_claim": {
+      "BRIEF": "G: fo:send-smoke 8/8; calculatorReady Path1 living_post_seed_v1",
+      "STATUS_criterionG_proven": true,
+      "note": "Wave2 KEEPs absorbed; Send↔harness parity held; G ≠ FA lift"
+    },
+    "r17_parent": {
+      "smokeCommand": "npm run fo:send-smoke",
+      "result": "8 pass / 0 fail",
+      "artifact": "docs/rofl-research/autoresearch/fight_outcome/r17/send_parity_smoke.json",
+      "passCount": 8,
+      "failCount": 0,
+      "utc": "2026-07-24T16:46:24.537Z",
+      "noOdds_E6": true,
+      "deadExcluded_E3": true,
+      "knownFlags_E4": true
+    },
+    "status": {
+      "criterionG_proven": true,
+      "fightOutcomeGate": false,
+      "note": "G live-green; FO still false on B/F — parity ≠ FA lift; S0 FA 0.7766 ≪0.95"
+    },
+    "residual_disclosed": "G affirmed. Do not sell calc parity as Path1 FA≥0.95. FA ≠ odds."
+  },
+  "evidence": [
+    "GOAL V8 = Calculator↔harness parity (F6 / Criterion G)",
+    "BRIEF C7 — G proven fo:send-smoke 8/8; S0 FA 0.7766 pass 0.333 ≪0.95",
+    "r17/send_parity_smoke.json — passCount 8 failCount 0; criterionG sendOverlayParity/deadExcluded/knownFlags/noOddsCopy true",
+    "STATUS — criterionG_proven true; fightOutcomeGate false; best_fightAgreement 0.7766",
+    "r31 parent_stack S0 — FA 0.7766342033756181 / passRate 0.333; meetsThresholds false; c1 full |leth|=1.84; c2 burst maeHp 111.6 pathOk false",
+    "DIGEST/GOAL §D Path1 — digestCleanGate reaffirm true (no concrete §D failure)"
+  ],
+  "failures": [
+    "B: S0 fightAgreement 0.7766 ≪ 0.95; passRate 0.333 ≪ 0.95 — G green does not flip FO",
+    "F: S1 holdout FA 0.5810 / pass 0.333 unmet — no FO on S0 alone",
+    "I: No ≥11/15 FO majority + parent e2e STATUS flip while B/F fail"
+  ],
+  "blocker": "G closed. Lift passRate / pathMae / Galio lethErr / S1 miss-kills via wave3. Do not sell parity as FA lift.",
+  "notes": "C7 V8: G affirmed via BRIEF/STATUS + r17 fo:send-smoke 8/8. Voted fightOutcomeGate false for concrete B/F (S0 FA 0.7766 / pass 0.333 ≪0.95; S1 0.5810). digestCleanGate true. Parity ≠ FA. fightAgreement ≠ win odds."
+}

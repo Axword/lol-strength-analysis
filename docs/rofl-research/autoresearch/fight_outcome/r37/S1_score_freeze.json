@@ -1,0 +1,146 @@
+{
+  "schema": "fight-outcome-s1-score-freeze-v1",
+  "researcher": "r37",
+  "slug": "holdout-s1-remeasure",
+  "utc": "2026-07-24T16:22:40Z",
+  "tunedOnS1": false,
+  "tuneForbidden": true,
+  "product_defaults": {
+    "markSelection": "cusum_engage_then_skills",
+    "idleFollowActual": true,
+    "aaAtEachMark": false,
+    "perSlotPulse": true,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0
+    },
+    "dense": {
+      "denseWindow": 1.0,
+      "denseMax": 1,
+      "markMinGap": 0.4
+    },
+    "galioCore": "R28 KEEP in src/data/champions.ts",
+    "source": "worktree product defaults post PARENT_MERGE R28+R30"
+  },
+  "suite": "S1",
+  "match": "2970137-g1",
+  "harnessSuite": "2970137-g1-holdout",
+  "fightAgreement": 0.5619564223174064,
+  "fightPassRate": 0.3333333333333333,
+  "n": 6,
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S1_2970137-g1_c1_full",
+      "windowOk": false,
+      "windowScore": 0.542308,
+      "matchup": "Vayne\u2192Ambessa",
+      "segment": "full",
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": true,
+      "earlyMaeHp": 0,
+      "maeHp": 36.933760909090914,
+      "lethalErrorSec": 2.0519531326600635,
+      "fails": [
+        "lethal"
+      ]
+    },
+    {
+      "id": "S1_2970137-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.326056,
+      "matchup": "Vayne\u2192Ambessa",
+      "segment": "burst",
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false,
+      "earlyMaeHp": 77.76190476190476,
+      "maeHp": 114.54285714285713,
+      "lethalErrorSec": null,
+      "fails": [
+        "lethal",
+        "early",
+        "path"
+      ]
+    },
+    {
+      "id": "S1_2970137-g1_c2_full",
+      "windowOk": true,
+      "windowScore": 0.915217,
+      "matchup": "Cassiopeia\u2192Viktor",
+      "segment": "full",
+      "lethalOk": true,
+      "earlyOk": true,
+      "pathOk": true,
+      "earlyMaeHp": 0,
+      "maeHp": 47.22105025147957,
+      "lethalErrorSec": 0.26699999999999946,
+      "fails": []
+    },
+    {
+      "id": "S1_2970137-g1_c2_burst",
+      "windowOk": true,
+      "windowScore": 0.925,
+      "matchup": "Cassiopeia\u2192Viktor",
+      "segment": "burst",
+      "lethalOk": true,
+      "earlyOk": true,
+      "pathOk": true,
+      "earlyMaeHp": 0,
+      "maeHp": 53.660284376681325,
+      "lethalErrorSec": 0.26699999999999946,
+      "fails": []
+    },
+    {
+      "id": "S1_2970137-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.313158,
+      "matchup": "Anivia\u2192Sylas",
+      "segment": "full",
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false,
+      "earlyMaeHp": 0,
+      "maeHp": 335.4116813165434,
+      "lethalErrorSec": null,
+      "fails": [
+        "lethal",
+        "path"
+      ]
+    },
+    {
+      "id": "S1_2970137-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.35,
+      "matchup": "Anivia\u2192Sylas",
+      "segment": "burst",
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false,
+      "earlyMaeHp": 49.38679232914228,
+      "maeHp": 647.4172558211905,
+      "lethalErrorSec": null,
+      "fails": [
+        "lethal",
+        "path"
+      ]
+    }
+  ],
+  "vs_R30_claim": {
+    "R30_S1_FA": 0.5619564223174064,
+    "r37_S1_FA": 0.5619564223174064,
+    "delta": 0.0,
+    "note": "bit-match R30 S1 within float noise"
+  },
+  "vs_R25_remeasure": {
+    "R25_S1_FA": 0.4169776331222436,
+    "r37_S1_FA": 0.5619564223174064,
+    "delta": 0.14497878919516277
+  },
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r37/experiments/s1_product_defaults.json",
+  "fa_json": "docs/rofl-research/autoresearch/fight_outcome/r37/fight_agreement_S1.json"
+}

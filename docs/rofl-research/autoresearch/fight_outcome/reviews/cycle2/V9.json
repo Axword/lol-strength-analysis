@@ -1,0 +1,55 @@
+{
+  "reviewer": "V9",
+  "role": "Timed planner / death-coupled honesty",
+  "cycle": 2,
+  "utc": "2026-07-24T15:53:18Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.94,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": false
+  },
+  "evidence": [
+    "V9 specialty — parent death-coupled / no-HP%-ban HOLDS: timed_manual_1v1 stops at first lethal + suppresses post-death hits (src/engine/combat.ts); timed path leaves surviveSec unset; abilityBudget docs+impl never HP%-ban slots (src/engine/hpBudget.ts).",
+    "V9 specialty — R10 complete NO KEEP: best timed cusum_gate+allin S0 FA=0.5019 (passRate=0) vs marks e0 0.4848; S1 timed 0.2822 loses to marks 0.5185; product selectors unchanged (cusum_engage_then_skills / post_engage_killer_skills); never_edited_parent.",
+    "V9 specialty — R12 complete NO KEEP: death-coupled/front-load sweeps flat (best e7 FA=0.4853 Δ+0.0004 noise); c3-full still false-kill (modelEndHp=0 actualEndHp=210); acceptance 363 invariants pass; product selectors unchanged.",
+    "V9 specialty — R11 worktree KEEP_contract (utility/engageCc zero-dmg keep) NOT merged to parent: parent combat.ts still `if (expectedDamage <= 0 && !attackReset) continue`; probe Nasus W/Zilean E ok in worktree; Camille R miss disclosed in e1; FA sweeps flat @0.4217; STATUS done-list omits r11 — no product KEEP claim.",
+    "B FAILS (authoritative): S0 Path1 2970132 product cusum FA=0.228 / pass=0 (R05); proxy 2970110 ~0.42 (R04); R10 best timed research 0.5019 ≪ 0.95.",
+    "F FAILS: S1 FA=0.478 / pass=0.333 (R06) ≪ 0.95; R10 timed S1 regress vs marks — cannot claim on S0 alone.",
+    "D re-judge TRUE (C2): GOAL §D Path1 one-command validate + fingerprints + sources/identity/living disclosed; §D.4 prefer≠require second host; 2970110 combat honesty gap disclosed no invent; C1 V2/V13 affirm stands; R14 orthogonal to §D.",
+    "H OK + strengthened: R14 honest PE damage F1=1.0 on c1; zero-dmg echo F1=1.0 REJECTED as gate evidence; FA credit only honest (+0.025 proxy lift); no zero-dmg echo as fightOutcomeGate secondary.",
+    "C OK: unfreeze 0.9683 authorized; R07/R08/R09/R10/R12 no FA KEEP → best.json 0.9683 untouched; product non-drop selectors held.",
+    "G null: BRIEF still lists R16/R17 Send parity open; r17 smoke artifact exists mid-wave but not treating as Final G affirm.",
+    "A OK: packetDecodeGate true; Path1 calculatorReady living_post_seed honest; pBlue/pRed model edge only; clean-room intact."
+  ],
+  "failures": [
+    "B: S0 Path1 FA 0.228 / pass 0 (authoritative); best timed research 0.5019; all ≪ 0.95/0.95.",
+    "F: S1 holdout FA 0.478 / pass 0.333 ≪ gate; timed planner regresses vs marks on S1.",
+    "Outcome honesty gap (not death-coupled mechanism): check3 false-kill + path MAE persist under planner sweeps (R12); Camille→Leona lethal miss on pure timed path (R10).",
+    "I: fightOutcomeGate majority + parent e2e not met this cycle (FO must stay false)."
+  ],
+  "blocker": "Timed planner mechanism (death-coupled / no HP% ban) is honest in parent, but Path1 S0 FA=0.228 and S1 FA=0.478 ≪ 0.95; utility-keep still worktree-only; next is Path1 lethal/early (R18/R19) — do not flip product selectors.",
+  "notes": "V9 flips digestCleanGate true on GOAL §D Path1 (≥1 match) re-judge; fightOutcomeGate false solely on concrete B+F (+I). fightAgreement ≠ win odds / ≠ pBlue-pRed %. R11 utility KEEP must PARENT_MERGE before claiming F4.H3 product honesty.",
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds",
+    "S0_path1_2970132_product_cusum": 0.228,
+    "S0_path1_passRate": 0.0,
+    "S0_proxy_2970110": 0.42,
+    "S1": 0.478,
+    "S2": 0.634,
+    "R10_best_timed_S0": 0.5019,
+    "R10_timed_S1": 0.2822
+  },
+  "one_line_vote": "V9: fightOutcomeGate=false digestCleanGate=true — planner death-coupled honest; Path1 S0 FA=0.228 ≪0.95."
+}

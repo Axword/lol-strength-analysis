@@ -1,0 +1,16 @@
+{
+  "reviewer": "V1",
+  "role": "clean-room + packetDecodeGate + calculatorReady honesty",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "one_liner": "FO false: post-R43 S0 FA 0.9304 / pass 0.667 ≪0.95; digestClean Path1 still true; FA≠odds.",
+  "evidence": [
+    "A AFFIRM: packetDecodeGate / calculatorReady Path1 living_post_seed_v1 remain orthogonal to FO; no invent; FA ≠ pBlue/pRed odds.",
+    "B FAIL: Authoritative compound remesaure post-R43 S0 FA 0.9304 pass 0.667 (fight_agreement_S0_stack_r43.json meetsThresholds=false) ≪0.95/0.95.",
+    "F FAIL: S1 FA 0.7628 pass 0.500 (S1 stack_r43) ≪0.95 holdout; S2 FA 0.4075 pass 0.",
+    "D AFFIRM → digestCleanGate=true: DIGEST Path1 2970132 fingerprints + prior-cycle majority; no concrete §D regression from wave3 KEEPs.",
+    "G AFFIRM: criterionG_proven true / fo:send-smoke 8/8 — does not move FA.",
+    "I FAIL: majority_needed 11/15 FO true impossible while B fails."
+  ]
+}

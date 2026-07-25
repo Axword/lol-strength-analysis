@@ -19,6 +19,7 @@ Example:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -30,7 +31,11 @@ if str(SCRIPTS) not in sys.path:
 
 from rofl2_create_hero_discover import PROVEN_HERO_NET_IDS  # noqa: E402
 from rofl2_packet_decrypt_probe import DecryptError  # noqa: E402
-from rofl2_upgrade_spell_ranks import ABILITY_RANKS_SOURCE  # noqa: E402
+from rofl2_upgrade_spell_ranks import (  # noqa: E402
+    ABILITY_RANKS_SOURCE,
+    UPGRADE_SPELL_OPCODE_16_13,
+    UPGRADE_SPELL_OPCODE_FALLBACK_16_14,
+)
 from rofl_fuse_identity import (  # noqa: E402
     apply_roster_labels,
     pid_bindings_from_game_info,
@@ -38,6 +43,11 @@ from rofl_fuse_identity import (  # noqa: E402
 )
 
 RANK_KEYS = ("ability1Level", "ability2Level", "ability3Level", "ability4Level")
+# 16.14 BR1 uses opcode 636; 16.13 pro (2970110) uses PE-proven 1012 (R07).
+ABILITY_RANKS_SOURCES_BY_OPCODE = {
+    UPGRADE_SPELL_OPCODE_FALLBACK_16_14: ABILITY_RANKS_SOURCE,
+    UPGRADE_SPELL_OPCODE_16_13: "rofl2_upgrade_spell_ans_1012_first_write",
+}
 
 
 def _load_jsonl(path: Path) -> List[dict]:
@@ -78,9 +88,27 @@ def fuse_ranks_product(
         raise DecryptError("ranks evidence is not abilityRanksTrusted")
     if ranks_evidence.get("ok") is not True:
         raise DecryptError("ranks evidence ok!=true")
+    if ranks_evidence.get("productEligible") is not True:
+        raise DecryptError("ranks evidence is not productEligible")
+    opcode = int(ranks_evidence.get("opcode") or 0)
+    expected_source = ABILITY_RANKS_SOURCES_BY_OPCODE.get(opcode)
+    if expected_source is None:
+        raise DecryptError(
+            "ranks evidence opcode must be UpgradeSpellAns "
+            f"{UPGRADE_SPELL_OPCODE_FALLBACK_16_14} (16.14) or "
+            f"{UPGRADE_SPELL_OPCODE_16_13} (16.13); got {opcode}"
+        )
+    ev_source = ranks_evidence.get("abilityRanksSource")
+    if ev_source not in (None, "", expected_source):
+        raise DecryptError(
+            f"ranks evidence abilityRanksSource must be {expected_source!r} "
+            f"(got {ev_source!r})"
+        )
     snapshots = list(ranks_evidence.get("snapshots") or [])
     if len(snapshots) < 50:
         raise DecryptError("ranks evidence has too few snapshots")
+    if int(ranks_evidence.get("heroesHit") or 0) < 10:
+        raise DecryptError("ranks evidence heroesHit < 10")
 
     pid_to_net, pid_to_labels, pid_to_identity = pid_bindings_from_game_info(
         rows, castspell_identity
@@ -105,7 +133,7 @@ def fuse_ranks_product(
             row = dict(original)
             if schema == "rofl_coverage":
                 decoded = list(row.get("decoded") or [])
-                marker = "ability_ranks_upgrade_spell_ans_636"
+                marker = f"ability_ranks_upgrade_spell_ans_{opcode}"
                 if marker not in decoded:
                     decoded.append(marker)
                 row["decoded"] = decoded
@@ -116,13 +144,19 @@ def fuse_ranks_product(
                 ]
                 row["missing"] = missing
                 prov = dict(row.get("provenance") or {})
-                prov["abilityRanksSource"] = ABILITY_RANKS_SOURCE
+                prov["abilityRanksSource"] = expected_source
                 prov["abilityRanksTrusted"] = True
                 notes = str(prov.get("notes") or "")
-                note = (
-                    "Ability ranks from PKT_NPC_UpgradeSpellAns_s opcode 636 "
-                    "first-write level@+0x10 / slot@+0x11 with CastSpellAns identity."
-                )
+                if opcode == UPGRADE_SPELL_OPCODE_16_13:
+                    note = (
+                        "Ability ranks from PKT_NPC_UpgradeSpellAns_s opcode 1012 "
+                        "first-write (16.13 slot@+0x12 / level@+0x13) with CastSpellAns identity."
+                    )
+                else:
+                    note = (
+                        "Ability ranks from PKT_NPC_UpgradeSpellAns_s opcode 636 "
+                        "first-write level@+0x10 / slot@+0x11 with CastSpellAns identity."
+                    )
                 if note not in notes:
                     prov["notes"] = (notes + " " if notes else "") + note
                 row["provenance"] = prov
@@ -141,7 +175,7 @@ def fuse_ranks_product(
             fused = apply_roster_labels(participant, pid_to_labels[pid])
             for key, value in zip(RANK_KEYS, ranks):
                 fused[key] = int(value)
-            fused["abilityRanksSource"] = ABILITY_RANKS_SOURCE
+            fused["abilityRanksSource"] = expected_source
             fused["abilityRanksNetId"] = net_id
             fused["abilityRanksIdentityKey"] = pid_to_identity[pid]
             fused["abilityRanksCoverage"] = "cumulative_upgrade_spell_ans"
@@ -154,13 +188,16 @@ def fuse_ranks_product(
 
     summary = {
         "ok": True,
-        "abilityRanksSource": ABILITY_RANKS_SOURCE,
+        "abilityRanksSource": expected_source,
         "abilityRanksKnown": True,
         "fusedFrames": fused_frames,
         "fusedParticipants": fused_participants,
         "eventCount": ranks_evidence.get("eventCount"),
         "schema": ranks_evidence.get("schema"),
         "identityBinding": "stable_identity_to_net_id",
+        "opcode": opcode,
+        "pkt": "PKT_NPC_UpgradeSpellAns_s",
+        "heroesHit": ranks_evidence.get("heroesHit"),
     }
     return out, summary
 
@@ -175,13 +212,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         default=Path("docs/rofl-research/castspell-identity-BR1-3264361042.json"),
     )
     ap.add_argument("-o", "--out", type=Path, required=True)
+    ap.add_argument(
+        "--ship-evidence",
+        type=Path,
+        default=None,
+        help="Copy ranks-evidence.json beside the fused artifact (product honesty).",
+    )
     ap.add_argument("--product", action="store_true")
     args = ap.parse_args(argv)
     if not args.product:
         print("refusing non-product ranks fuse", file=sys.stderr)
         return 2
     rows = _load_jsonl(args.jsonl)
-    ranks_evidence = json.loads(args.ranks_evidence.read_text(encoding="utf-8"))
+    ranks_bytes = args.ranks_evidence.read_bytes()
+    ranks_evidence = json.loads(ranks_bytes.decode("utf-8"))
     castspell = json.loads(args.castspell_identity.read_text(encoding="utf-8"))
     try:
         fused, summary = fuse_ranks_product(
@@ -196,6 +240,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     with args.out.open("w", encoding="utf-8") as handle:
         for row in fused:
             handle.write(json.dumps(row, separators=(",", ":")) + "\n")
+    ship_path = args.ship_evidence
+    if ship_path is None:
+        ship_path = args.out.parent / "ranks-evidence.json"
+    ship_path.parent.mkdir(parents=True, exist_ok=True)
+    # Byte-identical ship so evidenceSha256 matches the UpgradeSpellAns artifact.
+    ship_path.write_bytes(ranks_bytes)
+    summary["evidenceSha256"] = hashlib.sha256(ranks_bytes).hexdigest()
+    summary["ranksEvidencePath"] = str(ship_path)
     print(json.dumps(summary, indent=2))
     return 0
 

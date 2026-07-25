@@ -1,0 +1,50 @@
+{
+  "schema": "fightOutcome-camille-pe-holes-v1",
+  "trackClosed": true,
+  "closedUtc": "2026-07-24T10:35:31Z",
+  "blocker": "camille_ad_armor_absent_structural_2970110_2970137",
+  "hosts": {
+    "2970110-g1": {
+      "furFloor": "7/10",
+      "missing": [
+        "Camille AD/armor",
+        "Jhin AS",
+        "Leona AD/AS"
+      ],
+      "peTrack": "CLOSED"
+    },
+    "2970137-g1": {
+      "furFloor": "9/10",
+      "missing": [
+        "Camille AD/armor"
+      ],
+      "peTrack": "CLOSED",
+      "note": "mr present on holdout; AD/armor wire-absent under frozen R05 PE"
+    },
+    "2970132-g1": {
+      "furFloor": "10/10",
+      "missing": [],
+      "peTrack": "Camille FUR-complete on this host only",
+      "note": "calculatorReady Path1 living_post_seed_v1 scoped here — does not clear 2970110/2970137"
+    }
+  },
+  "exhaustedTracks": [
+    "opcode743",
+    "secondary_buff_packets",
+    "pe_alt_registrar",
+    "untried_opcodes",
+    "createhero_visibility"
+  ],
+  "suiteImplications": {
+    "S1_2970137": "Holdout slim research OK; product PE densify cannot invent Camille AD/armor — disclose, do not tune around hole.",
+    "S1_2970120": "Camille is victim in check1 of slim holdout extract; livestats pins ≠ PE proof. Do not invent PE fields.",
+    "S2_2954868": "Transfer slim-v1 includes Camille as killer in check1; PE structural close still applies to ROFL product fuse — suite uses livestats slim only."
+  },
+  "inventPolicy": "refuse",
+  "refs": [
+    "docs/rofl-research/autoresearch/product_ready/C_TRACK_EXHAUSTION.md",
+    "docs/rofl-research/autoresearch/product_ready/r04/NOTES_camille_pe_alt.md",
+    "docs/rofl-research/autoresearch/product_ready/reviews/cycle6/V10.json"
+  ],
+  "utc": "2026-07-24T15:40:44.664Z"
+}

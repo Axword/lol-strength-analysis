@@ -1,0 +1,109 @@
+{
+  "researcher": "r11",
+  "slug": "planner-utility",
+  "model": "Auto",
+  "utc": "2026-07-24T15:51:47Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r11",
+  "branch": "adv/fo-r11-planner-utility",
+  "room": "f4",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "unfreeze_0_9683_authorized": true,
+  "f4_hypotheses_auto_picked": [
+    {
+      "id": "F4.H3",
+      "title": "Utility-only keep — Nasus W / slows reshape AA at 0 base damage",
+      "priority": 1,
+      "result": "KEEP_contract"
+    },
+    {
+      "id": "F4.H4",
+      "title": "Front-loaded scoring / utility proxy so CC not AA-padded",
+      "priority": 2,
+      "result": "partial_proxy12_FA_flat"
+    },
+    {
+      "id": "F4.H1",
+      "title": "Death-coupled truncate",
+      "priority": 3,
+      "result": "verified_no_regress"
+    },
+    {
+      "id": "F4.H2",
+      "title": "No HP% ability bans",
+      "priority": 4,
+      "result": "verified_no_regress"
+    },
+    {
+      "id": "F4.H5",
+      "title": "Engage t=0",
+      "priority": 5,
+      "result": "verified_untouched"
+    }
+  ],
+  "f4_hypotheses_deferred": [
+    "F4.H6 Parity with Send — same timed path; FA harness remains gate_action pulses"
+  ],
+  "n_experiments": 19,
+  "suite": "S0-2970110-g1",
+  "baseline": {
+    "source": "R04 product cusum_engage_then_skills",
+    "fightAgreement": 0.4217420179369753,
+    "fightPassRate": 0.16666666666666666,
+    "note": "product non-drop selector — NOT win odds"
+  },
+  "best_fightAgreement": 0.4217420179369753,
+  "best_fightAgreement_delta_vs_baseline": 0.0,
+  "keeps": ["utility_engageCc_planner_keep_contract"],
+  "discards_for_fa": [
+    "e_proxy_0.001",
+    "e_proxy_12",
+    "e_proxy_40",
+    "e_proxy_80",
+    "e_proxy_150",
+    "e_proxy_300",
+    "e_wither_as_harder",
+    "e_wither_as_softer",
+    "e_hardcc_short_055",
+    "e_hardcc_short_080",
+    "e_hardcc_long_075",
+    "e_ms_cap_070",
+    "e_combo_as95_hc055"
+  ],
+  "product_selectors_changed": false,
+  "product_default_still": [
+    "cusum_engage_then_skills",
+    "post_engage_killer_skills"
+  ],
+  "best_json_updated": false,
+  "engine_overlay_touched": false,
+  "engine_combat_touched": true,
+  "parity_gate": "acceptance+killWindow green; overlay untouched",
+  "contract_fix": {
+    "before": "timed planner skipped expectedDamage<=0 unless attackReset",
+    "after": "keep when ability.utility || ability.engageCc; proxy UTILITY_PLANNER_PROXY_DAMAGE (default 12); Spellblade abilityProcs exclude zero-damage casts",
+    "proof": [
+      "docs/rofl-research/autoresearch/fight_outcome/r11/e2_utility_keep_proxy12.json",
+      "src/engine/__tests__/combat.acceptance.test.ts (Nasus W + Zilean E)"
+    ]
+  },
+  "blocker": "S0 FA stuck 0.4217; gate_action pulses insensitive to planner proxy/wither caps; Camille Q Meraki stub damage=[] (no invent) blocks Q-mark kit damage; c2 path MAE + c3 early/false-kill dominate lethalHit+earlyBand",
+  "sharper_blocker": "Camille Q empty packets + gate_action not using full timed utility plan — utility-keep is calculator honesty, not S0 FA lever until overlay/Q kit filled",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r11/results.jsonl",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r11/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r11/NOTES.md",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r11/fight_agreement_S0.json",
+    "proxy_sweep": "docs/rofl-research/autoresearch/fight_outcome/r11/proxy_sweep_summary.json",
+    "wither_sweep": "docs/rofl-research/autoresearch/fight_outcome/r11/wither_sweep_summary.json",
+    "camille_q_gap": "docs/rofl-research/autoresearch/fight_outcome/r11/e_camille_q_gap.json"
+  },
+  "tests": {
+    "test:acceptance": "367 invariants passed",
+    "test:kill-window": "20 passed"
+  },
+  "verdict": "KEEP_contract_utility_planner; NO_FA_KEEP; best.json unchanged",
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "next": "F9/Camille Q Meraki-or-wire fill (no invent); F3 mark/regen for c2/c3; R10/R12 may own death-coupled/front-load FA levers on overlay path"
+}

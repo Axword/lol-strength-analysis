@@ -1,0 +1,53 @@
+{
+  "id": "E04",
+  "hypothesis": "H3 Wire emit proof — basic_attack/damage_dealt source+amount",
+  "censuses": [
+    {
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/packet_decode/r41/emit_2970110_basic_attack_damage.jsonl",
+      "exists": true,
+      "lines": 67817,
+      "basic_attack": 14447,
+      "damage_dealt": 53369,
+      "withSourceNetId": 67816,
+      "withAmount": 53369,
+      "withBoth": 53369,
+      "peProvenBothPositive": 53286
+    },
+    {
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/packet_decode/researchers/r41/emit_2970110_basic_attack_damage.jsonl",
+      "exists": true,
+      "lines": 67817,
+      "basic_attack": 14447,
+      "damage_dealt": 53369,
+      "withSourceNetId": 67816,
+      "withAmount": 53369,
+      "withBoth": 53369,
+      "peProvenBothPositive": 53286
+    },
+    {
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/packet_decode/r28/emit_2970110_basic_attack_damage.jsonl",
+      "exists": true,
+      "lines": 67817,
+      "basic_attack": 14447,
+      "damage_dealt": 53369,
+      "withSourceNetId": 0,
+      "withAmount": 0,
+      "withBoth": 0,
+      "peProvenBothPositive": 0
+    }
+  ],
+  "best": {
+    "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/packet_decode/r41/emit_2970110_basic_attack_damage.jsonl",
+    "exists": true,
+    "lines": 67817,
+    "basic_attack": 14447,
+    "damage_dealt": 53369,
+    "withSourceNetId": 67816,
+    "withAmount": 53369,
+    "withBoth": 53369,
+    "peProvenBothPositive": 53286
+  },
+  "peProven": true,
+  "invent": "refused",
+  "note": "Census only — does not invent missing PE fields; packetDecodeGate unchanged"
+}

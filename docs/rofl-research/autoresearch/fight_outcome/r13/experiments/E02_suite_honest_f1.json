@@ -1,0 +1,335 @@
+{
+  "id": "E02",
+  "hypothesis": "H1+H4 suite honest F1 + coverage gaps",
+  "nWindows": 13,
+  "meanRawActionCoverage": 0.6219103715267398,
+  "meanFightAgreementF1": 0.5536974136974137,
+  "weight": 0.15,
+  "windows": [
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Camille→Leona",
+      "raw": 0.6,
+      "honest": 0.8571428571428571,
+      "fightAgreementF1": 0.8571428571428571,
+      "rejectedEchoModel": 3,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Camille→Leona",
+      "raw": 0.5333333333333333,
+      "honest": 0.7272727272727273,
+      "fightAgreementF1": 0.7272727272727273,
+      "rejectedEchoModel": 4,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Syndra→Camille",
+      "raw": 0.5,
+      "honest": 0.5714285714285715,
+      "fightAgreementF1": 0.5714285714285715,
+      "rejectedEchoModel": 1,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Syndra→Camille",
+      "raw": 0.42857142857142855,
+      "honest": 0.5,
+      "fightAgreementF1": 0.5,
+      "rejectedEchoModel": 2,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Ezreal→LeeSin",
+      "raw": 0.6666666666666666,
+      "honest": 0.8,
+      "fightAgreementF1": 0.8,
+      "rejectedEchoModel": 1,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Ezreal→LeeSin",
+      "raw": 0.34782608695652173,
+      "honest": 0.4,
+      "fightAgreementF1": 0.4,
+      "rejectedEchoModel": 3,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Camille→Leona",
+      "raw": 0.8333333333333333,
+      "honest": 0.6666666666666665,
+      "fightAgreementF1": 0.6666666666666665,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Camille→Leona",
+      "raw": 0.9090909090909091,
+      "honest": 0,
+      "fightAgreementF1": 0,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "skill",
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Camille→Leona",
+      "raw": 0.8333333333333333,
+      "honest": 0.5555555555555556,
+      "fightAgreementF1": 0.5555555555555556,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa",
+          "item"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Syndra→Camille",
+      "raw": 0.4444444444444445,
+      "honest": 0.5714285714285715,
+      "fightAgreementF1": 0.5714285714285715,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Syndra→Camille",
+      "raw": 0.5882352941176471,
+      "honest": 0.42857142857142855,
+      "fightAgreementF1": 0.42857142857142855,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Ezreal→LeeSin",
+      "raw": 0.8,
+      "honest": 0.8,
+      "fightAgreementF1": 0.8,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "aa",
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill"
+        ],
+        "notes": [
+          "aa absent — no invent; wait for PE basic_attack + damaging model AA",
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Ezreal→LeeSin",
+      "raw": 0.6,
+      "honest": 0.32,
+      "fightAgreementF1": 0.32,
+      "rejectedEchoModel": 0,
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema": "fightAgreement-from-eval-v1",
+  "t": "2026-07-24T15:41:53.640Z",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E10_eval.json",
+  "suite": "S0",
+  "hypothesis": "F3H4 cusumK6 H30 +density",
+  "composite": 2.1040313467290845,
+  "hardFails": [],
+  "config": {
+    "hypothesis": "F3H4 cusumK6 H30 +density",
+    "mode": "gate_action",
+    "castPulseSec": 0.4,
+    "aaFiller": false,
+    "maxAaBetweenMarks": 6,
+    "allyPulseShare": 0.35,
+    "markIdleSkipSec": 0,
+    "markNearDropSec": 0.75,
+    "markDropMinHp": 15,
+    "markAlwaysNearKillSec": 2,
+    "useDropConditioning": false,
+    "markSelection": "cusum_engage_then_skills",
+    "finishAaAfterLastMark": true,
+    "finishAaMax": 4,
+    "finishAaWindowSec": 0,
+    "aaAtEachMark": true,
+    "rePinEachMark": false,
+    "perSlotPulse": false,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0.75
+    },
+    "cusumK": 6,
+    "cusumH": 30,
+    "markMinGapSec": 1,
+    "markFinishHorizonSec": 0,
+    "maxKillerMarks": 0,
+    "markDensityWindowSec": 1.2,
+    "markDenseMaxPerWindow": 1,
+    "actionReplayTauSec": 0.25,
+    "includeAllyTruth": false,
+    "emitItemModelActions": true,
+    "itemPulseShare": 0,
+    "basicAttackJsonl": "",
+    "aaIdentityPath": "",
+    "emitDamagingModelAaFromTruth": false
+  },
+  "fightAgreement": 0.43416666666666676,
+  "fightPassRate": 0.3333333333333333,
+  "n": 3,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "meanPathBand": 0.3333333333333333,
+  "windows": [
+    {
+      "id": "2970110-g1/check1",
+      "windowOk": true,
+      "windowScore": 0.9400000000000001,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.6,
+        "earlyMaeHp": 31.2,
+        "maeHpBurst": 75.8,
+        "maeHpFull": 83.06034700000002,
+        "lethalErrorSec": -0.017000000000000348
+      }
+    },
+    {
+      "id": "2970110-g1/check2",
+      "windowOk": false,
+      "windowScore": 0.325,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0,
+        "actionF1": 0.5,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 174.2,
+        "maeHpFull": 323.51003315628475,
+        "lethalErrorSec": -1.475
+      }
+    },
+    {
+      "id": "2970110-g1/check3",
+      "windowOk": false,
+      "windowScore": 0.0375,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "lethalHit": 0,
+        "earlyBand": 0,
+        "pathBand": 0,
+        "actionF1": 0.25,
+        "earlyMaeHp": 579.815870547395,
+        "maeHpBurst": 146.62249393958234,
+        "maeHpFull": 703.8601392875831,
+        "lethalErrorSec": -12.791
+      }
+    }
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %"
+}

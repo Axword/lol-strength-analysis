@@ -1,0 +1,37 @@
+{
+  "schema": "fightAgreement-failing-audit-v1",
+  "t": "2026-07-24T17:12:20Z",
+  "researcher": "r54",
+  "suite": "S1",
+  "match": "2970137-g1",
+  "windowId": "S1_2970137-g1_c1_burst",
+  "windowOk": false,
+  "windowScore": 0.51,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": true,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 1,
+    "actionF1": 0.4,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 79.09203928571428,
+    "maeHpFull": 36.933760909090914,
+    "maeHp": 79.09203928571428,
+    "pathCap": 90,
+    "lethalErrorSec": null,
+    "segment": "burst",
+    "matchup": "Vayne\u2192Ambessa"
+  },
+  "failReasons": [
+    "lethal"
+  ],
+  "sharperBlocker": "lethal",
+  "pathOverageHp": null,
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "FA \u2260 odds; audit only",
+  "stack": "R19\u00b7R30\u00b7R31\u00b7R33\u00b7R35\u00b7R36\u00b7R39\u00b7R42\u00b7R43\u00b7R44"
+}

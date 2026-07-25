@@ -1,0 +1,15 @@
+{
+  "reviewer": "V5",
+  "role": "S0 suite auditor",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "one_liner": "S0 suite FA 0.7766 / 2-of-6 pass ≪0.95; FO false; Path1 digestClean true.",
+  "evidence": [
+    "Specialty E/S0: fight_agreement_S0_parent_stack_r31.json n=6 FA 0.7766 passRate 0.333; windowOk only c2_full + c3_burst (2/6).",
+    "Failing S0 windows: c1_full (lethErr 1.84), c1_burst (earlyOk false / pathOk false), c2_burst (maeHpBurst 111.6 >90), c3_full (early/path).",
+    "S1 parent_stack_r31 FA 0.5810 pass 0.333 — F unmet; no invent (noInvent true on windows).",
+    "STATUS best_fightAgreement 0.7766 source compound_remeasure_post_r31_S0; HEARTBEAT/BRIEF agree FO false.",
+    "digestCleanGate reaffirm true (DIGEST Path1); FA ≠ win odds / pBlue%; G proven; I: FO majority not met."
+  ]
+}

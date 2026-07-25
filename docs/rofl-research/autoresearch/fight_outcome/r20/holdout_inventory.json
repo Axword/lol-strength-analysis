@@ -1,0 +1,167 @@
+{
+  "schema": "fightOutcome-holdout-inventory-v1",
+  "researcher": "r20",
+  "hypothesis": "F7.H1 Inventory holdouts",
+  "utc": "2026-07-24T15:58:00Z",
+  "tunePolicy": {
+    "S1": "FORBIDDEN \u2014 measure only",
+    "S2": "FORBIDDEN \u2014 transfer measure only"
+  },
+  "members": [
+    {
+      "id": "S1-2970137-g1",
+      "suite": "S1",
+      "series": "2970137",
+      "role": "holdout",
+      "crosscheck": "docs/canvases/_data/crosschecks-2970137-g1-holdout.json",
+      "sqlite": "artifacts/pro-grid/2970137/timeline.g1.slim.sqlite",
+      "tuneAllowed": false,
+      "crosscheckOk": true,
+      "sqliteOk": true,
+      "schema": "slim-v2",
+      "n_frames": 16400,
+      "rosterChamps": [
+        "Ambessa",
+        "Anivia",
+        "Camille",
+        "Cassiopeia",
+        "LeeSin",
+        "Shen",
+        "Skarner",
+        "Sylas",
+        "Vayne",
+        "Viktor"
+      ],
+      "hasCamille": true,
+      "crosscheckCheckCount": 3,
+      "crosscheckMentionsCamille": false,
+      "gap": []
+    },
+    {
+      "id": "S1-2970120-g1",
+      "suite": "S1",
+      "series": "2970120",
+      "role": "holdout",
+      "crosscheck": "docs/canvases/_data/crosschecks-2970120-g1-holdout.json",
+      "sqlite": "artifacts/pro-grid/2970120/timeline.g1.slim.sqlite",
+      "tuneAllowed": false,
+      "crosscheckOk": true,
+      "sqliteOk": true,
+      "schema": "slim-v1",
+      "n_frames": 18980,
+      "rosterChamps": [
+        "Ambessa",
+        "Bard",
+        "Caitlyn",
+        "Camille",
+        "LeeSin",
+        "Orianna",
+        "Shen",
+        "Skarner",
+        "Viktor",
+        "Ziggs"
+      ],
+      "hasCamille": true,
+      "crosscheckCheckCount": 3,
+      "crosscheckMentionsCamille": true,
+      "gap": [
+        "no_items_json_slim_v1"
+      ]
+    },
+    {
+      "id": "S2-2954868-g1",
+      "suite": "S2",
+      "series": "2954868",
+      "role": "transfer_unused_pro_slim",
+      "crosscheck": "docs/rofl-research/autoresearch/fight_outcome/r06/crosschecks-2954868-g1-transfer.json",
+      "sqlite": "artifacts/pro-grid/2954868/timeline.g1.slim.sqlite",
+      "tuneAllowed": false,
+      "crosscheckOk": true,
+      "sqliteOk": true,
+      "schema": "slim-v1",
+      "n_frames": 18770,
+      "rosterChamps": [
+        "Ambessa",
+        "Camille",
+        "Cassiopeia",
+        "Galio",
+        "Jhin",
+        "LeeSin",
+        "Shen",
+        "Trundle",
+        "Vayne",
+        "Ziggs"
+      ],
+      "hasCamille": true,
+      "crosscheckCheckCount": 3,
+      "crosscheckMentionsCamille": true,
+      "gap": [
+        "no_items_json_slim_v1"
+      ]
+    },
+    {
+      "id": "S0-2970132-g1",
+      "suite": "S0",
+      "series": "2970132",
+      "role": "path1_preferred",
+      "crosscheck": "docs/canvases/_data/crosschecks-2970132-g1-holdout.json",
+      "sqlite": "artifacts/pro-grid/2970132/timeline.g1.slim.sqlite",
+      "tuneAllowed": true,
+      "crosscheckOk": false,
+      "sqliteOk": true,
+      "schema": "slim-v2",
+      "n_frames": 16960,
+      "rosterChamps": [
+        "Camille",
+        "Galio",
+        "JarvanIV",
+        "Jayce",
+        "Olaf",
+        "Orianna",
+        "Seraphine",
+        "Shen",
+        "Trundle",
+        "Ziggs"
+      ],
+      "hasCamille": true,
+      "gap": [
+        "missing_crosscheck"
+      ]
+    },
+    {
+      "id": "S0-proxy-2970110-g1",
+      "suite": "S0",
+      "series": "2970110",
+      "role": "dev_proxy",
+      "crosscheck": "docs/canvases/_data/crosschecks-2970110-g1.json",
+      "sqlite": "artifacts/pro-grid/2970110/timeline.g1.slim.sqlite",
+      "tuneAllowed": true,
+      "crosscheckOk": true,
+      "sqliteOk": true,
+      "schema": "slim-v2",
+      "n_frames": 16600,
+      "rosterChamps": [
+        "Ambessa",
+        "Camille",
+        "Cassiopeia",
+        "Ezreal",
+        "Gnar",
+        "Jhin",
+        "LeeSin",
+        "Leona",
+        "Naafiri",
+        "Syndra"
+      ],
+      "hasCamille": true,
+      "crosscheckCheckCount": 3,
+      "crosscheckMentionsCamille": true,
+      "gap": []
+    }
+  ],
+  "notes": [
+    "S1 holdouts wired: 2970137-g1 (slim-v2) + 2970120-g1 (slim-v1).",
+    "S2 unused pro slim: 2954868-g1 (slim-v1); extract from R06.",
+    "S0 Path1 preferred 2970132 missing holdout crosschecks JSON (gap \u2192 F9).",
+    "No invent; GRID pro-only; never tune on S1."
+  ]
+}

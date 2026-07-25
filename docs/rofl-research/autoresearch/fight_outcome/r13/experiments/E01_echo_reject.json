@@ -1,0 +1,19 @@
+{
+  "id": "E01",
+  "hypothesis": "H1 Honest F1 — reject zero-dmg log-echo",
+  "audit": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/action_audits/2970110-g1-c1-damage-bridge-r33.json",
+  "rawActionCoverage": 1,
+  "honestActionCoverage": 0,
+  "fightAgreementF1": 0,
+  "echoGamingSuspected": true,
+  "rejectedZeroDmgEchoModelCount": 64,
+  "rejectedZeroDmgEchoTruthCount": 64,
+  "disclosures": [
+    "honest_action_f1: rawF1=1.0000 honestF1=0.0000 fightAgreementF1=0.0000 (weight=0.15 secondary only)",
+    "rejectedZeroDmgEcho model=64 truth=64 (GOAL forbid zero-dmg log-echo)",
+    "peProvenDamage truth=0 model=0 (sourceNetId+amount>0)",
+    "echoGamingSuspected=true → fightAgreementF1 forced 0 (not gate evidence)",
+    "NOT win odds / NOT calibrated probability"
+  ],
+  "verdict": "REJECT_zero_dmg_log_echo"
+}

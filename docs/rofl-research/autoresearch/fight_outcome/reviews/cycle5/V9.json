@@ -1,0 +1,92 @@
+{
+  "reviewer": "V9",
+  "cycle": 5,
+  "phase": "C",
+  "role": "Timed planner / death-coupled honesty",
+  "utc": "2026-07-24T16:18:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "planner_lens": {
+    "death_coupled_parent": true,
+    "no_hp_pct_ability_ban": true,
+    "product_selectors_held": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+    "idleFollowActual_KEEP": true,
+    "r19_idle": {
+      "product_KEEP": true,
+      "confirmed_r30": true
+    },
+    "r30": {
+      "product_KEEP": true,
+      "aaAtEachMark": false,
+      "pulseBySlot_R": 0,
+      "olaf_lethErr_abs": 0.334,
+      "S0_FA": 0.5896947676936598,
+      "S1_FA": 0.5619564223174064,
+      "rejected_e7c_S1_regress": true,
+      "note": "Finish-track R-pulse invent closed; death-coupled finish AA retained; opener vs finish separate"
+    },
+    "r28": {
+      "Galio_CORE_KEEP": true,
+      "modelTrust_uncalibrated": true,
+      "note": "Kit attention KEEP; check01 full lethalOk; burst marks still R24 residual"
+    },
+    "r24": {
+      "best_research_e49_FA": 0.5030447427479277,
+      "s1_e49_REGRESS": 0.3379081614115324,
+      "product_KEEP": false,
+      "note": "pre-engage lead/far + maxKillerMarks research-only; S1 regress → no product flip"
+    },
+    "r23": {
+      "product_KEEP": false,
+      "note": "preEngageOpener research-only (S1 flat/regress) — still holds"
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds",
+    "S0_path1_2970132_product_R30_KEEP": 0.5897,
+    "S0_path1_passRate": 0.333,
+    "R24_research_best_e49": 0.503,
+    "S1_r30_current_law": 0.562,
+    "S1_r30_passRate": 0.333,
+    "S2": 0.634,
+    "R10_best_timed_S0": 0.5019,
+    "R10_timed_S1": 0.2822
+  },
+  "evidence": [
+    "V9 specialty — parent death-coupled / no-HP%-ban HOLDS: timed_manual_1v1 stops at first lethal; abilityBudget never HP%-bans slots",
+    "V9 specialty — product selectors unchanged; near_hp_drop research-only",
+    "V9 specialty — R30 KEEP: aaAtEachMark=false + R-pulse 0 closes Olaf finish overkill (|lethErr| 2.81→0.33); S1↑ without tune; e7c rejected on S1 regress",
+    "R24 — research FA 0.503 but S1 0.338 → keeps=[]; product FA stays R30 0.590",
+    "R28 Galio CORE KEEP — kit honesty; modelTrust uncalibrated; burst marks residual",
+    "B FAIL: S0 Path1 product FA 0.590 / pass 0.333 ≪ 0.95",
+    "F FAIL: S1 current-law ≈0.562 / pass 0.333 ≪ 0.95",
+    "D reaffirm TRUE: GOAL §D Path1 ≥1 match; no new §D failure",
+    "G TRUE: fo:send-smoke 8/8 + smoke:calc-parity 11/11 (BRIEF + V8 live)",
+    "H OK: R14 echo REJECTED; R24 research not sold as product FA",
+    "C OK: unfreeze authorized; composite 0.9683 history preserved"
+  ],
+  "failures": [
+    "B: S0 Path1 FA 0.590 / pass 0.333 ≪ 0.95 (R24 research 0.503 also ≪0.95 and no KEEP)",
+    "F: S1 holdout unmet at 0.562 / 0.333",
+    "Outcome honesty gap (not death-coupled mechanism): Galio miss-kill residual; Camille earlyPoisoned; c2 pathMae after lethalOk",
+    "I: FO majority + parent e2e not met"
+  ],
+  "blocker": "Planner death-coupled honesty holds and R30 finish pulse KEEP shipped, but Path1 S0 FA=0.590 and S1≈0.562 ≪ 0.95; next is Galio miss-kill / Camille earlyPoisoned / c2 pathMae — do not flip product selectors on S1-regress knobs (R24 e49)",
+  "notes": "V9 C5: death-coupled mechanism honest; R30 KEEP is finish-track product honesty (not FA≥0.95 claim). R24 proves lead/far knobs research-only. digestCleanGate true on §D reaffirm. fightOutcomeGate false solely on concrete B+F (+I). FA ≠ win odds / ≠ pBlue-pRed %.",
+  "one_line_vote": "V9: fightOutcomeGate=false digestCleanGate=true — planner death-coupled honest; Path1 S0 FA=0.590≪0.95; R24 no KEEP"
+}

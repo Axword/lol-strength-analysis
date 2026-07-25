@@ -1,0 +1,7 @@
+{"t":"2026-07-24T17:05:00Z","id":"e0","hypothesis":"baseline compound kit-dump","keep":false,"S0_FA":0.9304,"S1_FA":0.7628,"c2b_mae":111.6,"c2b_pathOk":false,"notes":"authoritative remesaure","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:06:00Z","id":"e1","hypothesis":"global slot binary","keep":false,"c2b_mae":462.6,"c2b_pathOk":false,"notes":"underkill miss","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:07:00Z","id":"e2","hypothesis":"global slot+aaWeave4","keep":false,"S0_FA":0.7842,"c2b_mae":102.0,"notes":"c3 early-lethal FA↓","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:08:00Z","id":"e13","hypothesis":"Olaf QE+aa3","keep":false,"S0_FA":0.8480,"S1_FA":0.7628,"c2b_mae":97.5,"notes":"best mae but Camille cliff","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:12:00Z","id":"e21","hypothesis":"Olaf→Trundle QE+aa3","keep":true,"S0_FA":0.9356,"S1_FA":0.7628,"c2b_mae":97.5,"c2b_pathOk":false,"notes":"KEEP S0↑ S1 bit-flat; no pathFollow","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:13:00Z","id":"e23","hypothesis":"Trundle aa4 blend0.1","keep":false,"S0_FA":0.9343,"c2b_mae":101.1,"notes":"R40 floor; weaker than e21","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:15:00Z","id":"e21_keep_remeasure","hypothesis":"product defaults remesaure","keep":true,"S0_FA":0.9356,"S1_FA":0.7628,"c2b_mae":97.5,"notes":"defaults match e21","confidence":"FA≠odds"}

@@ -1,0 +1,68 @@
+{
+  "researcher": "r32",
+  "slug": "check03-share",
+  "wave": 2,
+  "model": "Auto",
+  "utc": "2026-07-24T16:31:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r32",
+  "branch": "adv/fo-r32-check03-share",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "owns": "check03 multi-caster share without R26 assist/global S1 collision",
+  "does_not_own": ["Galio miss-kill", "one-coefficient early+late"],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "is": "teamfight opener 1v1 full-share overkill — residual HP share at probe lethal",
+    "not": "ally-count assist gate (R26 one-coeff trap)",
+    "evidence": {
+      "probeEarlyBySec": 18.97,
+      "actualDropAtLethal": 259.0,
+      "modelDropAtLethal": 1308.0,
+      "residualShare": 0.19800157169487195,
+      "matches_r26_skill_proxy": 0.2
+    }
+  },
+  "n_experiments": 6,
+  "product_KEEP": true,
+  "product_KEEP_reason": "S0 FA 0.5938→0.7307 (+0.1369); S1 FA 0.5620→0.5620 (flat); c3 poison cleared",
+  "research_best": "e5",
+  "earlyMae_deltas": {
+    "check03_full_e0b": 476,
+    "check03_full_e5": 100.4196699440769,
+    "delta": -375.5803300559231,
+    "earlyPoisoned_e0b": true,
+    "earlyPoisoned_e5": false
+  },
+  "FA_deltas": {
+    "S0_e0b": 0.5938,
+    "S0_e5": 0.7307,
+    "S0_delta": 0.1369,
+    "S1_e0b": 0.5620,
+    "S1_e5": 0.5620,
+    "S1_delta": 0.0,
+    "assist_gated_S1_e3": 0.3595,
+    "assist_gated_S1_delta_vs_e0b": -0.2025,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "code_changes_worktree_only": [
+    "src/engine/killWindowOverlay.ts: attributeResidualHpShare + killerShareMode + aaAtEachMark×share",
+    "src/engine/killWindowProduct.ts: killerShareMode=residual_hp default",
+    "src/engine/types.ts: KillWindowInputOptions residual fields",
+    "scripts/crosscheck_action_aligned.ts: CLI share modes; assist_gated ablation"
+  ],
+  "product_defaults_after_KEEP": {
+    "idleFollowActual": true,
+    "aaAtEachMark": false,
+    "pulseBySlot_R": 0,
+    "killerShareMode": "residual_hp",
+    "residualMinEarlyLethalSec": 8
+  },
+  "keeps_research_room": ["e1", "e5"],
+  "discards": ["e2_opener_pad", "e3_assist_gated_product"],
+  "blocker_remaining": "c3 earlyMae 100>50 earlyBand hard; Galio miss-kill; FA≪0.95; fightOutcomeGate false",
+  "handoff": "PARENT_MERGE residual_hp product default; R31/R24 still own Galio burst",
+  "confidence": "FA≠odds; early_poisoned diagnostic only"
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T15:55:41.492Z",
+  "suite": "S1",
+  "match": "2970137-g1",
+  "windowId": "S1_2970137-g1_c2_burst",
+  "windowOk": false,
+  "windowScore": 0.5045454545454545,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": true,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 1,
+    "actionF1": 0.36363636363636365,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 62.49056592007568,
+    "maeHpFull": 54.9916980096666,
+    "maeHp": 62.49056592007568,
+    "pathCap": 90,
+    "lethalErrorSec": 2.771000000000001,
+    "segment": "burst",
+    "matchup": "Cassiopeia→Viktor"
+  },
+  "failReasons": [
+    "lethal"
+  ],
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r19/docs/rofl-research/autoresearch/fight_outcome/r19/experiments/e4_s1_idle_follow.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

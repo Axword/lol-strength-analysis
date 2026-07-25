@@ -1,0 +1,25 @@
+{
+  "schema": "fo-r44-echo-reject-v1",
+  "window": "S0_2970132-g1_c1_burst",
+  "honest": {
+    "truthCount": 2,
+    "modelCount": 1,
+    "matchedCount": 1,
+    "actionCoverage": 0.6666666666666666,
+    "gateEligible": true,
+    "note": "real model skill pulse(s) only; shareHint from kit damage path"
+  },
+  "zeroDmgEcho": {
+    "truthCount": 2,
+    "modelCount": 2,
+    "matchedCount": 2,
+    "actionCoverage": 1,
+    "echoPadCount": 1,
+    "gateEligible": false,
+    "rejectReason": "zero_damage_log_echo: shareHint=0 modelActions must not earn actionReplayGate / fightOutcomeGate secondary credit (GOAL forbid #13 / R14)"
+  },
+  "verdict": "REJECT_ECHO_KEEP_HONEST",
+  "fightOutcomeGateEvidence": false,
+  "actionReplayGateEvidence": false,
+  "confidence": "actionCoverage is log-matched F1 — NOT win odds / NOT calibrated probability"
+}

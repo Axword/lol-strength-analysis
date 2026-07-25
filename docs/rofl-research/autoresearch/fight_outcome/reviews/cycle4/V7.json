@@ -1,0 +1,99 @@
+{
+  "reviewer": "V7",
+  "cycle": 4,
+  "phase": "C",
+  "role": "S2 transfer auditor",
+  "utc": "2026-07-24T16:09:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "s2_lens": {
+    "members": ["S2-2954868-g1"],
+    "unusedProSlim": "2954868-g1",
+    "seriesUnusedVsS0S1": true,
+    "schema": "pro-grid-riot-slim-v1",
+    "nWindows": 3,
+    "fightAgreement": 0.6335376212427813,
+    "fightPassRate": 0.3333333333333333,
+    "gateBar": {
+      "fightAgreement": 0.9,
+      "fightPassRate": 0.8333333333333334,
+      "noneWindowScoreBelow": 0.8
+    },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "authoritative_source": "R06 suite + R20 S2_transfer_disclose (no C4 remount)",
+    "cycle4Delta": {
+      "s2Remeasured": false,
+      "r23": "Path1 lethal research; keeps=[]; no S2 transfer KEEP / no retune on 2954868",
+      "r25": "S0/S1 remesaure only — S2 untouched",
+      "r27": "suite_S2.json window ids encoded; still slim-v1 no items_json; not in harness enum",
+      "closedTracks": "idleFollowActual KEEP + Camille Q wiki — still no S2 transfer KEEP"
+    },
+    "windows": [
+      {
+        "id": "S2-2954868-g1-check1",
+        "matchup": "Camille→Vayne",
+        "windowOk": true,
+        "windowScore": 0.8500000000000001,
+        "below080": false,
+        "note": "lethalErrorSec≈-1.236 with lethalOk=true — |error| exceeds §B 0.75s; scorer asymmetry disclosed"
+      },
+      {
+        "id": "S2-2954868-g1-check2",
+        "matchup": "Cassiopeia→Ambessa",
+        "windowOk": false,
+        "windowScore": 0.39749794531342525,
+        "below080": true,
+        "fail": "truthKilled but modelKilled=false; burst maeHp 137>90"
+      },
+      {
+        "id": "S2-2954868-g1-check3",
+        "matchup": "LeeSin→Ziggs",
+        "windowOk": false,
+        "windowScore": 0.6531149184149185,
+        "below080": true,
+        "fail": "earlyMaeHp 53>50; burst/full path MAE 218/192; lethalErrorSec≈-8.75"
+      }
+    ],
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S2-2954868-g1-check2.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S2-2954868-g1-check3.json"
+    ]
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "GOAL §B — Transfer S2: FA≥0.90 AND passRate≥5/6, none <0.80",
+    "r20/S2_transfer_disclose.json — unused pro slim; tuneForbidden; FA 0.6335 / pass 0.333; gateMet false; no S2 retune",
+    "r23/r25 — Path1 S0 research + remesaure; keeps=[]; no S2 remount",
+    "r27/suite_S2.json — window ids for 2954868; gaps disclosed (slim-v1; not in harness enum)",
+    "BRIEF C4 — S0 Path1 FA 0.4107≪0.95; G proven; open R21/R24/R26/R28–R30 do not credit S2",
+    "Failing audits: audits/S2-2954868-g1-check2.json + check3.json present",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (no concrete §D failure)",
+    "STATUS — fightOutcomeGate false; criterionG_proven true"
+  ],
+  "failures": [
+    "B: S2 FA 0.634 ≪ 0.90 and pass 0.333 ≪ 5/6; windowScores 0.397 and 0.653 both <0.80",
+    "F: Transfer/holdout bars unmet — cannot affirm fightOutcomeGate; C4 did not remount S2 above bars",
+    "I: Majority + parent e2e not affirmable while B/F fail"
+  ],
+  "blocker": "S2 FA 0.634 / pass 0.333 far below 0.90 / 5/6; lift via S0/F3 Path1 lethal+early then re-measure transfer without tuning on 2954868",
+  "notes": "Cycle4 V7 S2 transfer lens. Authoritative wire unchanged: unused slim 2954868-g1, product non-drop cusum_engage_then_skills, tuneForbidden. FA≈0.634 / pass≈0.333 on n=3 — still ≪ bars; two windows <0.80. R23/R25 add no S2 remount. Dominant fails: check2 miss-kill+burst MAE; check3 early+path MAE. digestCleanGate true on §D reaffirm; FO false on concrete B/F. fightAgreement ≠ win odds.",
+  "one_line_vote": "V7: fightOutcomeGate=false digestCleanGate=true (conf 0.96) — S2 FA 0.634 / pass 0.333 ≪0.90+5/6; C4 no S2 remount"
+}

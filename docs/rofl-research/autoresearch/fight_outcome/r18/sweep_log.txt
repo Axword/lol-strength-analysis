@@ -1,0 +1,242 @@
+=== e0: R18-E0 Path1 product cusum density R05-parity ===
+
+=== gate_action | R18-E0 Path1 product cusum density R05-parity ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	207.2	null	N	N	N	2	gate_action
+1	burst	233.0	596.1	null	N	N	N	0	gate_action
+2	full	4.8	187.1	-2.81	Y	N	N	6	gate_action
+2	burst	99.5	293.1	-2.76	Y	N	N	6	gate_action
+3	full	527.6	353.6	-18.27	Y	Y	N	7	gate_action
+3	burst	7.5	53.5	-1.77	Y	N	N	3	gate_action
+composite=2.9143  early=164.7  mae=281.8  |leth|=5.93  poisonPen=1
+actionReplay: meanCoverage=0.292  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=8	matched=2	P=0.25	R=0.40	F1=0.308
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=3	P=0.60	R=0.38	F1=0.462
+  c2-burst	Olaf→Trundle	truth=8	model=6	matched=3	P=0.50	R=0.38	F1=0.429
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.4542  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=N | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | FAIL A3: check01 burst path | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e0.json
+
+fightAgreement=0.2279  fightPassRate=0.0000  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=6
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.2279317568764 pass=0 n=6
+=== e1: R18-E1 F4.H1/H4 cusum_gate timed sim=allin ===
+
+=== cusum_gate | R18-E1 F4.H1/H4 cusum_gate timed sim=allin ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	272.0	null	N	N	N	2	cusum_gate_repin_timed:allin
+1	burst	233.0	226.3	null	N	N	N	0	cusum_gate_repin_timed:allin
+2	full	4.8	253.4	null	N	N	N	6	cusum_gate_repin_timed:allin
+2	burst	195.8	324.3	null	N	N	N	6	cusum_gate_repin_timed:allin
+3	full	527.6	353.6	-18.00	Y	Y	N	3	cusum_gate_repin_timed:allin
+3	burst	7.5	44.5	-0.25	Y	N	N	1	cusum_gate_repin_timed:allin
+composite=2.9907  early=180.8  mae=245.7  |leth|=6.37  poisonPen=1
+baselineComposite=5.3695  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e1.json
+
+fightAgreement=0.1992  fightPassRate=0.1667  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=5
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.19918795184753382 pass=0.16666666666666666 n=6
+=== e2: R18-E2 F4.H5 cusum_gate timed sim=short ===
+
+=== cusum_gate | R18-E2 F4.H5 cusum_gate timed sim=short ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	307.1	null	N	N	N	2	cusum_gate_repin_timed:short
+1	burst	233.0	234.5	null	N	N	N	0	cusum_gate_repin_timed:short
+2	full	4.8	255.3	null	N	N	N	6	cusum_gate_repin_timed:short
+2	burst	173.5	319.6	null	N	N	N	6	cusum_gate_repin_timed:short
+3	full	527.6	353.6	-18.00	Y	Y	N	3	cusum_gate_repin_timed:short
+3	burst	7.5	44.5	-0.25	Y	N	N	1	cusum_gate_repin_timed:short
+composite=2.9945  early=177.1  mae=252.4  |leth|=6.37  poisonPen=1
+baselineComposite=5.1191  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e2.json
+
+fightAgreement=0.1987  fightPassRate=0.1667  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=5
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.19871433369034083 pass=0.16666666666666666 n=6
+=== e3: R18-E3 cusum_gate timed sim=extended ===
+
+=== cusum_gate | R18-E3 cusum_gate timed sim=extended ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	256.7	null	N	N	N	2	cusum_gate_repin_timed:extended
+1	burst	233.0	226.8	null	N	N	N	0	cusum_gate_repin_timed:extended
+2	full	4.8	261.4	null	N	N	N	6	cusum_gate_repin_timed:extended
+2	burst	195.8	338.5	null	N	N	N	6	cusum_gate_repin_timed:extended
+3	full	527.6	353.6	-18.00	Y	Y	N	3	cusum_gate_repin_timed:extended
+3	burst	7.5	44.5	-0.25	Y	N	N	1	cusum_gate_repin_timed:extended
+composite=2.9937  early=180.8  mae=246.9  |leth|=6.37  poisonPen=1
+baselineComposite=5.4542  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e3.json
+
+fightAgreement=0.1984  fightPassRate=0.1667  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=5
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.19835147000659947 pass=0.16666666666666666 n=6
+=== e4: R18-E4 gate_repin timed sim=allin ===
+
+=== gate_repin | R18-E4 gate_repin timed sim=allin ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	529.7	657.6	-7.80	Y	N	N	2	gate_repin_timed:allin
+1	burst	233.0	226.3	null	N	N	N	0	gate_repin_timed:allin
+2	full	4.8	289.4	null	N	N	N	6	gate_repin_timed:allin
+2	burst	311.1	391.1	null	N	N	N	6	gate_repin_timed:allin
+3	full	947.6	477.3	-18.99	Y	Y	N	3	gate_repin_timed:allin
+3	burst	319.5	309.5	-9.92	Y	N	N	1	gate_repin_timed:allin
+composite=4.6524  early=390.9  mae=391.9  |leth|=8.62  poisonPen=1
+baselineComposite=5.3695  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e4.json
+
+fightAgreement=0.0417  fightPassRate=0.0000  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=6
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.041666666666666664 pass=0 n=6
+=== e5: R18-E5 baseline timed sim=allin ===
+
+=== baseline | R18-E5 baseline timed sim=allin ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	529.7	671.3	-7.82	Y	N	N	2	continuous_simulateMatchup_timed:allin
+1	burst	233.0	437.2	null	N	N	N	0	continuous_simulateMatchup_timed:allin
+2	full	721.6	750.3	null	N	N	Y	6	continuous_simulateMatchup_timed:allin
+2	burst	585.8	508.2	null	N	N	N	6	continuous_simulateMatchup_timed:allin
+3	full	947.6	487.7	-12.16	Y	Y	N	3	continuous_simulateMatchup_timed:allin
+3	burst	423.5	341.5	-10.15	Y	N	N	1	continuous_simulateMatchup_timed:allin
+composite=5.3695  early=573.5  mae=532.7  |leth|=7.52  poisonPen=1
+baselineComposite=5.3695  keepCandidate=false
+shipChecklist:	A1 early idle=N | A2 c02 burst leth=N | A3 c01 path=N | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: FAIL A1: check02 full early | FAIL A2: check02 burst lethal | FAIL A3: check01 burst path | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e5.json
+
+fightAgreement=0.0000  fightPassRate=0.0000  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=6
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0 pass=0 n=6
+=== e6: R18-E6 cusum_gate allin cusumK=6 H=35 early engage ===
+
+=== cusum_gate | R18-E6 cusum_gate allin cusumK=6 H=35 early engage ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	272.0	null	N	N	N	2	cusum_gate_repin_timed:allin
+1	burst	233.0	226.3	null	N	N	N	0	cusum_gate_repin_timed:allin
+2	full	4.8	253.4	null	N	N	N	6	cusum_gate_repin_timed:allin
+2	burst	195.8	324.3	null	N	N	N	6	cusum_gate_repin_timed:allin
+3	full	527.6	353.6	-18.00	Y	Y	N	3	cusum_gate_repin_timed:allin
+3	burst	7.5	44.5	-0.25	Y	N	N	1	cusum_gate_repin_timed:allin
+composite=2.9907  early=180.8  mae=245.7  |leth|=6.37  poisonPen=1
+baselineComposite=5.3695  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e6.json
+
+fightAgreement=0.1992  fightPassRate=0.1667  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=5
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.19918795184753382 pass=0.16666666666666666 n=6
+=== e7: R18-E7 cusum_gate short cusumK=6 H=35 ===
+
+=== cusum_gate | R18-E7 cusum_gate short cusumK=6 H=35 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	307.1	null	N	N	N	2	cusum_gate_repin_timed:short
+1	burst	233.0	234.5	null	N	N	N	0	cusum_gate_repin_timed:short
+2	full	4.8	255.3	null	N	N	N	6	cusum_gate_repin_timed:short
+2	burst	173.5	319.6	null	N	N	N	6	cusum_gate_repin_timed:short
+3	full	527.6	353.6	-18.00	Y	Y	N	3	cusum_gate_repin_timed:short
+3	burst	7.5	44.5	-0.25	Y	N	N	1	cusum_gate_repin_timed:short
+composite=2.9945  early=177.1  mae=252.4  |leth|=6.37  poisonPen=1
+baselineComposite=5.1191  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e7.json
+
+fightAgreement=0.1987  fightPassRate=0.1667  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=5
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.19871433369034083 pass=0.16666666666666666 n=6
+=== e8: R18-E8 product cusum death-coupled no finish/aa-at-mark ===
+
+=== gate_action | R18-E8 product cusum death-coupled no finish/aa-at-mark ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	252.8	null	N	N	N	2	gate_action
+1	burst	233.0	605.0	null	N	N	N	0	gate_action
+2	full	4.8	161.8	-1.14	Y	N	N	6	gate_action
+2	burst	99.5	243.8	-1.14	Y	N	N	6	gate_action
+3	full	527.6	353.6	-18.27	Y	Y	N	7	gate_action
+3	burst	7.5	53.5	-1.77	Y	N	N	3	gate_action
+composite=2.7688  early=164.7  mae=278.4  |leth|=5.39  poisonPen=1
+actionReplay: meanCoverage=0.410  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=2	matched=2	P=1.00	R=0.40	F1=0.571
+  c1-burst	Galio→Trundle	truth=0	model=0	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=4	matched=4	P=1.00	R=0.50	F1=0.667
+  c2-burst	Olaf→Trundle	truth=8	model=4	matched=4	P=1.00	R=0.50	F1=0.667
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.4542  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=N | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | FAIL A3: check01 burst path | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e8.json
+
+fightAgreement=0.2404  fightPassRate=0.0000  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=6
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.24040716989463765 pass=0 n=6
+=== e9: R18-E9 product cusum + repin-each-mark ===
+
+=== gate_action | R18-E9 product cusum + repin-each-mark ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	116.0	224.4	null	N	N	N	2	gate_action
+1	burst	233.0	596.1	null	N	N	N	0	gate_action
+2	full	4.8	208.2	-2.81	Y	N	N	6	gate_action
+2	burst	99.5	334.3	-2.81	Y	N	N	6	gate_action
+3	full	527.6	353.6	-18.27	Y	Y	N	7	gate_action
+3	burst	7.5	53.5	-1.77	Y	N	N	3	gate_action
+composite=2.9495  early=164.7  mae=295.0  |leth|=5.94  poisonPen=1
+actionReplay: meanCoverage=0.298  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=8	matched=2	P=0.25	R=0.40	F1=0.308
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=3	P=0.60	R=0.38	F1=0.462
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=3	P=0.60	R=0.38	F1=0.462
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.4542  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=N | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | FAIL A3: check01 burst path | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e9.json
+
+fightAgreement=0.2189  fightPassRate=0.0000  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=6
+wrote /Users/river/.codex/worktrees/rofl-fo-r18/docs/rofl-research/autoresearch/fight_outcome/r18/experiments/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.
+  FA=0.2189429412013122 pass=0 n=6
+DONE sweep

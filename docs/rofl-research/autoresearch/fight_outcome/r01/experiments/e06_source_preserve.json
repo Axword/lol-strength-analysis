@@ -1,0 +1,37 @@
+{
+  "schema": "r01-source-preserve-census-v1",
+  "stats_update_rows": 1696,
+  "timeline_frames": 1696,
+  "events": {
+    "hpSource": {
+      "hold_forward": 16098,
+      "None": 659,
+      "pe": 203
+    },
+    "combatStatsSource_or_combatSource": {
+      "hold_forward": 12959,
+      "unavailable_replay_api": 2235,
+      "same_match_replication_type107_pe_wire_table": 1766
+    },
+    "abilityRanksSource": {
+      "rofl2_upgrade_spell_ans_1012_first_write": 16960
+    }
+  },
+  "timeline": {
+    "hpSource": {
+      "hold_forward": 16098,
+      "None": 659,
+      "pe": 203
+    },
+    "combatStatsSource_or_combatSource": {
+      "hold_forward": 12959,
+      "unavailable_replay_api": 2235,
+      "same_match_replication_type107_pe_wire_table": 1766
+    },
+    "abilityRanksSource": {
+      "rofl2_upgrade_spell_ans_1012_first_write": 16960
+    }
+  },
+  "wipe_detected": false,
+  "notes": "None values on dead/unknown slots are expected; pe/hold_forward/ranks sources survive jsonl_to_timeline."
+}

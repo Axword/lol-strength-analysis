@@ -61,6 +61,55 @@ class UpgradeSpellRanksUnitTests(unittest.TestCase):
         self.assertEqual(probe["mappedOpcode"], 636)
         self.assertIsNone(probe.get("blocker"))
 
+    def test_fuse_refuses_untrusted_evidence(self):
+        with self.assertRaises(fuse_ranks.DecryptError):
+            fuse_ranks.fuse_ranks_product(
+                [],
+                ranks_evidence={"ok": True, "abilityRanksTrusted": False},
+                castspell_identity={},
+            )
+
+    def test_fuse_refuses_wiki_only_source(self):
+        with self.assertRaises(fuse_ranks.DecryptError) as ctx:
+            fuse_ranks.fuse_ranks_product(
+                [],
+                ranks_evidence={
+                    "ok": True,
+                    "abilityRanksTrusted": True,
+                    "productEligible": True,
+                    "opcode": 636,
+                    "abilityRanksSource": "wiki_skill_order",
+                    "heroesHit": 10,
+                    "snapshots": [{"netId": 1, "gameTimeMs": i, "ranksAfter": [0, 0, 0, 0]} for i in range(50)],
+                },
+                castspell_identity={},
+            )
+        self.assertIn("abilityRanksSource", str(ctx.exception))
+
+    def test_fuse_accepts_opcode_1012_source_tag(self):
+        """R20: 16.13 pro UpgradeSpellAns 1012 must not be rejected as non-636."""
+        with self.assertRaises(fuse_ranks.DecryptError) as ctx:
+            # Empty rows → fails later on identity bind, but opcode/source gate must pass first.
+            fuse_ranks.fuse_ranks_product(
+                [],
+                ranks_evidence={
+                    "ok": True,
+                    "abilityRanksTrusted": True,
+                    "productEligible": True,
+                    "opcode": 1012,
+                    "abilityRanksSource": "rofl2_upgrade_spell_ans_1012_first_write",
+                    "heroesHit": 10,
+                    "snapshots": [
+                        {"netId": 1, "gameTimeMs": i, "ranksAfter": [0, 0, 0, 0]}
+                        for i in range(50)
+                    ],
+                },
+                castspell_identity={},
+            )
+        msg = str(ctx.exception).lower()
+        self.assertNotIn("opcode must be", msg)
+        self.assertNotIn("abilityrankssource must be", msg)
+
 
 if __name__ == "__main__":
     unittest.main()

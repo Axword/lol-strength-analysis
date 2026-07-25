@@ -1,0 +1,14 @@
+{
+  "room": "f2",
+  "ready": true,
+  "utc": "2026-07-24T15:08:47Z",
+  "branch": "adv/fo-f2-metric-harness",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-f2",
+  "hypotheses": 6,
+  "orchestrator_seed": true,
+  "seed_reason": "Cursor usage blocked Task room leads; parent seeded hypotheses to unblock queue",
+  "digestCleanGate_plan": null,
+  "blocker": "Task agents out of usage on cursor-grok-4.5-high-fast — researchers pending limit recovery",
+  "never_edited_parent": true,
+  "note": "Refine when room lead Task succeeds; do not treat seed as fightOutcomeGate evidence"
+}

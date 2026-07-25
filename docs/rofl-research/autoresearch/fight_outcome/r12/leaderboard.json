@@ -1,0 +1,153 @@
+{
+  "schema": "fightAgreement-r12-leaderboard-v1",
+  "utc": "2026-07-24T15:49:18.317109Z",
+  "baseline_e0": {
+    "t": "2026-07-24T15:47:20.248Z",
+    "id": "e0",
+    "hypothesis": "R12-E0 F4 baseline product cusum densestride1.0/win1.2",
+    "keep": false,
+    "fightAgreement": 0.4848229030957609,
+    "fightPassRate": 0.16666666666666666,
+    "composite": 2.1040313467290845,
+    "notes": "R12 planner-death; FA\u2260win odds",
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e0.fightAgreement.json"
+  },
+  "status_product_FA_reference": 0.4217,
+  "best_measured": {
+    "t": "2026-07-24T15:48:24.812Z",
+    "id": "e7",
+    "hypothesis": "R12-E7 F4.H1 pulseMode=timed_short",
+    "keep": false,
+    "fightAgreement": 0.48525718823285774,
+    "fightPassRate": 0.16666666666666666,
+    "composite": 2.1527093824706336,
+    "notes": "R12 planner-death; FA\u2260win odds",
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e7.fightAgreement.json"
+  },
+  "keep_threshold": "FA > e0 AND no program.md hard fail AND no invent",
+  "keeps": [],
+  "ranked": [
+    {
+      "t": "2026-07-24T15:48:24.812Z",
+      "id": "e7",
+      "hypothesis": "R12-E7 F4.H1 pulseMode=timed_short",
+      "keep": false,
+      "fightAgreement": 0.48525718823285774,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1527093824706336,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e7.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:47:20.248Z",
+      "id": "e0",
+      "hypothesis": "R12-E0 F4 baseline product cusum densestride1.0/win1.2",
+      "keep": false,
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e0.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:09.111Z",
+      "id": "e4",
+      "hypothesis": "R12-E4 F4.H4 frontLoadWeight=0",
+      "keep": false,
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040468167290847,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e4.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:14.680Z",
+      "id": "e5",
+      "hypothesis": "R12-E5 F4.H4 frontLoadWeight=2",
+      "keep": false,
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e5.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:19.303Z",
+      "id": "e6",
+      "hypothesis": "R12-E6 F4.H1 pulseSec=0.25",
+      "keep": false,
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e6.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:47:49.466Z",
+      "id": "e1",
+      "hypothesis": "R12-E1 F4.H1 death-coupled no finish AA",
+      "keep": false,
+      "fightAgreement": 0.47621086381412475,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1200447198349885,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e1.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:39.373Z",
+      "id": "e10",
+      "hypothesis": "R12-E10 F4.H1 combo pulse0.3 share0.65",
+      "keep": false,
+      "fightAgreement": 0.43906097853326703,
+      "fightPassRate": 0,
+      "composite": 2.737495572909019,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e10.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:47:59.630Z",
+      "id": "e2",
+      "hypothesis": "R12-E2 F4.H1 death-coupled no aa-at-mark",
+      "keep": false,
+      "fightAgreement": 0.35238153598291405,
+      "fightPassRate": 0,
+      "composite": 2.3731076744282635,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e2.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:04.139Z",
+      "id": "e3",
+      "hypothesis": "R12-E3 F4.H1 death-coupled no finishAA no aaAtMark",
+      "keep": false,
+      "fightAgreement": 0.3476113382885633,
+      "fightPassRate": 0,
+      "composite": 2.541927777475265,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e3.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:32.113Z",
+      "id": "e8",
+      "hypothesis": "R12-E8 F4.H1 killerPulseShare=0.5",
+      "keep": false,
+      "fightAgreement": 0.33788238715942814,
+      "fightPassRate": 0,
+      "composite": 2.4770432255110384,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e8.fightAgreement.json"
+    },
+    {
+      "t": "2026-07-24T15:48:36.377Z",
+      "id": "e9",
+      "hypothesis": "R12-E9 F4.H1 pulseMode=physical_aa",
+      "keep": false,
+      "fightAgreement": 0.33285627086392156,
+      "fightPassRate": 0,
+      "composite": 2.7496141631637934,
+      "notes": "R12 planner-death; FA\u2260win odds",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e9.fightAgreement.json"
+    }
+  ],
+  "confidence": "fightAgreement \u2260 win odds / pBlue-pRed %"
+}

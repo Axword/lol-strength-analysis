@@ -1,0 +1,95 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r46",
+  "slug": "pass-band-finish",
+  "wave": 3,
+  "model": "Auto",
+  "utc": "2026-07-24T17:00:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r46",
+  "branch": "adv/fo-r46-pass-band-finish",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "owns": "finish-window / density / markAlwaysNearKill / pass-band honesty → fightPassRate toward 0.95",
+  "does_not_own": [
+    "c2_burst pathMae slot-pulse (R40)",
+    "Galio full lethErr (R41)",
+    "c1 burst earlyMae (R42)",
+    "pathFollow/pathClamp product",
+    "calibrated win odds"
+  ],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "is": "passRate blocked by non-finish residuals (c2 pathMae 111.6, Galio leth, c1 early); finish/density knobs do not flip windowOk",
+    "finish_window": "works (c2 has finish_window marks); mid Olaf spacing ~0.93–1.00s resists honest dens gap",
+    "product_dens_landmine": "markDensityWindowSec=1.2 + markMinGapSec=1.0 collapses S1",
+    "nearest_flip": "c2_burst mae 111.6→≤90 — out of finish/density ownership"
+  },
+  "n_experiments": 20,
+  "baselines": {
+    "S0_FA": 0.7740028158506135,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5809564223174064,
+    "S1_pass": 0.3333333333333333,
+    "authoritative_STATUS_S0_FA": 0.7766,
+    "note": "e0 harness ≈ STATUS compound 0.7766 (±0.003 drift)"
+  },
+  "best_candidate": {
+    "experiment": "e1",
+    "knobs": {
+      "markAlwaysNearKillSec": 2,
+      "markDensityWindowSec": 1.0,
+      "markDenseMaxPerWindow": 1,
+      "markMinGapSec": 0.4,
+      "markFinishHorizonSec": 0
+    },
+    "S0_FA": 0.7799694825172801,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5809564223174064,
+    "S1_pass": 0.3333333333333333,
+    "S0_FA_delta": 0.0059666666666666,
+    "S1_FA_delta": 0.0,
+    "passRate_delta": 0.0,
+    "already_product_default": true
+  },
+  "product_KEEP": {
+    "keep": false,
+    "reason": "passRate stuck 0.333 both suites; finish/density cannot flip windowOk without S1 regress or pathMae worsen; FA↑ alone insufficient under passRate KEEP rule",
+    "files": []
+  },
+  "FA_deltas": {
+    "S0_e0": 0.7740028158506135,
+    "S0_e1": 0.7799694825172801,
+    "S0_delta_best": 0.0059666666666666,
+    "S1_e0": 0.5809564223174064,
+    "S1_e1": 0.5809564223174064,
+    "S1_delta_best": 0.0,
+    "pass_e0": 0.3333333333333333,
+    "pass_e1": 0.3333333333333333,
+    "pass_delta": 0.0,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "rejected": {
+    "finishHorizon": "S0 FA↓ + S1 miss-kills",
+    "product_dens_gap1": "S1 FA 0.44 pass 0",
+    "gap_ge_1_05": "drops Olaf E; c2 mae 111→208; pass↓",
+    "maxKillerMarks4": "pass↓ S1 collapse",
+    "pathFollow_pathClamp": "forbidden; prior S1 regress (R33)"
+  },
+  "verdict": "NO KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "FA≠odds; finish-window/density exhausted for passRate on this suite; product dens gap1.0 is S1 landmine (disclose)",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r46/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r46/NOTES.md",
+    "results": "docs/rofl-research/autoresearch/fight_outcome/r46/experiments/results.jsonl",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r46/leaderboard.json",
+    "e0_S0": "docs/rofl-research/autoresearch/fight_outcome/r46/experiments/e0_S0_baseline.json",
+    "e1_S0": "docs/rofl-research/autoresearch/fight_outcome/r46/experiments/e1_2970132-g1-holdout.json",
+    "e1_S1": "docs/rofl-research/autoresearch/fight_outcome/r46/experiments/e1_2970137-g1-holdout.json"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "reviewer": "V3",
+  "role": "fightAgreement metric honesty (no gaming)",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "one_liner": "Authoritative S0 FA 0.7766 / S1 0.5810 both ≪0.95; FO false; FA≠odds.",
+  "evidence": [
+    "Specialty B/H: compound remesaure post R31 KEEP is authoritative — S0 fightAgreement 0.776634… passRate 0.333; meetsThresholds=false.",
+    "S1 fightAgreement 0.581046… passRate 0.333; meetsThresholds=false; holdout F unmet.",
+    "Residual blockers match BRIEF/STATUS: c1 full |leth|=1.84; c1 burst |leth|=0.635 with 2 marks; c2 burst maeHp 111.6 pathOk false.",
+    "Disclosures on FA artifacts: fightAgreement = mean(windowScore); NOT win probability / odds %.",
+    "R31 KEEP progress (Galio burst marks=2) is real but not gate; digestClean reaffirm true; G smokes 8/8."
+  ]
+}

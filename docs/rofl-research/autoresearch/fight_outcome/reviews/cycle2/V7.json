@@ -1,0 +1,101 @@
+{
+  "reviewer": "V7",
+  "cycle": 2,
+  "role": "S2 transfer auditor",
+  "utc": "2026-07-24T15:53:30Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.98,
+  "s2_lens": {
+    "members": ["S2-2954868-g1"],
+    "unusedProSlim": "2954868-g1",
+    "seriesUnusedVsS0S1": true,
+    "schema": "pro-grid-riot-slim-v1",
+    "nWindows": 3,
+    "fightAgreement": 0.6335376212427813,
+    "fightPassRate": 0.3333333333333333,
+    "gateBar": {
+      "fightAgreement": 0.9,
+      "fightPassRate": 0.8333333333333334,
+      "noneWindowScoreBelow": 0.8
+    },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "cycle2Delta": {
+      "s2Remeasured": false,
+      "authoritativeSource": "R06 suite (BRIEF cites S2: 0.634)",
+      "r14HonestF1": "KEEP on S0 proxy c1 only (+0.025 FA); echo REJECTED; does not re-score or rescue S2",
+      "closedTracks": "mark/CUSUM/density/regen + Camille PE densify — no S2 transfer KEEP",
+      "r07_r12": "NO KEEP — no transfer retune"
+    },
+    "windows": [
+      {
+        "id": "S2-2954868-g1-check1",
+        "matchup": "Camille→Vayne",
+        "windowOk": true,
+        "windowScore": 0.8500000000000001,
+        "below080": false,
+        "note": "lethalErrorSec≈-1.236 with lethalOk=true — |error| exceeds §B 0.75s lethal rule; scorer asymmetry disclosed, not used as a pass claim"
+      },
+      {
+        "id": "S2-2954868-g1-check2",
+        "matchup": "Cassiopeia→Ambessa",
+        "windowOk": false,
+        "windowScore": 0.39749794531342525,
+        "below080": true,
+        "fail": "truthKilled but modelKilled=false; burst maeHp 137>90; full maeHp 105 under 130 but pathOk false on burst"
+      },
+      {
+        "id": "S2-2954868-g1-check3",
+        "matchup": "LeeSin→Ziggs",
+        "windowOk": false,
+        "windowScore": 0.6531149184149185,
+        "below080": true,
+        "fail": "earlyMaeHp 53>50; burst/full path MAE 218/192; lethalErrorSec≈-8.75"
+      }
+    ],
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S2-2954868-g1-check2.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S2-2954868-g1-check3.json"
+    ],
+    "extract": "docs/rofl-research/autoresearch/fight_outcome/r06/crosschecks-2954868-g1-transfer.json"
+  },
+  "criteria": {
+    "A": null,
+    "B": false,
+    "C": null,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": false
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle2/BRIEF.md — S2: 0.634 (R06); needs ≥0.90 + 5/6 — not met; R14 honest F1 KEEP does not credit S2",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/suite_status.json — S2 FA 0.6335, passRate 0.333, n=3, gateMet false, unusedProSlim 2954868-g1, product non-drop cusum_engage_then_skills; fightOutcomeGateEvidence false",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/score_S2-2954868-g1.json — 1/3 windowOk; scores 0.850 / 0.397 / 0.653; two scores <0.80",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/evals/S2-2954868-g1.eval.json — Cass→Ambessa model miss-kill on burst; LeeSin→Ziggs earlyPoisoned + path MAE blowout",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/crosschecks-2954868-g1-transfer.json — unused vs S0/S1 series; tuneForbidden; slim-v1 no items_json; research transfer only",
+    "Failing window audits present: audits/S2-2954868-g1-check2.json + check3.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json — honest PE F1=1.0 on c1; echo REJECTED; S0 proxy FA +0.025 only; fightOutcomeGate false; no S2 remount",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md — digestCleanGate self-declared false (second host 2970110 fails validate --product)",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json — fightOutcomeGate false; digestCleanGate false; best Path1 S0 FA 0.228",
+    "GOAL-fight-outcome-95-10x30x15.md §B — Transfer S2: FA≥0.90 AND passRate≥5/6, none <0.80"
+  ],
+  "failures": [
+    "B: S2 fightAgreement 0.634 << 0.90 and fightPassRate 0.333 << 5/6; windowScores 0.397 and 0.653 both <0.80 (none<0.80 rule fails)",
+    "F: Transfer/holdout bars unmet — cannot affirm fightOutcomeGate; R06 fightOutcomeGateEvidence false; Cycle2 did not re-measure S2 above bars",
+    "D: digestCleanGate not affirmed (DIGEST.md digestCleanGate=false; second host open; V7 does not override)",
+    "I: Parent e2e / ≥11/15 majority not affirmable; gate false on B/F/D regardless"
+  ],
+  "notes": "Cycle2 V7 S2 transfer lens only. Same authoritative R06 wire: unused pro slim 2954868-g1 (not S0/S1 series), product non-drop cusum_engage_then_skills, tuneForbidden/tuned=false. FA≈0.634 / pass≈0.333 on n=3 — still ≪ 0.90 and 5/6; two windows <0.80. Cycle2 closed knob/PE tracks and R07–R12 NO KEEP did not lift transfer; R14 honest F1 is S0-proxy secondary credit only (+0.025) and must not be treated as S2 rescue. Dominant fails unchanged: check2 miss-kill + burst path MAE; check3 early+path MAE (LeeSin→Ziggs). check1 windowOk with lethalError≈1.24s vs §B ≤0.75s remains a scorer-honesty footnote. Audits for both fails present. E affirmed (suite wired); B fails hard → fightOutcomeGate false. digestCleanGate false co-requisite. fightAgreement is suite agreement — not win odds.",
+  "one_line_vote": "V7: fightOutcomeGate=false digestCleanGate=false (conf 0.98) — S2 FA 0.634 / pass 0.333 << 0.90+5/6; two windows <0.80; C2 no S2 remount/retune",
+  "blocker": "S2 fightAgreement 0.634 and passRate 0.333 far below 0.90 / 5/6; lift via S0/F3 Path1 lethal+early then re-measure transfer without tuning on 2954868"
+}

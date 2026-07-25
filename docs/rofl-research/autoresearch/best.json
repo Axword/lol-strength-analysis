@@ -1,0 +1,181 @@
+{
+  "schema": "pro-grid-autoresearch-best-v1",
+  "t": "2026-07-23T22:50:00Z",
+  "hypothesis": "FREEZE productShipGate: density stride1.0/window1.2 non-drop holds check02 \u22120.22; research markMinGap0.4 unchanged",
+  "mode": "gate_action",
+  "composite": 0.9683,
+  "baselineComposite": 3.5182,
+  "shipGate": true,
+  "shipGateCandidate": true,
+  "productShipGate": true,
+  "config": {
+    "mode": "gate_action",
+    "castPulseSec": 0.4,
+    "aaFiller": false,
+    "maxAaBetweenMarks": 6,
+    "allyPulseShare": 0.35,
+    "markIdleSkipSec": 0,
+    "markNearDropSec": 0.75,
+    "markDropMinHp": 15,
+    "markAlwaysNearKillSec": 1.5,
+    "useDropConditioning": true,
+    "markSelection": null,
+    "finishAaAfterLastMark": true,
+    "finishAaMax": 4,
+    "finishAaWindowSec": 0,
+    "aaAtEachMark": true,
+    "rePinEachMark": false,
+    "perSlotPulse": false,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0.75
+    },
+    "cusumK": 8,
+    "cusumH": 45,
+    "markMinGapSec": 0.4,
+    "markFinishHorizonSec": 0,
+    "maxKillerMarks": 0,
+    "markDensityWindowSec": 0,
+    "markDenseMaxPerWindow": 1
+  },
+  "parts": {
+    "meanEarlyMae": 75.4,
+    "meanMae": 211.5,
+    "meanLethalAbs": 0.7,
+    "latePoisonPenalty": 0
+  },
+  "shipChecklist": {
+    "A1_check02_full_early_idle": true,
+    "A2_check02_burst_lethal_pm2": true,
+    "A3_check01_burst_path_improved": true,
+    "A4_strict_lethal_01_02_full_burst": true,
+    "A5_check03_early_not_hurt": true,
+    "A6_poison_clear_prefer": true,
+    "A6_min_check03_burst_poison_clear": true,
+    "A7_late_mae_01_02_not_hurt": true,
+    "A8_hard_fails_clean": true,
+    "holdout_B_directionally": true,
+    "holdout_B_burst_lethal_pm2": true,
+    "holdout_B_check03_early_ok": true
+  },
+  "shipNotes": [
+    "Research shipGate true under engine-backed harness",
+    "markMinGapSec=0.4 disclosed throttle (not AD coeff fit)",
+    "Holdout research drop path: 2 burst lethals \u00b12 (Vayne\u2192Ambessa +0.75, Cassio\u2192Viktor \u22120.22)",
+    "productShipGate true: density-triggered min-gap (stride 1.0 / window 1.2) on cusum_engage_then_skills"
+  ],
+  "failureMode": null,
+  "note": "Research shipGate true. productShipGate true. calculatorReady still false. No public/data/matches publish.",
+  "holdout": {
+    "suite": "2970137-g1-holdout",
+    "seriesId": "2970137",
+    "gameIndex": 1,
+    "items": true,
+    "schema": "pro-grid-riot-slim-v2",
+    "extract": "docs/canvases/_data/crosschecks-2970137-g1-holdout.json",
+    "sqlite": "artifacts/pro-grid/2970137/timeline.g1.slim.sqlite",
+    "baselineComposite": 4.2548,
+    "bestComposite": 1.5467,
+    "directionallyBetter": true,
+    "shipBarPass": true,
+    "burstLethalPm2Count": 2,
+    "burstLethalExample": [
+      "check01 Vayne\u2192Ambessa burst lethalErrorSec=+0.75",
+      "check02 Cassio\u2192Viktor burst lethalErrorSec=\u22120.22"
+    ],
+    "path": "docs/rofl-research/autoresearch/holdout_eval.json",
+    "note": "Research drop+markMinGap0.4. Product cusum+density also lands check02 \u22120.22 (2 burst \u00b12)."
+  },
+  "productModes": {
+    "near_hp_drop": {
+      "label": "research / hit-attribution (NOT product default)",
+      "markSelection": "near_hp_drop",
+      "markMinGapSec": 0.4,
+      "composite2970110": 0.9683,
+      "shipChecklistA1A8": true,
+      "holdoutBurstLethalsPm2": 2,
+      "path": "docs/rofl-research/autoresearch/last_eval.json"
+    },
+    "cusum_engage_then_skills": {
+      "label": "product default (P-anti non-drop + density throttle)",
+      "markSelection": "cusum_engage_then_skills",
+      "markAlwaysNearKillSec": 2,
+      "markMinGapSec": 1.0,
+      "markDensityWindowSec": 1.2,
+      "markDenseMaxPerWindow": 1,
+      "composite2970110": 2.104,
+      "A1": true,
+      "A2": true,
+      "A4": true,
+      "A5": true,
+      "A8": true,
+      "holdoutBurstLethalsPm2": 2,
+      "holdoutCheck01BurstLethal": 0.75,
+      "holdoutCheck02BurstLethal": -0.22,
+      "path": "docs/rofl-research/autoresearch/last_eval_product_cusum.json",
+      "holdoutPath": "docs/rofl-research/autoresearch/holdout_eval_product_cusum.json"
+    },
+    "post_engage_killer_skills": {
+      "label": "product alt non-drop",
+      "markSelection": "post_engage_killer_skills",
+      "composite2970110": 2.7779,
+      "hardFail": "check03 early MAE +394",
+      "note": "discarded as product default"
+    }
+  },
+  "productBlockers": [],
+  "antiOverfit": {
+    "dropConditioningLabel": "hit attribution overlay (uses observed HP drops)",
+    "productDefault": "cusum_engage_then_skills",
+    "productDensityThrottle": "markMinGapSec=1.0 only when >1 killer mark in rolling 1.2s; finish_window exempt in density mode",
+    "enginePath": "src/engine/killWindowOverlay.ts",
+    "note": "Harness gate_action pulses/finish-AA delegate to simulateKillWindowSeries"
+  },
+  "honestyNotes": [
+    "A6: poison suppressed when actual HP floor>=150",
+    "A7: late MAE vs baseline skipped when baseline.falseAllIn",
+    "check01 assists proven on 2970110; finish AA+AA-at-mark closes 1v1 lethal without AD coeff fit",
+    "product kill-window experimental; calculatorReady false; no public matches",
+    "PRODUCT_KILL_WINDOW_OPTED_IN=true after productShipGate; Send attaches marks only when timeline.skillUsed present"
+  ],
+  "experimentCount": 34,
+  "keptThisSession": [
+    "E3 density stride1.0 / window1.2 + finishExempt (density-only) \u2192 product P1 2 burst \u00b12",
+    "productShipGate true + PRODUCT_KILL_WINDOW_OPTED_IN",
+    "GameReview Send wires skillUsed marks when present else continuous"
+  ],
+  "discardedThisSession": [
+    "E1 density gap0.4 window0.5 (broke DEV A4 Camille burst)",
+    "E2 density gap0.4 (holdout still \u22122.72; stride too short for ~0.8s Cassio E)",
+    "post_engage_killer_skills alone (prior: check03 early hardFail)",
+    "global markMinGap / maxKillerMarks / finish-horizon (prior session)",
+    "AD/coeff fits (forbidden)"
+  ],
+  "history": [
+    {
+      "utc": "2026-07-24T16:14:51.368821+00:00",
+      "event": "r30_KEEP_aaAtEachMark_false_R_pulse_0",
+      "unfrozenFromComposite": 0.9683,
+      "prev_composite": 0.9683,
+      "fightAgreement_S0": 0.5896947676936598,
+      "fightAgreement_S1": 0.5619564223174064,
+      "note": "FA\u2260odds; product defaults only"
+    },
+    {
+      "utc": "2026-07-24T16:31:42.985815+00:00",
+      "event": "r35_KEEP_sparse_preEngageOpener",
+      "unfrozenFromComposite": 0.9683,
+      "fightAgreement_S0": 0.6021,
+      "fightAgreement_S1": 0.581,
+      "note": "preEngageOpenerSec=0.5 maxPost=3; FA\u2260odds"
+    }
+  ],
+  "fightAgreement_S0": 0.6021,
+  "fightAgreement_S1": 0.581,
+  "fightPassRate_S0": 0.3333333333333333,
+  "unfrozenFromComposite": 0.9683,
+  "lastKeep": "r35",
+  "composite_pre_unfreeze_history": 0.9683
+}

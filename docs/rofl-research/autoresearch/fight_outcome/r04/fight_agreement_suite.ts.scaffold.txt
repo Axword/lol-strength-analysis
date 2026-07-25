@@ -1,0 +1,138 @@
+/**
+ * fightAgreement suite scaffold (F2/R04) — RESEARCH
+ * Metric law: GOAL-fight-outcome-95-10x30x15.md §B
+ * NOT calibrated win odds. fightAgreement = mean(windowScore).
+ */
+import fs from "node:fs";
+import path from "node:path";
+
+export type WindowTruth = {
+  id: string;
+  suite: "S0" | "S1" | "S2";
+  match: string;
+  truthKilled: boolean;
+  killerPid?: number;
+  victimPid?: number;
+  engageSec?: number;
+};
+
+export type WindowModel = {
+  modelKilled: boolean;
+  modelLethalSec: number | null;
+  earlyMaeHp: number;
+  maeHpBurst: number;
+  maeHpFull: number;
+  endHpAbsError?: number;
+  actionCoverageF1?: number | null;
+  lethalErrorSec?: number | null;
+  hardFail?: boolean;
+};
+
+export type WindowResult = {
+  id: string;
+  windowOk: boolean;
+  windowScore: number;
+  parts: Record<string, number | boolean | string>;
+};
+
+const EARLY_CAP = 50;
+const BURST_CAP = 90;
+const FULL_CAP = 130;
+const LETHAL_TOL = 0.75;
+const END_HP_FLOOR = 40;
+
+export function scoreWindow(truth: WindowTruth, model: WindowModel): WindowResult {
+  const lethalError =
+    model.lethalErrorSec ??
+    (truth.truthKilled && model.modelLethalSec != null
+      ? Math.abs(model.modelLethalSec)
+      : null);
+
+  let lethalOk = false;
+  if (truth.truthKilled) {
+    lethalOk =
+      model.modelKilled &&
+      lethalError != null &&
+      lethalError <= LETHAL_TOL;
+  } else {
+    lethalOk =
+      !model.modelKilled ||
+      (model.endHpAbsError != null && model.endHpAbsError <= END_HP_FLOOR);
+  }
+
+  const earlyOk = model.earlyMaeHp <= EARLY_CAP;
+  const pathOk = model.maeHpBurst <= BURST_CAP && model.maeHpFull <= FULL_CAP;
+  const noInvent = true; // caller must enforce; scaffold assumes honest inputs
+  const noHard = !model.hardFail;
+
+  const windowOk = lethalOk && earlyOk && pathOk && noInvent && noHard;
+
+  const lethalHit = lethalOk ? 1 : 0;
+  const earlyBand =
+    model.earlyMaeHp <= EARLY_CAP
+      ? 1
+      : Math.max(0, 1 - (model.earlyMaeHp - EARLY_CAP) / 100);
+  const pathBand = (() => {
+    if (model.maeHpBurst <= BURST_CAP && model.maeHpFull <= FULL_CAP) return 1;
+    const burstOver = Math.max(0, model.maeHpBurst - BURST_CAP) / BURST_CAP;
+    const fullOver = Math.max(0, model.maeHpFull - FULL_CAP) / FULL_CAP;
+    return Math.max(0, 1 - 0.5 * (burstOver + fullOver));
+  })();
+  const actionF1 =
+    model.actionCoverageF1 == null || Number.isNaN(model.actionCoverageF1)
+      ? 0
+      : Math.min(1, Math.max(0, model.actionCoverageF1));
+
+  const windowScore =
+    0.4 * lethalHit + 0.25 * earlyBand + 0.2 * pathBand + 0.15 * actionF1;
+
+  return {
+    id: truth.id,
+    windowOk,
+    windowScore,
+    parts: {
+      lethalOk,
+      earlyOk,
+      pathOk,
+      lethalHit,
+      earlyBand,
+      pathBand,
+      actionF1,
+      earlyMaeHp: model.earlyMaeHp,
+      maeHpBurst: model.maeHpBurst,
+      maeHpFull: model.maeHpFull,
+    },
+  };
+}
+
+export function suiteMeans(results: WindowResult[]) {
+  if (!results.length) return { fightAgreement: 0, fightPassRate: 0, n: 0 };
+  const fightAgreement =
+    results.reduce((s, r) => s + r.windowScore, 0) / results.length;
+  const fightPassRate =
+    results.reduce((s, r) => s + (r.windowOk ? 1 : 0), 0) / results.length;
+  return { fightAgreement, fightPassRate, n: results.length };
+}
+
+function main() {
+  const outDir =
+    process.argv[2] ||
+    "docs/rofl-research/autoresearch/fight_outcome/r04";
+  const stub = {
+    t: new Date().toISOString(),
+    schema: "fightAgreement-scaffold-v0",
+    note: "Scaffold only — no real windows scored yet. Not gate evidence.",
+    fightAgreement: null,
+    fightPassRate: null,
+    confidence:
+      "fightAgreement is kill-window suite agreement — NOT win probability / odds %",
+  };
+  fs.mkdirSync(outDir, { recursive: true });
+  const out = path.join(outDir, "fight_agreement_scaffold_status.json");
+  fs.writeFileSync(out, JSON.stringify(stub, null, 2));
+  console.log("wrote", out);
+}
+
+if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith("fight_agreement_suite.ts")) {
+  main();
+}

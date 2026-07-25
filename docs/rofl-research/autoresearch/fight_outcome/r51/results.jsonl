@@ -1,0 +1,10 @@
+{"id": "E0b", "c1_F1": 0.6667, "S0_FA": 0.9304, "keep": false}
+{"id": "E1", "c1_F1": 1.0, "S0_FA": 0.9387, "S1_FA": 0.7628, "keep": true}
+{"id": "E2", "c1_F1": 0.6667, "S0_FA": 0.9304, "keep": false}
+{"id": "E3", "c1_F1": 0.8, "S0_FA": 0.8671, "keep": false}
+{"id": "E4", "c1_F1": 0.6667, "S0_FA": 0.9164, "keep": false}
+{"id": "E5", "c1_F1": 0.0, "S0_FA": 0.8137, "keep": false}
+{"id": "E6", "c1_F1": 0.0, "S0_FA": 0.9137, "keep": false}
+{"id": "E7", "echo_F1": 1.0, "reject": "zero_dmg_echo", "keep": false}
+{"id": "E8", "c1_F1": 1.0, "S0_FA": 0.9387, "keep": false}
+{"id": "E9", "c1_F1": 0.6667, "S0_FA": 0.9304, "keep": false}

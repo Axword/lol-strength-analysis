@@ -1,0 +1,1195 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.939445495605469
+    },
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 48.929222106933594
+    },
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 11.606552124023438
+    },
+    {
+      "tSec": 0.09579651035647885,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 11.606552124023438
+    },
+    {
+      "tSec": 0.36337939453125045,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 8.928116798400879
+    },
+    {
+      "tSec": 0.46353808593750045,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 8.928116798400879
+    },
+    {
+      "tSec": 1.6326804231042047,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 9.003702163696289
+    },
+    {
+      "tSec": 3.168723022460938,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 37.181121826171875
+    },
+    {
+      "tSec": 3.168723022460938,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 44.2963752746582
+    },
+    {
+      "tSec": 7.143193728768267,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 41.96232604980469
+    },
+    {
+      "tSec": 7.1763981933593755,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 6.7463531494140625
+    },
+    {
+      "tSec": 7.610155030864291,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 17.369232177734375
+    },
+    {
+      "tSec": 8.245290286385455,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 1.8469951152801514
+    },
+    {
+      "tSec": 8.34547949536983,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.370690822601318
+    },
+    {
+      "tSec": 8.34547949536983,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.370690822601318
+    },
+    {
+      "tSec": 8.545842654549517,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.370690822601318
+    },
+    {
+      "tSec": 8.545842654549517,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.370690822601318
+    },
+    {
+      "tSec": 8.779440795898438,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 1.8469951152801514
+    },
+    {
+      "tSec": 8.979803955078125,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.4338250160217285
+    },
+    {
+      "tSec": 9.012803956645541,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.4338250160217285
+    },
+    {
+      "tSec": 9.080008422851563,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 1.8469951152801514
+    },
+    {
+      "tSec": 9.080008422851563,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 66.74785614013672
+    },
+    {
+      "tSec": 9.447576052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 3.022606134414673
+    },
+    {
+      "tSec": 9.447576052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 3.022606134414673
+    },
+    {
+      "tSec": 10.449452884041705,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 4.168783187866211
+    },
+    {
+      "tSec": 11.985723025643267,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 1.6988601684570312
+    },
+    {
+      "tSec": 11.985723025643267,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 1.5755949020385742
+    },
+    {
+      "tSec": 12.252275392192416,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.913151979446411
+    },
+    {
+      "tSec": 14.390248782479205,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.913151979446411
+    },
+    {
+      "tSec": 14.656801149028354,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.913151979446411
+    },
+    {
+      "tSec": 14.656801149028354,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 1.8146114349365234
+    },
+    {
+      "tSec": 14.924368774414063,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.913151979446411
+    },
+    {
+      "tSec": 15.191716677987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.913151979446411
+    },
+    {
+      "tSec": 15.191716677987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 1.8146114349365234
+    },
+    {
+      "tSec": 15.458284303325229,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.913151979446411
+    },
+    {
+      "tSec": 15.725821411132813,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.175570011138916
+    },
+    {
+      "tSec": 15.99318457349483,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 3.175570011138916
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 49.398712158203125
+    },
+    {
+      "tSec": 17.863104736328125,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 1.9490035772323608
+    },
+    {
+      "tSec": 18.09646789707523,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 67.48800659179688
+    },
+    {
+      "tSec": 18.130467898690142,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 22
+    },
+    {
+      "tSec": 18.163657104492188,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742006,
+      "amount": 47.262290954589844
+    },
+    {
+      "tSec": 18.196657106059604,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 28.09168243408203
+    },
+    {
+      "tSec": 18.39702026523929,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 1.9490035772323608
+    },
+    {
+      "tSec": 18.79776184238773,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 38.19136428833008
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073748866,
+      "amount": 2.3665332794189453
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073748869,
+      "amount": 2.3665332794189453
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 0.8487789034843445
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 2.017873764038086
+    },
+    {
+      "tSec": 19.065314208984375,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073748870,
+      "amount": 2.3665332794189453
+    },
+    {
+      "tSec": 19.198503419536166,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 22
+    },
+    {
+      "tSec": 19.265677368164063,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 37.86516189575195
+    },
+    {
+      "tSec": 19.466071044921875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 0.8487789034843445
+    },
+    {
+      "tSec": 19.466071044921875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 2.017873764038086
+    },
+    {
+      "tSec": 19.766608154296875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742006,
+      "amount": 49.927833557128906
+    },
+    {
+      "tSec": 19.766608154296875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742006,
+      "amount": 37.00096893310547
+    },
+    {
+      "tSec": 19.79960815586429,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 30.45331382751465
+    },
+    {
+      "tSec": 19.833608157479205,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 2.017873764038086
+    },
+    {
+      "tSec": 19.833608157479205,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742004,
+      "amount": 90.77167510986328
+    },
+    {
+      "tSec": 19.93379736646358,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073748866,
+      "amount": 2.3665332794189453
+    },
+    {
+      "tSec": 19.966986572265625,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073748869,
+      "amount": 2.3665332794189453
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742005,
+      "amount": 0.8487789034843445
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 27.058822631835938
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage",
+      "sourceNetId": 1073742007,
+      "amount": 35.3363151550293
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.09579651035647885,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.36337939453125045,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.46353808593750045,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.6326804231042047,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 3.168723022460938,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 3.168723022460938,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 7.143193728768267,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 7.1763981933593755,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 7.610155030864291,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.245290286385455,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.34547949536983,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.34547949536983,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.545842654549517,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.545842654549517,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.779440795898438,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 8.979803955078125,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 9.012803956645541,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 9.080008422851563,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 9.080008422851563,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 9.447576052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 9.447576052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 10.449452884041705,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.985723025643267,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.985723025643267,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 12.252275392192416,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.390248782479205,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.656801149028354,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.656801149028354,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.924368774414063,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.191716677987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.191716677987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.458284303325229,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.725821411132813,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.99318457349483,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.863104736328125,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.09646789707523,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.130467898690142,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.163657104492188,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.196657106059604,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.39702026523929,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.79776184238773,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.065314208984375,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.198503419536166,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.265677368164063,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.466071044921875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.466071044921875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.766608154296875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.766608154296875,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.79960815586429,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.833608157479205,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.833608157479205,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.93379736646358,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.966986572265625,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    }
+  ],
+  "coverage": {
+    "truthCount": 64,
+    "modelCount": 64,
+    "matchedCount": 64,
+    "precision": 1,
+    "recall": 1,
+    "actionCoverage": 1,
+    "matches": [
+      {
+        "truthIdx": 0,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 1,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 7,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 8,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 9,
+        "modelIdx": 9,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 10,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 11,
+        "modelIdx": 11,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 12,
+        "modelIdx": 12,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 13,
+        "modelIdx": 13,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 14,
+        "modelIdx": 14,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 15,
+        "modelIdx": 15,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 16,
+        "modelIdx": 16,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 17,
+        "modelIdx": 17,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 18,
+        "modelIdx": 18,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 19,
+        "modelIdx": 19,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 20,
+        "modelIdx": 20,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 21,
+        "modelIdx": 21,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 22,
+        "modelIdx": 22,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 23,
+        "modelIdx": 23,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 24,
+        "modelIdx": 24,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 25,
+        "modelIdx": 25,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 26,
+        "modelIdx": 26,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 27,
+        "modelIdx": 27,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 28,
+        "modelIdx": 28,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 29,
+        "modelIdx": 29,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 30,
+        "modelIdx": 30,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 31,
+        "modelIdx": 31,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 32,
+        "modelIdx": 32,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 33,
+        "modelIdx": 33,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 34,
+        "modelIdx": 34,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 35,
+        "modelIdx": 35,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 36,
+        "modelIdx": 36,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 37,
+        "modelIdx": 37,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 38,
+        "modelIdx": 38,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 39,
+        "modelIdx": 39,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 40,
+        "modelIdx": 40,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 41,
+        "modelIdx": 41,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 42,
+        "modelIdx": 42,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 43,
+        "modelIdx": 43,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 44,
+        "modelIdx": 44,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 45,
+        "modelIdx": 45,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 46,
+        "modelIdx": 46,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 47,
+        "modelIdx": 47,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 48,
+        "modelIdx": 48,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 49,
+        "modelIdx": 49,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 50,
+        "modelIdx": 50,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 51,
+        "modelIdx": 51,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 52,
+        "modelIdx": 52,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 53,
+        "modelIdx": 53,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 54,
+        "modelIdx": 54,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 55,
+        "modelIdx": 55,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 56,
+        "modelIdx": 56,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 57,
+        "modelIdx": 57,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 58,
+        "modelIdx": 58,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 59,
+        "modelIdx": 59,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 60,
+        "modelIdx": 60,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 61,
+        "modelIdx": 61,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 62,
+        "modelIdx": 62,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 63,
+        "modelIdx": 63,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [],
+    "unmatchedModel": []
+  },
+  "byKind": {
+    "damage": {
+      "truthCount": 64,
+      "modelCount": 64,
+      "matchedCount": 64,
+      "actionCoverage": 1
+    }
+  },
+  "disclosures": [
+    "r14 E03: modelDamageEchoFromTruth — shareHint=0 inventory echo at truth timestamps",
+    "r14: FORBIDDEN as actionCoverage gate evidence (forbid #13 / F5 mandate)",
+    "r14: echo F1=1.0000 looks high but is zero-dmg log-echo"
+  ],
+  "researcher": "R14",
+  "gateEligible": false,
+  "modelMode": "zero_damage_log_echo",
+  "rejectedAsGateEvidence": true,
+  "rejectReason": "zero_damage_log_echo: shareHint=0 modelActions must not earn actionReplayGate / fightOutcomeGate secondary credit"
+}

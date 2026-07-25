@@ -1,0 +1,47 @@
+{
+  "schema": "fight_outcome-r32-research-best-v1",
+  "researcher": "r32",
+  "productKeep": true,
+  "unfreeze_0_9683_authorized": true,
+  "parentBestJsonRewritten": false,
+  "researchBest": {
+    "id": "e5",
+    "config": {
+      "markSelection": "cusum_engage_then_skills",
+      "idleFollowActual": true,
+      "aaAtEachMark": false,
+      "perSlotPulse": true,
+      "pulseBySlot": { "1": 0.4, "2": 0.35, "3": 0.55, "4": 0 },
+      "killerShareMode": "residual_hp",
+      "residualMinEarlyLethalSec": 8,
+      "residualOverkillRatio": 1.25,
+      "residualMinShare": 0.05,
+      "note": "per-window actualDrop/modelDrop at probe lethal; gate earlyBy>=8s — not ally-count"
+    },
+    "S0": {
+      "check03_earlyMae": 100.4196699440769,
+      "check03_earlyMae_delta_vs_e0b": -375.5803300559231,
+      "earlyPoisoned": false,
+      "fightAgreement": 0.7307,
+      "fightAgreement_delta_vs_e0b": 0.1369,
+      "fightPassRate": 0.3333
+    },
+    "S1": {
+      "fightAgreement": 0.5620,
+      "fightAgreement_delta_vs_s1_e0": 0.0,
+      "fightPassRate": 0.3333,
+      "note": "Cass→Viktor earlyBy~0.84s — residual gate does not fire"
+    }
+  },
+  "baseline_e0b": {
+    "S0_FA": 0.5938,
+    "S1_FA": 0.5620,
+    "check03_earlyMae": 476
+  },
+  "assist_gated_ablation_e3": {
+    "S1_FA": 0.3595,
+    "note": "confirms R26 one-coeff trap — not product"
+  },
+  "unfrozenFromComposite": 0.9683,
+  "confidence": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+}

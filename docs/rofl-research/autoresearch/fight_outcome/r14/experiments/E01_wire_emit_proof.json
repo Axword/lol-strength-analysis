@@ -1,0 +1,52 @@
+{
+  "id": "E01",
+  "hypothesis": "F5H3 Wire emit proof: R41 basic_attack/damage_dealt source+amount PE rates",
+  "f5": "H3",
+  "utc": "2026-07-24T15:50:35.550Z",
+  "emitPath": "/Users/river/.codex/worktrees/rofl-fo-r14/docs/rofl-research/packet_decode/r41/emit_2970110_basic_attack_damage.jsonl",
+  "identityPath": "/Users/river/.codex/worktrees/rofl-fo-r14/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+  "identityComplete": true,
+  "identityMethod": "stable_identity_to_net_id",
+  "createHeroOrderFallback": false,
+  "load": {
+    "totalEvents": 53369,
+    "withTargetNetId": 53369,
+    "withSourceNetId": 53369,
+    "withAmount": 53369,
+    "gameIDs": [
+      2970110
+    ],
+    "schemaCounts": {
+      "damage_dealt": 53369
+    }
+  },
+  "r41SummaryFieldRates": {
+    "damageAttempted": 53369,
+    "damageDeserOk": 53369,
+    "damageDeserFail": 0,
+    "deserOkRatio": 1,
+    "withSourceNetId": 53369,
+    "withSourceNetIdRatio": 1,
+    "withAmount": 53369,
+    "withAmountRatio": 1,
+    "withSourceUnit": 53369,
+    "withAmountSane": 52980,
+    "targetEchoParam": 53369,
+    "amountRange": {
+      "min": 0.010737461969256401,
+      "max": 4950,
+      "n": 52980
+    }
+  },
+  "r41EventCounts": {
+    "damage_dealt": 53369,
+    "basic_attack": 14447,
+    "basic_attack:Basic_Attack_Pos": 3640,
+    "basic_attack:Basic_Attack_Pos_Minion": 10305,
+    "basic_attack:Basic_Attack": 348,
+    "basic_attack:Basic_Attack_Minion": 154
+  },
+  "wireProof": true,
+  "invent": false,
+  "keep": true
+}

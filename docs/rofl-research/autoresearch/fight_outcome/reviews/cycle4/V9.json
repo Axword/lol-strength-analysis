@@ -1,0 +1,86 @@
+{
+  "reviewer": "V9",
+  "cycle": 4,
+  "phase": "C",
+  "role": "Timed planner / death-coupled honesty",
+  "utc": "2026-07-24T16:09:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "planner_lens": {
+    "death_coupled_parent": true,
+    "no_hp_pct_ability_ban": true,
+    "product_selectors_held": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+    "idleFollowActual_KEEP": true,
+    "r19_idle": {
+      "product_KEEP": true,
+      "confirmed_r25": true,
+      "S0_FA_bit_match": 0.4106910062451652
+    },
+    "r23": {
+      "best_research_e7_FA": 0.25028620072867436,
+      "e5_S1_flat_FA": 0.23261483513205836,
+      "product_FA_unchanged_at_e0": 0.2279317568764,
+      "product_KEEP": false,
+      "galio_W_pre_CUSUM_sec": 0.334,
+      "config_peak": "sparse preEngageOpenerSec=0.5 maxPost=3 + --no-aa-at-mark (S1 regress)",
+      "note": "preEngageOpener research KEEP candidate only; S1 never improves → no product flip"
+    },
+    "r22": {
+      "Camille_Q_wiki_KEEP": true,
+      "Path1_FA_lift": false,
+      "note": "S0 killers Galio/Olaf — Q not on FA pulse path"
+    },
+    "r18_residual": {
+      "death_coupled_AA_suppress_no_KEEP": true,
+      "galio_still_lethal_issue": true
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds",
+    "S0_path1_2970132_product_cusum_idleFollow": 0.4107,
+    "S0_path1_passRate": 0.167,
+    "R23_research_best_e7": 0.250,
+    "S1_r25_current_law": 0.417,
+    "S1_r25_passRate": 0,
+    "S2": 0.634,
+    "R10_best_timed_S0": 0.5019,
+    "R10_timed_S1": 0.2822
+  },
+  "evidence": [
+    "V9 specialty — parent death-coupled / no-HP%-ban HOLDS: timed_manual_1v1 stops at first lethal; abilityBudget never HP%-bans slots",
+    "V9 specialty — product selectors unchanged; near_hp_drop research-only",
+    "V9 specialty — R23 preEngageOpener: S0 research 0.250 but S1 flat/regress → keeps=[]; Galio W dropped 0.334s pre-CUSUM",
+    "R25 — idleFollowActual confirmed; product Path1 FA 0.4107 / pass 0.167; blocker shifts to lethal (Galio miss-kill, Olaf lethErr, check03 earlyPoisoned)",
+    "R22 Camille Q wiki KEEP — no Path1 FA lift",
+    "B FAIL: S0 Path1 product FA 0.4107 / pass 0.167 ≪ 0.95",
+    "F FAIL: S1 current-law ≈0.417 / pass 0 ≪ 0.95; R23 does not improve S1",
+    "D reaffirm TRUE: GOAL §D Path1 ≥1 match; no new §D failure",
+    "G cited TRUE in BRIEF/STATUS (V8 may dissent live E2 — orthogonal to planner lens)",
+    "H OK: R14 echo REJECTED; R23 research not sold as product FA",
+    "C OK: unfreeze authorized; best.json 0.9683 untouched (R23 keeps=[])"
+  ],
+  "failures": [
+    "B: S0 Path1 FA 0.4107 / pass 0.167; best research R23 0.250 — all ≪ 0.95",
+    "F: S1 holdout unmet; death-coupled / opener research does not improve S1 for KEEP",
+    "Outcome honesty gap (not death-coupled mechanism): Galio miss-kill (W pre-CUSUM); Olaf lethErr; check03 earlyPoisoned open (R21/R24/R26/R28/R30)",
+    "I: FO majority + parent e2e not met"
+  ],
+  "blocker": "Planner death-coupled honesty holds, but Path1 S0 FA=0.4107 and S1≈0.417 ≪ 0.95; next is Path1 lethal/early/falsekill (live R21/R24/R26/R28/R30) — do not flip product selectors on S1-flat/regress knobs",
+  "notes": "V9 C4: death-coupled mechanism honest; R23 proves preEngageOpener is research-only (S1 never improves). R25 locks idle honesty closed at FA 0.4107. digestCleanGate true on §D reaffirm. fightOutcomeGate false solely on concrete B+F (+I). FA ≠ win odds / ≠ pBlue-pRed %.",
+  "one_line_vote": "V9: fightOutcomeGate=false digestCleanGate=true — planner death-coupled honest; Path1 S0 FA=0.4107≪0.95; R23 no KEEP"
+}

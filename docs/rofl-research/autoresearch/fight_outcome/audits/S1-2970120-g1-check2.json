@@ -1,0 +1,51 @@
+{
+  "schema": "fightOutcome-window-audit-v1",
+  "utc": "2026-07-24T15:41:37.109Z",
+  "windowId": "S1-2970120-g1-check2",
+  "suite": "S1",
+  "tuneForbidden": true,
+  "truth": {
+    "id": "S1-2970120-g1-check2",
+    "suite": "S1",
+    "match": "2970120-g1",
+    "truthKilled": true,
+    "killerPid": 9,
+    "victimPid": 4,
+    "killerChamp": "Caitlyn",
+    "victimChamp": "Ziggs"
+  },
+  "model": {
+    "modelKilled": false,
+    "modelLethalSec": null,
+    "lethalErrorSec": null,
+    "earlyMaeHp": 4,
+    "maeHpBurst": 164.80612907482882,
+    "maeHpFull": 190.70304716684478,
+    "actionCoverageF1": null,
+    "hardFail": false,
+    "noInvent": true
+  },
+  "result": {
+    "id": "S1-2970120-g1-check2",
+    "windowOk": false,
+    "windowScore": 0.3201874271389421,
+    "parts": {
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false,
+      "noInvent": true,
+      "noHard": true,
+      "lethalHit": 0,
+      "earlyBand": 1,
+      "pathBand": 0.3509371356947104,
+      "actionF1": 0,
+      "earlyMaeHp": 4,
+      "maeHpBurst": 164.80612907482882,
+      "maeHpFull": 190.70304716684478,
+      "lethalErrorSec": null
+    }
+  },
+  "camilleInWindow": false,
+  "camillePeNote": null,
+  "confidence": "window audit — fightAgreement part, not win probability"
+}

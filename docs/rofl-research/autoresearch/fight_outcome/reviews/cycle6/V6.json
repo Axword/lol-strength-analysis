@@ -1,0 +1,92 @@
+{
+  "reviewer": "V6",
+  "cycle": 6,
+  "phase": "C",
+  "role": "S1 holdout auditor",
+  "utc": "2026-07-24T16:37:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "s1_lens": {
+    "members": ["S1-2970137-g1", "S1-2970120-g1"],
+    "authoritative_member_freeze": "S1-2970137-g1",
+    "nWindows": 6,
+    "authoritative_current_law": {
+      "source": "r35 KEEP preEngageOpenerSec=0.5 + maxPost=3 (last remesaure-class); stacked R32/R34/R36 claimed pending remesaure",
+      "protocol": "cusum_engage_then_skills + idleFollowActual + aaAtEachMark=false + pulseBySlot R=0 + residual_hp + preEngage sparse + Galio tornado 0.15 + local_skill_share",
+      "fightAgreement_verified_r35": 0.5810463694073534,
+      "fightPassRate_verified_r35": 0.3333333333333333,
+      "claimed_after_stack_pending_remeasure": { "S1_lo": 0.56, "S1_hi": 0.58 },
+      "gateMet": false,
+      "note": "BRIEF C6: verified remesaure S0 FA 0.6021 (R35); claimed S1 ~0.56–0.58 pending compound remesaure; still ≪0.95; tuneForbidden"
+    },
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "no_s1_tuning_claim": true,
+    "idleFollowActual": true,
+    "wave2_KEEPs_s1_effect": {
+      "r35_preEngageOpener": { "keep": true, "S1_FA": 0.5810463694073534, "S1_delta_vs_r30": 0.019089947089947046 },
+      "r32_residual_hp": { "keep": true, "S1_FA_flat": 0.5619564223174064, "S1_delta": 0.0 },
+      "r34_galio_tornado_015": { "keep": true, "S1_FA_flat": 0.5619564223174064, "S1_delta": 0.0 },
+      "r36_local_skill_share": { "keep": true, "S1_FA_flat": 0.5619564223174064, "S1_delta": 0.0 },
+      "r38_audits": { "keep": true, "docs_only": true, "not_FO_evidence": true }
+    },
+    "r24_holdout": {
+      "research_path1_FA": 0.5030447427479277,
+      "s1_e49_REGRESS": 0.3379081614115324,
+      "product_KEEP": false,
+      "note": "R24 lead/far still rejected; R35 KEEP is sparse structural (no lead/far) — distinct from R24"
+    },
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/r35/audits/keep_S1/S1_2970137-g1_c1_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r35/audits/keep_S1/S1_2970137-g1_c1_burst.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r35/audits/keep_S1/S1_2970137-g1_c3_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r35/audits/keep_S1/S1_2970137-g1_c3_burst.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r36/audits/e7_s1/S1_2970137-g1_c1_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r36/audits/e7_s1/S1_2970137-g1_c1_burst.json"
+    ],
+    "cycle6_delta": {
+      "S0_verified_r35_FA": 0.6021026407618185,
+      "S0_claimed_stack_pending": { "lo": 0.72, "hi": 0.73 },
+      "S1_verified_r35_FA": 0.5810463694073534,
+      "S1_pass": 0.3333333333333333,
+      "compound_remeasure_pending": true,
+      "still_far_below_095": true
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "GOAL §B/§F — S1 must hit FA≥0.95 AND passRate≥0.95; no fightOutcomeGate on S0 alone",
+    "r35 — S1-safe preEngage KEEP: S1 FA 0.562→0.581 / pass 0.333; tuneForbidden; gateMet false",
+    "r32/r34/r36 — S1 FA flat at 0.562 on isolated KEEP measures; BRIEF claims stacked S1 ~0.56–0.58 pending remesaure",
+    "BRIEF C6 — verified S0 FA 0.6021 (R35); claimed S0 ~0.72–0.73 pending remesaure; FA≪0.95; G proven; DC true",
+    "STATUS — fightOutcomeGate false; best_fightAgreement 0.6021 (r35_KEEP_S0_verified); digestCleanGate true",
+    "R24 — lead/far research REJECTED; R35 sparse opener is product KEEP without host/lead/far",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (no new §D failure)"
+  ],
+  "failures": [
+    "B/F: S1 verified FA≈0.581 / pass 0.333 ≪ 0.95 (R35); claimed stack ~0.56–0.58 also ≪0.95",
+    "F: compound remesaure pending — cannot claim holdout pass from stacked KEEP summaries alone",
+    "I: ≥11/15 + parent e2e not met while holdout fails"
+  ],
+  "blocker": "S1 FA≈0.581 (verified R35) / claimed ~0.56–0.58 ≪0.95 and pass 0.333; remesaure stacked law then lift remaining miss-kill windows without S1 tune",
+  "notes": "V6 S1 holdout lens (Cycle6). Authoritative verified remesaure-class is R35 KEEP S1 FA≈0.581 / pass 0.333 under cusum_engage_then_skills + idleFollowActual + sparse preEngage; R32/R34/R36 leave S1 flat when measured alone — BRIEF stacked claim ~0.56–0.58 pending remesaure. Still ≪0.95. digestCleanGate true on §D reaffirm. G proven orthogonal to holdout. fightAgreement ≠ win odds / ≠ pBlue%.",
+  "one_line_vote": "V6: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — S1 FA≈0.581 (R35) / claimed~0.56–0.58 ≪0.95; pass 0.333"
+}

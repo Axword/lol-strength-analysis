@@ -1,0 +1,20 @@
+{
+  "schema": "fightOutcome-cycle-final-v1",
+  "cycle": 1,
+  "utc": "2026-07-24T15:51:03Z",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "votes": {
+    "fightOutcome_true": 0,
+    "digestClean_true": 2,
+    "n": 15
+  },
+  "reason": "FO 0/15; digestClean 2/15 <11; S0 Path1 FA 0.228",
+  "continue": true,
+  "model": "Auto",
+  "digestClean_affirmers": [
+    "V13",
+    "V2"
+  ],
+  "next": "Phase B Path1 lethal (R18); Send parity; C2 at 12 researcher completions"
+}

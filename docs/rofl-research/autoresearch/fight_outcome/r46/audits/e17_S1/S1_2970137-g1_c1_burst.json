@@ -1,0 +1,35 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:57:13.966Z",
+  "suite": "S1",
+  "match": "2970137-g1",
+  "windowId": "S1_2970137-g1_c1_burst",
+  "windowOk": false,
+  "windowScore": 0.4405952380952381,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": false,
+    "pathOk": true,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 0.7223809523809523,
+    "pathBand": 1,
+    "actionF1": 0.4,
+    "earlyMaeHp": 77.76190476190476,
+    "maeHpBurst": 79.09203928571428,
+    "maeHpFull": 36.933760909090914,
+    "maeHp": 79.09203928571428,
+    "pathCap": 90,
+    "lethalErrorSec": null,
+    "segment": "burst",
+    "matchup": "Vayne→Ambessa"
+  },
+  "failReasons": [
+    "lethal",
+    "earlyMae"
+  ],
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r46/docs/rofl-research/autoresearch/fight_outcome/r46/experiments/e17_2970137-g1-holdout.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

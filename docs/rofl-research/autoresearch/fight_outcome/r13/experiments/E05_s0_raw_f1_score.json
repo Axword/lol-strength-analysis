@@ -1,0 +1,59 @@
+{
+  "id": "E05",
+  "hypothesis": "H5 Suite join — S0 with RAW F1 (baseline; may include echo pollution)",
+  "suite": "S0",
+  "markSelection": "cusum_engage_then_skills",
+  "fightAgreement": 0.3303893000357407,
+  "fightPassRate": 0.16666666666666666,
+  "n": 6,
+  "windows": [
+    {
+      "id": "S0_2970110-g1_c1_full",
+      "windowOk": true,
+      "windowScore": 0.9437500000000001,
+      "actionF1": 0.6250000000000001,
+      "actionF1Weight": 0.15
+    },
+    {
+      "id": "S0_2970110-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.20105035925925918,
+      "actionF1": 0.5,
+      "actionF1Weight": 0.15
+    },
+    {
+      "id": "S0_2970110-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.3142857142857143,
+      "actionF1": 0.42857142857142855,
+      "actionF1Weight": 0.15
+    },
+    {
+      "id": "S0_2970110-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.10940357793617522,
+      "actionF1": 0.5,
+      "actionF1Weight": 0.15
+    },
+    {
+      "id": "S0_2970110-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.05217391304347826,
+      "actionF1": 0.34782608695652173,
+      "actionF1Weight": 0.15
+    },
+    {
+      "id": "S0_2970110-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.361672235689817,
+      "actionF1": 0.25,
+      "actionF1Weight": 0.15
+    }
+  ],
+  "contextBaselines": {
+    "S0": 0.4217,
+    "S1": 0.478,
+    "S2": 0.634
+  },
+  "note": "NOT win odds. Raw F1 may include zero-dmg echo pollution — compare E06."
+}

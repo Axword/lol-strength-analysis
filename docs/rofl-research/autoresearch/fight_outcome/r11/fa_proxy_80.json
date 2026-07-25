@@ -1,0 +1,197 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T15:49:53.099Z",
+  "researcher": "r04",
+  "suite": "S0",
+  "match": "2970110-g1",
+  "proxied": true,
+  "harnessSuite": "2970110-g1",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r11/docs/rofl-research/autoresearch/fight_outcome/r11/eval_proxy_80.json",
+  "markSelection": "cusum_engage_then_skills",
+  "harnessMode": "gate_action",
+  "harnessHypothesis": "R11 utility proxy=80",
+  "n": 6,
+  "fightAgreement": 0.4217420179369753,
+  "fightPassRate": 0.16666666666666666,
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S0_2970110-g1_c1_full",
+      "windowOk": true,
+      "windowScore": 0.94375,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.6250000000000001,
+        "earlyMaeHp": 31.2,
+        "maeHpBurst": 75.8,
+        "maeHpFull": 83.06034700000002,
+        "maeHp": 83.06034700000002,
+        "pathCap": 130,
+        "lethalErrorSec": 0.23400000000000176,
+        "segment": "full",
+        "matchup": "Camille→Leona"
+      }
+    },
+    {
+      "id": "S0_2970110-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.749167,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": false,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 0.2366666666666667,
+        "pathBand": 1,
+        "actionF1": 0.6,
+        "earlyMaeHp": 126.33333333333333,
+        "maeHpBurst": 75.8,
+        "maeHpFull": 83.06034700000002,
+        "maeHp": 75.8,
+        "pathCap": 90,
+        "lethalErrorSec": 0.017000000000000348,
+        "segment": "burst",
+        "matchup": "Camille→Leona"
+      }
+    },
+    {
+      "id": "S0_2970110-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.314286,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0,
+        "actionF1": 0.42857142857142855,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 164.51838992872115,
+        "maeHpFull": 323.51003315628475,
+        "maeHp": 323.51003315628475,
+        "pathCap": 130,
+        "lethalErrorSec": 1.4750000000000014,
+        "segment": "full",
+        "matchup": "Syndra→Camille"
+      }
+    },
+    {
+      "id": "S0_2970110-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.109404,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0,
+        "pathBand": 0.17201788968087617,
+        "actionF1": 0.5,
+        "earlyMaeHp": 274.1973165478686,
+        "maeHpBurst": 164.51838992872115,
+        "maeHpFull": 323.51003315628475,
+        "maeHp": 164.51838992872115,
+        "pathCap": 90,
+        "lethalErrorSec": 1.0070000000000001,
+        "segment": "burst",
+        "matchup": "Syndra→Camille"
+      }
+    },
+    {
+      "id": "S0_2970110-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.052174,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0,
+        "pathBand": 0,
+        "actionF1": 0.34782608695652173,
+        "earlyMaeHp": 579.815870547395,
+        "maeHpBurst": 146.62249393958234,
+        "maeHpFull": 703.8601392875831,
+        "maeHp": 703.8601392875831,
+        "pathCap": 130,
+        "lethalErrorSec": 12.791,
+        "segment": "full",
+        "matchup": "Ezreal→LeeSin"
+      }
+    },
+    {
+      "id": "S0_2970110-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.361672,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.37086117844908506,
+        "actionF1": 0.25,
+        "earlyMaeHp": 3.3333333333333335,
+        "maeHpBurst": 146.62249393958234,
+        "maeHpFull": 703.8601392875831,
+        "maeHp": 146.62249393958234,
+        "pathCap": 90,
+        "lethalErrorSec": null,
+        "segment": "burst",
+        "matchup": "Ezreal→LeeSin"
+      }
+    }
+  ],
+  "failingAudits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r11/docs/rofl-research/autoresearch/fight_outcome/audits/S0_2970110-g1_c1_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r11/docs/rofl-research/autoresearch/fight_outcome/audits/S0_2970110-g1_c2_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r11/docs/rofl-research/autoresearch/fight_outcome/audits/S0_2970110-g1_c2_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r11/docs/rofl-research/autoresearch/fight_outcome/audits/S0_2970110-g1_c3_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r11/docs/rofl-research/autoresearch/fight_outcome/audits/S0_2970110-g1_c3_burst.json"
+  ],
+  "law": {
+    "lethalTolSec": 0.75,
+    "earlyMaeCap": 50,
+    "burstMaeCap": 90,
+    "fullMaeCap": 130,
+    "endHpFloor": 40,
+    "weights": {
+      "lethalHit": 0.4,
+      "earlyBand": 0.25,
+      "pathBand": 0.2,
+      "actionCoverageF1": 0.15
+    }
+  },
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S0 proxy — 2970132 crosschecks JSON missing; GOAL allows 2970110 if pins allow",
+    "S0 proxied to 2970110-g1 — 2970132 Path1 windows not curated yet (F9)"
+  ],
+  "confidence": "fightAgreement ≥0.95 means kill-window suite agreement under GOAL §B — NOT calibrated win odds"
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:07:31.585Z",
+  "suite": "S1",
+  "match": "2970137-g1",
+  "windowId": "S1_2970137-g1_c3_burst",
+  "windowOk": false,
+  "windowScore": 0.22436797752808996,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": false,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 0.4974719101123598,
+    "pathBand": 0,
+    "actionF1": 0.6666666666666666,
+    "earlyMaeHp": 100.25280898876402,
+    "maeHpBurst": 1032.1741573033707,
+    "maeHpFull": 567.5964606741574,
+    "maeHp": 1032.1741573033707,
+    "pathCap": 90,
+    "lethalErrorSec": null,
+    "segment": "burst",
+    "matchup": "Anivia→Sylas"
+  },
+  "failReasons": [
+    "lethal",
+    "earlyMae",
+    "pathMae"
+  ],
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r21/docs/rofl-research/autoresearch/fight_outcome/r21/experiments/s1_e14.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

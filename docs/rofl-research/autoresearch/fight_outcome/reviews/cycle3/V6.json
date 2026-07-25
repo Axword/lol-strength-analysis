@@ -1,0 +1,92 @@
+{
+  "reviewer": "V6",
+  "cycle": 3,
+  "phase": "C",
+  "role": "S1 holdout auditor",
+  "utc": "2026-07-24T16:01:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "s1_lens": {
+    "members": ["S1-2970137-g1", "S1-2970120-g1"],
+    "nWindows": 6,
+    "authoritative_current_law": {
+      "source": "r20/S1_score_freeze.json primary_freeze grain_paired",
+      "protocol": "r06_proto_no_dense + lethal≤0.75s",
+      "fightAgreement": 0.41099771388416645,
+      "fightPassRate": 0.16666666666666666,
+      "gateMet": false,
+      "note": "R06 stored 0.478 was inflated (looser lethalOk); current-law freeze is the C3 holdout bar"
+    },
+    "r06_stored_legacy": {
+      "fightAgreement": 0.4776643805508331,
+      "fightPassRate": 0.3333333333333333,
+      "still_below_bar": true
+    },
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "no_s1_tuning_claim": true,
+    "per_member_r20_paired": {
+      "S1-2970137-g1": {
+        "fightAgreement": 0.3485996187220188,
+        "fightPassRate": 0,
+        "n": 3
+      },
+      "S1-2970120-g1": {
+        "fightAgreement": 0.4733958090463141,
+        "fightPassRate": 0.3333333333333333,
+        "n": 3
+      }
+    },
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970137-g1-check1.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970137-g1-check3.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970120-g1-check2.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970120-g1-check3.json"
+    ],
+    "cycle3_delta": {
+      "r18_e11_S1_research_FA": 0.3961,
+      "r18_e0_product_marks_FA": 0.518511,
+      "r18_product_KEEP": false,
+      "r18_note": "death-coupled AA-at-mark suppress regresses S1 vs product marks — reinforces no KEEP / no tune-on-S1",
+      "r19_early": "BRIEF open; not absorbed as S1 bar lift in STATUS",
+      "S0_path1_product_FA": 0.2279
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "GOAL §B/§F — S1 must hit FA≥0.95 AND passRate≥0.95; no fightOutcomeGate on S0 alone",
+    "r20/S1_score_freeze.json — current-law paired FA≈0.411 / pass≈0.167; tuneForbidden; gateMet false; brief_cited 0.478 inflated",
+    "r06/suite_status.json — legacy S1 FA 0.478 / pass 0.333 still ≪ 0.95 (even if used)",
+    "r18/researcher_r18_summary.json — e11 S1 FA 0.396 << product marks 0.519; keeps=[]; no S1 retune",
+    "BRIEF C3 — S0 Path1 product FA 0.2279; research e11 0.2414 NO product KEEP (S1 regress); G proven",
+    "Failing audits present under fight_outcome/audits/S1-*.json (4)",
+    "DIGEST/GOAL §D — Path1 ≥1 match one-command+fingerprints; §D.4 prefer≠require second host → digestCleanGate re-judge true (C2 was 6/15)",
+    "STATUS — fightOutcomeGate false; criterionG_proven true; best FA 0.2279"
+  ],
+  "failures": [
+    "B/F: S1 current-law FA≈0.411 / pass≈0.167 ≪ 0.95 (R20); R06 0.478 also ≪ bar",
+    "F: R18 research lift on S0 does not rescue holdout — e11 regresses S1; cannot claim FO on S0 alone",
+    "I: ≥11/15 + parent e2e not met while holdout fails"
+  ],
+  "blocker": "S1 FA≈0.411 and pass≈0.167 far below 0.95; lift Path1 S0 lethal/early (open R19/R21–R23/R24) then re-measure S1 without tuning on holdout",
+  "notes": "V6 S1 holdout lens only (Cycle3). Authoritative freeze is R20 current-law paired FA≈0.411 / pass≈0.167 under cusum_engage_then_skills, dropFilter=false, tuneForbidden — not R06's 0.478. R18 e11 confirms death-coupled research regresses S1 → no product KEEP. digestCleanGate true on GOAL §D Path1 re-judge (co-gate; FO still false on F). G proven orthogonal to holdout. fightAgreement ≠ win odds.",
+  "one_line_vote": "V6: fightOutcomeGate=false digestCleanGate=true (conf 0.96) — S1 current-law FA≈0.411 / pass≈0.167 ≪0.95; R18 S1 regress no KEEP"
+}

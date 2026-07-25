@@ -1,0 +1,36 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T15:43:06.900Z",
+  "id": "2970132-g1/check03/burst",
+  "windowOk": false,
+  "windowScore": 0.05,
+  "failReasons": [
+    "lethal: modelKilled=true |lethalErrorSec|=10.066",
+    "earlyMaeHp=319.5 > 50",
+    "burst maeHp=309.46153846153845 > 90"
+  ],
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": false,
+    "pathOk": false,
+    "lethalHit": 0,
+    "earlyBand": 0,
+    "pathBand": 0,
+    "actionF1": 0.33333333333333337,
+    "earlyMaeHp": 319.5,
+    "maeHpBurst": 309.46153846153845,
+    "maeHpFull": 437.56,
+    "maeHp": 309.46153846153845,
+    "lethalErrorSec": -10.066,
+    "modelKilled": true,
+    "segment": "burst",
+    "matchup": "Olaf→Camille"
+  },
+  "meta": {
+    "evalPath": "/Users/river/.codex/worktrees/rofl-fo-r05/docs/rofl-research/autoresearch/fight_outcome/r05/s0_eval_post_engage.json",
+    "markSelection": "post_engage_killer_skills",
+    "hypothesis": "R05 S0 Path1 product alt post_engage_killer_skills",
+    "mode": "gate_action"
+  },
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %"
+}

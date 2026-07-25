@@ -1,0 +1,64 @@
+{
+  "reviewer": "V3",
+  "role": "fightAgreement metric honesty (no gaming)",
+  "cycle": 3,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:00:30Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "metric_honesty": {
+    "authoritative_S0": {
+      "host": "2970132-g1 Path1 product cusum_engage_then_skills",
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0,
+      "n": 6,
+      "grain": "check×segment",
+      "source": "r05/s0_fight_agreement_cusum.json",
+      "status_best": 0.2279
+    },
+    "research_not_product": {
+      "r18_e11_FA": 0.24136621085367857,
+      "product_path_after": 0.2279317568764,
+      "product_KEEP": false,
+      "S1_e11_regresses": true,
+      "S1_e11_FA": 0.39611231123472884,
+      "S1_e0_product_FA": 0.518511
+    },
+    "fa_not_odds": true,
+    "echo_rejected": true,
+    "gate_bar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "meets_thresholds": false
+  },
+  "evidence": [
+    "Specialty B/H: scorer law unchanged (0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1; lethal≤0.75).",
+    "Authoritative product S0 Path1 FA 0.2279317568764 / pass 0 / 0/6 windowOk (r05 personally confirmed; BRIEF 0.2279).",
+    "R18 research e11 0.2414 +0.013 research-only; product FA unchanged 0.2279; keeps=[]; S1 death-coupled AA suppress regresses — honest NO product KEEP.",
+    "Do not promote proxy 0.42, research-drop ~0.60, timed 0.50, or e11 0.2414 as Path1 product gate.",
+    "R14 zero-dmg echo still REJECTED as gate evidence (H).",
+    "D re-judge: Path1 validate+hashes personally green this cycle → §D.1–7 affirm for ≥1 match; digestCleanGate=true (prefer second host ≠ require).",
+    "G AFFIRM: R16 11/11 + R17 8/8; STATUS.criterionG_proven=true — does not move FA.",
+    "C AFFIRM: best.json 0.9683 preserved; no FA-beating KEEP."
+  ],
+  "failures": [
+    "B_thresholds: S0 Path1 product FA 0.2279 / pass 0 ≪ 0.95; R18 research 0.2414 still ≪ 0.95 and not product.",
+    "F_holdout: S1 below bar; R18 e11 regresses S1 vs product marks.",
+    "I_majority_e2e: FO cannot pass while B fails."
+  ],
+  "notes": "V3 C3 metric honesty: Path1 product FA 0.2279 canonical; research e11 0.2414 correctly non-KEEP. G proven ≠ metric pass. Re-judge digestClean=true on personal §D Path1. fightOutcomeGate false solely on unmet B (+F/I). fightAgreement ≠ win odds.",
+  "one_line_vote": "V3: metric law honest (e11 research-only; Path1 FA 0.2279 canonical) → fightOutcomeGate=false; digestCleanGate=true; G=true."
+}

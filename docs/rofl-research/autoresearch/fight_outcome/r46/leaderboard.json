@@ -1,0 +1,284 @@
+{
+  "schema": "fight-outcome-leaderboard-v1",
+  "researcher": "r46",
+  "verdict": "NO KEEP",
+  "baseline": {
+    "S0_FA": 0.774,
+    "S0_pass": 0.3333,
+    "S1_FA": 0.581,
+    "S1_pass": 0.3333
+  },
+  "best_FA_lift": {
+    "experiment": "e1",
+    "S0_FA": 0.78,
+    "S1_FA": 0.581,
+    "pass": 0.3333
+  },
+  "n_experiments": 20,
+  "rows": [
+    {
+      "experiment": "e0",
+      "hypothesis": "e0 parent-stack baseline nearKill1.5 dens1.0/max1 gap0.4",
+      "S0": {
+        "fightAgreement": 0.7740028158506135,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5810463694073534,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e1",
+      "hypothesis": "e1 product nearKill2.0 dens1.0 gap0.4",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5810463694073534,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false,
+      "note": "FA\u2191 pass flat \u2014 not KEEP under passRate rule"
+    },
+    {
+      "experiment": "e2",
+      "hypothesis": "e2 nearKill2.5 dens1.0 gap0.4",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5810463694073534,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e3",
+      "hypothesis": "e3 nearKill3.0 dens1.0 gap0.4",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5810463694073534,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e4",
+      "hypothesis": "e4 product dens win1.2 gap1.0 nearKill2",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.43960513520296124,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e5",
+      "hypothesis": "e5 finishHorizon3 nearKill2 dens1.0 gap0.4",
+      "S0": {
+        "fightAgreement": 0.6419708994708996,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.34549475761798903,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e6",
+      "hypothesis": "e6 finishHorizon2.5 nearKill2 dens1.0 gap0.4",
+      "S0": {
+        "fightAgreement": 0.48509288744968543,
+        "fightPassRate": 0.16666666666666666
+      },
+      "S1": {
+        "fightAgreement": 0.30301541810763905,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e7",
+      "hypothesis": "e7 finishHorizon4 nearKill2 dens1.0 gap0.4",
+      "S0": {
+        "fightAgreement": 0.6476706397808386,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5157687001879764,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e8",
+      "hypothesis": "e8 dens1.0 max1 gap0.8 nearKill2",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5781617540227381,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e9",
+      "hypothesis": "e9 dens2.0 max1 gap0.4 nearKill2",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5810463694073534,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e10",
+      "hypothesis": "e10 maxKillerMarks4 nearKill2 dens1 gap0.4",
+      "S0": {
+        "fightAgreement": 0.5617994859346847,
+        "fightPassRate": 0.16666666666666666
+      },
+      "S1": {
+        "fightAgreement": 0.37875532733128,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e11",
+      "hypothesis": "e11 finishAaMax2 nearKill2 dens1 gap0.4",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5852727413979645,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false,
+      "note": "FA\u2191 pass flat \u2014 not KEEP under passRate rule"
+    },
+    {
+      "experiment": "e12",
+      "hypothesis": "e12 noFinishAa nearKill2 dens1 gap0.4",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5637862318840581,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e13",
+      "hypothesis": "e13 nearKill0 dens1 gap0.4 ablate finish",
+      "S0": {
+        "fightAgreement": 0.7740028158506135,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5810463694073534,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e14",
+      "hypothesis": "e14 dens1.0 max1 gap1.0 nearKill2",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.43960513520296124,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e15",
+      "hypothesis": "e15 globalGap1.0 densOff nearKill2",
+      "S0": {
+        "fightAgreement": 0.6437871781688899,
+        "fightPassRate": 0.16666666666666666
+      },
+      "S1": {
+        "fightAgreement": 0.4335177911744408,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e16",
+      "hypothesis": "e16 dens1.0 max1 gap1.05 nearKill2",
+      "S0": {
+        "fightAgreement": 0.6212854339778696,
+        "fightPassRate": 0.16666666666666666
+      },
+      "S1": {
+        "fightAgreement": 0.43960513520296124,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e17",
+      "hypothesis": "e17 dens1.0 max1 gap1.1 nearKill2",
+      "S0": {
+        "fightAgreement": 0.6212854339778696,
+        "fightPassRate": 0.16666666666666666
+      },
+      "S1": {
+        "fightAgreement": 0.43960513520296124,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e18",
+      "hypothesis": "e18 dens1.5 max1 gap1.0 nearKill2",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.43960513520296124,
+        "fightPassRate": 0
+      },
+      "keep_candidate": false
+    },
+    {
+      "experiment": "e19",
+      "hypothesis": "e19 nearKill2 finishAaMax2 dens1 gap0.4 confirm",
+      "S0": {
+        "fightAgreement": 0.7799551968029944,
+        "fightPassRate": 0.3333333333333333
+      },
+      "S1": {
+        "fightAgreement": 0.5852727413979645,
+        "fightPassRate": 0.3333333333333333
+      },
+      "keep_candidate": false,
+      "note": "FA\u2191 pass flat \u2014 not KEEP under passRate rule"
+    }
+  ],
+  "note": "FA\u2260odds"
+}

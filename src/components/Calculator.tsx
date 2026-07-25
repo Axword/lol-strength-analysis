@@ -6,6 +6,7 @@ import {
   simulateMatchup,
   withBlueFighterItemBuild,
 } from '../engine/combat'
+import { simulateKillWindowMatchup } from '../engine/killWindowOverlay'
 import { resolveFightDuration } from '../engine/fightDuration'
 import { CHAMPION_LIST } from '../data/champions'
 import { resolveItem } from '../data/items'
@@ -120,11 +121,21 @@ export function Calculator({ matchup, onChange, contextLabel }: Props) {
   const aaUptime = matchup.aaUptime ?? 1
   const engageModeled = matchup.mode === 'short' && durationSec <= 4
 
-  const result = useMemo(() => simulateMatchup(matchup), [matchup])
+  const result = useMemo(() => {
+    // Opt-in kill-window path when Send attached marks (experimental; not win %).
+    if (matchup.killWindow?.actionMarks?.length) {
+      return simulateKillWindowMatchup(matchup)
+    }
+    return simulateMatchup(matchup)
+  }, [matchup])
 
   const resultB = useMemo(() => {
     if (!compareOn || !buildBItems || !matchup.blue[0]) return null
-    return simulateMatchup(withBlueFighterItemBuild(matchup, buildBItems))
+    const built = withBlueFighterItemBuild(matchup, buildBItems)
+    if (built.killWindow?.actionMarks?.length) {
+      return simulateKillWindowMatchup(built)
+    }
+    return simulateMatchup(built)
   }, [compareOn, buildBItems, matchup])
 
   function updateSide(side: 'blue' | 'red', fighters: FighterLoadout[]) {

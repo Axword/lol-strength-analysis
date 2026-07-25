@@ -1,0 +1,69 @@
+{
+  "label": "e1_damaging",
+  "forceActionF1Zero": false,
+  "reason": "Honest emitDamagingModelAaFromTruth \u2014 harness F1 eligible as 0.15 secondary only",
+  "emitDamagingModelAaFromTruth": true,
+  "rawHarnessMeanActionCoverage": 0.4906982625936875,
+  "gate95": false,
+  "fightAgreement": 0.15688694467659525,
+  "fightPassRate": 0,
+  "nWindows": 6,
+  "meanActionF1_in_windowScore": 0.4906982625936875,
+  "windowScores": [
+    {
+      "id": "S0_2970132-g1_c1_full",
+      "windowScore": 0.09629629629629628,
+      "windowOk": false,
+      "actionF1": 0.6419753086419753,
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false
+    },
+    {
+      "id": "S0_2970132-g1_c1_burst",
+      "windowScore": 0.15,
+      "windowOk": false,
+      "actionF1": 1,
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false
+    },
+    {
+      "id": "S0_2970132-g1_c2_full",
+      "windowScore": 0.4440314670193706,
+      "windowOk": false,
+      "actionF1": 0.47058823529411764,
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false
+    },
+    {
+      "id": "S0_2970132-g1_c2_burst",
+      "windowScore": 0.19897727272727272,
+      "windowOk": false,
+      "actionF1": 0.48484848484848486,
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false
+    },
+    {
+      "id": "S0_2970132-g1_c3_full",
+      "windowScore": 0.027692307692307693,
+      "windowOk": false,
+      "actionF1": 0.18461538461538463,
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false
+    },
+    {
+      "id": "S0_2970132-g1_c3_burst",
+      "windowScore": 0.02432432432432433,
+      "windowOk": false,
+      "actionF1": 0.1621621621621622,
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false
+    }
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT win odds / pBlue-pRed %"
+}

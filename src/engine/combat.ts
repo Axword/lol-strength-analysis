@@ -29,7 +29,10 @@ import {
   sustainHeal,
 } from './fightDuration'
 import { estimateFightOdds } from './gameStateOdds'
-import { classifyMatchupModelTrust } from './modelTrust'
+import {
+  classifyMatchupModelTrust,
+  pickVisibleTrustReasons,
+} from './modelTrust'
 import {
   planRotation,
   sortPlannedActions,
@@ -1065,6 +1068,24 @@ const AA_EXECUTION = {
   empoweredAuto: false,
 } as const
 
+/**
+ * Utility/engageCc with 0 base damage still needs a planner score so slows/CC
+ * are not AA-padded out of the window. Tunable for R11 fightAgreement sweeps
+ * via env UTILITY_PLANNER_PROXY_DAMAGE or setUtilityPlannerProxyDamage().
+ * Default 12 ≈ fraction of an early AA — enough to schedule, not steal damage rank.
+ */
+export let UTILITY_PLANNER_PROXY_DAMAGE = (() => {
+  const raw = process.env.UTILITY_PLANNER_PROXY_DAMAGE
+  if (raw == null || raw === '') return 12
+  const n = Number(raw)
+  return Number.isFinite(n) && n >= 0 ? n : 12
+})()
+
+/** Test/research only — restore after in-process sweeps. */
+export function setUtilityPlannerProxyDamage(v: number): void {
+  UTILITY_PLANNER_PROXY_DAMAGE = v
+}
+
 /** Living fighter has a kit the timed planner can schedule (CORE or Meraki). */
 function hasResolvableKit(loadout: FighterLoadout): boolean {
   const champ = getChampion(loadout.championId)
@@ -1299,7 +1320,22 @@ function collectFighterDamageTimed(
       attackerStats,
       shreddedDefender,
     )
-    if (expectedDamage <= 0 && !ability.execution?.attackReset) continue
+    // Utility-only / engage-CC with 0 base damage must never be skipped
+    // (Nasus W, Zilean E, Camille R zone, …). Proxy score is tiny vs real
+    // damage so slows/CC still schedule without AA-pad theft; Spellblade
+    // abilityProcs below exclude zero-damage casts.
+    const utilityKeep =
+      expectedDamage <= 0 &&
+      (!!ability.utility || !!ability.engageCc) &&
+      !ability.execution?.attackReset
+    if (
+      expectedDamage <= 0 &&
+      !ability.execution?.attackReset &&
+      !ability.utility &&
+      !ability.engageCc
+    ) {
+      continue
+    }
     const ex = executionDefaults(ability)
     if (ex.usedDefaultTiming) defaultSlots.push(ability.slot)
     const maxCasts = abilityCastsInFight(
@@ -1312,7 +1348,10 @@ function collectFighterDamageTimed(
     candidates.push({
       id: `${ability.slot}:${ability.name}`,
       slot: ability.slot,
-      expectedDamage: Math.max(expectedDamage, ex.attackReset ? 1e-6 : 0),
+      expectedDamage: Math.max(
+        expectedDamage,
+        ex.attackReset ? 1e-6 : utilityKeep ? UTILITY_PLANNER_PROXY_DAMAGE : 0,
+      ),
       cooldownSec: ability.cooldown,
       castLockSec: ex.castLockSec,
       impactDelaySec: ex.impactDelaySec,
@@ -1395,8 +1434,21 @@ function collectFighterDamageTimed(
     abilityHaste: attackerStats.abilityHaste,
   })
 
-  // abilityProcs from the actual scheduled plan (non-AA abilities only).
-  const abilityProcs = plan.actions.filter((a) => a.slot !== 'AA').length
+  // abilityProcs from damaging plan casts only — utility-only keeps do not proc Sheen.
+  const abilityProcs = plan.actions.filter((a) => {
+    if (a.slot === 'AA') return false
+    const ab = champ.abilities.find(
+      (x) => x.slot === a.slot && `${x.slot}:${x.name}` === a.id,
+    )
+    if (!ab) return false
+    return (
+      sumMitigated(
+        prefix(ab.damage(attackerStats, shreddedDefender, ctx)),
+        attackerStats,
+        shreddedDefender,
+      ) > 0
+    )
+  }).length
 
   const itemFightPackets: DamagePacket[] = []
   for (const itemId of loadout.itemIds) {
@@ -2300,7 +2352,7 @@ function pickHpWinner(blue: SideResult, red: SideResult): MatchupResult['winner'
   return 'draw'
 }
 
-/** Map leftover-HP / overkill margin → P(blue) when no scoreboard is present. */
+/** Map leftover-HP / overkill margin → heuristic blue model-edge score when no scoreboard is present. */
 function oddsFromTradeHp(blue: SideResult, red: SideResult): number {
   let edge: number
   let steep = 4.2
@@ -2712,6 +2764,8 @@ export function simulateMatchup(input: MatchupInput): MatchupResult {
     throw new Error('Both sides need at least one fighter')
   }
 
+  // killWindow routing lives in killWindowOverlay.simulateKillWindowMatchup
+  // (avoids combat ↔ overlay import cycle). Continuous path ignores killWindow.
   const xhMode: XhMode = input.xhMode ?? 'expected'
   const notes: string[] = []
 
@@ -2929,6 +2983,7 @@ function buildTheorycraftAssumptions(
         : 'Engage: late-reaction advantage is modeled only for this short window.'
       : 'Engage: ignored outside the short window; longer-fight engage timing is not modeled.',
     `Model confidence: ${modelTrust.badge} (${modelTrust.class}); pBlue/pRed are heuristic ranking scores, not calibrated win probabilities.`,
+    `ModelTrust reasons (visible): ${pickVisibleTrustReasons(modelTrust.reasons).join(' · ')}.`,
     timed
       ? 'Resolution: timed_manual_1v1 — chronological bounded-beam cast/AA plan stopped at first lethal (not globally optimal, not calibrated); utility whole-window; default castLock/impact when Meraki kits lack execution metadata; ability CDs assumed ready at t=0.'
       : 'Resolution: aggregate_window fallback — packet counts over the fight window (cast/auto counts from CD/AS; NvM low HP truncates only via modeled survival DPS prior, not absolute slot bans).',

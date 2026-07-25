@@ -1,0 +1,197 @@
+{
+  "baseline_e0": {
+    "id": "e0",
+    "hypothesis": "R07-E0 baseline markMinGap0.4 drop marks (frozen composite 0.9683)",
+    "fightAgreement": 0.5350862346343341,
+    "fightPassRate": 0.3333333333333333,
+    "composite": 0.9682758824446431,
+    "hardFails": [],
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e0.fightAgreement.json"
+  },
+  "ranked": [
+    {
+      "id": "e0",
+      "hypothesis": "R07-E0 baseline markMinGap0.4 drop marks (frozen composite 0.9683)",
+      "fightAgreement": 0.5350862346343341,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 0.9682758824446431,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e0.fightAgreement.json"
+    },
+    {
+      "id": "e14",
+      "hypothesis": "R07-E14 F3.H1 drop finishHorizon3s",
+      "fightAgreement": 0.5350862346343341,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 0.9682758824446431,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e14.fightAgreement.json"
+    },
+    {
+      "id": "e15",
+      "hypothesis": "R07-E15 F3.H2 drop pulseBySlot short Q0.25 W0.25 E0.35 R0.55",
+      "fightAgreement": 0.5350862346343341,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 0.9682758824446431,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e15.fightAgreement.json"
+    },
+    {
+      "id": "e18",
+      "hypothesis": "R07-E18 F3.H1 drop no-finish-aa markMinGap0.4",
+      "fightAgreement": 0.5350862346343341,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 0.9682758824446431,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e18.fightAgreement.json"
+    },
+    {
+      "id": "e19",
+      "hypothesis": "R07-E19 F3.H4 cusum_gate mode K=8 H=45",
+      "fightAgreement": 0.5350862346343341,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 0.9682758824446431,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e19.fightAgreement.json"
+    },
+    {
+      "id": "e1",
+      "hypothesis": "R07-E1 F3.H1 product cusum_engage densestride1.0/win1.2",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e1.fightAgreement.json"
+    },
+    {
+      "id": "e2",
+      "hypothesis": "R07-E2 F3.H1 densestride0.6/win1.0 cusum_engage",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e2.fightAgreement.json"
+    },
+    {
+      "id": "e3",
+      "hypothesis": "R07-E3 F3.H1 densestride0.8/win1.2 cusum_engage",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e3.fightAgreement.json"
+    },
+    {
+      "id": "e5",
+      "hypothesis": "R07-E5 F3.H4 CUSUM K=6 H=45 densestride1.0/win1.2",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e5.fightAgreement.json"
+    },
+    {
+      "id": "e6",
+      "hypothesis": "R07-E6 F3.H4 CUSUM K=10 H=45 densestride1.0/win1.2",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e6.fightAgreement.json"
+    },
+    {
+      "id": "e7",
+      "hypothesis": "R07-E7 F3.H4 CUSUM K=8 H=30 densestride1.0/win1.2",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e7.fightAgreement.json"
+    },
+    {
+      "id": "e8",
+      "hypothesis": "R07-E8 F3.H4 CUSUM K=8 H=60 densestride1.0/win1.2",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e8.fightAgreement.json"
+    },
+    {
+      "id": "e9",
+      "hypothesis": "R07-E9 F3.H2 pulseBySlot Q0.35 W0.30 E0.50 R0.90 + densestride1.0",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1040313467290845,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e9.fightAgreement.json"
+    },
+    {
+      "id": "e4",
+      "hypothesis": "R07-E4 F3.H1 densestride1.2/win1.5 cusum_engage",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0,
+      "composite": 2.254169045758903,
+      "hardFails": [
+        "hardFail: check03 early MAE worsened by 159.7 (>50)"
+      ],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e4.fightAgreement.json"
+    },
+    {
+      "id": "e10",
+      "hypothesis": "R07-E10 F3.H1 research drop markMinGap0.2",
+      "fightAgreement": 0.4648337864597864,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 1.0492302255694979,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e10.fightAgreement.json"
+    },
+    {
+      "id": "e17",
+      "hypothesis": "R07-E17 F3.H1 near_hp_drop explicit densestride0.4/win0.8",
+      "fightAgreement": 0.4648337864597864,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 1.0492302255694979,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e17.fightAgreement.json"
+    },
+    {
+      "id": "e13",
+      "hypothesis": "R07-E13 F3.H1 drop maxKillerMarks3",
+      "fightAgreement": 0.4392797570156141,
+      "fightPassRate": 0,
+      "composite": 1.9232581654320091,
+      "hardFails": [
+        "hardFail: check03 early MAE worsened by 340.0 (>50)"
+      ],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e13.fightAgreement.json"
+    },
+    {
+      "id": "e11",
+      "hypothesis": "R07-E11 F3.H1 research drop markMinGap0.6",
+      "fightAgreement": 0.39390567907877855,
+      "fightPassRate": 0,
+      "composite": 1.4192755041460323,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e11.fightAgreement.json"
+    },
+    {
+      "id": "e12",
+      "hypothesis": "R07-E12 F3.H1 drop markMinGap0.5",
+      "fightAgreement": 0.39390567907877855,
+      "fightPassRate": 0,
+      "composite": 1.4192755041460323,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e12.fightAgreement.json"
+    },
+    {
+      "id": "e16",
+      "hypothesis": "R07-E16 F3.H1 post_engage densestride1.0/win1.2",
+      "fightAgreement": 0.35386638318912467,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.465688441348318,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e16.fightAgreement.json"
+    }
+  ]
+}

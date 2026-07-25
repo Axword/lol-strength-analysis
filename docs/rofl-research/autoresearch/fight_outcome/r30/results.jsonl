@@ -1,0 +1,6 @@
+{"t": "2026-07-24T16:08:00Z", "hypothesis": "R30-H1 baseline idle-follow remesaure", "keep": false, "composite": 2.3171, "S0_FA": 0.4107, "c2_lethErr": -2.807, "notes": "finish early overkill at Q@18.863", "path": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/e0_baseline_idle_follow.json"}
+{"t": "2026-07-24T16:10:00Z", "hypothesis": "R30-H2 no-aa-at-mark", "keep": false, "composite": 2.1694, "S0_FA": 0.4231, "c2_lethErr": -1.137, "notes": "partial; still >0.75", "path": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/e2_no_aa_at_mark.json"}
+{"t": "2026-07-24T16:12:00Z", "hypothesis": "R30-H3 finish-aa ablations", "keep": false, "notes": "no c2 move \u2014 lethal at mark not trailing AA"}
+{"t": "2026-07-24T16:13:00Z", "hypothesis": "R30-H4 finish-horizon 2", "keep": false, "notes": "c2 miss-kill discard"}
+{"t": "2026-07-24T16:16:00Z", "hypothesis": "R30-H7b R-pulse0 + no-aa-at-mark", "keep": true, "S0_FA": 0.5896947676936598, "S1_FA": 0.5619564223174064, "c2_lethErr": -0.334, "notes": "product KEEP; S0+S1 FA lift; leth within 0.75; c2_full windowOk", "path": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/e8_product_keep.json"}
+{"t": "2026-07-24T16:17:00Z", "hypothesis": "R30-H7c R/W=0 keep aa-at-mark", "keep": false, "S0_FA": 0.5755, "S1_FA": 0.4038, "notes": "S1 regress \u2014 no KEEP"}

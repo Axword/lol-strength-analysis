@@ -293,7 +293,39 @@ export const GAME_CHAMPIONS: Record<string, ChampionDefinition> = {
         cooldown: 9,
         skillshot: false,
         engageCc: false,
-        damage: () => [],
+        // Wiki (lolwiki Precision Protocol): next AA gains bonus physical
+        // 20/25/30/35/40% AD + attack reset; both casts reset AA timer.
+        // Packet = AD × (1 + bonus%) — same empowered-AA pattern as Darius W
+        // (one hit includes base AA; no second base-AD AA). Source:
+        // public/data/lolwiki/champions-full.json Camille.Q leveling
+        // "Bonus Physical Damage" % AD. Meraki ratios match. PE lacks
+        // PrecisionProtocol float names (product_ready/r04) — wiki-only coeffs.
+        // Recast-after-1.5s true-damage mix NOT wired (needs cast-state; no invent).
+        execution: {
+          attackReset: true,
+          empoweredAuto: true,
+          castLockSec: 0.15,
+          impactDelaySec: 0.1,
+        },
+        utility: (_a, _d, ctx) => ({
+          // Wiki: bonus MS 25/30/35/40/45% for 1s on empowered hit.
+          selfMsBuff: rankValue([0.25, 0.3, 0.35, 0.4, 0.45], Math.max(1, rankOf(ctx, 'Q'))),
+        }),
+        damage: (a, _d, ctx) => {
+          if (rankOf(ctx, 'Q') <= 0) return []
+          const bonusRatio = rankValue(
+            [0.2, 0.25, 0.3, 0.35, 0.4],
+            Math.max(1, rankOf(ctx, 'Q')),
+          )
+          return [
+            {
+              raw: a.ad * (1 + bonusRatio),
+              type: 'physical' as const,
+              source: 'Precision Protocol',
+              slot: 'Q' as const,
+            },
+          ]
+        },
       },
       {
         slot: 'W',

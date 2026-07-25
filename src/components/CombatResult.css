@@ -70,6 +70,27 @@
   border-color: color-mix(in srgb, var(--muted) 50%, var(--line));
 }
 
+.trust-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 36rem;
+}
+
+.trust-reason {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+}
+
 .verdict-board.winner-blue h2 {
   color: var(--blue);
 }

@@ -1,0 +1,35 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:05:38.422Z",
+  "suite": "S0",
+  "match": "2970132-g1",
+  "windowId": "S0_2970132-g1_c2_full",
+  "windowOk": false,
+  "windowScore": 0.38125,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 0,
+    "actionF1": 0.8750000000000001,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 188.78506944444436,
+    "maeHpFull": 502.95069444444437,
+    "maeHp": 502.95069444444437,
+    "pathCap": 130,
+    "lethalErrorSec": null,
+    "segment": "full",
+    "matchup": "Syndra→Camille"
+  },
+  "failReasons": [
+    "lethal",
+    "pathMae"
+  ],
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r21/docs/rofl-research/autoresearch/fight_outcome/r21/experiments/e14_2970110.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

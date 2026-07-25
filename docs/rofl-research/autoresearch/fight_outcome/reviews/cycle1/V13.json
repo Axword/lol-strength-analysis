@@ -1,0 +1,129 @@
+{
+  "reviewer": "V13",
+  "cycle": 1,
+  "role": "Reproducibility (digest + suite commands)",
+  "utc": "2026-07-24T15:49:24Z",
+  "cwd": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "head": "e93d8b2",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.92,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": null
+  },
+  "blocker": "GOAL §B/F: product fightAgreement ≪ 0.95 on S0+S1 (personally re-scored); not calibrated win odds",
+  "reproduce_commands": [
+    {
+      "from": "DIGEST.md Path1 validate",
+      "cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+      "exit": 0,
+      "result": "productPublication.ok=true; calculatorReady=true; calculatorReadyPolicy=living_post_seed_v1; livingOkSlots=14725/14725; peHp=10 peCombat=10; ranksDensity=1.0; hpHoldAcrossRespawn=true; hpTrustedParticipantRows=16301"
+    },
+    {
+      "from": "DIGEST.md fingerprints",
+      "cmd": "sha256+bytes check on Path1 events+timeline",
+      "exit": 0,
+      "result": "events 114456779 sha256=823aa35f…0b9bf8 MATCH; timeline 9064216 sha256=fb542736…edc4fe4 MATCH"
+    },
+    {
+      "from": "npm fight:agreement default",
+      "cmd": "npm run fight:agreement",
+      "exit": 0,
+      "result": "suite entry wired; without --from-eval/--run-harness prints awaiting_eval status (score API ready). Accidental r04 status write removed."
+    },
+    {
+      "from": "V13 suite re-score S0 product",
+      "cmd": "npx --yes tsx scripts/fight_agreement_suite.ts --suite-label S0 --from-eval docs/rofl-research/autoresearch/fight_outcome/r04/harness_eval_S0_2970110_g1.json --out-dir /tmp/v13_fight_out --mark-selection cusum_engage_then_skills",
+      "exit": 0,
+      "result": "fightAgreement=0.4217 fightPassRate=0.1667 n=6 match=2970110-g1 proxied=true (2970132 crosschecks missing) meetsThresholds=false"
+    },
+    {
+      "from": "V13 suite re-score S1 product",
+      "cmd": "npx --yes tsx scripts/fight_agreement_suite.ts --suite-label S1 --from-eval docs/rofl-research/autoresearch/fight_outcome/r04/harness_eval_S1_2970137_g1.json --out-dir /tmp/v13_fight_out --mark-selection cusum_engage_then_skills",
+      "exit": 0,
+      "result": "fightAgreement=0.3279 fightPassRate=0.0000 n=6 match=2970137-g1 meetsThresholds=false"
+    }
+  ],
+  "npm_matrix": {
+    "DIGEST_validate_path1_living_post_seed": "PASS",
+    "DIGEST_fingerprints": "PASS",
+    "fight:agreement_entry": "PASS_awaiting_eval_or_from_eval",
+    "fight:agreement_S0_from_eval_r04": "PASS_score_below_gate",
+    "fight:agreement_S1_from_eval_r04": "PASS_score_below_gate"
+  },
+  "digest": {
+    "path1_validate": true,
+    "fingerprints_match": true,
+    "living_post_seed_v1": true,
+    "hold_forward_disclosed": true,
+    "hpHoldAcrossRespawn": true,
+    "sources_on_frames": "hpSource pe/hold_forward present in sampled frames; DIGEST e06 census cited",
+    "identity": "DIGEST pid↔champ↔RiotID↔netId table; provenance.hpIdentityBinding present; never participant-order claim",
+    "second_host_2970110": "not digest-clean (combat honesty fail disclosed) — prefer not hard-require for ≥1 match",
+    "rebuild_stamp_footgun": "disclosed; stamp_digest_path1_provenance.py exists; Path1 final smoke does not need stamp",
+    "digestCleanGate_vote_basis": "Personally affirm GOAL §D for ≥1 match (2970132 Path1): one documented macOS validate path + hashes + living policy + sources/identity disclosed"
+  },
+  "suite": {
+    "product_selector": "cusum_engage_then_skills",
+    "S0": {
+      "fightAgreement": 0.4217,
+      "fightPassRate": 0.1667,
+      "n": 6,
+      "match": "2970110-g1",
+      "proxied": true,
+      "meetsThresholds": false,
+      "note": "Preferred 2970132-g1 Path1 windows absent (crosschecks-2970132-g1-holdout.json missing)"
+    },
+    "S1": {
+      "fightAgreement": 0.3279,
+      "fightPassRate": 0.0,
+      "n": 6,
+      "match": "2970137-g1",
+      "meetsThresholds": false,
+      "note": "GOAL §B check×segment scorer (r04 harness). R06 member scores (n=3/check, FA≈0.48) are a different aggregation — still ≪0.95"
+    },
+    "S2_committed_r06": {
+      "fightAgreement": 0.6335,
+      "fightPassRate": 0.3333,
+      "n": 3,
+      "meetsThresholds": false,
+      "personally_rescored": false
+    },
+    "confidence_wording": "fightAgreement is kill-window suite agreement under GOAL §B — NOT win probability / odds % / calibrated posterior"
+  },
+  "honesty": {
+    "packetDecodeGate": true,
+    "calculatorReadyGate_path1": true,
+    "unfreeze_0_9683": true,
+    "baselineComposite": 0.9683,
+    "pBlue_pRed": "model edge only — never odds %"
+  },
+  "failures": [
+    "B: S0 product fightAgreement 0.4217 / pass 0.1667 ≪ 0.95 (proxied 2970110; 2970132 windows missing)",
+    "B/F: S1 product fightAgreement 0.3279 / pass 0.0 ≪ 0.95 (holdout required; no S0-alone claim)",
+    "E partial: S0 cannot use preferred Path1 host until F9 curates crosschecks-2970132-g1-holdout.json"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B §D",
+    "personal validate --product Path1 exit 0 + fingerprint MATCH",
+    "npm run fight:agreement + --from-eval r04 harness S0/S1 → /tmp/v13_fight_out",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0.json (0.4217)",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S1.json (0.3279)",
+    "docs/rofl-research/autoresearch/best.json composite 0.9683; PACKET_DECODE_GATE.json true"
+  ],
+  "notes": "V13 reproducibility: DIGEST Path1 one-command validate + sha256/bytes personally green → digestCleanGate=true (≥1 match; second-host prefer still open/disclosed). Suite npm entry works; product cusum S0/S1 re-scores match R04 and miss gate by a wide margin → fightOutcomeGate=false on concrete B+F. G (Send UI smoke) not personally re-run this cycle (null, not used as sole false). fightAgreement ≠ odds.",
+  "one_line_vote": "V13: digestCleanGate=true (Path1 validate+fingerprints); fightOutcomeGate=false (S0 FA 0.42 / S1 FA 0.33 ≪ 0.95)."
+}

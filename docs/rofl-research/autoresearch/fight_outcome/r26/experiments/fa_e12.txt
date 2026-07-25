@@ -1,0 +1,5 @@
+
+fightAgreement=0.5455  fightPassRate=0.1667  n=6  suite=S0  match=2970132-g1
+meetsThresholds=false  failingAudits=5
+wrote /Users/river/.codex/worktrees/rofl-fo-r26/docs/rofl-research/autoresearch/fight_outcome/r26/audits/fa_e12/fight_agreement_S0.json
+NOTE: fightAgreement ≠ win odds. "~95%" = suite agreement under this metric.

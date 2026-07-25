@@ -1,0 +1,67 @@
+{
+  "reviewer": "V2",
+  "role": "digestCleanGate auditor",
+  "cycle": 1,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T15:46:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.92,
+  "sectionD": {
+    "D1_one_command_path": true,
+    "D2_sources_preserved": true,
+    "D3_identity_puuid_netid_pid": true,
+    "D4_validate_product_ge1": true,
+    "D4_second_host": "prefer_not_require",
+    "D4_second_host_blocks_gate": false,
+    "D5_living_hold_forward_disclosed": true,
+    "D6_digest_smoke_hashes": true,
+    "D7_cleaner_failure_modes": true
+  },
+  "reproduceHonesty": {
+    "affirmed": true,
+    "primary_validate_cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+    "primary_validate_exit": 0,
+    "expected_matches": {
+      "calculatorReady": true,
+      "calculatorReadyPolicy": "living_post_seed_v1",
+      "livingOkSlots": 14725,
+      "hpHoldAcrossRespawn": true
+    },
+    "fingerprints": {
+      "events.g1.path1-final.rfc461.jsonl": {
+        "bytes": 114456779,
+        "sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+        "sha_match": true,
+        "bytes_match": true
+      },
+      "timeline.g1.path1-final.json": {
+        "bytes": 9064216,
+        "sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4",
+        "sha_match": true,
+        "bytes_match": true
+      }
+    },
+    "canonical_flag": "-o/--output (DIGEST correct; bare --out not claimed)",
+    "rebuild_stamp_footgun": "disclosed; stamp_digest_path1_provenance.py present; optional bake into rfc461 not required for gate",
+    "second_host_2970110": "validate exit 1 combat honesty; disclosed no invent; does not block §D.4"
+  },
+  "evidence": [
+    "GOAL §D.4: validate --product green on ≥1 match (2970132 Path1 OK; prefer also a second host) — prefer ≠ require",
+    "DIGEST.md one-command Path1 validate reproduced exit 0; livingOkSlots=14725; hpHoldAcrossRespawn=true; calculatorReadyPolicy=living_post_seed_v1",
+    "DIGEST fingerprints sha256+bytes bit-match on-disk Path1 final events+timeline",
+    "R01 e01/e06/e08: validate green, source census wipe_detected false, fingerprints",
+    "R02 source_preserve_audit: knownWithoutSource hp/combat/ranks 0/0/0; events→timeline tags survive",
+    "R03 validate_2970132 + identity_bind_proof 10/10; second_host_2970110_pe_gap.json disclosure honest",
+    "jsonl_to_timeline.py argparse requires -o/--output as DIGEST states",
+    "BRIEF measured FA: S0 0.4217 / S1 0.478 / S2 0.634 — gate needs ≥0.95 (concrete B fail)"
+  ],
+  "failures": [
+    "fightOutcomeGate A–I: criterion B fightAgreement unmet (S0+S1 << 0.95); gate false",
+    "2970110 second host still not product-green (combatStatsKnown + unavailable_replay_api) — disclosed; not a digestCleanGate blocker under §D.4 prefer"
+  ],
+  "notes": "digestCleanGate true (partial OK while fightOutcomeGate false). Second-host PE/combat gap is preferred transfer evidence only; GOAL §D.4 does not require it. DIGEST reproduce commands are honest for Path1 final smoke + disclosed rebuild/stamp lag + 2970110 refuse. DIGEST header still said digestCleanGate false pending this V2 affirm — that circular pending is cleared by this vote. Optional later: bake hold-across into rfc461 rofl_coverage; Path1 living package on a second host."
+}

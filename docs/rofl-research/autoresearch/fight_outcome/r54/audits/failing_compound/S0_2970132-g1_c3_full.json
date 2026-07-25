@@ -1,0 +1,37 @@
+{
+  "schema": "fightAgreement-failing-audit-v1",
+  "t": "2026-07-24T17:12:20Z",
+  "researcher": "r54",
+  "suite": "S0",
+  "match": "2970132-g1",
+  "windowId": "S0_2970132-g1_c3_full",
+  "windowOk": false,
+  "windowScore": 0.89967,
+  "parts": {
+    "lethalOk": true,
+    "earlyOk": true,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 1,
+    "earlyBand": 1,
+    "pathBand": 0.7746634615384617,
+    "actionF1": 0.631578947368421,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 0,
+    "maeHpFull": 159.29375,
+    "maeHp": 159.29375,
+    "pathCap": 130,
+    "lethalErrorSec": 0,
+    "segment": "full",
+    "matchup": "Olaf\u2192Camille"
+  },
+  "failReasons": [
+    "pathMae"
+  ],
+  "sharperBlocker": "pathMae",
+  "pathOverageHp": 29.294,
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "FA \u2260 odds; audit only",
+  "stack": "R19\u00b7R30\u00b7R31\u00b7R33\u00b7R35\u00b7R36\u00b7R39\u00b7R42\u00b7R43\u00b7R44"
+}

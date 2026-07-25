@@ -1,0 +1,950 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Galio→Trundle",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 0.49209594883302543,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.8598527832031095,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.8598527832031095,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.8928527847705254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.9600419921874845,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.0602312011718595,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.5611467285156095,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.8285251496666888,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.8285251496666888,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.3625993652343595,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.3625993652343595,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 10.883,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 11.317599856697939,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 11.451008789062485,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 11.584197999614275,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 11.65135668945311,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 11.684356691020525,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 11.718356692635439,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 11.718356692635439,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 12.252461425781235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 12.252461425781235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 12.786407472270525,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 12.786407472270525,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 13.321353518807314,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 13.321353518807314,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 14.223025882088564,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 15.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 15.825961673104189,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 15.825961673104189,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 16.36,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 16.76085375976561,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.06145190429686,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.163,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 18.497039796489275,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.66441821289061,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.697418214458025,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.931766116463564,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.46593188476561,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.46593188476561,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.699310304301775,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.9998779312549,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.49209594883302543,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.8598527832031095,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.8598527832031095,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.8928527847705254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.9600419921874845,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.0602312011718595,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.2936096207080254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.5611467285156095,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.8285251496666888,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.8285251496666888,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.3625993652343595,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.3625993652343595,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.8965148941455254,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.317599856697939,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.451008789062485,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.584197999614275,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.65135668945311,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.684356691020525,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.718356692635439,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 11.718356692635439,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 12.252461425781235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 12.252461425781235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 12.786407472270525,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 12.786407472270525,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 13.321353518807314,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 13.321353518807314,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.223025882088564,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 14.456562988281235,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.825961673104189,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 15.825961673104189,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 16.36,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 16.41,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 16.76085375976561,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.06145190429686,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.163,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.213,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.497039796489275,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.66441821289061,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.697418214458025,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.931766116463564,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.46593188476561,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.46593188476561,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.64448148148148,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.699310304301775,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.9998779312549,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 21.125962962962962,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 22.607444444444447,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 24.088925925925928,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 55,
+    "modelCount": 58,
+    "matchedCount": 52,
+    "precision": 0.896551724137931,
+    "recall": 0.9454545454545454,
+    "actionCoverage": 0.920353982300885,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 7,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 9,
+        "modelIdx": 8,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 9,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 11,
+        "modelIdx": 10,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 12,
+        "modelIdx": 11,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 13,
+        "modelIdx": 12,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 14,
+        "modelIdx": 13,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 15,
+        "modelIdx": 14,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 16,
+        "modelIdx": 15,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 17,
+        "modelIdx": 16,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 18,
+        "modelIdx": 17,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 19,
+        "modelIdx": 18,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 21,
+        "modelIdx": 19,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 22,
+        "modelIdx": 20,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 23,
+        "modelIdx": 21,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 24,
+        "modelIdx": 22,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 25,
+        "modelIdx": 23,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 26,
+        "modelIdx": 24,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 27,
+        "modelIdx": 25,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 28,
+        "modelIdx": 26,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 29,
+        "modelIdx": 27,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 30,
+        "modelIdx": 28,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 31,
+        "modelIdx": 29,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 32,
+        "modelIdx": 30,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 33,
+        "modelIdx": 31,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 34,
+        "modelIdx": 32,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 35,
+        "modelIdx": 33,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 36,
+        "modelIdx": 34,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 37,
+        "modelIdx": 35,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 38,
+        "modelIdx": 36,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 39,
+        "modelIdx": 37,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 41,
+        "modelIdx": 38,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 42,
+        "modelIdx": 39,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 43,
+        "modelIdx": 40,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 44,
+        "modelIdx": 42,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 45,
+        "modelIdx": 43,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 46,
+        "modelIdx": 44,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 47,
+        "modelIdx": 46,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 48,
+        "modelIdx": 47,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 49,
+        "modelIdx": 48,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 50,
+        "modelIdx": 49,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 51,
+        "modelIdx": 50,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 52,
+        "modelIdx": 51,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 53,
+        "modelIdx": 53,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 54,
+        "modelIdx": 54,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      20,
+      40
+    ],
+    "unmatchedModel": [
+      41,
+      45,
+      52,
+      55,
+      56,
+      57
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 5,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 0.5714285714285715
+    },
+    "aa": {
+      "truthCount": 50,
+      "modelCount": 56,
+      "matchedCount": 50,
+      "actionCoverage": 0.9433962264150945
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=50 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=862 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=50 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=50 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=12 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=1 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

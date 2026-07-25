@@ -1,0 +1,80 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r17",
+  "slug": "calc-send",
+  "model": "Auto",
+  "utc": "2026-07-24T15:54:36Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r17",
+  "branch": "adv/fo-r17-calc-send",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "docs_mirrored_to_parent": true,
+  "parent_docs": "/Users/river/Projects/lol-strength-analysis/docs/rofl-research/autoresearch/fight_outcome/r17/",
+  "room": "f6",
+  "mandate": "Calculator Send \u2194 harness parity; Send honesty / known-flags",
+  "f6_hypotheses_auto_picked": [
+    "1 Send\u2192overlay parity \u2014 Identical math Calculator Send vs harness on same pins",
+    "2 Dead excluded \u2014 Dead units never imported; known-flags gate Send",
+    "3 Smoke command \u2014 One npm/tsx path for Final parent e2e",
+    "4 Partial C honesty \u2014 hpKnown/combatStatsKnown/abilityRanksKnown fail-closed",
+    "5 No odds copy \u2014 UI shows model edge / fightAgreement agreement language only"
+  ],
+  "n_experiments": 8,
+  "smoke_command": "npm run fo:send-smoke",
+  "criterionG": {
+    "sendOverlayParity": true,
+    "deadExcluded": true,
+    "knownFlagsFailClosed": true,
+    "path1PartialCHonesty": true,
+    "noOddsCopy": true,
+    "finalSmokeDefined": true,
+    "proven_for_V8": true,
+    "note": "Unblocks Criterion G evidence gap flagged by V8 (R16\u2013R18 missing). Does NOT set fightOutcomeGate."
+  },
+  "parity_proof": {
+    "calculator_entry": "src/components/Calculator.tsx \u2192 simulateKillWindowMatchup",
+    "harness_entry": "scripts/crosscheck_action_aligned.ts \u2192 simulateKillWindowSeries via killWindowOverlay",
+    "shared_module": "src/engine/killWindowOverlay.ts",
+    "E1_endHp_calc": 289.7298034293832,
+    "E1_endHp_harness": 289.7298034293832,
+    "E2_path1_Galio_Trundle_endHp": 1066.1948051948048,
+    "contract": "harness must use post-selectKillWindowMarks marks (Matchup internal path)"
+  },
+  "authoritative_baselines": {
+    "S0_Path1_FA": 0.228,
+    "S0_source": "R05 product cusum 2970132",
+    "R10_best_timed_proxy_FA": 0.5019,
+    "R10_S1_timed_regresses": true,
+    "R10_product_KEEP": false
+  },
+  "keeps": [
+    {
+      "kind": "criterionG_smoke",
+      "artifact": "scripts/fo_r17_send_parity_smoke.ts",
+      "npm": "fo:send-smoke",
+      "product_FA_unchanged": true
+    }
+  ],
+  "discards": [],
+  "findings": [
+    "Calculator simulateKillWindowMatchup \u2261 harness simulateKillWindowSeries on post-select marks (E1/E2 endHp agree).",
+    "Dead excluded + known-flags fail-closed + overlay never attaches to Send (E3/E4/E7).",
+    "Path1 partial-C: unitToLoadout omits combat when combatStatsKnown=false; keeps HP when hpKnown (E5).",
+    "Final smoke command defined: npm run fo:send-smoke (8/8).",
+    "Supporting suite all green: known-flags, send-gate, track3, kill-window, anti-odds, partialC.2970132."
+  ],
+  "blocker": "fightOutcomeGate still false: S0 Path1 FA 0.228 << 0.95 (F3/F4 lethal+early). Criterion G scaffolding no longer the V8 gap.",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": "Criterion G Send\u2194harness parity proven; fightAgreement is NOT win odds / NOT pBlue-pRed %",
+  "artifacts": [
+    "HYPOTHESES_PICKED.md",
+    "NOTES.md",
+    "EXPERIMENTS.md",
+    "leaderboard.json",
+    "results.jsonl",
+    "send_parity_smoke.json",
+    "researcher_r17_summary.json",
+    "supporting_suite.json"
+  ]
+}

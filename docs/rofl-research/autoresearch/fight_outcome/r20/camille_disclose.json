@@ -1,0 +1,41 @@
+{
+  "schema": "fightOutcome-camille-disclose-v1",
+  "researcher": "r20",
+  "hypothesis": "F7.H2 Camille disclose",
+  "utc": "2026-07-24T15:58:00Z",
+  "invent": "refused",
+  "trackClosed": true,
+  "blocker": "camille_ad_armor_absent_structural_2970110_2970137",
+  "hosts": {
+    "2970110-g1": {
+      "furFloor": "7/10",
+      "missing": [
+        "Camille AD/armor",
+        "Jhin AS",
+        "Leona AD/AS"
+      ],
+      "peTrack": "CLOSED"
+    },
+    "2970137-g1": {
+      "furFloor": "9/10",
+      "missing": [
+        "Camille AD/armor"
+      ],
+      "peTrack": "CLOSED",
+      "note": "S1 holdout; mr present; AD/armor wire-absent"
+    },
+    "2970132-g1": {
+      "furFloor": "10/10",
+      "missing": [],
+      "peTrack": "Camille FUR-complete on this host only"
+    },
+    "2970120-g1": {
+      "note": "Camille victim in holdout check1 (Viktor\u2192Camille); livestats pins \u2260 PE proof; invent refused"
+    }
+  },
+  "impossibility_sharpener": "Product PE densify cannot invent Camille AD/armor on 2970110/2970137; S1 measure uses slim livestats only and must not claim PE hole fixed.",
+  "refs": [
+    "docs/rofl-research/autoresearch/fight_outcome/r06/camille_pe_holes.json",
+    "docs/rofl-research/autoresearch/product_ready/C_TRACK_EXHAUSTION.md"
+  ]
+}

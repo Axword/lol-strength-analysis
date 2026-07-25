@@ -1,0 +1,279 @@
+{
+  "id": "E08",
+  "hypothesis": "H4 Coverage gaps — disclose missing action classes; do not invent",
+  "presentUnion": [
+    "aa",
+    "item",
+    "skill"
+  ],
+  "missingUnion": [
+    "aa",
+    "damage",
+    "item",
+    "skill",
+    "summoner"
+  ],
+  "perWindow": [
+    {
+      "check": 1,
+      "segment": "burst",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "skill",
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 1,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa",
+          "item"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "gaps": {
+        "missingClasses": [
+          "aa",
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill"
+        ],
+        "notes": [
+          "aa absent — no invent; wait for PE basic_attack + damaging model AA",
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "gaps": {
+        "missingClasses": [
+          "item",
+          "summoner",
+          "damage"
+        ],
+        "presentClasses": [
+          "skill",
+          "aa"
+        ],
+        "notes": [
+          "damage absent — no invent; wait for PE damage_dealt source+amount",
+          "item absent — omit unless evented item_active_ability_used",
+          "summoner absent — omit unless evented summoner_spell_used"
+        ]
+      }
+    }
+  ],
+  "invent": "refused"
+}

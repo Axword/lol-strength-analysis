@@ -1,0 +1,35 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:27:29.037Z",
+  "suite": "S0",
+  "match": "2970132-g1",
+  "windowId": "S0_2970132-g1_c1_full",
+  "windowOk": false,
+  "windowScore": 0.505509712640494,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 0.7150485632024706,
+    "actionF1": 0.7499999999999999,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 246.58187134502924,
+    "maeHpFull": 167.04368678367882,
+    "maeHp": 167.04368678367882,
+    "pathCap": 130,
+    "lethalErrorSec": 3.6400000000000006,
+    "segment": "full",
+    "matchup": "Galio→Trundle"
+  },
+  "failReasons": [
+    "lethal",
+    "pathMae"
+  ],
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e4_S0.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

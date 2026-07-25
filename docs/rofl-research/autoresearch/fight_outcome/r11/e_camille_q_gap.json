@@ -1,0 +1,33 @@
+{
+  "t": "2026-07-24T15:51:22.423Z",
+  "researcher": "r11",
+  "hypothesis": "Camille Q empty damage blocks S0 Q-pulse FA lift — disclose, no invent",
+  "camilleQ": {
+    "name": "Precision Protocol",
+    "engageCc": false,
+    "hasUtility": false,
+    "attackReset": false,
+    "packetCount": 0,
+    "rawSum": 0
+  },
+  "camilleR": {
+    "name": "The Hextech Ultimatum",
+    "engageCc": true,
+    "hasUtility": false,
+    "packetCount": 0,
+    "keptInPlanAfterUtilityKeep": true
+  },
+  "timedPlanSlots": [
+    "AA",
+    "E",
+    "W",
+    "AA",
+    "AA",
+    "AA",
+    "AA",
+    "R"
+  ],
+  "inventRefused": true,
+  "sharperBlocker": "Generated Camille Q returns [] with no utility/engageCc/attackReset — planner skip remains for Q; kill-window Q marks contribute 0 kit damage. Fill from same-match wire/Meraki proof only.",
+  "confidence": "Not win odds. FA path needs non-empty Q packets or proven attack-reset metadata."
+}

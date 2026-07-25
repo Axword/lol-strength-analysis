@@ -1,0 +1,125 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Galio→Trundle",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 10.883,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 15.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 16.36,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 18.163,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 15.024,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 0.18
+    },
+    {
+      "tSec": 16.36,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.163,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.64448148148148,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 5,
+    "modelCount": 4,
+    "matchedCount": 3,
+    "precision": 0.75,
+    "recall": 0.6,
+    "actionCoverage": 0.6666666666666665,
+    "matches": [
+      {
+        "truthIdx": 2,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 2,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1
+    ],
+    "unmatchedModel": [
+      3
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 5,
+      "modelCount": 3,
+      "matchedCount": 3,
+      "actionCoverage": 0.7499999999999999
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (DISCLOSED ONLY — not folded into modelActions; shareHint=0; GOAL forbid #13)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=12 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=1 (evented summoner_spell_used; model does not emit summoner damage yet)",
+    "r44 truthDomainStartMs=483658 windowStartMs=483658 preBurstLeadSec=0 truthPreBurstRemap=true engageRemapSec=15.358 truthRawCount=5 (honest mark-domain parity; FA≠odds; not fightOutcomeGate)"
+  ]
+}

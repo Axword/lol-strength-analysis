@@ -1,0 +1,20 @@
+{
+  "reviewer": "V5",
+  "role": "S0 suite auditor",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "evidence": [
+    "Specialty E/S0: authoritative verified S0 FA 0.6021 (R35 KEEP; STATUS best); gate bars 0.95/0.95 unmet on concrete §B alone.",
+    "Claimed stacked S0 ~0.72–0.73 (R32/R34/R36) pending compound remesaure — still ≪ 0.95; do not promote to authoritative until remesaured.",
+    "S1 claimed ~0.56–0.58 ≪ 0.95 — F unmet; suites wired (E) but thresholds not passed.",
+    "Wave2 KEEPs (preEngageOpener, residual_hp, Galio tornado 0.15, local_skill_share, R38 audits) are progress, not gate.",
+    "D reaffirm digestCleanGate=true; G proven orthogonal to S0 FA; FA≠odds."
+  ],
+  "failures": [
+    "B_S0_authoritative: verified FA 0.6021 ≪ 0.95; claimed ~0.72 also ≪ 0.95.",
+    "F_holdout: S1 ~0.56–0.58.",
+    "I_majority_e2e: FO cannot reach ≥11/15 while B fails."
+  ],
+  "notes": "V5 C6 S0 audit: FO false on verified 0.6021≪0.95 (claimed ~0.72 also short). digestClean reaffirm true. G proven. FA≠odds."
+}

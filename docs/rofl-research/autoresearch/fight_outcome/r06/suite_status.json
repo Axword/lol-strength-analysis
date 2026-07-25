@@ -1,0 +1,288 @@
+{
+  "schema": "fightAgreement-suite-wire-v1",
+  "utc": "2026-07-24T15:41:46.480Z",
+  "researcher": "r06",
+  "hypotheses": [
+    {
+      "id": "F2.H5",
+      "title": "S1/S2 wire",
+      "text": "Holdout 2970137/2970120 + unused pro slim; no tune on S1."
+    },
+    {
+      "id": "F2.H2",
+      "title": "windowOk law",
+      "text": "Encode lethal≤0.75s, earlyMae≤50, burst≤90, full≤130, no invent, program.md hard fails."
+    },
+    {
+      "id": "F2.H3",
+      "title": "windowScore weights",
+      "text": "0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1 (0 if unavailable)."
+    },
+    {
+      "id": "F2.H4",
+      "title": "Audit JSON",
+      "text": "Every failing window → fight_outcome/audits/<id>.json."
+    },
+    {
+      "id": "F2.H6",
+      "title": "Selector default",
+      "text": "Product non-drop CUSUM/post_engage; near_hp_drop research-only flag."
+    }
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %",
+  "tunePolicy": {
+    "S0": "allowed (dev)",
+    "S1": "FORBIDDEN — measure only",
+    "S2": "FORBIDDEN — transfer measure only"
+  },
+  "markSelectionDefault": {
+    "product": [
+      "cusum_engage_then_skills",
+      "post_engage_killer_skills"
+    ],
+    "researchOnly": [
+      "near_hp_drop"
+    ]
+  },
+  "camillePeHoles": {
+    "schema": "fightOutcome-camille-pe-holes-v1",
+    "trackClosed": true,
+    "closedUtc": "2026-07-24T10:35:31Z",
+    "blocker": "camille_ad_armor_absent_structural_2970110_2970137",
+    "hosts": {
+      "2970110-g1": {
+        "furFloor": "7/10",
+        "missing": [
+          "Camille AD/armor",
+          "Jhin AS",
+          "Leona AD/AS"
+        ],
+        "peTrack": "CLOSED"
+      },
+      "2970137-g1": {
+        "furFloor": "9/10",
+        "missing": [
+          "Camille AD/armor"
+        ],
+        "peTrack": "CLOSED",
+        "note": "mr present on holdout; AD/armor wire-absent under frozen R05 PE"
+      },
+      "2970132-g1": {
+        "furFloor": "10/10",
+        "missing": [],
+        "peTrack": "Camille FUR-complete on this host only",
+        "note": "calculatorReady Path1 living_post_seed_v1 scoped here — does not clear 2970110/2970137"
+      }
+    },
+    "exhaustedTracks": [
+      "opcode743",
+      "secondary_buff_packets",
+      "pe_alt_registrar",
+      "untried_opcodes",
+      "createhero_visibility"
+    ],
+    "suiteImplications": {
+      "S1_2970137": "Holdout slim research OK; product PE densify cannot invent Camille AD/armor — disclose, do not tune around hole.",
+      "S1_2970120": "Camille is victim in check1 of slim holdout extract; livestats pins ≠ PE proof. Do not invent PE fields.",
+      "S2_2954868": "Transfer slim-v1 includes Camille as killer in check1; PE structural close still applies to ROFL product fuse — suite uses livestats slim only."
+    },
+    "inventPolicy": "refuse",
+    "refs": [
+      "docs/rofl-research/autoresearch/product_ready/C_TRACK_EXHAUSTION.md",
+      "docs/rofl-research/autoresearch/product_ready/r04/NOTES_camille_pe_alt.md",
+      "docs/rofl-research/autoresearch/product_ready/reviews/cycle6/V10.json"
+    ]
+  },
+  "gateBars": {
+    "S0": {
+      "fightAgreement": 0.95,
+      "fightPassRate": 0.95,
+      "note": "Dev/holdout: fightAgreement≥0.95 AND fightPassRate≥0.95"
+    },
+    "S1": {
+      "fightAgreement": 0.95,
+      "fightPassRate": 0.95,
+      "note": "Dev/holdout: fightAgreement≥0.95 AND fightPassRate≥0.95"
+    },
+    "S2": {
+      "fightAgreement": 0.9,
+      "fightPassRate": 0.8333333333333334,
+      "note": "Transfer: fightAgreement≥0.90 AND fightPassRate≥5/6, none <0.80"
+    }
+  },
+  "members": [
+    {
+      "id": "S0-2970110-g1",
+      "suite": "S0",
+      "seriesId": "2970110",
+      "gameIndex": 1,
+      "crosscheckSuite": "2970110-g1",
+      "inputPath": "docs/canvases/_data/crosschecks-2970110-g1.json",
+      "sqlitePath": "artifacts/pro-grid/2970110/timeline.g1.slim.sqlite",
+      "role": "dev_interim_checks",
+      "tuneAllowed": true,
+      "notes": [
+        "program.md primary checks (Camille→Leona, Syndra→Camille, Ezreal→LeeSin)",
+        "GOAL prefers 2970132 Path1 for S0 when extracts exist; Path1 crosschecks not yet wired here",
+        "Camille PE hole on this host for product fuse — slim livestats research only"
+      ],
+      "inputAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/docs/canvases/_data/crosschecks-2970110-g1.json",
+      "sqliteAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/artifacts/pro-grid/2970110/timeline.g1.slim.sqlite",
+      "inputOk": true,
+      "sqliteOk": true,
+      "wired": true,
+      "checkCount": 3,
+      "champs": [
+        "Camille",
+        "Ezreal",
+        "LeeSin",
+        "Leona",
+        "Syndra"
+      ],
+      "hasCamille": true
+    },
+    {
+      "id": "S1-2970137-g1",
+      "suite": "S1",
+      "seriesId": "2970137",
+      "gameIndex": 1,
+      "crosscheckSuite": "2970137-g1-holdout",
+      "inputPath": "docs/canvases/_data/crosschecks-2970137-g1-holdout.json",
+      "sqlitePath": "artifacts/pro-grid/2970137/timeline.g1.slim.sqlite",
+      "role": "holdout",
+      "tuneAllowed": false,
+      "notes": [
+        "MUST NOT tune on S1",
+        "Camille PE AD/armor structural hole (9/10 FUR product) — disclose, do not invent",
+        "slim-v2 items_json present"
+      ],
+      "inputAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/docs/canvases/_data/crosschecks-2970137-g1-holdout.json",
+      "sqliteAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/artifacts/pro-grid/2970137/timeline.g1.slim.sqlite",
+      "inputOk": true,
+      "sqliteOk": true,
+      "wired": true,
+      "checkCount": 3,
+      "champs": [
+        "Ambessa",
+        "Anivia",
+        "Cassiopeia",
+        "Sylas",
+        "Vayne",
+        "Viktor"
+      ],
+      "hasCamille": false
+    },
+    {
+      "id": "S1-2970120-g1",
+      "suite": "S1",
+      "seriesId": "2970120",
+      "gameIndex": 1,
+      "crosscheckSuite": "2970120-g1-holdout",
+      "inputPath": "docs/canvases/_data/crosschecks-2970120-g1-holdout.json",
+      "sqlitePath": "artifacts/pro-grid/2970120/timeline.g1.slim.sqlite",
+      "role": "holdout",
+      "tuneAllowed": false,
+      "notes": [
+        "MUST NOT tune on S1",
+        "slim-v1 (no items_json column)",
+        "check1 victim=Camille — livestats pins only; PE invent refused"
+      ],
+      "inputAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/docs/canvases/_data/crosschecks-2970120-g1-holdout.json",
+      "sqliteAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/artifacts/pro-grid/2970120/timeline.g1.slim.sqlite",
+      "inputOk": true,
+      "sqliteOk": true,
+      "wired": true,
+      "checkCount": 3,
+      "champs": [
+        "Ambessa",
+        "Caitlyn",
+        "Camille",
+        "Shen",
+        "Viktor",
+        "Ziggs"
+      ],
+      "hasCamille": true
+    },
+    {
+      "id": "S2-2954868-g1",
+      "suite": "S2",
+      "seriesId": "2954868",
+      "gameIndex": 1,
+      "crosscheckSuite": "2954868-g1-transfer",
+      "inputPath": "docs/rofl-research/autoresearch/fight_outcome/r06/crosschecks-2954868-g1-transfer.json",
+      "sqlitePath": "artifacts/pro-grid/2954868/timeline.g1.slim.sqlite",
+      "role": "transfer_unused_pro_slim",
+      "tuneAllowed": false,
+      "notes": [
+        "Unused vs S0/S1 series list (not 2970110/2970132/2970137/2970120)",
+        "slim-v1; R06 auto-extract ≥3 checks; not for tuning",
+        "Gate bar: fightAgreement≥0.90 and fightPassRate≥5/6 (GOAL §B)"
+      ],
+      "inputAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/docs/rofl-research/autoresearch/fight_outcome/r06/crosschecks-2954868-g1-transfer.json",
+      "sqliteAbs": "/Users/river/.codex/worktrees/rofl-fo-r06/artifacts/pro-grid/2954868/timeline.g1.slim.sqlite",
+      "inputOk": true,
+      "sqliteOk": true,
+      "wired": true,
+      "checkCount": 3,
+      "champs": [
+        "Ambessa",
+        "Camille",
+        "Cassiopeia",
+        "LeeSin",
+        "Vayne",
+        "Ziggs"
+      ],
+      "hasCamille": true
+    }
+  ],
+  "suites": {
+    "S0": {
+      "wired": true,
+      "n": 0,
+      "fightAgreement": null,
+      "fightPassRate": null,
+      "members": [],
+      "evals": []
+    },
+    "S1": {
+      "wired": true,
+      "n": 6,
+      "fightAgreement": 0.4776643805508331,
+      "fightPassRate": 0.3333333333333333,
+      "members": [
+        "S1-2970137-g1",
+        "S1-2970120-g1"
+      ],
+      "tuneForbidden": true,
+      "evals": [
+        "/Users/river/.codex/worktrees/rofl-fo-r06/docs/rofl-research/autoresearch/fight_outcome/r06/evals/S1-2970137-g1.eval.json",
+        "/Users/river/.codex/worktrees/rofl-fo-r06/docs/rofl-research/autoresearch/fight_outcome/r06/evals/S1-2970120-g1.eval.json"
+      ]
+    },
+    "S2": {
+      "wired": true,
+      "n": 3,
+      "fightAgreement": 0.6335376212427813,
+      "fightPassRate": 0.3333333333333333,
+      "members": [
+        "S2-2954868-g1"
+      ],
+      "unusedProSlim": "2954868-g1",
+      "evals": [
+        "/Users/river/.codex/worktrees/rofl-fo-r06/docs/rofl-research/autoresearch/fight_outcome/r06/evals/S2-2954868-g1.eval.json"
+      ]
+    }
+  },
+  "allWired": true,
+  "s1Wired": true,
+  "s2Wired": true,
+  "never_edited_parent": true,
+  "fightOutcomeGateEvidence": false,
+  "note": "S1/S2 measured with product non-drop selector; no EXPERIMENT retune. Not fightOutcomeGate evidence until thresholds + digest + reviewers.",
+  "mode": "measure",
+  "measuredMembers": [
+    "S1-2970137-g1",
+    "S1-2970120-g1",
+    "S2-2954868-g1"
+  ]
+}

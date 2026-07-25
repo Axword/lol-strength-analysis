@@ -86,6 +86,9 @@ def parse_rofl2(path: Path) -> dict:
     }
 
 
+ZSTD_MAGIC = b"\x28\xb5\x2f\xfd"
+
+
 def extract_segments(payload: bytes) -> dict:
     dctx0 = zstd.ZstdDecompressor()
     flen0 = frame_compressed_size(payload, 0)
@@ -103,7 +106,7 @@ def extract_segments(payload: bytes) -> dict:
         typ = rec[8]
         unc, comp = struct.unpack_from("<II", rec, 9)
         pos += 17
-        if payload[pos : pos + 4] != b"\x28\xb5\x2f\xfd":
+        if payload[pos : pos + 4] != ZSTD_MAGIC:
             break
         flen = frame_compressed_size(payload, pos)
         out = dctx.decompress(payload[pos : pos + flen], max_output_size=50_000_000)
@@ -128,6 +131,79 @@ def extract_segments(payload: bytes) -> dict:
         "preamble_hex": preamble.hex(),
         "segments": segments,
         "leftover": len(payload) - pos,
+        "skip_count": 0,
+        "skip_bytes_total": 0,
+    }
+
+
+def extract_segments_resilient(payload: bytes) -> dict:
+    """Like extract_segments, but skip interstitial non-zstd records (pro GRID ROFLs).
+
+    R14 diagnosis: GRID/pro payloads insert ~34B key/index-like records between
+    segment groups. Baseline walker aborts with ~99.7% leftover; skipping forward
+    to the next valid 17B-header+zstd frame recovers the full stream.
+    """
+    dctx0 = zstd.ZstdDecompressor()
+    flen0 = frame_compressed_size(payload, 0)
+    dict_bytes = dctx0.decompress(payload[:flen0], max_output_size=50_000_000)
+    dctx = zstd.ZstdDecompressor(dict_data=zstd.ZstdCompressionDict(dict_bytes))
+
+    pos = flen0
+    preamble = payload[pos : pos + 34]
+    pos += 34
+
+    segments: list = []
+    skip_count = 0
+    skip_bytes_total = 0
+    n = len(payload)
+    while pos + 17 <= n:
+        if payload[pos + 17 : pos + 21] != ZSTD_MAGIC:
+            found = None
+            scan = pos + 1
+            while scan + 21 <= n:
+                if payload[scan + 17 : scan + 21] == ZSTD_MAGIC:
+                    typ = payload[scan + 8]
+                    unc, comp = struct.unpack_from("<II", payload, scan + 9)
+                    if typ in (1, 2) and 0 < comp < 20_000_000 and 0 < unc < 200_000_000:
+                        found = scan
+                        break
+                scan += 1
+            if found is None:
+                break
+            skip_count += 1
+            skip_bytes_total += found - pos
+            pos = found
+            continue
+        rec = payload[pos : pos + 17]
+        a, b = struct.unpack_from("<II", rec, 0)
+        typ = rec[8]
+        unc, comp = struct.unpack_from("<II", rec, 9)
+        pos += 17
+        flen = frame_compressed_size(payload, pos)
+        out = dctx.decompress(payload[pos : pos + flen], max_output_size=50_000_000)
+        segments.append(
+            {
+                "id_a": a,
+                "id_b": b,
+                "type": typ,
+                "type_name": {1: "chunk", 2: "keyframe"}.get(typ, f"unknown({typ})"),
+                "unc": unc,
+                "comp": comp,
+                "flen": flen,
+                "out_len": len(out),
+                "match": unc == len(out) and comp == flen,
+                "bytes": out,
+            }
+        )
+        pos += flen
+
+    return {
+        "dict": dict_bytes,
+        "preamble_hex": preamble.hex(),
+        "segments": segments,
+        "leftover": n - pos,
+        "skip_count": skip_count,
+        "skip_bytes_total": skip_bytes_total,
     }
 
 

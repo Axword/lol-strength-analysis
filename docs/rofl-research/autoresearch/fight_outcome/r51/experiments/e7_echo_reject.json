@@ -1,0 +1,20 @@
+{
+  "schema": "fo-r51-echo-reject-v1",
+  "window": "2970132-g1-c1-burst",
+  "honest": {
+    "F1": 0.6666666666666666,
+    "truth": 2,
+    "model": 1,
+    "matched": 1,
+    "gateEligible": false
+  },
+  "echo_pad_shareHint0": {
+    "F1": 1.0,
+    "truth": 2,
+    "model": 2,
+    "matched": 2,
+    "gateEligible": false,
+    "rejectReason": "zero_damage_log_echo forbid #13"
+  },
+  "note": "Echo pad reaches raw F1=1.0 but MUST NOT count as actionReplayGate / fightOutcomeGate evidence. FA\u2260odds."
+}

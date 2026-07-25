@@ -1,0 +1,66 @@
+{
+  "researcher": "r28",
+  "slug": "galio-kit",
+  "model": "Auto",
+  "utc": "2026-07-24T16:15:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r28",
+  "branch": "adv/fo-r28-galio-kit",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "room": "f4-galio-kit",
+  "mandate": "Path1 Galio→Trundle truth kills / model miss; kit fidelity W/E/Q/R + utility never skipped; timed planner death-coupled; AA/passive resets; no mark/density/regen sweeps; product KEEP iff S0 FA↑ and S1 not regress",
+  "coordinate_r24": "R24 owns engage/lethal marks; R28 owns kit. Burst still 0 marks under product gate_action.",
+  "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json",
+  "primarySelector": "cusum_engage_then_skills",
+  "idleFollowActual": true,
+  "n_experiments": 10,
+  "check01_modelKilled_full": true,
+  "check01_modelKilled_burst": false,
+  "check01_lethalErrorSec_full": -0.3555185185185188,
+  "path1_FA_before": 0.3440243395784985,
+  "path1_FA_after_product_keep": 0.4129986985528575,
+  "path1_FA_delta": 0.068974358974359,
+  "fightPassRate_before": 0,
+  "fightPassRate_after": 0.16666666666666666,
+  "holdout_S1": {
+    "e0b_no_core_FA": 0.5608805916305917,
+    "e6b_with_core_FA": 0.5608805916305917,
+    "tunedOnS1": false,
+    "regress": false,
+    "note": "S1 killers not Galio — FA flat"
+  },
+  "product_KEEP": true,
+  "keep_reason": "S0 FA 0.344→0.413; S1 0.561 flat; check01 full modelKilled with |lethErr|0.36≤0.75; no invent; cusum product; idleFollow kept",
+  "keeps": ["e6_CORE_Galio_kit"],
+  "discards": ["e1_overshoot", "e2_soft", "e3", "e4", "e5_late", "e7_flat", "e8_timed_short", "e9_timed_allin"],
+  "keepable_artifact": {
+    "kind": "CORE_champion_kit",
+    "path": "src/data/champions.ts",
+    "champion": "Galio",
+    "suite_wire": "scripts/crosscheck_action_aligned.ts --suite 2970132-g1",
+    "fight_agreement_S0_wire": "scripts/fight_agreement_suite.ts S0→2970132-g1",
+    "product_default_still": [
+      "cusum_engage_then_skills",
+      "idleFollowActual=true",
+      "gate_action (not cusum_gate timed)"
+    ],
+    "best_json_updated": false
+  },
+  "findings": [
+    "GAME Galio missed Q tornado %maxHP, W taunt utility, Smash passive — left modelEndHp≈376 on product 2-mark path.",
+    "e6 blended Smash + full tornado + charged W → check01 full modelKilled with lethErr −0.36 (windowOk).",
+    "check01 burst still modelKilled=false (0 marks) — R24 mark domain.",
+    "Timed cusum_gate+kit can kill burst (leth≈0.65) but regresses Olaf — no product mode flip.",
+    "S1 FA unchanged with CORE Galio (not on holdout killers)."
+  ],
+  "blocker": "S0 FA 0.413 << 0.95; check01 burst miss-kill (0 marks); Olaf lethal |err| still >0.75; passRate 0.167",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r28/NOTES.md",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r28/HYPOTHESES_PICKED.md",
+    "experiments": "docs/rofl-research/autoresearch/fight_outcome/r28/experiments/",
+    "fight_agreement_S0": "docs/rofl-research/autoresearch/fight_outcome/r28/fight_agreement_S0.json",
+    "fight_agreement_S1": "docs/rofl-research/autoresearch/fight_outcome/r28/fight_agreement_S1.json"
+  }
+}

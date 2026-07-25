@@ -1,0 +1,15 @@
+{
+  "reviewer": "V2",
+  "role": "digestCleanGate auditor",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "one_liner": "digestCleanGate reaffirm true (Path1); fightOutcomeGate false on S0 FA 0.7766≪0.95.",
+  "evidence": [
+    "GOAL §D REAFFIRM: DIGEST Path1 2970132 validate+fingerprints; living_post_seed_v1; C3–C6 digestClean majority stands; no concrete §D failure this cycle.",
+    "Wave2 KEEPs (R19/R30–R36) + R31 preBurst 2.5 are metric/mark process — orthogonal to §D; no digest wipe/invent claimed.",
+    "2970110 second host still disclosed prefer≠require — not a digestCleanGate blocker.",
+    "B FAIL: STATUS/PARENT_MERGE/S0 FA artifact agree S0 FA 0.7766 pass 0.333 ≪0.95 → FO false.",
+    "F: S1 FA 0.5810 ≪0.95; FA ≠ win odds; G proven orthogonal."
+  ]
+}

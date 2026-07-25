@@ -1,0 +1,72 @@
+{
+  "reviewer": "V9",
+  "cycle": 7,
+  "phase": "C",
+  "role": "Timed planner / death-coupled honesty",
+  "utc": "2026-07-24T16:52:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "one_liner": "V9: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — planner stack honest; S0 FA 0.7766 / pass 0.333 ≪0.95; FA≠odds",
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "planner_lens": {
+    "death_coupled_parent": true,
+    "no_hp_pct_ability_ban": true,
+    "product_selectors_held": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+    "idleFollowActual_KEEP": true,
+    "near_hp_drop_research_only": true,
+    "stacked_KEEPs": {
+      "r19_idleFollow": true,
+      "r30_aa_pulse": { "aaAtEachMark": false, "pulseBySlot_R": 0 },
+      "r31_preBurst": { "markPreBurstSkillLeadSec": 2.5, "markPreBurstSkillShare": 1 },
+      "r32_residual_hp": true,
+      "r33_zeroDead": true,
+      "r34_tornado": { "galio_tornadoPct": 0.15, "disclosure": "attention kit blend; not wiki-exact; not calibrated" },
+      "r35_opener": { "preEngageOpenerSec": 0.5, "preEngageOpenerMaxPostMarks": 3 },
+      "r36_openerAlly": { "openerAllyAttrib": "local_skill_share" }
+    },
+    "compound_remeasure": {
+      "S0_FA": 0.7766342033756181,
+      "S0_pass": 0.3333333333333333,
+      "S1_FA": 0.5810463694073534,
+      "S1_pass": 0.3333333333333333,
+      "c1_burst": { "modelKills": true, "marks": 2, "lethAbs": 0.635 },
+      "c1_full": { "lethAbs": 1.84, "lethalOk": false },
+      "c2_burst": { "maeHp": 111.59164037216308, "pathOk": false, "pathCap": 90 }
+    },
+    "honesty": {
+      "noInvent": true,
+      "unfreeze_0_9683": true,
+      "FA_is_not_odds": true,
+      "residual_hp_not_one_coeff": true
+    }
+  },
+  "evidence": [
+    "BRIEF C7 — stacked KEEPs R19–R36 + R31 preBurst; S0 FA 0.7766 pass 0.333 ≪0.95",
+    "r31 parent_stack_r31_s0.json — law includes idleFollowActual, residual_hp path via stack, preBurst 2.5, zeroDeadActualHp, openerAlly local_skill_share",
+    "r31 fight_agreement_S0_parent_stack_r31.json — c1 full lethalErrorSec 1.837 lethalOk false; c1 burst |leth|=0.635 lethalOk true earlyOk false; c2 burst maeHp 111.6 pathOk false",
+    "Product selectors held — cusum_engage_then_skills (not near_hp_drop); death-coupled; no HP% ability ban claimed",
+    "STATUS last_blocker — passRate 0.333; c2 pathMae>90; Galio full lethErr 1.84; S1 miss-kills",
+    "DIGEST Path1 — digestCleanGate reaffirm true; living_post_seed_v1; no invent"
+  ],
+  "failures": [
+    "B: mean FA 0.7766 (S0) / 0.5810 (S1) ≪ 0.95; passRate 0.333 ≪ 0.95",
+    "Planner honesty OK but agreement not gate-ready — Galio full |leth| 1.84 residual; c2 pathMae>90",
+    "I: FO majority + e2e blocked while B/F fail"
+  ],
+  "blocker": "Cut Galio full leth residual + c2 burst pathMae + lift passRate; wave3 tracks live — no invent, no odds sell",
+  "notes": "C7 V9 planner lens: stacked product law is death-coupled and selector-honest; compound remesaure still FA≪0.95. FO false. DC true. FA ≠ odds / ≠ pBlue%."
+}

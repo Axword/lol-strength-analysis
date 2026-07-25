@@ -1,0 +1,108 @@
+{
+  "schema": "fight-outcome-r22-camille-q-wire-v1",
+  "t": "2026-07-24T15:58:43.441Z",
+  "researcher": "r22",
+  "hypothesis": "Wire Camille Q first-cast from wiki %AD + attackReset; PE PrecisionProtocol floats absent",
+  "evidence": {
+    "wiki": {
+      "path": "public/data/lolwiki/champions-full.json",
+      "ability": "Camille.Q Precision Protocol",
+      "bonusPhysicalPctAd": [
+        20,
+        25,
+        30,
+        35,
+        40
+      ],
+      "bonusMsPct": [
+        25,
+        30,
+        35,
+        40,
+        45
+      ],
+      "attackReset": true,
+      "empoweredAuto": true
+    },
+    "meraki": {
+      "path": "src/data/generated/merakiAbilityKits.ts",
+      "note": "ratios match wiki bonus %AD; GAME_CHAMPIONS stub previously emptied packets"
+    },
+    "pe": {
+      "path": "docs/rofl-research/autoresearch/product_ready/r04/r04_camille_pe_alt_e03_pe_strings.json",
+      "PrecisionProtocol": 0,
+      "CamilleQ": 0,
+      "decision": "no_camille_specific_q_pe_floats — wiki coeffs only; refuse invent"
+    },
+    "sameMatchPresence": {
+      "2970110-g1": "Camille pid10 killer on c1 (Camille→Leona)",
+      "2970132-g1": "Camille pid10 present; S0 killers Galio/Olaf — Q wire not on FA path"
+    }
+  },
+  "camilleQ": {
+    "name": "Precision Protocol",
+    "attackReset": true,
+    "empoweredAuto": true,
+    "packetCount": 1,
+    "raw": 240,
+    "expectedRaw": 240,
+    "type": "physical",
+    "selfMsBuff": 0.25,
+    "packetOk": true,
+    "executionOk": true,
+    "utilOk": true,
+    "rankSweep": [
+      {
+        "rank": 1,
+        "raw": 240,
+        "expected": 240,
+        "ok": true
+      },
+      {
+        "rank": 2,
+        "raw": 250,
+        "expected": 250,
+        "ok": true
+      },
+      {
+        "rank": 3,
+        "raw": 260,
+        "expected": 260,
+        "ok": true
+      },
+      {
+        "rank": 4,
+        "raw": 270,
+        "expected": 270,
+        "ok": true
+      },
+      {
+        "rank": 5,
+        "raw": 280,
+        "expected": 280,
+        "ok": true
+      }
+    ],
+    "rankSweepAllOk": true
+  },
+  "timedPlan": {
+    "method": "timed_manual_1v1",
+    "qInPlan": true,
+    "qHits": 1,
+    "planSlotsSample": [
+      "AA",
+      "Q",
+      "E",
+      "W",
+      "AA"
+    ],
+    "blueDmg": null
+  },
+  "inventRefused": {
+    "peFloatCoeffs": true,
+    "recastTrueDamageMix": true,
+    "note": "Recast-after-1.5s true-damage conversion not wired — needs cast-state; PE insufficient"
+  },
+  "pass": true,
+  "confidence": "Kit packets are wiki-proven first-cast mirrors — NOT win odds / NOT fightAgreement"
+}

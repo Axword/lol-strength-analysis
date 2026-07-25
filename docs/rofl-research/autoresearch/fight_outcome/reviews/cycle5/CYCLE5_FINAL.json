@@ -1,0 +1,33 @@
+{
+  "cycle": 5,
+  "utc": "2026-07-24T16:19:58Z",
+  "model": "Auto",
+  "researchers_done_at_trigger": 30,
+  "wave": "10x30x15_complete",
+  "votes_present": 15,
+  "fightOutcomeGate": false,
+  "fightOutcomeGate_tally": {
+    "true": 0,
+    "false": 15,
+    "majority_needed": 11
+  },
+  "digestCleanGate": true,
+  "digestCleanGate_tally": {
+    "true": 15,
+    "false": 0,
+    "majority_needed": 11
+  },
+  "criterionG_proven": true,
+  "fa_note": "S0 FA\u22480.590 / pass\u22480.333; S1\u22480.562 / pass\u22480.333 \u226a0.95. fightAgreement \u2260 win odds.",
+  "decision": "CONTINUE_OVERNIGHT",
+  "decision_why": "fightOutcomeGate false after full 30; stop only on FO true / limits / STOP FIGHT OUTCOME \u2014 launch wave2 researchers on residual blockers",
+  "sharper_blocker": "Galio burst/pre-engage product KEEP without S1 regress; check03 non-global share; pathMae; passRate\u21920.95",
+  "product_keeps_wave1": [
+    "idleFollowActual",
+    "Galio_CORE",
+    "aaAtEachMark_false_R_pulse_0",
+    "Camille_Q_wiki",
+    "anti_odds_copy",
+    "digest_path"
+  ]
+}

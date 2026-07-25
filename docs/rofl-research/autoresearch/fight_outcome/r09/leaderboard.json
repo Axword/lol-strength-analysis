@@ -1,0 +1,148 @@
+{
+  "baseline_e0": {
+    "id": "e0",
+    "hypothesis": "R09-E0 baseline no-regen markMinGap0.4 drop (frozen composite 0.9683)",
+    "fightAgreement": 0.5350862346343341,
+    "fightPassRate": 0.3333333333333333,
+    "composite": 0.9682758824446431,
+    "hardFails": [],
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e0.fightAgreement.json"
+  },
+  "ranked": [
+    {
+      "id": "e0",
+      "hypothesis": "R09-E0 baseline no-regen markMinGap0.4 drop (frozen composite 0.9683)",
+      "fightAgreement": 0.5350862346343341,
+      "fightPassRate": 0.3333333333333333,
+      "composite": 0.9682758824446431,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e0.fightAgreement.json",
+      "deltaFightAgreementVsE0": 0.0,
+      "regenMode": "off"
+    },
+    {
+      "id": "e3",
+      "hypothesis": "R09-E3 F3.H3 combat regen0.3 + product cusum densestride1.0/1.2",
+      "fightAgreement": 0.4848445238480757,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 2.1047720439161677,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e3.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.05024171078625844,
+      "regenMode": "combat"
+    },
+    {
+      "id": "e11",
+      "hypothesis": "R09-E11 F3.H3 listed opener_only1.0 finish0",
+      "fightAgreement": 0.4757849910927739,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.1527822529099214,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e11.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.059301243541560245,
+      "regenMode": "opener_only"
+    },
+    {
+      "id": "e6",
+      "hypothesis": "R09-E6 F3.H3 split opener0.5 finish0.1 on drop BEST",
+      "fightAgreement": 0.47155119609909435,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.080247284998372,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e6.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.06353503853523979,
+      "regenMode": "split"
+    },
+    {
+      "id": "e1",
+      "hypothesis": "R09-E1 F3.H3 combat regen0.3 on drop BEST",
+      "fightAgreement": 0.4705313580815562,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.0219868280642164,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e1.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.06455487655277792,
+      "regenMode": "combat"
+    },
+    {
+      "id": "e10",
+      "hypothesis": "R09-E10 F3.H3 finish_only0.3 finishStart=kill-2s",
+      "fightAgreement": 0.4705313580815562,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.0219868280642164,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e10.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.06455487655277792,
+      "regenMode": "finish_only"
+    },
+    {
+      "id": "e4",
+      "hypothesis": "R09-E4 F3.H3 opener_only combat0.3 finish0 on drop BEST",
+      "fightAgreement": 0.47037514545933395,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.021708444694633,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e4.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.06471108917500018,
+      "regenMode": "opener_only"
+    },
+    {
+      "id": "e8",
+      "hypothesis": "R09-E8 F3.H3 combat regen0.15 on drop BEST",
+      "fightAgreement": 0.4690587963579453,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.0258225499346323,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e8.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.06602743827638885,
+      "regenMode": "combat"
+    },
+    {
+      "id": "e5",
+      "hypothesis": "R09-E5 F3.H3 finish_only combat0.3 opener0 on drop BEST",
+      "fightAgreement": 0.46774244725655634,
+      "fightPassRate": 0.16666666666666666,
+      "composite": 1.0299366551746327,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e5.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.0673437873777778,
+      "regenMode": "finish_only"
+    },
+    {
+      "id": "e2",
+      "hypothesis": "R09-E2 F3.H3 listed regen1.0 on drop BEST",
+      "fightAgreement": 0.40963903316684797,
+      "fightPassRate": 0,
+      "composite": 1.368132238079366,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e2.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.12544720146748617,
+      "regenMode": "listed"
+    },
+    {
+      "id": "e9",
+      "hypothesis": "R09-E9 F3.H3 combat regen0.6 on drop BEST",
+      "fightAgreement": 0.4060745207444649,
+      "fightPassRate": 0,
+      "composite": 1.3723724147421432,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e9.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.12901171388986926,
+      "regenMode": "combat"
+    },
+    {
+      "id": "e7",
+      "hypothesis": "R09-E7 F3.H3 split opener0.1 finish0.5 on drop BEST",
+      "fightAgreement": 0.40210955927970443,
+      "fightPassRate": 0,
+      "composite": 1.2361334524467158,
+      "hardFails": [],
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r09/eval_e7.fightAgreement.json",
+      "deltaFightAgreementVsE0": -0.1329766753546297,
+      "regenMode": "split"
+    }
+  ],
+  "best_fightAgreement": 0.5350862346343341,
+  "best_id": "e0",
+  "best_delta_vs_e0": 0.0
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "r01-digest-failure-modes-v1",
+  "utc": "2026-07-24T15:40:58Z",
+  "modes": [
+    {
+      "id": "missing_pe_seed",
+      "symptom": "living_post_seed peHpHeroes<10 or pre-seed invent temptation",
+      "action": "refuse densify; leave hpKnown=false; do not invent"
+    },
+    {
+      "id": "coverage_stamp_lag",
+      "symptom": "bare jsonl_to_timeline rebuild \u2192 hpHoldAcrossRespawn false in metrics",
+      "action": "run scripts/stamp_digest_path1_provenance.py OR use path1-final timeline as-is"
+    },
+    {
+      "id": "wrong_cli_flag",
+      "symptom": "DIGEST historically said --out; argparse abbreviates to --output today",
+      "action": "always use -o/--output; do not rely on abbreviation"
+    },
+    {
+      "id": "source_wipe_rematch",
+      "symptom": "historical merge rebuilt timeline without hpSource/combatSource",
+      "action": "use Path1 final / R15 rematch; census e06 must wipe_detected=false"
+    },
+    {
+      "id": "second_host_not_ready",
+      "symptom": "2970110 validate --product fails combat honesty",
+      "action": "disclose gap; do not claim second host digestClean"
+    },
+    {
+      "id": "identity_scramble",
+      "symptom": "participant-order champ labels",
+      "action": "fail-closed; join PUUID/full Riot ID \u2192 netId \u2192 pid only"
+    }
+  ]
+}

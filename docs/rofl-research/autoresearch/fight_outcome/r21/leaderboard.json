@@ -1,0 +1,85 @@
+{
+  "researcher": "r21",
+  "metric": "fightAgreement (honest actualEndHp truth) \u2014 NOT win odds",
+  "path1_baseline_FA": 0.2946,
+  "status_ref_FA_0_228": "R05/STATUS Path1 FA 0.228; R19/R21 suite e0 = 0.2946 (disclose scorer/F1 path)",
+  "rows": [
+    {
+      "id": "e8",
+      "FA": 0.4228086686763875,
+      "pass": 0.16666666666666666,
+      "FKrate": 1.0,
+      "hypothesis": "R21-E8 Path1 slot_ability + idleFollow + aaFiller"
+    },
+    {
+      "id": "e0b_2970110",
+      "FA": 0.4217420179369753,
+      "pass": 0.16666666666666666,
+      "FKrate": 0.5,
+      "hypothesis": "R21-E0b S0proxy product cusum continuous falsekill"
+    },
+    {
+      "id": "e6",
+      "FA": 0.4106910062451652,
+      "pass": 0.16666666666666666,
+      "FKrate": 1.0,
+      "hypothesis": "R21-E6 Path1 continuous + idleFollow"
+    },
+    {
+      "id": "e4_2970110",
+      "FA": 0.3954516750610501,
+      "pass": 0.0,
+      "FKrate": 0.0,
+      "hypothesis": "R21-E4 S0proxy slot_ability noAA (stop false-kill)"
+    },
+    {
+      "id": "e7",
+      "FA": 0.3890066210151874,
+      "pass": 0.16666666666666666,
+      "FKrate": 0.0,
+      "hypothesis": "R21-E7 Path1 slot_ability + idleFollow"
+    },
+    {
+      "id": "e20",
+      "FA": 0.3823188463937417,
+      "pass": 0.16666666666666666,
+      "FKrate": 0.0,
+      "hypothesis": "R21-E20 Path1 e14+aaFiller noFinish"
+    },
+    {
+      "id": "e15",
+      "FA": 0.3800692654389881,
+      "pass": 0.0,
+      "FKrate": 0.0,
+      "hypothesis": "R21-E15 Path1 slot_ability share0.55 + idleFollow noAA"
+    },
+    {
+      "id": "e18_2970110",
+      "FA": 0.33446541137794444,
+      "pass": 0.0,
+      "FKrate": 0.0,
+      "hypothesis": "R21-E18 S0proxy e14+finishAaMax2"
+    },
+    {
+      "id": "e19_2970110",
+      "FA": 0.3315711231011447,
+      "pass": 0.0,
+      "FKrate": 0.5,
+      "hypothesis": "R21-E19 S0proxy e14+aaFiller noFinish"
+    },
+    {
+      "id": "e14_2970110",
+      "FA": 0.32842956348499747,
+      "pass": 0.0,
+      "FKrate": 0.0,
+      "hypothesis": "R21-E14 S0proxy slot_ability share0.55 + idleFollow noAA"
+    },
+    {
+      "id": "e0",
+      "FA": 0.2945984235430667,
+      "pass": 0.16666666666666666,
+      "FKrate": 1.0,
+      "hypothesis": "R21-E0 Path1 product cusum continuous baseline falsekill"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "burst",
+  "matchup": "Galio→Trundle",
+  "tau": 0.25,
+  "truthActions": [],
+  "modelActions": [
+    {
+      "tSec": 2.083081081081081,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 0,
+    "modelCount": 1,
+    "matchedCount": 0,
+    "precision": 0,
+    "recall": 0,
+    "actionCoverage": 0,
+    "matches": [],
+    "unmatchedTruth": [],
+    "unmatchedModel": [
+      0
+    ]
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=1 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

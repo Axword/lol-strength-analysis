@@ -1,0 +1,415 @@
+=== E01 (2970110-g1) ===
+
+=== gate_action | F3H1 baseline research BEST markMinGap0.4 global ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	36.7	-0.02	Y	N	N	4	gate_action
+1	burst	39.7	23.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	347.1	-0.10	Y	N	N	3	gate_action
+2	burst	274.2	164.5	-1.01	Y	N	N	3	gate_action
+3	full	104.1	427.4	-2.54	Y	N	N	5	gate_action
+3	burst	3.3	269.4	-0.53	Y	N	N	2	gate_action
+composite=0.9683  early=75.4  mae=211.5  |leth|=0.70  poisonPen=0
+actionReplay: meanCoverage=0.513  worst=c3-full=0.348  gate95=false
+  c1-full	Camille→Leona	truth=7	model=8	matched=4	P=0.50	R=0.57	F1=0.533
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=3	matched=2	P=0.67	R=0.67	F1=0.667
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E01_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E01_score.json
+fightAgreement=0.4049 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.820 pathBand=0.333
+{
+  "id": "E01",
+  "fightAgreement": 0.40488473418021226,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.8195389367208489,
+  "composite": 0.9682758824446431,
+  "hardFails": []
+}
+=== E02 (2970110-g1) ===
+
+=== gate_action | F3H1 product density gap1.0 win1.2 cusum ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E02_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E02_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E02",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E03 (2970110-g1) ===
+
+=== gate_action | F3H1 denser throttle gap0.7 win1.0 cusum ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E03_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E03_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E03",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E04 (2970110-g1) ===
+
+=== gate_action | F3H1 looser density gap1.2 win1.5 cusum ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	872.5	794.7	-11.39	Y	N	N	10	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.2542  early=220.6  mae=266.3  |leth|=3.26  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=false
+HARD FAILS: hardFail: check03 early MAE worsened by 159.7 (>50)
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=N | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=N
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | FAIL A5: check03 early hurt | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | FAIL A8: hardFail: check03 early MAE worsened by 159.7 (>50) | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E04_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E04_score.json
+fightAgreement=0.3667 fightPassRate=0.0000 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E04",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.254169045758903,
+  "hardFails": [
+    "hardFail: check03 early MAE worsened by 159.7 (>50)"
+  ]
+}
+=== E05 (2970110-g1) ===
+
+=== gate_action | F3H1 density max2 gap1.0 win1.2 cusum ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	9	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	13	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E05_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E05_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E05",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E06 (2970110-g1) ===
+
+=== gate_action | F3H2 pulseBySlot Q0.35 W0.25 E0.65 R0.9 +perSlot ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E06_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E06_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E06",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E07 (2970110-g1) ===
+
+=== gate_action | F3H2 pulseBySlot flat0.3 all slots +perSlot ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E07_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E07_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E07",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E08 (2970110-g1) ===
+
+=== gate_action | F3H3 finishAaWindow2s +density cusum (regen/finish) ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E08_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E08_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E08",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E09 (2970110-g1) ===
+
+=== gate_action | F3H3 repinEachMark +density cusum (opener honesty) ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	87.4	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.23	Y	N	N	3	gate_action
+2	full	0.0	323.2	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	249.4	null	N	N	N	1	gate_action
+composite=2.1575  early=171.8  mae=269.0  |leth|=3.53  poisonPen=0
+actionReplay: meanCoverage=0.454  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=3	matched=2	P=0.67	R=0.50	F1=0.571
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E09_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E09_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E09",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.15752923274151,
+  "hardFails": []
+}
+=== E10 (2970110-g1) ===
+
+=== gate_action | F3H4 cusumK6 H30 +density ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E10_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E10_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E10",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E11 (2970110-g1) ===
+
+=== gate_action | F3H4 cusumK12 H60 +density ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.23	Y	N	N	6	gate_action
+1	burst	126.3	75.8	-0.02	Y	N	N	3	gate_action
+2	full	0.0	323.5	-1.48	Y	N	N	8	gate_action
+2	burst	290.3	174.2	-1.48	Y	N	N	5	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	11	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.1040  early=171.8  mae=251.2  |leth|=3.50  poisonPen=0
+actionReplay: meanCoverage=0.459  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=6	matched=3	P=0.50	R=0.75	F1=0.600
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=Y | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=true  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | A4 strict lethal 01/02 full+burst | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E11_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E11_score.json
+fightAgreement=0.3667 fightPassRate=0.3333 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.333
+{
+  "id": "E11",
+  "fightAgreement": 0.3666666666666667,
+  "fightPassRate": 0.3333333333333333,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.1040313467290845,
+  "hardFails": []
+}
+=== E12 (2970110-g1) ===
+
+=== gate_action | F3H1 cusum + global markMinGap0.4 (no dens window) ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	31.2	83.1	-0.07	Y	N	N	5	gate_action
+1	burst	126.3	149.9	null	N	N	N	2	gate_action
+2	full	0.0	307.0	-1.01	Y	N	N	7	gate_action
+2	burst	274.2	164.5	-1.01	Y	N	N	3	gate_action
+3	full	579.8	703.9	-12.79	Y	N	N	13	gate_action
+3	burst	3.3	146.6	null	N	N	N	1	gate_action
+composite=2.2762  early=169.1  mae=259.2  |leth|=4.15  poisonPen=0
+actionReplay: meanCoverage=0.442  worst=c3-burst=0.250  gate95=false
+  c1-full	Camille→Leona	truth=7	model=9	matched=5	P=0.56	R=0.71	F1=0.625
+  c1-burst	Camille→Leona	truth=4	model=4	matched=2	P=0.50	R=0.50	F1=0.500
+  c2-full	Syndra→Camille	truth=9	model=5	matched=3	P=0.60	R=0.33	F1=0.429
+  c2-burst	Syndra→Camille	truth=5	model=3	matched=2	P=0.67	R=0.40	F1=0.500
+  c3-full	Ezreal→LeeSin	truth=16	model=7	matched=4	P=0.57	R=0.25	F1=0.348
+  c3-burst	Ezreal→LeeSin	truth=3	model=5	matched=1	P=0.20	R=0.33	F1=0.250
+baselineComposite=3.5182  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=n/a
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B not evaluated in this suite run
+out=/Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E12_eval.json
+wrote /Users/river/.codex/worktrees/rofl-fo-r08/docs/rofl-research/autoresearch/fight_outcome/r08/experiments/E12_score.json
+fightAgreement=0.3445 fightPassRate=0.0000 n=3 lethalHit=0.333 earlyBand=0.667 pathBand=0.222
+{
+  "id": "E12",
+  "fightAgreement": 0.3444806154320988,
+  "fightPassRate": 0,
+  "meanLethalHit": 0.3333333333333333,
+  "meanEarlyBand": 0.6666666666666666,
+  "composite": 2.276235612749849,
+  "hardFails": []
+}
+SWEEP_DONE
+real 65.80
+user 53.51
+sys 9.81

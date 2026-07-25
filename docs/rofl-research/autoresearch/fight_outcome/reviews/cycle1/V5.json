@@ -1,0 +1,76 @@
+{
+  "reviewer": "V5",
+  "cycle": 1,
+  "role": "S0 suite auditor",
+  "utc": "2026-07-24T15:50:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.97,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": false,
+    "F": false,
+    "G": false,
+    "H": true,
+    "I": false
+  },
+  "s0": {
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "preferredHost": "2970132-g1 Path1",
+    "proxyHost": "2970110-g1",
+    "product_cusum_2970110_proxy": {
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "nWindows": 6,
+      "meetsThresholds": false,
+      "windowOk_count": 1,
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0_product_cusum.json"
+    },
+    "product_cusum_2970132_preferred": {
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0,
+      "nWindows": 6,
+      "meetsThresholds": false,
+      "windowOk_count": 0,
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json",
+      "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json"
+    },
+    "research_drop_not_product": {
+      "fightAgreement": 0.6018,
+      "fightPassRate": 0.3333,
+      "note": "near_hp_drop / drop conditioning — research-only; not product default; still <<0.95"
+    }
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B (S0 FA≥0.95 + pass≥0.95) + §E (prefer 2970132 Path1)",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle1/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0_product_cusum.json (FA 0.4217 / pass 0.167 on 2970110 proxy)",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/researcher_r04_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json (FA 0.2279 / pass 0 on preferred 2970132)",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/researcher_r05_summary.json",
+    "docs/canvases/_data/crosschecks-2970132-g1.json (exists; ≥3 checks; R04 wrongly looked for *-holdout.json)",
+    "docs/rofl-research/autoresearch/fight_outcome/audits/S0_2970110-g1_c*.json + audits/2970132-g1_check*.json",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md (digestCleanGate still false)",
+    "docs/rofl-research/autoresearch/packet_decode/PACKET_DECODE_GATE.json (packetDecodeGate true)",
+    "docs/rofl-research/autoresearch/product_ready/reviews/cycle6/CYCLE6_FINAL.json (calculatorReadyGate Path1 prereq)"
+  ],
+  "failures": [
+    "B_S0_threshold: product cusum FA 0.4217 << 0.95 and passRate 0.167 << 0.95 on 2970110 proxy (BRIEF/STATUS baseline).",
+    "B_S0_preferred_host: R05 on 2970132 Path1 product cusum FA 0.2279 / passRate 0 — all 6 windows fail windowOk (lethal±0.75 and/or MAE caps).",
+    "E_S0_suite: R04 proxied S0 because it expected missing crosschecks; preferred-host file docs/canvases/_data/crosschecks-2970132-g1.json already present — gate still fails after R05 scored it.",
+    "D_digestCleanGate: DIGEST.md marks false (second host 2970110 PE/combat honesty gap; V2 affirm open) — co-requisite unmet.",
+    "F_holdout: S1 also <<0.95; no fightOutcomeGate on S0 alone even if S0 cleared.",
+    "I_majority_e2e: Cycle1 mid-vote; parent e2e not run for fightOutcomeGate flip."
+  ],
+  "blocker": "S0 product fightAgreement 0.4217 (2970110 proxy) / 0.2279 (2970132 preferred) << 0.95; passRate 0.167 / 0 — check2 path MAE + check3 lethal/early failures dominate.",
+  "sharper_blocker": "Preferred S0 host 2970132 now measurable (crosschecks present) and worse than proxy; lift lethalHit+earlyBand under product non-drop cusum — do not ship research-drop 0.6018 as product.",
+  "notes": "V5 S0 audit: gate false on concrete §B failure. Proxy baseline FA 0.4217/pass 0.167 (1/6 windowOk: c1_full only). Preferred Path1 host R05 FA 0.2279/pass 0 with audits under fight_outcome/audits/. Research-drop 0.6018 disclosed not product. A/C/H ok on evidence (clean-room + Path1 calculatorReady + packetDecodeGate; unfreeze authorized with no FA KEEP; no zero-dmg gate gaming observed). digestCleanGate false co-gate. fightAgreement ≠ win odds.",
+  "one_line_vote": "V5: S0 FA 0.4217 (proxy) / 0.2279 (2970132) << 0.95 → fightOutcomeGate=false; digestCleanGate=false (conf 0.97)."
+}

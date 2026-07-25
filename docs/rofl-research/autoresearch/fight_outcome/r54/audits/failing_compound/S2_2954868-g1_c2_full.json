@@ -1,0 +1,37 @@
+{
+  "schema": "fightAgreement-failing-audit-v1",
+  "t": "2026-07-24T17:12:20Z",
+  "researcher": "r54",
+  "suite": "S2",
+  "match": "2954868-g1",
+  "windowId": "S2_2954868-g1_c2_full",
+  "windowOk": false,
+  "windowScore": 0.514286,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": true,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 1,
+    "actionF1": 0.42857142857142855,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 145.55682159360794,
+    "maeHpFull": 55.77369460695952,
+    "maeHp": 55.77369460695952,
+    "pathCap": 130,
+    "lethalErrorSec": null,
+    "segment": "full",
+    "matchup": "Cassiopeia\u2192Ambessa"
+  },
+  "failReasons": [
+    "lethal"
+  ],
+  "sharperBlocker": "lethal",
+  "pathOverageHp": null,
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "FA \u2260 odds; audit only",
+  "stack": "R19\u00b7R30\u00b7R31\u00b7R33\u00b7R35\u00b7R36\u00b7R39\u00b7R42\u00b7R43\u00b7R44"
+}

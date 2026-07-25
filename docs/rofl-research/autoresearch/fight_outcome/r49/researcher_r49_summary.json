@@ -1,0 +1,101 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r49",
+  "slug": "s1-passrate-vayne-cass",
+  "wave": 4,
+  "model": "Auto",
+  "utc": "2026-07-24T17:20:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r49",
+  "branch": "adv/fo-r49-s1-passrate-vayne-cass",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "mandate": "S1 pass 0.5→↑ Vayne burst miss + Cassio coverage without S0 regress; FA≠odds",
+  "owns": "S1 Vayne→Ambessa miss-kill / passRate; Cassio coverage honesty",
+  "does_not_own": [
+    "c2_burst pathMae (R40/R48)",
+    "Anivia c3_burst pathMae",
+    "pathFollow/pathClamp product",
+    "calibrated win odds"
+  ],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "is": "Meraki Vayne W as CD-8 cast under-counts Silver Bolts on-hit true %maxHP; burst marks=1 Q leaves ~38 HP",
+    "not": "missing pins/ranks (hp/combat/ranks known); Cassio already windowOk",
+    "cassio_coverage": "truth 18 / model 5; denser gap or poison-amp overkills — no safe coverage KEEP"
+  },
+  "n_experiments": 12,
+  "baselines": {
+    "S0_FA": 0.930409557022156,
+    "S0_pass": 0.6666666666666666,
+    "S1_FA": 0.7627693321171581,
+    "S1_pass": 0.5,
+    "authoritative_STATUS_S0_FA": 0.9304,
+    "authoritative_STATUS_S1_FA": 0.7628,
+    "authoritative_STATUS_S1_pass": 0.5
+  },
+  "best_candidate": {
+    "experiment": "e1",
+    "knobs": {
+      "vayneCore": "Q tumble + 1× Silver Bolts fold via Q; W utility; E Condemn; R stub"
+    },
+    "S0_FA": 0.930409557022156,
+    "S0_pass": 0.6666666666666666,
+    "S1_FA": 0.8322332015810275,
+    "S1_pass": 0.6666666666666666,
+    "S0_FA_delta": 0.0,
+    "S1_FA_delta": 0.0694638694638694,
+    "passRate_delta": 0.16666666666666663
+  },
+  "product_KEEP": {
+    "keep": true,
+    "reason": "S1 pass 0.500→0.667 and FA 0.7628→0.8322 via Vayne CORE Silver Bolts fold; S0 FA/pass flat (no regress); no invent; Cassio coverage unresolved",
+    "files": ["src/data/champions.ts"],
+    "defaults": {
+      "VayneCORE": true,
+      "silverBoltsFoldIntoQ": true,
+      "condemnBoltFold": false,
+      "cassiopeiaCORE": false
+    },
+    "note": "S0 FA flat accepted as no-regress (R43 precedent). FA ≠ odds."
+  },
+  "FA_deltas": {
+    "S0_e0": 0.930409557022156,
+    "S0_e1": 0.930409557022156,
+    "S0_delta": 0.0,
+    "S1_e0": 0.7627693321171581,
+    "S1_e1": 0.8322332015810275,
+    "S1_delta": 0.0694638694638694,
+    "pass_e0": 0.5,
+    "pass_e1": 0.6666666666666666,
+    "pass_delta": 0.16666666666666663,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "rejected": {
+    "cassioCORE_poisonAmp175": "Cassio |leth|≈2.77 early; S1 pass↓",
+    "repin_each_mark": "S0 Galio miss-kill; S1 collapse",
+    "condemn_silver_bolt_fold": "c1 full overkill leth −1.87; pass→0.5",
+    "aa_at_mark": "S0+S1 overkill",
+    "gap025_densOff": "no coverage lift without leth risk"
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "FA≠odds; S1 pass↑ via c1_full windowOk; c1_burst still lethalOk false at leth=0.75027; Cassio F1 flat; Anivia c3_burst pathMae 198 remains",
+  "blocker_residual": "c1_burst leth 0.75027 (tol 0.75); Anivia c3_burst maeHp 198; Cassio actionCoverage ~0.43–0.50",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r49/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r49/NOTES.md",
+    "results": "docs/rofl-research/autoresearch/fight_outcome/r49/experiments/results.jsonl",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r49/leaderboard.json",
+    "e0_S1": "docs/rofl-research/autoresearch/fight_outcome/r49/experiments/e0_s1.json",
+    "e1_S1": "docs/rofl-research/autoresearch/fight_outcome/r49/experiments/e1_s1.json",
+    "e1b_S1": "docs/rofl-research/autoresearch/fight_outcome/r49/experiments/e1b_s1.json",
+    "fa_e1_S1": "docs/rofl-research/autoresearch/fight_outcome/r49/experiments/fa_e1_S1.json",
+    "fa_e1_S0": "docs/rofl-research/autoresearch/fight_outcome/r49/experiments/fa_e1_S0.json",
+    "parent_mirror": "/Users/river/Projects/lol-strength-analysis/docs/rofl-research/autoresearch/fight_outcome/r49"
+  }
+}

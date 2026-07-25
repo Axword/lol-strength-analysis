@@ -1,0 +1,69 @@
+{
+  "schema": "fightOutcome-final-v1",
+  "utc": "2026-07-24T15:30:30Z",
+  "stop_reason": "cursor_limits_exhausted",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "limits_exhausted": true,
+  "cursor_limit_hits": 20,
+  "cursor_limit_consecutive": 20,
+  "backoff_chain_exhausted": true,
+  "backoff_schedule_sec": [60, 120, 300, 600],
+  "model_required": "cursor-grok-4.5-high-fast",
+  "model_switched": false,
+  "auto_refused": true,
+  "error_signature": "You're out of usage. Switch to Auto, or ask your admin to increase your limit to continue.",
+  "calculatorReadyGate": true,
+  "calculatorReadyHost": "2970132-g1",
+  "calculatorReadyPolicy": "living_post_seed_v1",
+  "unfreeze_0_9683": true,
+  "baselineComposite": 0.9683,
+  "best_composite_new": null,
+  "best_fightAgreement": null,
+  "best_fightPassRate": null,
+  "suites": {
+    "S0": null,
+    "S1": null,
+    "S2": null
+  },
+  "reviewer_votes": null,
+  "parent_e2e": {
+    "step0_validate_product": true,
+    "step0_kill_window": true,
+    "digest_smoke": "partial_parent_DIGEST_md",
+    "s0_s1_fightAgreement": false,
+    "calculator_send_smoke": false
+  },
+  "partial_wins": [
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md (2970132 Path1 hashes + validate OK)",
+    "10/10 rooms room_ready.json + HYPOTHESES (orchestrator_seed)",
+    "r01–r08 git worktrees preseeded under ~/.codex/worktrees/rofl-fo-rNN",
+    "f1–f10 room worktrees seeded",
+    "~/.codex/worktrees/rofl-fo-r04/scripts/fight_agreement_suite.ts scaffold (not scored)",
+    "branch feat/fight-outcome-95-10x30x15 + progress root"
+  ],
+  "blocker": "Cursor API usage exhausted for cursor-grok-4.5-high-fast — every Task/subagent failed immediately; Phase A/B/C could not execute agent work",
+  "sharper_blocker": "No fightAgreement numbers possible without Task researchers on required model; raise limit then resume Phase B from seeded rooms (skip re-litigating Step 0 / Cycle6)",
+  "next_mega_cycle": [
+    "1. Raise Cursor usage for cursor-grok-4.5-high-fast (do not switch to Auto)",
+    "2. New Agents Window chat; paste GOAL kickoff OR say RESUME FIGHT OUTCOME",
+    "3. Parent: confirm rooms/*/room_ready.json still 10/10",
+    "4. Launch R01–R08 (≤8) on seeded worktrees; round-robin",
+    "5. Continue until fightOutcomeGate or new limit wall"
+  ],
+  "heartbeat": "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+  "status": "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+  "digest_md": "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+  "failed_persistence_probes": {
+    "A": "0ac5b491-b4bd-4755-abcf-e1e3c170071a",
+    "B": "863644e2-2636-4919-9da8-6f9e571078c3",
+    "C": "40707bac-5a3b-4143-ac53-829de63bb9cd",
+    "D": "8f5ce87e-921e-4987-9147-1d136986e361",
+    "E": "09206b1c-9640-410d-9335-44d77d8eb7f6"
+  },
+  "honesty": {
+    "pBlue_pRed": "model edge only — never odds %",
+    "fightAgreement": "not computed this run — not win probability",
+    "calculatorReady_vs_fight": "calculatorReadyGate true does NOT imply fight prediction"
+  }
+}

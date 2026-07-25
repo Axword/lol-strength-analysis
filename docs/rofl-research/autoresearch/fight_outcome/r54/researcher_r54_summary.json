@@ -1,0 +1,105 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r54",
+  "slug": "compound-audit-pack",
+  "wave": 4,
+  "model": "Auto",
+  "utc": "2026-07-24T17:13:03Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r54",
+  "branch": "adv/fo-r54-compound-audit-pack",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "mandate": "failing-window audit package + sharper blockers for FO\u226a0.95",
+  "owns": "compound failing-window audits + sharper blocker ranking (docs only)",
+  "does_not_own": [
+    "c2 pathMae product fix (R40 exhausted)",
+    "Vayne S1 leth tune (holdout)",
+    "pathFollow/pathClamp product",
+    "calibrated win odds",
+    "fightOutcomeGate claim"
+  ],
+  "diagnostics_only": [
+    "false_all_in",
+    "early_poisoned"
+  ],
+  "stack": [
+    "R19 idleFollow",
+    "R30 aaAtEachMark false + R-pulse0",
+    "R31 preBurstLead 2.5",
+    "R33 zeroDeadActualHp",
+    "R35 opener 0.5/3",
+    "R36 openerAlly local_skill_share",
+    "R39 W-share 0.18",
+    "R42 delay 0.3",
+    "R43 Anivia Q-fold7",
+    "R44 truth-domain"
+  ],
+  "n_experiments": 14,
+  "baselines_remeasure": {
+    "S0_FA": 0.930409557022156,
+    "S0_pass": 0.6666666666666666,
+    "S1_FA": 0.7627693321171581,
+    "S1_pass": 0.5,
+    "S2_FA": 0.5861062942926697,
+    "S2_pass": 0.3333333333333333,
+    "S2_match": "2954868-g1",
+    "matches_STATUS_S0_S1": true,
+    "S2_vs_STATUS_R45": {
+      "STATUS_FA": 0.4075,
+      "STATUS_pass": 0.0,
+      "r54_FA": 0.5861062942926697,
+      "r54_pass": 0.3333333333333333,
+      "note": "Camille\u2192Vayne leth fixed by post-R39/R42 stack; Cassio miss + LeeSin earlyPoisoned remain; still \u226a0.90"
+    }
+  },
+  "failing_windows": {
+    "S0": [
+      "c2_burst pathMae 111.6",
+      "c3_full pathMae 159.3"
+    ],
+    "S1": [
+      "c1_full leth 2.05",
+      "c1_burst miss-kill",
+      "c3_burst pathMae 198.4"
+    ],
+    "S2": [
+      "c2 Cassio miss-kill",
+      "c3 LeeSin earlyPoisoned"
+    ]
+  },
+  "product_KEEP": {
+    "keep": false,
+    "reason": "Audit pack only \u2014 no product knob/kit change that lifts S0 FA with S1 flat+. Remesaure confirms STATUS; ablations show pathMae/leth residuals independent of R33/R39/R42/R44 undos.",
+    "files": []
+  },
+  "verdict": "NO KEEP",
+  "sharper_blockers": [
+    "S0_c2_burst_pathMae",
+    "S0_c3_full_pathMae",
+    "S1_c1_Vayne_leth",
+    "S1_c3_burst_Anivia_pathMae",
+    "S2_Cassio_misskill",
+    "S2_LeeSin_earlyPoisoned",
+    "actionF1_secondary_ceiling",
+    "passRate_two_plus_flips"
+  ],
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement = kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue%. actionCoverage F1 \u2260 gate. FA \u2260 odds.",
+  "artifacts": {
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r54/NOTES.md",
+    "sharper_blockers": "docs/rofl-research/autoresearch/fight_outcome/r54/sharper_blockers.json",
+    "failing_audits": "docs/rofl-research/autoresearch/fight_outcome/r54/audits/failing_compound/",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r54/experiments/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r54/experiments/fight_agreement_S1.json",
+    "fa_s2": "docs/rofl-research/autoresearch/fight_outcome/r54/experiments/fight_agreement_S2.json",
+    "results": "docs/rofl-research/autoresearch/fight_outcome/r54/experiments/results.jsonl",
+    "e04": "docs/rofl-research/autoresearch/fight_outcome/r54/experiments/e04_fa_gap_decomp.json",
+    "e05": "docs/rofl-research/autoresearch/fight_outcome/r54/experiments/e05_failing_window_catalog.json"
+  },
+  "next": "Orchestrator: absorb sharper_blockers.json; assign wave4 owners to pathMae (+21.6/+29.3) and S1 Vayne leth \u2014 not actionF1, not density, not pathFollow"
+}

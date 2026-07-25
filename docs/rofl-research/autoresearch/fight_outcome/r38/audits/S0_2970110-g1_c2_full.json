@@ -1,0 +1,42 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:26:03.636Z",
+  "suite": "S0",
+  "match": "2970110-g1",
+  "windowId": "S0_2970110-g1_c2_full",
+  "windowOk": false,
+  "windowScore": 0.3142857142857143,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 0,
+    "actionF1": 0.42857142857142855,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 174.2,
+    "maeHpFull": 323.51003315628475,
+    "maeHp": 323.51003315628475,
+    "pathCap": 130,
+    "lethalErrorSec": -1.4750000000000014,
+    "segment": "full",
+    "matchup": "Syndra→Camille"
+  },
+  "failReasons": [
+    "lethal",
+    "pathMae"
+  ],
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e0.json",
+  "sourceFightAgreement": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e0.fightAgreement.json",
+  "markSelection": "cusum_engage_then_skills",
+  "promotedBy": "r38",
+  "promotedUtc": "2026-07-24T16:26:03.636Z",
+  "stableIdLaw": "r27",
+  "authoritativeLaw": "r12_e0_2970110_measured",
+  "replacedMislabeledProxy": true,
+  "note": "Prior S0_2970110-* audits wrongly carried 2970132 Galio/Olaf matchups from r05 proxy; replaced with r12 measured 2970110 windows.",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

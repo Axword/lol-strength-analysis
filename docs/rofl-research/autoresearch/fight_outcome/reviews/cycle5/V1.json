@@ -1,0 +1,46 @@
+{
+  "reviewer": "V1",
+  "role": "clean-room + packetDecodeGate + calculatorReady honesty",
+  "cycle": 5,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:20:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "A AFFIRM (specialty): No vendored League client / unlicensed decrypt in fight_outcome path; packetDecodeGate remains research wire; calculatorReady not conflated with FO.",
+    "A AFFIRM: Path1 2970132 personally re-run this cycle: validate --product living_post_seed_v1 --require-calculator-ready exit 0; livingOkSlots=14725; livingMissSlots=0; hpHoldAcrossRespawn=true.",
+    "A AFFIRM: Digests fingerprints personally sha256+bytes match DIGEST Path1 events (114456779 / 823aa35f…) + timeline (9064216 / fb542736…).",
+    "A AFFIRM: FA / pBlue / pRed stay model-edge / kill-window agreement — never odds % (BRIEF + R30 confidence + GOAL §B).",
+    "B FAIL: S0 Path1 product FA 0.5896947676936598 / pass 0.333 (R30 KEEP e8; STATUS best) ≪ 0.95/0.95; 2/6 windowOk.",
+    "B note: R24 research Galio FA 0.503 — NO product KEEP (S1 regress); product Path1 remains R30 ≈0.590.",
+    "C AFFIRM: unfreeze authorized; best.json composite 0.9683 preserved; unfrozenFromComposite=0.9683; fightAgreement_S0/S1 fields recorded post-R30; no re-freeze.",
+    "D AFFIRM → digestCleanGate=true (C3/C4 reaffirm): GOAL §D.1–7 personally re-checked for ≥1 match (2970132 Path1). No concrete §D failure.",
+    "E AFFIRM: S0 Path1 + S1 current-law suites wired/measured (R30 fa_S0/fa_S1 e8).",
+    "F FAIL: S1 FA 0.5619564223174064 / pass 0.333 ≪ 0.95; cannot set FO on S0 alone.",
+    "G AFFIRM: Criterion G proven (fo:send-smoke 8/8 + smoke:calc-parity 11/11 after R19/R30 smoke parity fixes) — orthogonal to FA.",
+    "H AFFIRM: R24 correctly NO KEEP; R30 KEEP only after S0↑ and S1 not regress; R14 zero-dmg echo still REJECTED; FA≠odds.",
+    "I FAIL: No ≥11/15 FO true possible while B fails; parent DIGEST+S0/S1+Send e2e flip not warranted."
+  ],
+  "failures": [
+    "B: S0 Path1 product FA ≈0.590 / pass ≈0.333 ≪ 0.95 — concrete metric miss (Galio c1 miss-kill; c2 pathMae; c3 earlyPoisoned).",
+    "F: S1 holdout FA ≈0.562 / pass ≈0.333 unmet.",
+    "I: Majority + parent e2e not satisfied for FO."
+  ],
+  "notes": "V1 specialty A holds. C5 FINAL wave 30/30: G proven; digestCleanGate reaffirmed true after personal Path1 validate+fingerprint reproduce. fightOutcomeGate false on concrete B+F (+I). Authoritative product FA is R30 ≈0.590 (not R24 research 0.503; not C4 0.4107). FA≪0.95 ≠ win odds.",
+  "one_line_vote": "V1: fightOutcomeGate=false (S0 FA≈0.590≪0.95); digestCleanGate=true (§D Path1 validate+hashes reaffirm); G=true."
+}

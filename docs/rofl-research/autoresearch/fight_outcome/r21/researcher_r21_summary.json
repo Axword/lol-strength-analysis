@@ -1,0 +1,89 @@
+{
+  "researcher": "r21",
+  "slug": "path1-falsekill",
+  "model": "Auto",
+  "utc": "2026-07-24T16:10:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r21",
+  "branch": "adv/fo-r21-path1-falsekill",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "unfreeze_0_9683": true,
+  "product_cusum": {
+    "markSelection": "cusum_engage_then_skills",
+    "markMinGapSec": 1.0,
+    "markDensityWindowSec": 1.2,
+    "markDenseMaxPerWindow": 1
+  },
+  "n_experiments": 20,
+  "root_cause": "killWindowPulseDamage applies full 0.4s continuous simulateMatchup DPS per skill mark (~832 HP Olaf smoke) vs kit slot damage (~224 Q); aaAtEachMark double-counts. Causes R12 survivor false-kill (actualEndHp=210) and Path1 c3 early-lethal (~18s).",
+  "engine_overlay_touched": true,
+  "engine_changes": [
+    "src/engine/killWindowOverlay.ts: pulseMode slot_ability|continuous, killWindowSlotAbilityDamage, killerPulseShare, idleFollowActual (R19 coord)",
+    "src/engine/types.ts: KillWindowInputOptions pulseMode/killerPulseShare/idleFollowActual",
+    "scripts/crosscheck_action_aligned.ts: --pulse-mode --killer-pulse-share --idle-follow-actual"
+  ],
+  "product_defaults_unchanged": true,
+  "product_default_still": [
+    "cusum_engage_then_skills",
+    "pulseMode=continuous",
+    "idleFollowActual=false",
+    "aaAtEachMark=true",
+    "finishAaAfterLastMark=true"
+  ],
+  "false_kill": {
+    "definition": "survivor window (actualEndHp>40) AND killedInModel AND endHpAbsError>40",
+    "host": "2970110-g1 check3-full (R12 case)",
+    "baseline_e0b": {
+      "falseKill": true,
+      "actualEndHp": 210,
+      "modelEndHp": 0,
+      "lethalErrorSec": -12.791,
+      "falseKillRate_survivorWindows": 0.5,
+      "survivorWindows": 2
+    },
+    "best_fk_stop_e14": {
+      "recipe": "pulseMode=slot_ability + idleFollowActual + no-aa-at-mark + no-finish-aa + killerPulseShare=0.55",
+      "falseKill": false,
+      "actualEndHp": 210,
+      "modelEndHp": 813.8,
+      "falseKillRate_survivorWindows": 0.0,
+      "hardFails": [],
+      "cost": "starves c1/c2 true lethals; S1 FA regress"
+    }
+  },
+  "path1_2970132_FA": {
+    "baseline_e0_suite": 0.2945984235430667,
+    "baseline_e0_honest": 0.2945984235430667,
+    "status_ref_0_228": "R05/STATUS reported 0.228; R19+R21 product cusum e0 suite FA=0.2946 — disclose scorer/F1 path, do not claim lift vs 0.228 without re-score parity",
+    "best_research_e8_suite": 0.5561,
+    "best_research_e8_honest": 0.4228,
+    "note": "Path1 check3 is true kill (actualEndHp=0); failure is early-lethal/overkill not survivor false-kill"
+  },
+  "s1_holdout": {
+    "s1_e0_FA": 0.4563,
+    "s1_e7_FA": 0.3433,
+    "s1_e8_FA": 0.3512,
+    "s1_e14_FA": 0.2870,
+    "improved": false
+  },
+  "coordinate": {
+    "r18_lethal": "FK-stop recipes starve true lethals — R18 must restore kills without re-FK",
+    "r19_early": "idleFollowActual ported as opt-in (default false); R19 owns early-band productization",
+    "r13_r14_actionF1": "secondary only after echo reject; used harness actionCoverage as-is"
+  },
+  "keeps": [],
+  "discards": ["e1", "e2", "e3", "e4", "e5", "e7", "e8", "e9", "e10", "e11", "e12", "e13", "e14", "e15", "e16", "e17", "e18", "e19", "e20"],
+  "verdict": "NO_KEEP",
+  "reason_no_keep": "No product KEEP without S1 improve — all FK/Path1 recipes regress S1 FA vs continuous 0.4563. FK stop (e14) proven research-only.",
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement and falseKillRate are kill-window suite metrics — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r21/results.jsonl",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r21/leaderboard.json",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r21/NOTES.md",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r21/HYPOTHESES_PICKED.md",
+    "fk_audit_baseline": "docs/rofl-research/autoresearch/fight_outcome/r21/audits/R21_baseline_2970110-g1_c3-full.json",
+    "fk_audit_stop": "docs/rofl-research/autoresearch/fight_outcome/r21/audits/R21_fk_stop_2970110-g1_c3-full.json"
+  },
+  "next": "R18: restore lethals under slot_ability without re-FK; R19: product idleFollow if early KEEP; only then re-measure S1 for product KEEP"
+}

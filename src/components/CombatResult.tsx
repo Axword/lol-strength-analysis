@@ -4,6 +4,7 @@ import type {
   SideResult,
   TimedCombatEvent,
 } from '../engine/types'
+import { pickVisibleTrustReasons } from '../engine/modelTrust'
 import { championIconUrl } from '../data/champions'
 import './CombatResult.css'
 
@@ -354,6 +355,9 @@ export function CombatResult({ result }: { result: MatchupResult }) {
   const redScore = Math.round(pRed * 100)
   const trust = result.modelTrust
   const trustBadge = trust?.badge ?? 'Experimental · uncalibrated'
+  const visibleReasons = trust?.reasons?.length
+    ? pickVisibleTrustReasons(trust.reasons)
+    : ['calibrated:false']
 
   const headline = draw
     ? 'Even model score'
@@ -383,6 +387,17 @@ export function CombatResult({ result }: { result: MatchupResult }) {
           >
             {trustBadge}
           </span>
+          <ul
+            className="trust-reasons"
+            data-testid="trust-reasons"
+            aria-label="Model trust reasons"
+          >
+            {visibleReasons.map((reason) => (
+              <li key={reason} className="trust-reason">
+                {reason}
+              </li>
+            ))}
+          </ul>
         </div>
         <p className="verdict-sub">{subline}</p>
 
@@ -535,7 +550,7 @@ function BandCell({
 }) {
   const score =
     pBlue != null
-      ? `score ${Math.round(pBlue * 100)}/${Math.round((1 - pBlue) * 100)}`
+      ? `model edge ${Math.round(pBlue * 100)}/${Math.round((1 - pBlue) * 100)}`
       : null
   return (
     <div className={`band-cell winner-${winner} ${active ? 'active' : ''}`}>

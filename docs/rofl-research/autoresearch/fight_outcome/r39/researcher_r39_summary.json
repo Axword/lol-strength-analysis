@@ -1,0 +1,81 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r39",
+  "slug": "passrate-failing-windows",
+  "wave": 3,
+  "model": "Auto",
+  "utc": "2026-07-24T17:00:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r39",
+  "branch": "adv/fo-r39-passrate-failing-windows",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "mandate": "passRate lift via failing-window audits (S0 2/6→↑; no S1 regress)",
+  "move_agent_to_root": "blocked_for_subagent; worked via absolute worktree paths",
+  "hypothesesAutoPicked": [
+    {"id": "H0", "title": "Remeasure parent-stack baseline", "result": "MEASURED_S0_FA_0.7740"},
+    {"id": "H1", "title": "CLI pulse/finish/ally ablations", "result": "REJECT_flat_pathMae"},
+    {"id": "H2", "title": "Tornado soften 0.12", "result": "REJECT_leth_unchanged"},
+    {"id": "H3", "title": "Drop preEngageOpener", "result": "REJECT_S1_regress"},
+    {"id": "H4", "title": "Global openerShare sweep", "result": "REJECT_S1_regress"},
+    {"id": "H5", "title": "W-slot openerShare 0.18", "result": "KEEP"}
+  ],
+  "n_experiments": 36,
+  "verdict": "KEEP",
+  "product_KEEP": {
+    "keep": true,
+    "reason": "S0 FA 0.7740→0.8416 (+0.0676); pass 0.333→0.500; S1 FA flat 0.5810; c1_full windowOk; W mark retained; no invent; no pathFollow",
+    "preEngageOpenerShare": 0.18,
+    "preEngageOpenerShareSlots": [2],
+    "preEngageOpenerSec": 0.5,
+    "preEngageOpenerMaxPostMarks": 3,
+    "files": [
+      "src/engine/killWindowOverlay.ts",
+      "src/engine/killWindowProduct.ts",
+      "src/engine/types.ts",
+      "scripts/crosscheck_action_aligned.ts"
+    ]
+  },
+  "FA_deltas": {
+    "authoritative_parent_S0_FA": 0.7766342033756181,
+    "authoritative_parent_S1_FA": 0.5810463694073534,
+    "e0_worktree_S0_FA": 0.7740028158506135,
+    "e0_worktree_S0_pass": 0.3333333333333333,
+    "KEEP_S0_FA": 0.8416364088740078,
+    "KEEP_S0_pass": 0.5,
+    "KEEP_S1_FA": 0.5810463694073534,
+    "KEEP_S1_pass": 0.3333333333333333,
+    "S0_delta_vs_e0": 0.0676335930233943,
+    "S0_delta_vs_auth": 0.0650022054983897,
+    "S1_delta": 0.0,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds / pBlue%"
+  },
+  "failing_windows_audit": {
+    "before": [
+      "S0_2970132-g1_c1_full",
+      "S0_2970132-g1_c1_burst",
+      "S0_2970132-g1_c2_burst",
+      "S0_2970132-g1_c3_full"
+    ],
+    "after_KEEP_still_failing": [
+      "S0_2970132-g1_c1_burst",
+      "S0_2970132-g1_c2_burst",
+      "S0_2970132-g1_c3_full"
+    ],
+    "fixed": ["S0_2970132-g1_c1_full"]
+  },
+  "sharper_blocker": "c2_burst pathMae 111.6>90 (kit-dump; pathFollow S1-unsafe) + c1_burst earlyMae 255.5 from pre-burst engage pile + c3_full earlyMae 89.5; passRate still 0.500≪0.95",
+  "rejected": [
+    "pathFollow/pathClamp product",
+    "openerSec=0 (S1 regress)",
+    "global openerShare (S1 Vayne Q regress)",
+    "pre-burst share attenuate",
+    "finishAa/pulse softens (kit-dump no-op)",
+    "maxKillerMarks thinning"
+  ],
+  "next": "Orchestrator PARENT_MERGE W-slot openerShare defaults; residual rooms: c2 pathMae / c1_burst remap / c3 early",
+  "confidence": "fightAgreement ≥0.95 means suite agreement under GOAL §B — NOT win odds"
+}

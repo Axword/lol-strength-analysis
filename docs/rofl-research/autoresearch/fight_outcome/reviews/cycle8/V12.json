@@ -1,0 +1,71 @@
+{
+  "reviewer": "V12",
+  "cycle": 8,
+  "role": "Anti-odds / wording (agreement ≠ win %)",
+  "utc": "2026-07-24T17:06:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "criteria": {
+    "A_anti_odds_wording": true,
+    "A_full": "partial — pBlue/pRed + FA + actionCoverage labeling honest; other A limbs deferred to V1/V14",
+    "B_metric_thresholds": false,
+    "C_unfreeze_disclosure": true,
+    "D_digestCleanGate": true,
+    "E_suites_wired": true,
+    "F_holdout": false,
+    "G_calculator_path": true,
+    "H_anti_gaming": true,
+    "I_majority_e2e": false
+  },
+  "anti_odds": {
+    "fightAgreement_means": "mean(windowScore) on kill-window suite (GOAL §B)",
+    "fightAgreement_does_not_mean": "calibrated win probability / odds % / bookmaker posterior / map win %",
+    "actionCoverage_does_not_mean": "win odds — secondary 0.15 term only (R14/R44)",
+    "pBlue_pRed": "heuristic model edge only",
+    "calculatorReady_does_not_mean": "fights match or win odds",
+    "criterionG_does_not_mean": "fightAgreement≥0.95 or win odds — G is Send↔harness path honesty only",
+    "S0_FA_0_9304_does_not_mean": "≈93.04% win odds — suite agreement only; still ≪0.95 bars",
+    "S1_FA_0_7628_does_not_mean": "≈76% win odds — holdout suite agreement; unmet",
+    "S2_FA_0_4075_does_not_mean": "≈41% win odds — transfer suite agreement; unmet",
+    "R43_Anivia_KEEP_does_not_mean": "calibrated win odds — S1 suite-agreement lift only",
+    "wording_scan": {
+      "suspect_files_claiming_odds_without_negation": 0,
+      "researcher_confidence_disclaimers": [
+        "r43 confidence: fightAgreement NOT win probability / odds %",
+        "fight_agreement_S0/S1_stack_r43.json disclosures: FA ≠ win probability / odds %",
+        "STATUS/HEARTBEAT/BRIEF/DIGEST label FA as NOT win odds; pBlue/pRed model edge",
+        "R29 anti-odds KEEP retained; wave4 MANDATEs state FA≠odds"
+      ],
+      "product_ui": {
+        "Send_chip": "model edge only · not odds %",
+        "CombatResult_subline": "not a win probability",
+        "modelTrust_calibrated": false,
+        "Faq_model_edge_not_odds": true
+      },
+      "r17_send_smoke_noOddsCopy": true,
+      "r29_anti_odds_audit": true
+    }
+  },
+  "evidence": [
+    "BRIEF/STATUS/HEARTBEAT: S0 FA 0.9304 · S1 0.7628 · S2 0.4075 · pass ≪0.95 · FA ≠ odds — wording consistent.",
+    "r43 FA suite JSONs disclose: fightAgreement = mean(windowScore); NOT win probability / odds %; confidence field repeats.",
+    "R43 NOTES + researcher_r43_summary: FA ≠ odds / NOT pBlue-pRed %; Anivia CORE KEEP is suite-agreement lift only.",
+    "DIGEST: pBlue/pRed model edge only — never odds %; Path1 calculatorReady ≠ FO gate.",
+    "Criterion G proven does not unlock FO: fo:send-smoke 8/8 is path honesty, not FA≥0.95.",
+    "digestCleanGate reaffirm true (C3–C7 Path1 DIGEST) — orthogonal to win-odds wording.",
+    "No invent of odds language from FA 0.9304 — refuse fightOutcomeGate on concrete B+F."
+  ],
+  "failures": [
+    "B: S0 FA 0.9304 ≪ 0.95 (suite agreement, not odds) — fightOutcomeGate false",
+    "F: S1 FA 0.7628 holdout unmet",
+    "I: majority FO true impossible while B/F objective fails"
+  ],
+  "notes": "Anti-odds specialty HOLDS: post-R43 FA 0.9304 must not be read as ~93% win. digestCleanGate reaffirm. CONTINUE_WAVE4 for pathMae/passRate/S1/S2 — not odds calibration.",
+  "one_liner": "V12: fightOutcomeGate=false digestCleanGate=true (conf 0.98) — FA 0.9304≠odds; DC reaffirm; FO false; CONTINUE_WAVE4",
+  "blocker": "S0 FA 0.9304≪0.95 suite agreement (not odds); passRate 0.667; S1 0.7628"
+}

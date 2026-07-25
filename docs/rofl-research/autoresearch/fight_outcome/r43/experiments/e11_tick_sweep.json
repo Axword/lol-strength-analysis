@@ -1,0 +1,111 @@
+{
+  "results": [
+    {
+      "ticks": 7,
+      "full": {
+        "kill": true,
+        "leth": 0.125,
+        "mae": 71.4,
+        "early": 0,
+        "end": 0
+      },
+      "burst": {
+        "kill": true,
+        "leth": 0.125,
+        "mae": 198.4,
+        "early": 266.9,
+        "end": 0
+      }
+    },
+    {
+      "ticks": 8,
+      "full": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 70.3,
+        "early": 0,
+        "end": 0
+      },
+      "burst": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 195.3,
+        "early": 278.8,
+        "end": 0
+      }
+    },
+    {
+      "ticks": 9,
+      "full": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 69.8,
+        "early": 0,
+        "end": 0
+      },
+      "burst": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 193.8,
+        "early": 290.6,
+        "end": 0
+      }
+    },
+    {
+      "ticks": 10,
+      "full": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 69.8,
+        "early": 0,
+        "end": 0
+      },
+      "burst": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 193.8,
+        "early": 302.5,
+        "end": 0
+      }
+    },
+    {
+      "ticks": 11,
+      "full": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 69.8,
+        "early": 0,
+        "end": 0
+      },
+      "burst": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 193.8,
+        "early": 314.4,
+        "end": 0
+      }
+    },
+    {
+      "ticks": 12,
+      "full": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 69.8,
+        "early": 0,
+        "end": 0
+      },
+      "burst": {
+        "kill": true,
+        "leth": -1.035,
+        "mae": 193.8,
+        "early": 326.3,
+        "end": 0
+      }
+    }
+  ],
+  "best_full": [
+    0.125,
+    7,
+    0.125
+  ]
+}

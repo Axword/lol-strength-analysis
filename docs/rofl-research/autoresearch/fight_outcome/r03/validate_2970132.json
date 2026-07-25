@@ -1,0 +1,38 @@
+{
+  "utc": "2026-07-24T15:39:52Z",
+  "researcher": "R03",
+  "match": "2970132-g1",
+  "command": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+  "cwd": "/Users/river/.codex/worktrees/rofl-fo-r03",
+  "exit": 0,
+  "ok": true,
+  "productPublication": {
+    "ok": true,
+    "calculatorReady": true,
+    "calculatorReadyPolicy": "living_post_seed_v1",
+    "strictAllFrameCalculatorReady": false,
+    "livingPostSeedCalculatorReady": true,
+    "hpTrustedParticipantRows": 16301,
+    "calculatorReadyMetrics": {
+      "heroesWithPeHpSeed": 10,
+      "heroesWithPeCombatSeed": 10,
+      "ranksDensity": 1.0,
+      "livingRequiredSlots": 14725,
+      "livingOkSlots": 14725,
+      "livingMissSlots": 0,
+      "preSeedSlots": 1577,
+      "deadSlots": 658,
+      "hpHoldAcrossRespawn": true
+    }
+  },
+  "fingerprints": {
+    "events.g1.path1-final.rfc461.jsonl": {
+      "bytes": 114456779,
+      "sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8"
+    },
+    "timeline.g1.path1-final.json": {
+      "bytes": 9064216,
+      "sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "fo-r36-room-best-v1",
+  "t": "2026-07-24T16:40:00Z",
+  "hypothesis": "R36 KEEP local_skill_share allyMin5 killerMin1 full-window gate",
+  "keep": true,
+  "S0_FA": 0.7217032416938209,
+  "S1_FA": 0.5619564223174064,
+  "S0_delta_vs_e0": 0.1279312823334945,
+  "S1_delta_vs_e0": 0.0,
+  "config": {
+    "openerAllyAttrib": "local_skill_share",
+    "openerAllyWindowSec": 5,
+    "openerAllyLocalSec": 2,
+    "openerAllyMin": 5,
+    "openerKillerMin": 1,
+    "markSelection": "cusum_engage_then_skills",
+    "denseWindow": 1.0,
+    "markMinGap": 0.4
+  },
+  "note": "fightAgreement ≠ win odds; parent autoresearch/best.json not rewritten by researcher"
+}

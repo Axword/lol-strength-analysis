@@ -1,0 +1,80 @@
+{
+  "reviewer": "V2",
+  "role": "digestCleanGate auditor",
+  "cycle": 2,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T15:52:45Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.93,
+  "sectionD": {
+    "D1_one_command_path": true,
+    "D2_sources_preserved": true,
+    "D3_identity_puuid_netid_pid": true,
+    "D4_validate_product_ge1": true,
+    "D4_second_host": "prefer_not_require",
+    "D4_second_host_blocks_gate": false,
+    "D5_living_hold_forward_disclosed": true,
+    "D6_digest_smoke_hashes": true,
+    "D7_cleaner_failure_modes": true
+  },
+  "reproduceHonesty": {
+    "affirmed": true,
+    "personally_re_ran_this_cycle": true,
+    "primary_validate_cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+    "primary_validate_exit": 0,
+    "expected_matches": {
+      "calculatorReady": true,
+      "calculatorReadyPolicy": "living_post_seed_v1",
+      "livingOkSlots": 14725,
+      "livingMissSlots": 0,
+      "hpHoldAcrossRespawn": true
+    },
+    "fingerprints": {
+      "events.g1.path1-final.rfc461.jsonl": {
+        "bytes": 114456779,
+        "sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+        "sha_match": true,
+        "bytes_match": true
+      },
+      "timeline.g1.path1-final.json": {
+        "bytes": 9064216,
+        "sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4",
+        "sha_match": true,
+        "bytes_match": true
+      }
+    },
+    "canonical_flag": "-o/--output (DIGEST correct; bare --out not claimed)",
+    "rebuild_stamp_footgun": "disclosed; stamp_digest_path1_provenance.py present; optional bake into rfc461 not required for gate",
+    "second_host_2970110": "validate exit 1 combat honesty; disclosed no invent; does not block §D.4"
+  },
+  "r14_honesty": {
+    "relevant_to_digestCleanGate": false,
+    "honest_pe_damage_F1_c1": 1.0,
+    "zero_dmg_echo_rejected": true,
+    "echo_fightAgreement_credit": 0,
+    "S0_fa_lift_honest_partial": 0.025,
+    "note": "R14 strengthens §H anti-echo; does not flip §D. Path1 digest package unchanged."
+  },
+  "evidence": [
+    "GOAL §D.4: validate --product green on ≥1 match (2970132 Path1 OK; prefer also a second host) — prefer ≠ require",
+    "Cycle2 personal re-run: DIGEST Path1 validate exit 0; livingOkSlots=14725; livingMissSlots=0; hpHoldAcrossRespawn=true; calculatorReadyPolicy=living_post_seed_v1",
+    "Cycle2 personal fingerprint check: sha256+bytes bit-match on-disk Path1 final events+timeline",
+    "R01 e01/e06/e08: validate green, source census wipe_detected false, fingerprints + stamp helper KEEP",
+    "R02 source_preserve_audit: knownWithoutSource hp/combat/ranks 0/0/0; events→timeline tags survive; strip/clear patches",
+    "R03 validate_2970132 + identity_bind_proof 10/10; second_host_2970110_pe_gap.json disclosure honest",
+    "R14 E02/E03/E05: honest PE damage F1=1.0 on 2970110-g1-c1; zero-dmg echo REJECTED as gate evidence; FA credit only honest (secondary ≤0.15)",
+    "jsonl_to_timeline.py argparse requires -o/--output as DIGEST states; stamp_digest_path1_provenance.py on disk",
+    "BRIEF measured FA: S0 Path1 product cusum 0.228 / S1 0.478 / S2 0.634 — gate needs ≥0.95 (concrete B fail)"
+  ],
+  "failures": [
+    "fightOutcomeGate A–I: criterion B fightAgreement unmet (S0 Path1 FA 0.228; S1 0.478 ≪ 0.95); gate false",
+    "2970110 second host still not product-green (combatStatsKnown + unavailable_replay_api) — disclosed; not a digestCleanGate blocker under §D.4 prefer",
+    "DIGEST.md header still self-marks digestCleanGate false pending affirm — circular pending cleared by this V2 vote; majority tally is separate"
+  ],
+  "notes": "Re-judge Cycle2: digestCleanGate remains true for ≥1 match (2970132 Path1). Personally re-verified one-command validate + fingerprints this cycle. R14 honest F1 / echo-reject is §H hygiene and does not undermine §D. Second-host PE/combat gap stays preferred transfer evidence only. fightOutcomeGate false on concrete B (and co-requisite FA), not on digest cleanliness.",
+  "one_line_vote": "V2 C2: digestCleanGate=true (Path1 validate+fingerprints re-verified); fightOutcomeGate=false (S0 FA 0.228 / S1 FA 0.478 ≪ 0.95)."
+}

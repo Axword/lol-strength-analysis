@@ -1,0 +1,97 @@
+{
+  "reviewer": "V3",
+  "cycle": 1,
+  "role": "fightAgreement metric honesty (no gaming)",
+  "utc": "2026-07-24T15:50:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.96,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": false,
+    "H": true,
+    "I": false
+  },
+  "metric_honesty": {
+    "law_encoded": {
+      "weights": "0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1",
+      "caps": "lethal≤0.75s, earlyMae≤50, burst≤90, full≤130, endHpFloor≤40",
+      "source": "scripts/fight_agreement_suite.ts scoreWindow matches GOAL §B"
+    },
+    "fa_not_odds": true,
+    "product_vs_research_drop": {
+      "product_default": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+      "research_only": "near_hp_drop",
+      "S0_product_FA": 0.4217,
+      "S0_research_drop_FA": 0.6018,
+      "research_sold_as_product": false,
+      "r07_KEEP_without_FA_lift": false
+    },
+    "audits_for_failing_windows": true,
+    "grain": {
+      "GOAL": "check×segment",
+      "r04_S0_S1": "check×segment (n=6 per match) — GOAL-faithful",
+      "r06_S1_S2": "check-level collapse (n=3 per match) — inflates headline FA vs r04",
+      "canonical_for_gate": "prefer r04 check×segment; do not treat r06 0.478 as stricter than r04 S1 0.3279"
+    },
+    "latent_hygiene": {
+      "forceTruthKill_in_suite_ts": true,
+      "note": "suite.ts forceTruthKill=true always sets truthKilled; r07 from-eval correctly uses actualEndHp (c3 truthKilled=false, false-kill lethalOk=false). Latent inflation vector if model 'kills' when victim HP>0 — not observed as gate claim."
+    },
+    "forbidden_H_as_gate_evidence": {
+      "zero_damage_log_echo": "not used for gate",
+      "single_coeff_early_late": "not claimed",
+      "fixture_remap_pins": "refused / disclosed Camille PE holes",
+      "grid_zip_alone_as_digest": "not claimed"
+    }
+  },
+  "measured": {
+    "S0_product_cusum_2970110_proxy": { "fightAgreement": 0.4217, "fightPassRate": 0.1667, "n": 6 },
+    "S0_research_drop": { "fightAgreement": 0.6018, "fightPassRate": 0.3333, "n": 6 },
+    "S1_r04_check_x_segment_2970137": { "fightAgreement": 0.3279, "fightPassRate": 0.0, "n": 6 },
+    "S1_r06_check_level_pooled": { "fightAgreement": 0.4777, "fightPassRate": 0.3333, "n": 6, "note": "3+3 checks across two hosts; not check×segment" },
+    "S2_r06": { "fightAgreement": 0.6335, "fightPassRate": 0.3333, "n": 3 },
+    "r07_unfreeze": { "best_FA": 0.5351, "delta_vs_e0": 0.0, "keeps": [], "product_selectors_changed": false },
+    "gate_bar_S0_S1": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "meets_thresholds": false
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B + §H",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle1/BRIEF.md",
+    "scripts/fight_agreement_suite.ts (scoreWindow weights/caps; PRODUCT_MARK_SELECTIONS; forceTruthKill)",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/researcher_r04_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0_research_drop.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S1.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/researcher_r06_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/suite_status.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/score_S1-2970137-g1.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r07/researcher_r07_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r07/leaderboard.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r07/eval_e0.fightAgreement.json",
+    "docs/rofl-research/autoresearch/fight_outcome/audits/",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json"
+  ],
+  "failures": [
+    "B_thresholds: S0 product FA 0.4217 / pass 0.167 and S1 FA 0.33 (r04 grain) / 0.48 (r06 grain) all << 0.95 — metric law gate unmet.",
+    "B_grain_hygiene: r06 reports check-level n=3/match vs GOAL check×segment; headline S1 0.478 must not displace r04 0.3279 for gate math.",
+    "D_digestCleanGate: DIGEST.md still false (second host + reviewer affirm) — co-requisite unmet.",
+    "F_holdout: S1 below bar; researchers correctly refuse fightOutcomeGateEvidence on S0 alone.",
+    "G_calc_path: r04/r06/r07 do not prove product Send ↔ harness parity (F6 scope).",
+    "I_majority_e2e: Cycle1 mid-vote; parent e2e not run."
+  ],
+  "blocker": "S0+S1 fightAgreement << 0.95 under product non-drop selector; metric harness honest enough to refuse gate, but thresholds unmet.",
+  "sharper_blocker": "Keep product FA on check×segment grain (r04); fix suite.ts forceTruthKill to follow actualEndHp like r07; lift lethalHit+path MAE — never promote research-drop 0.6018 or collapsed r06 grain as product gate evidence.",
+  "notes": "V3 metric honesty: scorer weights/caps match GOAL §B; FA≠odds everywhere; product CUSUM separated from research-drop; failing-window audits present; r07 flat unfreeze produced zero KEEP. No H forbidden gaming used as gate evidence. Soft hygiene: forceTruthKill=true in suite.ts vs honest actualEndHp in r07 from-eval; r06 check-level collapse inflates S1 vs r04. Gate false on B/D/F/G/I. fightAgreement ≠ win odds.",
+  "one_line_vote": "V3: metric law honest (no gaming as gate evidence) but FA 0.42/0.33 << 0.95 → fightOutcomeGate=false; digestCleanGate=false (conf 0.96)."
+}

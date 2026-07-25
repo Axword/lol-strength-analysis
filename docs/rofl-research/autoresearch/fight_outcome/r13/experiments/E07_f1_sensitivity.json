@@ -1,0 +1,9 @@
+{
+  "id": "E07",
+  "hypothesis": "H2 F1 sensitivity — max lift from secondary term is 0.15 mean",
+  "fightAgreementF1_0": 0.2641043621475419,
+  "fightAgreementF1_1": 0.4141043621475419,
+  "delta": 0.15000000000000002,
+  "expectedMaxMeanDelta": 0.15,
+  "withinBound": true
+}

@@ -1,0 +1,8 @@
+{"t":"2026-07-24T16:22:00Z","id":"e0","hypothesis":"R33-e0 R30 KEEP remesaure pathMae","keep":false,"S0_FA":0.5938,"S1_FA":null,"c2b_mae":117.7,"c2b_pathBand":0.693,"notes":"baseline residual","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:24:00Z","id":"e2-e4","hypothesis":"soft pulses / finishAa / micro pulses","keep":false,"notes":"kit-dump flat ~395 for pulseSec in (0,1]; no c2 path move","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:26:00Z","id":"e5","hypothesis":"zeroDeadActualHp corpse residual","keep":true,"S0_FA":0.5960,"S1_FA":0.5620,"c2b_mae":111.6,"c2b_pathBand":0.760,"notes":"S0↑ S1 flat; pathOk still false","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:28:00Z","id":"e6-e9","hypothesis":"killerShare global 0.15-0.99","keep":false,"notes":"cliff miss-kill on c2 burst even at 0.99","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:30:00Z","id":"e10","hypothesis":"earlyKillerShare","keep":false,"notes":"worse path + lethErr","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:32:00Z","id":"e11-e13","hypothesis":"pathClampToActual","keep":false,"S0_FA":0.70,"S1_FA":0.3706,"notes":"S1 regress; c2 path often worse","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:34:00Z","id":"e14-e15","hypothesis":"pathFollowActualUntilFinish","keep":false,"S0_FA":0.7606,"S1_FA":0.5245,"c2b_mae":0,"c2b_pathOk":true,"notes":"S0 pathOk+pass0.667 but S1 regress — research only","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:35:00Z","id":"e16","hypothesis":"R33-KEEP zeroDeadActualHp product","keep":true,"S0_FA":0.5960,"S1_FA":0.5620,"c2b_mae":111.6,"c2b_pathBand":0.760,"product_KEEP":true,"notes":"pathBand lift; pathOk residual; FA≠odds","confidence":"FA≠odds"}

@@ -1,0 +1,307 @@
+{
+  "schema": "fo-r24-leaderboard-v1",
+  "primaryMetric": "fightAgreement",
+  "note": "fightAgreement \u2260 win odds",
+  "rows": [
+    {
+      "id": "e49",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.5030447427479277,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E49 farShare0.45 no aa",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -0.3555185185185188,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 1
+    },
+    {
+      "id": "e50",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.5013853724066091,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E50 farShare0.55 no aa",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -0.3555185185185188,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 1
+    },
+    {
+      "id": "e43",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.4638647589406511,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e43 farShare0.35 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -0.3555185185185188,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 1
+    },
+    {
+      "id": "e38",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.43474586826989986,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E38 farShare0.5 no aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 144.3106123956315,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e37",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.4344709260057081,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E37 farShare0.35 no aa (e19+far)",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 192.91564573668762,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e41",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.39906523311178543,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e41 farShare0.15 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": 1.1259629629629622,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e42",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3977358478425527,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e42 farShare0.25 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": 1.1259629629629622,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e44",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.39706964512972087,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e44 farShare0.45 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -1.786999999999999,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e35",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3970249533511245,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E35 farShare0.45 +aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 110.86690010506163,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e36",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3970154409060855,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E36 farShare0.55 +aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 78.4635445443576,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e40",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.397010684683566,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E40 farShare0.6 +aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 62.26186676400562,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e34",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.39674525486441325,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E34 farShare0.35 +aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 143.27025566576566,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e46",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.39658599625057844,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e46 farShare0.65 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -1.8369999999999997,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e33",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3960853353484179,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E33 farShare0.25 +aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 175.6736112264697,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e45",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.396070244932574,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e45 farShare0.55 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -1.786999999999999,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e39",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.39575537559042023,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-E39 farShare0.2 +aa",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 191.87528900682173,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e47",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3955865960534315,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e47 farShare0.75 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -1.8369999999999997,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e48",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.39458719585628454,
+      "fightPassRate": 0.16666666666666666,
+      "hypothesis": "R24-e48 farShare0.85 +aa max4",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": -1.8369999999999997,
+        "modelEndHp": 0,
+        "skillMarks": 4
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e24",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3686295717456874,
+      "fightPassRate": 0,
+      "hypothesis": "R24-E24 e19+repin",
+      "galio_full": {
+        "killedInModel": false,
+        "lethalErrorSec": null,
+        "modelEndHp": 69.74287968342986,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    },
+    {
+      "id": "e19",
+      "suite": "S0",
+      "match": "2970132-g1",
+      "fightAgreement": 0.3671556412667381,
+      "fightPassRate": 0,
+      "hypothesis": "R24-E19 lead0.4 maxMarks4 NO aa-filler",
+      "galio_full": {
+        "killedInModel": true,
+        "lethalErrorSec": 2.6074444444444467,
+        "modelEndHp": 0,
+        "skillMarks": 3
+      },
+      "c1_lethalHit": 0
+    }
+  ]
+}

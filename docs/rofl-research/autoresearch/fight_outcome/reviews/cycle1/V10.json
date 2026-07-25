@@ -1,0 +1,77 @@
+{
+  "reviewer": "V10",
+  "cycle": 1,
+  "role": "ActionCoverage secondary (reject zero-dmg echo)",
+  "utc": "2026-07-24T15:48:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.96,
+  "action_coverage_lens": {
+    "secondary_weight_in_windowScore": 0.15,
+    "secondary_only": true,
+    "never_sole_gate_evidence": true,
+    "honest_unavailable_policy": "actionF1 → 0 when null/unavailable (disclose)",
+    "suite_scores_actionF1": {
+      "S1-2970137-g1": 0,
+      "S1-2970120-g1": 0,
+      "S2-2954868-g1": 0,
+      "note": "R06 fightAgreement member scores set actionF1=0 on all scored windows — secondary term contributes 0 to FA; not used as sole evidence"
+    },
+    "harness_raw_meanActionCoverage": {
+      "S1-2970137-g1": 0.3616685247120029,
+      "S1-2970120-g1": 0.29629629629629634,
+      "S2-2954868-g1": 0.41693121693121693,
+      "S0_cusum_r05": 0.2922262922262922,
+      "gate95": false,
+      "emitDamagingModelAaFromTruth": false
+    },
+    "zero_dmg_echo": {
+      "rejected_as_gate_evidence": true,
+      "criterion": "H + GOAL-action-replay-95 forbid #13 / F5 mandate",
+      "mechanism": "scripts/lib/aa_bridge.ts modelAaEchoFromTruth → kind:aa shareHint=0 inventory copy",
+      "default_path": "crosscheck_action_aligned.ts: when emitDamagingModelAaFromTruth=false (suite default), aaEcho is appended before F1",
+      "observed_in_cycle1_evals": true,
+      "may_not_inflate_fightOutcomeGate": true
+    },
+    "f5_researchers": {
+      "assigned": ["R13", "R14", "R15"],
+      "done_at_trigger": false,
+      "note": "STATUS researchers_done excludes R13–R15; honest damaging AA / actionCoverage join still open"
+    }
+  },
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": false,
+    "I": false
+  },
+  "evidence": [
+    "GOAL-fight-outcome-95-10x30x15.md §B: actionCoverageF1 is 0.15 of windowScore only; §H forbids zero-damage log-echo as gate evidence",
+    "scripts/fight_agreement_suite.ts scoreWindow weights 0.40/0.25/0.20/0.15; null actionCoverageF1 → actionF1=0 (honest secondary)",
+    "r06/suite_status.json + suite_registry.json: weight text discloses '0.15 actionF1 (0 if unavailable)'",
+    "r06/score_S1-2970137-g1.json, score_S1-2970120-g1.json, score_S2-2954868-g1.json: every window parts.actionF1=0 — FA measured without treating coverage as pass credit",
+    "r06/evals/S1-2970137-g1.eval.json (and S1-2970120, S2-2954868): config.emitDamagingModelAaFromTruth=false; meanActionCoverage 0.36/0.30/0.42; gate95=false; worst windows include F1=0",
+    "scripts/crosscheck_action_aligned.ts + scripts/lib/aa_bridge.ts modelAaEchoFromTruth: default path still emits shareHint=0 AA echo into modelActions when emitDamaging=false — FORBIDDEN as criterion-H / actionReplay gate evidence",
+    "rooms/f5/ROOM.md + HYPOTHESES.md: Honest F1; reject zero-dmg log-echo; secondary only — R13–R15 not in Cycle1 trigger done set",
+    "BRIEF.md / STATUS: S0 product FA 0.4217; S1 FA 0.478; S2 FA 0.634 — all ≪ gate; digestCleanGate false",
+    "DIGEST.md: digestCleanGate false (second host 2970110 PE/combat honesty fail; reviewer co-affirm open)"
+  ],
+  "failures": [
+    "B: fightAgreement ≪ 0.95 on S0/S1 (and S2 short of transfer bars) — concrete metric miss; actionCoverage secondary cannot rescue",
+    "H: Cycle1 harness evals still default emitDamagingModelAaFromTruth=false → zero-dmg modelAaEcho eligible in raw meanActionCoverage; those F1 numbers MUST NOT be cited as fightOutcomeGate / actionReplayGate evidence",
+    "F: S1 holdout unmet (FA 0.478 / pass 0.333)",
+    "D: digestCleanGate false (DIGEST self-mark + second-host gap) — fightOutcomeGate co-requires true",
+    "ActionCoverage secondary unfinished: suite FA correctly zeros F1 when unscored, but honest damaging (shareHint>0 / PE amount) coverage not yet joined into product fightAgreement windows; F5 R13–R15 pending"
+  ],
+  "notes": "V10 specialty: ActionCoverage is correctly wired as secondary (0.15) and R06 suite FA does not credit echo F1 (actionF1=0). Reject raw harness meanActionCoverage under emitDamagingModelAaFromTruth=false as gate evidence — that path still uses modelAaEchoFromTruth (shareHint=0). Vote fightOutcomeGate false on concrete B+F+H(+D), not because other reviewers unfinished. fightAgreement / actionCoverage are suite agreement metrics — never win odds.",
+  "one_line_vote": "V10: fightOutcomeGate=false digestCleanGate=false (conf 0.96) — FA≪0.95; actionF1 secondary=0 in suite scores; reject zero-dmg echo F1 as gate evidence",
+  "blocker": "Do not promote echo-path meanActionCoverage into gate; finish F5 honest damaging actionCoverage (emitDamaging / PE amount) then re-join as 0.15 secondary after S0/S1 lethal+path lift"
+}

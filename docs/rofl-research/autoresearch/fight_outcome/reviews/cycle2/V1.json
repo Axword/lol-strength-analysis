@@ -1,0 +1,48 @@
+{
+  "reviewer": "V1",
+  "role": "Clean-room + packetDecodeGate + calculatorReady honesty",
+  "cycle": 2,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T15:53:59Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.94,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": false,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "A AFFIRM (specialty): packetDecodeGate true (PACKET_DECODE_GATE.json C10; calculatorReady:false on that research gate). No vendored League client / unlicensed decrypt cited in fight_outcome r* summaries.",
+    "A AFFIRM: Path1 2970132 calculatorReady honesty personally re-run: validate --product living_post_seed_v1 --require-calculator-ready exit 0; livingOkSlots=14725; hpHoldAcrossRespawn=true; strict_all_frame not claimed; 2970110 not claimed ready.",
+    "A AFFIRM: DIGEST fingerprints personally sha256+bytes match on-disk Path1 events+timeline; R14 never_invent + zero-dmg echo REJECTED (E03) — no invent densify.",
+    "A AFFIRM: pBlue/pRed / FA confidence strings stay model-edge / kill-window agreement — never odds % (DIGEST + R05/R14 confidence).",
+    "B FAIL: S0 Path1 product cusum fightAgreement=0.2279317568764 passRate=0 (R05; BRIEF 0.228 authoritative) ≪ 0.95/0.95; all 6 windows fail lethal±0.75.",
+    "B FAIL: S0 proxy ~0.42 (R04); S1=0.478; S2=0.634 (R06) — all below bars; R10 timed best 0.502 no product KEEP.",
+    "C AFFIRM: unfreeze_0_9683 authorized; R07/R08/R09/R12 NO KEEP (knobs/planner-death flat); product selectors remain non-drop cusum/post_engage; near_hp_drop research-only.",
+    "D AFFIRM → digestCleanGate=true: GOAL §D.1–7 personally checked for ≥1 match (2970132 Path1). One-command validate green; sources/identity disclosed; living_post_seed_v1 + hold_across disclosed; DIGEST smoke+hashes bit-match; stamp lag / 2970110 combat honesty documented as failure modes (prefer second host ≠ require).",
+    "D note (R14): honest PE damage F1=1.0 on c1 KEEP; echo F1=1.0 REJECTED — supports cleaner honesty / no silent gaming, not a substitute for Path1 digest smoke.",
+    "E AFFIRM: S0 Path1 + proxy, S1, S2 suites measured and audited under fight_outcome/ (R04–R06/R05).",
+    "F FAIL: No holdout claim; S1 FA 0.478 ≪ 0.95; gate forbids S0-alone fightOutcomeGate.",
+    "G FAIL (not sole FO false): R17 Send parity smoke criterionG.sendOverlayParity=false path1Honesty=false; track open (BRIEF R16/R17).",
+    "H AFFIRM: R14 E03 zero-dmg log-echo rejected as gate evidence; honest F1 only earns secondary FA credit (+0.025 proxy); no fixture remap; no Grid-zip-alone claim over Path1 fuse.",
+    "I FAIL: No ≥11/15 FO true yet; parent DIGEST+S0/S1+Send e2e not flipped STATUS — cannot affirm I."
+  ],
+  "failures": [
+    "B: S0 Path1 FA 0.228 / pass 0 ≪ 0.95 — concrete metric miss (authoritative R05).",
+    "F: S1 holdout unmet (0.478); cannot set fightOutcomeGate on S0 alone.",
+    "G: Product Send↔harness parity / Path1 loadout honesty not green (R17).",
+    "I: Majority + parent e2e not satisfied."
+  ],
+  "notes": "V1 specialty A holds. C1→C2 digestCleanGate flip to true after personal Path1 validate+fingerprint reproduce (clears circular DIGEST pending-affirm); stamp lag + 2970110 remain disclosed prefer/footguns, not §D.4 blockers. fightOutcomeGate false on concrete B+F (+G/I). R14 honest F1 is H-support / secondary only — does not lift FA to gate. FA≪0.95 ≠ win odds.",
+  "one_line_vote": "V1: fightOutcomeGate=false (S0 Path1 FA 0.228≪0.95); digestCleanGate=true (Path1 validate+hashes personally green)."
+}

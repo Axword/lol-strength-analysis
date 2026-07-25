@@ -1,0 +1,83 @@
+{
+  "check": 1,
+  "segment": "full",
+  "matchup": "Camille→Leona",
+  "sourceAudit": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/action_audits/r40-2970110-g1-c1-full.json",
+  "schema": "honest-action-f1-v1",
+  "truthCount": 8,
+  "modelCount": 10,
+  "matchedCount": 5,
+  "precision": 0.5,
+  "recall": 0.625,
+  "actionCoverage": 0.5555555555555556,
+  "matches": [
+    {
+      "truthIdx": 2,
+      "modelIdx": 3,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 3,
+      "modelIdx": 4,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 4,
+      "modelIdx": 6,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 5,
+      "modelIdx": 8,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 7,
+      "modelIdx": 9,
+      "dtSec": 0
+    }
+  ],
+  "unmatchedTruth": [
+    0,
+    1,
+    6
+  ],
+  "unmatchedModel": [
+    0,
+    1,
+    2,
+    5,
+    7
+  ],
+  "rawActionCoverage": 0.8333333333333333,
+  "honestActionCoverage": 0.5555555555555556,
+  "fightAgreementF1": 0.5555555555555556,
+  "weightInWindowScore": 0.15,
+  "rejectedZeroDmgEchoModelCount": 0,
+  "rejectedZeroDmgEchoTruthCount": 6,
+  "peProvenDamageTruthCount": 0,
+  "peProvenDamageModelCount": 0,
+  "echoGamingSuspected": false,
+  "disclosures": [
+    "honest_action_f1: rawF1=0.8333 honestF1=0.5556 fightAgreementF1=0.5556 (weight=0.15 secondary only)",
+    "rejectedZeroDmgEcho model=0 truth=6 (GOAL forbid zero-dmg log-echo)",
+    "peProvenDamage truth=0 model=0 (sourceNetId+amount>0)",
+    "echoGamingSuspected=false",
+    "NOT win odds / NOT calibrated probability"
+  ],
+  "coverageGaps": {
+    "missingClasses": [
+      "summoner",
+      "damage"
+    ],
+    "presentClasses": [
+      "skill",
+      "aa",
+      "item"
+    ],
+    "notes": [
+      "damage absent — no invent; wait for PE damage_dealt source+amount",
+      "summoner absent — omit unless evented summoner_spell_used"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "t": "2026-07-24T15:44:24Z",
+  "experiment": "E01",
+  "window": {
+    "id": "2970110-g1/check3",
+    "windowOk": false,
+    "windowScore": 0.21465420254063666,
+    "parts": {
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false,
+      "lethalHit": 0,
+      "earlyBand": 0.45861681016254663,
+      "pathBand": 0,
+      "actionF1": 0.6666666666666666,
+      "earlyMaeHp": 104.13831898374534,
+      "maeHpBurst": 269.4463767680536,
+      "maeHpFull": 427.4124431333423,
+      "lethalErrorSec": -0.5339999999999998
+    }
+  },
+  "blocker": "lethalHit fail and/or path/early band",
+  "note": "check2: model lethal ~1.01s early (|err|>0.75). check3: non-kill truth (LeeSin endHp=210) but model kills + earlyMae>50."
+}

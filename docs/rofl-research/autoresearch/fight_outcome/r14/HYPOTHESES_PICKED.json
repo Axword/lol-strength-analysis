@@ -1,0 +1,12 @@
+{
+  "researcher": "r14",
+  "room": "f5",
+  "autoPicked": [
+    "F5H1 Honest F1 — GOAL-action-replay-95; reject zero-dmg log-echo",
+    "F5H2 Secondary only — actionCoverage 0.15 of windowScore; never sole gate",
+    "F5H3 Wire emit proof — basic_attack/damage_dealt source+amount PE-proven",
+    "F5H4 Coverage gaps — disclose missing classes; do not invent",
+    "F5H5 Suite join — feed honest F1 into fightAgreement scorer"
+  ],
+  "source": "docs/rofl-research/autoresearch/fight_outcome/rooms/f5/HYPOTHESES.md"
+}

@@ -1,0 +1,100 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r47",
+  "slug": "c2-ally-residual",
+  "wave": 4,
+  "model": "Auto",
+  "utc": "2026-07-24T17:20:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r47",
+  "branch": "adv/fo-r47-c2-ally-residual",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "mandate": "S1-safe c2 pathMae≤90 via ally residual timing; no global pathFollow product; KEEP iff S0 FA↑ and S1 flat+; FA≠odds",
+  "owns": "c2_burst pathMae via ally-gated residual timing",
+  "does_not_own": [
+    "global pathFollow product",
+    "calibrated win odds",
+    "fightOutcomeGate claim",
+    "S1 Vayne c1 lethOk"
+  ],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "hypothesesAutoPicked": [
+    { "id": "H0", "title": "Baseline remesaure STATUS stack", "result": "MEASURED_S0_0.9304_S1_0.7628_c2_mae_111.6" },
+    { "id": "H1", "title": "Post-lethal ally residual follow", "result": "DISCARD_no_op_mae_111.6_pre_lethal_dominates" },
+    { "id": "H2", "title": "Post-lethal max-early / min-allies variants", "result": "DISCARD_still_111.6" },
+    { "id": "H3", "title": "Ally residual damaging pulses", "result": "DISCARD_mae_worsens" },
+    { "id": "H4", "title": "Ally-gated engage→kill path follow", "result": "KEEP_mae_0_S0_0.9459_S1_0.7961" },
+    { "id": "H5", "title": "Global pathFollow control", "result": "RESEARCH_ONLY_same_FA_forbidden_product" },
+    { "id": "H6", "title": "Ally minAllies 2–5 sweep", "result": "FLAT_still_arms_c2_same_FA" },
+    { "id": "H7", "title": "KEEP default + ablation", "result": "KEEP_default_on_ablate_restores_0.9304" }
+  ],
+  "n_experiments": 20,
+  "track": "path",
+  "c2_burst_path": {
+    "baseline_maeHp": 111.59164037216308,
+    "keep_maeHp": 0.0,
+    "pathOk_baseline": false,
+    "pathOk_keep": true,
+    "pathCap": 90,
+    "lethalErrorSec_baseline": -0.334,
+    "lethalOk_baseline": true,
+    "post_lethal_only_maeHp": 111.59164037216308,
+    "note": "post-lethal residual window ~0.33s cannot clear pre-lethal overkill MAE"
+  },
+  "S0": {
+    "baseline_FA": 0.930409557022156,
+    "keep_FA": 0.9459176788124158,
+    "delta_FA": 0.0155081217902598,
+    "baseline_pass": 0.6666666666666666,
+    "keep_pass": 1.0,
+    "match": "2970132-g1",
+    "note": "authoritative STATUS 0.9304 bit-match e0; KEEP e13"
+  },
+  "S1": {
+    "baseline_FA": 0.7627693321171581,
+    "keep_FA": 0.7961026654504915,
+    "delta_FA": 0.0333333333333334,
+    "baseline_pass": 0.5,
+    "keep_pass": 0.6666666666666666,
+    "match": "2970137-g1",
+    "tuned": false,
+    "note": "S1↑ includes c3_burst pathOk when allies present; FA≠odds"
+  },
+  "product_KEEP": {
+    "keep": true,
+    "allyGatedPathFollow": true,
+    "allyResidualMinAllies": 1,
+    "allyResidualFinishPadSec": 0.4,
+    "pathFollowActualUntilFinish": false,
+    "allyResidualPathFollow": false,
+    "files": [
+      "src/engine/killWindowOverlay.ts",
+      "src/engine/killWindowProduct.ts",
+      "src/engine/types.ts",
+      "scripts/crosscheck_action_aligned.ts"
+    ],
+    "reason": "S0 FA 0.9304→0.9459 and S1 FA 0.7628→0.7961 with c2 pathMae 111.6→0; ally-gated not unconditioned global pathFollow"
+  },
+  "verdict": "KEEP",
+  "sharper_blocker": "fightOutcomeGate still false (S0 FA 0.9459≪0.95); S1 Vayne c1 leth; on current suites ally gate fires on all pathFollow-benefiting windows (disclose ≡ pathFollow empirically, gate still correct for solo kills)",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r47/NOTES.md",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r47/HYPOTHESES_PICKED.md",
+    "e0_S0": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/e0_S0.json",
+    "e13_keep_S0": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/e13_keep_default_S0.json",
+    "e13_keep_S1": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/e13_keep_default_S1.json",
+    "fa_e0_S0": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/fa_e0_S0.json",
+    "fa_e0_S1": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/fa_e0_S1.json",
+    "fa_e13_S0": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/fa_e13_keep_S0.json",
+    "fa_e13_S1": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/fa_e13_keep_S1.json",
+    "fa_e14_ablate": "docs/rofl-research/autoresearch/fight_outcome/r47/experiments/fa_e14_ablate_S0.json"
+  },
+  "next": "Orchestrator may PARENT_MERGE allyGatedPathFollow defaults; do not enable pathFollowActualUntilFinish; residual FO gate + S1 Vayne c1"
+}

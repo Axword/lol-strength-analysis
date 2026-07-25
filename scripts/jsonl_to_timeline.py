@@ -19,6 +19,16 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
+# P4 T1 — identity-bound AA/damage extract (never invent from HPΔ).
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
+from lib.timeline_action_events import (  # noqa: E402
+    attach_action_events_to_timeline,
+    extract_action_events_from_rows,
+    load_netid_to_pid,
+)
+
 MAP_SPAN = 14870.0
 
 # Common DDragon id fixes for lowercase maknee champion strings
@@ -161,11 +171,14 @@ def build_timeline(
     timeline_id: str,
     name: str,
     patch: str,
+    action_identity: Optional[Mapping[str, Any]] = None,
+    action_jsonl_paths: Optional[List[Path]] = None,
 ) -> dict:
     game_info = None
     coverage = None
     stats_rows: List[dict] = []
     game_end = None
+    action_candidate_rows: List[dict] = []
 
     with jsonl_path.open(encoding="utf-8") as f:
         for line in f:
@@ -182,11 +195,30 @@ def build_timeline(
                 stats_rows.append(o)
             elif schema == "game_end":
                 game_end = o
+            elif schema in ("basic_attack", "damage_dealt", "skill_used"):
+                # skill_used collected only so extract can skip/count — never
+                # converted into AA/damage. AA/damage require identity resolve.
+                action_candidate_rows.append(o)
 
     if not game_info:
         raise SystemExit("JSONL missing game_info")
     if not stats_rows:
         raise SystemExit("JSONL missing stats_update rows")
+
+    # Optional side-car research bridge JSONL (r40/r41 emit) — still
+    # identity-gated; never HPΔ invent.
+    for side in action_jsonl_paths or []:
+        with Path(side).open(encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    o = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if o.get("rfc461Schema") in ("basic_attack", "damage_dealt", "skill_used"):
+                    action_candidate_rows.append(o)
 
     # game_info is the authoritative identity roster. Capture stats_update rows can
     # carry scrambled championName/playerName on the correct participantID (HP/ranks
@@ -222,6 +254,7 @@ def build_timeline(
             hp_known = _health_known(p)
             combat_known = _combat_stats_known(p)
             ranks_known = _ability_ranks_known(p)
+            ranks_source = p.get("abilityRanksSource")
             alive = bool(p.get("alive", True))
             if hp_known:
                 hp = float(p.get("health") or 0)
@@ -278,6 +311,22 @@ def build_timeline(
                 "e": int(p.get("ability3Level") or 0),
                 "r": int(p.get("ability4Level") or 0),
             }
+            # R08 honesty: per-unit source required (not provenance-only).
+            if ranks_source not in (None, ""):
+                unit["abilityRanksSource"] = ranks_source
+            # Path1 living_post_seed_v1 / hold-forward gates need these tags.
+            # Never invent: only copy when present on the rfc461 participant.
+            hp_source = p.get("hpSource")
+            if hp_source not in (None, ""):
+                unit["hpSource"] = hp_source
+            if p.get("hpHoldForward") is True:
+                unit["hpHoldForward"] = True
+            combat_stats_source = p.get("combatStatsSource")
+            if combat_stats_source not in (None, ""):
+                unit["combatStatsSource"] = combat_stats_source
+            combat_source = p.get("combatSource")
+            if combat_source not in (None, ""):
+                unit["combatSource"] = combat_source
             units.append(unit)
         frames.append({"t": t, "units": units})
 
@@ -309,7 +358,7 @@ def build_timeline(
     if isinstance(artifact, str) and ("/" in artifact or "\\" in artifact):
         provenance["artifact"] = Path(artifact).name
 
-    return {
+    timeline: Dict[str, Any] = {
         "id": timeline_id,
         "name": name,
         "patch": patch or (game_info.get("gameVersion") or "unknown"),
@@ -326,6 +375,16 @@ def build_timeline(
         "hasMapObjects": False,
     }
 
+    # P4 T1: attach identity-resolved AA/damage only. Missing → absent (unknown).
+    netid_to_pid = load_netid_to_pid(action_identity) if action_identity else {}
+    extracted = extract_action_events_from_rows(
+        action_candidate_rows,
+        netid_to_pid=netid_to_pid or None,
+    )
+    attach_action_events_to_timeline(timeline, extracted, omit_empty=True)
+    timeline["_actionExtractCounters"] = extracted["counters"]
+    return timeline
+
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
@@ -334,9 +393,37 @@ def main() -> int:
     ap.add_argument("--id", default="maknee_stub")
     ap.add_argument("--name", default="Maknee decoded-packets stub")
     ap.add_argument("--patch", default="")
+    ap.add_argument(
+        "--action-identity",
+        type=Path,
+        default=None,
+        help="JSON with netIdToParticipantId or identityBinding.participants[].participantID "
+        "(PUUID/full Riot ID join). Never CreateHero order invent.",
+    )
+    ap.add_argument(
+        "--action-jsonl",
+        type=Path,
+        action="append",
+        default=[],
+        help="Optional side-car rfc461 basic_attack/damage_dealt JSONL (repeatable). "
+        "Still identity-gated; never invents from HPΔ.",
+    )
     args = ap.parse_args()
 
-    tl = build_timeline(args.jsonl, timeline_id=args.id, name=args.name, patch=args.patch)
+    action_identity = None
+    if args.action_identity is not None:
+        action_identity = json.loads(args.action_identity.read_text(encoding="utf-8"))
+
+    tl = build_timeline(
+        args.jsonl,
+        timeline_id=args.id,
+        name=args.name,
+        patch=args.patch,
+        action_identity=action_identity,
+        action_jsonl_paths=list(args.action_jsonl or []),
+    )
+    # Strip internal counters from published JSON; surface in stdout only.
+    counters = tl.pop("_actionExtractCounters", None)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(tl, separators=(",", ":")), encoding="utf-8")
     size_mb = args.output.stat().st_size / (1024 * 1024)
@@ -355,6 +442,11 @@ def main() -> int:
                 "mid_t": mid["t"],
                 "mid_x_spread": round(spread, 4),
                 "champs": [u["champ"] for u in mid["units"]],
+                "basicAttack": len(tl.get("basicAttack") or []),
+                "damageDealt": len(tl.get("damageDealt") or []),
+                "actionExtract": counters,
+                "aaCoverage": (tl.get("provenance") or {}).get("aaCoverage"),
+                "damageCoverage": (tl.get("provenance") or {}).get("damageCoverage"),
             },
             indent=2,
         )

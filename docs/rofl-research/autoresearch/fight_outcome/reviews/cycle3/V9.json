@@ -1,0 +1,88 @@
+{
+  "reviewer": "V9",
+  "cycle": 3,
+  "phase": "C",
+  "role": "Timed planner / death-coupled honesty",
+  "utc": "2026-07-24T16:01:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.95,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "planner_lens": {
+    "death_coupled_parent": true,
+    "no_hp_pct_ability_ban": true,
+    "product_selectors_held": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+    "r10": {
+      "best_timed_S0_FA": 0.5019,
+      "timed_S1_FA": 0.2822,
+      "product_KEEP": false,
+      "note": "timed regresses S1 vs marks"
+    },
+    "r12": {
+      "front_load_flat": true,
+      "best_e7_FA": 0.4853,
+      "product_KEEP": false,
+      "false_kill_residual": "c3-full modelEndHp=0 actualEndHp=210"
+    },
+    "r18": {
+      "best_research_e11_FA": 0.24136621085367857,
+      "product_FA_unchanged": 0.2279317568764,
+      "delta_research": 0.013434453977278576,
+      "S1_e11_FA": 0.3961,
+      "S1_product_marks_FA": 0.518511,
+      "product_KEEP": false,
+      "galio_still_no_model_kill": true,
+      "config": "cusum + --no-aa-at-mark + finish-aa (death-coupled AA-at-mark suppress)"
+    },
+    "r19_early": {
+      "brief_status": "open",
+      "parent_idleFollowActual_default": true,
+      "note": "idleFollowActual true in killWindowProduct defaults (R19 comment) but BRIEF/STATUS still cite product FA 0.2279 — do not claim Path1 FA lift until suite remeasure absorbed"
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds",
+    "S0_path1_2970132_product_cusum": 0.2279,
+    "S0_path1_passRate": 0.0,
+    "R18_research_e11": 0.2414,
+    "S1_r20_current_law": 0.411,
+    "S1_r06_legacy": 0.478,
+    "S2": 0.634,
+    "R10_best_timed_S0": 0.5019,
+    "R10_timed_S1": 0.2822
+  },
+  "evidence": [
+    "V9 specialty — parent death-coupled / no-HP%-ban HOLDS: timed_manual_1v1 stops at first lethal; abilityBudget never HP%-bans slots",
+    "V9 specialty — R10/R12 complete NO KEEP; product selectors unchanged",
+    "V9 specialty — R18 death-coupled AA suppress: S0 research 0.2414 (+0.013) but S1 0.396 << marks 0.519 → keeps=[]; product FA stays 0.2279; Galio still no model kill",
+    "BRIEF — R19 early / R21 falsekill / R22 Camille Q / R23 lethal2 still open; do not invent FA credit",
+    "B FAIL: S0 Path1 product FA 0.2279 / pass 0 ≪ 0.95",
+    "F FAIL: S1 current-law ≈0.411 (R20) ≪ 0.95; R18 timed-style research regresses S1",
+    "D re-judge TRUE: GOAL §D Path1 ≥1 match; prefer≠require second host",
+    "G TRUE: R16/R17 parent smokes (BRIEF proven; STATUS.criterionG_proven)",
+    "H OK: R14 echo REJECTED; R18 research not sold as product FA",
+    "C OK: unfreeze authorized; best.json 0.9683 untouched (R18 keeps=[])"
+  ],
+  "failures": [
+    "B: S0 Path1 FA 0.2279 / pass 0; best research 0.2414; R10 timed 0.5019 — all ≪ 0.95",
+    "F: S1 holdout unmet; death-coupled research regresses S1 vs product marks",
+    "Outcome honesty gap (not death-coupled mechanism): Galio no model kill (R18); false-kill / early residual open (R19/R21)",
+    "I: FO majority + parent e2e not met"
+  ],
+  "blocker": "Planner death-coupled honesty holds, but Path1 S0 FA=0.2279 and S1≈0.411 ≪ 0.95; next is Path1 lethal/early/falsekill (R19/R21–R24) — do not flip product selectors on S1-regressing knobs",
+  "notes": "V9 C3: death-coupled mechanism honest; R18 proves death-coupled AA suppress is research-only (S1 regress). digestCleanGate true on §D re-judge. G proven. fightOutcomeGate false solely on concrete B+F (+I). FA ≠ win odds / ≠ pBlue-pRed %.",
+  "one_line_vote": "V9: fightOutcomeGate=false digestCleanGate=true — planner death-coupled honest; Path1 S0 FA=0.2279≪0.95; R18 no KEEP (S1 regress)"
+}

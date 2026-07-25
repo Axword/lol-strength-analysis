@@ -1,0 +1,24 @@
+{
+  "cycle": 7,
+  "utc": "2026-07-24T16:51:12Z",
+  "model": "Auto",
+  "wave2_done_at_trigger": 8,
+  "wave3_live_at_trigger": true,
+  "votes_present": 15,
+  "fightOutcomeGate": false,
+  "fightOutcomeGate_tally": {
+    "true": 0,
+    "false": 15,
+    "majority_needed": 11
+  },
+  "digestCleanGate": true,
+  "digestCleanGate_tally": {
+    "true": 15,
+    "false": 0,
+    "majority_needed": 11
+  },
+  "criterionG_proven": true,
+  "fa_note": "Verified S0 FA 0.7766 pass 0.333; S1 FA 0.5810 pass 0.333 \u2014 both \u226a0.95. FA \u2260 odds.",
+  "decision": "CONTINUE_WAVE3",
+  "sharper_blocker": "passRate 0.333; c2 pathMae>90; Galio full lethErr 1.84; S1 miss-kills"
+}

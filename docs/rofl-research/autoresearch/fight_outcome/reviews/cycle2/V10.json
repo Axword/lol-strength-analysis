@@ -1,0 +1,98 @@
+{
+  "reviewer": "V10",
+  "cycle": 2,
+  "role": "ActionCoverage secondary (reject zero-dmg echo)",
+  "utc": "2026-07-24T15:53:50Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "action_coverage_lens": {
+    "secondary_weight_in_windowScore": 0.15,
+    "secondary_only": true,
+    "never_sole_gate_evidence": true,
+    "honest_unavailable_policy": "actionF1 → 0 when null/unavailable (disclose)",
+    "r14": {
+      "researcher": "r14",
+      "slug": "action-noecho",
+      "honest_c1_full_actionCoverage": 1.0,
+      "honest_matched": "64/64",
+      "shareHintMin": 0.8487789034843445,
+      "echo_c1_full_actionCoverage": 1.0,
+      "echo_rejected_as_gate_evidence": true,
+      "echo_fightAgreement_credit": 0,
+      "rejectReason": "zero_damage_log_echo: shareHint=0 modelActions must not earn actionReplayGate / fightOutcomeGate secondary credit",
+      "S0_product_fa_f1_zero": 0.34937129854089544,
+      "S0_product_fa_honest_partial": 0.3743712985408954,
+      "S0_delta_fa": 0.025,
+      "wire_sourceAndAmount": {
+        "withSourceNetId": 53369,
+        "withAmount": 53369,
+        "damageTruth_c1": 64,
+        "sourceResolved_c1": 64,
+        "amountResolved_c1": 64
+      },
+      "actionReplayGate": false,
+      "full_suite_pe_f1_joined": false,
+      "note": "Honest PE damage F1=1.0 on 2970110-g1-c1 KEEP for secondary credit only; identical raw F1 from zero-dmg echo is REJECTED and must not inflate fightOutcomeGate / actionReplayGate"
+    },
+    "suite_fa_context": {
+      "S0_Path1_2970132_product_cusum": 0.228,
+      "S0_proxy_2970110": 0.42,
+      "S1": 0.478,
+      "S2": 0.634,
+      "gate_needs": 0.95,
+      "r14_max_sole_term_lift": 0.15,
+      "r14_observed_proxy_lift": 0.025,
+      "cannot_rescue_B": true
+    },
+    "zero_dmg_echo": {
+      "rejected_as_gate_evidence": true,
+      "criterion": "GOAL §H + GOAL-action-replay-95 forbid #13 / F5 mandate",
+      "r14_E03": "echoActionCoverage=1.0 gateEligible=false keep=false",
+      "r14_E05": "echoCreditForFightAgreement=0 even when raw echoF1=1",
+      "may_not_inflate_fightOutcomeGate": true,
+      "may_not_inflate_actionReplayGate": true
+    },
+    "f5_researchers": {
+      "assigned": ["R13", "R14", "R15"],
+      "r14_done": true,
+      "r13_present": true,
+      "r15_in_done_set": false,
+      "note": "STATUS done includes r14; honest damaging AA join still partial (c1 only); c2/c3 PE F1 not yet suite-joined"
+    }
+  },
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": false
+  },
+  "evidence": [
+    "GOAL §B: actionCoverageF1 is 0.15 of windowScore only; fightAgreement ≥0.95 required on S0+S1 — Path1 S0 FA 0.228 (R05), S1 0.478, S2 0.634 — all ≪ gate",
+    "GOAL §H: zero-damage log-echo forbidden as gate evidence — R14 E03 rejects echo F1=1.0 (shareHint=0); E05 forces echoCreditForFightAgreement=0",
+    "R14 E02 KEEP: honest non-echo PE damage F1=1.0 on 2970110-g1-c1 (64/64; shareHintMin≈0.85); wire E01 withSourceNetId=53369 withAmount=53369",
+    "R14 E06: S0 proxy FA 0.349→0.374 (+0.025) when honest c1-full F1 joined; echo join does not lift FA; passRate stays 0.167",
+    "R14 headline: actionReplayGate=false fightOutcomeGate=false — researcher correctly refuses gate claim from secondary F1 alone",
+    "BRIEF C2: R14 honest F1=1.0 echo REJECTED; FA credit only honest; small proxy lift — closed knob sweeps; Path1 lethal/early still open",
+    "DIGEST.md Path1: one-command validate + fingerprints + living_post_seed_v1 + sources/identity — §D.1–7 met for ≥1 match; second host 2970110 prefer≠require",
+    "STATUS/HEARTBEAT: best_fightAgreement 0.228; digestCleanGate self-mark false is circular pending affirm; FO still false"
+  ],
+  "failures": [
+    "B: fightAgreement ≪ 0.95 on S0 Path1 (0.228) and S1 (0.478) — actionCoverage secondary (+0.025 max observed on proxy; ≤0.15 theoretical) cannot rescue",
+    "F: S1 holdout unmet (FA 0.478 / pass ≪ 0.95)",
+    "I: no ≥11/15 + parent e2e yet (this vote is input)",
+    "G: Send/product calculator path parity still open (R16/R17 per BRIEF) — null not pass",
+    "ActionCoverage incomplete for gate: honest F1 joined for c1 only; c2/c3 PE damage F1 not suite-joined; actionReplayGate remains false"
+  ],
+  "notes": "V10 C2 specialty: R14 proves honest PE-damage F1=1.0 is KEEP-eligible as 0.15 secondary only, while raw echo F1=1.0 is REJECTED and must never count toward fightOutcomeGate / actionReplayGate. Re-judge digestCleanGate=true on GOAL §D for Path1 ≥1 match (R14 is §H hygiene, orthogonal to digest). fightOutcomeGate false on concrete B+F(+G open), not because echo was confusing. fightAgreement / actionCoverage are suite agreement metrics — never win odds.",
+  "one_line_vote": "V10 C2: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — Path1 FA 0.228≪0.95; R14 honest F1=1.0 KEEP secondary-only; echo F1=1.0 REJECTED",
+  "blocker": "Do not promote echo F1 into gate; finish Path1 lethal/early (R18/R19) to lift FA; join honest PE F1 across remaining windows as 0.15 secondary only after lethal/path move"
+}

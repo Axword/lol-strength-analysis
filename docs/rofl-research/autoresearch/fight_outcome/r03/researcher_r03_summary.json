@@ -1,0 +1,107 @@
+{
+  "researcher": "R03",
+  "role": "digest-validate",
+  "room": "F1",
+  "model": "Auto",
+  "utc": "2026-07-24T15:39:52Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r03",
+  "branch": "adv/fo-r03-digest-validate",
+  "never_edited_parent": true,
+  "auto_pick": [
+    "f1_h1_single_digest_cli",
+    "f1_h2_source_preserve",
+    "f1_h3_digest_md_smoke",
+    "f1_h4_identity_bind",
+    "f1_h5_second_host_or_pe_gap",
+    "f1_h6_failure_modes"
+  ],
+  "hypothesis": "Path1 final 2970132 rfc461→timeline fingerprints validate --product living_post_seed_v1 green; jsonl_to_timeline preserves per-unit sources; 2970110 second-host PE/combat gap disclosed without invent.",
+  "verdict": "keep_digest_validate_green",
+  "digestCleanGate_claim": false,
+  "digestCleanGate_note": "R03 proves smoke + fingerprints + failure modes; gate stays false until V2 affirm + majority with fightOutcome co-gate.",
+  "calculatorReadyGate_untouched": true,
+  "unfreeze_0_9683_untouched": true,
+  "host_primary": {
+    "match": "2970132-g1",
+    "policy": "living_post_seed_v1",
+    "hold_forward": true,
+    "hpHoldAcrossRespawn": true,
+    "validate_exit": 0,
+    "calculatorReady": true,
+    "livingOkSlots": 14725,
+    "livingMissSlots": 0,
+    "peHpHeroes": 10,
+    "peCombatHeroes": 10,
+    "ranksDensity": 1.0,
+    "strictAllFrameCalculatorReady": false,
+    "events_bytes": 114456779,
+    "events_sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+    "timeline_bytes": 9064216,
+    "timeline_sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4"
+  },
+  "rebuild_smoke": {
+    "command": "python3 scripts/jsonl_to_timeline.py artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl -o /tmp/r03_rebuild_timeline.g1.path1-final.json --id 2970132-g1",
+    "exit": 0,
+    "bit_identical_to_path1_final": false,
+    "per_unit_source_combo_equal": true,
+    "validate_rebuild_exit": 0,
+    "validate_rebuild_calculatorReady": true,
+    "footgun": "Naive rebuild drops Path1 composer provenance (hpHoldAcrossRespawn / sourceKind=product_fuse_composer_r15_path1_rematch_final). Prefer fingerprint Path1 final package; rematch via scripts/rofl2_r15_path1_rematch_final.py for full provenance restore."
+  },
+  "source_preserve": {
+    "ok": true,
+    "missing_src_when_known": { "hp": 0, "combat": 0, "ranks": 0 },
+    "hpSource_top": [["hold_forward", 16098], ["pe", 203]],
+    "combatStatsSource_top": [
+      ["hold_forward", 12959],
+      ["unavailable_replay_api", 2235],
+      ["same_match_replication_type107_pe_wire_table", 1766]
+    ],
+    "abilityRanksSource_top": [["rofl2_upgrade_spell_ans_1012_first_write", 16960]],
+    "field_names": ["hpSource", "combatStatsSource", "combatSource", "abilityRanksSource"]
+  },
+  "identity_bind": {
+    "ok": true,
+    "method": "stable_identity_to_net_id",
+    "complete": true,
+    "createHeroOrderFallback": false,
+    "identityOracleProven": true,
+    "puuid_to_netId_to_pid": 10,
+    "evidence": "artifacts/rofl/2970132/trusted-hp-perhero.g1.hold-across-death.json",
+    "manifest_gates": {
+      "stableIdentityComplete": true,
+      "activeReplayIdentityVerified": true,
+      "captureComplete": true
+    }
+  },
+  "second_host": {
+    "attempted": true,
+    "match": "2970110-g1",
+    "artifacts": {
+      "jsonl": "artifacts/rofl/2970110/events.g1.fused.rfc461.jsonl",
+      "timeline": "artifacts/rofl/2970110/timeline.g1.product-fuse.json"
+    },
+    "validate_exit": 1,
+    "calculatorReady": false,
+    "pe_gap_disclosed": true,
+    "fail_message": "product gate: combatStatsKnown=true without valid non-placeholder combat evidence (t=97029 pid=3 source='unavailable_replay_api')",
+    "detail": "No Path1 living_post_seed package on 2970110; product-fuse has combatStatsKnown with missing/unavailable_replay_api source (593 slots). Prior product_ready: FUR 7/10 Camille/Jhin/Leona wire-absent. Refuse invent densify; do not claim second-host digestClean.",
+    "prior_fur": "7/10"
+  },
+  "reproduce": [
+    "cd /Users/river/.codex/worktrees/rofl-fo-r03",
+    "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+    "python3 scripts/jsonl_to_timeline.py artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl -o /tmp/r03_rebuild_timeline.g1.path1-final.json --id 2970132-g1",
+    "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline /tmp/r03_rebuild_timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+    "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970110/events.g1.fused.rfc461.jsonl --timeline artifacts/rofl/2970110/timeline.g1.product-fuse.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready; test $? -eq 1"
+  ],
+  "artifact_paths": [
+    "docs/rofl-research/autoresearch/fight_outcome/r03/researcher_r03_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r03/FAILURE_MODES.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r03/validate_2970132.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r03/second_host_2970110_pe_gap.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r03/source_preserve_audit.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r03/identity_bind_proof.json",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md"
+  ]
+}

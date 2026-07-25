@@ -1,0 +1,12 @@
+{"t":"2026-07-24T16:05:00Z","id":"e0","hypothesis":"Path1 idle+cusum baseline without CORE Galio","keep":false,"suite":"S0","match":"2970132-g1","fightAgreement":0.3440,"fightPassRate":0,"check01_full":{"modelKilled":false,"modelEndHp":376.3,"lethalErrorSec":null},"notes":"GAME kit floor; FA≠odds"}
+{"t":"2026-07-24T16:06:00Z","id":"e1","hypothesis":"CORE Galio full tornado+maxW+full Smash","keep":false,"suite":"S0","check01_full":{"modelKilled":true,"lethalErrorSec":-1.787},"notes":"kills but early overshoot; FA≠odds"}
+{"t":"2026-07-24T16:07:00Z","id":"e2","hypothesis":"Partial tornado~1s mid-W no Smash","keep":false,"check01_full":{"modelKilled":false,"modelEndHp":211.5},"notes":"undershoot"}
+{"t":"2026-07-24T16:08:00Z","id":"e3","hypothesis":"Full tornado mid-W no Smash","keep":false,"check01_full":{"modelKilled":false,"modelEndHp":90.0},"notes":"closer"}
+{"t":"2026-07-24T16:09:00Z","id":"e4","hypothesis":"Full tornado max-W no Smash","keep":false,"check01_full":{"modelKilled":false,"modelEndHp":27.9},"notes":"~28 HP short"}
+{"t":"2026-07-24T16:10:00Z","id":"e5","hypothesis":"Full tornado max-W soft Smash","keep":false,"check01_full":{"modelKilled":true,"lethalErrorSec":2.607},"notes":"late; same as R24 W-mark leth"}
+{"t":"2026-07-24T16:11:00Z","id":"e6","hypothesis":"Blended Smash + full tornado + charged W (KEEP)","keep":true,"suite":"S0","fightAgreement":0.4130,"fightPassRate":0.1667,"deltaFA_vs_e0":0.069,"check01_full":{"modelKilled":true,"lethalErrorSec":-0.356,"windowOk":true},"check01_burst":{"modelKilled":false,"skillMarks":0},"notes":"S0↑ S1 flat; product KEEP; FA≠odds; burst→R24"}
+{"t":"2026-07-24T16:12:00Z","id":"e6b","hypothesis":"S1 holdout measure with CORE Galio","keep":true,"suite":"S1","fightAgreement":0.5609,"delta_vs_e0b":0,"notes":"no regress; Galio not S1 killer"}
+{"t":"2026-07-24T16:13:00Z","id":"e7","hypothesis":"e6 + perSlotPulse","keep":false,"check01_full":{"modelKilled":true,"lethalErrorSec":-0.356},"notes":"flat vs e6"}
+{"t":"2026-07-24T16:14:00Z","id":"e8","hypothesis":"timed short cusum_gate + Galio kit","keep":false,"fightAgreement":0.2959,"check01_burst":{"modelKilled":true,"lethalErrorSec":0.65},"notes":"burst kill research-only; Olaf regress; no product mode flip"}
+{"t":"2026-07-24T16:14:30Z","id":"e9","hypothesis":"timed allin cusum_gate + Galio kit","keep":false,"notes":"same as e8 pattern; discard"}
+{"t":"2026-07-24T16:15:00Z","id":"e10","hypothesis":"kit probe Q tornado + W utility present","keep":true,"notes":"utility hardCc/slow/DR on W; Q gust+tornado packets"}

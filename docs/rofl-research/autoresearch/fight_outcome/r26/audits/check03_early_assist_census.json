@@ -1,0 +1,153 @@
+{
+  "schema": "r26-check03-early-assist-census-v1",
+  "matchup": "Olaf\u2192Camille",
+  "windowMs": [
+    1647319,
+    1672319
+  ],
+  "killMs": 1667319,
+  "durationSec": 25.0,
+  "victimHpSamples": [
+    [
+      0.699,
+      1308.0
+    ],
+    [
+      1.701,
+      1050.0
+    ],
+    [
+      2.705,
+      1020.0
+    ],
+    [
+      3.69,
+      611.0
+    ],
+    [
+      4.692,
+      749.0
+    ],
+    [
+      5.694,
+      575.0
+    ],
+    [
+      6.695,
+      560.0
+    ],
+    [
+      7.697,
+      311.0
+    ],
+    [
+      8.698,
+      316.0
+    ],
+    [
+      9.7,
+      416.0
+    ],
+    [
+      10.702,
+      421.0
+    ],
+    [
+      11.704,
+      426.0
+    ],
+    [
+      12.705,
+      431.0
+    ],
+    [
+      13.707,
+      436.0
+    ],
+    [
+      14.709,
+      441.0
+    ],
+    [
+      15.711,
+      445.0
+    ],
+    [
+      16.694,
+      450.0
+    ],
+    [
+      17.696,
+      455.0
+    ],
+    [
+      18.698,
+      460.0
+    ],
+    [
+      19.7,
+      58.0
+    ],
+    [
+      20.702,
+      0.0
+    ],
+    [
+      21.704,
+      0.0
+    ],
+    [
+      22.705,
+      0.0
+    ],
+    [
+      23.707,
+      0.0
+    ],
+    [
+      24.689,
+      0.0
+    ]
+  ],
+  "early5s": {
+    "killerSkills": 2,
+    "allySkills": 8,
+    "enemySkills": 9,
+    "allyParticipants": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "allyChamps": [
+      "Galio",
+      "JarvanIV",
+      "Seraphine",
+      "Shen"
+    ],
+    "killerSkillTimesSec": [
+      0.599,
+      1.734
+    ],
+    "measuredKillerSkillShareProxy": 0.2,
+    "note": "skill_used counts only \u2014 not damage share; research proxy for H1, not invent"
+  },
+  "nearKillAssistProbe": {
+    "windowMs": [
+      1665319,
+      1667819
+    ],
+    "allySkillUsedNearKill": 0,
+    "allyParticipants": [],
+    "mismatch": "near-kill probe under-reports early multi-actor pressure"
+  },
+  "poisonMechanism": {
+    "modelLethalAtFirstMarkSec_approx": 1.734,
+    "actualDeathSec_approx": 20.0,
+    "lethalErrorSec_r19": -18.266,
+    "earlyMae_r19_idleFollow": 476,
+    "falseAllIn": false,
+    "root": "opener 1v1 full-share overkill in teamfight \u2014 not idle freeze"
+  },
+  "confidence": "FA\u2260odds; early_poisoned diagnostic only"
+}

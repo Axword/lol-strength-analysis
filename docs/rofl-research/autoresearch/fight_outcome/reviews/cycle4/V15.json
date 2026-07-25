@@ -1,0 +1,295 @@
+{
+  "reviewer": "V15",
+  "cycle": 4,
+  "role": "Consolidation — best branch + Final fields",
+  "utc": "2026-07-24T16:09:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "personal_AI_affirm": {
+    "A": {
+      "affirmed": true,
+      "why": "packetDecodeGate + Path1 calculatorReady living_post_seed_v1 honest; no invent; pBlue/pRed model edge; R22/R23 never_invent."
+    },
+    "B": {
+      "affirmed": false,
+      "why": "Authoritative S0 Path1 product FA 0.4107 / pass 0.167 (R25); R23 research e7 0.250 NO product KEEP. ≪ 0.95 bars."
+    },
+    "C": {
+      "affirmed": true,
+      "why": "Unfreeze 0.9683 authorized; R23 correctly NO product KEEP; best.json composite 0.9683 preserved; product non-drop selectors + idleFollowActual KEEP disclosed."
+    },
+    "D": {
+      "affirmed": true,
+      "why": "Reaffirm: C3 majority 12/15 already true; Path1 DIGEST validate+fingerprints hold; no concrete §D failure this cycle — flip prior C3 consolidation dissent."
+    },
+    "E": {
+      "affirmed": true,
+      "why": "S0/S1/S2 wired; R25 audits present; Camille holes disclosed not invented."
+    },
+    "F": {
+      "affirmed": false,
+      "why": "Holdout unmet — S1 current-law FA 0.417 / pass 0; R23 S1 flat/regress correctly blocks KEEP; no fightOutcomeGate on S0 alone."
+    },
+    "G": {
+      "affirmed": true,
+      "why": "BRIEF/STATUS criterionG_proven; parent fo:send-smoke 8/8 + smoke:calc-parity 11/11 carried."
+    },
+    "H": {
+      "affirmed": true,
+      "why": "R14 echo rejected; R23 no false product KEEP; R29 anti-odds KEEP; no fixture remap; near_hp_drop research-only."
+    },
+    "I": {
+      "affirmed": false,
+      "why": "Peers incomplete at write; even if all peers vote true, B/F objective FA≪0.95 makes honest ≥11/15 fightOutcomeGate true impossible this cycle."
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT win odds / odds %",
+    "S0_path1_2970132_authoritative": {
+      "source": "BRIEF / STATUS / R25",
+      "selector": "cusum_engage_then_skills",
+      "idleFollowActual": true,
+      "fightAgreement": 0.4107,
+      "fightPassRate": 0.167,
+      "gateMet": false
+    },
+    "S1_current_law": {
+      "source": "R25",
+      "fightAgreement": 0.417,
+      "fightPassRate": 0.0,
+      "tuned": false,
+      "gateMet": false
+    },
+    "R23_research_best_e7": {
+      "fightAgreement": 0.25,
+      "fightPassRate": 0.0,
+      "product_keep": false,
+      "why_no_keep": "S1 regress/flat; Galio lethalHit still 0 (|err|≥1.13)"
+    },
+    "gate_needs": "S0+S1 fightAgreement≥0.95 AND fightPassRate≥0.95; S2 FA≥0.90 pass≥5/6"
+  },
+  "keeps": [
+    {
+      "priority": 1,
+      "researcher": "R19",
+      "branch": "adv/fo-r19-path1-early",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "idleFollowActual product KEEP — S0 FA 0.2279→0.4107 (R25 confirm)"
+    },
+    {
+      "priority": 2,
+      "researcher": "R16",
+      "branch": "adv/fo-r16-calc-parity",
+      "verdict": "KEEP_G",
+      "action": "RETAIN",
+      "why": "Parent smoke:calc-parity 11/11 — Criterion G"
+    },
+    {
+      "priority": 3,
+      "researcher": "R17",
+      "branch": "adv/fo-r17-send-parity",
+      "verdict": "KEEP_G",
+      "action": "RETAIN",
+      "why": "Parent fo:send-smoke 8/8 — knownFlags/path1Honesty/deadExcluded/noOdds"
+    },
+    {
+      "priority": 4,
+      "researcher": "R01",
+      "branch": "adv/fo-r01-digest-path",
+      "verdict": "KEEP",
+      "action": "RETAIN",
+      "why": "Path1 DIGEST path; validate green livingOk 14725"
+    },
+    {
+      "priority": 5,
+      "researcher": "R02",
+      "branch": "adv/fo-r02-digest-sources",
+      "verdict": "KEEP",
+      "action": "RETAIN",
+      "why": "knownWithoutSource 0/0/0"
+    },
+    {
+      "priority": 6,
+      "researcher": "R22",
+      "branch": "adv/fo-r22-camille-q-wire",
+      "verdict": "KEEP_wiki",
+      "action": "RETAIN",
+      "why": "Camille Q wiki wire; no FA invent claim"
+    },
+    {
+      "priority": 7,
+      "researcher": "R25",
+      "branch": "adv/fo-r25-path1-remeasure",
+      "verdict": "KEEP_measure",
+      "action": "RETAIN_MEASURE",
+      "why": "Authoritative Path1 S0 FA 0.4107 + S1 0.417 freeze"
+    },
+    {
+      "priority": 8,
+      "researcher": "R23",
+      "branch": "adv/fo-r23-path1-lethal2",
+      "verdict": "NO_KEEP_product",
+      "action": "RETAIN_MEASURE_ONLY",
+      "why": "Research FA 0.250; S1 flat; Galio W pre-CUSUM — correctly no product KEEP"
+    }
+  ],
+  "keep_priority_order": [
+    "R19",
+    "R16",
+    "R17",
+    "R01",
+    "R02",
+    "R22",
+    "R25"
+  ],
+  "best_branches": [
+    {
+      "priority": 1,
+      "focus": "product_fa_lift",
+      "branch": "adv/fo-r19-path1-early",
+      "why": "Largest product FA delta this mega-cycle (+0.183 to 0.4107)"
+    },
+    {
+      "priority": 2,
+      "focus": "criterion_G",
+      "branch": "adv/fo-r17-send-parity",
+      "why": "G proven on parent — retained"
+    },
+    {
+      "priority": 3,
+      "focus": "path1_lethal_measure",
+      "branch": "adv/fo-r23-path1-lethal2",
+      "why": "Honest miss + Galio W pre-CUSUM diagnosis; informs R24/R28"
+    }
+  ],
+  "vote_tally_observed": {
+    "seen_at_write": ["V11", "V12", "V13", "V14"],
+    "missing_at_write": [
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6",
+      "V7",
+      "V8",
+      "V9",
+      "V10"
+    ],
+    "fightOutcomeGate_true_among_seen": 0,
+    "fightOutcomeGate_false_among_seen": 4,
+    "digestCleanGate_true_among_seen": 4,
+    "digestCleanGate_false_among_seen": 0,
+    "cycle3_digestClean_true_count": 12,
+    "majority_11_of_15_fightOutcomeGate": false,
+    "majority_can_pass": false,
+    "majority_possible_fightOutcomeGate": false,
+    "majority_possible_digestCleanGate": true,
+    "note": "FO majority_possible=false is evidence-driven (B/F FA≪0.95), not unfinished-peer tautology. digestClean already majority-true (C3 12/15); C4 peers reaffirm — co-gate held, does not unlock fightOutcomeGate."
+  },
+  "majority_can_pass": false,
+  "majority_possible": false,
+  "majority_possible_detail": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": true,
+    "why_fo_impossible": "S0 Path1 FA 0.4107 ≪ 0.95 objective; honest reviewers cannot affirm B/F",
+    "why_dc_possible": "Already true (C3 12/15); reaffirm only — no new §D failure"
+  },
+  "final_fields_draft": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": true,
+    "calculatorReadyGate": true,
+    "calculatorReadyHost": "2970132-g1",
+    "calculatorReadyPolicy": "living_post_seed_v1",
+    "criterionG_proven": true,
+    "unfreeze_0_9683": true,
+    "baselineComposite": 0.9683,
+    "best_composite_new": null,
+    "best_fightAgreement": 0.4107,
+    "best_fightAgreement_research": 0.25,
+    "best_fightPassRate": 0.167,
+    "suites": {
+      "S0_path1": { "FA": 0.4107, "pass": 0.167 },
+      "S1_current_law": { "FA": 0.417, "pass": 0.0 },
+      "R23_research_e7": { "FA": 0.25, "pass": 0.0, "product_keep": false }
+    },
+    "DIGEST_reproduce": "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "calculator_Send_smoke": "npm run fo:send-smoke",
+    "calculator_Send_smoke_status": "GREEN_8_of_8",
+    "calc_parity_smoke": "npm run smoke:calc-parity",
+    "calc_parity_smoke_status": "GREEN_11_of_11",
+    "keep_priority": "R19>R16>R17>R01>R02>R22>R25",
+    "reviewer_votes_V1_V15": {
+      "true_count_expected_FO": 0,
+      "majority_11": false,
+      "majority_possible": false,
+      "majority_possible_digestClean": true,
+      "decision": "CONTINUE_PHASE_B"
+    },
+    "heartbeat_path": "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "status_path": "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "model": "Auto",
+    "limits_exhausted": false,
+    "if_false": {
+      "sharper_blocker": "Path1 S0 FA 0.4107 (Galio miss-kill + check03 earlyPoisoned + Olaf lethErr); R23 research-only 0.250; G+DC closed.",
+      "next_mega_cycle": "CONTINUE Phase B: R21 falsekill · R24/R28 Galio · R26 check03 · R30 Olaf lethErr; absorb R29 anti-odds; Phase C at 30.",
+      "next_tracks": [
+        "R24/R28 Galio→Trundle model kill",
+        "R26 check03 earlyPoisoned",
+        "R21 falsekill",
+        "R30 Olaf lethErr",
+        "Optional: R29 anti-odds merge"
+      ]
+    }
+  },
+  "partial_wins_not_gate": [
+    "digestCleanGate true (C3 12/15) — reaffirm C4",
+    "Criterion G proven (R16/R17)",
+    "R19 idleFollowActual KEEP FA → 0.4107",
+    "R23 research FA 0.250 correctly NO product KEEP",
+    "R22 Camille Q wiki KEEP",
+    "R25 remesaure authoritative",
+    "calculatorReadyGate Path1 still true"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle4/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r25/researcher_r25_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r23/researcher_r23_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r22/researcher_r22_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/CYCLE3_FINAL.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle4/V11.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle4/V12.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle4/V13.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle4/V14.json",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md"
+  ],
+  "failures": [
+    "B: FA thresholds unmet — S0 Path1 0.4107; R23 research 0.250 no KEEP",
+    "F: Holdout unmet — S1 0.417 / pass 0; cannot claim fightOutcomeGate",
+    "I: Majority ≥11/15 fightOutcomeGate true not achievable this cycle (FA objective)"
+  ],
+  "blocker": "B/F: Path1 S0 FA 0.4107 ≪ 0.95; R23 NO KEEP; G+DC closed; open R21/R24/R26/R28/R30.",
+  "sharper_blocker": "Lift Path1 S0 Galio lethal + check03/falsekill/Olaf (R24/R28/R26/R21/R30) from FA 0.4107; then re-measure S1 without tune. majority_possible=false for fightOutcomeGate.",
+  "notes": "Consolidation Cycle4: KEEP order R19>R16>R17>R01>R02>R22>R25; R23 NO_KEEP_product. Closed: idle+G+DC. Open: Galio/check03/falsekill/Olaf. majority_possible=false for fightOutcomeGate; digestCleanGate=true reaffirm. Final draft CONTINUE_PHASE_B. fightAgreement ≠ win probability.",
+  "one_line_vote": "V15: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — FA 0.4107≪0.95; DC reaffirm; majority_possible=false; CONTINUE Phase B"
+}

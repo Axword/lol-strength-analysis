@@ -6,6 +6,11 @@ only when explicitly marked as placeholders, and never count as live movement.
 Use ``--require-live-positions`` for a calculator-safe import gate.
 Use ``--product`` for real-match publication gates (rejects fixture/schema-proof
 /synthetic/static-snapshot provenance and dishonest zero rows).
+
+Calculator readiness defaults to strict all-frame (hp+combat+ranks on every
+unit). Path1 living-post-seed is opt-in via ``--calculator-ready-policy
+living_post_seed_v1`` or provenance ``calculatorReadyPolicy`` (dead and
+pre-seed may stay unknown; default is never silently weakened).
 """
 from __future__ import annotations
 
@@ -36,6 +41,12 @@ NON_PRODUCT_SOURCE_KIND_MARKERS = (
     "static_snapshot",
     "synthetic",
     "decoded_replay_packets_synthetic",
+    # GRID live-stats / series-events adapters are research density only.
+    # A gameID rewrite must not slip them past --product (R19 H2/H4).
+    "grid_riot_livestats",
+    "grid_series_events",
+    "grid_riot",
+    "grid_series",
 )
 
 NON_PRODUCT_SOURCE_MARKERS = (
@@ -47,6 +58,18 @@ NON_PRODUCT_SOURCE_MARKERS = (
     "maknee_decoded_packets",
     "research_only",
     "live_fur_schema",
+    "grid_riot_livestats",
+    "grid_series_events",
+    "grid_riot",
+    "grid_series",
+)
+
+# Per-unit health/combat/ranks sources that must never satisfy product known-flags.
+NON_PRODUCT_UNIT_SOURCE_MARKERS = (
+    "grid_riot_livestats",
+    "grid_series_events",
+    "grid_riot",
+    "grid_series",
 )
 
 NON_PRODUCT_HP_COVERAGE = frozenset(
@@ -58,8 +81,27 @@ NON_PRODUCT_HP_COVERAGE = frozenset(
 )
 TRUSTED_HEALTH_SOURCE = "rofl2_replication_decrypt_timed_identity_bound"
 TRUSTED_HP_MODE = "timed_identity_bound"
+TRUSTED_HP_MODE_PERHERO = "timed_identity_bound_per_hero"
+TRUSTED_HP_SCHEMA = "rofl-trusted-hp-v1"
+TRUSTED_HP_SCHEMA_PERHERO = "rofl-trusted-hp-v1-perhero"
+TRUSTED_HP_SCHEMAS = frozenset({TRUSTED_HP_SCHEMA, TRUSTED_HP_SCHEMA_PERHERO})
 TRUSTED_HP_BINDING = "stable_identity_to_net_id"
 MAX_TRUSTED_HP_TOLERANCE_MS = 500
+# calculatorReady policies (default stays strict all-frame; Path1 living is opt-in).
+CALCULATOR_READY_POLICY_STRICT = "strict_all_frame_v1"
+CALCULATOR_READY_POLICY_LIVING_POST_SEED = "living_post_seed_v1"
+CALCULATOR_READY_POLICIES = frozenset(
+    {
+        CALCULATOR_READY_POLICY_STRICT,
+        CALCULATOR_READY_POLICY_LIVING_POST_SEED,
+    }
+)
+DEFAULT_CALCULATOR_READY_POLICY = CALCULATOR_READY_POLICY_STRICT
+# Riot tournament platforms use short numeric gameIDs (often 5–6 digits). Product
+# publish is allowed only with an explicit disclosure + matching suggested ROFL name.
+# Never treat gridSeriesId as gameID. Never invent HP.
+TOURNAMENT_PLATFORM_RE = re.compile(r"^LOLTMNT\d+$", re.IGNORECASE)
+MIN_TOURNAMENT_GAME_ID = 10_000
 
 # FUR parity / schema-proof fixture roster (CreateHero champions).
 FIXTURE_ROSTER_CHAMPIONS = frozenset(
@@ -322,12 +364,9 @@ def validate(jsonl: Path, timeline_path: Path, require_live: bool) -> dict:
                         f"'unavailable_replay_api' under hpCoverage=none "
                         f"(got {p.get('combatStatsSource')!r})"
                     )
-                if p.get("abilityRanksSource") != "unavailable_replay_api":
-                    fail(
-                        f"participant {pid} abilityRanksSource must be "
-                        f"'unavailable_replay_api' under hpCoverage=none "
-                        f"(got {p.get('abilityRanksSource')!r})"
-                    )
+                # R20: ability ranks are independent of HP densify — UpgradeSpellAns
+                # (636/1012) may be fused while health remains unavailable. Do not
+                # force abilityRanksSource=unavailable_replay_api under hpCoverage=none.
             else:
                 hp, hp_max = float(p.get("health") or 0), float(p.get("healthMax") or 0)
                 if hp_max > 1:
@@ -371,8 +410,7 @@ def validate(jsonl: Path, timeline_path: Path, require_live: bool) -> dict:
                     fail("hpCoverage=none requires TimelineUnitFrame.hpKnown=false")
                 if u.get("combatStatsKnown") is not False:
                     fail("hpCoverage=none requires TimelineUnitFrame.combatStatsKnown=false")
-                if u.get("abilityRanksKnown") is not False:
-                    fail("hpCoverage=none requires TimelineUnitFrame.abilityRanksKnown=false")
+                # R20: abilityRanksKnown may be true from UpgradeSpellAns fuse without HP.
                 # Must not look like inferred full HP
                 if u.get("hpMax", 0) > 0 and u.get("hp") == u.get("hpMax"):
                     fail("unknown-HP frame must not store full HP as authoritative value")
@@ -418,13 +456,60 @@ def _collect_identity(info: dict, coverage: dict, timeline: dict) -> Dict[str, A
         or timeline.get("name")
         or game_name
     )
+    platform_id = (
+        info.get("platformID")
+        or provenance.get("platformID")
+        or provenance.get("platformId")
+        or tl_prov.get("platformID")
+        or tl_prov.get("platformId")
+    )
     return {
         "gameID": game_id,
         "gameName": game_name,
         "matchCode": match_code,
+        "platformID": platform_id,
         "provenance": provenance,
         "timelineProvenance": tl_prov,
     }
+
+
+def _disclosed_tournament_identity(
+    *,
+    platform_id: Any,
+    game_id_int: int,
+    provenance: JsonDict,
+    tl_prov: JsonDict,
+) -> bool:
+    """True when a short LOLTMNT gameID is an explicitly disclosed tournament identity.
+
+    Research→product path for pro-grid dumps: livestats rename-report yields
+    platformID+gameID (e.g. LOLTMNT01-426746). Grid series ids must not be used
+    as gameID. Disclosure is fail-closed without the explicit marker.
+    """
+    platform = str(platform_id or "").strip().upper()
+    if not TOURNAMENT_PLATFORM_RE.fullmatch(platform):
+        return False
+    if game_id_int < MIN_TOURNAMENT_GAME_ID:
+        return False
+    disclosed = (
+        provenance.get("tournamentIdentityDisclosed") is True
+        or tl_prov.get("tournamentIdentityDisclosed") is True
+    )
+    if not disclosed:
+        return False
+    suggested = str(
+        provenance.get("suggestedProductRofl")
+        or tl_prov.get("suggestedProductRofl")
+        or ""
+    ).strip()
+    expected = f"{platform}-{game_id_int}.rofl"
+    if suggested != expected:
+        return False
+    # Optional cross-check: gridSeriesId is a dump key, never the match code.
+    series = provenance.get("gridSeriesId") or tl_prov.get("gridSeriesId")
+    if series is not None and str(series).strip() == str(game_id_int):
+        return False
+    return True
 
 
 def _roster_champions(info: dict, timeline: dict) -> Set[str]:
@@ -481,7 +566,11 @@ def _evidence_source(
 def _source_is_authoritative(source: str) -> bool:
     if not source:
         return False
-    return _contains_any(source, UNAVAILABLE_EVIDENCE_MARKERS) is None
+    if _contains_any(source, UNAVAILABLE_EVIDENCE_MARKERS) is not None:
+        return False
+    if _contains_any(source, NON_PRODUCT_UNIT_SOURCE_MARKERS) is not None:
+        return False
+    return True
 
 
 def _finite_number(value: Any) -> Optional[float]:
@@ -490,6 +579,192 @@ def _finite_number(value: Any) -> Optional[float]:
     except (TypeError, ValueError):
         return None
     return number if math.isfinite(number) else None
+
+
+def _is_pe_hp_seed(unit: JsonDict) -> bool:
+    """PE-proven HP seed (not hold_forward)."""
+    return unit.get("hpKnown") is True and _norm_text(unit.get("hpSource")) == "pe"
+
+
+def _is_pe_combat_seed(unit: JsonDict) -> bool:
+    """PE FUR combat seed (Path1 wire / non-hold authoritative source)."""
+    if unit.get("combatStatsKnown") is not True:
+        return False
+    source = _norm_text(unit.get("combatStatsSource") or unit.get("combatSource"))
+    if not source or source == "hold_forward":
+        return False
+    return _source_is_authoritative(source)
+
+
+def _resolve_calculator_ready_policy(
+    *,
+    cli_policy: Optional[str],
+    provenance: JsonDict,
+    timeline_provenance: JsonDict,
+) -> str:
+    raw = cli_policy
+    if raw in (None, ""):
+        raw = provenance.get("calculatorReadyPolicy")
+    if raw in (None, ""):
+        raw = timeline_provenance.get("calculatorReadyPolicy")
+    if raw in (None, ""):
+        return DEFAULT_CALCULATOR_READY_POLICY
+    policy = _norm_text(raw)
+    if policy not in CALCULATOR_READY_POLICIES:
+        fail(
+            "product gate: unknown calculatorReadyPolicy "
+            f"{raw!r}; allowed={sorted(CALCULATOR_READY_POLICIES)}"
+        )
+    return policy
+
+
+def evaluate_calculator_ready_policies(
+    frames: List[JsonDict],
+    *,
+    expected_units: int,
+    hp_hold_across_respawn: bool = False,
+) -> dict:
+    """Evaluate strict all-frame and Path1 living-post-seed calculatorReady.
+
+    living_post_seed_v1 (product-honest Path1):
+      - all expected heroes have ≥1 PE HP seed and ≥1 PE FUR combat seed
+      - abilityRanksKnown density is 1.0
+      - for alive units past HP seed in the current continuous alive segment
+        and past the unit's first PE combat seed: require hp+combat+ranks known
+      - dead and pre-seed (including post-death before HP re-seed) may stay unknown
+
+    Default: HP seed is segment-scoped because Path1 HP hold clears on death.
+    When provenance ``hpHoldAcrossRespawn=true``, the HP seed survives death so
+    post-respawn hold_forward counts without a mid-game PE re-seed (dead frames
+    still stay unknown / not living-required).
+    Combat seed is first PE in the match (combat may hold across respawn).
+    """
+    frame_shapes_complete = bool(frames) and all(
+        len(frame.get("units") or []) == expected_units for frame in frames
+    )
+    total_slots = 0
+    ranks_known_slots = 0
+    strict_all_hp = frame_shapes_complete
+    strict_all_combat = frame_shapes_complete
+    strict_all_ranks = frame_shapes_complete
+
+    first_pe_hp: Dict[int, int] = {}
+    first_pe_combat: Dict[int, int] = {}
+    segment_hp_seeded: Dict[int, bool] = {}
+
+    living_required = 0
+    living_ok = 0
+    living_miss = 0
+    pre_seed_slots = 0
+    dead_slots = 0
+    miss_examples: List[dict] = []
+
+    for frame in frames:
+        frame_t = int(frame.get("t") or 0)
+        for unit in frame.get("units") or []:
+            total_slots += 1
+            pid = int(unit.get("pid"))
+            hp_known = unit.get("hpKnown") is True
+            combat_known = unit.get("combatStatsKnown") is True
+            ranks_known = unit.get("abilityRanksKnown") is True
+            if ranks_known:
+                ranks_known_slots += 1
+            strict_all_hp = strict_all_hp and hp_known
+            strict_all_combat = strict_all_combat and combat_known
+            strict_all_ranks = strict_all_ranks and ranks_known
+
+            alive = unit.get("alive") is True
+            if not alive:
+                # Legacy clear-on-death: wipe segment seed. Hold-across-respawn
+                # keeps the seed so post-respawn hold_forward is living-required.
+                if not hp_hold_across_respawn:
+                    segment_hp_seeded.pop(pid, None)
+                dead_slots += 1
+                continue
+
+            if _is_pe_hp_seed(unit):
+                first_pe_hp.setdefault(pid, frame_t)
+                segment_hp_seeded[pid] = True
+            elif hp_known and _norm_text(unit.get("hpSource")) == "hold_forward":
+                # Hold implies a prior PE seed (segment or across-respawn).
+                segment_hp_seeded.setdefault(pid, True)
+
+            if _is_pe_combat_seed(unit):
+                first_pe_combat.setdefault(pid, frame_t)
+
+            past_hp_seed = segment_hp_seeded.get(pid) is True
+            past_combat_seed = (
+                pid in first_pe_combat and frame_t >= int(first_pe_combat[pid])
+            )
+            if not past_hp_seed or not past_combat_seed:
+                pre_seed_slots += 1
+                continue
+
+            living_required += 1
+            if hp_known and combat_known and ranks_known:
+                living_ok += 1
+            else:
+                living_miss += 1
+                if len(miss_examples) < 8:
+                    miss_examples.append(
+                        {
+                            "t": frame_t,
+                            "pid": pid,
+                            "hpKnown": hp_known,
+                            "combatStatsKnown": combat_known,
+                            "abilityRanksKnown": ranks_known,
+                            "hpSource": unit.get("hpSource"),
+                            "combatStatsSource": unit.get("combatStatsSource"),
+                        }
+                    )
+
+    ranks_density = (
+        float(ranks_known_slots) / float(total_slots) if total_slots else 0.0
+    )
+    heroes_pe_hp = len(first_pe_hp)
+    heroes_pe_combat = len(first_pe_combat)
+    seed_coverage_ok = (
+        expected_units > 0
+        and heroes_pe_hp >= expected_units
+        and heroes_pe_combat >= expected_units
+    )
+    ranks_ok = total_slots > 0 and ranks_known_slots == total_slots
+    living_postseed_ready = bool(
+        frame_shapes_complete
+        and seed_coverage_ok
+        and ranks_ok
+        and living_miss == 0
+        and living_required > 0
+    )
+    strict_all_frame_ready = bool(
+        strict_all_hp and strict_all_combat and strict_all_ranks
+    )
+    return {
+        "strictAllFrameCalculatorReady": strict_all_frame_ready,
+        "livingPostSeedCalculatorReady": living_postseed_ready,
+        "strictAllHp": strict_all_hp,
+        "strictAllCombat": strict_all_combat,
+        "strictAllRanks": strict_all_ranks,
+        "expectedUnits": expected_units,
+        "heroesWithPeHpSeed": heroes_pe_hp,
+        "heroesWithPeCombatSeed": heroes_pe_combat,
+        "firstPeHpMsByPid": {str(k): v for k, v in sorted(first_pe_hp.items())},
+        "firstPeCombatMsByPid": {
+            str(k): v for k, v in sorted(first_pe_combat.items())
+        },
+        "ranksKnownSlots": ranks_known_slots,
+        "totalSlots": total_slots,
+        "ranksDensity": ranks_density,
+        "livingRequiredSlots": living_required,
+        "livingOkSlots": living_ok,
+        "livingMissSlots": living_miss,
+        "preSeedSlots": pre_seed_slots,
+        "deadSlots": dead_slots,
+        "livingMissExamples": miss_examples,
+        "seedCoverageOk": seed_coverage_ok,
+        "ranksDensityOk": ranks_ok,
+        "hpHoldAcrossRespawn": bool(hp_hold_across_respawn),
+    }
 
 
 def _career_coverage_mode(
@@ -730,9 +1005,18 @@ def _validate_trusted_hp_evidence(
             "totalParticipantRows": len(all_participants),
         }
 
+    schema = provenance.get("hpEvidenceSchema")
+    if schema not in TRUSTED_HP_SCHEMAS:
+        fail(
+            f"product gate: trusted HP provenance hpEvidenceSchema must be one of "
+            f"{sorted(TRUSTED_HP_SCHEMAS)} (got {schema!r})"
+        )
+    perhero = schema == TRUSTED_HP_SCHEMA_PERHERO or (
+        provenance.get("hpEvidenceMode") == TRUSTED_HP_MODE_PERHERO
+    )
+    expected_mode = TRUSTED_HP_MODE_PERHERO if perhero else TRUSTED_HP_MODE
     required_provenance = {
-        "hpEvidenceMode": TRUSTED_HP_MODE,
-        "hpEvidenceSchema": "rofl-trusted-hp-v1",
+        "hpEvidenceMode": expected_mode,
         "hpEvidenceSource": TRUSTED_HEALTH_SOURCE,
         "hpEvidenceTimed": True,
         "hpStaticSnapshot": False,
@@ -761,6 +1045,19 @@ def _validate_trusted_hp_evidence(
         fail("product gate: trusted HP sample coverage summary is absent")
     if int(sample_coverage.get("sampleCount") or 0) < 2:
         fail("product gate: trusted HP requires at least two timed samples")
+    if perhero and sample_coverage.get("sampleModel") not in (None, "per_hero"):
+        fail("product gate: per-hero trusted HP sampleModel must be per_hero")
+
+    hold_forward_disclosed = (
+        provenance.get("hpHoldForward") is True
+        or provenance.get("hpHoldForwardUsed") is True
+    )
+    hold_forward_policy = _norm_text(
+        provenance.get("hpHoldForwardPolicy")
+        or "until_next_seed_or_end_of_continuous_alive_segment"
+    )
+    if hold_forward_disclosed and not hold_forward_policy:
+        fail("product gate: hpHoldForward requires a disclosed hpHoldForwardPolicy")
 
     trusted_frame_count = 0
     for row in stats:
@@ -779,9 +1076,66 @@ def _validate_trusted_hp_evidence(
             frame_identities = [
                 participant.get("healthIdentityKey") for participant in frame_trusted
             ]
-            if len(frame_trusted) != len(participants) or (
+            coverage_label = frame_evidence.get("coverage")
+            if perhero:
+                if frame_evidence.get("source") != TRUSTED_HEALTH_SOURCE:
+                    fail("product gate: trusted HP frame has mismatched source")
+                if coverage_label == "known_at_sampled_frame":
+                    if len(frame_trusted) != len(participants) or set(
+                        frame_identities
+                    ) != info_identities:
+                        fail(
+                            "product gate: per-hero all-known frame has mismatched annotation"
+                        )
+                elif coverage_label == "partial_known_at_sampled_frame":
+                    if not (
+                        0 < len(frame_trusted) < len(participants)
+                        and len(set(frame_net_ids)) == len(frame_trusted)
+                        and len(set(frame_identities)) == len(frame_trusted)
+                        and set(frame_identities).issubset(info_identities)
+                    ):
+                        fail(
+                            "product gate: per-hero partial frame has mismatched annotation"
+                        )
+                elif hold_forward_disclosed and coverage_label in (
+                    "known_with_hold_forward",
+                    "partial_known_with_hold_forward",
+                ):
+                    if not (
+                        0 < len(frame_trusted) <= len(participants)
+                        and len(set(frame_net_ids)) == len(frame_trusted)
+                        and len(set(frame_identities)) == len(frame_trusted)
+                        and set(frame_identities).issubset(info_identities)
+                    ):
+                        fail(
+                            "product gate: per-hero hold-forward frame has mismatched annotation"
+                        )
+                    if coverage_label == "known_with_hold_forward" and len(
+                        frame_trusted
+                    ) != len(participants):
+                        fail(
+                            "product gate: known_with_hold_forward must cover all participants"
+                        )
+                    if coverage_label == "partial_known_with_hold_forward" and len(
+                        frame_trusted
+                    ) >= len(participants):
+                        fail(
+                            "product gate: partial_known_with_hold_forward must leave "
+                            "at least one unmatched participant"
+                        )
+                else:
+                    fail(
+                        "product gate: per-hero trusted frame coverage must be "
+                        "known_at_sampled_frame or partial_known_at_sampled_frame"
+                        + (
+                            " (or disclosed *_with_hold_forward)"
+                            if hold_forward_disclosed
+                            else ""
+                        )
+                    )
+            elif len(frame_trusted) != len(participants) or (
                 frame_evidence.get("source") != TRUSTED_HEALTH_SOURCE
-                or frame_evidence.get("coverage") != "known_at_sampled_frame"
+                or coverage_label != "known_at_sampled_frame"
                 or len(set(frame_net_ids)) != len(frame_trusted)
                 or len(set(frame_identities)) != len(frame_trusted)
                 or set(frame_identities) != info_identities
@@ -804,6 +1158,28 @@ def _validate_trusted_hp_evidence(
                 net_id = int(participant.get("healthNetId"))
             except (TypeError, ValueError):
                 fail("product gate: trusted HP row has invalid values/timing/netId")
+            health_coverage = _norm_text(participant.get("healthCoverage"))
+            is_hold_forward_row = (
+                hold_forward_disclosed and health_coverage == "known_hold_forward"
+            )
+            is_pe_row = health_coverage == "known_at_sampled_frame"
+            if not is_pe_row and not is_hold_forward_row:
+                fail(
+                    "product gate: trusted HP row healthCoverage must be "
+                    "known_at_sampled_frame"
+                    + (
+                        " or known_hold_forward when hpHoldForward is disclosed"
+                        if hold_forward_disclosed
+                        else ""
+                    )
+                    + f" (got {participant.get('healthCoverage')!r})"
+                )
+            # PE seeds stay within align tolerance; hold_forward may exceed it by design.
+            delta_ok = (
+                delta_ms >= 0
+                if is_hold_forward_row
+                else (0 <= delta_ms <= tolerance_ms)
+            )
             if (
                 not math.isfinite(hp)
                 or not math.isfinite(hp_max)
@@ -811,14 +1187,12 @@ def _validate_trusted_hp_evidence(
                 or hp_max <= 100
                 or hp > hp_max
                 or sample_time < 0
-                or delta_ms < 0
-                or delta_ms > tolerance_ms
+                or not delta_ok
                 or net_id <= 0
                 or participant.get("mMaxHPExplicit") is not True
                 or participant.get("healthMaxEvidence") != "explicit_mMaxHP"
                 or participant.get("healthIdentityBinding") != TRUSTED_HP_BINDING
                 or participant.get("healthIdentityKey") not in info_identities
-                or participant.get("healthCoverage") != "known_at_sampled_frame"
             ):
                 fail(
                     "product gate: trusted HP row lacks timed binding or explicit mMaxHP"
@@ -834,8 +1208,14 @@ def _validate_trusted_hp_evidence(
 
     if hp_coverage == "full" and len(trusted) != len(all_participants):
         fail("product gate: hpCoverage=full has unmatched participant rows")
-    if hp_coverage == "partial" and len(trusted) >= len(all_participants):
+    if (
+        not perhero
+        and hp_coverage == "partial"
+        and len(trusted) >= len(all_participants)
+    ):
         fail("product gate: hpCoverage=partial understates full trusted coverage")
+    if perhero and hp_coverage == "partial" and len(trusted) == 0:
+        fail("product gate: per-hero partial coverage has zero trusted rows")
     if int(sample_coverage.get("fusedParticipantRows", -1)) != len(trusted):
         fail("product gate: trusted HP participant-row summary is inconsistent")
     if (
@@ -843,16 +1223,36 @@ def _validate_trusted_hp_evidence(
         or int(sample_coverage.get("fusedFrames", -1)) != trusted_frame_count
         or int(sample_coverage.get("unmatchedFrames", -1))
         != len(stats) - trusted_frame_count
-        or int(sample_coverage.get("sampleTimesUsed", -1))
-        != trusted_frame_count
     ):
         fail("product gate: trusted HP frame/time summary is inconsistent")
+    if not perhero and int(sample_coverage.get("sampleTimesUsed", -1)) != trusted_frame_count:
+        fail("product gate: trusted HP sampleTimesUsed summary is inconsistent")
+    if perhero:
+        sample_times_used = int(sample_coverage.get("sampleTimesUsed", -1))
+        if hold_forward_disclosed:
+            seed_rows = int(sample_coverage.get("seedParticipantRows", -1))
+            hold_rows = int(sample_coverage.get("holdForwardParticipantRows", -1))
+            if seed_rows < 1 or hold_rows < 0 or seed_rows + hold_rows != len(trusted):
+                fail(
+                    "product gate: hold-forward trusted HP seed/hold row summary "
+                    "is inconsistent"
+                )
+            if sample_times_used not in (seed_rows, int(sample_coverage.get("sampleCount", -1))):
+                fail(
+                    "product gate: hold-forward sampleTimesUsed must equal PE seed rows"
+                )
+        elif sample_times_used != len(trusted):
+            fail(
+                "product gate: per-hero sampleTimesUsed must equal trusted participant rows"
+            )
     return {
         "trusted": True,
         "knownParticipantRows": len(trusted),
         "totalParticipantRows": len(all_participants),
         "timeToleranceMs": tolerance_ms,
         "sampleCount": int(sample_coverage["sampleCount"]),
+        "sampleModel": "per_hero" if perhero else "all10",
+        "hpHoldForward": hold_forward_disclosed,
     }
 
 
@@ -861,6 +1261,7 @@ def validate_product(
     timeline_path: Path,
     *,
     require_calculator_ready: bool = False,
+    calculator_ready_policy: Optional[str] = None,
 ) -> dict:
     """Real-match publication gates. Fail closed on fixture/schema-proof paths."""
     rows = [json.loads(line) for line in jsonl.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -871,6 +1272,11 @@ def validate_product(
     timeline = json.loads(timeline_path.read_text(encoding="utf-8"))
     provenance = dict(coverage.get("provenance") or {})
     tl_prov = dict(timeline.get("provenance") or {})
+    policy = _resolve_calculator_ready_policy(
+        cli_policy=calculator_ready_policy,
+        provenance=provenance,
+        timeline_provenance=tl_prov,
+    )
     source = _norm_text(coverage.get("source") or provenance.get("source") or timeline.get("source"))
     source_kind = _norm_text(provenance.get("sourceKind") or tl_prov.get("sourceKind"))
     notes = " ".join(
@@ -889,6 +1295,12 @@ def validate_product(
         fail("product gate: researchOnly provenance cannot publish")
     if provenance.get("schemaProof") is True or tl_prov.get("schemaProof") is True:
         fail("product gate: schemaProof provenance cannot publish as a real match")
+    if (
+        coverage.get("productEligible") is False
+        or provenance.get("productEligible") is False
+        or tl_prov.get("productEligible") is False
+    ):
+        fail("product gate: productEligible=false cannot publish")
 
     hit = _contains_any(source_kind, NON_PRODUCT_SOURCE_KIND_MARKERS)
     if hit:
@@ -919,14 +1331,25 @@ def validate_product(
     game_id = identity["gameID"]
     game_name = identity["gameName"]
     match_code = identity["matchCode"]
+    platform_id = identity.get("platformID")
     if game_id in (None, "", 0, "0"):
         fail("product gate: missing gameID/match identity for real-match publish")
     try:
         game_id_int = int(game_id)
     except (TypeError, ValueError):
         fail(f"product gate: gameID is not an integer match code ({game_id!r})")
-    if game_id_int < 1_000_000:
-        fail(f"product gate: gameID {game_id_int} does not look like a real match code")
+    tournament_disclosed = _disclosed_tournament_identity(
+        platform_id=platform_id,
+        game_id_int=game_id_int,
+        provenance=provenance,
+        tl_prov=tl_prov,
+    )
+    if game_id_int < 1_000_000 and not tournament_disclosed:
+        fail(
+            f"product gate: gameID {game_id_int} does not look like a real match code "
+            "(tournament LOLTMNT* identities require tournamentIdentityDisclosed=true "
+            "and suggestedProductRofl=<PLATFORM>-<gameID>.rofl)"
+        )
 
     digits = re.sub(r"\D", "", str(match_code or ""))
     if digits and digits != str(game_id_int):
@@ -965,26 +1388,32 @@ def validate_product(
 
     canonical_by_time = _canonical_rows_by_time(rows)
     expected_units = len(info.get("participants") or [])
-    frame_shapes_complete = bool(frames) and all(
-        len(frame.get("units") or []) == expected_units for frame in frames
-    )
-    all_hp = frame_shapes_complete
-    all_combat = frame_shapes_complete
-    all_ranks = frame_shapes_complete
     for frame in frames:
         frame_t = int(frame.get("t") or 0)
         canonical_participants = canonical_by_time.get(frame_t, {})
         for unit in frame.get("units") or []:
             pid = int(unit.get("pid"))
-            hp_known, combat_known, ranks_known = _validate_known_unit_evidence(
+            _validate_known_unit_evidence(
                 frame_t=frame_t,
                 unit=unit,
                 participant=canonical_participants.get(pid),
                 provenance=provenance,
             )
-            all_hp = all_hp and hp_known
-            all_combat = all_combat and combat_known
-            all_ranks = all_ranks and ranks_known
+
+    hp_hold_across_respawn = (
+        provenance.get("hpHoldAcrossRespawn") is True
+        or tl_prov.get("hpHoldAcrossRespawn") is True
+    )
+    ready_metrics = evaluate_calculator_ready_policies(
+        frames,
+        expected_units=expected_units,
+        hp_hold_across_respawn=hp_hold_across_respawn,
+    )
+    all_hp = bool(ready_metrics["strictAllHp"])
+    all_combat = bool(ready_metrics["strictAllCombat"])
+    all_ranks = bool(ready_metrics["strictAllRanks"])
+    strict_all_frame_ready_flags = bool(ready_metrics["strictAllFrameCalculatorReady"])
+    living_postseed_ready_flags = bool(ready_metrics["livingPostSeedCalculatorReady"])
 
     calculator_claim = any(
         token in notes
@@ -997,13 +1426,56 @@ def validate_product(
     ) or provenance.get("calculatorReady") is True or tl_prov.get("calculatorReady") is True
 
     hp_source_ok = hp_cov in ("full", "partial") and "snapshot" not in hp_cov
+    # Fountain placeholders / absent live coverage can never satisfy calculatorReady
+    # even if ranks fuse or partial known-flags look dense (R21 H3).
+    position_live_ok = bool(
+        pos_cov
+        and pos_cov
+        not in (
+            "",
+            "none",
+            "unknown",
+            "fountain_placeholder_only",
+            "fountain_placeholder",
+        )
+        and "fountain_placeholder" not in pos_cov
+        and "placeholder_only" not in pos_cov
+    )
+    # Shared infrastructure: trusted HP + live positions + non-snapshot coverage.
+    # livestats known-flags alone must never flip the claim (R19 E6b). Fountain red (R21).
+    infra_ok = bool(hp_source_ok and trusted_hp["trusted"] and position_live_ok)
+    strict_calculator_ready = bool(strict_all_frame_ready_flags and infra_ok)
+    living_calculator_ready = bool(living_postseed_ready_flags and infra_ok)
+    if policy == CALCULATOR_READY_POLICY_LIVING_POST_SEED:
+        calculator_ready = living_calculator_ready
+    else:
+        calculator_ready = strict_calculator_ready
+
     if require_calculator_ready or calculator_claim:
-        if not (all_hp and all_combat and all_ranks and hp_source_ok):
+        if not calculator_ready:
+            if policy == CALCULATOR_READY_POLICY_LIVING_POST_SEED:
+                fail(
+                    "product gate: calculator-ready claim under living_post_seed_v1 requires "
+                    "PE HP+combat seeds for all heroes, ranks density 1.0, and "
+                    "hpKnown+combatStatsKnown+abilityRanksKnown on every living post-seed "
+                    "frame/unit (dead/pre-seed may stay unknown), plus non-snapshot "
+                    "hpCoverage, rofl-trusted-hp-v1, and non-fountain live positions "
+                    f"(livingReady={living_postseed_ready_flags} "
+                    f"livingMiss={ready_metrics['livingMissSlots']} "
+                    f"peHpHeroes={ready_metrics['heroesWithPeHpSeed']}/"
+                    f"{expected_units} peCombatHeroes="
+                    f"{ready_metrics['heroesWithPeCombatSeed']}/{expected_units} "
+                    f"ranksDensity={ready_metrics['ranksDensity']!r} "
+                    f"hpCoverage={hp_cov!r} hpTrusted={trusted_hp['trusted']} "
+                    f"positionCoverage={pos_cov!r} policy={policy!r})"
+                )
             fail(
                 "product gate: calculator-ready claim requires hpKnown + combatStatsKnown + "
-                "abilityRanksKnown with authoritative canonical evidence on every frame/unit "
-                "and non-snapshot hpCoverage "
-                f"(hp={all_hp} combat={all_combat} ranks={all_ranks} hpCoverage={hp_cov!r})"
+                "abilityRanksKnown with authoritative canonical evidence on every frame/unit, "
+                "non-snapshot hpCoverage, rofl-trusted-hp-v1, and non-fountain live positions "
+                f"(hp={all_hp} combat={all_combat} ranks={all_ranks} hpCoverage={hp_cov!r} "
+                f"hpTrusted={trusted_hp['trusted']} positionCoverage={pos_cov!r} "
+                f"policy={policy!r})"
             )
 
     return {
@@ -1017,7 +1489,11 @@ def validate_product(
         "hpTrusted": trusted_hp["trusted"],
         "hpTrustedParticipantRows": trusted_hp["knownParticipantRows"],
         "positionOnly": hp_cov in ("", "none", "unknown"),
-        "calculatorReady": bool(all_hp and all_combat and all_ranks and hp_source_ok),
+        "calculatorReady": calculator_ready,
+        "calculatorReadyPolicy": policy,
+        "strictAllFrameCalculatorReady": strict_calculator_ready,
+        "livingPostSeedCalculatorReady": living_calculator_ready,
+        "calculatorReadyMetrics": ready_metrics,
         "calculatorFrameCount": len(frames),
         "rosterChampions": sorted(champs),
         "motionAudit": _validated_motion_audit(timeline),
@@ -1042,6 +1518,17 @@ def main() -> int:
         action="store_true",
         help="With --product, also require HP+combat+ranks known under honest provenance",
     )
+    ap.add_argument(
+        "--calculator-ready-policy",
+        choices=sorted(CALCULATOR_READY_POLICIES),
+        default=None,
+        help=(
+            "Disclosed calculatorReady policy. Default is strict_all_frame_v1 "
+            "(every frame/unit). Use living_post_seed_v1 for Path1 living-post-seed "
+            "(dead/pre-seed may stay unknown). Also accepted via provenance "
+            "calculatorReadyPolicy."
+        ),
+    )
     args = ap.parse_args()
     for path in (args.jsonl, args.timeline):
         if not path.exists():
@@ -1059,6 +1546,7 @@ def main() -> int:
             args.jsonl,
             args.timeline,
             require_calculator_ready=args.require_calculator_ready,
+            calculator_ready_policy=args.calculator_ready_policy,
         )
         result["productPublication"] = product
     print(json.dumps(result, indent=2))

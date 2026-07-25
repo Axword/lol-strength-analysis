@@ -1,0 +1,12 @@
+{
+  "tag": "e5",
+  "hyp": "R35-e5 host-gated sparse opener0.5 maxPost=3",
+  "S0_FA": 0.6021026407618185,
+  "S0_pass": 0.3333333333333333,
+  "S1_FA": 0.5619564223174064,
+  "S1_pass": 0.3333333333333333,
+  "galio_killed": true,
+  "galio_lethErr": -1.8369999999999997,
+  "galio_marks": 3,
+  "galio_endHp": 0
+}

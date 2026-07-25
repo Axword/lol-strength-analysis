@@ -1,0 +1,93 @@
+{
+  "researcher": "r18",
+  "slug": "path1-lethal",
+  "model": "Auto",
+  "utc": "2026-07-24T15:57:25.827174+00:00",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r18",
+  "branch": "adv/fo-r18-path1-lethal",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "room": "f6/f4-path1-lethal",
+  "mandate": "Lift 2970132 Path1 S0 product fightAgreement from 0.228; death-coupled timed / lethalHit+earlyBand; skip flat mark/CUSUM/regen",
+  "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json",
+  "primarySelector": "cusum_engage_then_skills",
+  "n_experiments": 15,
+  "path1_FA_before": 0.2279317568764,
+  "path1_FA_after_research_best": 0.24136621085367857,
+  "path1_FA_after_product": 0.2279317568764,
+  "path1_FA_delta_research": 0.013434453977278576,
+  "fightPassRate_before": 0,
+  "fightPassRate_after_research_best": 0,
+  "baseline_e0": {
+    "experiment": "e0",
+    "fightAgreement": 0.2279317568764,
+    "note": "R05-parity product cusum density stride1.2/gap1/nearKill2"
+  },
+  "best_S0_research": {
+    "experiment": "e11",
+    "fightAgreement": 0.24136621085367857,
+    "config": "gate_action cusum_engage_then_skills + --no-aa-at-mark + finish-aa (death-coupled AA-at-mark suppress)",
+    "lethal": {
+      "Olaf\u2192Trundle": "|lethErr| 2.81\u21921.14 (still >0.75)",
+      "Galio\u2192Trundle": "still no model kill",
+      "Olaf\u2192Camille full": "|lethErr|~18 unchanged"
+    }
+  },
+  "holdout_S1": {
+    "e0_product_FA": 0.518511,
+    "e11_research_FA": 0.3961,
+    "e8_research_FA": 0.377535,
+    "tunedOnS1": false,
+    "note": "death-coupled AA suppress regresses S1 \u2014 no product KEEP"
+  },
+  "keeps": [],
+  "research_keep_candidates": [
+    "e11",
+    "e12",
+    "e8",
+    "e14"
+  ],
+  "keepable_artifact": {
+    "kind": "research_harness_knob + Path1 suite wire + sweep",
+    "harness": "scripts/crosscheck_action_aligned.ts --sim-mode short|allin|extended + --suite 2970132-g1",
+    "sweep": "scripts/r18_path1_lethal_sweep.sh",
+    "scorer": "scripts/fight_agreement_suite.ts --from-eval",
+    "best_research_config": "e11: product cusum + --no-aa-at-mark + finish-aa",
+    "product_default_unchanged": true,
+    "product_default_still": [
+      "cusum_engage_then_skills",
+      "aaAtEachMark=true",
+      "finishAaAfterLastMark=true"
+    ],
+    "best_json_updated": false,
+    "reason": "S0 FA +0.013 vs e0 but S1 FA 0.396 << product 0.519; Galio still no kill; passRate 0; no invent; no product selector/AA flip"
+  },
+  "discards": [
+    "e1",
+    "e2",
+    "e3",
+    "e4",
+    "e5",
+    "e6",
+    "e7",
+    "e9",
+    "e10",
+    "e13"
+  ],
+  "findings": [
+    "Path1 product baseline reconfirmed FA=0.2279 (R05 parity).",
+    "Death-coupled suppress of aa-at-mark (e11) lifts S0 FA to 0.2414 via Olaf\u2192Trundle lethal |err| 2.81\u21921.14 and better pathBand/actionF1.",
+    "Pure cusum_gate timed planner (allin/short/extended) regresses Path1 FA to ~0.199 \u2014 loses Olaf model kills; Galio still unkilled.",
+    "Galio\u2192Trundle remains the lethalHit floor (modelEndHp>0, null lethal) across all 15 runs.",
+    "S1 holdout: product marks win (0.5185) vs e11 (0.3961) \u2014 no product KEEP / no default flip."
+  ],
+  "blocker": "S0 best FA 0.2414 << 0.95; Galio no model kill; Olaf\u2192Camille full |lethErr|~18; S1 death-coupled regresses; fightPassRate 0",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r18/leaderboard.json",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r18/NOTES.md",
+    "experiments": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/",
+    "sweep": "scripts/r18_path1_lethal_sweep.sh"
+  }
+}

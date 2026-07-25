@@ -1,0 +1,185 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "full",
+  "matchup": "Olaf→Trundle",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 10.013,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 14.956,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 15.891,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 15.958,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 17.193,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 18.863,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 19.666,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 21.549,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 14.956,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4,
+      "shareHint": 0.55
+    },
+    {
+      "tSec": 15.891,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 0.55
+    },
+    {
+      "tSec": 17.193,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 0.55
+    },
+    {
+      "tSec": 18.863,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.55
+    },
+    {
+      "tSec": 19.666,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 0.55
+    },
+    {
+      "tSec": 21.549,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.55
+    },
+    {
+      "tSec": 22.433001343682044,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 23.317002687364084,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 8,
+    "modelCount": 8,
+    "matchedCount": 6,
+    "precision": 0.75,
+    "recall": 0.75,
+    "actionCoverage": 0.75,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 5,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      3
+    ],
+    "unmatchedModel": [
+      6,
+      7
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 8,
+      "modelCount": 6,
+      "matchedCount": 6,
+      "actionCoverage": 0.8571428571428571
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 2,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=25 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=1 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

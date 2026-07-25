@@ -1,0 +1,74 @@
+{
+  "reviewer": "V4",
+  "role": "Unfreeze 0.9683 auditor",
+  "cycle": 5,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:20:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "unfreeze_audit": {
+    "baselineComposite": 0.9683,
+    "best_json_composite_now": 0.9683,
+    "unfrozenFromComposite_present": true,
+    "unfrozenFromComposite": 0.9683,
+    "fightAgreement_S0_recorded": 0.5896947676936598,
+    "fightAgreement_S1_recorded": 0.5619564223174064,
+    "best_json_sha1": "a3059502a88d68050cb408952a3e6ed16875cf0c",
+    "composite_history_preserved": true,
+    "product_default_still": "cusum_engage_then_skills",
+    "r30": {
+      "verdict": "KEEP",
+      "S0_FA": 0.5896947676936598,
+      "S1_FA": 0.5619564223174064,
+      "defaults": "aaAtEachMark=false; perSlotPulse R=0; idleFollowActual=true",
+      "best_json_FA_fields_updated": true,
+      "composite_rewritten": false
+    },
+    "r28": {
+      "verdict": "KEEP_CORE_Galio",
+      "best_json_composite_updated": false,
+      "note": "CORE kit KEEP; FA claim intermediate vs R30 stack"
+    },
+    "r24": {
+      "verdict": "NO_KEEP",
+      "research_best_FA": 0.5030447427479277,
+      "keeps": [],
+      "S1_regress": true,
+      "best_json_updated": false
+    },
+    "prior_correct_no_keep": ["R07", "R08", "R09", "R10", "R12", "R18", "R23", "R24", "R26"]
+  },
+  "evidence": [
+    "C specialty: unfreeze_0_9683 authorized; best.json composite 0.9683 history preserved; unfrozenFromComposite=0.9683 present post-R30 PARENT_MERGE.",
+    "R30 KEEP updates FA fields (S0≈0.590 / S1≈0.562) without rewriting composite 0.9683 as a fake shipGate — Criterion C process compliant.",
+    "R24 path1 Galio research FA 0.503; S1 regress → honest refuse product KEEP — Criterion C process compliant.",
+    "R28 Galio CORE KEEP disclosed; product selector remains non-drop cusum; near_hp_drop research-only.",
+    "Product defaults post-R30: cusum_engage_then_skills + idleFollowActual + aaAtEachMark=false + R-pulse0.",
+    "B FAIL: Path1 product FA ≈0.590 ≪ 0.95; research 0.503 also ≪ 0.95 and not KEEP.",
+    "D reaffirm: Path1 validate+hashes personally green → digestCleanGate=true (2970110 prefer≠require).",
+    "G AFFIRM: fo:send-smoke 8/8 + smoke:calc-parity 11/11 after R19/R30 fixes.",
+    "STATUS: best_fightAgreement≈0.590; fightOutcomeGate=false."
+  ],
+  "failures": [
+    "B: No FA-to-0.95 product KEEP; Path1 product FA ≈0.590 ≪ 0.95.",
+    "F: S1 unmet (≈0.562 / pass ≈0.333); R24 no S1 improve → no product KEEP.",
+    "I: FO majority+e2e not satisfied."
+  ],
+  "notes": "Affirm Criterion C: 0.9683 history preserved; R24 correctly NO product KEEP; R30 KEEP records FA under unfrozenFromComposite without claiming shipGate=FO. digestClean reaffirm true. FO false on B/F/I. G proven. FA≠odds.",
+  "one_line_vote": "V4: fightOutcomeGate=false digestCleanGate=true — C history OK (R24 NO KEEP; composite 0.9683 intact; R30 FA fields); S0 FA≈0.590≪0.95; G=true."
+}

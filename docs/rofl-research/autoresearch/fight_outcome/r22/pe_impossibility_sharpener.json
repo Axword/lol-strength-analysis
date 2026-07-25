@@ -1,0 +1,37 @@
+{
+  "schema": "fight-outcome-r22-pe-impossibility-sharpener-v1",
+  "t": "2026-07-24T15:59:40Z",
+  "researcher": "r22",
+  "hypothesis": "PE insufficient for Camille Q damage coefficients — disclose; wiki first-cast only",
+  "pe": {
+    "source": "docs/rofl-research/autoresearch/product_ready/r04/r04_camille_pe_alt_e03_pe_strings.json",
+    "PrecisionProtocol": 0,
+    "CamilleQ": 0,
+    "AdaptiveDefenses": 0,
+    "camilleSpecificPresent": false
+  },
+  "refused": [
+    "invent PE float aliases for Q bonus %AD",
+    "fixture-remap another match Q damage onto Path1",
+    "wire recast-after-1.5s true-damage mix without cast-state proof"
+  ],
+  "wiredInstead": {
+    "source": "public/data/lolwiki/champions-full.json Camille.Q",
+    "scope": "first-cast empowered AA only",
+    "bonusPhysicalPctAd": [20, 25, 30, 35, 40],
+    "attackReset": true,
+    "empoweredAuto": true,
+    "selfMsBuffPct": [25, 30, 35, 40, 45]
+  },
+  "sameMatchCastProof": {
+    "2970110-g1_qCasts": 84,
+    "2970132-g1_qCasts": 71,
+    "note": "skill_used proves Q is cast; does not prove PE damage coeffs"
+  },
+  "path1S0Fa": {
+    "fightAgreement": 0.2945984235430667,
+    "note": "Killers Galio/Olaf — Q kit not on FA path; gate_action pulse ≠ kit marks"
+  },
+  "sharperBlocker": "PE cannot prove Q coeffs or recast true-mix; Path1 S0 FA insensitive to Camille Q until Camille-killer windows + gate_action kit path exist",
+  "confidence": "Not win odds. FA is kill-window suite agreement only."
+}

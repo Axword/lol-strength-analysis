@@ -1,0 +1,192 @@
+{
+  "schema": "fightAgreement-r18-leaderboard-v1",
+  "utc": "2026-07-24T15:57:25.824747+00:00",
+  "suite": "S0-2970132-g1 Path1",
+  "baseline_e0": {
+    "id": "e0",
+    "fightAgreement": 0.2279317568764,
+    "fightPassRate": 0,
+    "suite": "S0",
+    "match": "2970132-g1",
+    "hypothesis": "R18-E0 Path1 product cusum density R05-parity",
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e0.fightAgreement.json"
+  },
+  "best_S0": {
+    "id": "e11",
+    "fightAgreement": 0.24136621085367857,
+    "fightPassRate": 0,
+    "suite": "S0",
+    "match": "2970132-g1",
+    "hypothesis": "R18-E11 death-coupled no-aa-at-mark keep finish-aa",
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e11.fightAgreement.json"
+  },
+  "delta_vs_e0": 0.013434453977278576,
+  "S1_holdout": {
+    "s1_e0_product": {
+      "id": "s1_e0",
+      "fightAgreement": 0.5185109757392367,
+      "fightPassRate": 0.3333333333333333,
+      "suite": "S1",
+      "match": "2970137-g1",
+      "hypothesis": "R18-S1 e0 product baseline",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/s1_e0.fightAgreement.json"
+    },
+    "s1_e11_research": {
+      "id": "s1_e11",
+      "fightAgreement": 0.39611231123472884,
+      "fightPassRate": 0,
+      "suite": "S1",
+      "match": "2970137-g1",
+      "hypothesis": "R18-S1 e11 no-aa-at-mark keep finish-aa",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/s1_e11.fightAgreement.json"
+    },
+    "s1_e8_research": {
+      "id": "s1_e8",
+      "fightAgreement": 0.37753547140788907,
+      "fightPassRate": 0,
+      "suite": "S1",
+      "match": "2970137-g1",
+      "hypothesis": "R18-S1 e8 death-coupled",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/s1_e8.fightAgreement.json"
+    },
+    "note": "S1 regresses under death-coupled AA suppress \u2014 no product KEEP"
+  },
+  "ranked_S0": [
+    {
+      "id": "e11",
+      "fightAgreement": 0.24136621085367857,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E11 death-coupled no-aa-at-mark keep finish-aa",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e11.fightAgreement.json"
+    },
+    {
+      "id": "e12",
+      "fightAgreement": 0.24118555817302592,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E12 death-coupled finish-aa-max1 no aa-at-mark",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e12.fightAgreement.json"
+    },
+    {
+      "id": "e14",
+      "fightAgreement": 0.24040716989463765,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E14 product cusum + per-slot-pulse death-coupled no finish/aa",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e14.fightAgreement.json"
+    },
+    {
+      "id": "e8",
+      "fightAgreement": 0.24040716989463765,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E8 product cusum death-coupled no finish/aa-at-mark",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e8.fightAgreement.json"
+    },
+    {
+      "id": "e0",
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E0 Path1 product cusum density R05-parity",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e0.fightAgreement.json"
+    },
+    {
+      "id": "e10",
+      "fightAgreement": 0.22519671414135725,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E10 death-coupled no-finish-aa keep aa-at-mark",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e10.fightAgreement.json"
+    },
+    {
+      "id": "e9",
+      "fightAgreement": 0.2189429412013122,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E9 product cusum + repin-each-mark",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e9.fightAgreement.json"
+    },
+    {
+      "id": "e1",
+      "fightAgreement": 0.19918795184753382,
+      "fightPassRate": 0.16666666666666666,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E1 F4.H1/H4 cusum_gate timed sim=allin",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e1.fightAgreement.json"
+    },
+    {
+      "id": "e6",
+      "fightAgreement": 0.19918795184753382,
+      "fightPassRate": 0.16666666666666666,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E6 cusum_gate allin cusumK=6 H=35 early engage",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e6.fightAgreement.json"
+    },
+    {
+      "id": "e2",
+      "fightAgreement": 0.19871433369034083,
+      "fightPassRate": 0.16666666666666666,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E2 F4.H5 cusum_gate timed sim=short",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e2.fightAgreement.json"
+    },
+    {
+      "id": "e7",
+      "fightAgreement": 0.19871433369034083,
+      "fightPassRate": 0.16666666666666666,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E7 cusum_gate short cusumK=6 H=35",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e7.fightAgreement.json"
+    },
+    {
+      "id": "e3",
+      "fightAgreement": 0.19835147000659947,
+      "fightPassRate": 0.16666666666666666,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E3 cusum_gate timed sim=extended",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e3.fightAgreement.json"
+    },
+    {
+      "id": "e13",
+      "fightAgreement": 0.1869976551226551,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E13 death-coupled no-aa-at-mark finish-horizon 2s",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e13.fightAgreement.json"
+    },
+    {
+      "id": "e4",
+      "fightAgreement": 0.041666666666666664,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E4 gate_repin timed sim=allin",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e4.fightAgreement.json"
+    },
+    {
+      "id": "e5",
+      "fightAgreement": 0,
+      "fightPassRate": 0,
+      "suite": "S0",
+      "match": "2970132-g1",
+      "hypothesis": "R18-E5 baseline timed sim=allin",
+      "path": "docs/rofl-research/autoresearch/fight_outcome/r18/experiments/e5.fightAgreement.json"
+    }
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT win odds / calibrated probability"
+}

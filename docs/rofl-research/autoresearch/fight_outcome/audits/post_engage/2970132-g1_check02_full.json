@@ -1,0 +1,35 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T15:43:06.899Z",
+  "id": "2970132-g1/check02/full",
+  "windowOk": false,
+  "windowScore": 0.3192307692307692,
+  "failReasons": [
+    "lethal: modelKilled=true |lethalErrorSec|=4.109",
+    "full maeHp=306.7740653912197 > 130"
+  ],
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": false,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 0,
+    "actionF1": 0.4615384615384615,
+    "earlyMaeHp": 4.8,
+    "maeHpBurst": 475.6679739128923,
+    "maeHpFull": 306.7740653912197,
+    "maeHp": 306.7740653912197,
+    "lethalErrorSec": -4.109,
+    "modelKilled": true,
+    "segment": "full",
+    "matchup": "Olaf→Trundle"
+  },
+  "meta": {
+    "evalPath": "/Users/river/.codex/worktrees/rofl-fo-r05/docs/rofl-research/autoresearch/fight_outcome/r05/s0_eval_post_engage.json",
+    "markSelection": "post_engage_killer_skills",
+    "hypothesis": "R05 S0 Path1 product alt post_engage_killer_skills",
+    "mode": "gate_action"
+  },
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %"
+}

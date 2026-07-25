@@ -16,7 +16,10 @@ from typing import Any, Mapping, Optional, Sequence
 
 
 ROFL2_MAGIC = b"RIOT\x02\x00"
-FILENAME_RE = re.compile(r"^(?P<platform>[A-Za-z0-9]+)-(?P<match>\d{7,})$")
+# Product/BR1 match codes are usually ≥7 digits; LOLTMNT* tournament gameIDs are
+# often 5–6 digits (e.g. LOLTMNT01-426746). Accept ≥5 so rename-report suggestions
+# parse; validate-rofl-pipeline.py still enforces real-match / disclosed-tournament rules.
+FILENAME_RE = re.compile(r"^(?P<platform>[A-Za-z0-9]+)-(?P<match>\d{5,})$")
 
 
 class RoflMetadataError(ValueError):

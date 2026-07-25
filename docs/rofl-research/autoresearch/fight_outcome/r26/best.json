@@ -1,0 +1,32 @@
+{
+  "schema": "fight_outcome-r26-research-best-v1",
+  "researcher": "r26",
+  "productKeep": false,
+  "unfreeze_0_9683_authorized": true,
+  "parentBestJsonRewritten": false,
+  "researchBest": {
+    "id": "e12",
+    "config": {
+      "markSelection": "cusum_engage_then_skills",
+      "idleFollowActual": true,
+      "aaAtEachMark": true,
+      "killerPulseShare": 0.2,
+      "assistAllyMin": 5,
+      "note": "aaAtEachMark respects mark.share (engine); measured early skill-count proxy 0.20"
+    },
+    "S0": {
+      "check03_earlyMae": 89.6,
+      "check03_earlyMae_delta_vs_e0": -386.4,
+      "earlyPoisoned": false,
+      "fightAgreement": 0.5455,
+      "fightAgreement_delta_vs_e0": 0.1348
+    },
+    "S1": {
+      "fightAgreement": 0.3607,
+      "fightAgreement_delta_vs_s1_e0": -0.0563,
+      "blocker": "S1 c2 Cass\u2192Viktor allySkills5s=8 same gate as Path1 c3 \u2014 holdout lethal regress"
+    }
+  },
+  "composite": 1.1055,
+  "unfrozenFromComposite": 0.9683
+}

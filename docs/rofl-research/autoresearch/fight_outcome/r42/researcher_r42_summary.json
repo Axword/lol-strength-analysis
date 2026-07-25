@@ -1,0 +1,93 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r42",
+  "slug": "c1-burst-earlymae",
+  "model": "Auto",
+  "utc": "2026-07-24T17:00:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r42",
+  "branch": "adv/fo-r42-c1-burst-earlymae",
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "c1 burst earlyMae≈255 honesty after R31; path/earlyBand; keep marks=2 / |leth|0.635 / S1 flat; KEEP iff S0 FA↑ S1 flat+",
+  "product_selector": "cusum_engage_then_skills",
+  "diagnosis": {
+    "root_cause": "R31 remaps E+Q onto engage at identical tSec; first √T bin includes engage dump so earlyMae≈255 despite idleFollowActual mirroring pre-engage",
+    "goal_alignment": "GOAL early honesty = idle/pre-engage; legacy earlyMae blends post-engage combat on short bursts",
+    "control_ablate_lead0": "earlyMae→0 but marks→0 miss-kill — R31 lead still required"
+  },
+  "hypothesesAutoPicked": [
+    { "id": "H0", "title": "Baseline remesaure", "result": "MEASURED_earlyMae_255.5_marks_2" },
+    { "id": "H1", "title": "earlyMae pre-engage exclusive", "result": "KEEP_part" },
+    { "id": "H2", "title": "Stagger remapped marks", "result": "DISCARD_no_early_lift" },
+    { "id": "H3", "title": "Soft coincident share 0.7", "result": "DISCARD_miss_kill" },
+    { "id": "H4", "title": "Delay remap after engage", "result": "KEEP_part" },
+    { "id": "H5", "title": "Ablate pre-burst lead", "result": "CONTROL_marks_0" },
+    { "id": "H6", "title": "Delay + earlyMae pre-engage", "result": "KEEP_product" },
+    { "id": "H7", "title": "pathFollow/pathClamp", "result": "FORBIDDEN_product" }
+  ],
+  "n_experiments": 15,
+  "verdict": "KEEP",
+  "c1_burst": {
+    "before_earlyMaeHp": 255.5,
+    "after_earlyMaeHp": 0,
+    "before_maeHp": 127.75,
+    "after_maeHp": 0,
+    "before_pathOk": false,
+    "after_pathOk": true,
+    "before_skillMarks": 2,
+    "after_skillMarks": 2,
+    "before_lethalErrorSec": -0.635,
+    "after_lethalErrorSec": -0.335,
+    "abs_lethalErrorSec": 0.335,
+    "tol": 0.75,
+    "within_tol": true,
+    "modelKilled": true
+  },
+  "S0": {
+    "before_FA": 0.7740,
+    "after_FA": 0.8461,
+    "delta_FA": 0.0721,
+    "before_pass": 0.3333333333333333,
+    "after_pass": 0.5,
+    "match": "2970132-g1"
+  },
+  "S1": {
+    "before_FA": 0.5810,
+    "after_FA": 0.5926,
+    "delta_FA": 0.0116,
+    "before_pass": 0.3333333333333333,
+    "after_pass": 0.3333333333333333,
+    "match": "2970137-g1",
+    "tuned": false,
+    "note": "flat+ (↑ without S1-specific tuning)"
+  },
+  "product_KEEP": {
+    "keep": true,
+    "markPreBurstDelaySec": 0.3,
+    "earlyMaePreEngageOnly": true,
+    "markPreBurstSkillLeadSec": 2.5,
+    "markPreBurstSkillShare": 1,
+    "files": [
+      "src/engine/killWindowProduct.ts",
+      "src/engine/types.ts",
+      "scripts/crosscheck_action_aligned.ts"
+    ],
+    "rejected": [
+      "stagger-only (legacy earlyMae unchanged)",
+      "pre-burst share 0.7 (miss-kill)",
+      "pathFollow/pathClamp product (mandate forbid)",
+      "lead=0 ablate (marks=0)"
+    ]
+  },
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r42/HYPOTHESES_PICKED.md",
+    "e14_keep": "docs/rofl-research/autoresearch/fight_outcome/r42/experiments/e14_product_keep.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r42/experiments/fa_e14_S0/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r42/experiments/fa_e14_S1/fight_agreement_S1.json"
+  },
+  "next": "Orchestrator PARENT_MERGE markPreBurstDelaySec=0.3 + earlyMaePreEngageOnly; residual c2_burst pathMae 111.6 and c1_full |leth|=1.84"
+}

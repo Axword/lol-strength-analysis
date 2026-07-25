@@ -1,0 +1,103 @@
+{
+  "researcher": "r06",
+  "slug": "metric-suites",
+  "model": "Auto",
+  "utc": "2026-07-24T15:42:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r06",
+  "branch": "adv/fo-r06-metric-suites",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "hypotheses_auto_picked": [
+    {
+      "id": "F2.H5",
+      "title": "S1/S2 wire",
+      "priority": 1,
+      "result": "KEEP_wire"
+    },
+    {
+      "id": "F2.H2",
+      "title": "windowOk law",
+      "priority": 2,
+      "result": "encoded_in_harness"
+    },
+    {
+      "id": "F2.H3",
+      "title": "windowScore weights",
+      "priority": 3,
+      "result": "encoded_in_harness"
+    },
+    {
+      "id": "F2.H4",
+      "title": "Audit JSON",
+      "priority": 4,
+      "result": "failing_windows_written"
+    },
+    {
+      "id": "F2.H6",
+      "title": "Selector default",
+      "priority": 5,
+      "result": "measure_uses_cusum_engage_then_skills_no_drop"
+    }
+  ],
+  "mandate": "Wire S1 (2970137/2970120) + S2 unused pro slim; disclose Camille/PE holes; do not tune on S1",
+  "artifacts": {
+    "harness": "scripts/fight_agreement_suite.ts",
+    "crosscheck_aliases": "scripts/crosscheck_action_aligned.ts (S2 + S1 aliases)",
+    "suite_status": "docs/rofl-research/autoresearch/fight_outcome/r06/suite_status.json",
+    "suite_registry": "docs/rofl-research/autoresearch/fight_outcome/r06/suite_registry.json",
+    "camille_pe_holes": "docs/rofl-research/autoresearch/fight_outcome/r06/camille_pe_holes.json",
+    "s2_extract": "docs/rofl-research/autoresearch/fight_outcome/r06/crosschecks-2954868-g1-transfer.json",
+    "audits_dir": "docs/rofl-research/autoresearch/fight_outcome/audits/"
+  },
+  "suite_status": {
+    "S0": {
+      "wired": true,
+      "member": "S0-2970110-g1",
+      "fightAgreement": null,
+      "note": "Interim S0 pointer (2970110 checks). GOAL prefers 2970132 Path1 when extracts exist — left for R05 metric-s0. Not measured this run."
+    },
+    "S1": {
+      "wired": true,
+      "tuneForbidden": true,
+      "tuned": false,
+      "members": ["S1-2970137-g1", "S1-2970120-g1"],
+      "fightAgreement": 0.4776643805508331,
+      "fightPassRate": 0.3333333333333333,
+      "nWindows": 6,
+      "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+      "gateMet": false,
+      "markSelection": "cusum_engage_then_skills",
+      "dropFilter": false
+    },
+    "S2": {
+      "wired": true,
+      "unusedProSlim": "2954868-g1",
+      "schema": "pro-grid-riot-slim-v1",
+      "members": ["S2-2954868-g1"],
+      "fightAgreement": 0.6335376212427813,
+      "fightPassRate": 0.3333333333333333,
+      "nWindows": 3,
+      "gateBar": { "fightAgreement": 0.9, "fightPassRate": 0.8333333333333334 },
+      "gateMet": false,
+      "markSelection": "cusum_engage_then_skills",
+      "dropFilter": false
+    }
+  },
+  "camille_pe_disclosure": {
+    "trackClosed": true,
+    "hostsBlocked": ["2970110-g1", "2970137-g1"],
+    "hostOk": "2970132-g1 (Camille FUR-complete; Path1 only)",
+    "blocker": "camille_ad_armor_absent_structural_2970110_2970137",
+    "invent": "refused",
+    "suiteNote": "S1/S2 measure uses slim livestats pins — does not claim PE product densify fixed on Camille hosts"
+  },
+  "commands": {
+    "wire": "npx --yes tsx scripts/fight_agreement_suite.ts --mode wire",
+    "measure_s1_s2": "npx --yes tsx scripts/fight_agreement_suite.ts --mode measure --suites S1,S2"
+  },
+  "verdict": "KEEP_wire_measure",
+  "fightOutcomeGateEvidence": false,
+  "sharper_blocker": "S1 fightAgreement 0.478 << 0.95 (passRate 0.333); S2 0.634 << 0.90 — lethal misses + path MAE on holdout/transfer under product non-drop selector; Camille PE product hole remains closed on 2970110/2970137 (disclose only; do not invent). Unfreeze/tuning belongs to F3 — not on S1.",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %",
+  "next": "R05/R04 absorb scorer parity on S0; F3 unfreeze experiments may improve S0 then re-measure S1/S2 without tuning on S1"
+}

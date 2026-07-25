@@ -1,0 +1,20 @@
+{
+  "reviewer": "V3",
+  "role": "fightAgreement metric honesty (no gaming)",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "evidence": [
+    "Specialty B/H: Authoritative verified S0 FA = 0.6021 (R35 KEEP; STATUS best_fightAgreement_source=r35_KEEP_S0_verified).",
+    "Claimed after R32 residual_hp / R34 Galio tornado 0.15 / R36 local_skill_share: S0 ~0.72–0.73 pending compound remesaure — must not be treated as gate FA until remesaured.",
+    "Both verified 0.6021 and claimed ~0.72 ≪ gate bar 0.95/0.95 → criterion B unmet; FO false.",
+    "S1 claimed ~0.56–0.58 ≪ 0.95 — F unmet; scorer law unchanged; FA ≠ odds / pBlue%.",
+    "R38 audits KEEP process honest; G proven (smokes) does not move FA; digestClean reaffirm true."
+  ],
+  "failures": [
+    "B_thresholds: verified S0 FA 0.6021 ≪ 0.95; claimed ~0.72 pending remesaure also ≪ 0.95.",
+    "F_holdout: S1 ~0.56–0.58 below bar.",
+    "I_majority_e2e: FO cannot pass while B fails."
+  ],
+  "notes": "V3 C6 metric honesty: verified 0.6021 canonical until remesaure; claimed ~0.72 disclosed-not-authoritative. fightOutcomeGate=false. digestCleanGate=true. G=true. FA≠odds."
+}

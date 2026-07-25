@@ -1,0 +1,108 @@
+{
+  "reviewer": "V12",
+  "cycle": 2,
+  "role": "Anti-odds / wording (agreement ≠ win %)",
+  "utc": "2026-07-24T15:54:30Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.95,
+  "criteria": {
+    "A_anti_odds_wording": true,
+    "A_full": "partial — pBlue/pRed + FA + actionCoverage labeling honest; other A limbs deferred to V1/V14",
+    "B_metric_thresholds": false,
+    "C_unfreeze_disclosure": true,
+    "D_digestCleanGate": false,
+    "E_suites_wired": true,
+    "F_holdout": false,
+    "G_calculator_path": "partial — product anti-odds KEEP (Cycle6) + R17 noOddsCopy smoke artifact; full Send parity still open (BRIEF R16/R17)",
+    "H_anti_gaming": true,
+    "I_majority_e2e": false
+  },
+  "anti_odds": {
+    "fightAgreement_means": "mean(windowScore) on kill-window suite (GOAL §B)",
+    "fightAgreement_does_not_mean": "calibrated win probability / odds % / bookmaker posterior / map win %",
+    "actionCoverage_does_not_mean": "win odds — secondary 0.15 term only (R14)",
+    "pBlue_pRed": "heuristic model edge only",
+    "calculatorReady_does_not_mean": "fights match or win odds",
+    "wording_scan": {
+      "suspect_files_claiming_odds_without_negation": 0,
+      "researcher_confidence_disclaimers": [
+        "r05–r10/r12/r14 confidence: fightAgreement NOT win probability / odds %",
+        "r14: actionCoverage F1 NOT win odds; echo REJECTED as gate evidence",
+        "STATUS/HEARTBEAT/BRIEF/DIGEST label FA as NOT win odds; pBlue/pRed model edge"
+      ],
+      "product_ui_cycle6_prereq": {
+        "Send_chip": "model edge only · not odds %",
+        "CombatResult_subline": "not a win probability",
+        "modelTrust_calibrated": false,
+        "kill_window_reason": "scope:kill_window_not_calibrated_win_odds",
+        "Faq_no_fight_odds": true
+      },
+      "r17_send_smoke_noOddsCopy": true
+    },
+    "verdict": "PASS anti-odds separation — wording honest; does NOT unlock fightOutcomeGate"
+  },
+  "measured": {
+    "S0_Path1_product_fightAgreement": 0.228,
+    "S0_Path1_product_fightPassRate": 0.0,
+    "S0_source": "R05 authoritative Path1 2970132 product cusum (BRIEF/STATUS)",
+    "S0_proxy_2970110": 0.42,
+    "S1_fightAgreement": 0.478,
+    "S1_fightPassRate": 0.333,
+    "S2_fightAgreement": 0.634,
+    "S2_fightPassRate": 0.333,
+    "R14_honest_PE_F1_c1": 1.0,
+    "R14_echo_rejected": true,
+    "R14_FA_credit_note": "honest F1 small proxy lift only; never sole gate / never odds",
+    "gate_needs": "S0+S1 fightAgreement≥0.95 AND fightPassRate≥0.95",
+    "note": "These are suite agreement rates — NOT win %"
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle2/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B confidence wording",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/researcher_r05_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/researcher_r06_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r17/send_parity_smoke.json",
+    "docs/rofl-research/autoresearch/fight_outcome/audits/",
+    "src/engine/modelTrust.ts",
+    "src/components/CombatResult.tsx",
+    "src/components/GameReview.tsx",
+    "docs/rofl-research/autoresearch/product_ready/reviews/cycle6/CYCLE6_FINAL.json"
+  ],
+  "failures": [
+    {
+      "criterion": "B",
+      "detail": "S0 Path1 product FA 0.228 / pass 0.0 and S1 FA 0.478 / pass 0.333 both ≪ 0.95 — gate thresholds unmet (agreement metric, not odds)"
+    },
+    {
+      "criterion": "D",
+      "detail": "DIGEST.md still digestCleanGate:false (second host 2970110 combat honesty gap; reviewer majority affirm open) — R14 honest F1 does not close digest"
+    },
+    {
+      "criterion": "F",
+      "detail": "Holdout S1 does not meet ≥0.95; cannot claim fightOutcomeGate on S0 alone"
+    },
+    {
+      "criterion": "I",
+      "detail": "No ≥11/15 majority + parent e2e yet this cycle"
+    }
+  ],
+  "blocker": "B+F: Path1 S0 FA 0.228 ≪ 0.95 (suite agreement, not win %). Anti-odds wording is clean and is not the blocker.",
+  "sharper_blocker": "Lift Path1 product-cusum S0 (R18 lethal / R19 early) then re-measure S1 without S1 tune until FA+pass ≥0.95; keep every score JSON confidence line as agreement≠odds; do not treat R14 F1=1.0 as win %.",
+  "cycle1_delta": {
+    "anti_odds_still_PASS": true,
+    "authoritative_S0_now_Path1_0_228": "was proxy-heavy 0.42 in C1 V12 measured; C2 BRIEF makes R05 Path1 0.228 authoritative",
+    "R14_echo_reject_strengthens_H": true,
+    "digestCleanGate_still_false": "C1 V2+V13 affirm did not become majority; DIGEST unchanged"
+  },
+  "notes": "V12 anti-odds lens C2: research artifacts still disclose fightAgreement as kill-window suite agreement — NOT win probability / odds %. R14 adds honest PE F1=1.0 with echo REJECTED and explicit NOT-odds confidence; BRIEF/STATUS/HEARTBEAT/DIGEST carry NOT-win-odds labels; r05–r14 confidence strings match GOAL §B; zero suspect JSON files claim odds without negation. Product UI anti-odds KEEP from Cycle6 holds; R17 smoke reports noOddsCopy. Affirm A_anti_odds_wording + H. Deny fightOutcomeGate and digestCleanGate on concrete B/D/F/I — never because FA 0.228 'looks like low odds %'.",
+  "one_line_vote": "V12: fightOutcomeGate=false digestCleanGate=false (conf 0.95) — anti-odds PASS; Path1 S0 FA 0.228≪0.95 (agreement≠win%)."
+}

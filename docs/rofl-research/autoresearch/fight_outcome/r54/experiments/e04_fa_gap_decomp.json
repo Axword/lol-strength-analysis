@@ -1,0 +1,361 @@
+{
+  "schema": "fo-r54-experiment-v1",
+  "id": "E04",
+  "hypothesis": "FA gap to 0.95 decomposes to pathMae + leth windows; actionF1 ceiling insufficient",
+  "utc": "2026-07-24T17:12:20Z",
+  "suites": {
+    "S0": {
+      "schema": "fo-r54-fa-gap-decomp-v1",
+      "experiment": "E04",
+      "suite": "S0",
+      "utc": "2026-07-24T17:12:20Z",
+      "fightAgreement": 0.930409557022156,
+      "gap_to_0_95": 0.01959,
+      "passRate": 0.6666666666666666,
+      "gap_pass_to_0_95": 0.283333,
+      "n": 6,
+      "windows": [
+        {
+          "id": "S0_2970132-g1_c1_full",
+          "windowOk": true,
+          "windowScore": 0.95,
+          "matchup": "Galio\u2192Trundle",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 75.45904163190818,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": 0.3555185185185188,
+          "actionF1": 0.6666666666666665,
+          "FA_lift_if_score_1": 0.008333,
+          "FA_lift_if_score_0.95": 0.0
+        },
+        {
+          "id": "S0_2970132-g1_c1_burst",
+          "windowOk": true,
+          "windowScore": 0.95,
+          "matchup": "Galio\u2192Trundle",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 0,
+          "pathCap": 90,
+          "pathOverage": null,
+          "lethalErrorSec": 0.33499999999999996,
+          "actionF1": 0.6666666666666666,
+          "FA_lift_if_score_1": 0.008333,
+          "FA_lift_if_score_0.95": 0.0
+        },
+        {
+          "id": "S0_2970132-g1_c2_full",
+          "windowOk": true,
+          "windowScore": 0.965385,
+          "matchup": "Olaf\u2192Trundle",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 62.491318608411326,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": 0.33399999999999963,
+          "actionF1": 0.7692307692307693,
+          "FA_lift_if_score_1": 0.005769,
+          "FA_lift_if_score_0.95": 0.0
+        },
+        {
+          "id": "S0_2970132-g1_c2_burst",
+          "windowOk": false,
+          "windowScore": 0.917403,
+          "matchup": "Olaf\u2192Trundle",
+          "failReasons": [
+            "pathMae"
+          ],
+          "maeHp": 111.59164037216308,
+          "pathCap": 90,
+          "pathOverage": 21.592,
+          "lethalErrorSec": 0.33399999999999963,
+          "actionF1": 0.7692307692307693,
+          "FA_lift_if_score_1": 0.013766,
+          "FA_lift_if_score_0.95": 0.005433
+        },
+        {
+          "id": "S0_2970132-g1_c3_full",
+          "windowOk": false,
+          "windowScore": 0.89967,
+          "matchup": "Olaf\u2192Camille",
+          "failReasons": [
+            "pathMae"
+          ],
+          "maeHp": 159.29375,
+          "pathCap": 130,
+          "pathOverage": 29.294,
+          "lethalErrorSec": 0,
+          "actionF1": 0.631578947368421,
+          "FA_lift_if_score_1": 0.016722,
+          "FA_lift_if_score_0.95": 0.008388
+        },
+        {
+          "id": "S0_2970132-g1_c3_burst",
+          "windowOk": true,
+          "windowScore": 0.9,
+          "matchup": "Olaf\u2192Camille",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 0,
+          "pathCap": 90,
+          "pathOverage": null,
+          "lethalErrorSec": 0,
+          "actionF1": 0.33333333333333337,
+          "FA_lift_if_score_1": 0.016667,
+          "FA_lift_if_score_0.95": 0.008333
+        }
+      ],
+      "actionF1_ceiling": {
+        "fa_approx_now": 0.93041,
+        "fa_approx_all_F1_1": 0.984492,
+        "delta": 0.054082,
+        "note": "Secondary 0.15 weight only; cannot alone close FO\u226a0.95 when path/leth fail"
+      },
+      "fa_not_odds": true
+    },
+    "S1": {
+      "schema": "fo-r54-fa-gap-decomp-v1",
+      "experiment": "E04",
+      "suite": "S1",
+      "utc": "2026-07-24T17:12:20Z",
+      "fightAgreement": 0.7627693321171581,
+      "gap_to_0_95": 0.187231,
+      "passRate": 0.5,
+      "gap_pass_to_0_95": 0.45,
+      "n": 6,
+      "windows": [
+        {
+          "id": "S1_2970137-g1_c1_full",
+          "windowOk": false,
+          "windowScore": 0.542308,
+          "matchup": "Vayne\u2192Ambessa",
+          "failReasons": [
+            "lethal"
+          ],
+          "maeHp": 36.933760909090914,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": 2.0519531326600635,
+          "actionF1": 0.6153846153846154,
+          "FA_lift_if_score_1": 0.076282,
+          "FA_lift_if_score_0.95": 0.067949
+        },
+        {
+          "id": "S1_2970137-g1_c1_burst",
+          "windowOk": false,
+          "windowScore": 0.51,
+          "matchup": "Vayne\u2192Ambessa",
+          "failReasons": [
+            "lethal"
+          ],
+          "maeHp": 79.09203928571428,
+          "pathCap": 90,
+          "pathOverage": null,
+          "lethalErrorSec": null,
+          "actionF1": 0.4,
+          "FA_lift_if_score_1": 0.081667,
+          "FA_lift_if_score_0.95": 0.073333
+        },
+        {
+          "id": "S1_2970137-g1_c2_full",
+          "windowOk": true,
+          "windowScore": 0.915217,
+          "matchup": "Cassiopeia\u2192Viktor",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 47.22105025147957,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": 0.26699999999999946,
+          "actionF1": 0.4347826086956522,
+          "FA_lift_if_score_1": 0.014131,
+          "FA_lift_if_score_0.95": 0.005797
+        },
+        {
+          "id": "S1_2970137-g1_c2_burst",
+          "windowOk": true,
+          "windowScore": 0.925,
+          "matchup": "Cassiopeia\u2192Viktor",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 53.660284376681325,
+          "pathCap": 90,
+          "pathOverage": null,
+          "lethalErrorSec": 0.26699999999999946,
+          "actionF1": 0.5,
+          "FA_lift_if_score_1": 0.0125,
+          "FA_lift_if_score_0.95": 0.004167
+        },
+        {
+          "id": "S1_2970137-g1_c3_full",
+          "windowOk": true,
+          "windowScore": 0.925,
+          "matchup": "Anivia\u2192Sylas",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 71.4284778535099,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": 0.12511972435555307,
+          "actionF1": 0.5000000000000001,
+          "FA_lift_if_score_1": 0.0125,
+          "FA_lift_if_score_0.95": 0.004167
+        },
+        {
+          "id": "S1_2970137-g1_c3_burst",
+          "windowOk": false,
+          "windowScore": 0.759091,
+          "matchup": "Anivia\u2192Sylas",
+          "failReasons": [
+            "pathMae"
+          ],
+          "maeHp": 198.41243848197195,
+          "pathCap": 90,
+          "pathOverage": 108.412,
+          "lethalErrorSec": 0.12511972435555307,
+          "actionF1": 0.7272727272727272,
+          "FA_lift_if_score_1": 0.040152,
+          "FA_lift_if_score_0.95": 0.031818
+        }
+      ],
+      "actionF1_ceiling": {
+        "fa_approx_now": 0.762769,
+        "fa_approx_all_F1_1": 0.833333,
+        "delta": 0.070564,
+        "note": "Secondary 0.15 weight only; cannot alone close FO\u226a0.95 when path/leth fail"
+      },
+      "fa_not_odds": true
+    },
+    "S2": {
+      "schema": "fo-r54-fa-gap-decomp-v1",
+      "experiment": "E04",
+      "suite": "S2",
+      "utc": "2026-07-24T17:12:20Z",
+      "fightAgreement": 0.5861062942926697,
+      "gap_to_0_95": 0.363894,
+      "passRate": 0.3333333333333333,
+      "gap_pass_to_0_95": 0.616667,
+      "n": 6,
+      "windows": [
+        {
+          "id": "S2_2954868-g1_c1_full",
+          "windowOk": true,
+          "windowScore": 0.95,
+          "matchup": "Camille\u2192Vayne",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 9.090160059894702,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": 0.11425654874426172,
+          "actionF1": 0.6666666666666665,
+          "FA_lift_if_score_1": 0.008333,
+          "FA_lift_if_score_0.95": 0.0
+        },
+        {
+          "id": "S2_2954868-g1_c1_burst",
+          "windowOk": true,
+          "windowScore": 0.931818,
+          "matchup": "Camille\u2192Vayne",
+          "failReasons": [
+            "actionF1_secondary"
+          ],
+          "maeHp": 10.329727340789434,
+          "pathCap": 90,
+          "pathOverage": null,
+          "lethalErrorSec": 0.11425654874426527,
+          "actionF1": 0.5454545454545454,
+          "FA_lift_if_score_1": 0.011364,
+          "FA_lift_if_score_0.95": 0.00303
+        },
+        {
+          "id": "S2_2954868-g1_c2_full",
+          "windowOk": false,
+          "windowScore": 0.514286,
+          "matchup": "Cassiopeia\u2192Ambessa",
+          "failReasons": [
+            "lethal"
+          ],
+          "maeHp": 55.77369460695952,
+          "pathCap": 130,
+          "pathOverage": null,
+          "lethalErrorSec": null,
+          "actionF1": 0.42857142857142855,
+          "FA_lift_if_score_1": 0.080952,
+          "FA_lift_if_score_0.95": 0.072619
+        },
+        {
+          "id": "S2_2954868-g1_c2_burst",
+          "windowOk": false,
+          "windowScore": 0.408359,
+          "matchup": "Cassiopeia\u2192Ambessa",
+          "failReasons": [
+            "lethal",
+            "pathMae"
+          ],
+          "maeHp": 145.55682159360794,
+          "pathCap": 90,
+          "pathOverage": 55.557,
+          "lethalErrorSec": null,
+          "actionF1": 0.5454545454545454,
+          "FA_lift_if_score_1": 0.098607,
+          "FA_lift_if_score_0.95": 0.090273
+        },
+        {
+          "id": "S2_2954868-g1_c3_full",
+          "windowOk": false,
+          "windowScore": 0.434903,
+          "matchup": "LeeSin\u2192Ziggs",
+          "failReasons": [
+            "lethal",
+            "pathMae"
+          ],
+          "maeHp": 161.48,
+          "pathCap": 130,
+          "pathOverage": 31.48,
+          "lethalErrorSec": 8.75,
+          "actionF1": 0.2222222222222222,
+          "FA_lift_if_score_1": 0.094183,
+          "FA_lift_if_score_0.95": 0.085849
+        },
+        {
+          "id": "S2_2954868-g1_c3_burst",
+          "windowOk": false,
+          "windowScore": 0.277273,
+          "matchup": "LeeSin\u2192Ziggs",
+          "failReasons": [
+            "lethal",
+            "pathMae"
+          ],
+          "maeHp": 308.1818181818182,
+          "pathCap": 90,
+          "pathOverage": 218.182,
+          "lethalErrorSec": 16.233,
+          "actionF1": 0.18181818181818182,
+          "FA_lift_if_score_1": 0.120455,
+          "FA_lift_if_score_0.95": 0.112121
+        }
+      ],
+      "actionF1_ceiling": {
+        "fa_approx_now": 0.586106,
+        "fa_approx_all_F1_1": 0.671352,
+        "delta": 0.085245,
+        "note": "Secondary 0.15 weight only; cannot alone close FO\u226a0.95 when path/leth fail"
+      },
+      "fa_not_odds": true
+    }
+  },
+  "verdict": "DISCLOSE",
+  "keep": false
+}

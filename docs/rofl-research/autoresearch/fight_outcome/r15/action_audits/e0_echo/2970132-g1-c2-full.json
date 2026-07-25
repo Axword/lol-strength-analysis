@@ -1,0 +1,442 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "full",
+  "matchup": "Olaf→Trundle",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 10.013,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 14.956,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 15.891,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 15.958,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 16.125110351562398,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 16.325549804687398,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 16.492769534432227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 16.926624023437398,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.093843753182227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.193,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 17.260283204692314,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.394380862557227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.761137696879814,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.895357425057227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.296114260994727,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.429553710937398,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.797090823494727,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.863,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 19.299654300057227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.600313479744727,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.666,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.866850587504814,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.900850589119727,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 20.001070315682227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 21.549,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 22.150728518807227,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 14.956,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4,
+      "shareHint": 1
+    },
+    {
+      "tSec": 15.006,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 15.891,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 15.941,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 16.125110351562398,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 16.325549804687398,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 16.492769534432227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 16.926624023437398,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.093843753182227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.193,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 17.260283204692314,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.394380862557227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.761137696879814,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.895357425057227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.296114260994727,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.429553710937398,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.797090823494727,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.299654300057227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.600313479744727,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.866850587504814,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.900850589119727,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 20.001070315682227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 22.150728518807227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    }
+  ],
+  "coverage": {
+    "truthCount": 26,
+    "modelCount": 23,
+    "matchedCount": 21,
+    "precision": 0.9130434782608695,
+    "recall": 0.8076923076923077,
+    "actionCoverage": 0.8571428571428572,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 7,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 8,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 9,
+        "modelIdx": 9,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 10,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 11,
+        "modelIdx": 11,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 12,
+        "modelIdx": 12,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 13,
+        "modelIdx": 13,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 14,
+        "modelIdx": 14,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 15,
+        "modelIdx": 15,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 16,
+        "modelIdx": 16,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 18,
+        "modelIdx": 17,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 19,
+        "modelIdx": 18,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 21,
+        "modelIdx": 19,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 22,
+        "modelIdx": 20,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 23,
+        "modelIdx": 21,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 25,
+        "modelIdx": 22,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      3,
+      17,
+      20,
+      24
+    ],
+    "unmatchedModel": [
+      1,
+      3
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 8,
+      "modelCount": 3,
+      "matchedCount": 3,
+      "actionCoverage": 0.5454545454545454
+    },
+    "aa": {
+      "truthCount": 18,
+      "modelCount": 20,
+      "matchedCount": 18,
+      "actionCoverage": 0.9473684210526316
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=18 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=936 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=18 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=18 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=25 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=1 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}
