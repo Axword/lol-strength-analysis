@@ -1,0 +1,207 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "full",
+  "matchup": "Syndra→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 17.724,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 17.891223632812398,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.258,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 18.525,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 18.993,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 19.16,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.532744142192314,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.9,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 22.739,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 23.674,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 23.975191409432227,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 24.175,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 17.891223632812398,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 18.258,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.308,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.993,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.043,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.532744142192314,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 19.9,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 23.975191409432227,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    }
+  ],
+  "coverage": {
+    "truthCount": 12,
+    "modelCount": 8,
+    "matchedCount": 6,
+    "precision": 0.75,
+    "recall": 0.5,
+    "actionCoverage": 0.6,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 7,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      3,
+      5,
+      8,
+      9,
+      11
+    ],
+    "unmatchedModel": [
+      2,
+      4
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 9,
+      "modelCount": 3,
+      "matchedCount": 3,
+      "actionCoverage": 0.5
+    },
+    "aa": {
+      "truthCount": 3,
+      "modelCount": 5,
+      "matchedCount": 3,
+      "actionCoverage": 0.7499999999999999
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=castspell_ans_1144_champion_string complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=3 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=0 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=3 aaGateEligible=true (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=3 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=true itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

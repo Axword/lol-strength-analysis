@@ -1,0 +1,100 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "burst",
+  "matchup": "Ezreal→LeeSin",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 2.539,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 3.808,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 5.812,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 3.808,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 3.8579999999999997,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 5.812,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 3,
+    "modelCount": 3,
+    "matchedCount": 2,
+    "precision": 0.6666666666666666,
+    "recall": 0.6666666666666666,
+    "actionCoverage": 0.6666666666666666,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 2,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0
+    ],
+    "unmatchedModel": [
+      1
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 3,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 0.8
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=spatial_attacker_pos_roster_join_r31 complete=true",
+    "aa_bridge: aaTruthAvailable=false aaTruthCount=0 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=0 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=true itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=0 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

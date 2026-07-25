@@ -1,0 +1,277 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "burst",
+  "matchup": "Syndra→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.06722363281255639,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.13422363599488563,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.3346630891198856,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.434,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 0.701,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 0.7014199234424723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.8016396500049723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.169,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 1.336,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 1.6757441406250564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.8429638703698856,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.0094033218799723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.076,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.1767207031250564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.1767207031250564,
+      "actorClass": "killer",
+      "kind": "damage"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.434,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 0.484,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.169,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 24,
+    "modelCount": 3,
+    "matchedCount": 2,
+    "precision": 0.6666666666666666,
+    "recall": 0.08333333333333333,
+    "actionCoverage": 0.14814814814814814,
+    "matches": [
+      {
+        "truthIdx": 3,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 2,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "unmatchedModel": [
+      1
+    ]
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 2,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    },
+    "damage": {
+      "truthCount": 17,
+      "modelCount": 0,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    },
+    "skill": {
+      "truthCount": 5,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 0.5714285714285715
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=2 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=28 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+    "damage_bridge: target=param identity-bound; sourceStatus/amountStatus left null (not invented)",
+    "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory when source unresolved",
+    "damage_bridge: damageTruthAvailable=true damageTruthCount=17 aaClassTruthCount=0 sourceResolvedCount=0 gateEligible=false",
+    "damage_bridge: rejectedNoIdentity=112 rejectedWrongGame=0 rejectedPidOrderOnly=0 rejectedNoTarget=0",
+    "r36: R28 emit + R32 CastSpellAns-1144 identity → truth AA/damage fold on pro kill window",
+    "r36: modelActions reused from prior action-replay audit (planner AA); no zero-damage echo for gate",
+    "r36: packetDecodeGate=false until reviewer C5 ≥7/10; calculatorReady=false",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=3 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ],
+  "researcher": "R36",
+  "gateEligible": true,
+  "packetDecodeGate": false,
+  "calculatorReady": false,
+  "criterionC": true,
+  "aaBridge": {
+    "jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r36/docs/rofl-research/packet_decode/r28/emit_2970110_basic_attack_damage.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r36/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+    "aaTruthAvailable": true,
+    "aaTruthCount": 2,
+    "foldGateEligible": true,
+    "rejectedNoIdentity": 28,
+    "rejectedWrongGame": 0,
+    "rejectedPidOrderOnly": 0,
+    "identityComplete": true,
+    "createHeroOrderFallback": false,
+    "aaBridgeReady": true
+  },
+  "damageBridge": {
+    "damageTruthAvailable": true,
+    "damageTruthCount": 17,
+    "aaClassTruthCount": 0,
+    "foldGateEligible": false,
+    "sourceResolvedCount": 0,
+    "rejectedNoIdentity": 112,
+    "rejectedNoTarget": 0
+  },
+  "window": {
+    "startMs": 1087012,
+    "endMs": 1091188,
+    "startSec": 1087.012,
+    "endSec": 1091.188,
+    "killerId": 3,
+    "victimId": 10,
+    "killerChamp": "Syndra",
+    "victimChamp": "Camille"
+  }
+}

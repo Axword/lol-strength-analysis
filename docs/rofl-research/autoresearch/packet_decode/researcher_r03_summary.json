@@ -1,0 +1,165 @@
+{
+  "researcher": "R03",
+  "model": "cursor-grok-4.5-high-fast",
+  "room": "M1",
+  "track": "H3",
+  "worktree": "/Users/river/.codex/worktrees/rofl-pkt-r03",
+  "branch": "adv/pkt-r03-channel-desync",
+  "never_edited_parent": true,
+  "decision": "keep",
+  "keep_rule": "full-chunk channelMatch ≥256 OR documented first desync+fix ≥128 OR resilient walker ported into deserialize path with reproducible npm",
+  "keep_met": true,
+  "keep_reasons": [
+    "BR1 chunk20: channelMatchCount=512/512 (≥256) with payloadSuffixMatchCount=512",
+    "Documented firstRawSizeDiff (46 vs 49) as reconstruction prefix (delta∈{3,4,5}, u.endswith(py)); channel+suffix compare restores full prefix match",
+    "R14 resilient interstitial-skip ported into rofl2_probe.extract_segments(resilient=True) and packet-drive --resilient-segments with npm aliases"
+  ],
+  "rofl_br1": "BR1-3264361042.rofl",
+  "rofl_pro": "artifacts/pro-grid/replay_riot_2970110_1.rofl",
+  "metrics": {
+    "br1_chunk20": {
+      "channelMatch": true,
+      "channelMatchCount": 512,
+      "payloadSuffixMatchCount": 512,
+      "sizeDeltaHist": { "5": 267, "3": 161, "4": 84 },
+      "deserOk": 14,
+      "fullConsumeOk": 14,
+      "replCand": 1,
+      "type107FullConsumeOk": 1,
+      "resilient_segs": 83,
+      "resilient_skips": 0
+    },
+    "pro_2970110": {
+      "baseline_segs": 3,
+      "resilient_segs": 16351,
+      "resilient_skips": 399,
+      "leftover": 361,
+      "opcode_181": 0,
+      "opcode_908": 0,
+      "opcode_107": 0,
+      "opcode_751": 253,
+      "chunk0_channelMatchCount": 256,
+      "chunk0_payloadSuffixMatchCount": 256,
+      "chunk0_deserOk": 22,
+      "chunk0_fullConsumeOk": 0,
+      "note": "soft deserOk without fullConsume under 16.14 binary on 16.13 stream — not framed as sync win"
+    }
+  },
+  "kept": [
+    {
+      "artifact": "scripts/rofl2_probe.py (extract_segments resilient=)",
+      "why": "Ports R14 interstitial-skip into shared segment walker; BR1 unchanged (83/0 skips); pro 3→16351 segs"
+    },
+    {
+      "artifact": "scripts/rofl2_unicorn_packet_drive.py (--resilient-segments, full-prefix channelMatch + suffix diagnostics)",
+      "why": "Deserialize path consumes resilient segments; H3 channelMatchCount over full prefix; sizeDeltaHist discloses reconstruction prefixes"
+    },
+    {
+      "artifact": "scripts/rofl2_h3_channel_desync_probe.py + npm rofl:channel-desync / rofl:probe-resilient",
+      "why": "Reproducible H3 adversarial size-mode sweep + pro A/B"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r03/h3_exp01_channel_walk_br1.json",
+      "why": "Canonical keep evidence: channelMatchCount=512 ge256=true"
+    }
+  ],
+  "discarded": [
+    {
+      "change": "Treat unicornSize!=wireSize as length-prefix/channel desync",
+      "why": "Always u.endswith(py) with delta 3–5 reconstruction prefix; not a wire framing bug"
+    },
+    {
+      "change": "always_u8 / always_u32 / invert_flag10 size-field variants",
+      "why": "None beat baseline channelMatch; always_u32 collapses to 1 block"
+    },
+    {
+      "change": "Claim pro fullConsumeOk progress from resilient alone",
+      "why": "Resilient unlocks segment visibility (751=253) but fullConsumeOk stays 0 and 181/908/107 stay 0 on 16.13 under 16.14 binary"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "exp00",
+      "file": "h3_exp00_resilient_segment_ab.json",
+      "result": "BR1 83→83 skips0; pro2970110 3→16351 skips399; pro 751=253, 181/908/107=0"
+    },
+    {
+      "id": "exp01",
+      "file": "h3_exp01_channel_walk_br1.json",
+      "result": "channelMatchCount=512 ge256=true; size variants discarded; drive fullConsumeOk=14"
+    },
+    {
+      "id": "exp02",
+      "file": "h3_exp02_packet_drive_br1_resilient.json",
+      "result": "resilient BR1 no regression: segs=83 skips=0 channelMatch=256 deserOk=14 full=14 replCand=1"
+    },
+    {
+      "id": "exp03a",
+      "file": "h3_exp03a_pro_baseline_stub.json",
+      "result": "baseline stub segs=3 channelMatch=256 deserOk=22 fullConsumeOk=0"
+    },
+    {
+      "id": "exp03b",
+      "file": "h3_exp03b_pro_resilient_drive.json",
+      "result": "resilient segs=16351 but chunk20 sparse (5 blocks); mid-index false-thin on pro"
+    },
+    {
+      "id": "exp04",
+      "file": "h3_exp04_pro_channel_resilient.json",
+      "result": "proCompare documents segment/opcode lift; channelMatch on sparse chunk"
+    },
+    {
+      "id": "exp05",
+      "file": "h3_exp05_pro_chunk_density.json",
+      "result": "densest chunk0 pyBlocks=644; drive channelMatch=256 suffix=256 fullConsumeOk=0"
+    },
+    {
+      "id": "exp06",
+      "file": "h3_exp06_probe_resilient_pro.json",
+      "result": "npm run rofl:probe-resilient → 16351 segments size_match=true"
+    }
+  ],
+  "npm": {
+    "isolation": "pwd; git branch --show-current  # expect .../rofl-pkt-r03 + adv/pkt-r03-channel-desync",
+    "channel_desync_br1": "npm run rofl:channel-desync -- \"$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl\" --chunk-index 20 --max-blocks 512 --drive --json-out docs/rofl-research/packet_decode/r03/h3_exp01_channel_walk_br1.json",
+    "packet_drive_resilient_br1": "npm run rofl:packet-drive -- \"$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl\" --chunk-index 20 --max-packets 48 --max-blocks 256 --resilient-segments",
+    "probe_resilient_pro": "npm run rofl:probe-resilient -- artifacts/pro-grid/replay_riot_2970110_1.rofl --json-out docs/rofl-research/packet_decode/r03/h3_exp06_probe_resilient_pro.json",
+    "packet_drive_resilient_pro": "npm run rofl:packet-drive -- artifacts/pro-grid/replay_riot_2970110_1.rofl --chunk-index 0 --max-packets 48 --max-blocks 256 --resilient-segments"
+  },
+  "blocker": "Pro 16.13 streams recover via resilient skip, but 181/908/107 remain 0 and fullConsumeOk=0 under 16.14 Deserialize — patch opcode remap PE proof required (not H3 framing).",
+  "gate_progress": {
+    "stream_sync": "partial_keep",
+    "replication_aa": "no",
+    "basic_attack_events": "no",
+    "identity_bind": "no",
+    "action_replay_bridge": "no"
+  },
+  "freeze": {
+    "best_json_composite": 0.9683,
+    "shipGate": true,
+    "productShipGate": true,
+    "untouched": true
+  },
+  "invariants": {
+    "hpInvented": false,
+    "calculatorReady": false,
+    "vendorDecrypt": false,
+    "never_edited_parent": true,
+    "noInventedEvents": true
+  },
+  "artifacts": [
+    "docs/rofl-research/packet_decode/r03/h3_exp00_resilient_segment_ab.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp01_channel_walk_br1.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp02_packet_drive_br1_resilient.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp03a_pro_baseline_stub.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp03b_pro_resilient_drive.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp04_pro_channel_resilient.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp05_pro_chunk_density.json",
+    "docs/rofl-research/packet_decode/r03/h3_exp06_probe_resilient_pro.json",
+    "docs/rofl-research/packet_decode/r03/blocker.json",
+    "docs/rofl-research/packet_decode/r03/researcher_r03_summary.json",
+    "docs/rofl-research/autoresearch/packet_decode/researchers/r03/researcher_r03_summary.json",
+    "docs/rofl-research/autoresearch/packet_decode/researcher_r03_summary.json"
+  ],
+  "next_auto_track": "H3 kept — hand resilient-segments + channelMatch discipline to M2/M3; pro AA still blocked on 16.13 remap"
+}

@@ -1,0 +1,1147 @@
+{
+  "ok": true,
+  "schema": "rofl-combat-wire-table-16.13-v1",
+  "ts": "2026-07-24T01:37:48Z",
+  "probeVersion": "r04-combat-wire-table-16.13-win-pe-v1",
+  "matchProbe": "2970110-g1",
+  "patch": "16.13.790.6961",
+  "pe": {
+    "binaryPath": "/tmp/League-of-Legends-16.13-win.exe",
+    "sha256": "4e1dedc91b271abf7b5d769424ec585d72140503bc2494c801bc9c2585595f9f",
+    "format": "pe64",
+    "arch": "x86_64",
+    "platform": "windows",
+    "stringPresent": {
+      "ActionState": true,
+      "mArmor": true,
+      "mAttackSpeedMod": true,
+      "mBaseAttackDamage": true,
+      "mBonusArmor": true,
+      "mBonusSpellBlock": true,
+      "mFlatMagicDamageMod": true,
+      "mFlatPhysicalDamageMod": true,
+      "mHP": true,
+      "mMaxHP": true,
+      "mMoveSpeed": true,
+      "mPercentAttackSpeedMod": true,
+      "mPercentMagicDamageMod": true,
+      "mPercentMultiplicativeAttackSpeedMod": true,
+      "mPercentPhysicalDamageMod": true,
+      "mSpellBlock": true
+    },
+    "allCombatNamesPresent": true,
+    "wireTable": {
+      "ok": true,
+      "probeVersion": "r04-combat-wire-table-16.13-win-pe-v1",
+      "patch": "16.13",
+      "platform": "windows",
+      "arch": "x86_64",
+      "fieldBinderFn": "0x140231330",
+      "actionStateBinderFn": "0x1402f5720",
+      "batchRegistrarCount": 5,
+      "fieldCount": 41,
+      "fields": [
+        {
+          "primary": 2,
+          "secondary": 0,
+          "name": "ActionState",
+          "slotOffset": null,
+          "slotOffsetHex": null,
+          "registrar": "action_state",
+          "contextObjOff": "0x1470",
+          "w3Mask": 4,
+          "registrarFn": "0x140215e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 1,
+          "name": "ActionState2",
+          "slotOffset": null,
+          "slotOffsetHex": null,
+          "registrar": "action_state",
+          "contextObjOff": "0x1470",
+          "w3Mask": 4,
+          "registrarFn": "0x140215e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 2,
+          "name": "StatusFlags",
+          "slotOffset": null,
+          "slotOffsetHex": null,
+          "registrar": "action_state",
+          "contextObjOff": "0x1470",
+          "w3Mask": 4,
+          "registrarFn": "0x140215e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 0,
+          "name": "mBaseAttackDamage",
+          "slotOffset": 880,
+          "slotOffsetHex": "0x370",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 1,
+          "name": "mArmor",
+          "slotOffset": 1280,
+          "slotOffsetHex": "0x500",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 2,
+          "name": "mSpellBlock",
+          "slotOffset": 1360,
+          "slotOffsetHex": "0x550",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 3,
+          "name": "mAttackSpeedMod",
+          "slotOffset": 720,
+          "slotOffsetHex": "0x2d0",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 4,
+          "name": "mFlatPhysicalDamageMod",
+          "slotOffset": 360,
+          "slotOffsetHex": "0x168",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 5,
+          "name": "mPercentPhysicalDamageMod",
+          "slotOffset": 400,
+          "slotOffsetHex": "0x190",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 6,
+          "name": "mFlatMagicDamageMod",
+          "slotOffset": 520,
+          "slotOffsetHex": "0x208",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 7,
+          "name": "mPercentMagicDamageMod",
+          "slotOffset": 560,
+          "slotOffsetHex": "0x230",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 8,
+          "name": "mHPRegenRate",
+          "slotOffset": 1440,
+          "slotOffsetHex": "0x5a0",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 9,
+          "name": "mPrimaryARRegenRateRep",
+          "slotOffset": 2480,
+          "slotOffsetHex": "0x9b0",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 10,
+          "name": "mFlatMagicReduction",
+          "slotOffset": 600,
+          "slotOffsetHex": "0x258",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 2,
+          "secondary": 11,
+          "name": "mPercentMagicReduction",
+          "slotOffset": 640,
+          "slotOffsetHex": "0x280",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        {
+          "primary": 3,
+          "secondary": 12,
+          "name": "mPercentAttackSpeedMod",
+          "slotOffset": 760,
+          "slotOffsetHex": "0x2f8",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 13,
+          "name": "mPercentMultiplicativeAttackSpeedMod",
+          "slotOffset": 800,
+          "slotOffsetHex": "0x320",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 14,
+          "name": "mAttackRange",
+          "slotOffset": 1600,
+          "slotOffsetHex": "0x640",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 15,
+          "name": "mCrit",
+          "slotOffset": 1200,
+          "slotOffsetHex": "0x4b0",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 16,
+          "name": "mCritDamageMultiplier",
+          "slotOffset": 1080,
+          "slotOffsetHex": "0x438",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 17,
+          "name": "mBonusArmor",
+          "slotOffset": 1320,
+          "slotOffsetHex": "0x528",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 18,
+          "name": "mBonusSpellBlock",
+          "slotOffset": 1400,
+          "slotOffsetHex": "0x578",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 19,
+          "name": "mDodge",
+          "slotOffset": 1160,
+          "slotOffsetHex": "0x488",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 20,
+          "name": "mFlatBaseSpellBlockMod",
+          "slotOffset": 2440,
+          "slotOffsetHex": "0x988",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 21,
+          "name": "mFlatBaseArmorMod",
+          "slotOffset": 2400,
+          "slotOffsetHex": "0x960",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 3,
+          "secondary": 22,
+          "name": "mFlatBaseAttackSpeedMod",
+          "slotOffset": 2640,
+          "slotOffsetHex": "0xa50",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        {
+          "primary": 5,
+          "secondary": 23,
+          "name": "mFlatBubbleRadiusMod",
+          "slotOffset": 1640,
+          "slotOffsetHex": "0x668",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        {
+          "primary": 5,
+          "secondary": 24,
+          "name": "mPercentBubbleRadiusMod",
+          "slotOffset": 1680,
+          "slotOffsetHex": "0x690",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        {
+          "primary": 5,
+          "secondary": 25,
+          "name": "mMoveSpeed",
+          "slotOffset": 1520,
+          "slotOffsetHex": "0x5f0",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        {
+          "primary": 5,
+          "secondary": 26,
+          "name": "mMoveSpeedBaseIncrease",
+          "slotOffset": 1560,
+          "slotOffsetHex": "0x618",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        {
+          "primary": 5,
+          "secondary": 27,
+          "name": "mScaleSkinCoef",
+          "slotOffset": 1120,
+          "slotOffsetHex": "0x460",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        {
+          "primary": 5,
+          "secondary": 0,
+          "name": "mHP",
+          "slotOffset": 4224,
+          "slotOffsetHex": "0x1080",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 1,
+          "name": "mMaxHP",
+          "slotOffset": 4264,
+          "slotOffsetHex": "0x10a8",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 2,
+          "name": "mHPMaxPenalty",
+          "slotOffset": 4304,
+          "slotOffsetHex": "0x10d0",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 3,
+          "name": "mAllShield",
+          "slotOffset": 4384,
+          "slotOffsetHex": "0x1120",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 4,
+          "name": "mPhysicalShield",
+          "slotOffset": 4424,
+          "slotOffsetHex": "0x1148",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 5,
+          "name": "mMagicalShield",
+          "slotOffset": 4464,
+          "slotOffsetHex": "0x1170",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 6,
+          "name": "mChampSpecificHealth",
+          "slotOffset": 4504,
+          "slotOffsetHex": "0x1198",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 7,
+          "name": "mIncomingHealingAllied",
+          "slotOffset": 4544,
+          "slotOffsetHex": "0x11c0",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 8,
+          "name": "mIncomingHealingEnemy",
+          "slotOffset": 4584,
+          "slotOffsetHex": "0x11e8",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        {
+          "primary": 5,
+          "secondary": 9,
+          "name": "mIncomingDamage",
+          "slotOffset": 4624,
+          "slotOffsetHex": "0x1210",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        }
+      ],
+      "byKey": {
+        "2,0": {
+          "primary": 2,
+          "secondary": 0,
+          "name": "mBaseAttackDamage",
+          "slotOffset": 880,
+          "slotOffsetHex": "0x370",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,1": {
+          "primary": 2,
+          "secondary": 1,
+          "name": "mArmor",
+          "slotOffset": 1280,
+          "slotOffsetHex": "0x500",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,2": {
+          "primary": 2,
+          "secondary": 2,
+          "name": "mSpellBlock",
+          "slotOffset": 1360,
+          "slotOffsetHex": "0x550",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,3": {
+          "primary": 2,
+          "secondary": 3,
+          "name": "mAttackSpeedMod",
+          "slotOffset": 720,
+          "slotOffsetHex": "0x2d0",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,4": {
+          "primary": 2,
+          "secondary": 4,
+          "name": "mFlatPhysicalDamageMod",
+          "slotOffset": 360,
+          "slotOffsetHex": "0x168",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,5": {
+          "primary": 2,
+          "secondary": 5,
+          "name": "mPercentPhysicalDamageMod",
+          "slotOffset": 400,
+          "slotOffsetHex": "0x190",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,6": {
+          "primary": 2,
+          "secondary": 6,
+          "name": "mFlatMagicDamageMod",
+          "slotOffset": 520,
+          "slotOffsetHex": "0x208",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,7": {
+          "primary": 2,
+          "secondary": 7,
+          "name": "mPercentMagicDamageMod",
+          "slotOffset": 560,
+          "slotOffsetHex": "0x230",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,8": {
+          "primary": 2,
+          "secondary": 8,
+          "name": "mHPRegenRate",
+          "slotOffset": 1440,
+          "slotOffsetHex": "0x5a0",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,9": {
+          "primary": 2,
+          "secondary": 9,
+          "name": "mPrimaryARRegenRateRep",
+          "slotOffset": 2480,
+          "slotOffsetHex": "0x9b0",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,10": {
+          "primary": 2,
+          "secondary": 10,
+          "name": "mFlatMagicReduction",
+          "slotOffset": 600,
+          "slotOffsetHex": "0x258",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "2,11": {
+          "primary": 2,
+          "secondary": 11,
+          "name": "mPercentMagicReduction",
+          "slotOffset": 640,
+          "slotOffsetHex": "0x280",
+          "registrar": "combat_core",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 4,
+          "registrarFn": "0x140214e00"
+        },
+        "3,12": {
+          "primary": 3,
+          "secondary": 12,
+          "name": "mPercentAttackSpeedMod",
+          "slotOffset": 760,
+          "slotOffsetHex": "0x2f8",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,13": {
+          "primary": 3,
+          "secondary": 13,
+          "name": "mPercentMultiplicativeAttackSpeedMod",
+          "slotOffset": 800,
+          "slotOffsetHex": "0x320",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,14": {
+          "primary": 3,
+          "secondary": 14,
+          "name": "mAttackRange",
+          "slotOffset": 1600,
+          "slotOffsetHex": "0x640",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,15": {
+          "primary": 3,
+          "secondary": 15,
+          "name": "mCrit",
+          "slotOffset": 1200,
+          "slotOffsetHex": "0x4b0",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,16": {
+          "primary": 3,
+          "secondary": 16,
+          "name": "mCritDamageMultiplier",
+          "slotOffset": 1080,
+          "slotOffsetHex": "0x438",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,17": {
+          "primary": 3,
+          "secondary": 17,
+          "name": "mBonusArmor",
+          "slotOffset": 1320,
+          "slotOffsetHex": "0x528",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,18": {
+          "primary": 3,
+          "secondary": 18,
+          "name": "mBonusSpellBlock",
+          "slotOffset": 1400,
+          "slotOffsetHex": "0x578",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,19": {
+          "primary": 3,
+          "secondary": 19,
+          "name": "mDodge",
+          "slotOffset": 1160,
+          "slotOffsetHex": "0x488",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,20": {
+          "primary": 3,
+          "secondary": 20,
+          "name": "mFlatBaseSpellBlockMod",
+          "slotOffset": 2440,
+          "slotOffsetHex": "0x988",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,21": {
+          "primary": 3,
+          "secondary": 21,
+          "name": "mFlatBaseArmorMod",
+          "slotOffset": 2400,
+          "slotOffsetHex": "0x960",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "3,22": {
+          "primary": 3,
+          "secondary": 22,
+          "name": "mFlatBaseAttackSpeedMod",
+          "slotOffset": 2640,
+          "slotOffsetHex": "0xa50",
+          "registrar": "combat_ext",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 8,
+          "registrarFn": "0x140214c30"
+        },
+        "5,23": {
+          "primary": 5,
+          "secondary": 23,
+          "name": "mFlatBubbleRadiusMod",
+          "slotOffset": 1640,
+          "slotOffsetHex": "0x668",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        "5,24": {
+          "primary": 5,
+          "secondary": 24,
+          "name": "mPercentBubbleRadiusMod",
+          "slotOffset": 1680,
+          "slotOffsetHex": "0x690",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        "5,25": {
+          "primary": 5,
+          "secondary": 25,
+          "name": "mMoveSpeed",
+          "slotOffset": 1520,
+          "slotOffsetHex": "0x5f0",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        "5,26": {
+          "primary": 5,
+          "secondary": 26,
+          "name": "mMoveSpeedBaseIncrease",
+          "slotOffset": 1560,
+          "slotOffsetHex": "0x618",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        "5,27": {
+          "primary": 5,
+          "secondary": 27,
+          "name": "mScaleSkinCoef",
+          "slotOffset": 1120,
+          "slotOffsetHex": "0x460",
+          "registrar": "movespeed_bank",
+          "contextObjOff": "0x1b98",
+          "w3Mask": 32,
+          "registrarFn": "0x140215200"
+        },
+        "5,0": {
+          "primary": 5,
+          "secondary": 0,
+          "name": "mHP",
+          "slotOffset": 4224,
+          "slotOffsetHex": "0x1080",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,1": {
+          "primary": 5,
+          "secondary": 1,
+          "name": "mMaxHP",
+          "slotOffset": 4264,
+          "slotOffsetHex": "0x10a8",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,2": {
+          "primary": 5,
+          "secondary": 2,
+          "name": "mHPMaxPenalty",
+          "slotOffset": 4304,
+          "slotOffsetHex": "0x10d0",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,3": {
+          "primary": 5,
+          "secondary": 3,
+          "name": "mAllShield",
+          "slotOffset": 4384,
+          "slotOffsetHex": "0x1120",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,4": {
+          "primary": 5,
+          "secondary": 4,
+          "name": "mPhysicalShield",
+          "slotOffset": 4424,
+          "slotOffsetHex": "0x1148",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,5": {
+          "primary": 5,
+          "secondary": 5,
+          "name": "mMagicalShield",
+          "slotOffset": 4464,
+          "slotOffsetHex": "0x1170",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,6": {
+          "primary": 5,
+          "secondary": 6,
+          "name": "mChampSpecificHealth",
+          "slotOffset": 4504,
+          "slotOffsetHex": "0x1198",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,7": {
+          "primary": 5,
+          "secondary": 7,
+          "name": "mIncomingHealingAllied",
+          "slotOffset": 4544,
+          "slotOffsetHex": "0x11c0",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,8": {
+          "primary": 5,
+          "secondary": 8,
+          "name": "mIncomingHealingEnemy",
+          "slotOffset": 4584,
+          "slotOffsetHex": "0x11e8",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "5,9": {
+          "primary": 5,
+          "secondary": 9,
+          "name": "mIncomingDamage",
+          "slotOffset": 4624,
+          "slotOffsetHex": "0x1210",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        }
+      },
+      "secondaryScheme": "per_shared_context_obj_off",
+      "actionStateSharesCombatContext": false,
+      "hpPositiveControl": {
+        "mHP": {
+          "primary": 5,
+          "secondary": 0,
+          "name": "mHP",
+          "slotOffset": 4224,
+          "slotOffsetHex": "0x1080",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "mMaxHP": {
+          "primary": 5,
+          "secondary": 1,
+          "name": "mMaxHP",
+          "slotOffset": 4264,
+          "slotOffsetHex": "0x10a8",
+          "registrar": "hp",
+          "contextObjOff": "0x0",
+          "w3Mask": 32,
+          "registrarFn": "0x1402b0780"
+        },
+        "ok": true
+      },
+      "provenCombatMap": {
+        "2,0": "mBaseAttackDamage",
+        "2,1": "mArmor",
+        "2,2": "mSpellBlock",
+        "2,3": "mAttackSpeedMod",
+        "2,4": "mFlatPhysicalDamageMod",
+        "2,5": "mPercentPhysicalDamageMod",
+        "2,6": "mFlatMagicDamageMod",
+        "2,7": "mPercentMagicDamageMod",
+        "3,12": "mPercentAttackSpeedMod",
+        "3,13": "mPercentMultiplicativeAttackSpeedMod",
+        "3,17": "mBonusArmor",
+        "3,18": "mBonusSpellBlock"
+      },
+      "provenCombatMapBoundOk": true,
+      "provenCombatMapMissing": [],
+      "slotIsNotWireIndex": [
+        {
+          "name": "mBaseAttackDamage",
+          "wire": "2,0",
+          "slotOffsetHex": "0x370",
+          "slotEqualsPrimary": false,
+          "slotEqualsSecondary": false,
+          "objectSlotIsNotWireIndex": true
+        },
+        {
+          "name": "mArmor",
+          "wire": "2,1",
+          "slotOffsetHex": "0x500",
+          "slotEqualsPrimary": false,
+          "slotEqualsSecondary": false,
+          "objectSlotIsNotWireIndex": true
+        },
+        {
+          "name": "mHP",
+          "wire": "5,0",
+          "slotOffsetHex": "0x1080",
+          "slotEqualsPrimary": false,
+          "slotEqualsSecondary": false,
+          "objectSlotIsNotWireIndex": true
+        },
+        {
+          "name": "mMaxHP",
+          "wire": "5,1",
+          "slotOffsetHex": "0x10a8",
+          "slotEqualsPrimary": false,
+          "slotEqualsSecondary": false,
+          "objectSlotIsNotWireIndex": true
+        }
+      ],
+      "h7_16_14_skew": {
+        "safeToReuse16_14MapOn16_13": false,
+        "rows": [
+          {
+            "key": "2,3",
+            "map_16_14": "mBaseAttackDamage",
+            "map_16_13_at_same_key": "mAttackSpeedMod",
+            "match": false
+          },
+          {
+            "key": "2,7",
+            "map_16_14": "mArmor",
+            "map_16_13_at_same_key": "mPercentMagicDamageMod",
+            "match": false
+          },
+          {
+            "key": "2,8",
+            "map_16_14": "mSpellBlock",
+            "map_16_13_at_same_key": "mHPRegenRate",
+            "match": false
+          },
+          {
+            "key": "2,12",
+            "map_16_14": "mFlatPhysicalDamageMod",
+            "map_16_13_at_same_key": null,
+            "match": false
+          },
+          {
+            "key": "2,13",
+            "map_16_14": "mPercentPhysicalDamageMod",
+            "map_16_13_at_same_key": null,
+            "match": false
+          },
+          {
+            "key": "2,14",
+            "map_16_14": "mFlatMagicDamageMod",
+            "map_16_13_at_same_key": null,
+            "match": false
+          },
+          {
+            "key": "2,15",
+            "map_16_14": "mPercentMagicDamageMod",
+            "map_16_13_at_same_key": null,
+            "match": false
+          },
+          {
+            "key": "2,18",
+            "map_16_14": "mAttackSpeedMod",
+            "map_16_13_at_same_key": null,
+            "match": false
+          },
+          {
+            "key": "3,17",
+            "map_16_14": "mBonusArmor",
+            "map_16_13_at_same_key": "mBonusArmor",
+            "match": true
+          },
+          {
+            "key": "3,18",
+            "map_16_14": "mBonusSpellBlock",
+            "map_16_13_at_same_key": "mBonusSpellBlock",
+            "match": true
+          },
+          {
+            "key": "3,21",
+            "map_16_14": "mPercentAttackSpeedMod",
+            "map_16_13_at_same_key": "mFlatBaseArmorMod",
+            "match": false
+          },
+          {
+            "key": "3,22",
+            "map_16_14": "mPercentMultiplicativeAttackSpeedMod",
+            "map_16_13_at_same_key": "mFlatBaseAttackSpeedMod",
+            "match": false
+          }
+        ]
+      },
+      "primary1HypothesisRefuted": true,
+      "primary1RefuteRows": [
+        {
+          "key": "1,5",
+          "refutedName": "mBaseAttackDamage",
+          "peNameAtKey": null,
+          "stillRefuted": true
+        },
+        {
+          "key": "1,6",
+          "refutedName": "mFlatMagicDamageMod",
+          "peNameAtKey": null,
+          "stillRefuted": true
+        },
+        {
+          "key": "1,9",
+          "refutedName": "mArmor",
+          "peNameAtKey": null,
+          "stillRefuted": true
+        },
+        {
+          "key": "1,10",
+          "refutedName": "mSpellBlock",
+          "peNameAtKey": null,
+          "stillRefuted": true
+        },
+        {
+          "key": "1,14",
+          "refutedName": "mFlatPhysicalDamageMod",
+          "peNameAtKey": null,
+          "stillRefuted": true
+        },
+        {
+          "key": "1,19",
+          "refutedName": "mAttackSpeedMod",
+          "peNameAtKey": null,
+          "stillRefuted": true
+        }
+      ],
+      "note": "w3 power-of-two mask \u2192 primary bit; secondary = order within shared context object-offset. Object slot offsets are not wire indices. 16.13 Win ActionState context is separate from combat_core (unlike 16.14 arm64 shared context)."
+    }
+  },
+  "provenCombatMap": {
+    "2,0": "mBaseAttackDamage",
+    "2,1": "mArmor",
+    "2,2": "mSpellBlock",
+    "2,3": "mAttackSpeedMod",
+    "2,4": "mFlatPhysicalDamageMod",
+    "2,5": "mPercentPhysicalDamageMod",
+    "2,6": "mFlatMagicDamageMod",
+    "2,7": "mPercentMagicDamageMod",
+    "3,12": "mPercentAttackSpeedMod",
+    "3,13": "mPercentMultiplicativeAttackSpeedMod",
+    "3,17": "mBonusArmor",
+    "3,18": "mBonusSpellBlock"
+  },
+  "hpPositiveControlOk": true,
+  "wireTableProven": true,
+  "objectSlotsAreNotWireIndices": true,
+  "h7_16_14_mapUnsafeOn16_13": true,
+  "primary1HypothesisRefuted": true,
+  "combatTrusted": false,
+  "combatStatsKnownWouldEmit": false,
+  "identityOracleProven": false,
+  "gate_progress": {
+    "C_combat": false,
+    "detail": "H1 KEEP: 16.13 Win-PE wire table proven. C_combat still false until H2 live same-match samples + identity bind on 2970110-g1."
+  },
+  "laws": {
+    "noInventCombat": true,
+    "objectSlotsNotWireIndices": true,
+    "noGridAsProductCombat": true,
+    "packetDecodeGateMustHold": true
+  },
+  "reproduce": [
+    "python3 scripts/rofl_combat_wire_table_16_13.py --pe /tmp/League-of-Legends-16.13-win.exe"
+  ]
+}

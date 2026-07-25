@@ -1,0 +1,596 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.029607302987017192,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.09579651035647885,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.36337939453125045,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.46353808593750045,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.6326804231042047,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 3.168723022460938,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 3.168723022460938,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 4.103456422465854,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 6.14125586255733,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 6.976004516601563,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 7.143193728768267,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 7.1763981933593755,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 7.610155030864291,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.245290286385455,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.34547949536983,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.34547949536983,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.545842654549517,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.545842654549517,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.779440795898438,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 8.979803955078125,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 9.012803956645541,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 9.080008422851563,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 9.080008422851563,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 9.447576052987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 9.447576052987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 10.449452884041705,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 11.985723025643267,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 11.985723025643267,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 12.252275392192416,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 14.390248782479205,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 14.656801149028354,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 14.656801149028354,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 14.924368774414063,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 15.191716677987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 15.191716677987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 15.458284303325229,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 15.725821411132813,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 15.99318457349483,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.795900270122104,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.863104736328125,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.09646789707523,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.130467898690142,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.163657104492188,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.196657106059604,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.39702026523929,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.79776184238773,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 18.931951052987017,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.065314208984375,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.198503419536166,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.265677368164063,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.466071044921875,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.466071044921875,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.766608154296875,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.766608154296875,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.79960815586429,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.833608157479205,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.833608157479205,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.93379736646358,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.966986572265625,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 19.99998657383304,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 20.668280517578125,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 9.046,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 9.096,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.729,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 17.779,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.532,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.582,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.933,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.983,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "coverage": {
+    "truthCount": 70,
+    "modelCount": 8,
+    "matchedCount": 1,
+    "precision": 0.125,
+    "recall": 0.014285714285714285,
+    "actionCoverage": 0.02564102564102564,
+    "matches": [
+      {
+        "truthIdx": 42,
+        "modelIdx": 3,
+        "dtSec": 0.016900270122103933
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69
+    ],
+    "unmatchedModel": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "byKind": {
+    "damage": {
+      "truthCount": 64,
+      "modelCount": 0,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    },
+    "aa": {
+      "truthCount": 6,
+      "modelCount": 4,
+      "matchedCount": 1,
+      "actionCoverage": 0.2
+    },
+    "skill": {
+      "truthCount": 0,
+      "modelCount": 4,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+    "damage_bridge: target=param identity-bound; sourceStatus/amountStatus left null (not invented)",
+    "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory when source unresolved",
+    "damage_bridge: damageTruthAvailable=true damageTruthCount=64 aaClassTruthCount=0 sourceResolvedCount=181 gateEligible=false",
+    "damage_bridge: rejectedNoIdentity=1332 rejectedWrongGame=0 rejectedPidOrderOnly=0 rejectedNoTarget=0",
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=6 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=313 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "r41: identity = R32 CastSpellAns-1144 complete bind exclusively (no HP-curve fuse)",
+    "r41: emit = R28 resilient PE remap + R39 UnitApplyDamage Deserialize/xforms (source@+0x18 amount@+0x24)",
+    "r41: modelMode=prior_planner prior=/Users/river/.codex/worktrees/rofl-pkt-r41/docs/rofl-research/autoresearch/action_audits/2970110-g1-c1-full.json",
+    "r41: calculatorReady=false; shipFreeze composite 0.9683 untouched; never_edited_parent=true"
+  ],
+  "researchProFold": true,
+  "matchCode": "2970110-g1",
+  "victimChampion": "Leona",
+  "victimNetId": "0x400000b2",
+  "killerNetId": "0x400000b7",
+  "window": {
+    "startSec": 201.863,
+    "endSec": 226.863
+  },
+  "gateEligible": false,
+  "shipFreezeComposite": 0.9683,
+  "identitySource": "/Users/river/.codex/worktrees/rofl-pkt-r41/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+  "modelMode": "prior_planner",
+  "damageBridge": {
+    "jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r41/docs/rofl-research/packet_decode/r41/emit_2970110_basic_attack_damage.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r41/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+    "eventCount": 53369,
+    "schemaCounts": {
+      "damage_dealt": 53369
+    },
+    "proximityCounts": {
+      "unclassified": 53369
+    },
+    "gameIDs": [
+      2970110
+    ],
+    "withTargetNetId": 53369,
+    "withSourceNetId": 53369,
+    "withAmount": 53369,
+    "identityComplete": true,
+    "identityMethod": "stable_identity_to_net_id",
+    "createHeroOrderFallback": false,
+    "castspellOpcode": 1144,
+    "castspellObjectSize": 344,
+    "damageTruthCount": 64,
+    "aaClassTruthCount": 0,
+    "damageTruthAvailable": true,
+    "sourceResolvedCount": 181,
+    "rejectedNoIdentity": 1332,
+    "rejectedWrongGame": 0,
+    "foldGateEligible": false,
+    "modelCount": 8,
+    "matchedDamage": 0,
+    "matchedAa": 1,
+    "victimNetIdFilter": 1073742002
+  },
+  "aaBridge": {
+    "jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r41/docs/rofl-research/packet_decode/r41/emit_2970110_basic_attack_damage.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r41/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+    "basicAttackRows": 14447,
+    "aaTruthCount": 6,
+    "aaTruthAvailable": true,
+    "rejectedNoIdentity": 313,
+    "rejectedWrongGame": 0,
+    "foldGateEligible": false
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "researcher": "R04",
+  "model": "cursor-grok-4.5-high-fast",
+  "room": "M1",
+  "track": "H4",
+  "hypothesis": "Dual-byte type encoding / TYPE_COUNT threshold causes false types",
+  "worktree": "/Users/river/.codex/worktrees/rofl-pkt-r04",
+  "branch": "adv/pkt-r04-type-threshold",
+  "never_edited_parent": true,
+  "rofl": "BR1-3264361042.rofl",
+  "chunk": 20,
+  "decision": "discarded",
+  "kept": [
+    {
+      "artifact": "scripts/rofl2_h4_type_threshold_probe.py",
+      "why": "Reproducible TYPE_COUNT/threshold sweep with Python↔Unicorn READ_PACKET_TYPE parity + honest fullConsumeOk / type107FullConsumeOk scoring + createSmoke type2 storedType gate"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r04/h4_exp02_threshold_grid_chunk20.json",
+      "why": "Canonical evidence: thr=251 uniquely maximizes fullConsumeOk=14; no keep candidate"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r04/h4_exp03_packet_drive_baseline_chunk20.json",
+      "why": "npm-equivalent packet-drive confirm under baseline 0x55d"
+    }
+  ],
+  "discarded": [
+    {
+      "change": "Any TYPE_COUNT / typeThreshold ≠ 251 (grid 230–255 and neighborhood of 0x55d)",
+      "why": "No type-107 ok lift; no ≥20% absolute deserialize_failed cut; off-threshold fullConsumeOk collapses 14→3–4 on chunk20 (36→≤4 on chunk15). Baseline 0x55d already correct."
+    }
+  ],
+  "metrics": {
+    "baseline_chunk20": {
+      "typeCount": "0x55d",
+      "typeThreshold": 251,
+      "deserOk_soft": 14,
+      "fullConsumeOk": 14,
+      "attempted": 48,
+      "deserializeFailed": 34,
+      "deserializeFailedRate": 0.7083,
+      "type107SoftOk": 1,
+      "type107FullConsumeOk": 1,
+      "replCand": 1,
+      "createsOk": 5,
+      "smokeType2StoredMatch": true,
+      "parityAgreeRate": 1.0,
+      "status": "replication_candidate_deserialized_need_field_getters"
+    },
+    "baseline_chunk15_control": {
+      "fullConsumeOk": 36,
+      "deserializeFailedRate": 0.25,
+      "type107FullConsumeOk": 0,
+      "bestOffThresholdFullConsumeOk": 4
+    },
+    "bestAlternateThreshold": {
+      "typeThreshold": 251,
+      "note": "tied only with other TYPE_COUNT values that still map to thr=251 (e.g. 1277); no superior threshold"
+    }
+  },
+  "blocker": "type_threshold_0x55d_already_correct — residual deser failures are not dual-byte threshold misreads; next tracks H6/H3/type-53 semantics",
+  "experiments": [
+    {
+      "id": "exp01",
+      "file": "h4_exp01_type_count_sweep_chunk20.json",
+      "result": "Neighborhood of 0x55d discarded; baseline full=14 t107Full=1 failRate=0.708"
+    },
+    {
+      "id": "exp02",
+      "file": "h4_exp02_threshold_grid_chunk20.json",
+      "result": "Unique thr 230–255 grid: only thr=251 hits full=14; others 3–4"
+    },
+    {
+      "id": "exp03",
+      "file": "h4_exp03_packet_drive_baseline_chunk20.json",
+      "result": "packet-drive confirm: deserOk=14 fullConsumeOk=14 replCand=1"
+    },
+    {
+      "id": "exp04",
+      "file": "h4_exp04_threshold_grid_chunk15.json",
+      "result": "chunk15 control: baseline full=36; off-thr ≤4; still discarded"
+    }
+  ],
+  "r14_seed": {
+    "integrated": true,
+    "r03_seed": "absent",
+    "path": "docs/rofl-research/packet_decode/r04/r14_seed_integration.json"
+  },
+  "shipFreeze": {
+    "composite": 0.9683,
+    "shipGateBestJson": true,
+    "productShipGateBestJson": true,
+    "touchedKillWindowDefaults": false,
+    "inventedEvents": false,
+    "touchedTypeCountDefault": false
+  },
+  "artifacts": [
+    "scripts/rofl2_h4_type_threshold_probe.py",
+    "docs/rofl-research/packet_decode/r04/h4_exp01_type_count_sweep_chunk20.json",
+    "docs/rofl-research/packet_decode/r04/h4_exp02_threshold_grid_chunk20.json",
+    "docs/rofl-research/packet_decode/r04/h4_exp03_packet_drive_baseline_chunk20.json",
+    "docs/rofl-research/packet_decode/r04/h4_exp04_threshold_grid_chunk15.json",
+    "docs/rofl-research/packet_decode/r04/h4_metrics_summary.json",
+    "docs/rofl-research/packet_decode/r04/blocker.json",
+    "docs/rofl-research/packet_decode/r04/r14_seed_integration.json",
+    "docs/rofl-research/packet_decode/r04/researcher_r04_summary.json",
+    "docs/rofl-research/autoresearch/packet_decode/researchers/r04/researcher_r04_summary.json"
+  ],
+  "invariants": {
+    "calculatorReady": false,
+    "publicPublish": false,
+    "shipGateFrozen": true,
+    "compositeFrozen": 0.9683,
+    "cleanRoom": true,
+    "never_edited_parent": true,
+    "honestFullConsumeOk": true
+  },
+  "npm": {
+    "isolation": "pwd; git branch --show-current  # expect .../rofl-pkt-r04 + adv/pkt-r04-type-threshold",
+    "probe": "python3 scripts/rofl2_h4_type_threshold_probe.py \"$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl\" --chunk-index 20 --json-out docs/rofl-research/packet_decode/r04/h4_exp01_type_count_sweep_chunk20.json",
+    "packetDrive": "python3 scripts/rofl2_unicorn_packet_drive.py \"$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl\" --chunk-index 20 --json-out docs/rofl-research/packet_decode/r04/h4_exp03_packet_drive_baseline_chunk20.json"
+  }
+}

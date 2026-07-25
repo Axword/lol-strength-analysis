@@ -1,0 +1,155 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "full",
+  "matchup": "Syndra→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 17.724,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 18.258,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 18.525,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 18.993,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 19.16,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.9,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 22.739,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 23.674,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 24.175,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 18.258,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 18.308,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 18.993,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.043,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.9,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 9,
+    "modelCount": 5,
+    "matchedCount": 3,
+    "precision": 0.6,
+    "recall": 0.3333333333333333,
+    "actionCoverage": 0.42857142857142855,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 4,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      2,
+      4,
+      6,
+      7,
+      8
+    ],
+    "unmatchedModel": [
+      1,
+      3
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 9,
+      "modelCount": 3,
+      "matchedCount": 3,
+      "actionCoverage": 0.5
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 2,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

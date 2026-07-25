@@ -1,0 +1,143 @@
+{
+  "researcher": "R01",
+  "model": "cursor-grok-4.5-high-fast",
+  "room": "M1",
+  "track": "H1",
+  "worktree": "/Users/river/.codex/worktrees/rofl-pkt-r01",
+  "branch": "adv/pkt-r01-stream-framing",
+  "never_edited_parent": true,
+  "rofl": "BR1-3264361042.rofl",
+  "chunk": 20,
+  "smoke_baseline": {
+    "deserOk": 14,
+    "attempted": 48,
+    "fullConsumeOk": 14,
+    "replCand": 1,
+    "status": "replication_candidate_deserialized_need_field_getters"
+  },
+  "deserOk_delta": {
+    "soft_best": {
+      "cursor_delta": -1,
+      "from": 14,
+      "to": 38,
+      "lift": 24,
+      "note": "FALSE POSITIVE — type 53/107 partial consumes; do not keep"
+    },
+    "full_consume_best": {
+      "cursor_delta": 0,
+      "from": 14,
+      "to": 14,
+      "lift": 0,
+      "note": "Uniform ±1..±8 never beats baseline under consumed==(len-cursorOff)"
+    },
+    "reported_delta_for_gate": 0
+  },
+  "decision": "discard",
+  "kept": [
+    {
+      "artifact": "scripts/rofl2_h1_cursor_offset_probe.py",
+      "why": "Reproducible H1 ±N sweep with Python↔Unicorn READ_PACKET_TYPE parity + fullConsumeOk scoring"
+    },
+    {
+      "artifact": "scripts/rofl2_unicorn_packet_drive.py (--cursor-delta, fullConsumeOkCount)",
+      "why": "Research dial + metric so soft deserOk inflation cannot fake stream-sync progress"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r01/h1_exp01b_cursor_sweep_strict.json",
+      "why": "Canonical strict sweep: bestFull=ni+0 full=14; bestSoft=ni-1 soft=38 keep=false"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r01/h1_exp09_packet_drive_delta0.json",
+      "why": "npm rofl:packet-drive confirm: deserOk=14 fullConsumeOk=14 replCand=1 channelMatch"
+    }
+  ],
+  "discarded": [
+    {
+      "change": "global cursor_off = ni - 1 (or any uniform ±N)",
+      "why": "softOk +24 but fullConsumeOk drops 14→9 and kills type-107 full consume; type53 soft oks consume 2 of 6 bytes"
+    },
+    {
+      "change": "cursor_off=0 always / channel-as-body / prepend channel u16",
+      "why": "No +4 fullConsumeOk vs baseline on chunk 20"
+    },
+    {
+      "change": "per-type selective delta map (optimistic same-set train/test)",
+      "why": "strict lift only +1 (14→15) on chunk 20; 0 on chunk 15"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "exp01",
+      "file": "h1_exp01_cursor_sweep_chunk20.json",
+      "result": "soft best ni-1 → 38/48; parity 48/48; initially looked keepable"
+    },
+    {
+      "id": "exp02",
+      "file": "h1_exp02_geometry_type53.json",
+      "result": "type107 at ni-1 consumes 4 not 10089; type53 soft consumes 2 not 6"
+    },
+    {
+      "id": "exp03",
+      "file": "h1_exp03_strict_consume_sweep.json",
+      "result": "strict best remains ni+0 full=14; keepStrict=false"
+    },
+    {
+      "id": "exp04",
+      "file": "h1_exp04_alternate_models.json",
+      "result": "7 cursor models; none reach strict≥18"
+    },
+    {
+      "id": "exp05",
+      "file": "h1_exp05_per_offset_failing_types.json",
+      "result": "type53 no strict offset; 751 unmapped; 508/290 have exotic offs only"
+    },
+    {
+      "id": "exp06",
+      "file": "h1_exp06_fresh_vs_polluted.json",
+      "result": "soft ni-1 inflation is partial-consume, not only packet reuse"
+    },
+    {
+      "id": "exp07_08",
+      "file": "h1_exp07_exp08_selective_and_chunk15.json",
+      "result": "selective lift+1; chunk15 baseline already full=36/48 (no type107)"
+    },
+    {
+      "id": "exp09",
+      "file": "h1_exp09_packet_drive_delta0.json",
+      "result": "packet-drive delta0: deserOk=14 fullConsumeOk=14"
+    },
+    {
+      "id": "exp09b",
+      "file": "h1_exp09b_packet_drive_delta_m1.json",
+      "result": "packet-drive delta-1: deserOk=38 fullConsumeOk=9 (anti-keep)"
+    },
+    {
+      "id": "exp10",
+      "file": "h1_exp10_buffer_shapes.json",
+      "result": "H7-lite buffer shapes do not beat baseline full consume"
+    },
+    {
+      "id": "exp01b",
+      "file": "h1_exp01b_cursor_sweep_strict.json",
+      "result": "probe keep=false under fullConsumeOk metric"
+    }
+  ],
+  "blocker": "Chunk20 residual failures (mostly type 53 ×31 with x0=0 after nearly-full consume, plus 751 unmapped) are not an off-by-N cursor handoff after read_packet_type. Python and Unicorn type reads already agree 48/48; ni handoff is correct for full-consume winners including type 107. Next room tracks: H6 unmapped stubs / H3 length-prefix / type-53 Deserialize semantics — not global cursor delta.",
+  "gate_progress": {
+    "stream_sync": "partial",
+    "replication_aa": "no",
+    "basic_attack_events": "no",
+    "identity_bind": "no",
+    "action_replay_bridge": "no"
+  },
+  "freeze": {
+    "best_json_composite": 0.9683,
+    "untouched": true
+  },
+  "invariants": {
+    "hpInvented": false,
+    "calculatorReady": false,
+    "vendorDecrypt": false
+  },
+  "next_auto_track": "H6 (unmapped faults) or H3 (length-prefix) — H1 closed as discard"
+}

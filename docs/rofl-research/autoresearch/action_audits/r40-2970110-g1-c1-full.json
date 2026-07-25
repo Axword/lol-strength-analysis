@@ -1,0 +1,251 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 2.2,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 4.103456422465854,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 5.94,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 6.14125586255733,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 6.976004516601563,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 9.046,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 9.28,
+      "actorClass": "killer",
+      "kind": "item"
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.729,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 17.795900270122104,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.532,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.766,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.933,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 20.668280517578125,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 4.103,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 6.141,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 6.976,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 9.046,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 9.28,
+      "actorClass": "killer",
+      "kind": "item",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.696,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 17.729,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 17.796,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.532,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.933,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 14,
+    "modelCount": 10,
+    "matchedCount": 10,
+    "precision": 1,
+    "recall": 0.7142857142857143,
+    "actionCoverage": 0.8333333333333333,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0.0004564224658540894
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 1,
+        "dtSec": 0.000255862557329678
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 2,
+        "dtSec": 0.000004516601562976064
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 5,
+        "dtSec": 0.0002889388622726585
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 9,
+        "modelIdx": 7,
+        "dtSec": 0.0000997298778955269
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 8,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 12,
+        "modelIdx": 9,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      2,
+      11,
+      13
+    ],
+    "unmatchedModel": []
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 7,
+      "modelCount": 4,
+      "matchedCount": 4,
+      "actionCoverage": 0.7272727272727273
+    },
+    "aa": {
+      "truthCount": 6,
+      "modelCount": 5,
+      "matchedCount": 5,
+      "actionCoverage": 0.9090909090909091
+    },
+    "item": {
+      "truthCount": 1,
+      "modelCount": 1,
+      "matchedCount": 1,
+      "actionCoverage": 1
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=castspell_ans_1144_champion_string complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=6 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=0 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=6 aaGateEligible=true (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaDamagingKitCount=5 matchedDamagingAa=5 damagingAaMarks=6 (kit physical AA via kind:aa marks; shareHint>0; NO zero-damage echo; GOAL forbid #13)",
+    "itemActiveTruthAvailable=true itemActiveTruthCount=1 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "updated": "2026-07-24T00:41:40Z",
+  "packetDecodeGate": true,
+  "phase": "GATE_TRUE",
+  "researchers_done": 46,
+  "researchers_running": [],
+  "review_cycle_last": "C10",
+  "C10_true": 10,
+  "C10_decision": "SET_GATE_TRUE",
+  "ship_freeze_composite": 0.9683,
+  "shipGate": true,
+  "productShipGate": true,
+  "calculatorReady": false,
+  "best_branch": "adv/pkt-r44-model-damage-match",
+  "best_line": [
+    "R28",
+    "R32",
+    "R39",
+    "R40",
+    "R41",
+    "R42",
+    "R43",
+    "R44",
+    "R45",
+    "R46"
+  ],
+  "blocker": "",
+  "stop_condition": "packetDecodeGate true \u2014 overnight goal met"
+}
