@@ -115,6 +115,8 @@ export const DEFAULT_RESEARCH_OVERLAY_URL =
 export const DEFAULT_RESEARCH_IDENTITY_URL =
   '/data/research/aa-overlay/2970110-g1.identity.json'
 export const DEFAULT_PLAYHEAD_WINDOW_SEC = 20
+export const DEFAULT_RESEARCH_SERIES_ID = '2970110'
+export const DEFAULT_RESEARCH_GAME_INDEX = 1
 
 const ALLOWED_PID_STAMP_METHODS = new Set([
   'slim_roster_puuid_join',
@@ -135,6 +137,21 @@ export function readResearchAaOverlayFlag(
   )
   const v = q.get(RESEARCH_AA_OVERLAY_QUERY) ?? q.get('researchAa')
   return v === '1' || v === 'true'
+}
+
+/**
+ * External research overlays are match-specific. Refuse loading the bundled
+ * 2970110-g1 rows for any other timeline, even when the query flag is enabled.
+ */
+export function timelineMatchesDefaultResearchOverlay(
+  timeline: TimelineActionBridgeInput | null | undefined,
+): boolean {
+  if (!timeline) return false
+  return (
+    String(timeline.provenance?.gridSeriesId ?? '') ===
+      DEFAULT_RESEARCH_SERIES_ID &&
+    Number(timeline.provenance?.gridGameIndex) === DEFAULT_RESEARCH_GAME_INDEX
+  )
 }
 
 export function parseNetIdKey(key: string): number | null {
@@ -643,6 +660,8 @@ export type TimelineActionBridgeInput = {
     aaCoverage?: string
     damageCoverage?: string
     calculatorReady?: boolean
+    gridSeriesId?: string
+    gridGameIndex?: number
   }
 }
 
@@ -657,7 +676,8 @@ export type TimelineActionBridgeResult = {
  * R10 F — map identity-bound timeline basicAttack/damageDealt/actionEvents
  * into research overlay rows for GameReview. Never invents from HPΔ.
  * Requires netId + participantId on every kept row (order-only rejected upstream).
- * Always researchOnly / calculatorReady=false — product AA claim stays separate.
+ * The panel row type stays non-calculator input. Product AA may be displayed,
+ * but it remains separate from the calculatorReady decision and Send payload.
  */
 export function rowsFromTimelineActionBridge(
   timeline: TimelineActionBridgeInput | null | undefined,
@@ -788,7 +808,7 @@ export function rowsFromTimelineActionBridge(
     disclosure:
       rows.length === 0
         ? 'Timeline AA/damage present but no identity-bound rows kept'
-        : `timeline bridge · ${aaCov} · not calculatorReady`,
+        : `embedded replay actions · ${aaCov} · separate from calculator readiness`,
     source: rows.length > 0 ? 'timeline_bridge' : 'empty',
     rejectedMissingIdentity,
   }

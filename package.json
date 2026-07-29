@@ -123,6 +123,7 @@
     "rofl:r46-parent-r40-repro": "npx --yes tsx scripts/aa_bridge_r46_audit.ts",
     "test:timeline-aa-damage": "npx --yes tsx src/game/__tests__/timeline.aaDamage.schema.test.ts",
     "test:timeline-action-events": "python3 -m unittest scripts.tests.test_timeline_action_events_r10 -v",
+    "rofl:finalize-calculator-ready": "python3 scripts/finalize_calculator_ready_replay.py",
     "test:research-aa-overlay": "npx --yes tsx src/game/__tests__/researchActionOverlay.test.ts && npx --yes tsx src/components/__tests__/gameReview.phase5.test.tsx",
     "test:send-gate": "npx --yes tsx src/components/__tests__/sendGate.product.test.tsx",
     "test:p10-product-copy": "npm run test:product-freeze && npm run test:anti-odds && npm run test:model-trust-reasons && npm run test:freeze-eval-wire",

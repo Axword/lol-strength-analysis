@@ -53,6 +53,12 @@ jobs:
       - name: Timeline and Game Review
         run: npm run test:timeline-phase5
 
+      - name: Replay action timeline
+        run: |
+          npm run test:timeline-aa-damage
+          npm run test:timeline-action-events
+          npm run test:research-aa-overlay
+
       - name: Known-state honesty
         run: |
           npm run test:known-flags

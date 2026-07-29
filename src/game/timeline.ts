@@ -88,6 +88,8 @@ export interface TimelineProvenance {
   artifact?: string
   matchCode?: string
   gameId?: number
+  gridSeriesId?: string
+  gridGameIndex?: number
   gameTimeUnit?: string
   coordinateSystem?: string
   coordinateOffset?: { x: number; z: number }
@@ -104,6 +106,13 @@ export interface TimelineProvenance {
   calculatorReady?: boolean
   calculatorReadyPolicy?: string
   combatStatsKnownWouldEmit?: boolean
+  aaEventCount?: number
+  aaSourceRoflSha256?: string
+  aaReplayManifestSha256?: string
+  aaIdentityEvidenceSha256?: string
+  aaOpcodeRegistrySha256?: string
+  aaIdentityBinding?: string
+  aaCalculatorReadyImpact?: 'none' | string
   notes?: string
   motionAudit?: MotionAuditSummary
 }

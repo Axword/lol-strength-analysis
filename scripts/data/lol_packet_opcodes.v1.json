@@ -1,0 +1,19 @@
+{
+  "schema": "lol-packet-opcode-registry-v1",
+  "patches": {
+    "16.13": {
+      "clientBuild": "16.13.790.6961",
+      "proof": {
+        "method": "PE MakeFunction type descriptor to registration hub and factory-store cross-check",
+        "sourceBinarySha256": "4e1dedc91b271abf7b5d769424ec585d72140503bc2494c801bc9c2585595f9f",
+        "sourceEvidenceSha256": "f6bdb64db2b91739905f86ba2bfa3c693601f1d1242b67840b661bfdcafc7149"
+      },
+      "basicAttack": {
+        "PKT_Basic_Attack_s": 128,
+        "PKT_Basic_Attack_Pos_s": 782,
+        "PKT_Basic_Attack_Minion_s": 634,
+        "PKT_Basic_Attack_Pos_Minion_s": 957
+      }
+    }
+  }
+}
