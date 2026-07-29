@@ -69,6 +69,8 @@
     "grid:list": "python3 scripts/grid_api.py list",
     "grid:download": "python3 scripts/grid_api.py download",
     "test:grid": "python3 -m unittest scripts.tests.test_grid_events_to_rfc461 scripts.tests.test_grid_api scripts.tests.test_grid_riot_events_to_rfc461",
+    "repro:bundle": "python3 scripts/repro_bundle.py",
+    "test:repro-bundle": "python3 -m unittest scripts.tests.test_repro_bundle",
     "rofl:fur-parity": "/usr/bin/python3 scripts/run_fur_parity_e2e.py --out-dir /tmp/fur_parity_e2e",
     "rofl:validate-fur": "/usr/bin/python3 scripts/validate_fur_parity.py",
     "rofl:schema-proof": "/usr/bin/python3 scripts/run_live_fur_e2e.py",

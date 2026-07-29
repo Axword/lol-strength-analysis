@@ -4,6 +4,7 @@ React + TypeScript + Vite app for combat / timeline analysis.
 
 - Product notes: [`PRODUCT.md`](PRODUCT.md), [`DESIGN.md`](DESIGN.md)
 - Replay format research (ROFL1/ROFL2 → why it is not live-stats JSONL): [`docs/rofl-format.md`](docs/rofl-format.md)
+- Remote same-match ROFL/JSONL/timeline bundles: [`docs/reproducible-match-bundles.md`](docs/reproducible-match-bundles.md)
 - Combat calculator trust boundary and acceptance evidence: [`docs/combat-trust-boundary.md`](docs/combat-trust-boundary.md)
 
 ---

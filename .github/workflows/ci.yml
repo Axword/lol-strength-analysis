@@ -42,6 +42,9 @@ jobs:
       - name: GRID and SQLite tests
         run: npm run test:grid
 
+      - name: Reproducible match bundles
+        run: npm run test:repro-bundle
+
       - name: Product Send gate
         run: npm run test:send-gate
 
