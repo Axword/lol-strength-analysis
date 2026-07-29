@@ -43,6 +43,14 @@ Every product phase must preserve these rules:
 
 Status: in progress.
 
+Current evidence:
+
+- A real July 28 professional match passed same-match bundle verification and a
+  clean-directory HTTP fetch. See
+  [`docs/reproduction-evidence/2026-07-28-grid-2966384-game-1.md`](docs/reproduction-evidence/2026-07-28-grid-2966384-game-1.md).
+- The durable second-machine fetch remains open because the GRID artifacts have
+  not been authorized for public hosting.
+
 Deliverables:
 
 - A clean build and CI baseline.
@@ -143,9 +151,10 @@ Exit gate:
 
 ## Next three iterations
 
-1. Ship positioning, this roadmap, and analysis evidence export.
-2. Prove the clean-host reproduction path with one approved professional match.
-3. Add match-level provenance/readiness and a saved research queue.
+1. Obtain an access-approved durable artifact host and rerun the verified
+   bundle fetch from a second machine.
+2. Add match-level provenance/readiness to the private research workflow.
+3. Add a saved research queue with timestamp notes and evidence-record links.
 
 ## Decision log
 
@@ -155,3 +164,6 @@ Exit gate:
   is deferred.
 - 2026-07-29: Current product output remains heuristic model edge. Calibrated
   price comparison requires later evidence and approval.
+- 2026-07-29: GRID series 2966384 game 1 passed local same-match and
+  clean-directory transfer verification. Public hosting and product
+  `calculatorReady` remain unapproved.

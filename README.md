@@ -120,6 +120,7 @@ comparison and live desk support are later phases.
 - [`DESIGN.md`](./DESIGN.md) — visual system  
 - [`ROADMAP.md`](./ROADMAP.md) — buyer decision, phases, and exit gates
 - [`docs/reproducible-match-bundles.md`](./docs/reproducible-match-bundles.md) — remote bundle contract
+- [`docs/reproduction-evidence/2026-07-28-grid-2966384-game-1.md`](./docs/reproduction-evidence/2026-07-28-grid-2966384-game-1.md) — real professional-match transfer proof
 - [`docs/combat-trust-boundary.md`](./docs/combat-trust-boundary.md) — current model claims and limits
 - [`xh-autoresearch/program.md`](./xh-autoresearch/program.md) — xH math loop protocol  
 - [`xh-autoresearch/log.md`](./xh-autoresearch/log.md) — keep/discard decisions per pass  

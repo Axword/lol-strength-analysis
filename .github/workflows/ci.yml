@@ -43,7 +43,9 @@ jobs:
         run: npm run test:grid
 
       - name: Reproducible match bundles
-        run: npm run test:repro-bundle
+        run: |
+          npm run test:repro-bundle
+          npm run test:timeline-identity
 
       - name: Product Send gate
         run: npm run test:send-gate
