@@ -239,12 +239,14 @@ export function selectedCombatTrustGap(
 }
 
 /** True when any unit lacks explicit true known-flags (product Send gate). */
-export function selectedLacksKnownCombatState(
-  units: Array<{
+export function selectedLacksKnownCombatState<
+  T extends {
     hpKnown?: boolean
     combatStatsKnown?: boolean
     abilityRanksKnown?: boolean
-  }>,
+  },
+>(
+  units: T[],
 ): boolean {
   return units.some(
     (u) => !hpIsKnown(u) || !combatStatsAreKnown(u) || !abilityRanksAreKnown(u),

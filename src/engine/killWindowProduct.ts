@@ -51,15 +51,6 @@ export const PRODUCT_KILL_WINDOW_DEFAULTS: Omit<
   perSlotPulse: true,
   pulseBySlot: { 1: 0.4, 2: 0.35, 3: 0.55, 4: 0 },
   /**
-   * R32 KEEP: residual_hp multi-caster attribution — per-window overkill vs
-   * actual HP at probe lethal. Not ally-count (R26 S1 trap). FA ≠ odds.
-   */
-  killerShareMode: 'residual_hp',
-  residualMinEarlyLethalSec: 8,
-  residualOverkillRatio: 1.25,
-  residualMinShare: 0.05,
-  residualOpenerPadSec: 0,
-  /**
    * R31 KEEP: burst mark-domain lead — load real killer skills from
    * [burstStart − 2.5s, burstEnd], remap onto CUSUM engage. HP burst onset
    * stays legacy (earlyBand). Lead 3.5 (includes Galio W) regresses S1.

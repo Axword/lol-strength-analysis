@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Combat acceptance
+        run: npm run test:acceptance
+
+      - name: xH math evaluation
+        run: npm run eval:xh
+
+      - name: GRID and SQLite tests
+        run: npm run test:grid
+
+      - name: Product Send gate
+        run: npm run test:send-gate
+
+      - name: Timeline and Game Review
+        run: npm run test:timeline-phase5
+
+      - name: Known-state honesty
+        run: |
+          npm run test:known-flags
+          npm run test:omit-unknown
+
+      - name: Kill-window acceptance
+        run: npm run test:kill-window

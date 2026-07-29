@@ -1,4 +1,4 @@
-import { CHAMPIONS, getChampion } from '../data/champions'
+import { getChampion } from '../data/champions'
 import { ITEMS } from '../data/items'
 import { resolveRuneId } from '../data/runes'
 import { mitigate, sumMitigated, sumRaw } from './damage'

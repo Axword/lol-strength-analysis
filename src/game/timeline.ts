@@ -100,6 +100,10 @@ export interface TimelineProvenance {
   damageCoverage?: TimelineActionCoverage
   rosterMapping?: string
   placeholderPolicy?: string
+  /** Match-level publication gate; per-unit known flags still govern Send. */
+  calculatorReady?: boolean
+  calculatorReadyPolicy?: string
+  combatStatsKnownWouldEmit?: boolean
   notes?: string
   motionAudit?: MotionAuditSummary
 }

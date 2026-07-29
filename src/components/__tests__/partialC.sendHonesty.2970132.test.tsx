@@ -19,6 +19,7 @@ import {
   combatStatsAreKnown,
   hpIsKnown,
   unitToLoadout,
+  type TimelineProvenance,
   type TimelineUnitFrame,
 } from '../../game/timeline'
 import { productSendAttachedResearchActions } from '../../game/researchActionOverlay'
@@ -78,7 +79,7 @@ function loadTimeline() {
   assert.equal(existsSync(TIMELINE), true, `missing ${TIMELINE}`)
   return JSON.parse(readFileSync(TIMELINE, 'utf8')) as {
     frames: Array<{ t: number; units: TimelineUnitFrame[] }>
-    provenance?: { calculatorReady?: boolean; combatStatsKnownWouldEmit?: boolean }
+    provenance?: TimelineProvenance
   }
 }
 
