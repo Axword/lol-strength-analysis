@@ -17,10 +17,10 @@ This match (FUR vs G2 JSONL) is a foolproof check: after ~16 minutes every kill 
   },
   {
     id: 'model-edge-not-odds',
-    title: 'Are model edge scores bookmaker odds? What about “~95%” fight agreement?',
-    body: `No. Blue/Red model edge (pBlue/pRed) are heuristic ranking scores for who is stronger in the modeled trade. They are never calibrated win probability, never odds %, and never bookmaker chance.
+    title: 'Can model edge feed a bookmaker price? What about “~95%” fight agreement?',
+    body: `Not yet. Blue/Red model edge scores are heuristic internal research rankings for who is stronger in the modeled trade. They are never calibrated win probability, never odds %, and must not be copied into a market price.
 
-Research kill-window suite agreement (fightAgreement) is a separate metric: how often the calculator’s predicted fight outcome matches timeline truth on a fixed window suite. A bar like “fight outcome agreement ≥95% (kill-window suite)” means that suite mean — not “95% sure we win the map,” and not pBlue rendered as a percent.`,
+Research kill-window suite agreement (fightAgreement) is a separate metric: how often the calculator’s predicted fight outcome matches timeline truth on a fixed window suite. A bar like “fight outcome agreement ≥95% (kill-window suite)” means that suite mean. It is model validation evidence, not price confidence or a recommendation.`,
   },
   {
     id: 'duration',
@@ -119,7 +119,7 @@ export function Faq() {
     <article className="faq">
       <header className="faq-head">
         <h1>FAQ</h1>
-        <p>How the map, scoreboard, and trade model fit together.</p>
+        <p>How match evidence, model edge, and market-use limits fit together.</p>
       </header>
       <div className="faq-list">
         {SECTIONS.map((s) => (

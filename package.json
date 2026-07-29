@@ -21,6 +21,7 @@
     "test:crosscheck-sqrt": "npx --yes tsx scripts/tests/crosscheck_sqrt_bins.test.ts",
     "test:kill-window": "npx --yes tsx src/engine/__tests__/killWindow.acceptance.test.ts",
     "test:acceptance": "npx --yes tsx src/engine/__tests__/combat.acceptance.test.ts",
+    "test:analysis-record": "npx --yes tsx src/engine/__tests__/analysisRecord.test.ts",
     "test:objectives": "npx --yes tsx src/engine/__tests__/objectives.acceptance.test.ts",
     "test:stat-stacking": "npx --yes tsx src/engine/__tests__/statStacking.acceptance.test.ts",
     "test:timeline-phase4": "npx --yes tsx src/game/__tests__/timeline.phase4.test.tsx",
