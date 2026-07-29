@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { CHAMPIONS, championIconUrl } from '../data/champions'
+import { championIconUrl, getChampion } from '../data/champions'
 import { ITEMS } from '../data/items'
 import {
   attributeDrakeBuffs,
@@ -146,7 +146,7 @@ function abilityHaste(
 function attackSpeedDisplay(unit: GameUnit): { aps: number; pctOfBase: number } {
   const c = unit.career
   const pctOfBase = c?.asPct ?? 100
-  const champ = CHAMPIONS[unit.loadout.championId]
+  const champ = getChampion(unit.loadout.championId)
   const base = champ?.stats.attackspeed ?? 0.625
   return { aps: base * (pctOfBase / 100), pctOfBase }
 }
@@ -160,7 +160,7 @@ function sortValue(
 ): number | string | null {
   const c = unit.career
   if (key === 'champ') {
-    return CHAMPIONS[unit.loadout.championId]?.name ?? unit.loadout.championId
+    return getChampion(unit.loadout.championId)?.name ?? unit.loadout.championId
   }
   if (!c) return null
   const teamObj = unit.team === 'blue' ? obj?.blue : obj?.red
@@ -531,7 +531,7 @@ function Row({
   onToggleGrub: () => void
 }) {
   const c = unit.career
-  const champ = CHAMPIONS[unit.loadout.championId]
+  const champ = getChampion(unit.loadout.championId)
   if (!c) {
     return (
       <tr className={`hist-row team-${unit.team}`}>
@@ -623,18 +623,21 @@ export function ChampHistoryBoard({ snapshot }: Props) {
   const orderNote = useMemo(() => histOrderNote(snapshot.gameTimeSec), [snapshot.gameTimeSec])
 
   // Default sort tracks the top win-correlation column when phase/tab changes,
-  // until the user picks a sort manually.
+  // until the user picks a sort manually. Depend on phase/tab only — not the
+  // columnOrder array (rebuilt every gameTimeSec tick during playback).
   useEffect(() => {
     const autoKey = `${phase}:${tab}`
     if (lastAutoPhase.current === autoKey) return
     lastAutoPhase.current = autoKey
     if (userSorted.current) return
-    const top = columnOrder[0]?.key
+    const top = histColumnsByWinCorrelation(snapshot.gameTimeSec, tab)[0]?.key
     if (top) {
       setSortKey(top)
       setSortDir('desc')
     }
-  }, [phase, tab, columnOrder])
+    // snapshot.gameTimeSec read for the phase that just changed
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, tab])
 
   const blueObj = snapshot.score?.blue
   const redObj = snapshot.score?.red
@@ -654,8 +657,8 @@ export function ChampHistoryBoard({ snapshot }: Props) {
       }
       if (cmp === 0) {
         if (a.team !== b.team) return a.team === 'blue' ? -1 : 1
-        const na = CHAMPIONS[a.loadout.championId]?.name ?? a.loadout.championId
-        const nb = CHAMPIONS[b.loadout.championId]?.name ?? b.loadout.championId
+        const na = getChampion(a.loadout.championId)?.name ?? a.loadout.championId
+        const nb = getChampion(b.loadout.championId)?.name ?? b.loadout.championId
         return na.localeCompare(nb)
       }
       return sortDir === 'asc' ? cmp : -cmp

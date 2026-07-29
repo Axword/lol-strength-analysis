@@ -247,6 +247,7 @@ def decode_rofl_replication(
     max_chunks: int = 50,
     heroes: Optional[Sequence[Mapping[str, Any]]] = None,
     stub_use_map: bool = True,
+    stop_on_hp_acceptance: bool = True,
 ) -> Dict[str, Any]:
     """Drive Unicorn decode across chunks until HP acceptance or exhaustion."""
     if not league_binary.is_file():
@@ -356,7 +357,7 @@ def decode_rofl_replication(
         scanned.append(ci)
         decode_summary = part
         snap = acceptance_snapshot(state)
-        if snap["passed"]:
+        if stop_on_hp_acceptance and snap["passed"]:
             break
 
     snap = acceptance_snapshot(state)

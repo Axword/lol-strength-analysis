@@ -89,6 +89,24 @@ try {
   assert.match(coverage, /<strong>HP<\/strong> none/)
   assert.match(coverage, /<strong>Calc<\/strong> blocked/)
 
+  const partialHpEntry = {
+    ...registry.matches[0],
+    coverage: { ...registry.matches[0].coverage, hp: 'partial' },
+    productGates: {
+      ...registry.matches[0].productGates,
+      hpTrusted: true,
+      calculatorReady: false,
+    },
+  }
+  const partialCoverage = renderToStaticMarkup(
+    React.createElement(MatchCoverageBadges, {
+      entry: partialHpEntry,
+      research: false,
+    }),
+  )
+  assert.match(partialCoverage, /<strong>Calc<\/strong> partial HP · Send per frame/)
+  assert.doesNotMatch(partialCoverage, /<strong>Calc<\/strong> ready/)
+
   const research = renderToStaticMarkup(
     React.createElement(MatchCoverageBadges, {
       entry: null,
@@ -112,6 +130,15 @@ try {
       combatStateBlocked: false,
     }),
     null,
+  )
+  assert.match(
+    calculatorTrustBlockReason({
+      research: false,
+      positionBlocked: false,
+      combatStateBlocked: true,
+      missingFieldLabel: 'MonkeyKing HP',
+    }) ?? '',
+    /MonkeyKing HP/,
   )
 } finally {
   await vite.close()

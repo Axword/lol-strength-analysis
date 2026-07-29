@@ -377,6 +377,340 @@ class SelectionCacheTests(unittest.TestCase):
         self.assertFalse(benchmark["machineSpecificAssertion"])
 
 
+class CompactCachedSelectionTests(unittest.TestCase):
+    def _roster(self) -> list[dict]:
+        roster: list[dict] = []
+        for index in range(10):
+            roster.append(
+                {
+                    "participantID": index + 1,
+                    "teamID": 100 if index < 5 else 200,
+                    "puuid": f"puuid-{index}",
+                    "championName": CHAMPIONS[index],
+                    "championInternalName": (
+                        "MonkeyKing" if CHAMPIONS[index] == "Wukong" else CHAMPIONS[index]
+                    ),
+                    "playerName": f"player{index}",
+                    "summonerName": f"player{index}#T{index}",
+                    "selectionKeys": [f"player{index}", CHAMPIONS[index]],
+                    "level": 1,
+                    "items": [],
+                    "alive": True,
+                }
+            )
+        return roster
+
+    def _render_transport(self, *, stale_compact_pids: set[int] | None = None):
+        stale_compact_pids = set(stale_compact_pids or set())
+        state = {
+            "cameraMode": "focus",
+            "cameraAttached": False,
+            "selectionName": "",
+            "selectionOffset": {"x": 0.0, "y": 0.0, "z": 0.0},
+            "cameraPosition": {"x": 0.0, "y": 0.0, "z": 0.0},
+        }
+        calls: list[tuple[str, dict | None]] = []
+
+        def transport(method: str, url: str, *, body=None, timeout: float = 0.1):
+            method_u = method.upper()
+            payload = dict(body) if isinstance(body, dict) else None
+            calls.append((method_u, payload))
+            if method_u == "POST" and payload is not None:
+                # Compact composite: selectionName + attach + offset together.
+                if (
+                    "selectionName" in payload
+                    and payload.get("cameraAttached") is True
+                    and "selectionOffset" in payload
+                ):
+                    name = str(payload.get("selectionName") or "")
+                    pid = None
+                    if name.startswith("player"):
+                        try:
+                            pid = int(name.replace("player", "")) + 1
+                        except ValueError:
+                            pid = None
+                    if pid in stale_compact_pids:
+                        # Stale retain: keep previous name/coords.
+                        state["cameraAttached"] = True
+                        state["selectionOffset"] = dict(payload["selectionOffset"])
+                        if payload.get("cameraMode"):
+                            state["cameraMode"] = payload["cameraMode"]
+                    else:
+                        state["selectionName"] = name
+                        state["cameraAttached"] = True
+                        state["selectionOffset"] = dict(payload["selectionOffset"])
+                        if payload.get("cameraMode"):
+                            state["cameraMode"] = payload["cameraMode"]
+                        if pid is not None:
+                            state["cameraPosition"] = {
+                                "x": float(pid * 10),
+                                "y": 0.0,
+                                "z": float(pid * 10 + 1),
+                            }
+                    return {"ok": True, "body": dict(state)}
+                if payload == {"cameraAttached": False}:
+                    state["cameraAttached"] = False
+                    return {"ok": True, "body": dict(state)}
+                if set(payload.keys()) == {"selectionName"}:
+                    name = str(payload.get("selectionName") or "")
+                    state["selectionName"] = name
+                    if name.startswith("player"):
+                        pid = int(name.replace("player", "")) + 1
+                        state["cameraPosition"] = {
+                            "x": float(pid * 10),
+                            "y": 0.0,
+                            "z": float(pid * 10 + 1),
+                        }
+                    return {"ok": True, "body": dict(state)}
+                if payload.get("cameraAttached") is True and "selectionOffset" in payload:
+                    state["cameraAttached"] = True
+                    state["selectionOffset"] = dict(payload["selectionOffset"])
+                    return {"ok": True, "body": dict(state)}
+                state.update(payload)
+                return {"ok": True, "body": dict(state)}
+            if method_u == "GET":
+                return {"ok": True, "body": dict(state)}
+            return {"ok": False, "error": f"unexpected {method_u}"}
+
+        return transport, calls
+
+    def test_compact_hit_uses_one_post_and_get_and_proves_identity(self) -> None:
+        roster = self._roster()
+        transport, calls = self._render_transport()
+        cache: dict[str, str] = {}
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            first = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+                cached_selection_strategy="compact",
+            )
+        self.assertTrue(first["ok"], first.get("error"))
+        self.assertEqual(len(cache), 10)
+        self.assertEqual(first["timing"]["compactAttempts"], 0)
+        self.assertEqual(first["timing"]["selectionRenderPosts"], 30)
+        self.assertTrue(first["timing"]["cacheCommitted"])
+
+        calls.clear()
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            second = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+                cached_selection_strategy="compact",
+            )
+        self.assertTrue(second["ok"], second.get("error"))
+        self.assertEqual(second["timing"]["compactAttempts"], 10)
+        self.assertEqual(second["timing"]["compactHits"], 10)
+        self.assertEqual(second["timing"]["compactFallbacks"], 0)
+        self.assertEqual(second["timing"]["selectionRenderPosts"], 10)
+        self.assertEqual(second["timing"]["selectionRenderPostSavings"], 20)
+        posts = [c for c in calls if c[0] == "POST"]
+        gets = [c for c in calls if c[0] == "GET"]
+        self.assertEqual(len(posts), 10)
+        self.assertEqual(len(gets), 10)
+        for _method, body in posts:
+            assert body is not None
+            self.assertIn("selectionName", body)
+            self.assertTrue(body.get("cameraAttached"))
+            self.assertEqual(body.get("cameraMode"), "focus")
+        for participant in second["participants"]:
+            self.assertEqual(
+                participant["selectionNameCanonical"],
+                participant["selectionKeyUsed"],
+            )
+            self.assertEqual(
+                participant["position"]["x"],
+                float(participant["participantID"] * 10),
+            )
+
+    def test_stale_compact_falls_back_to_full(self) -> None:
+        roster = self._roster()
+        transport, calls = self._render_transport(stale_compact_pids={1})
+        cache: dict[str, str] = {}
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            first = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+                cached_selection_strategy="compact",
+            )
+            self.assertTrue(first["ok"], first.get("error"))
+            calls.clear()
+            second = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+                cached_selection_strategy="compact",
+            )
+        self.assertTrue(second["ok"], second.get("error"))
+        self.assertEqual(second["timing"]["compactAttempts"], 10)
+        self.assertEqual(second["timing"]["compactHits"], 9)
+        self.assertEqual(second["timing"]["compactFallbacks"], 1)
+        # 9 compact POSTs + (1 compact miss + 3 full) = 9 + 4 = 13
+        self.assertEqual(second["timing"]["selectionRenderPosts"], 13)
+        self.assertEqual(second["timing"]["selectionRenderPostSavings"], 18)
+        posts = [c for c in calls if c[0] == "POST"]
+        self.assertEqual(len(posts), 13)
+
+    def test_default_strategy_is_compact_with_full_opt_in(self) -> None:
+        roster = self._roster()
+        transport, calls = self._render_transport()
+        cache: dict[str, str] = {}
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            first = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+            )
+            self.assertTrue(first["ok"], first.get("error"))
+            self.assertEqual(first["timing"]["cachedSelectionStrategy"], "compact")
+            calls.clear()
+            second = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+            )
+        self.assertTrue(second["ok"], second.get("error"))
+        self.assertEqual(second["timing"]["cachedSelectionStrategy"], "compact")
+        self.assertEqual(second["timing"]["compactAttempts"], 10)
+        self.assertEqual(second["timing"]["compactHits"], 10)
+        self.assertEqual(second["timing"]["selectionRenderPosts"], 10)
+        posts = [c for c in calls if c[0] == "POST"]
+        self.assertEqual(len(posts), 10)
+
+        # Explicit full strategy still pays 3 POSTs per participant.
+        transport_full, calls_full = self._render_transport()
+        cache_full: dict[str, str] = {}
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            warm = capture.capture_frame_positions(
+                transport_full,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache_full,
+                cached_selection_strategy="full",
+            )
+            self.assertTrue(warm["ok"], warm.get("error"))
+            calls_full.clear()
+            full = capture.capture_frame_positions(
+                transport_full,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache_full,
+                cached_selection_strategy="full",
+            )
+        self.assertTrue(full["ok"], full.get("error"))
+        self.assertEqual(full["timing"]["cachedSelectionStrategy"], "full")
+        self.assertEqual(full["timing"]["compactAttempts"], 0)
+        self.assertEqual(full["timing"]["selectionRenderPosts"], 30)
+        self.assertEqual(len([c for c in calls_full if c[0] == "POST"]), 30)
+
+    def test_product_defaults_are_compact_and_zero_settle(self) -> None:
+        self.assertEqual(capture.DEFAULT_FINAL_SETTLE, 0.0)
+        self.assertEqual(
+            capture.DEFAULT_CACHED_SELECTION_STRATEGY,
+            capture.CACHED_SELECTION_STRATEGY_COMPACT,
+        )
+        self.assertEqual(capture.normalize_cached_selection_strategy(None), "compact")
+        self.assertEqual(capture.normalize_cached_selection_strategy("default"), "compact")
+        self.assertEqual(capture.normalize_cached_selection_strategy("full"), "full")
+        parser = capture.build_arg_parser()
+        # Minimal required args; defaults must be product keep values.
+        ns = parser.parse_args(
+            [
+                "--rofl",
+                "/tmp/x.rofl",
+                "--out",
+                "/tmp/y.jsonl",
+                "--start-ms",
+                "0",
+                "--end-ms",
+                "1000",
+            ]
+        )
+        self.assertEqual(ns.final_settle, 0.0)
+        self.assertEqual(ns.cached_selection_strategy, "compact")
+        self.assertFalse(ns.defer_liveclient)
+
+    def test_cache_commits_only_after_whole_frame_succeeds(self) -> None:
+        roster = self._roster()
+        transport, _calls = self._render_transport()
+        cache: dict[str, str] = {}
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            first = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=roster,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+                cached_selection_strategy="compact",
+            )
+        self.assertTrue(first["ok"], first.get("error"))
+        self.assertEqual(len(cache), 10)
+
+        # Mid-frame failure must not commit new pending keys; existing cache stays.
+        broken = list(roster)
+        broken[5] = dict(broken[5])
+        broken[5]["selectionKeys"] = []
+        before = dict(cache)
+        with mock.patch.object(capture.probe, "_settle", lambda _d: None):
+            failed = capture.capture_frame_positions(
+                transport,
+                base_url="https://127.0.0.1:2999",
+                roster=broken,
+                timeout=0.1,
+                settle_delay=0,
+                final_settle=0,
+                identity_retries=0,
+                selection_key_cache=cache,
+                cached_selection_strategy="compact",
+            )
+        self.assertFalse(failed["ok"])
+        self.assertEqual(cache, before)
+        self.assertNotIn("cacheCommitted", failed["timing"])
+
+
 class ChampionIdentityTests(unittest.TestCase):
     def test_zaahen_and_wukong_identity_separation(self) -> None:
         zaahen = rofl_metadata.champion_identities(

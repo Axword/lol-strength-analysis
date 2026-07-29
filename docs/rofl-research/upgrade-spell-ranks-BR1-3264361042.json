@@ -1,0 +1,4648 @@
+{
+  "ok": true,
+  "schema": "rofl-upgrade-spell-ranks-v0",
+  "probeVersion": "upgrade-spell-ranks-v1",
+  "ts": "2026-07-23T12:35:16.278319Z",
+  "matchCode": "3264361042",
+  "wallMs": 4371.309,
+  "pkt": "PKT_NPC_UpgradeSpellAns_s",
+  "opcode": 636,
+  "registration": {
+    "pkt": "PKT_NPC_UpgradeSpellAns_s",
+    "typeDescriptorVa": "0x141e69720",
+    "nameVa": "0x141e69730",
+    "mangled": ".?AV<lambda_1>@?1???$MakeFunction@VAIBaseClient@@V1@_NAEBVPKT_NPC_UpgradeSpellAns_s@@@Riot@@YA?AV?$function@$$A6A_NAEBVPKT_NPC_UpgradeSpellAns_s@@@Z@std@@PEAVAIBaseClient@@P84@EAA_NAEBVPKT_NPC_UpgradeSpellAns_s@@@Z@Z@",
+    "demangled": "MakeFunction<...PKT_NPC_UpgradeSpellAns_s...>",
+    "ok": true,
+    "typeidStub": "0x1402c44a0",
+    "vtable": "0x141a1e420",
+    "leaSites": [
+      "0x14024fc94",
+      "0x1402c20e0"
+    ],
+    "opcode": 636,
+    "evidence": {
+      "kind": "inline_hub_after_vtable_lea",
+      "leaVa": "0x14024fc94",
+      "callVa": "0x14024fd0b",
+      "hub": "0x1406f78b0"
+    },
+    "blocker": null
+  },
+  "factory": {
+    "opcode": 636,
+    "objectSize": 20,
+    "deserializeVa": "0x1410b7710",
+    "ctorVa": "0x140e7f4e0"
+  },
+  "fieldLayout": {
+    "levelOffset": 16,
+    "slotOffset": 17,
+    "capture": "first_mem_write_before_cipher",
+    "levelRange": [
+      1,
+      5
+    ],
+    "slotRange": [
+      0,
+      3
+    ]
+  },
+  "blockCount": 148,
+  "eventCount": 148,
+  "heroesHit": 10,
+  "slotsSeen": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "levelsSeen": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "monotonic": true,
+  "identityWinners": {
+    "0x400000b7": "Morgana",
+    "0x400000b6": "Ashe",
+    "0x400000b5": "Leblanc",
+    "0x400000b4": "Lillia",
+    "0x400000b3": "Renekton",
+    "0x400000b2": "Sona",
+    "0x400000b1": "Ezreal",
+    "0x400000b0": "Yasuo",
+    "0x400000af": "MonkeyKing",
+    "0x400000ae": "Zaahen"
+  },
+  "finalRanksByChampion": {
+    "Zaahen": {
+      "netId": 1073741998,
+      "netIdHex": "0x400000ae",
+      "ranks": [
+        5,
+        5,
+        5,
+        3
+      ]
+    },
+    "MonkeyKing": {
+      "netId": 1073741999,
+      "netIdHex": "0x400000af",
+      "ranks": [
+        5,
+        3,
+        5,
+        3
+      ]
+    },
+    "Yasuo": {
+      "netId": 1073742000,
+      "netIdHex": "0x400000b0",
+      "ranks": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    "Ezreal": {
+      "netId": 1073742001,
+      "netIdHex": "0x400000b1",
+      "ranks": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    "Sona": {
+      "netId": 1073742002,
+      "netIdHex": "0x400000b2",
+      "ranks": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    "Renekton": {
+      "netId": 1073742003,
+      "netIdHex": "0x400000b3",
+      "ranks": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    "Lillia": {
+      "netId": 1073742004,
+      "netIdHex": "0x400000b4",
+      "ranks": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    "Leblanc": {
+      "netId": 1073742005,
+      "netIdHex": "0x400000b5",
+      "ranks": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    "Ashe": {
+      "netId": 1073742006,
+      "netIdHex": "0x400000b6",
+      "ranks": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    "Morgana": {
+      "netId": 1073742007,
+      "netIdHex": "0x400000b7",
+      "ranks": [
+        5,
+        5,
+        1,
+        2
+      ]
+    }
+  },
+  "eventsHead": [
+    {
+      "time": 3.3409705123631284,
+      "gameTimeMs": 3341,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 31.051951600937173,
+      "gameTimeMs": 31052,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 44.14895222301129,
+      "gameTimeMs": 44149,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 44.14895222301129,
+      "gameTimeMs": 44149,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 53.20195265300572,
+      "gameTimeMs": 53202,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 56.37595280376263,
+      "gameTimeMs": 56376,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 58.75095291656908,
+      "gameTimeMs": 58751,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 61.16582673997618,
+      "gameTimeMs": 61166,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 65.2768269352382,
+      "gameTimeMs": 65277,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 70.25782717182301,
+      "gameTimeMs": 70258,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 79.11682759260293,
+      "gameTimeMs": 79117,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 91.7324167053448,
+      "gameTimeMs": 91732,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 94.51141683734022,
+      "gameTimeMs": 94511,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 96.21641691832338,
+      "gameTimeMs": 96216,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 99.49141707387753,
+      "gameTimeMs": 99491,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 101.52941717067733,
+      "gameTimeMs": 101529,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    }
+  ],
+  "events": [
+    {
+      "time": 3.3409705123631284,
+      "gameTimeMs": 3341,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 31.051951600937173,
+      "gameTimeMs": 31052,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 44.14895222301129,
+      "gameTimeMs": 44149,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 44.14895222301129,
+      "gameTimeMs": 44149,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 53.20195265300572,
+      "gameTimeMs": 53202,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 56.37595280376263,
+      "gameTimeMs": 56376,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 58.75095291656908,
+      "gameTimeMs": 58751,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 61.16582673997618,
+      "gameTimeMs": 61166,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 65.2768269352382,
+      "gameTimeMs": 65277,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 70.25782717182301,
+      "gameTimeMs": 70258,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 79.11682759260293,
+      "gameTimeMs": 79117,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 91.7324167053448,
+      "gameTimeMs": 91732,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 94.51141683734022,
+      "gameTimeMs": 94511,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 96.21641691832338,
+      "gameTimeMs": 96216,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 99.49141707387753,
+      "gameTimeMs": 99491,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 101.52941717067733,
+      "gameTimeMs": 101529,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 102.3654172103852,
+      "gameTimeMs": 102365,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 112.4874176911544,
+      "gameTimeMs": 112487,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 115.29841782466974,
+      "gameTimeMs": 115298,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 122.60561785788741,
+      "gameTimeMs": 122606,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 126.68261805153452,
+      "gameTimeMs": 126683,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 126.94961806421634,
+      "gameTimeMs": 126950,
+      "netId": 1073742000,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 132.03161830559839,
+      "gameTimeMs": 132032,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 1,
+      "payloadHex": "e542",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 138.16961859713774,
+      "gameTimeMs": 138170,
+      "netId": 1073741999,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 151.63918342418037,
+      "gameTimeMs": 151639,
+      "netId": 1073742004,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 155.68618361640256,
+      "gameTimeMs": 155686,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 171.49618436733726,
+      "gameTimeMs": 171496,
+      "netId": 1073742006,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 173.56718446570449,
+      "gameTimeMs": 173567,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 178.65118470718153,
+      "gameTimeMs": 178651,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 183.45644949632697,
+      "gameTimeMs": 183456,
+      "netId": 1073742001,
+      "slot": 1,
+      "level": 1,
+      "payloadHex": "6543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 196.25845010438934,
+      "gameTimeMs": 196258,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 198.29645020118915,
+      "gameTimeMs": 198296,
+      "netId": 1073742002,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 218.35912648611702,
+      "gameTimeMs": 218359,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e7420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 222.00412665924523,
+      "gameTimeMs": 222004,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 222.90812670218293,
+      "gameTimeMs": 222908,
+      "netId": 1073742007,
+      "slot": 2,
+      "level": 1,
+      "payloadHex": "2543",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 232.43212715454865,
+      "gameTimeMs": 232432,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 245.60300977854058,
+      "gameTimeMs": 245603,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e6420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 250.48101001023315,
+      "gameTimeMs": 250481,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 253.82701016915962,
+      "gameTimeMs": 253827,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "60430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 271.14401493698824,
+      "gameTimeMs": 271144,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 289.82001582405064,
+      "gameTimeMs": 289820,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 301.9465032563312,
+      "gameTimeMs": 301947,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 303.9185033499962,
+      "gameTimeMs": 303919,
+      "netId": 1073742000,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "6542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 310.0365036405856,
+      "gameTimeMs": 310037,
+      "netId": 1073741998,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "e543d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 321.4095041807741,
+      "gameTimeMs": 321410,
+      "netId": 1073742005,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "a542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 332.9343631656375,
+      "gameTimeMs": 332934,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "60430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 334.43736323702615,
+      "gameTimeMs": 334437,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 350.6153640054399,
+      "gameTimeMs": 350615,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e6420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 351.6843640562147,
+      "gameTimeMs": 351684,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e6420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 358.9003643989563,
+      "gameTimeMs": 358900,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 366.01629788195714,
+      "gameTimeMs": 366016,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "674387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 397.9452913812129,
+      "gameTimeMs": 397945,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e74287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 403.8602916621603,
+      "gameTimeMs": 403860,
+      "netId": 1073742003,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "6542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 412.27929206204135,
+      "gameTimeMs": 412279,
+      "netId": 1073741999,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "6542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 418.4262923540082,
+      "gameTimeMs": 418426,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e7420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 424.32244599447586,
+      "gameTimeMs": 424322,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e7420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 425.42544604686555,
+      "gameTimeMs": 425425,
+      "netId": 1073742006,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "2542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 426.36044609127566,
+      "gameTimeMs": 426360,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e74287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 444.5584469556343,
+      "gameTimeMs": 444558,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e7420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 465.31997337099165,
+      "gameTimeMs": 465320,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 471.654973671888,
+      "gameTimeMs": 471655,
+      "netId": 1073742004,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "e543d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 493.344476940576,
+      "gameTimeMs": 493344,
+      "netId": 1073742001,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "a542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 499.76147724536713,
+      "gameTimeMs": 499761,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e74287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 505.1424775009509,
+      "gameTimeMs": 505142,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 537.6379146307008,
+      "gameTimeMs": 537638,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "604387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 541.5097017172957,
+      "gameTimeMs": 541510,
+      "netId": 1073742007,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "2542d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 549.8947021155618,
+      "gameTimeMs": 549895,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 565.8147028717212,
+      "gameTimeMs": 565815,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e3420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 569.0977030276554,
+      "gameTimeMs": 569098,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e04287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 576.5474763709353,
+      "gameTimeMs": 576547,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "63430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 592.2924771187827,
+      "gameTimeMs": 592292,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e74287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 608.0399075951427,
+      "gameTimeMs": 608040,
+      "netId": 1073742002,
+      "slot": 3,
+      "level": 1,
+      "payloadHex": "e543d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 1,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 615.9019079685677,
+      "gameTimeMs": 615902,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e6420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 632.1276119037066,
+      "gameTimeMs": 632128,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e3420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 662.2248042912688,
+      "gameTimeMs": 662225,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e0420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 667.8768045597244,
+      "gameTimeMs": 667877,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "20430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 672.5908047836274,
+      "gameTimeMs": 672591,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e34287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 680.9238051794237,
+      "gameTimeMs": 680924,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 2,
+      "payloadHex": "e142",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 696.7029876094311,
+      "gameTimeMs": 696703,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 707.2549881106243,
+      "gameTimeMs": 707255,
+      "netId": 1073741998,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "2142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 712.1159883415094,
+      "gameTimeMs": 712116,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 754.3130543889711,
+      "gameTimeMs": 754313,
+      "netId": 1073742005,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "e143d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 772.1400552357081,
+      "gameTimeMs": 772140,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e64287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 773.8110553150764,
+      "gameTimeMs": 773811,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 795.4060832359828,
+      "gameTimeMs": 795406,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e04287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 801.5240835265722,
+      "gameTimeMs": 801524,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 808.0440838362556,
+      "gameTimeMs": 808044,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "20430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 809.7470839171438,
+      "gameTimeMs": 809747,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e0420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 820.973202651483,
+      "gameTimeMs": 820973,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 4,
+      "payloadHex": "234387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 844.7857731608674,
+      "gameTimeMs": 844786,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e3420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 849.5297733861953,
+      "gameTimeMs": 849530,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e7420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 852.4877735266928,
+      "gameTimeMs": 852488,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "66430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 856.7667737299344,
+      "gameTimeMs": 856767,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e6420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 877.4017693778733,
+      "gameTimeMs": 877402,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 892.1877700801706,
+      "gameTimeMs": 892188,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "67430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 895.3297702294076,
+      "gameTimeMs": 895330,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "26430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 915.7269348114496,
+      "gameTimeMs": 915727,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e64287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 919.1359349733684,
+      "gameTimeMs": 919136,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e7420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 941.2072593028424,
+      "gameTimeMs": 941207,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "67430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 948.7342596603557,
+      "gameTimeMs": 948734,
+      "netId": 1073741999,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "6142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 965.7065642173402,
+      "gameTimeMs": 965707,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e6420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 967.8125643173698,
+      "gameTimeMs": 967813,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 5,
+      "payloadHex": "23430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 970.3895644397708,
+      "gameTimeMs": 970390,
+      "netId": 1073742003,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "e143d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 971.0925644731615,
+      "gameTimeMs": 971093,
+      "netId": 1073742000,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "2142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 977.2175647640834,
+      "gameTimeMs": 977218,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e7420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 982.7355650261743,
+      "gameTimeMs": 982736,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 3,
+      "payloadHex": "e6420f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 987.5895652567269,
+      "gameTimeMs": 987590,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "26430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1006.0593161735451,
+      "gameTimeMs": 1006059,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "67430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1059.2998236640124,
+      "gameTimeMs": 1059300,
+      "netId": 1073742004,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "2142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1088.8102406340186,
+      "gameTimeMs": 1088810,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 4,
+      "payloadHex": "274387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1091.587240765919,
+      "gameTimeMs": 1091587,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1093.5922408611514,
+      "gameTimeMs": 1093592,
+      "netId": 1073742006,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "2142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1098.3362410864793,
+      "gameTimeMs": 1098336,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1112.788536246284,
+      "gameTimeMs": 1112789,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "664387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1124.9055368218105,
+      "gameTimeMs": 1124906,
+      "netId": 1073742001,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "2142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1128.4855369918514,
+      "gameTimeMs": 1128486,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "63430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1148.3768753778422,
+      "gameTimeMs": 1148377,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 4,
+      "payloadHex": "264387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1179.7001527840039,
+      "gameTimeMs": 1179700,
+      "netId": 1073742007,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "a142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1199.5621537273983,
+      "gameTimeMs": 1199562,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "67430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1215.7260739677586,
+      "gameTimeMs": 1215726,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 4,
+      "payloadHex": "e64287",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1245.6830075603211,
+      "gameTimeMs": 1245683,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 5,
+      "payloadHex": "27430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1259.3590082098963,
+      "gameTimeMs": 1259359,
+      "netId": 1073742002,
+      "slot": 3,
+      "level": 2,
+      "payloadHex": "2142d0",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1275.8200700649759,
+      "gameTimeMs": 1275820,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "67430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1277.7250701554585,
+      "gameTimeMs": 1277725,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 4,
+      "payloadHex": "204387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1278.6610701999161,
+      "gameTimeMs": 1278661,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "634387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1302.5164507667068,
+      "gameTimeMs": 1302516,
+      "netId": 1073741998,
+      "slot": 3,
+      "level": 3,
+      "payloadHex": "66420fd0",
+      "consumed": 5,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1306.5784509596415,
+      "gameTimeMs": 1306578,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "634387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1307.4144509993494,
+      "gameTimeMs": 1307414,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 5,
+      "payloadHex": "23430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1327.9634466432035,
+      "gameTimeMs": 1327963,
+      "netId": 1073741999,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1336.7374470599461,
+      "gameTimeMs": 1336737,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 5,
+      "payloadHex": "e3420a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 0,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1377.8498841113178,
+      "gameTimeMs": 1377850,
+      "netId": 1073741999,
+      "slot": 1,
+      "level": 3,
+      "payloadHex": "63430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1390.0822123683756,
+      "gameTimeMs": 1390082,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1414.9351935689338,
+      "gameTimeMs": 1414935,
+      "netId": 1073742004,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1418.1101937197382,
+      "gameTimeMs": 1418110,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 5,
+      "payloadHex": "26430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1420.2191938199103,
+      "gameTimeMs": 1420219,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "67430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1449.0077757937834,
+      "gameTimeMs": 1449008,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "20430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1458.6157762501389,
+      "gameTimeMs": 1458616,
+      "netId": 1073742006,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1475.8634943938814,
+      "gameTimeMs": 1475863,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "66430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1481.2114946478978,
+      "gameTimeMs": 1481211,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "26430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1494.10949526052,
+      "gameTimeMs": 1494109,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "634387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1494.276495268452,
+      "gameTimeMs": 1494276,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 4,
+      "payloadHex": "634387",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 4,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1508.6169310482219,
+      "gameTimeMs": 1508617,
+      "netId": 1073742000,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1542.8840835919837,
+      "gameTimeMs": 1542884,
+      "netId": 1073741999,
+      "slot": 3,
+      "level": 3,
+      "payloadHex": "a3420fd0",
+      "consumed": 5,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 3,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1559.03708435921,
+      "gameTimeMs": 1559037,
+      "netId": 1073742006,
+      "slot": 2,
+      "level": 3,
+      "payloadHex": "27430f",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 3,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1562.9187530423515,
+      "gameTimeMs": 1562919,
+      "netId": 1073742001,
+      "slot": 1,
+      "level": 2,
+      "payloadHex": "6143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1580.0527538561728,
+      "gameTimeMs": 1580053,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "67430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1594.5286310485099,
+      "gameTimeMs": 1594529,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 5,
+      "payloadHex": "60430a",
+      "consumed": 4,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 5,
+        "17": 1,
+        "18": 0,
+        "19": 1
+      }
+    },
+    {
+      "time": 1621.2843164411606,
+      "gameTimeMs": 1621284,
+      "netId": 1073742002,
+      "slot": 2,
+      "level": 2,
+      "payloadHex": "2143",
+      "consumed": 3,
+      "retAl": 1,
+      "firstWrites": {
+        "16": 2,
+        "17": 2,
+        "18": 0,
+        "19": 1
+      }
+    }
+  ],
+  "snapshots": [
+    {
+      "gameTimeMs": 3341,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 31052,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 44149,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 44149,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 53202,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 56376,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 58751,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 61166,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 65277,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 70258,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 79117,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 91732,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 94511,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 96216,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 99491,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 101529,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 102365,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 112487,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 115298,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 122606,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 126683,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 126950,
+      "netId": 1073742000,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 132032,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 138170,
+      "netId": 1073741999,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 151639,
+      "netId": 1073742004,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 155686,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 171496,
+      "netId": 1073742006,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 173567,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 178651,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        1,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 183456,
+      "netId": 1073742001,
+      "slot": 1,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 196258,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 198296,
+      "netId": 1073742002,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 218359,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 222004,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 222908,
+      "netId": 1073742007,
+      "slot": 2,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 232432,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 245603,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 250481,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 253827,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        1,
+        3,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 271144,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        1,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 289820,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 301947,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 303919,
+      "netId": 1073742000,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 310037,
+      "netId": 1073741998,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 321410,
+      "netId": 1073742005,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 332934,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        1,
+        3,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 334437,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 350615,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 351684,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 358900,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 366016,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        1,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 397945,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 403860,
+      "netId": 1073742003,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        2,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 412279,
+      "netId": 1073741999,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 418426,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 424322,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 425425,
+      "netId": 1073742006,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        1,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 426360,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 444558,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "gameTimeMs": 465320,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 471655,
+      "netId": 1073742004,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 493344,
+      "netId": 1073742001,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 499761,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 505142,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 537638,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        1,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 541510,
+      "netId": 1073742007,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 549895,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 565815,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 569098,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 576547,
+      "netId": 1073742005,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        2,
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 592292,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 608040,
+      "netId": 1073742002,
+      "slot": 3,
+      "level": 1,
+      "ranksAfter": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 615902,
+      "netId": 1073741998,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 632128,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 662225,
+      "netId": 1073742000,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 667877,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 672591,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 680924,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 2,
+      "ranksAfter": [
+        2,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 696703,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 707255,
+      "netId": 1073741998,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 712116,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 754313,
+      "netId": 1073742005,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        3,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 772140,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 773811,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 795406,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 801524,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 808044,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 809747,
+      "netId": 1073741999,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 820973,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 844786,
+      "netId": 1073742001,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 849530,
+      "netId": 1073742004,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 852488,
+      "netId": 1073742006,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        2,
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 856767,
+      "netId": 1073742003,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 877402,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        4,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 892188,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 895330,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 915727,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 919136,
+      "netId": 1073742007,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 941207,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 948734,
+      "netId": 1073741999,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 965707,
+      "netId": 1073742005,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 967813,
+      "netId": 1073741998,
+      "slot": 2,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 970390,
+      "netId": 1073742003,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 971093,
+      "netId": 1073742000,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 977218,
+      "netId": 1073742002,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 982736,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 3,
+      "ranksAfter": [
+        3,
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 987590,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 1006059,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 1059300,
+      "netId": 1073742004,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1088810,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1091587,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1093592,
+      "netId": 1073742006,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        3,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1098336,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1112789,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1124906,
+      "netId": 1073742001,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1128486,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "gameTimeMs": 1148377,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1179700,
+      "netId": 1073742007,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1199562,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1215726,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 4,
+      "ranksAfter": [
+        4,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1245683,
+      "netId": 1073741999,
+      "slot": 2,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1259359,
+      "netId": 1073742002,
+      "slot": 3,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1275820,
+      "netId": 1073742003,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1277725,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1278661,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1302516,
+      "netId": 1073741998,
+      "slot": 3,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        5,
+        3
+      ]
+    },
+    {
+      "gameTimeMs": 1306578,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1307414,
+      "netId": 1073742000,
+      "slot": 2,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1327963,
+      "netId": 1073741999,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1336737,
+      "netId": 1073742006,
+      "slot": 0,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1377850,
+      "netId": 1073741999,
+      "slot": 1,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1390082,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1414935,
+      "netId": 1073742004,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        4,
+        2,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1418110,
+      "netId": 1073742001,
+      "slot": 2,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1420219,
+      "netId": 1073742007,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1449008,
+      "netId": 1073742005,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1458616,
+      "netId": 1073742006,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1475863,
+      "netId": 1073742004,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        2,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1481211,
+      "netId": 1073742003,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1494109,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1494276,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 4,
+      "ranksAfter": [
+        5,
+        4,
+        5,
+        3
+      ]
+    },
+    {
+      "gameTimeMs": 1508617,
+      "netId": 1073742000,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1542884,
+      "netId": 1073741999,
+      "slot": 3,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        3,
+        5,
+        3
+      ]
+    },
+    {
+      "gameTimeMs": 1559037,
+      "netId": 1073742006,
+      "slot": 2,
+      "level": 3,
+      "ranksAfter": [
+        5,
+        5,
+        3,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1562919,
+      "netId": 1073742001,
+      "slot": 1,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1580053,
+      "netId": 1073742002,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        1,
+        2
+      ]
+    },
+    {
+      "gameTimeMs": 1594529,
+      "netId": 1073741998,
+      "slot": 1,
+      "level": 5,
+      "ranksAfter": [
+        5,
+        5,
+        5,
+        3
+      ]
+    },
+    {
+      "gameTimeMs": 1621284,
+      "netId": 1073742002,
+      "slot": 2,
+      "level": 2,
+      "ranksAfter": [
+        5,
+        5,
+        2,
+        2
+      ]
+    }
+  ],
+  "abilityRanksSource": "rofl2_upgrade_spell_ans_636_first_write",
+  "abilityRanksTrusted": true,
+  "productEligible": true,
+  "blocker": null,
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "upgrade-spell-ranks-v1"
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "note": "PKT_NPC_UpgradeSpellAns_s opcode 636 first-write level@+0x10 / slot@+0x11; CastSpellAns remains identity-only."
+}

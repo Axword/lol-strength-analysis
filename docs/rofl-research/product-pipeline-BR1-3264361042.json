@@ -1,0 +1,104 @@
+{
+  "ok": false,
+  "ts": "2026-07-23T13:27:23.208985Z",
+  "matchCode": "3264361042",
+  "phases": {
+    "A_createHero": {
+      "ok": true,
+      "method": "castspell_ans_champion_string",
+      "productEligible": true,
+      "blocker": null,
+      "identityBindingComplete": true,
+      "evidence": "docs/rofl-research/castspell-identity-BR1-3264361042.json",
+      "note": "CreateHero-*equivalent* champion\u2194netId bind via PKT_NPC_CastSpellAns_s (opcode 197); not AE..B7 order."
+    },
+    "A_timedHpFuse": {
+      "ok": true,
+      "fuseDryRun": {
+        "ok": true,
+        "accepted": true,
+        "productEligible": true,
+        "reason": "accept:match_dir_trusted_hp",
+        "summary": {
+          "coverage": "partial",
+          "fusedFrames": 1548,
+          "sampleCount": 1548,
+          "combatStatsKnown": false,
+          "abilityRanksKnown": false
+        }
+      },
+      "sampleCount": 1548,
+      "source": "match_dir_trusted_hp",
+      "note": "Durable match-dir trusted HP evidence accepted after CastSpellAns identity bind + frame-aligned fuse."
+    },
+    "B_combat": {
+      "ok": true,
+      "blocker": null,
+      "combatTrusted": true,
+      "dependsOnGateA": false,
+      "identityBindingComplete": true,
+      "evidence": "docs/rofl-research/combat-wire-proof-BR1-3264361042.json",
+      "wireProofSchema": "rofl-combat-wire-proof-v1",
+      "wireTableProven": true
+    },
+    "B_ranks": {
+      "ok": true,
+      "blocker": null,
+      "abilityRanksTrusted": true,
+      "dependsOnGateA": false,
+      "castSpellAnsMapped": true,
+      "castSpellAnsLevelSlotDecoded": false,
+      "upgradeSpellAnsDecoded": true,
+      "evidence": "docs/rofl-research/upgrade-spell-ranks-BR1-3264361042.json"
+    },
+    "C_offlinePositions": {
+      "ok": false,
+      "blocker": {
+        "kind": "waypoints_not_structurally_decoded",
+        "detail": "SetMovementDriver (1104) reconstructed Deserialize does not release map-range waypoint path blobs (E11 small scalars 0/1/2\u2026 persist; PathPacket full-consume=0). Cannot tick-integrate into PC+0xa0.",
+        "pathBlobRecovered": false,
+        "speedRecovered": false,
+        "netIdRecovered": false,
+        "negativeControls": {
+          "opcode908": false,
+          "faceDirectionExpectPosition": false
+        }
+      },
+      "productEligible": false,
+      "browserSafe": false,
+      "pureDecoderDerived": false,
+      "wallMs": 12635.797,
+      "positionPath": "replay_api_only",
+      "note": "Offline continuous positions remain blocked; product capture stays Replay API (compact + final_settle=0), ~22\u201325 min/match.",
+      "evidence": "docs/rofl-research/movement-win-pe-e17-BR1-3264361042.json"
+    },
+    "D_publish": {
+      "ok": true,
+      "matchDir": "artifacts/rofl/3264361042",
+      "registryPublish": true,
+      "calculatorReady": false,
+      "trustedHpPublish": true,
+      "blocker": {
+        "kind": "calculator_hp_density",
+        "terminal": true,
+        "detail": "Gates A+B1+B2 trusted (CastSpellAns identity, PE combat wire table, UpgradeSpellAns ranks) but calculatorReady needs hpKnown on every Replay API frame. MonkeyKing (0x400000af) first explicit mMaxHP at ~77278ms (others ~267ms); densify covers frames after firstAll10=77278ms (1548 samples) \u2014 early frames cannot honestly set hpKnown without inventing HP. Terminal wire gap.",
+        "gateA": true,
+        "gateA_method": "castspell_ans_champion_string",
+        "gateB_combat": true,
+        "gateB_ranks": true,
+        "gateC": false,
+        "publishedHpTrusted": true,
+        "hpCoverage": "partial",
+        "monkeyKingFirstHpMs": 77278,
+        "otherHeroesFirstHpMs": 267,
+        "firstAll10HpMs": 77278,
+        "denseHpSampleCount": 1548
+      },
+      "ingestHint": "rofl_ingest build --hp-evidence + fuse_replay_api_ranks + validate + publish; --require-calculator-ready needs Gate B combat too"
+    }
+  },
+  "nextAction": "Terminal calculator_hp_density: MonkeyKing explicit mMaxHP missing before firstAll10 \u2014 early Replay API frames stay hpKnown=false; densified late frames may still unlock Send at playhead",
+  "productEligible": false,
+  "calculatorReady": false,
+  "hpTrustedEligible": true
+}

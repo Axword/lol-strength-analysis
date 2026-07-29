@@ -1,0 +1,874 @@
+{
+  "ok": false,
+  "probeVersion": "e12-win-pe-recon-opcode-scan-v1",
+  "hypothesis": "phase-b-e12-recon-opcode-scan",
+  "matchCode": "3264361042",
+  "wallMs": 13003.215,
+  "wallTargetMs": 60000,
+  "wallPass": true,
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "e12-win-pe-recon-opcode-scan-v1",
+    "official": {
+      "source": "Riot PatchSieve BR1 official release",
+      "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+      "normalizedRoflBuild": "16.14.794.5912",
+      "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+      "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+      "sizeBytes": 34384312,
+      "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+      "derivationStatus": "official_pe_validated"
+    }
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "excludedControls": [
+    58,
+    420,
+    1104
+  ],
+  "candidates": [
+    351,
+    259,
+    1194,
+    921,
+    398,
+    632,
+    210,
+    243,
+    774,
+    197,
+    908,
+    788,
+    535,
+    920,
+    439,
+    275,
+    1227,
+    427,
+    1121,
+    660,
+    35,
+    186
+  ],
+  "framingValidation": {
+    "351": {
+      "opcode": 351,
+      "encodeTypeHex": "fb64",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 6,
+      "avgConsumedRecon": 9.0,
+      "avgConsumedRaw": 6.0,
+      "samples": 6,
+      "validated": false
+    },
+    "259": {
+      "opcode": 259,
+      "encodeTypeHex": "fb08",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 2,
+      "avgConsumedRecon": 11.0,
+      "avgConsumedRaw": 8.167,
+      "samples": 6,
+      "validated": true
+    },
+    "1194": {
+      "opcode": 1194,
+      "encodeTypeHex": "feaf",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 1,
+      "avgConsumedRecon": 46.5,
+      "avgConsumedRaw": 10.5,
+      "samples": 6,
+      "validated": true
+    },
+    "921": {
+      "opcode": 921,
+      "encodeTypeHex": "fd9e",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 24.0,
+      "avgConsumedRaw": 16.667,
+      "samples": 6,
+      "validated": true
+    },
+    "398": {
+      "opcode": 398,
+      "encodeTypeHex": "fb93",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 9.0,
+      "avgConsumedRaw": 5.0,
+      "samples": 6,
+      "validated": true
+    },
+    "632": {
+      "opcode": 632,
+      "encodeTypeHex": "fc7d",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 1,
+      "avgConsumedRecon": 19.0,
+      "avgConsumedRaw": 16.0,
+      "samples": 6,
+      "validated": true
+    },
+    "210": {
+      "opcode": 210,
+      "encodeTypeHex": "d2",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 28.833,
+      "avgConsumedRaw": 2.667,
+      "samples": 6,
+      "validated": true
+    },
+    "243": {
+      "opcode": 243,
+      "encodeTypeHex": "f3",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 16.667,
+      "avgConsumedRaw": 3.5,
+      "samples": 6,
+      "validated": true
+    },
+    "774": {
+      "opcode": 774,
+      "encodeTypeHex": "fd0b",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 4.167,
+      "avgConsumedRaw": 2.0,
+      "samples": 6,
+      "validated": true
+    },
+    "197": {
+      "opcode": 197,
+      "encodeTypeHex": "c5",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 132.167,
+      "avgConsumedRaw": 29.5,
+      "samples": 6,
+      "validated": true
+    },
+    "908": {
+      "opcode": 908,
+      "encodeTypeHex": "fd91",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 1,
+      "avgConsumedRecon": 46.833,
+      "avgConsumedRaw": 13.333,
+      "samples": 6,
+      "validated": true
+    },
+    "788": {
+      "opcode": 788,
+      "encodeTypeHex": "fd19",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 6,
+      "avgConsumedRecon": 5.0,
+      "avgConsumedRaw": 2.833,
+      "samples": 6,
+      "validated": false
+    },
+    "535": {
+      "opcode": 535,
+      "encodeTypeHex": "fc1c",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 5,
+      "avgConsumedRecon": 12.0,
+      "avgConsumedRaw": 10.0,
+      "samples": 6,
+      "validated": true
+    },
+    "920": {
+      "opcode": 920,
+      "encodeTypeHex": "fd9d",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 3,
+      "avgConsumedRecon": 5.0,
+      "avgConsumedRaw": 2.667,
+      "samples": 6,
+      "validated": true
+    },
+    "439": {
+      "opcode": 439,
+      "encodeTypeHex": "fbbc",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 3.667,
+      "avgConsumedRaw": 1.667,
+      "samples": 6,
+      "validated": true
+    },
+    "275": {
+      "opcode": 275,
+      "encodeTypeHex": "fb18",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 4,
+      "avgConsumedRecon": 8.333,
+      "avgConsumedRaw": 5.833,
+      "samples": 6,
+      "validated": true
+    },
+    "1227": {
+      "opcode": 1227,
+      "encodeTypeHex": "fed0",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 26.0,
+      "avgConsumedRaw": 2.0,
+      "samples": 6,
+      "validated": true
+    },
+    "427": {
+      "opcode": 427,
+      "encodeTypeHex": "fbb0",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 5,
+      "avgConsumedRecon": 8.0,
+      "avgConsumedRaw": 5.5,
+      "samples": 6,
+      "validated": true
+    },
+    "1121": {
+      "opcode": 1121,
+      "encodeTypeHex": "fe66",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 3.0,
+      "avgConsumedRaw": 1.0,
+      "samples": 6,
+      "validated": true
+    },
+    "660": {
+      "opcode": 660,
+      "encodeTypeHex": "fc99",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 16.0,
+      "avgConsumedRaw": 4.167,
+      "samples": 6,
+      "validated": true
+    },
+    "35": {
+      "opcode": 35,
+      "encodeTypeHex": "23",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 3,
+      "avgConsumedRecon": 12.0,
+      "avgConsumedRaw": 9.333,
+      "samples": 6,
+      "validated": true
+    },
+    "186": {
+      "opcode": 186,
+      "encodeTypeHex": "ba",
+      "selectedMarkerHex": "c6fa",
+      "selectedMarkerLen": 2,
+      "reconOk": 6,
+      "rawOk": 0,
+      "avgConsumedRecon": 4.667,
+      "avgConsumedRaw": 2.667,
+      "samples": 6,
+      "validated": true
+    }
+  },
+  "screen": [
+    {
+      "opcode": 259,
+      "heroCount": 10,
+      "heroBlocks": 9242,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 1194,
+      "heroCount": 10,
+      "heroBlocks": 8249,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 921,
+      "heroCount": 10,
+      "heroBlocks": 7025,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 10,
+      "topPairs": []
+    },
+    {
+      "opcode": 398,
+      "heroCount": 10,
+      "heroBlocks": 6894,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 632,
+      "heroCount": 10,
+      "heroBlocks": 6857,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 7,
+      "topPairs": []
+    },
+    {
+      "opcode": 210,
+      "heroCount": 10,
+      "heroBlocks": 5877,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 243,
+      "heroCount": 10,
+      "heroBlocks": 4604,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 35,
+      "topPairs": [
+        {
+          "offX": 20,
+          "offZ": 28,
+          "swap": false,
+          "n": 8,
+          "heroes": 6,
+          "median": 350.07218881571043,
+          "p95": 1782.4311561646807,
+          "max": 1782.4311561646807
+        },
+        {
+          "offX": 20,
+          "offZ": 28,
+          "swap": true,
+          "n": 8,
+          "heroes": 6,
+          "median": 552.9060719934662,
+          "p95": 2917.093312627989,
+          "max": 2917.093312627989
+        },
+        {
+          "offX": 20,
+          "offZ": 24,
+          "swap": true,
+          "n": 8,
+          "heroes": 6,
+          "median": 6770.1770093473815,
+          "p95": 8886.79224757934,
+          "max": 8886.79224757934
+        },
+        {
+          "offX": 24,
+          "offZ": 28,
+          "swap": false,
+          "n": 8,
+          "heroes": 6,
+          "median": 6846.300444195314,
+          "p95": 7276.612648013905,
+          "max": 7276.612648013905
+        },
+        {
+          "offX": 20,
+          "offZ": 24,
+          "swap": false,
+          "n": 8,
+          "heroes": 6,
+          "median": 8121.3671203651065,
+          "p95": 11618.741809207391,
+          "max": 11618.741809207391
+        }
+      ]
+    },
+    {
+      "opcode": 774,
+      "heroCount": 10,
+      "heroBlocks": 4598,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 2,
+      "topPairs": []
+    },
+    {
+      "opcode": 197,
+      "heroCount": 10,
+      "heroBlocks": 3439,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 148,
+      "topPairs": [
+        {
+          "offX": 64,
+          "offZ": 72,
+          "swap": false,
+          "n": 9,
+          "heroes": 6,
+          "median": 306.0286787422302,
+          "p95": 1089.7701534679525,
+          "max": 1089.7701534679525
+        },
+        {
+          "offX": 84,
+          "offZ": 92,
+          "swap": false,
+          "n": 9,
+          "heroes": 6,
+          "median": 306.4924848826901,
+          "p95": 1089.7701534679525,
+          "max": 1089.7701534679525
+        },
+        {
+          "offX": 72,
+          "offZ": 84,
+          "swap": true,
+          "n": 9,
+          "heroes": 6,
+          "median": 336.04436545947715,
+          "p95": 1089.7701534679525,
+          "max": 1089.7701534679525
+        },
+        {
+          "offX": 56,
+          "offZ": 64,
+          "swap": true,
+          "n": 9,
+          "heroes": 6,
+          "median": 611.0389378599131,
+          "p95": 9777.556695388887,
+          "max": 9777.556695388887
+        },
+        {
+          "offX": 48,
+          "offZ": 56,
+          "swap": false,
+          "n": 5,
+          "heroes": 3,
+          "median": 666.4554546269783,
+          "p95": 704.1084122907373,
+          "max": 704.1084122907373
+        }
+      ]
+    },
+    {
+      "opcode": 908,
+      "heroCount": 10,
+      "heroBlocks": 3330,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 93,
+      "topPairs": [
+        {
+          "offX": 16,
+          "offZ": 20,
+          "swap": false,
+          "n": 11,
+          "heroes": 8,
+          "median": 182.01465996225184,
+          "p95": 789.7405767378236,
+          "max": 789.7405767378236
+        },
+        {
+          "offX": 40,
+          "offZ": 48,
+          "swap": false,
+          "n": 11,
+          "heroes": 8,
+          "median": 259.58052631659655,
+          "p95": 701.6964763571099,
+          "max": 701.6964763571099
+        },
+        {
+          "offX": 40,
+          "offZ": 48,
+          "swap": true,
+          "n": 11,
+          "heroes": 8,
+          "median": 854.241008226151,
+          "p95": 2917.093312627989,
+          "max": 2917.093312627989
+        },
+        {
+          "offX": 16,
+          "offZ": 20,
+          "swap": true,
+          "n": 11,
+          "heroes": 8,
+          "median": 1160.0688326558072,
+          "p95": 3013.053218526174,
+          "max": 3013.053218526174
+        },
+        {
+          "offX": 40,
+          "offZ": 44,
+          "swap": true,
+          "n": 11,
+          "heroes": 8,
+          "median": 6751.075875860581,
+          "p95": 8886.79224757934,
+          "max": 8886.79224757934
+        }
+      ]
+    },
+    {
+      "opcode": 535,
+      "heroCount": 10,
+      "heroBlocks": 2315,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 3,
+      "topPairs": []
+    },
+    {
+      "opcode": 920,
+      "heroCount": 10,
+      "heroBlocks": 2148,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 439,
+      "heroCount": 8,
+      "heroBlocks": 2814,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 275,
+      "heroCount": 9,
+      "heroBlocks": 2681,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 1227,
+      "heroCount": 6,
+      "heroBlocks": 1914,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 427,
+      "heroCount": 5,
+      "heroBlocks": 1897,
+      "markerHex": "c6fa",
+      "screenSamples": 13,
+      "deserOk": 13,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 1121,
+      "heroCount": 5,
+      "heroBlocks": 1806,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 660,
+      "heroCount": 10,
+      "heroBlocks": 1721,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 35,
+      "heroCount": 9,
+      "heroBlocks": 1487,
+      "markerHex": "c6fa",
+      "screenSamples": 14,
+      "deserOk": 14,
+      "mapWriteCount": 0,
+      "topPairs": []
+    },
+    {
+      "opcode": 186,
+      "heroCount": 5,
+      "heroBlocks": 1133,
+      "markerHex": "c6fa",
+      "screenSamples": 13,
+      "deserOk": 13,
+      "mapWriteCount": 0,
+      "topPairs": []
+    }
+  ],
+  "promoted": [
+    {
+      "opcode": 908,
+      "offX": 16,
+      "offZ": 20,
+      "swap": false,
+      "markerHex": "c6fa",
+      "train": {
+        "n": 42,
+        "heroes": 10,
+        "median": 182.9188335135056,
+        "p95": 1094.092627765304,
+        "max": 1558.295189882094,
+        "ok": false
+      },
+      "holdout": {
+        "n": 45,
+        "heroes": 10,
+        "median": 191.19908428793357,
+        "p95": 789.7405767378236,
+        "max": 1781.3211833199075,
+        "ok": false
+      },
+      "winner": false
+    },
+    {
+      "opcode": 197,
+      "offX": 64,
+      "offZ": 72,
+      "swap": false,
+      "markerHex": "c6fa",
+      "train": {
+        "n": 40,
+        "heroes": 10,
+        "median": 395.09018463726176,
+        "p95": 2171.6242646271157,
+        "max": 4232.594792152307,
+        "ok": false
+      },
+      "holdout": {
+        "n": 45,
+        "heroes": 10,
+        "median": 474.53641157586907,
+        "p95": 2549.152586616988,
+        "max": 3492.5683122875525,
+        "ok": false
+      },
+      "winner": false
+    },
+    {
+      "opcode": 243,
+      "offX": 20,
+      "offZ": 28,
+      "swap": false,
+      "markerHex": "c6fa",
+      "train": {
+        "n": 39,
+        "heroes": 10,
+        "median": 313.0967287503871,
+        "p95": 745.5488535234697,
+        "max": 857.0134187980955,
+        "ok": false
+      },
+      "holdout": {
+        "n": 42,
+        "heroes": 10,
+        "median": 342.43905424880904,
+        "p95": 1782.4311561646807,
+        "max": 7015.578882951184,
+        "ok": false
+      },
+      "winner": false
+    }
+  ],
+  "evaluation": {
+    "winnerFound": false,
+    "winner": null,
+    "gates": {
+      "minSamples": 80,
+      "minHeroes": 5,
+      "maxMedian": 120.0,
+      "maxP95": 350.0,
+      "maxMax": 800.0,
+      "oracleTolS": 0.5
+    }
+  },
+  "blocker": {
+    "kind": "position_not_in_chunk_packets",
+    "detail": "type-1 chunk opcodes with multi-hero coverage frame OK and some emit map-range floats, but none pass Replay API gates (best holdout med=191.2; segTypes={2: 28, 1: 55}; next: type-2 keyframe hypothesis)",
+    "framingValidatedCount": 20,
+    "framingFailedCount": 2,
+    "opcodesWithMapWrites": 7,
+    "segmentTypeCounts": {
+      "2": 28,
+      "1": 55
+    },
+    "bestNearMiss": {
+      "opcode": 908,
+      "offX": 16,
+      "offZ": 20,
+      "swap": false,
+      "train": {
+        "n": 42,
+        "heroes": 10,
+        "median": 182.9188335135056,
+        "p95": 1094.092627765304,
+        "max": 1558.295189882094,
+        "ok": false
+      },
+      "holdout": {
+        "n": 45,
+        "heroes": 10,
+        "median": 191.19908428793357,
+        "p95": 789.7405767378236,
+        "max": 1781.3211833199075,
+        "ok": false
+      }
+    }
+  },
+  "pureDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "identity": {
+    "createHeroBindingDecoded": false,
+    "productEligible": false,
+    "note": "oracle assignment is QA/search only"
+  },
+  "method": {
+    "framing": "encode_type||marker||wire; Deserialize body=marker||wire",
+    "capture": "UC_HOOK_MEM_WRITE map-range f32 + post-object scan",
+    "noLearnedAffine": true,
+    "caps": {
+      "maxCandidates": 22,
+      "framingSamples": 6,
+      "screenSamples": 14,
+      "promoteTop": 3,
+      "promoteTrain": 45,
+      "promoteHold": 45
+    }
+  }
+}

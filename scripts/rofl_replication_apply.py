@@ -20,8 +20,13 @@ CharacterIntermediate slots ``mHP@0x8d8`` / ``mMaxHP@0x900``.
 16.14 hero field indices observed on live BR1 after Deserialize:
   primary 5 / secondary 0 → mHP
   primary 5 / secondary 1 → mMaxHP
-  primary 0 / secondary 0 → mGold
-  primary 0 / secondary 1 → mGoldTotal
+  primary 0 / secondary 0 → unclassified (formerly mislabeled mGold; E9)
+  primary 0 / secondary 1 → unclassified (formerly mislabeled mGoldTotal; E9)
+
+E9 same-match Replay API QA **rejected** treating ``(0,0)/(0,1)`` as map
+positions (no post-Deserialize f32 pairs within 40u of oracle x/z; assignment
+gates fail). Those indices are left unmapped — never emitted as gold or
+position — until independently proven.
 """
 from __future__ import annotations
 
@@ -45,9 +50,31 @@ MHP_SECONDARY = 0
 MMAXHP_PRIMARY = 5
 MMAXHP_SECONDARY = 1
 
+# Bank-0 secondary 0/1: observed high-frequency f32 pair. Not gold (removed).
+# Not position (E9 BR1 oracle rejection). Kept as named unknowns for probes.
+BANK0_UNKNOWN_A = (0, 0)
+BANK0_UNKNOWN_B = (0, 1)
+# Honest Summoner's Rift bounds used only for research classification helpers.
+SR_POS_MIN = -100.0
+SR_POS_MAX = 16000.0
+
+# Backward-compatible aliases used by E9 probe / tests (not product semantics).
+POS_PRIMARY = 0
+POS_SECONDARY_X = 0
+POS_SECONDARY_Z = 1
+
 # maknee/fixture events historically used primary_index 32 for mHP; emit both
 # wire indices and the fixture-compatible alias when building events.
 MAKNEE_MHP_PRIMARY_ALIAS = 32
+
+
+def is_map_position_pair(x: float, z: float) -> bool:
+    """True when both values are finite map-range floats (range check only)."""
+    if not (isinstance(x, (int, float)) and isinstance(z, (int, float))):
+        return False
+    if x != x or z != z:  # NaN
+        return False
+    return SR_POS_MIN <= float(x) <= SR_POS_MAX and SR_POS_MIN <= float(z) <= SR_POS_MAX
 
 
 @dataclass
@@ -55,8 +82,7 @@ class HeroReplicationState:
     net_id: int
     mHP: Optional[float] = None
     mMaxHP: Optional[float] = None
-    mGold: Optional[float] = None
-    mGoldTotal: Optional[float] = None
+    # (0,0)/(0,1) intentionally unmapped (not gold, not proven position).
     combat: Dict[str, float] = field(default_factory=dict)
     explicit_max: bool = False
     time: float = 0.0
@@ -192,25 +218,21 @@ def apply_fields_to_state(
         st.mMaxHP = mx
         st.explicit_max = True
 
-    gold = fields.get((0, 0))
-    if gold is not None:
-        st.mGold = gold
-    gold_t = fields.get((0, 1))
-    if gold_t is not None:
-        st.mGoldTotal = gold_t
+    # (0,0)/(0,1): intentionally not applied (not gold; not proven position — E9).
 
-    # Combat-ish floats on primary 1 (best-effort; only stored when present).
-    combat_map = {
-        (1, 5): "mBaseAttackDamage",
-        (1, 6): "mFlatMagicDamageMod",
-        (1, 9): "mArmor",
-        (1, 10): "mSpellBlock",
-        (1, 14): "mFlatPhysicalDamageMod",
-        (1, 19): "mAttackSpeedMod",
-    }
-    for key, name in combat_map.items():
-        if key in fields:
-            st.combat[name] = fields[key]
+    # Combat floats from PE wire table (16.14): w3 mask→primary, shared-context
+    # secondary order. Primary-1 hypothesis is refuted. Range-filter denormals /
+    # garbage before storing so fuse never emits implausible FUR fields.
+    try:
+        from rofl_combat_wire_table import filter_combat_fields
+    except ImportError:  # pragma: no cover
+        filter_combat_fields = None  # type: ignore[assignment]
+    if filter_combat_fields is not None:
+        named = filter_combat_fields(fields)
+        st.combat.update(named)
+    else:
+        # Fail closed: do not apply unproven primary-1 map.
+        pass
 
 
 def apply_vector_blob(
@@ -259,8 +281,6 @@ def acceptance_snapshot(
                 "mMaxHP": float(st.mMaxHP),  # type: ignore[arg-type]
                 "time": st.time,
                 "explicitMax": True,
-                **({} if st.mGold is None else {"mGold": st.mGold}),
-                **({} if st.mGoldTotal is None else {"mGoldTotal": st.mGoldTotal}),
                 **({"combat": dict(st.combat)} if st.combat else {}),
             }
         )

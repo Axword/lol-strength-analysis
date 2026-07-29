@@ -777,6 +777,62 @@ def focus_select_target(
     return steps
 
 
+def focus_select_compact(
+    transport: Transport,
+    render_url: str,
+    selection_key: str,
+    *,
+    timeout: float,
+    settle_delay: float,
+    expected_player_identity: Optional[str] = None,
+    previous_selection_name: Optional[Any] = None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Experimental single-POST cached select: composite render + settle + GET.
+
+    Posts ``selectionName`` + ``cameraAttached=true`` + zero ``selectionOffset``
+    (and ``cameraMode=focus``) in one body, then runs the same
+    ``classify_focus_readback`` proof as the full path. Callers must fall back to
+    ``focus_select_target`` / ``focus_select_roster_member`` on any unproven
+    readback. Not a product default.
+    """
+    key = str(selection_key or "").strip()
+    steps: dict[str, Any] = {
+        "selectionKey": key,
+        "strategy": "compact",
+    }
+    body = {
+        "selectionName": key,
+        "cameraAttached": True,
+        "selectionOffset": dict(ZERO_OFFSET),
+        "cameraMode": FOCUS_CAMERA_MODE,
+    }
+    steps["compact"] = transport("POST", render_url, body=body, timeout=timeout)
+    _settle(max(0.0, float(settle_delay)))
+    steps["readback"] = transport("GET", render_url, timeout=timeout)
+    read_body = (
+        steps["readback"].get("body") if steps["readback"].get("ok") else {}
+    )
+    if not isinstance(read_body, dict):
+        read_body = {}
+    classification = classify_focus_readback(
+        key,
+        read_body,
+        expected_player_identity=expected_player_identity,
+        previous_selection_name=previous_selection_name,
+    )
+    steps["classification"] = {
+        k: classification[k]
+        for k in (
+            "outcome",
+            "selectionAccepted",
+            "coordinateProven",
+            "identityMatched",
+            "staleRetained",
+        )
+    }
+    return steps, classification
+
+
 # Back-compat alias used by older call sites / docs.
 focus_select_champion = focus_select_target
 

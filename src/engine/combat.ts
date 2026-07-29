@@ -1,8 +1,8 @@
-import { CHAMPIONS, isCoreChampion } from '../data/champions'
+import { CHAMPIONS, getChampion } from '../data/champions'
 import { ITEMS } from '../data/items'
 import { resolveRuneId } from '../data/runes'
 import { mitigate, sumMitigated, sumRaw } from './damage'
-import { abilityBudget, autosForBudget } from './hpBudget'
+import { abilityBudget, autosForBudget, estimateSurviveSec } from './hpBudget'
 import {
   combatModsFromObjectives,
   emptyMods,
@@ -195,7 +195,7 @@ function averageStats(statsList: CombatStats[]): CombatStats {
 
 function teamLabel(loadouts: FighterLoadout[]): string {
   const names = loadouts.map(
-    (l) => CHAMPIONS[l.championId]?.name ?? l.championId,
+    (l) => getChampion(l.championId)?.name ?? l.championId,
   )
   if (!names.length) return 'Empty'
   if (names.length <= 2) return names.join(' + ')
@@ -363,13 +363,17 @@ export function skillshotCastsForFight(
    */
   casterStats?: CombatStats,
 ): XhCast[] {
-  const champ = CHAMPIONS[loadout.championId]
+  const champ = getChampion(loadout.championId)
   if (!champ) return []
   const ranks = ranksFromLoadout(loadout)
   const stats = casterStats ?? buildStats(loadout)
   const hpPct = hpPctOf(loadout, stats)
   if (hpPct <= 0) return []
-  const budget = abilityBudget(hpPct, mode, ranks.R > 0)
+  const durationSec = resolveFightDuration({ mode })
+  const budget = abilityBudget(hpPct, mode, ranks.R > 0, {
+    durationSec,
+    ranks,
+  })
   const ctx = {
     mode,
     ranks,
@@ -398,12 +402,14 @@ export function skillshotCastsForFight(
       pushAbility(ability, 1)
     }
   } else {
+    const castDur =
+      budget.effectiveSec + 1e-9 < durationSec ? budget.effectiveSec : undefined
     for (const ability of champ.abilities) {
       const casts = abilityCastsInFight(
         mode,
         ability.slot,
         stats.abilityHaste,
-        undefined,
+        castDur,
         ability.cooldown,
       )
       pushAbility(ability, Math.max(1, casts))
@@ -650,12 +656,16 @@ function collectFighterUtility(
   defenderStats: CombatStats,
   lockedOut: boolean,
 ): ResolvedUtility {
-  const champ = CHAMPIONS[loadout.championId]
+  const champ = getChampion(loadout.championId)
   if (!champ || hpPctOf(loadout, attackerStats) <= 0) {
     return emptyResolvedUtility()
   }
   const ranks = ranksFromLoadout(loadout)
-  const budget = abilityBudget(hpPctOf(loadout, attackerStats), mode, ranks.R > 0)
+  const hpPct = hpPctOf(loadout, attackerStats)
+  const budget = abilityBudget(hpPct, mode, ranks.R > 0, {
+    durationSec: resolveFightDuration({ mode }),
+    ranks,
+  })
   const ctx = {
     mode,
     ranks,
@@ -736,23 +746,25 @@ function collectFighterDamage(
   casterTeam: 'blue' | 'red',
   visionUnits: VisionUnit[],
   wards?: import('./vision').VisionWard[],
-  fightOpts?: { durationSec?: number; aaUptime?: number },
+  fightOpts?: { durationSec?: number; aaUptime?: number; surviveSec?: number | null },
   /** Target-side objective mods so Cloud Soul MS reaches xH packet scaling. */
   enemyMods?: ObjectiveCombatMods | null,
 ): {
   packets: DamagePacket[]
   lockedOut: boolean
   omittedSlots: AbilitySlot[]
+  omissionNotes: string[]
   budgetNote: string | null
   /** Per-fighter item shred/amp merged for mitigation */
   itemUtility: ResolvedUtility
 } {
-  const champ = CHAMPIONS[loadout.championId]
+  const champ = getChampion(loadout.championId)
   if (!champ) {
     return {
       packets: [],
       lockedOut,
       omittedSlots: [],
+      omissionNotes: [],
       budgetNote: null,
       itemUtility: emptyResolvedUtility(),
     }
@@ -764,7 +776,15 @@ function collectFighterDamage(
   })
   const ranks = ranksFromLoadout(loadout)
   const hpPct = hpPctOf(loadout, attackerStats)
-  const budget = abilityBudget(hpPct, mode, ranks.R > 0)
+  const budget = abilityBudget(hpPct, mode, ranks.R > 0, {
+    durationSec,
+    surviveSec: fightOpts?.surviveSec,
+    ranks,
+  })
+  const castDurationSec =
+    budget.effectiveSec + 1e-9 < durationSec
+      ? budget.effectiveSec
+      : fightOpts?.durationSec
   const packets: DamagePacket[] = []
   const ctx = {
     mode,
@@ -786,7 +806,7 @@ function collectFighterDamage(
         mode,
         ability.slot,
         attackerStats.abilityHaste,
-        fightOpts?.durationSec,
+        castDurationSec,
         ability.cooldown,
       )
     }
@@ -848,6 +868,7 @@ function collectFighterDamage(
       packets: [],
       lockedOut,
       omittedSlots: budget.omitted,
+      omissionNotes: budget.omissionNotes,
       budgetNote: budget.note,
       itemUtility: fighterOutgoing,
     }
@@ -863,7 +884,7 @@ function collectFighterDamage(
         mode,
         ability.slot,
         attackerStats.abilityHaste,
-        fightOpts?.durationSec,
+        castDurationSec,
         ability.cooldown,
       )
       const base = prefix(ability.damage(attackerStats, shreddedDefender, ctx))
@@ -933,7 +954,9 @@ function collectFighterDamage(
     attackerStats.attackSpeed,
     champ.autoAttacksInTrade(mode),
     {
-      durationSec: fightOpts?.durationSec,
+      // AS × effective surviving window (already survival-truncated). Do not
+      // also scale again via autosForBudget effectiveSec/duration ratio.
+      durationSec: castDurationSec ?? fightOpts?.durationSec,
       aaUptime: fightOpts?.aaUptime,
     },
   )
@@ -993,10 +1016,22 @@ function collectFighterDamage(
     enemyMods,
   )
 
+  const omissionNotes = [...budget.omissionNotes]
+  if (lockedOut) {
+    for (const ability of champ.abilities) {
+      if (!ability.engageCc) continue
+      if (ranks[ability.slot] <= 0) continue
+      omissionNotes.push(
+        `omitted ${ability.slot}: locked out (engage CC, short window)`,
+      )
+    }
+  }
+
   return {
     packets: withXh,
     lockedOut,
     omittedSlots: budget.omitted,
+    omissionNotes,
     budgetNote: budget.note,
     itemUtility: fighterOutgoing,
   }
@@ -1030,20 +1065,31 @@ const AA_EXECUTION = {
   empoweredAuto: false,
 } as const
 
+/** Living fighter has a kit the timed planner can schedule (CORE or Meraki). */
+function hasResolvableKit(loadout: FighterLoadout): boolean {
+  const champ = getChampion(loadout.championId)
+  return !!champ && champ.abilities.length > 0
+}
+
 /**
- * Timed manual 1v1 only: exactly one living CORE fighter per side, and
- * neither side is short-window engage-locked. All other matchups keep
- * the aggregate-window path.
+ * Timed 1v1: exactly one living fighter per side with a resolvable kit
+ * (CORE or Meraki/generated). Short-window engage still uses the timed path:
+ * engager acts from t=0 (the engage skill/auto is on the clock); the locked
+ * side starts after a reaction delay and cannot use engageCc. NvM / unresolved
+ * kits stay on aggregate_window. modelTrust stays experimental for Meraki.
  */
 function shouldUseTimedManual1v1(input: MatchupInput): boolean {
   const blueLiving = input.blue.filter(isAlive)
   const redLiving = input.red.filter(isAlive)
   if (blueLiving.length !== 1 || redLiving.length !== 1) return false
-  if (!isCoreChampion(blueLiving[0]!.championId)) return false
-  if (!isCoreChampion(redLiving[0]!.championId)) return false
-  if (sideLocked('blue', input) || sideLocked('red', input)) return false
+  if (!hasResolvableKit(blueLiving[0]!) || !hasResolvableKit(redLiving[0]!)) {
+    return false
+  }
   return true
 }
+
+/** Defender reaction delay after the engager opens (short-window engage only). */
+const ENGAGE_REACTION_DELAY_SEC = 0.5
 
 function aggregateTimingResult(
   durationSec: number,
@@ -1099,25 +1145,32 @@ function collectFighterDamageTimed(
   startDelaySec: number,
   /** Target-side objective mods so Cloud Soul MS reaches timed xH scaling. */
   enemyMods?: ObjectiveCombatMods | null,
+  /** Short-window engage lock: no engageCc; startDelay already applied by caller. */
+  lockedOut = false,
 ): {
   packets: DamagePacket[]
   omittedSlots: AbilitySlot[]
+  omissionNotes: string[]
   budgetNote: string | null
   itemUtility: ResolvedUtility
   hits: TimedHit[]
   caveats: string[]
   planActions: PlannedAction[]
 } {
-  const champ = CHAMPIONS[loadout.championId]
+  const champ = getChampion(loadout.championId)
   const caveats: string[] = [
     'resolution:timed_manual_1v1',
     'planner:bounded_beam_best_found_not_global',
     'utility:whole_window_v1',
   ]
+  if (lockedOut) {
+    caveats.push(`engage:defender_reaction_delay:${ENGAGE_REACTION_DELAY_SEC}`)
+  }
   if (!champ) {
     return {
       packets: [],
       omittedSlots: [],
+      omissionNotes: [],
       budgetNote: null,
       itemUtility: emptyResolvedUtility(),
       hits: [],
@@ -1132,7 +1185,13 @@ function collectFighterDamageTimed(
   })
   const ranks = ranksFromLoadout(loadout)
   const hpPct = hpPctOf(loadout, attackerStats)
-  const budget = abilityBudget(hpPct, mode, ranks.R > 0)
+  // Timed path: full requested window for planning; first-lethal stops later hits.
+  // Do not apply aggregate surviveSec cliffs here.
+  const budget = abilityBudget(hpPct, mode, ranks.R > 0, {
+    durationSec,
+    ranks,
+  })
+  const omissionNotes = [...budget.omissionNotes]
   const ctx = {
     mode,
     ranks,
@@ -1193,6 +1252,7 @@ function collectFighterDamageTimed(
     return {
       packets: [],
       omittedSlots: budget.omitted,
+      omissionNotes,
       budgetNote: budget.note,
       itemUtility: fighterOutgoing,
       hits: [],
@@ -1206,6 +1266,14 @@ function collectFighterDamageTimed(
 
   for (const ability of champ.abilities) {
     if (mode === 'short' && ability.slot === 'R') continue
+    if (lockedOut && ability.engageCc) {
+      if (ranks[ability.slot] > 0) {
+        omissionNotes.push(
+          `omitted ${ability.slot}: locked out (engage CC, short window)`,
+        )
+      }
+      continue
+    }
     if (!budget.allowed.has(ability.slot)) continue
     if (ranks[ability.slot] <= 0) continue
     if (!abilityAvailable(ability, ctx)) continue
@@ -1270,7 +1338,10 @@ function collectFighterDamageTimed(
       aaUptime: fightOpts.aaUptime,
     },
   )
-  let autos = autosForBudget(hpPct, mode, baseAutos)
+  let autos = autosForBudget(hpPct, mode, baseAutos, {
+    effectiveSec: budget.effectiveSec,
+    durationSec,
+  })
   autos = autosAfterUtility(autos, incoming, {
     durationSec: fightOpts.durationSec ?? durationSec,
   })
@@ -1528,6 +1599,7 @@ function collectFighterDamageTimed(
   return {
     packets,
     omittedSlots: budget.omitted,
+    omissionNotes,
     budgetNote: budget.note,
     itemUtility: fighterOutgoing,
     hits,
@@ -1745,9 +1817,28 @@ function resolveTimedPair(
       if (firstLethalSec == null) firstLethalSec = t
     }
 
-    // Stop at first lethal timestamp (either side). Equal-time mutual kill
-    // still resolves inside this group; no later execution against a corpse.
-    if (blueLive.dead || redLive.dead) break
+    // Stop damage at first lethal; still record later planned hits as suppressed
+    // so UI notes can cite "caster dead" / audit the cut rotation.
+    if (blueLive.dead || redLive.dead) {
+      while (cursor < allHits.length) {
+        const hit = allHits[cursor]!
+        cursor++
+        if (hit.impactSec > durationSec + 1e-9) break
+        events.push({
+          side: hit.side,
+          fighterIndex: hit.fighterIndex,
+          slot: hit.slot,
+          source: hit.source,
+          castIndex: hit.castIndex,
+          startSec: hit.startSec,
+          impactSec: hit.impactSec,
+          attackReset: hit.attackReset || undefined,
+          raw: 0,
+          suppressed: true,
+        })
+      }
+      break
+    }
   }
 
   // Fight ends at first lethal (or full window if nobody dies). No trailing
@@ -1891,7 +1982,7 @@ function resolveTimedPair(
 
 function sideHasEngage(loadouts: FighterLoadout[]): boolean {
   return loadouts.some((l) =>
-    CHAMPIONS[l.championId]?.abilities.some((a) => a.engageCc),
+    getChampion(l.championId)?.abilities.some((a) => a.engageCc),
   )
 }
 
@@ -1981,6 +2072,15 @@ function buildSide(
     // focus policy; it does not slow or CC every member of an NvM roster.
     const fighterIncoming =
       index === 0 ? enemyFacingUtility(incoming) : emptyResolvedUtility()
+    const durationSec = resolveFightDuration(input)
+    const self = fighterStats[index]!
+    const surviveSec = estimateSurviveSec({
+      hp: self.hp > 0 ? self.hp : self.hpMax * Math.max(0, hpPctOf(loadout, self)),
+      armor: self.armor,
+      mr: self.mr,
+      enemies: enemyStats,
+      durationSec,
+    })
     const collected = collectFighterDamage(
       loadout,
       input.mode,
@@ -1995,7 +2095,11 @@ function buildSide(
       side,
       visionUnits,
       input.wards,
-      { durationSec: input.durationSec, aaUptime: input.aaUptime },
+      {
+        durationSec: input.durationSec,
+        aaUptime: input.aaUptime,
+        surviveSec,
+      },
       enemyMods,
     )
     const packets = amplifyWithObjectives(
@@ -2014,7 +2118,7 @@ function buildSide(
     fighters.push({
       index,
       championId: loadout.championId,
-      championName: CHAMPIONS[loadout.championId]?.name ?? loadout.championId,
+      championName: getChampion(loadout.championId)?.name ?? loadout.championId,
       stats: fighterStats[index],
       packets,
       rawTotal: sumRaw(packets),
@@ -2022,6 +2126,8 @@ function buildSide(
       lockedOut,
       avgXh: avgPacketXh(packets),
       omittedSlots: collected.omittedSlots,
+      omissionNotes: collected.omissionNotes,
+      budgetNote: collected.budgetNote,
       targetIndex: focusTargetIndex,
     })
     allPackets.push(...packets)
@@ -2031,7 +2137,7 @@ function buildSide(
     fighters.push({
       index: living.length + i,
       championId: loadout.championId,
-      championName: CHAMPIONS[loadout.championId]?.name ?? loadout.championId,
+      championName: getChampion(loadout.championId)?.name ?? loadout.championId,
       stats: buildStats({ ...loadout, alive: false, liveStats: { ...loadout.liveStats, hp: 0 } }),
       packets: [],
       rawTotal: 0,
@@ -2051,7 +2157,7 @@ function buildSide(
     return {
       index,
       championId: loadout.championId,
-      championName: CHAMPIONS[loadout.championId]?.name ?? loadout.championId,
+      championName: getChampion(loadout.championId)?.name ?? loadout.championId,
       hpStart,
       hpMax: stats.hpMax > 0 ? stats.hpMax : hpStart,
       incomingDamage: 0,
@@ -2325,12 +2431,10 @@ function runOnce(input: MatchupInput, xhMode: XhMode) {
   if (blueLiving.length !== 1 || redLiving.length !== 1) {
     timingExtra.push('fallback:nvm_roster')
   } else if (
-    !isCoreChampion(blueLiving[0]!.championId) ||
-    !isCoreChampion(redLiving[0]!.championId)
+    !hasResolvableKit(blueLiving[0]!) ||
+    !hasResolvableKit(redLiving[0]!)
   ) {
-    timingExtra.push('fallback:non_core_fighter')
-  } else if (blueLocked || redLocked) {
-    timingExtra.push('fallback:engage_locked')
+    timingExtra.push('fallback:unresolvable_kit')
   }
   return {
     blue,
@@ -2348,6 +2452,8 @@ function runOnceTimed(
   xhMode: XhMode,
   durationSec: number,
 ) {
+  const blueLocked = sideLocked('blue', input)
+  const redLocked = sideLocked('red', input)
   const blueMods = modsForSide('blue', input)
   const redMods = modsForSide('red', input)
   const blueLoadout = input.blue.find(isAlive)!
@@ -2356,10 +2462,22 @@ function runOnceTimed(
   const redStats = resolveFighterCombatStats(redLoadout, redMods)
 
   const blueOutgoing = enemyFacingUtility(
-    collectSideUtility(input.blue, input.mode, [blueStats], redStats, false),
+    collectSideUtility(
+      input.blue,
+      input.mode,
+      [blueStats],
+      redStats,
+      blueLocked,
+    ),
   )
   const redOutgoing = enemyFacingUtility(
-    collectSideUtility(input.red, input.mode, [redStats], blueStats, false),
+    collectSideUtility(
+      input.red,
+      input.mode,
+      [redStats],
+      blueStats,
+      redLocked,
+    ),
   )
 
   const visionUnits: VisionUnit[] = [
@@ -2386,14 +2504,14 @@ function runOnceTimed(
     input.mode,
     blueStats,
     redStats,
-    false,
+    blueLocked,
   )
   const redOwn = collectFighterUtility(
     redLoadout,
     input.mode,
     redStats,
     blueStats,
-    false,
+    redLocked,
   )
   const blueFighterOutgoing = mergeUtility(
     enemyFacingUtility(blueOutgoing),
@@ -2406,6 +2524,8 @@ function runOnceTimed(
     `${redLoadout.championId} self utility`,
   )
 
+  // Engager opens at t=0 (engage skill/auto is a real timed action). Locked
+  // defender waits ENGAGE_REACTION_DELAY_SEC and cannot use engageCc.
   const blueTimed = collectFighterDamageTimed(
     blueLoadout,
     input.mode,
@@ -2420,8 +2540,9 @@ function runOnceTimed(
     visionUnits,
     input.wards,
     { durationSec: input.durationSec, aaUptime: input.aaUptime },
-    0,
+    blueLocked ? ENGAGE_REACTION_DELAY_SEC : 0,
     redMods,
+    blueLocked,
   )
   const redTimed = collectFighterDamageTimed(
     redLoadout,
@@ -2437,8 +2558,9 @@ function runOnceTimed(
     visionUnits,
     input.wards,
     { durationSec: input.durationSec, aaUptime: input.aaUptime },
-    0,
+    redLocked ? ENGAGE_REACTION_DELAY_SEC : 0,
     blueMods,
+    redLocked,
   )
 
   const bluePackets = amplifyWithObjectives(blueTimed.packets, blueMods, 0)
@@ -2461,14 +2583,16 @@ function runOnceTimed(
       {
         index: 0,
         championId: blueLoadout.championId,
-        championName: CHAMPIONS[blueLoadout.championId]?.name ?? blueLoadout.championId,
+        championName: getChampion(blueLoadout.championId)?.name ?? blueLoadout.championId,
         stats: blueStats,
         packets: bluePackets,
         rawTotal: sumRaw(bluePackets),
         mitigatedTotal: 0,
-        lockedOut: false,
+        lockedOut: blueLocked,
         avgXh: avgPacketXh(bluePackets),
         omittedSlots: blueTimed.omittedSlots,
+        omissionNotes: blueTimed.omissionNotes,
+        budgetNote: blueTimed.budgetNote,
         targetIndex: 0,
       },
     ],
@@ -2480,7 +2604,7 @@ function runOnceTimed(
     hpRemainingPct: 0,
     damagePctOfEnemy: 0,
     kills: false,
-    lockedOut: false,
+    lockedOut: blueLocked,
     outgoingUtility: blueOutgoing,
     incomingUtility: redOutgoing,
     targets: [],
@@ -2494,14 +2618,16 @@ function runOnceTimed(
       {
         index: 0,
         championId: redLoadout.championId,
-        championName: CHAMPIONS[redLoadout.championId]?.name ?? redLoadout.championId,
+        championName: getChampion(redLoadout.championId)?.name ?? redLoadout.championId,
         stats: redStats,
         packets: redPackets,
         rawTotal: sumRaw(redPackets),
         mitigatedTotal: 0,
-        lockedOut: false,
+        lockedOut: redLocked,
         avgXh: avgPacketXh(redPackets),
         omittedSlots: redTimed.omittedSlots,
+        omissionNotes: redTimed.omissionNotes,
+        budgetNote: redTimed.budgetNote,
         targetIndex: 0,
       },
     ],
@@ -2513,7 +2639,7 @@ function runOnceTimed(
     hpRemainingPct: 0,
     damagePctOfEnemy: 0,
     kills: false,
-    lockedOut: false,
+    lockedOut: redLocked,
     outgoingUtility: redOutgoing,
     incomingUtility: blueOutgoing,
     targets: [],
@@ -2551,7 +2677,7 @@ function runOnceTimed(
     const extra: FighterResult[] = dead.map((loadout, i) => ({
       index: side.fighters.length + i,
       championId: loadout.championId,
-      championName: CHAMPIONS[loadout.championId]?.name ?? loadout.championId,
+      championName: getChampion(loadout.championId)?.name ?? loadout.championId,
       stats: buildStats({
         ...loadout,
         alive: false,
@@ -2605,10 +2731,37 @@ export function simulateMatchup(input: MatchupInput): MatchupResult {
       `Both sides lethal in ${resolveFightDuration(input).toFixed(0)}s — ranked by overkill (${Math.round(primary.blue.damagePctOfEnemy * 100)}% vs ${Math.round(primary.red.damagePctOfEnemy * 100)}% of enemy HP).`,
     )
   }
+
+  if (
+    primary.timing?.method === 'timed_manual_1v1' &&
+    primary.timing.firstLethalSec != null
+  ) {
+    notes.push(
+      `stopped at ${primary.timing.firstLethalSec.toFixed(2)}s: first lethal`,
+    )
+    const suppressed = (primary.timing.events ?? []).filter((e) => e.suppressed)
+    for (const e of suppressed.slice(0, 4)) {
+      const label =
+        e.slot === 'AA' ? `Auto ${e.castIndex}` : `${e.slot} ×${e.castIndex}`
+      notes.push(`suppressed ${label}: caster dead`)
+    }
+  }
+
   for (const f of [...primary.blue.fighters, ...primary.red.fighters]) {
-    if (f.omittedSlots?.length && !f.dead) {
+    if (f.dead) continue
+    if (f.budgetNote) {
+      notes.push(`${f.championName}: ${f.budgetNote}`)
+    }
+    for (const omit of f.omissionNotes ?? []) {
+      notes.push(`${f.championName}: ${omit}`)
+    }
+    // Fallback only when omittedSlots lack actionable omissionNotes.
+    if (
+      f.omittedSlots?.length &&
+      !(f.omissionNotes ?? []).some((n) => /omitted /i.test(n))
+    ) {
       notes.push(
-        `${f.championName} omitted ${f.omittedSlots.join('/')} (HP budget).`,
+        `${f.championName} omitted ${f.omittedSlots.join('/')}: no surviving window`,
       )
     }
   }
@@ -2665,7 +2818,7 @@ export function simulateMatchup(input: MatchupInput): MatchupResult {
     pRed: primary.pRed,
     modelTrust,
     tradeHpWinner: primary.tradeHpWinner,
-    notes: [...new Set(notes)].slice(0, 8),
+    notes: [...new Set(notes)].slice(0, 12),
     xhMode,
     assumptions,
     timing: primary.timing,
@@ -2771,19 +2924,21 @@ function buildTheorycraftAssumptions(
   const lines: string[] = [
     `Fight window ${durationSec.toFixed(1)}s · AA uptime ${Math.round(aaUptime * 100)}%.`,
     input.mode === 'short' && durationSec <= 4
-      ? 'Engage: late-reaction advantage is modeled only for this short window.'
+      ? timed && (sideLocked('blue', input) || sideLocked('red', input))
+        ? `Engage: opener acts at t=0 (skill/auto on the clock); defender starts after ${ENGAGE_REACTION_DELAY_SEC}s and cannot use engage CC.`
+        : 'Engage: late-reaction advantage is modeled only for this short window.'
       : 'Engage: ignored outside the short window; longer-fight engage timing is not modeled.',
     `Model confidence: ${modelTrust.badge} (${modelTrust.class}); pBlue/pRed are heuristic ranking scores, not calibrated win probabilities.`,
     timed
-      ? 'Resolution: timed_manual_1v1 — bounded beam best-found cast/attack sequence (not globally optimal, not calibrated); utility remains whole-window; aggregate passive/item fightPackets anchor at last damaging action (approx); default execution timing is disclosed, not precise.'
-      : 'Resolution: aggregate_window fallback — packet counts over the full window (not an executable cast sequence).',
+      ? 'Resolution: timed_manual_1v1 — chronological bounded-beam cast/AA plan stopped at first lethal (not globally optimal, not calibrated); utility whole-window; default castLock/impact when Meraki kits lack execution metadata; ability CDs assumed ready at t=0.'
+      : 'Resolution: aggregate_window fallback — packet counts over the fight window (cast/auto counts from CD/AS; NvM low HP truncates only via modeled survival DPS prior, not absolute slot bans).',
   ]
   const isNvM = input.blue.length > 1 || input.red.length > 1
   if (isNvM) {
     const redFocus = input.red.find(isAlive)
     const blueFocus = input.blue.find(isAlive)
     lines.push(
-      `NvM focus: Blue targets ${redFocus ? CHAMPIONS[redFocus.championId]?.name ?? redFocus.championId : 'none'}; Red targets ${blueFocus ? CHAMPIONS[blueFocus.championId]?.name ?? blueFocus.championId : 'none'} (input order, living only).`,
+      `NvM focus: Blue targets ${redFocus ? getChampion(redFocus.championId)?.name ?? redFocus.championId : 'none'}; Red targets ${blueFocus ? getChampion(blueFocus.championId)?.name ?? blueFocus.championId : 'none'} (input order, living only).`,
       'NvM resolution: simultaneous focus fire; no retarget after a focused target dies.',
       'NvM pooling: HP meter sums living targets, but kill flags are target-specific and post-sustain.',
       'Defensive utility is owner/target-scoped; ally-targeted protection is not spread across the team pool.',
@@ -2794,6 +2949,11 @@ function buildTheorycraftAssumptions(
     lines.push(
       '1v1 timed resolution: chronological impacts; equal timestamps are simultaneous; lethal stops later actions; regen/omnivamp only over elapsed dealt damage.',
     )
+    if (modelTrust.class === 'experimental') {
+      lines.push(
+        'Meraki/generated timed 1v1: experimental and uncalibrated; default execution timing disclosed in timing.caveats when kit metadata is missing.',
+      )
+    }
   } else {
     lines.push('1v1 resolution: both fighters attack the other fighter; HP and mitigation are target-specific.')
   }
@@ -2890,7 +3050,9 @@ export function emptyMatchup(
   return {
     blue: [defaultLoadout(blueId)],
     red: [defaultLoadout(redId)],
-    engager: 'blue',
+    // Default neither so the sample ability log has fight clocks. Toggle Engage
+    // to blue/red to model opener-at-t=0 + defender reaction delay (still timed).
+    engager: 'neither',
     mode: 'short',
     xhMode: 'expected',
   }

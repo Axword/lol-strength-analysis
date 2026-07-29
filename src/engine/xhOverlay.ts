@@ -1,4 +1,4 @@
-import { CHAMPIONS } from '../data/champions'
+import { getChampion } from '../data/champions'
 import type { GameUnit } from '../game/types'
 import {
   estimateXh,
@@ -60,7 +60,7 @@ export function buildSnapshotXh(
   for (const casterId of casterIds) {
     const caster = byId.get(casterId)
     if (!caster) continue
-    const champ = CHAMPIONS[caster.loadout.championId]
+    const champ = getChampion(caster.loadout.championId)
     if (!champ) continue
 
     const enemies = units.filter((u) => u.team !== caster.team)

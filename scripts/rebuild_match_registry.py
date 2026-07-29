@@ -96,12 +96,24 @@ def _assert_product_sources(manifest: Mapping[str, Any], timeline: Mapping[str, 
         raise RegistryError(f"non-product source marker {marker!r}")
 
 
+_CHAMP_IDENTITY_ALIASES = {
+    "wukong": "monkeyking",
+    "leblanc": "leblanc",
+}
+
+
+def _champ_identity_key(name: str) -> str:
+    key = _norm(name)
+    return _CHAMP_IDENTITY_ALIASES.get(key, key)
+
+
 def _manifest_champion(participant: Mapping[str, Any]) -> str:
+    """Prefer asset/raw (MonkeyKing) over display (Wukong) for identity joins."""
     champion = _object(participant.get("champion"), "manifest participant champion")
     return str(
-        champion.get("display")
-        or champion.get("asset")
+        champion.get("asset")
         or champion.get("raw")
+        or champion.get("display")
         or ""
     )
 
@@ -137,14 +149,14 @@ def _roster_contract(
     manifest_counts = Counter(
         (
             int(row.get("teamId") or 0),
-            _norm(_manifest_champion(row)),
+            _champ_identity_key(_manifest_champion(row)),
         )
         for row in manifest_rows
     )
     timeline_counts = Counter(
         (
             int(row.get("teamID") or 0),
-            _norm(_timeline_champion(row)),
+            _champ_identity_key(_timeline_champion(row)),
         )
         for row in timeline_rows
     )

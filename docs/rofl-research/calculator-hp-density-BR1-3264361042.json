@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "schema": "rofl-calculator-hp-density-blocker-v1",
+  "ts": "2026-07-23T13:27:24.495291Z",
+  "matchCode": "3264361042",
+  "terminal": true,
+  "kind": "calculator_hp_density",
+  "conclusion": "monkeyking_early_mMaxHP_absent_on_wire",
+  "detail": "Full type-107 walk (80 chunks / 50k blocks) proves MonkeyKing (0x400000af) first explicit (5,1) mMaxHP at 77278ms; other heroes accept at 267ms. Early MonkeyKing packets carry combat-index floats without (5,0)/(5,1). Not a parse/filter/chunk miss. Carry-forward densify covers 1548/1566 Replay API frames after firstAll10; the 18 early frames (60000\u201377000ms) cannot honestly set hpKnown. calculatorReady stays false because validate requires hpKnown on every frame. Do not invent HP, trim, or CreateHero-order bind to close the gap.",
+  "monkeyKingFirstHpMs": 77278,
+  "otherHeroesFirstHpMs": 267,
+  "firstAll10HpMs": 77278,
+  "denseHpSampleCount": 1548,
+  "fuse": {
+    "coverage": "partial",
+    "fusedFrames": 1548,
+    "unmatchedFrames": 18,
+    "statsFrames": 1566
+  },
+  "gatesPreserved": {
+    "A_castspellIdentity": true,
+    "B1_combatWireTable": true,
+    "B2_upgradeSpellRanks": true,
+    "C_offlineWaypoints": false
+  },
+  "productPipeline": {
+    "calculatorReady": false,
+    "blocker": {
+      "kind": "calculator_hp_density",
+      "terminal": true,
+      "detail": "Gates A+B1+B2 trusted (CastSpellAns identity, PE combat wire table, UpgradeSpellAns ranks) but calculatorReady needs hpKnown on every Replay API frame. MonkeyKing (0x400000af) first explicit mMaxHP at ~77278ms (others ~267ms); densify covers frames after firstAll10=77278ms (1548 samples) \u2014 early frames cannot honestly set hpKnown without inventing HP. Terminal wire gap.",
+      "gateA": true,
+      "gateA_method": "castspell_ans_champion_string",
+      "gateB_combat": true,
+      "gateB_ranks": true,
+      "gateC": false,
+      "publishedHpTrusted": true,
+      "hpCoverage": "partial",
+      "monkeyKingFirstHpMs": 77278,
+      "otherHeroesFirstHpMs": 267,
+      "firstAll10HpMs": 77278,
+      "denseHpSampleCount": 1548
+    }
+  },
+  "evidence": [
+    "docs/rofl-research/combat-wire-proof-BR1-3264361042.json",
+    "docs/rofl-research/product-pipeline-BR1-3264361042.json",
+    "artifacts/rofl/3264361042/hp-fuse-summary.json"
+  ]
+}

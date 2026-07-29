@@ -1,0 +1,247 @@
+{
+  "ok": false,
+  "schema": "rofl-castspell-level-slot-v0",
+  "ts": "2026-07-23T12:21:37.514597Z",
+  "matchCode": "3264361042",
+  "wallMs": 4848.656,
+  "castSpellAnsMapped": true,
+  "castSpellAnsOpcode": 197,
+  "castSpellAnsPkt": "PKT_NPC_CastSpellAns_s",
+  "castSpellAnsBlockCount": 4442,
+  "objectSize": 328,
+  "deserializeOkCount": 89,
+  "castSpellAnsLevelSlotDecoded": false,
+  "slotProof": {
+    "proven": false,
+    "best": null,
+    "top": []
+  },
+  "levelProof": {
+    "proven": false,
+    "top": [],
+    "note": "Level offset requires slot proof plus independent validation"
+  },
+  "sampleHead": [
+    {
+      "netId": 1073741998,
+      "time": 89.292828075937,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 122,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 18
+    },
+    {
+      "netId": 1073741998,
+      "time": 90.02782811084762,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 132,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 14
+    },
+    {
+      "netId": 1073741998,
+      "time": 91.83241671009455,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 118,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 19
+    },
+    {
+      "netId": 1073741998,
+      "time": 870.1507743656402,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 122,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 15
+    },
+    {
+      "netId": 1073741998,
+      "time": 874.3267692318186,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 130,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 19
+    },
+    {
+      "netId": 1073741998,
+      "time": 883.0227696448565,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 125,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 19
+    },
+    {
+      "netId": 1073741998,
+      "time": 1611.738631865941,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 121,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 19
+    },
+    {
+      "netId": 1073741998,
+      "time": 1618.8416322033154,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 129,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 13
+    },
+    {
+      "netId": 1073741998,
+      "time": 1621.685316460207,
+      "hits": [
+        "Zaahen"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 130,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 17
+    },
+    {
+      "netId": 1073741999,
+      "time": 55.573952765669674,
+      "hits": [
+        "MonkeyKing"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 133,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 18
+    },
+    {
+      "netId": 1073741999,
+      "time": 65.91182696539909,
+      "hits": [
+        "MonkeyKing"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 133,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 19
+    },
+    {
+      "netId": 1073741999,
+      "time": 76.33882746065501,
+      "hits": [
+        "MonkeyKing"
+      ],
+      "expectedSlots": [],
+      "retAl": 1,
+      "consumed": 136,
+      "u8SlotCandidateCount": 64,
+      "u8LevelCandidateCount": 18
+    }
+  ],
+  "skillLevelUpOpcodeMapped": false,
+  "plaintextHits": {
+    "SkillLevelUp": 0,
+    "mSkillUpLevel": 0,
+    "SkillUp": 0
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "castspell-level-slot-v0"
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "blocker": {
+    "kind": "ability_ranks_wire_unproven",
+    "detail": "CastSpellAns opcode 197 is mapped for champion identity, but SkillLevelUp is unmapped and CastSpellAns level/slot offsets are not structurally proven on 16.14 \u2014 do not fuse abilityRanksKnown",
+    "slotBest": null,
+    "slotCandidatesTop": [],
+    "levelCandidatesTop": [],
+    "abilitySuffixVotes": {},
+    "structuralBar": {
+      "slotAgreeRatio": 0.95,
+      "slotMinAgree": 20,
+      "levelIndependentProof": false
+    }
+  },
+  "abilityRanksTrusted": false,
+  "productEligible": false,
+  "note": "Prefer CastSpellAns level+slot structural decode over fixture remap. Ability-name suffix gives expected slot for correlation only."
+}

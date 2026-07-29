@@ -7,7 +7,8 @@ import { sumMitigated } from '../damage'
 import { classifyMatchupModelTrust } from '../modelTrust'
 import { planRotation, type RotationActionCandidate } from '../rotation'
 import { autoAttackDamage, buildStats } from '../stats'
-import { CHAMPIONS, CORE_CHAMPION_IDS, isCoreChampion } from '../../data/champions'
+import { CHAMPIONS, CORE_CHAMPION_IDS, getChampion, isCoreChampion, resolveChampionId } from '../../data/champions'
+import { championModelingTier } from '../modelTrust'
 import type { CombatStats, FighterLoadout, MatchupInput, MatchupResult } from '../types'
 
 type Check = { name: string; detail?: string }
@@ -91,16 +92,51 @@ function packetSources(result: MatchupResult, side: 'blue' | 'red'): string[] {
   )
   assert(isCoreChampion('Darius') && isCoreChampion('Nasus'), 'CORE includes Darius and Nasus')
   assert(!isCoreChampion('Gnar'), 'Gnar remains generated-only (not CORE)')
+  assert(resolveChampionId('LeBlanc') === 'Leblanc', 'LeBlanc aliases to Meraki Leblanc')
+  assert(resolveChampionId('Wukong') === 'MonkeyKing', 'Wukong aliases to MonkeyKing')
+  assert(!!getChampion('Yasuo'), 'wiki stub covers Yasuo for map Send')
+  assert(!!getChampion('LeBlanc'), 'LeBlanc resolves via alias for map Send')
+  assert(
+    (getChampion('Yasuo')?.abilities.length ?? 0) >= 3,
+    'Yasuo Meraki kit exposes Q/W/E abilities',
+  )
+  assert(
+    (getChampion('LeBlanc')?.abilities.length ?? 0) >= 3,
+    'LeBlanc Meraki kit exposes Q/W/E abilities',
+  )
+  const yasuoLive = buildStats({
+    championId: 'Yasuo',
+    level: 11,
+    itemIds: [],
+    runeId: null,
+    ranks: { Q: 5, W: 1, E: 3, R: 1 },
+    liveStats: {
+      hp: 1400,
+      hpMax: 1800,
+      armor: 60,
+      mr: 40,
+      ad: 120,
+      ap: 0,
+      attackSpeed: 1.1,
+    },
+  })
+  assert(yasuoLive.ad === 120 && yasuoLive.hpMax === 1800, 'Yasuo live pins survive buildStats')
+  assert(championModelingTier('Yasuo') === 'generated', 'Meraki Yasuo classifies as generated')
+  assert(championModelingTier('Gnar') === 'generated', 'Gnar stays generated tier')
 }
 
 // Gate 1: kills are post-sustain state, not pre-heal damage >= HP.
-// Uses a generated kit so aggregate_window sustain (full-window) still applies.
+// NvM (2v1) forces aggregate_window so full-window sustain still applies;
+// only Zilean damages Gnar (focus policy), so Bloodthirster can out-heal.
 {
   const result = fight(
-    [fighter('Gnar', { level: 1, itemIds: ['3072'], hpPct: 0.2, form: 'mega' })],
+    [
+      fighter('Gnar', { level: 1, itemIds: ['3072'], hpPct: 0.2, form: 'mega' }),
+      fighter('Darius', { level: 1, ranks: { Q: 0, W: 0, E: 0, R: 0 } }),
+    ],
     [fighter('Zilean', { level: 1, ranks: { Q: 1, W: 0, E: 0, R: 0 } })],
   )
-  assert(result.timing?.method === 'aggregate_window', 'Gate 1 stays on aggregate_window (generated Blue)')
+  assert(result.timing?.method === 'aggregate_window', 'Gate 1 stays on aggregate_window (NvM)')
   const target = result.blue.targets?.[0]
   assert(!!target, 'kills-vs-heal target exists')
   assert(
@@ -132,24 +168,28 @@ function packetSources(result: MatchupResult, side: 'blue' | 'red'): string[] {
 }
 
 // Gate 2: percent-max-HP packets use the concrete focus target, not a team average.
-// Attacker is generated (Gnar) so 1v1 and 1v5 both stay on aggregate_window.
+// Both cells are NvM (2 attackers) so they share aggregate_window resolution.
 {
   const target = () => fighter('Gragas', {
     liveStats: { hp: 3000, hpMax: 3000, armor: 100, mr: 50 },
   })
-  const one = fight([fighter('Gnar', { itemIds: ['6653'], form: 'mega' })], [target()])
-  const five = fight([fighter('Gnar', { itemIds: ['6653'], form: 'mega' })], [target(), target(), target(), target(), target()])
-  assert(one.timing?.method === 'aggregate_window', 'Gate 2 1v1 stays aggregate (generated)')
+  const attackers = () => [
+    fighter('Gnar', { itemIds: ['6653'], form: 'mega' }),
+    fighter('Darius', { ranks: { Q: 0, W: 0, E: 0, R: 0 } }),
+  ]
+  const one = fight(attackers(), [target()])
+  const five = fight(attackers(), [target(), target(), target(), target(), target()])
+  assert(one.timing?.method === 'aggregate_window', 'Gate 2 2v1 stays aggregate (NvM)')
   assert(
     Math.abs((one.red.targets?.[0]?.incomingDamage ?? 0) - (five.red.targets?.[0]?.incomingDamage ?? 0)) < 1e-6,
-    'percent-HP 1v1 vs 1v5 keeps focus-target scaling stable',
+    'percent-HP 2v1 vs 2v5 keeps focus-target scaling stable',
   )
   assert(
     (five.red.targets ?? []).slice(1).every((targetResult) => targetResult.incomingDamage === 0),
-    'percent-HP 1v5 does not multiply single-target damage across a pooled bar',
+    'percent-HP 2v5 does not multiply single-target damage across a pooled bar',
   )
   const largerTarget = fight(
-    [fighter('Gnar', { itemIds: ['6653'], form: 'mega' })],
+    attackers(),
     [fighter('Gragas', { liveStats: { hp: 5000, hpMax: 5000, armor: 100, mr: 50 } })],
   )
   assert(
@@ -224,13 +264,37 @@ function packetSources(result: MatchupResult, side: 'blue' | 'red'): string[] {
 }
 
 // Gate 7: engage is a short-window contract, not a silent 8/16s no-op.
+// Engaged short fights stay on timed_manual_1v1 — opener at t=0 on the clock;
+// defender reaction delay; no —:— aggregate wipe just because someone engaged.
 {
   const longNeutral = fight([fighter('Gragas')], [fighter('Darius')], { mode: 'allin', durationSec: 8, engager: 'neither' })
   const longBlue = fight([fighter('Gragas')], [fighter('Darius')], { mode: 'allin', durationSec: 8, engager: 'blue' })
   assert(Math.abs(longNeutral.red.rawTotal - longBlue.red.rawTotal) < 1e-6, 'engage is explicitly inactive outside short fights')
   const shortNeutral = fight([fighter('Gragas')], [fighter('Darius')], { mode: 'short', durationSec: 3.5, engager: 'neither' })
   const shortBlue = fight([fighter('Gragas')], [fighter('Darius')], { mode: 'short', durationSec: 3.5, engager: 'blue' })
-  assert(shortNeutral.red.rawTotal !== shortBlue.red.rawTotal, 'short engage changes the late-reaction model')
+  assert(shortNeutral.red.rawTotal !== shortBlue.red.rawTotal || shortNeutral.blue.rawTotal !== shortBlue.blue.rawTotal, 'short engage changes the late-reaction model')
+  assert(shortNeutral.blue.rawTotal !== shortBlue.blue.rawTotal, 'short engage changes opener timed budget (defender delayed)')
+  assert(shortBlue.timing?.method === 'timed_manual_1v1', 'short engage stays timed_manual_1v1 (clocks, not aggregate)')
+  assert((shortBlue.timing?.events?.length ?? 0) > 0, 'short engage emits timed events')
+  const blueOpener = (shortBlue.timing?.events ?? []).find(
+    (e) => e.side === 'blue' && !e.suppressed,
+  )
+  const redFirst = (shortBlue.timing?.events ?? []).find(
+    (e) => e.side === 'red' && !e.suppressed,
+  )
+  assert(!!blueOpener && blueOpener.startSec <= 1e-9, 'engager can open at t=0')
+  assert(
+    !!redFirst && redFirst.startSec >= 0.5 - 1e-9,
+    'locked defender starts after reaction delay',
+    `redFirst.startSec=${redFirst?.startSec}`,
+  )
+  assert(shortBlue.red.lockedOut === true, 'defender marked lockedOut under blue engage')
+  assert(
+    (shortBlue.timing?.caveats ?? []).some((c) =>
+      c.startsWith('engage:defender_reaction_delay:'),
+    ),
+    'timed engage discloses defender reaction delay caveat',
+  )
 }
 
 // Gate 8: every 1..5 x 1..5 cell is exercised with cross-side invariants.
@@ -517,7 +581,8 @@ function packetSources(result: MatchupResult, side: 'blue' | 'red'): string[] {
     'timing events/caveats JSON-serializable',
   )
 
-  // Low-HP abilityBudget still omits W.
+  // Low HP no longer bans ability slots via absolute HP% cliffs.
+  // Timed CORE 1v1 may still cast ranked W; death is handled by first-lethal.
   const lowHp = simulateMatchup({
     blue: [
       fighter('Darius', {
@@ -534,13 +599,24 @@ function packetSources(result: MatchupResult, side: 'blue' | 'red'): string[] {
     durationSec: 3.5,
     xhMode: 'off',
   })
-  assert(
-    !(lowHp.timing?.events ?? []).some((e) => e.side === 'blue' && e.slot === 'W' && !e.suppressed),
-    'low-HP budget omits W from timed log',
+  assert(lowHp.timing?.method === 'timed_manual_1v1', 'low-HP Darius still uses timed path')
+  const lowHpBlueSlots = new Set(
+    (lowHp.timing?.events ?? [])
+      .filter((e) => e.side === 'blue' && !e.suppressed && (e.raw ?? 0) > 0)
+      .map((e) => e.slot),
   )
   assert(
-    lowHp.blue.fighters[0]?.omittedSlots?.includes('W'),
-    'low-HP omittedSlots includes W',
+    lowHpBlueSlots.has('W') || lowHpBlueSlots.has('Q') || lowHpBlueSlots.has('E'),
+    'low-HP timed fighter may still cast ranked abilities (no absolute slot ban)',
+    `slots=${[...lowHpBlueSlots].join(',')}`,
+  )
+  assert(
+    !(lowHp.blue.fighters[0]?.omittedSlots?.includes('W')),
+    'low-HP does not omit W via absolute HP-band budget',
+  )
+  assert(
+    !(lowHp.notes ?? []).some((n) => /HP budget/i.test(n)),
+    'notes do not cite absolute HP budget cliffs',
   )
 
   // Prefix: 1.0s damaging actions ⊆ 3.5s plan (by impact time).
@@ -1205,6 +1281,306 @@ function packetSources(result: MatchupResult, side: 'blue' | 'red'): string[] {
     ),
     'xhMode=off still allows out-of-range Q into the plan (raw scoring unchanged)',
   )
+}
+
+// Fight capability v2: chronological Meraki 1v1 + no absolute HP% cliffs.
+{
+  // Alive ~20% HP mage in 8s vs soft target: timed path, multi-spell + AS autos.
+  const mage = fight(
+    [
+      fighter('LeBlanc', {
+        level: 3,
+        ranks: { Q: 1, W: 1, E: 1, R: 0 },
+        hpPct: 0.2,
+        itemIds: [],
+        runeId: null,
+        liveStats: {
+          ad: 60,
+          ap: 40,
+          armor: 25,
+          mr: 30,
+          attackSpeed: 0.7,
+          abilityHaste: 0,
+          hp: 140,
+          hpMax: 700,
+        },
+      }),
+    ],
+    [
+      fighter('Gragas', {
+        level: 1,
+        ranks: { Q: 0, W: 0, E: 0, R: 0 },
+        hpPct: 1,
+        itemIds: [],
+        runeId: null,
+        liveStats: {
+          ad: 1,
+          ap: 0,
+          armor: 40,
+          mr: 30,
+          attackSpeed: 0.4,
+          abilityHaste: 0,
+          hp: 2000,
+          hpMax: 2000,
+        },
+      }),
+    ],
+    { mode: 'allin', durationSec: 8, xhMode: 'off' },
+  )
+  assert(
+    mage.timing?.method === 'timed_manual_1v1',
+    'Meraki LeBlanc 1v1 uses timed_manual_1v1',
+  )
+  assert(
+    mage.modelTrust?.class === 'experimental' && mage.modelTrust?.calibrated === false,
+    'Meraki timed 1v1 stays experimental / uncalibrated',
+  )
+  const mageSources = packetSources(mage, 'blue')
+  const mageAbilitySlots = new Set(
+    mage.blue.packets
+      .map((p) => p.slot)
+      .filter((s): s is 'Q' | 'W' | 'E' | 'R' => s === 'Q' || s === 'W' || s === 'E' || s === 'R'),
+  )
+  assert(
+    mageAbilitySlots.size >= 2,
+    'low-HP mage casts multiple ranked abilities in 8s when CDs allow',
+    `slots=${[...mageAbilitySlots].join(',')} sources=${mageSources.join(' | ')}`,
+  )
+  const mageAutos = mage.blue.packets.filter((p) => p.slot === 'AA').length
+  assert(
+    mageAutos > 1,
+    'low-HP does not force autos==1 via absolute HP band',
+    `autos=${mageAutos}`,
+  )
+  assert(
+    !(mage.notes ?? []).some((n) => /HP budget|shortened rotation|critical; only gapclose|HP-band/i.test(n)),
+    'timed notes never cite absolute HP-band budget rules',
+  )
+
+  // BR1-3264361042-like Send: Yasuo L4 ~63% vs LeBlanc L3 ~22%, 8s all-in.
+  const sendLike = fight(
+    [
+      fighter('Yasuo', {
+        level: 4,
+        ranks: { Q: 2, W: 1, E: 1, R: 0 },
+        hpPct: 0.63,
+        itemIds: [],
+        runeId: null,
+        liveStats: {
+          ad: 75,
+          ap: 0,
+          armor: 35,
+          mr: 32,
+          attackSpeed: 0.75,
+          abilityHaste: 0,
+          hp: 700,
+          hpMax: 1110,
+        },
+      }),
+    ],
+    [
+      fighter('LeBlanc', {
+        level: 3,
+        ranks: { Q: 1, W: 1, E: 1, R: 0 },
+        hpPct: 0.22,
+        itemIds: [],
+        runeId: null,
+        liveStats: {
+          ad: 58,
+          ap: 35,
+          armor: 24,
+          mr: 30,
+          attackSpeed: 0.67,
+          abilityHaste: 0,
+          hp: 155,
+          hpMax: 700,
+        },
+      }),
+    ],
+    { mode: 'allin', durationSec: 8, xhMode: 'off' },
+  )
+  assert(
+    sendLike.timing?.method === 'timed_manual_1v1',
+    'Send-like Yasuo vs LeBlanc uses timed_manual_1v1 (not aggregate_window)',
+  )
+  const lbSlots = new Set(
+    sendLike.red.packets
+      .map((p) => p.slot)
+      .filter((s): s is 'Q' | 'W' | 'E' => s === 'Q' || s === 'W' || s === 'E'),
+  )
+  const lbScheduledSlots = new Set(
+    (sendLike.timing?.events ?? [])
+      .filter(
+        (e) =>
+          e.side === 'red' &&
+          (e.slot === 'Q' || e.slot === 'W' || e.slot === 'E'),
+      )
+      .map((e) => e.slot),
+  )
+  assert(
+    lbScheduledSlots.size >= 2 || lbSlots.size >= 2,
+    'Send-like LeBlanc schedules multiple ranked spells (landed or suppressed post-lethal)',
+    `landed=${[...lbSlots].join(',')} scheduled=${[...lbScheduledSlots].join(',')}`,
+  )
+  const lbAutos = sendLike.red.packets.filter((p) => p.slot === 'AA').length
+  const lbScheduledAutos = (sendLike.timing?.events ?? []).filter(
+    (e) => e.side === 'red' && e.slot === 'AA',
+  ).length
+  if (sendLike.timing?.firstLethalSec == null) {
+    assert(
+      lbAutos > 1,
+      'Send-like LeBlanc autos are not forced to 1 by HP% over a full window',
+      `autos=${lbAutos}`,
+    )
+  } else {
+    assert(
+      lbScheduledAutos !== 1 || lbAutos !== 1,
+      'Send-like early lethal does not look like an HP% auto cliff of exactly 1',
+      `autos=${lbAutos} scheduledAutos=${lbScheduledAutos} firstLethal=${sendLike.timing.firstLethalSec}`,
+    )
+  }
+  assert(
+    !(sendLike.notes ?? []).some((n) => /HP budget|HP-band/i.test(n)),
+    'Send-like notes do not say HP budget',
+  )
+  if (sendLike.timing?.firstLethalSec != null) {
+    assert(
+      (sendLike.notes ?? []).some((n) => /stopped at .*first lethal/i.test(n)),
+      'lethal Send-like cites first lethal stop reason',
+    )
+    const postDeath = (sendLike.timing.events ?? []).filter(
+      (e) =>
+        e.suppressed &&
+        e.impactSec > (sendLike.timing?.firstLethalSec ?? 0) + 1e-9,
+    )
+    if (postDeath.length) {
+      assert(
+        (sendLike.notes ?? []).some((n) => /suppressed .*caster dead/i.test(n)),
+        'post-death suppressed actions cite caster dead',
+      )
+    }
+  }
+  assert(
+    (sendLike.notes ?? []).some((n) => /omitted R: rank 0/i.test(n)) ||
+      (sendLike.red.fighters[0]?.omissionNotes ?? []).some((n) =>
+        /omitted R: rank 0/i.test(n),
+      ),
+    'rank-0 R is disclosed as omitted R: rank 0',
+  )
+  assert(
+    sendLike.assumptions?.some((a) => /timed_manual_1v1/i.test(a)),
+    'assumptions disclose timed_manual_1v1',
+  )
+  assert(
+    sendLike.assumptions?.some((a) => /CDs assumed ready|ready at t=0/i.test(a)),
+    'assumptions disclose CDs assumed ready at t=0',
+  )
+
+  // Dead fighter still excluded.
+  const dead = fight(
+    [fighter('LeBlanc', { level: 3, hpPct: 0, alive: false, ranks: { Q: 1, W: 1, E: 1, R: 0 } })],
+    [fighter('Yasuo', { level: 4, ranks: { Q: 2, W: 1, E: 1, R: 0 } })],
+  )
+  assert(dead.blue.mitigatedTotal === 0, 'dead fighter deals 0 damage')
+  assert(dead.blue.fighters[0]?.dead === true, 'dead fighter marked dead')
+  assert(
+    (dead.blue.fighters[0]?.packets.length ?? 0) === 0,
+    'dead fighter emits no packets',
+  )
+
+  // 10% HP assassin vs full HP: may still cast available nuke once (not banned by band).
+  const desperation = fight(
+    [
+      fighter('Ahri', {
+        level: 6,
+        ranks: { Q: 3, W: 1, E: 1, R: 1 },
+        hpPct: 0.1,
+        itemIds: [],
+        runeId: null,
+      }),
+    ],
+    [
+      fighter('Garen', {
+        level: 6,
+        ranks: { Q: 1, W: 1, E: 3, R: 1 },
+        hpPct: 1,
+        itemIds: [],
+        runeId: null,
+      }),
+    ],
+    { mode: 'allin', durationSec: 8, xhMode: 'off' },
+  )
+  const ahriSlots = new Set(
+    desperation.blue.packets
+      .map((p) => p.slot)
+      .filter((s) => s === 'Q' || s === 'W' || s === 'E' || s === 'R'),
+  )
+  assert(
+    ahriSlots.size >= 1,
+    '10% HP fighter may still cast at least one ranked ability before modeled death',
+    `slots=${[...ahriSlots].join(',')}`,
+  )
+
+  // Longer windows must still weave abilities before first lethal (not AA-pad
+  // then park E/Q after death). Same Send-like loadouts as above.
+  for (const [mode, durationSec] of [
+    ['allin', 8],
+    ['extended', 16],
+  ] as const) {
+    const weave = fight(
+      [
+        fighter('Yasuo', {
+          level: 4,
+          ranks: { Q: 2, W: 1, E: 1, R: 0 },
+          hpPct: 0.63,
+          itemIds: [],
+          runeId: null,
+          liveStats: {
+            ad: 71,
+            ap: 0,
+            armor: 42,
+            mr: 37,
+            attackSpeed: 0.75,
+            abilityHaste: 0,
+            hp: 555,
+            hpMax: 879,
+          },
+        }),
+      ],
+      [
+        fighter('LeBlanc', {
+          level: 3,
+          ranks: { Q: 1, W: 1, E: 1, R: 0 },
+          hpPct: 0.22,
+          itemIds: [],
+          runeId: null,
+          liveStats: {
+            ad: 58,
+            ap: 18,
+            armor: 28,
+            mr: 32,
+            attackSpeed: 0.67,
+            abilityHaste: 0,
+            hp: 192,
+            hpMax: 877,
+          },
+        }),
+      ],
+      { mode, durationSec, xhMode: 'expected' },
+    )
+    assert(
+      weave.timing?.method === 'timed_manual_1v1',
+      `Yasuo/LB ${durationSec}s stays timed`,
+    )
+    const yasuoAbility = weave.blue.packets.some(
+      (p) => p.slot === 'Q' || p.slot === 'W' || p.slot === 'E',
+    )
+    assert(
+      yasuoAbility,
+      `Yasuo weaves a ranked ability before lethal in ${durationSec}s window (not AA-only)`,
+      `packets=${weave.blue.packets.map((p) => p.slot).join(',')} lethal=${weave.timing?.firstLethalSec}`,
+    )
+  }
 }
 
 console.log(`Combat acceptance: ${passed.length} invariants passed.`)

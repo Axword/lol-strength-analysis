@@ -47,13 +47,16 @@ Gnar uses an explicit `form` when supplied. Without one, the compatibility rule 
 
 ### Timed manual 1v1 vs aggregate fallback
 
-When **exactly one living CORE fighter per side** and **neither side is
-short-window engage-locked**, damage is scheduled with a **bounded beam**
-cast/attack planner (`src/engine/rotation.ts`) and resolved chronologically
-(`timing.method = timed_manual_1v1`):
+When **exactly one living fighter per side** with a **resolvable kit** (CORE
+hand-authored or Meraki/generated with abilities), damage is scheduled with a
+**bounded beam** cast/attack planner (`src/engine/rotation.ts`) and resolved
+chronologically (`timing.method = timed_manual_1v1`):
 
 - Best-found under fixed beam/expansion limits — **not** globally optimal and
   **not** calibrated.
+- Meraki/generated 1v1 stays `modelTrust.class = experimental` even when timed;
+  assumptions disclose default execution timing when kits lack `execution`
+  metadata, and ability CDs are assumed ready at t=0.
 - Equal impact timestamps are simultaneous; both sides' damage applies before
   deaths; a dead fighter's later actions are suppressed.
 - HP regen applies only over elapsed time; omnivamp only from damage actually
@@ -61,6 +64,8 @@ cast/attack planner (`src/engine/rotation.ts`) and resolved chronologically
 - After the first lethal timestamp (either side), resolution stops: no later
   execution, `resolvedSec` / `executedDurationSec` equal `firstLethalSec`
   (requested duration only when nobody dies). Equal-time mutual kills remain.
+- Timed path does **not** pre-truncate with aggregate `estimateSurviveSec`;
+  death coupling is timeline-real via first-lethal.
 - Utility-only effects (slows, shred, DR, …) remain **whole-window** in v1.
 - Planner candidate scores use target-effective (mitigated) damage; emitted
   packets remain raw.
@@ -79,11 +84,16 @@ cast/attack planner (`src/engine/rotation.ts`) and resolved chronologically
 - Unannotated ability execution timing uses conservative defaults (0.15s lock /
   0.1s impact) and emits `timing:default_execution_metadata:<champ>:<slots>` —
   not claimed as precise kit timing.
+- **Short-window engage** stays on the timed path: the engager acts from t=0
+  (the opening skill/auto is on the clock); the locked defender starts after a
+  fixed reaction delay and cannot schedule `engageCc` abilities. Ability logs
+  keep real timestamps (`—:—` is aggregate/NvM only).
 
-Every other matchup — all NvM cells, any generated/unresolved fighter, and
-engage-locked short windows — keeps the prior **aggregate packet-count** path
-(`timing.method = aggregate_window`). Aggregate results are not an executable
-cast sequence.
+Every other matchup — NvM cells and unresolved kits — keeps the prior
+**aggregate packet-count** path (`timing.method = aggregate_window`). Aggregate
+results are not an executable cast sequence. Aggregate/NvM may still use a
+conservative `estimateSurviveSec` DPS prior to shorten the effective window; it
+never bans spell slots by HP%.
 
 `MatchupResult.timing` is optional/backward-safe and JSON-serializable for a
 later UI timeline (start/impact seconds, slot/source, cast index, reset flag,
@@ -95,9 +105,11 @@ requested vs executed/resolved time, method, deterministic caveats).
 
 `npm run test:acceptance` exercises the combat invariants (including the
 1..5 × 1..5 NvM matrix) plus model-trust gates: CORE 1v1 → manual-kit,
-generated 1v1 → experimental, NvM → experimental, `calibrated: false`, and
-deterministic reasons. Timed-manual gates cover Darius AA→W reset sequencing,
-determinism, lethal suppression, mutual equal-time kills, and aggregate NvM
+generated 1v1 → experimental (now timed when kits resolve), NvM →
+experimental + aggregate_window, `calibrated: false`, and deterministic
+reasons. Timed-manual gates cover Darius AA→W reset sequencing,
+determinism, lethal suppression, mutual equal-time kills, Meraki
+Yasuo/LeBlanc Send-like chronological resolution, and aggregate NvM
 fallback.
 
 `npm run eval:xh` passes mathematical xH invariants, including the

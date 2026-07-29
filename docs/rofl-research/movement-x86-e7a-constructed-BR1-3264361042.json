@@ -1,0 +1,629 @@
+{
+  "ok": true,
+  "phase": "B-E7a",
+  "probeVersion": "e7a-constructed-x86-v1",
+  "provenance": "offline_rofl2_025b_research",
+  "e6FabricatedObjectNegatives": {
+    "status": "invalid",
+    "reason": "E6 unicorn_x86_try_deserialize fabricated a zero object with only opcode@+8 and never called stubVa; also vtable recovery could bleed into the next factory stub (wrong Deserialize for opcode 660).",
+    "replacement": "E7a constructed factory→Deserialize drive"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "macos",
+    "arch": "x86_64",
+    "format": "macho64",
+    "sha256": "6c9e39198a9d4812e0ffee3d28616051bd07c773d64ba0481ba027b47fb8b34e",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x100000000",
+    "textSize": 39079936,
+    "segmentCount": 5,
+    "probeVersion": "e7a-constructed-x86-v1",
+    "e6FabricatedObjectNegatives": "invalid",
+    "windowsStatus": "format_support_tested_synthetic_pe"
+  },
+  "primaryOpcode": 660,
+  "primary": {
+    "opcode": 660,
+    "objectSize": 32,
+    "stubVa": "0x1012d960b",
+    "vptr": "0x102647ee0",
+    "deserializeVa": "0x1014894f0",
+    "blockCount": 1721,
+    "timeRange": [
+      144.352,
+      1625.731
+    ],
+    "probeSampleCount": 40,
+    "factoryOkCount": 40,
+    "deserOkCount": 26,
+    "factoryValidation": {
+      "ok": true,
+      "obj": "0x300010000",
+      "vptr": "0x102647ee0",
+      "expectedVptr": "0x102647ee0",
+      "opcode": 660,
+      "expectedOpcode": 660,
+      "error": null,
+      "objectPrefixHex": "e07e6402010000009402000000000000a00b4702010000000000000000000000"
+    },
+    "netIdAtPlus0cTop": [
+      {
+        "netId": "0x4000002b",
+        "count": 14
+      },
+      {
+        "netId": "0x40000079",
+        "count": 12
+      },
+      {
+        "netId": "0x400018d1",
+        "count": 12
+      },
+      {
+        "netId": "0x4e9d0b51",
+        "count": 2
+      }
+    ],
+    "pathSampleCount": 0,
+    "heroPathCount": 0,
+    "decodedAllBlocks": false,
+    "oracleQa": null,
+    "accepted": false,
+    "examples": [
+      {
+        "time": 144.352,
+        "payloadLen": 14,
+        "factoryOk": true,
+        "ok": false,
+        "consumed": 3,
+        "error": "deserialize returned al=0 consumed=3",
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "e07e6402010000009402000079000040a00b47020100000000000000000000000000000000000000",
+        "allocs": [
+          {
+            "ptr": "0x300010000",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      },
+      {
+        "time": 158.392,
+        "payloadLen": 24,
+        "factoryOk": true,
+        "ok": false,
+        "consumed": 3,
+        "error": "deserialize returned al=0 consumed=3",
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "e07e6402010000009402000079000040a00b47020100000000000000000000000000000000000000",
+        "allocs": [
+          {
+            "ptr": "0x300010080",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      },
+      {
+        "time": 196.459,
+        "payloadLen": 24,
+        "factoryOk": true,
+        "ok": true,
+        "consumed": 3,
+        "error": null,
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "e07e64020100000094020000d1180040a00b47020100000000000000000000000000000000000000",
+        "allocs": [
+          {
+            "ptr": "0x300010100",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      },
+      {
+        "time": 222.105,
+        "payloadLen": 14,
+        "factoryOk": true,
+        "ok": false,
+        "consumed": 7,
+        "error": "deserialize returned al=0 consumed=7",
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "e07e64020100000094020000510b9d4ea00b47020100000000000000000000000000000000000000",
+        "allocs": [
+          {
+            "ptr": "0x300010180",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      }
+    ],
+    "semantic": "netid_field_packet_not_pathpacket"
+  },
+  "fallbackOpcode": 556,
+  "fallback": {
+    "opcode": 556,
+    "objectSize": 48,
+    "stubVa": "0x1012d8c4b",
+    "vptr": "0x102644638",
+    "deserializeVa": "0x101445c30",
+    "blockCount": 37151,
+    "timeRange": [
+      0.167,
+      1625.497
+    ],
+    "probeSampleCount": 40,
+    "factoryOkCount": 40,
+    "deserOkCount": 36,
+    "factoryValidation": {
+      "ok": true,
+      "obj": "0x300010000",
+      "vptr": "0x102644638",
+      "expectedVptr": "0x102644638",
+      "opcode": 556,
+      "expectedOpcode": 556,
+      "error": null,
+      "objectPrefixHex": "38466402010000002c02000000000000ffff00000000000000000000000000000000000000000000"
+    },
+    "netIdAtPlus0cTop": [
+      {
+        "netId": "0x40000023",
+        "count": 3
+      },
+      {
+        "netId": "0x40000076",
+        "count": 2
+      },
+      {
+        "netId": "0x40000059",
+        "count": 2
+      },
+      {
+        "netId": "0x4e137691",
+        "count": 1
+      },
+      {
+        "netId": "0x7e2effe6",
+        "count": 1
+      },
+      {
+        "netId": "0x4809c906",
+        "count": 1
+      },
+      {
+        "netId": "0x400012fb",
+        "count": 1
+      },
+      {
+        "netId": "0x400012ec",
+        "count": 1
+      }
+    ],
+    "pathSampleCount": 0,
+    "heroPathCount": 0,
+    "decodedAllBlocks": false,
+    "oracleQa": null,
+    "accepted": false,
+    "examples": [
+      {
+        "time": 0.167,
+        "payloadLen": 352,
+        "factoryOk": true,
+        "ok": true,
+        "consumed": 5,
+        "error": null,
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "38466402010000002c0200009176134e00000000000000000000000000000000000000000000000047c9c9c900000000",
+        "allocs": [
+          {
+            "ptr": "0x300010000",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      },
+      {
+        "time": 63.305,
+        "payloadLen": 118,
+        "factoryOk": true,
+        "ok": true,
+        "consumed": 11,
+        "error": null,
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "38466402010000002c020000e6ff2e7efc9c0000000000000000000000000000000000000000000020c9c9c900000000",
+        "allocs": [
+          {
+            "ptr": "0x300010080",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      },
+      {
+        "time": 100.894,
+        "payloadLen": 166,
+        "factoryOk": true,
+        "ok": true,
+        "consumed": 6,
+        "error": null,
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "38466402010000002c02000006c90948fdff000000000000000000000000000000000000000000007070707000000000",
+        "allocs": [
+          {
+            "ptr": "0x300010100",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      },
+      {
+        "time": 139.005,
+        "payloadLen": 23,
+        "factoryOk": true,
+        "ok": true,
+        "consumed": 2,
+        "error": null,
+        "failurePc": null,
+        "pathHits": [],
+        "buffers": [],
+        "objectAfterHex": "38466402010000002c02000076000040fdff000000000000000000000000000000000000000000007070707000000000",
+        "allocs": [
+          {
+            "ptr": "0x300010180",
+            "size": 64,
+            "kind": "operator_new"
+          }
+        ]
+      }
+    ],
+    "semantic": "no_pathpacket_after_constructed_deserialize"
+  },
+  "winner": null,
+  "winnerFound": false,
+  "pureBrowserDecoderDerived": false,
+  "browserSafe": false,
+  "productEligible": false,
+  "windowsFormatSupport": "tested_via_synthetic_pe_fixtures",
+  "windowsRealBinaryValidated": false,
+  "endToEndWallMs": 21547.429,
+  "keep": "discard",
+  "reason": "E7a: constructed drive on 660 semantic=netid_field_packet_not_pathpacket; fallback 556 semantic=no_pathpacket_after_constructed_deserialize",
+  "nextSingleVariableHypothesis": "E7b: deepen alloc/copy hooks on constructed 660/556 or Windows PE",
+  "speedRun": {
+    "runId": "speed-44c9323a1d7f",
+    "ts": "2026-07-22T19:08:03.395028Z",
+    "matchCode": "3264361042",
+    "backend": "offline-025b",
+    "hypothesis": "E7a: properly constructed x86 factory object then Deserialize",
+    "diffLabel": "phase-b-e7a-constructed",
+    "wallMs": 21547.429,
+    "keep": "discard",
+    "reason": "E7a: constructed drive on 660 semantic=netid_field_packet_not_pathpacket; fallback 556 semantic=no_pathpacket_after_constructed_deserialize",
+    "productEligible": false,
+    "decoderVersion": "offline-025b-v1",
+    "provenance": "offline_rofl2_025b_research",
+    "phase": "B-E7a",
+    "winnerFound": false,
+    "winner": null,
+    "primary": {
+      "opcode": 660,
+      "objectSize": 32,
+      "stubVa": "0x1012d960b",
+      "vptr": "0x102647ee0",
+      "deserializeVa": "0x1014894f0",
+      "blockCount": 1721,
+      "timeRange": [
+        144.352,
+        1625.731
+      ],
+      "probeSampleCount": 40,
+      "factoryOkCount": 40,
+      "deserOkCount": 26,
+      "factoryValidation": {
+        "ok": true,
+        "obj": "0x300010000",
+        "vptr": "0x102647ee0",
+        "expectedVptr": "0x102647ee0",
+        "opcode": 660,
+        "expectedOpcode": 660,
+        "error": null,
+        "objectPrefixHex": "e07e6402010000009402000000000000a00b4702010000000000000000000000"
+      },
+      "netIdAtPlus0cTop": [
+        {
+          "netId": "0x4000002b",
+          "count": 14
+        },
+        {
+          "netId": "0x40000079",
+          "count": 12
+        },
+        {
+          "netId": "0x400018d1",
+          "count": 12
+        },
+        {
+          "netId": "0x4e9d0b51",
+          "count": 2
+        }
+      ],
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "decodedAllBlocks": false,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": [
+        {
+          "time": 144.352,
+          "payloadLen": 14,
+          "factoryOk": true,
+          "ok": false,
+          "consumed": 3,
+          "error": "deserialize returned al=0 consumed=3",
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "e07e6402010000009402000079000040a00b47020100000000000000000000000000000000000000",
+          "allocs": [
+            {
+              "ptr": "0x300010000",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        },
+        {
+          "time": 158.392,
+          "payloadLen": 24,
+          "factoryOk": true,
+          "ok": false,
+          "consumed": 3,
+          "error": "deserialize returned al=0 consumed=3",
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "e07e6402010000009402000079000040a00b47020100000000000000000000000000000000000000",
+          "allocs": [
+            {
+              "ptr": "0x300010080",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        },
+        {
+          "time": 196.459,
+          "payloadLen": 24,
+          "factoryOk": true,
+          "ok": true,
+          "consumed": 3,
+          "error": null,
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "e07e64020100000094020000d1180040a00b47020100000000000000000000000000000000000000",
+          "allocs": [
+            {
+              "ptr": "0x300010100",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        },
+        {
+          "time": 222.105,
+          "payloadLen": 14,
+          "factoryOk": true,
+          "ok": false,
+          "consumed": 7,
+          "error": "deserialize returned al=0 consumed=7",
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "e07e64020100000094020000510b9d4ea00b47020100000000000000000000000000000000000000",
+          "allocs": [
+            {
+              "ptr": "0x300010180",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        }
+      ],
+      "semantic": "netid_field_packet_not_pathpacket"
+    },
+    "fallback": {
+      "opcode": 556,
+      "objectSize": 48,
+      "stubVa": "0x1012d8c4b",
+      "vptr": "0x102644638",
+      "deserializeVa": "0x101445c30",
+      "blockCount": 37151,
+      "timeRange": [
+        0.167,
+        1625.497
+      ],
+      "probeSampleCount": 40,
+      "factoryOkCount": 40,
+      "deserOkCount": 36,
+      "factoryValidation": {
+        "ok": true,
+        "obj": "0x300010000",
+        "vptr": "0x102644638",
+        "expectedVptr": "0x102644638",
+        "opcode": 556,
+        "expectedOpcode": 556,
+        "error": null,
+        "objectPrefixHex": "38466402010000002c02000000000000ffff00000000000000000000000000000000000000000000"
+      },
+      "netIdAtPlus0cTop": [
+        {
+          "netId": "0x40000023",
+          "count": 3
+        },
+        {
+          "netId": "0x40000076",
+          "count": 2
+        },
+        {
+          "netId": "0x40000059",
+          "count": 2
+        },
+        {
+          "netId": "0x4e137691",
+          "count": 1
+        },
+        {
+          "netId": "0x7e2effe6",
+          "count": 1
+        },
+        {
+          "netId": "0x4809c906",
+          "count": 1
+        },
+        {
+          "netId": "0x400012fb",
+          "count": 1
+        },
+        {
+          "netId": "0x400012ec",
+          "count": 1
+        }
+      ],
+      "pathSampleCount": 0,
+      "heroPathCount": 0,
+      "decodedAllBlocks": false,
+      "oracleQa": null,
+      "accepted": false,
+      "examples": [
+        {
+          "time": 0.167,
+          "payloadLen": 352,
+          "factoryOk": true,
+          "ok": true,
+          "consumed": 5,
+          "error": null,
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "38466402010000002c0200009176134e00000000000000000000000000000000000000000000000047c9c9c900000000",
+          "allocs": [
+            {
+              "ptr": "0x300010000",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        },
+        {
+          "time": 63.305,
+          "payloadLen": 118,
+          "factoryOk": true,
+          "ok": true,
+          "consumed": 11,
+          "error": null,
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "38466402010000002c020000e6ff2e7efc9c0000000000000000000000000000000000000000000020c9c9c900000000",
+          "allocs": [
+            {
+              "ptr": "0x300010080",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        },
+        {
+          "time": 100.894,
+          "payloadLen": 166,
+          "factoryOk": true,
+          "ok": true,
+          "consumed": 6,
+          "error": null,
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "38466402010000002c02000006c90948fdff000000000000000000000000000000000000000000007070707000000000",
+          "allocs": [
+            {
+              "ptr": "0x300010100",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        },
+        {
+          "time": 139.005,
+          "payloadLen": 23,
+          "factoryOk": true,
+          "ok": true,
+          "consumed": 2,
+          "error": null,
+          "failurePc": null,
+          "pathHits": [],
+          "buffers": [],
+          "objectAfterHex": "38466402010000002c02000076000040fdff000000000000000000000000000000000000000000007070707000000000",
+          "allocs": [
+            {
+              "ptr": "0x300010180",
+              "size": 64,
+              "kind": "operator_new"
+            }
+          ]
+        }
+      ],
+      "semantic": "no_pathpacket_after_constructed_deserialize"
+    },
+    "e6FabricatedObjectNegatives": {
+      "status": "invalid",
+      "reason": "E6 unicorn_x86_try_deserialize fabricated a zero object with only opcode@+8 and never called stubVa; also vtable recovery could bleed into the next factory stub (wrong Deserialize for opcode 660).",
+      "replacement": "E7a constructed factory→Deserialize drive"
+    },
+    "constructorCoverage": null,
+    "structuralBlocker": null,
+    "binaryManifest": {
+      "kind": "league_packet_discovery_binary",
+      "patch": "16.14",
+      "platform": "macos",
+      "arch": "x86_64",
+      "format": "macho64",
+      "sha256": "6c9e39198a9d4812e0ffee3d28616051bd07c773d64ba0481ba027b47fb8b34e",
+      "pathNote": "local derivation only; never commit Riot binaries",
+      "derivationStatus": "derived_offline",
+      "textVa": "0x100000000",
+      "textSize": 39079936,
+      "segmentCount": 5,
+      "probeVersion": "e7a-constructed-x86-v1",
+      "e6FabricatedObjectNegatives": "invalid",
+      "windowsStatus": "format_support_tested_synthetic_pe"
+    },
+    "pureBrowserDecoderDerived": false,
+    "browserSafe": false,
+    "windowsFormatSupport": "tested_via_synthetic_pe_fixtures",
+    "windowsRealBinaryValidated": false,
+    "endToEndWallMs": 21547.429,
+    "nextSingleVariableHypothesis": "E7b: deepen alloc/copy hooks on constructed 660/556 or Windows PE",
+    "statsUpdateCount": 0,
+    "source": "offline_e7a_constructed_x86",
+    "researchKeep": "discard"
+  }
+}

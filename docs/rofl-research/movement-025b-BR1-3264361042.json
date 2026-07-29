@@ -1,0 +1,139 @@
+{
+  "matchCode": "3264361042",
+  "rofl": "/Users/river/Documents/League of Legends/Replays/BR1-3264361042.rofl",
+  "phase": "B-E0-E1",
+  "decoderVersion": "offline-025b-v1",
+  "provenance": "offline_rofl2_025b_research",
+  "attribution": {
+    "publicResearch": "quomark/ai-lol-coach PROGRESS.md (2026) identifies movement as 0x025B; schema/cipher recipes used as protocol facts only; no source vendored (repo has no license)",
+    "lut": "sha256 328528d693ab5d96a815b6706694025a980e609019304aeb2e5e32797011c04b from local League binary offset 0x231e0d0 (matches public macos_lut.bin bytes)"
+  },
+  "result": "discard",
+  "worksOnThisMatch": false,
+  "failureSignature": {
+    "movement025bCount": 0,
+    "framing": "extract_blocks_py channel/u16 packet id",
+    "decodedCount": 0,
+    "nextHypothesis": "Confirm UsePacket/factory wire id for movement on 16.14.794.5912; channel may be remapped vs public 0x025B. Do not treat cross-channel schema-shaped false positives as success."
+  },
+  "e0_60s": {
+    "packetCount": 16093,
+    "payloadBytes": 291311,
+    "movement025bCount": 0,
+    "timingMs": {
+      "roflRead": 5.134,
+      "zstdInflate": 61.831,
+      "blockWalk": 3142.572,
+      "wall": 3209.537
+    },
+    "channelHistogramTop": [
+      {
+        "channel": 491,
+        "count": 3660
+      },
+      {
+        "channel": 246,
+        "count": 2688
+      },
+      {
+        "channel": 53,
+        "count": 1086
+      },
+      {
+        "channel": 556,
+        "count": 853
+      },
+      {
+        "channel": 532,
+        "count": 625
+      },
+      {
+        "channel": 259,
+        "count": 525
+      },
+      {
+        "channel": 420,
+        "count": 406
+      },
+      {
+        "channel": 130,
+        "count": 398
+      },
+      {
+        "channel": 774,
+        "count": 272
+      },
+      {
+        "channel": 107,
+        "count": 240
+      }
+    ]
+  },
+  "e0_full": {
+    "packetCount": 1468025,
+    "payloadBytes": 24932459,
+    "movement025bCount": 0,
+    "timingMs": {
+      "roflRead": 4.904,
+      "zstdInflate": 57.744,
+      "blockWalk": 3989.368,
+      "wall": 4052.015
+    },
+    "channelHistogramTop": [
+      {
+        "channel": 53,
+        "count": 505053
+      },
+      {
+        "channel": 491,
+        "count": 102480
+      },
+      {
+        "channel": 246,
+        "count": 72912
+      },
+      {
+        "channel": 632,
+        "count": 56622
+      },
+      {
+        "channel": 532,
+        "count": 54250
+      },
+      {
+        "channel": 788,
+        "count": 48956
+      },
+      {
+        "channel": 556,
+        "count": 37179
+      },
+      {
+        "channel": 72,
+        "count": 33515
+      },
+      {
+        "channel": 921,
+        "count": 27346
+      },
+      {
+        "channel": 172,
+        "count": 19101
+      }
+    ]
+  },
+  "e1_60s": {
+    "decodedCount": 0,
+    "endToEndWallMs": 3026.148,
+    "oracleAssignment": {
+      "label": "research_only_not_product",
+      "assignmentCount": 0,
+      "productEligible": false
+    }
+  },
+  "e1_full": {
+    "decodedCount": 0,
+    "endToEndWallMs": 2885.051
+  },
+  "productEligible": false
+}

@@ -1,7 +1,7 @@
 {
   "manifestVersion": 4,
   "createdAt": "2026-07-22T14:54:28.830649Z",
-  "updatedAt": "2026-07-22T16:15:41.823722Z",
+  "updatedAt": "2026-07-23T17:22:54.505976Z",
   "match": {
     "platformId": "BR1",
     "matchCode": "3264361042",
@@ -820,9 +820,9 @@
   "sourceCoverage": {
     "positions": "full_at_sampled_frames",
     "levelItemsAlive": "full_at_sampled_frames",
-    "hp": "none",
-    "combatStats": "none",
-    "abilityRanks": "none",
+    "hp": "partial",
+    "combatStats": "partial_at_sampled_frames",
+    "abilityRanks": "full_at_sampled_frames",
     "careerHistory": "kda_total_cs_vision_at_sampled_frames",
     "careerHistoryFields": {
       "kills": {
@@ -851,7 +851,9 @@
       "gold",
       "objectives",
       "jungleCreepScore"
-    ]
+    ],
+    "combat": "partial",
+    "ranks": "full_at_sampled_frames"
   },
   "artifacts": {
     "manifest": {
@@ -890,6 +892,12 @@
       "path": "validation.json",
       "format": "rofl-product-validation",
       "version": 1
+    },
+    "hpEvidence": {
+      "path": "hp-evidence.json"
+    },
+    "hpEvents": {
+      "path": "events.hp-trusted.rfc461.jsonl"
     }
   },
   "phase": {
@@ -907,19 +915,9 @@
     "ok": true,
     "path": "validation.json",
     "calculatorReady": false,
-    "hpTrusted": false,
-    "hpCoverage": "none",
-    "motionAudit": {
-      "version": "motion-audit-v1",
-      "segmentCount": 15650,
-      "discontinuityCount": 521,
-      "deathRespawnCount": 88,
-      "recallTeleportCount": 0,
-      "unexplainedCount": 433,
-      "maxDisplacementMapUnits": 17384.7,
-      "maxContinuousSpeedUnitsPerSec": 1500.0,
-      "distanceSlackMapUnits": 350.0
-    }
+    "hpTrusted": true,
+    "hpCoverage": "partial",
+    "motionAudit": {}
   },
   "productGates": {
     "rosterCount": true,
@@ -928,7 +926,7 @@
     "activeReplayIdentityVerified": true,
     "captureComplete": true,
     "productValidated": true,
-    "hpTrusted": false,
+    "hpTrusted": true,
     "calculatorReady": false
   },
   "activeReplayPreflight": {
@@ -952,10 +950,47 @@
     "maxContinuousSpeedUnitsPerSec": 1500.0,
     "distanceSlackMapUnits": 350.0
   },
-  "trustedHp": null,
+  "trustedHp": {
+    "ok": true,
+    "schema": "rofl-trusted-hp-v1",
+    "evidence": "hp-evidence.json",
+    "events": "events.hp-trusted.rfc461.jsonl",
+    "evidenceSha256": "4b9275538cee02f84ef25abe443046b09182418cca2e39620020af074870dffd",
+    "healthSource": "rofl2_replication_decrypt_timed_identity_bound",
+    "coverage": "partial",
+    "sampleCount": 1548,
+    "sampleTimesUsed": 1548,
+    "fusedFrames": 1548,
+    "unmatchedFrames": 18,
+    "timeToleranceMs": 500,
+    "identityBinding": "stable_identity_to_net_id",
+    "rosterHash": "539e0fe6c427710eaf975ad73ef4f522d7ed130310bdfbd7edac054a6d2ba0fc",
+    "combatStatsKnown": false,
+    "abilityRanksKnown": false,
+    "hpDensified": true,
+    "note": "Carry-forward densify of explicit type-107 HP onto Replay API frames after firstAll10; 18 early frames lack MonkeyKing mMaxHP"
+  },
   "publication": {
     "directory": "public/data/matches/3264361042",
     "timeline": "timeline.json",
     "manifest": "manifest.json"
-  }
+  },
+  "trustedAbilityRanks": {
+    "ok": true,
+    "schema": "rofl-upgrade-spell-ranks-v0",
+    "evidence": "ranks-evidence.json",
+    "events": "events.ranks-trusted.rfc461.jsonl",
+    "abilityRanksTrusted": true,
+    "identityBinding": "stable_identity_to_net_id"
+  },
+  "trustedCombat": {
+    "ok": true,
+    "schema": "rofl-combat-wire-proof-v1",
+    "evidence": "docs/rofl-research/combat-wire-proof-BR1-3264361042.json",
+    "events": "events.combat-trusted.rfc461.jsonl",
+    "combatTrusted": true,
+    "identityBinding": "stable_identity_to_net_id",
+    "framesPartialCombat": 113
+  },
+  "buildEvents": "events.combat-trusted.rfc461.jsonl"
 }

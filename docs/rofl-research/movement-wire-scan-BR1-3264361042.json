@@ -1,0 +1,810 @@
+{
+  "matchCode": "3264361042",
+  "phase": "B-E2",
+  "mode": "scan-wire-ids",
+  "provenance": "offline_rofl2_025b_research",
+  "productEligible": false,
+  "publicPacketId": 603,
+  "winnerFound": false,
+  "winner": null,
+  "keep": "discard",
+  "reason": "E2 no wire-id remap winner; schema hits failed oracle/stability gates",
+  "endToEndWallMs": 37788.979,
+  "channelsScanned": 217,
+  "walk": {
+    "gameVersion": null,
+    "totalBlocks": 1155661,
+    "channelCount": 217,
+    "timingMs": {
+      "roflRead": 10.867,
+      "zstdInflate": 61.419,
+      "blockWalk": 6018.607,
+      "wall": 6090.893
+    }
+  },
+  "acceptanceThresholds": {
+    "minStableEntities": 5,
+    "minComparedSamples": 80,
+    "maxMedianError": 120.0,
+    "maxP95Error": 350.0,
+    "maxMaxError": 800.0,
+    "minSuccessRatio": 0.12,
+    "minFullConsumeRatio": 0.1,
+    "minCoordPlausibleRatio": 0.55,
+    "minCoordSpan": 400.0,
+    "minUniqueNetIds": 5,
+    "minChannelCount": 8000,
+    "minTimeCoverageS": 20.0,
+    "oracleToleranceS": 0.5,
+    "note": "schema-shaped decode alone never accepts"
+  },
+  "nextSingleVariableHypothesis": "E3: confirm movement encoding change (not just wire id) \u2014 legacy 0x61 multi-waypoint group or alternate cipher/schema on 16.14",
+  "unicornFactory": {
+    "ok": true,
+    "error": null,
+    "results": [
+      {
+        "channel": 290,
+        "packet": true,
+        "storedType": 290,
+        "vtable": "0x102374900",
+        "deserialize": "0x10128dac4",
+        "callError": null
+      },
+      {
+        "channel": 556,
+        "packet": true,
+        "storedType": 556,
+        "vtable": "0x102377478",
+        "deserialize": "0x1012edd70",
+        "callError": null
+      },
+      {
+        "channel": 173,
+        "packet": true,
+        "storedType": 173,
+        "vtable": "0x1023774c0",
+        "deserialize": "0x1012ee354",
+        "callError": null
+      },
+      {
+        "channel": 197,
+        "packet": true,
+        "storedType": 197,
+        "vtable": "0x10237f890",
+        "deserialize": "0x10149e608",
+        "callError": null
+      },
+      {
+        "channel": 778,
+        "packet": true,
+        "storedType": 778,
+        "vtable": "0x102374e20",
+        "deserialize": "0x1012d2c74",
+        "callError": null
+      },
+      {
+        "channel": 217,
+        "packet": true,
+        "storedType": 217,
+        "vtable": "0x10236eb38",
+        "deserialize": "0x1011918d8",
+        "callError": null
+      },
+      {
+        "channel": 564,
+        "packet": true,
+        "storedType": 564,
+        "vtable": "0x1023734f0",
+        "deserialize": "0x1012769bc",
+        "callError": null
+      },
+      {
+        "channel": 343,
+        "packet": true,
+        "storedType": 343,
+        "vtable": "0x10236eaa8",
+        "deserialize": "0x101190cac",
+        "callError": null
+      }
+    ],
+    "note": "optional; offline ranking proceeds regardless"
+  },
+  "shortlistDeep": [
+    {
+      "channel": 290,
+      "channelHex": "0x122",
+      "count": 10616,
+      "score": 42.817,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.9649,
+      "fullConsumeRatio": 0.9214,
+      "uniqueNetIds": 602,
+      "coordSpan": 16382.0,
+      "timeCoverageS": 1625.196,
+      "oracle": {
+        "assignmentCount": 7,
+        "comparedSamples": 7,
+        "medianError": 461.001,
+        "p95Error": 1861.349,
+        "maxError": 1951.98
+      },
+      "falsePositiveReasons": [
+        "insufficient_oracle_comparisons:7",
+        "median_error_high:461.001",
+        "p95_error_high:1861.349",
+        "max_error_high:1951.98",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 10616,
+        "success": 10243,
+        "fullConsume": 9782,
+        "successRatio": 0.9648643556895252,
+        "fullConsumeRatio": 0.9214393368500376,
+        "uniqueNetIds": 602,
+        "coordSpan": 16382,
+        "collected": 10616,
+        "samplesPerSec": 18170.351764967792
+      }
+    },
+    {
+      "channel": 556,
+      "channelHex": "0x22c",
+      "count": 37151,
+      "score": 37.129,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.6244,
+      "fullConsumeRatio": 0.4269,
+      "uniqueNetIds": 759,
+      "coordSpan": 16130.0,
+      "timeCoverageS": 1625.33,
+      "oracle": {
+        "assignmentCount": 8,
+        "comparedSamples": 8,
+        "medianError": 538.248,
+        "p95Error": 1772.648,
+        "maxError": 1821.14
+      },
+      "falsePositiveReasons": [
+        "insufficient_oracle_comparisons:8",
+        "median_error_high:538.248",
+        "p95_error_high:1772.648",
+        "max_error_high:1821.14",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 12000,
+        "success": 7493,
+        "fullConsume": 5123,
+        "successRatio": 0.6244166666666666,
+        "fullConsumeRatio": 0.42691666666666667,
+        "uniqueNetIds": 759,
+        "coordSpan": 16130,
+        "collected": 12000,
+        "samplesPerSec": 18690.537078423724
+      }
+    },
+    {
+      "channel": 173,
+      "channelHex": "0xad",
+      "count": 2664,
+      "score": 32.313,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.6096,
+      "fullConsumeRatio": 0.6096,
+      "uniqueNetIds": 399,
+      "coordSpan": 14854.0,
+      "timeCoverageS": 1570.357,
+      "oracle": {
+        "assignmentCount": 6,
+        "comparedSamples": 6,
+        "medianError": 511.941,
+        "p95Error": 1509.148,
+        "maxError": 1829.941
+      },
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:2664",
+        "insufficient_oracle_comparisons:6",
+        "median_error_high:511.941",
+        "p95_error_high:1509.148",
+        "max_error_high:1829.941",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 2664,
+        "success": 1624,
+        "fullConsume": 1624,
+        "successRatio": 0.6096096096096096,
+        "fullConsumeRatio": 0.6096096096096096,
+        "uniqueNetIds": 399,
+        "coordSpan": 14854,
+        "collected": 2664,
+        "samplesPerSec": 12346.737546085718
+      }
+    },
+    {
+      "channel": 197,
+      "channelHex": "0xc5",
+      "count": 4442,
+      "score": 31.241,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.5441,
+      "fullConsumeRatio": 0.5441,
+      "uniqueNetIds": 168,
+      "coordSpan": 15728.0,
+      "timeCoverageS": 1588.495,
+      "oracle": {
+        "assignmentCount": 6,
+        "comparedSamples": 6,
+        "medianError": 535.692,
+        "p95Error": 886.073,
+        "maxError": 994.181
+      },
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:4442",
+        "insufficient_oracle_comparisons:6",
+        "median_error_high:535.692",
+        "p95_error_high:886.073",
+        "max_error_high:994.181",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 4442,
+        "success": 2417,
+        "fullConsume": 2417,
+        "successRatio": 0.5441242683475912,
+        "fullConsumeRatio": 0.5441242683475912,
+        "uniqueNetIds": 168,
+        "coordSpan": 15728,
+        "collected": 4442,
+        "samplesPerSec": 23322.885534701236
+      }
+    },
+    {
+      "channel": 778,
+      "channelHex": "0x30a",
+      "count": 163,
+      "score": 30.65,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.8589,
+      "fullConsumeRatio": 0.8589,
+      "uniqueNetIds": 31,
+      "coordSpan": 14227.0,
+      "timeCoverageS": 1572.028,
+      "oracle": {
+        "assignmentCount": 3,
+        "comparedSamples": 6,
+        "medianError": 579.415,
+        "p95Error": 8470.74,
+        "maxError": 11092.571
+      },
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:163",
+        "unstable_entities:3",
+        "insufficient_oracle_comparisons:6",
+        "median_error_high:579.415",
+        "p95_error_high:8470.74",
+        "max_error_high:11092.571",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 163,
+        "success": 140,
+        "fullConsume": 140,
+        "successRatio": 0.8588957055214724,
+        "fullConsumeRatio": 0.8588957055214724,
+        "uniqueNetIds": 31,
+        "coordSpan": 14227,
+        "collected": 163,
+        "samplesPerSec": 25562.448355621633
+      }
+    },
+    {
+      "channel": 217,
+      "channelHex": "0xd9",
+      "count": 87,
+      "score": 28.443,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.5517,
+      "fullConsumeRatio": 0.4713,
+      "uniqueNetIds": 29,
+      "coordSpan": 16268.0,
+      "timeCoverageS": 1483.283,
+      "oracle": {
+        "assignmentCount": 5,
+        "comparedSamples": 5,
+        "medianError": 566.075,
+        "p95Error": 579.471,
+        "maxError": 582.458
+      },
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:87",
+        "insufficient_oracle_comparisons:5",
+        "median_error_high:566.075",
+        "p95_error_high:579.471",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 87,
+        "success": 48,
+        "fullConsume": 41,
+        "successRatio": 0.5517241379310345,
+        "fullConsumeRatio": 0.47126436781609193,
+        "uniqueNetIds": 29,
+        "coordSpan": 16268,
+        "collected": 87,
+        "samplesPerSec": 14876.774140805397
+      }
+    },
+    {
+      "channel": 564,
+      "channelHex": "0x234",
+      "count": 3224,
+      "score": 27.915,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 0.6067,
+      "fullConsumeRatio": 0.2981,
+      "uniqueNetIds": 72,
+      "coordSpan": 15333.0,
+      "timeCoverageS": 1593.64,
+      "oracle": {
+        "assignmentCount": 5,
+        "comparedSamples": 9,
+        "medianError": 565.199,
+        "p95Error": 12458.625,
+        "maxError": 13948.765
+      },
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.478",
+        "channel_count_below_movement_scale:3224",
+        "insufficient_oracle_comparisons:9",
+        "median_error_high:565.199",
+        "p95_error_high:12458.625",
+        "max_error_high:13948.765",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 3224,
+        "success": 1956,
+        "fullConsume": 961,
+        "successRatio": 0.6066997518610422,
+        "fullConsumeRatio": 0.2980769230769231,
+        "uniqueNetIds": 72,
+        "coordSpan": 15333,
+        "collected": 3224,
+        "samplesPerSec": 17886.988519649403
+      }
+    },
+    {
+      "channel": 343,
+      "channelHex": "0x157",
+      "count": 13,
+      "score": 26.148,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 1.0,
+      "fullConsumeRatio": 0.5385,
+      "uniqueNetIds": 7,
+      "coordSpan": 9802.0,
+      "timeCoverageS": 892.954,
+      "oracle": {
+        "assignmentCount": 3,
+        "comparedSamples": 3,
+        "medianError": 603.839,
+        "p95Error": 649.96,
+        "maxError": 655.085
+      },
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.538",
+        "channel_count_below_movement_scale:13",
+        "unstable_entities:3",
+        "insufficient_oracle_comparisons:3",
+        "median_error_high:603.839",
+        "p95_error_high:649.96",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 13,
+        "success": 13,
+        "fullConsume": 7,
+        "successRatio": 1.0,
+        "fullConsumeRatio": 0.5384615384615384,
+        "uniqueNetIds": 7,
+        "coordSpan": 9802,
+        "collected": 13,
+        "samplesPerSec": 10632.494374998063
+      }
+    },
+    {
+      "channel": 101,
+      "channelHex": "0x65",
+      "count": 17,
+      "score": 23.076,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": true,
+      "successRatio": 1.0,
+      "fullConsumeRatio": 0.4706,
+      "uniqueNetIds": 5,
+      "coordSpan": 15132.0,
+      "timeCoverageS": 906.93,
+      "oracle": {
+        "assignmentCount": 2,
+        "comparedSamples": 2,
+        "medianError": 1140.813,
+        "p95Error": 1635.96,
+        "maxError": 1690.976
+      },
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.353",
+        "channel_count_below_movement_scale:17",
+        "unstable_entities:2",
+        "insufficient_oracle_comparisons:2",
+        "median_error_high:1140.813",
+        "p95_error_high:1635.96",
+        "max_error_high:1690.976",
+        "schema_shaped_but_oracle_failed"
+      ],
+      "deep": {
+        "attempted": 17,
+        "success": 17,
+        "fullConsume": 8,
+        "successRatio": 1.0,
+        "fullConsumeRatio": 0.47058823529411764,
+        "uniqueNetIds": 5,
+        "coordSpan": 15132,
+        "collected": 17,
+        "samplesPerSec": 7991.22657336421
+      }
+    },
+    {
+      "channel": 232,
+      "channelHex": "0xe8",
+      "count": 19,
+      "score": 21.106,
+      "accepted": false,
+      "oraclePass": false,
+      "schemaOk": false,
+      "successRatio": 0.8947,
+      "fullConsumeRatio": 0.8947,
+      "uniqueNetIds": 4,
+      "coordSpan": 15202.0,
+      "timeCoverageS": 1458.917,
+      "oracle": {
+        "assignmentCount": 0,
+        "comparedSamples": 0,
+        "medianError": null,
+        "p95Error": null,
+        "maxError": null
+      },
+      "falsePositiveReasons": [
+        "few_unique_net_ids:4",
+        "channel_count_below_movement_scale:19",
+        "unstable_entities:0",
+        "insufficient_oracle_comparisons:0",
+        "median_error_high:None",
+        "p95_error_high:None",
+        "max_error_high:None"
+      ],
+      "deep": {
+        "attempted": 19,
+        "success": 17,
+        "fullConsume": 17,
+        "successRatio": 0.8947368421052632,
+        "fullConsumeRatio": 0.8947368421052632,
+        "uniqueNetIds": 4,
+        "coordSpan": 15202,
+        "collected": 19,
+        "samplesPerSec": 19574.169102334574
+      }
+    }
+  ],
+  "allChannelsCompactTop20": [
+    {
+      "channel": 290,
+      "channelHex": "0x122",
+      "count": 10616,
+      "successRatio": 0.9567,
+      "fullConsumeRatio": 0.9167,
+      "uniqueNetIds": 119,
+      "coordSpan": 16381.0,
+      "score": 26.537,
+      "falsePositiveReasons": [
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 778,
+      "channelHex": "0x30a",
+      "count": 163,
+      "successRatio": 0.8589,
+      "fullConsumeRatio": 0.8589,
+      "uniqueNetIds": 31,
+      "coordSpan": 14227.0,
+      "score": 24.47,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:163",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 232,
+      "channelHex": "0xe8",
+      "count": 19,
+      "successRatio": 0.8947,
+      "fullConsumeRatio": 0.8947,
+      "uniqueNetIds": 4,
+      "coordSpan": 15202.0,
+      "score": 21.106,
+      "falsePositiveReasons": [
+        "few_unique_net_ids:4",
+        "channel_count_below_movement_scale:19"
+      ]
+    },
+    {
+      "channel": 556,
+      "channelHex": "0x22c",
+      "count": 37151,
+      "successRatio": 0.5967,
+      "fullConsumeRatio": 0.41,
+      "uniqueNetIds": 73,
+      "coordSpan": 9397.0,
+      "score": 20.476,
+      "falsePositiveReasons": [
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 343,
+      "channelHex": "0x157",
+      "count": 13,
+      "successRatio": 1.0,
+      "fullConsumeRatio": 0.5385,
+      "uniqueNetIds": 7,
+      "coordSpan": 9802.0,
+      "score": 20.058,
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.538",
+        "channel_count_below_movement_scale:13",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 173,
+      "channelHex": "0xad",
+      "count": 2664,
+      "successRatio": 0.6033,
+      "fullConsumeRatio": 0.6033,
+      "uniqueNetIds": 95,
+      "coordSpan": 9464.0,
+      "score": 20.02,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:2664",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 101,
+      "channelHex": "0x65",
+      "count": 17,
+      "successRatio": 1.0,
+      "fullConsumeRatio": 0.4706,
+      "uniqueNetIds": 5,
+      "coordSpan": 15132.0,
+      "score": 19.016,
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.353",
+        "channel_count_below_movement_scale:17",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 197,
+      "channelHex": "0xc5",
+      "count": 4442,
+      "successRatio": 0.5267,
+      "fullConsumeRatio": 0.5267,
+      "uniqueNetIds": 44,
+      "coordSpan": 15657.0,
+      "score": 18.747,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:4442",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 217,
+      "channelHex": "0xd9",
+      "count": 87,
+      "successRatio": 0.5517,
+      "fullConsumeRatio": 0.4713,
+      "uniqueNetIds": 29,
+      "coordSpan": 16268.0,
+      "score": 18.293,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:87",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 564,
+      "channelHex": "0x234",
+      "count": 3224,
+      "successRatio": 0.61,
+      "fullConsumeRatio": 0.3067,
+      "uniqueNetIds": 35,
+      "coordSpan": 15331.0,
+      "score": 17.747,
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.481",
+        "channel_count_below_movement_scale:3224",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 415,
+      "channelHex": "0x19f",
+      "count": 53,
+      "successRatio": 0.5094,
+      "fullConsumeRatio": 0.5094,
+      "uniqueNetIds": 18,
+      "coordSpan": 14551.0,
+      "score": 17.673,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:53",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 921,
+      "channelHex": "0x399",
+      "count": 10554,
+      "successRatio": 0.4467,
+      "fullConsumeRatio": 0.3,
+      "uniqueNetIds": 40,
+      "coordSpan": 16206.0,
+      "score": 16.5,
+      "falsePositiveReasons": [
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 1133,
+      "channelHex": "0x46d",
+      "count": 11204,
+      "successRatio": 0.46,
+      "fullConsumeRatio": 0.2133,
+      "uniqueNetIds": 55,
+      "coordSpan": 14171.0,
+      "score": 15.979,
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.464",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 908,
+      "channelHex": "0x38c",
+      "count": 3702,
+      "successRatio": 0.43,
+      "fullConsumeRatio": 0.14,
+      "uniqueNetIds": 38,
+      "coordSpan": 15647.0,
+      "score": 14.642,
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.302",
+        "channel_count_below_movement_scale:3702",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 487,
+      "channelHex": "0x1e7",
+      "count": 3113,
+      "successRatio": 0.3533,
+      "fullConsumeRatio": 0.24,
+      "uniqueNetIds": 47,
+      "coordSpan": 15973.0,
+      "score": 14.64,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:3113",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 181,
+      "channelHex": "0xb5",
+      "count": 527,
+      "successRatio": 0.38,
+      "fullConsumeRatio": 0.17,
+      "uniqueNetIds": 31,
+      "coordSpan": 15347.0,
+      "score": 14.192,
+      "falsePositiveReasons": [
+        "low_coord_plausible_ratio:0.421",
+        "channel_count_below_movement_scale:527",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 781,
+      "channelHex": "0x30d",
+      "count": 9,
+      "successRatio": 0.6667,
+      "fullConsumeRatio": 0.4444,
+      "uniqueNetIds": 4,
+      "coordSpan": 5617.0,
+      "score": 14.031,
+      "falsePositiveReasons": [
+        "few_unique_net_ids:4",
+        "channel_count_below_movement_scale:9"
+      ]
+    },
+    {
+      "channel": 107,
+      "channelHex": "0x6b",
+      "count": 14801,
+      "successRatio": 0.24,
+      "fullConsumeRatio": 0.1367,
+      "uniqueNetIds": 29,
+      "coordSpan": 11865.0,
+      "score": 13.381,
+      "falsePositiveReasons": [
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 366,
+      "channelHex": "0x16e",
+      "count": 73,
+      "successRatio": 0.4932,
+      "fullConsumeRatio": 0.3288,
+      "uniqueNetIds": 7,
+      "coordSpan": 10144.0,
+      "score": 13.316,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:73",
+        "schema_only_no_oracle"
+      ]
+    },
+    {
+      "channel": 1068,
+      "channelHex": "0x42c",
+      "count": 1590,
+      "successRatio": 0.23,
+      "fullConsumeRatio": 0.23,
+      "uniqueNetIds": 49,
+      "coordSpan": 16059.0,
+      "score": 13.235,
+      "falsePositiveReasons": [
+        "channel_count_below_movement_scale:1590",
+        "schema_only_no_oracle"
+      ]
+    }
+  ],
+  "speedRun": {
+    "runId": "speed-eafaeeb7fb14",
+    "ts": "2026-07-22T17:48:09.651500Z",
+    "diffLabel": "phase-b-e2-wire-scan",
+    "keep": "discard",
+    "reason": "E2 no wire-id remap winner; schema hits failed oracle/stability gates",
+    "wallMs": 37788.979,
+    "winnerFound": false
+  }
+}

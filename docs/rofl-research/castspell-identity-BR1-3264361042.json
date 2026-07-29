@@ -1,0 +1,573 @@
+{
+  "ok": true,
+  "probeVersion": "castspell-identity-bind-v1",
+  "ts": "2026-07-23T10:37:18.781372Z",
+  "matchCode": "3264361042",
+  "wallMs": 5032.545,
+  "priorArt": {
+    "maknee": "CastSpellAns carries caster netId + spell/champion identity",
+    "pePacket": "PKT_NPC_CastSpellAns_s",
+    "opcode": 197
+  },
+  "registration": {
+    "pkt": "PKT_NPC_CastSpellAns_s",
+    "opcode": 197,
+    "registration": {
+      "pkt": "PKT_NPC_CastSpellAns_s",
+      "typeDescriptorVa": "0x141e661b0",
+      "nameVa": "0x141e661c0",
+      "ok": true,
+      "typeidStub": "0x1402c4400",
+      "vtable": "0x141a1ee40",
+      "leaSites": [
+        "0x140252154",
+        "0x1402c1fa0"
+      ],
+      "opcode": 197,
+      "evidence": {
+        "kind": "inline_hub_after_vtable_lea",
+        "leaVa": "0x140252154",
+        "callVa": "0x1402521b9",
+        "hub": "0x1406f78b0"
+      },
+      "blocker": null
+    }
+  },
+  "official": {
+    "source": "Riot PatchSieve BR1 official release",
+    "version": "16.14.7945912+branch.releases-16-14.code.public.content.release.cpuarch.x86.platform.windows",
+    "normalizedRoflBuild": "16.14.794.5912",
+    "manifestUrl": "https://lol.secure.dyn.riotcdn.net/channels/public/releases/952B478DFC66B0AB.manifest",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "sizeBytes": 34384312,
+    "pathNote": "local /tmp only; never commit Riot binary or CDN chunks",
+    "derivationStatus": "official_pe_validated"
+  },
+  "binaryManifest": {
+    "kind": "league_packet_discovery_binary",
+    "patch": "16.14",
+    "platform": "windows",
+    "arch": "x86_64",
+    "format": "pe64",
+    "sha256": "34de26710352fcf4360b27691cecf77843a0ea338cd455be4fabb63fb467984f",
+    "pathNote": "local derivation only; never commit Riot binaries",
+    "derivationStatus": "derived_offline",
+    "textVa": "0x140001000",
+    "textSize": 27250688,
+    "segmentCount": 11,
+    "probeVersion": "castspell-identity-bind-v1"
+  },
+  "constructorCoverage": {
+    "roflOpcodes": 217,
+    "opcodeStores": 955,
+    "recoveredCtors": 218,
+    "coveredOpcodes": 217,
+    "coverageRatio": 1.0,
+    "sizedFactories": 209,
+    "priorArt980": {
+      "ctorVa": 5384086736,
+      "opcodeStoreVa": 5384086743,
+      "opcode": 980,
+      "vptr": 5397041560,
+      "fieldExtent": 20,
+      "dtorVa": 5370731680,
+      "deserializeVa": 5385670480,
+      "useVa": 5371873600,
+      "virt": [
+        5370731680,
+        5385670480,
+        5371873600,
+        5370865424
+      ],
+      "objectSize": 32,
+      "deserScore": {
+        "ok": true,
+        "score": 6,
+        "movementish": false,
+        "off10": 9,
+        "off18": 3,
+        "off20": 0,
+        "calls": 19,
+        "callNew": 0,
+        "approxBytes": 1494,
+        "ptrStore18": 0,
+        "ptrStore20": 0
+      },
+      "blocks": 0
+    },
+    "priorArt982": null,
+    "constructorIdMatchesKey": 217
+  },
+  "rosterChampions": [
+    "Zaahen",
+    "MonkeyKing",
+    "Yasuo",
+    "Ezreal",
+    "Sona",
+    "Renekton",
+    "Lillia",
+    "Leblanc",
+    "Ashe",
+    "Morgana"
+  ],
+  "factory": {
+    "opcode": 197,
+    "objectSize": 328,
+    "deserializeVa": "0x1410b6980",
+    "ctorVa": "0x140e7e460"
+  },
+  "samplesPerHero": {
+    "0x400000ae": 8,
+    "0x400000af": 8,
+    "0x400000b0": 8,
+    "0x400000b1": 8,
+    "0x400000b2": 8,
+    "0x400000b3": 8,
+    "0x400000b4": 8,
+    "0x400000b5": 8,
+    "0x400000b6": 8,
+    "0x400000b7": 8
+  },
+  "sampleHead": {
+    "0x400000ae": [
+      {
+        "time": 89.292828075937,
+        "retAl": 1,
+        "consumed": 122,
+        "hits": [
+          "Zaahen"
+        ],
+        "chosen": "Zaahen"
+      },
+      {
+        "time": 90.02782811084762,
+        "retAl": 1,
+        "consumed": 132,
+        "hits": [
+          "Zaahen"
+        ],
+        "chosen": "Zaahen"
+      }
+    ],
+    "0x400000af": [
+      {
+        "time": 55.573952765669674,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "MonkeyKing"
+        ],
+        "chosen": "MonkeyKing"
+      },
+      {
+        "time": 65.91182696539909,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "MonkeyKing"
+        ],
+        "chosen": "MonkeyKing"
+      }
+    ],
+    "0x400000b0": [
+      {
+        "time": 35.99595183576457,
+        "retAl": 1,
+        "consumed": 132,
+        "hits": [
+          "Yasuo"
+        ],
+        "chosen": "Yasuo"
+      },
+      {
+        "time": 62.73682681459468,
+        "retAl": 1,
+        "consumed": 122,
+        "hits": [
+          "Yasuo"
+        ],
+        "chosen": "Yasuo"
+      }
+    ],
+    "0x400000b1": [
+      {
+        "time": 33.189951702486724,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "Ezreal"
+        ],
+        "chosen": "Ezreal"
+      },
+      {
+        "time": 37.93395192781463,
+        "retAl": 1,
+        "consumed": 127,
+        "hits": [
+          "Ezreal"
+        ],
+        "chosen": "Ezreal"
+      }
+    ],
+    "0x400000b2": [
+      {
+        "time": 61.63382676220499,
+        "retAl": 1,
+        "consumed": 132,
+        "hits": [
+          "Sona"
+        ],
+        "chosen": "Sona"
+      },
+      {
+        "time": 78.84982757992111,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "Sona"
+        ],
+        "chosen": "Sona"
+      }
+    ],
+    "0x400000b3": [
+      {
+        "time": 72.86382729560137,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "Renekton"
+        ],
+        "chosen": "Renekton"
+      },
+      {
+        "time": 80.45782765629701,
+        "retAl": 1,
+        "consumed": 126,
+        "hits": [
+          "Renekton"
+        ],
+        "chosen": "Renekton"
+      }
+    ],
+    "0x400000b4": [
+      {
+        "time": 58.48395290388726,
+        "retAl": 1,
+        "consumed": 135,
+        "hits": [
+          "Lillia"
+        ],
+        "chosen": "Lillia"
+      },
+      {
+        "time": 65.0428269241238,
+        "retAl": 1,
+        "consumed": 135,
+        "hits": [
+          "Lillia"
+        ],
+        "chosen": "Lillia"
+      }
+    ],
+    "0x400000b5": [
+      {
+        "time": 47.72395239281468,
+        "retAl": 1,
+        "consumed": 122,
+        "hits": [
+          "Leblanc"
+        ],
+        "chosen": "Leblanc"
+      },
+      {
+        "time": 64.67482690664474,
+        "retAl": 1,
+        "consumed": 135,
+        "hits": [
+          "Leblanc"
+        ],
+        "chosen": "Leblanc"
+      }
+    ],
+    "0x400000b6": [
+      {
+        "time": 82.10282773443032,
+        "retAl": 1,
+        "consumed": 126,
+        "hits": [
+          "Ashe"
+        ],
+        "chosen": "Ashe"
+      },
+      {
+        "time": 101.96541719138622,
+        "retAl": 1,
+        "consumed": 145,
+        "hits": [
+          "Ashe"
+        ],
+        "chosen": "Ashe"
+      }
+    ],
+    "0x400000b7": [
+      {
+        "time": 75.36982741462998,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "Morgana"
+        ],
+        "chosen": "Morgana"
+      },
+      {
+        "time": 97.51941698021255,
+        "retAl": 1,
+        "consumed": 133,
+        "hits": [
+          "Morgana"
+        ],
+        "chosen": "Morgana"
+      }
+    ]
+  },
+  "votes": {
+    "0x400000ae": [
+      [
+        "Zaahen",
+        8
+      ]
+    ],
+    "0x400000af": [
+      [
+        "MonkeyKing",
+        8
+      ]
+    ],
+    "0x400000b0": [
+      [
+        "Yasuo",
+        8
+      ]
+    ],
+    "0x400000b1": [
+      [
+        "Ezreal",
+        8
+      ]
+    ],
+    "0x400000b2": [
+      [
+        "Sona",
+        8
+      ]
+    ],
+    "0x400000b3": [
+      [
+        "Renekton",
+        8
+      ]
+    ],
+    "0x400000b4": [
+      [
+        "Lillia",
+        8
+      ]
+    ],
+    "0x400000b5": [
+      [
+        "Leblanc",
+        8
+      ]
+    ],
+    "0x400000b6": [
+      [
+        "Ashe",
+        8
+      ]
+    ],
+    "0x400000b7": [
+      [
+        "Morgana",
+        8
+      ]
+    ]
+  },
+  "winners": {
+    "0x400000b7": "Morgana",
+    "0x400000b6": "Ashe",
+    "0x400000b5": "Leblanc",
+    "0x400000b4": "Lillia",
+    "0x400000b3": "Renekton",
+    "0x400000b2": "Sona",
+    "0x400000b1": "Ezreal",
+    "0x400000b0": "Yasuo",
+    "0x400000af": "MonkeyKing",
+    "0x400000ae": "Zaahen"
+  },
+  "createHeroEvents": [
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073741998,
+        "name": "",
+        "champion": "Zaahen",
+        "participantID": 1
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073741999,
+        "name": "",
+        "champion": "MonkeyKing",
+        "participantID": 2
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742000,
+        "name": "",
+        "champion": "Yasuo",
+        "participantID": 3
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742001,
+        "name": "",
+        "champion": "Ezreal",
+        "participantID": 4
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742002,
+        "name": "",
+        "champion": "Sona",
+        "participantID": 5
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742003,
+        "name": "",
+        "champion": "Renekton",
+        "participantID": 6
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742004,
+        "name": "",
+        "champion": "Lillia",
+        "participantID": 7
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742005,
+        "name": "",
+        "champion": "Leblanc",
+        "participantID": 8
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742006,
+        "name": "",
+        "champion": "Ashe",
+        "participantID": 9
+      }
+    },
+    {
+      "CreateHero": {
+        "time": 0.0,
+        "net_id": 1073742007,
+        "name": "",
+        "champion": "Morgana",
+        "participantID": 10
+      }
+    }
+  ],
+  "identityBinding": {
+    "method": "stable_identity_to_net_id",
+    "complete": true,
+    "createHeroDecoded": true,
+    "createHeroOrderFallback": false,
+    "participants": [
+      {
+        "puuid": "2d568ffd-eed0-57bb-ad9a-c7dbf7960c94",
+        "fullRiotId": "awakening#0000",
+        "netId": 1073741998,
+        "champion": "Zaahen"
+      },
+      {
+        "puuid": "c6931d39-01bc-587b-b12a-ad5663b40ebe",
+        "fullRiotId": "pixel#mari",
+        "netId": 1073741999,
+        "champion": "MonkeyKing"
+      },
+      {
+        "puuid": "49001e4f-4098-5b39-ba3a-f8d37f5b2439",
+        "fullRiotId": "Cigarro#lony",
+        "netId": 1073742000,
+        "champion": "Yasuo"
+      },
+      {
+        "puuid": "f0bd49d3-fd4f-5f26-9f1f-a656f459b676",
+        "fullRiotId": "Ayron#001",
+        "netId": 1073742001,
+        "champion": "Ezreal"
+      },
+      {
+        "puuid": "81d821ca-5d53-505d-b6fd-1478f35a3856",
+        "fullRiotId": "nhUwUmi#glhf",
+        "netId": 1073742002,
+        "champion": "Sona"
+      },
+      {
+        "puuid": "3e1efede-f27c-58f6-a2c9-7f552ba2b2aa",
+        "fullRiotId": "casual jogador#2709",
+        "netId": 1073742003,
+        "champion": "Renekton"
+      },
+      {
+        "puuid": "2a1e3a1d-b694-5150-ad19-04c07b0e8708",
+        "fullRiotId": "Sonancia#UEL",
+        "netId": 1073742004,
+        "champion": "Lillia"
+      },
+      {
+        "puuid": "64af397f-88c5-5e42-9e6c-c903dc717888",
+        "fullRiotId": "haste#zapp",
+        "netId": 1073742005,
+        "champion": "Leblanc"
+      },
+      {
+        "puuid": "057fefa4-4209-50d8-850e-9f91bf016bbb",
+        "fullRiotId": "Love Her#Lucy",
+        "netId": 1073742006,
+        "champion": "Ashe"
+      },
+      {
+        "puuid": "e5117f5e-b77b-57a1-a6bd-37b5c457b20b",
+        "fullRiotId": "amo seios#Lucy",
+        "netId": 1073742007,
+        "champion": "Morgana"
+      }
+    ],
+    "note": "create_hero_champion_match"
+  },
+  "blocker": null,
+  "productEligible": true,
+  "createHeroOrderFallback": false,
+  "method": "castspell_ans_champion_string",
+  "note": "CreateHero-equivalent bind via PKT_NPC_CastSpellAns_s Deserialize champion string release; not CreateHero-order / AE..B7 order"
+}

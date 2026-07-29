@@ -77,8 +77,10 @@ export function abilityCastsInFight(
   }
 
   // Custom duration — cast at t=0 then every CD (ceil window / CD, capped).
+  // Short-CD gapcloses (e.g. Yasuo E ~0.5s) need headroom above the old ×8 cap.
   if (dur < 2.5) return 1
-  return Math.max(1, Math.min(8, Math.ceil(dur / cd)))
+  const cap = baseCd <= 1.5 ? 16 : 8
+  return Math.max(1, Math.min(cap, Math.ceil(dur / cd)))
 }
 
 /**

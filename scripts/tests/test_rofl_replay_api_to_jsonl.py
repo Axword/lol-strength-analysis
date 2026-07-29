@@ -1817,5 +1817,342 @@ class DurablePersistResumeTests(unittest.TestCase):
             self.assertIn("schema", str(ctx.exception).lower())
 
 
+class ProductDefaultsAndDeferLiveclientTests(unittest.TestCase):
+    def test_argparse_product_defaults(self) -> None:
+        self.assertEqual(extract.DEFAULT_FINAL_SETTLE, 0.0)
+        self.assertEqual(extract.DEFAULT_CACHED_SELECTION_STRATEGY, "compact")
+        ns = extract.build_arg_parser().parse_args(
+            [
+                "--rofl",
+                "/tmp/x.rofl",
+                "--out",
+                "/tmp/y.jsonl",
+                "--start-ms",
+                "0",
+                "--end-ms",
+                "1000",
+            ]
+        )
+        self.assertEqual(ns.final_settle, 0.0)
+        self.assertEqual(ns.cached_selection_strategy, "compact")
+        self.assertFalse(ns.defer_liveclient)
+
+    def test_defer_liveclient_skips_per_frame_wait(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            rofl, app = _stub_rofl_app(tmp)
+            out = Path(tmp) / "events.jsonl"
+            wait_calls = {"n": 0}
+
+            def _fake_wait(*_a: Any, **_k: Any) -> dict[str, Any]:
+                wait_calls["n"] += 1
+                return {"ok": False, "error": "should not be called"}
+
+            with mock.patch.object(extract.probe, "_settle", lambda _d: None):
+                with mock.patch.object(
+                    extract, "wait_liveclient_roster_at_time", _fake_wait
+                ):
+                    status = extract.extract_replay_api_jsonl(
+                        SeekingTransport(),
+                        **{
+                            "base_url": "https://127.0.0.1:2999",
+                            "rofl_path": rofl,
+                            "app_path": app,
+                            "out_path": out,
+                            "start_ms": 121_000,
+                            "end_ms": 122_000,
+                            "step_ms": 1000,
+                            "final_settle": 0.0,
+                            "settle_delay": 0.0,
+                            "identity_retries": 0,
+                            "seek_timeout": 1.0,
+                            "defer_liveclient": True,
+                        },
+                    )
+            self.assertTrue(status["ok"], status.get("error"))
+            self.assertTrue(status.get("deferLiveclient"))
+            self.assertEqual(wait_calls["n"], 0)
+            rows = [
+                json.loads(line)
+                for line in out.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            cov = next(r for r in rows if r.get("rfc461Schema") == "rofl_coverage")
+            self.assertIn("positions_focus_selection", cov.get("decoded") or [])
+            self.assertTrue(cov.get("deferLiveclient"))
+            self.assertEqual(cov.get("cachedSelectionStrategy"), "compact")
+            self.assertEqual(status.get("cachedSelectionStrategy"), "compact")
+
+
+class EnrichRosterPuuidFromRoflTests(unittest.TestCase):
+    def test_backfills_null_puuid_by_champion(self):
+        roster = [
+            {
+                "participantID": 1,
+                "teamID": 100,
+                "championName": "Yasuo",
+                "summonerName": "awakening#0000",
+                "puuid": None,
+            }
+        ]
+        meta = {
+            "participants": [
+                {
+                    "champion": {"asset": "Yasuo"},
+                    "sourceIdentity": {
+                        "puuid": "puuid-yasuo",
+                        "riotId": {
+                            "gameName": "PlayerOne",
+                            "tagLine": "BR1",
+                            "full": "PlayerOne#BR1",
+                        },
+                        "key": "puuid:puuid-yasuo",
+                    },
+                }
+            ]
+        }
+        out = extract.enrich_roster_puuids_from_rofl_metadata(roster, meta)
+        self.assertEqual(out[0]["puuid"], "puuid-yasuo")
+        self.assertEqual(out[0]["riotIdGameName"], "PlayerOne")
+        self.assertEqual(out[0]["summonerName"], "PlayerOne#BR1")
+
+    def test_keeps_existing_puuid(self):
+        roster = [
+            {
+                "participantID": 1,
+                "teamID": 100,
+                "championName": "Yasuo",
+                "puuid": "already",
+            }
+        ]
+        meta = {
+            "participants": [
+                {
+                    "champion": {"asset": "Yasuo"},
+                    "sourceIdentity": {"puuid": "other", "key": "puuid:other"},
+                }
+            ]
+        }
+        out = extract.enrich_roster_puuids_from_rofl_metadata(roster, meta)
+        self.assertEqual(out[0]["puuid"], "already")
+
+
+class SourceRecordOrderIdentityTests(unittest.TestCase):
+    """Scrambled liveclient order must not publish mismatched champ vs identity."""
+
+    def _rofl_meta(self) -> dict[str, Any]:
+        # CreateHero / statsJson sourceRecordIndex order (not Riot-ID sort).
+        roster = [
+            ("Zaahen", "awakening", "0000", "puuid-z"),
+            ("MonkeyKing", "pixel", "mari", "puuid-mk"),
+            ("Yasuo", "Cigarro", "lony", "puuid-y"),
+            ("Ezreal", "Ayron", "001", "puuid-e"),
+            ("Sona", "nhUwUmi", "glhf", "puuid-s"),
+            ("Renekton", "casual", "2709", "puuid-r"),
+            ("Lillia", "Sonancia", "UEL", "puuid-l"),
+            ("Leblanc", "haste", "zapp", "puuid-lb"),
+            ("Ashe", "Love Her", "Lucy", "puuid-a"),
+            ("Morgana", "amo seios", "Lucy", "puuid-m"),
+        ]
+        participants = []
+        for index, (champ, name, tag, puuid) in enumerate(roster):
+            full = f"{name}#{tag}"
+            participants.append(
+                {
+                    "sourceRecordIndex": index,
+                    "teamId": 100 if index < 5 else 200,
+                    "role": "NONE",
+                    "champion": {"asset": champ, "raw": champ, "display": champ},
+                    "sourceIdentity": {
+                        "kind": "puuid",
+                        "key": f"puuid:{puuid}",
+                        "puuid": puuid,
+                        "riotId": {
+                            "gameName": name,
+                            "tagLine": tag,
+                            "full": full,
+                            "normalized": full.casefold(),
+                        },
+                        "stable": True,
+                    },
+                    "puuid": puuid,
+                    "riotId": {
+                        "gameName": name,
+                        "tagLine": tag,
+                        "full": full,
+                        "normalized": full.casefold(),
+                    },
+                }
+            )
+        return {"participants": participants}
+
+    def _scrambled_liveclient(self) -> list[dict[str, Any]]:
+        # Riot-ID / display-name scramble: Wukong label + pixel identity appear
+        # after Ezreal/Ayron (the bug that put MK HP/labels on the wrong pid).
+        return [
+            {
+                "teamID": 100,
+                "championName": "Ezreal",
+                "riotIdGameName": "Ayron",
+                "riotIdTagLine": "001",
+                "summonerName": "Ayron#001",
+                "playerName": "Ayron",
+                "puuid": "puuid-e",
+            },
+            {
+                "teamID": 100,
+                "championName": "Wukong",  # liveclient display, not MonkeyKing
+                "riotIdGameName": "pixel",
+                "riotIdTagLine": "mari",
+                "summonerName": "pixel#mari",
+                "playerName": "pixel",
+                "puuid": "puuid-mk",
+            },
+            {
+                "teamID": 100,
+                "championName": "Zaahen",
+                "riotIdGameName": "awakening",
+                "riotIdTagLine": "0000",
+                "summonerName": "awakening#0000",
+                "playerName": "awakening",
+                "puuid": "puuid-z",
+            },
+            {
+                "teamID": 100,
+                "championName": "Yasuo",
+                "riotIdGameName": "Cigarro",
+                "riotIdTagLine": "lony",
+                "summonerName": "Cigarro#lony",
+                "playerName": "Cigarro",
+                "puuid": "puuid-y",
+            },
+            {
+                "teamID": 100,
+                "championName": "Sona",
+                "riotIdGameName": "nhUwUmi",
+                "riotIdTagLine": "glhf",
+                "summonerName": "nhUwUmi#glhf",
+                "playerName": "nhUwUmi",
+                "puuid": "puuid-s",
+            },
+            {
+                "teamID": 200,
+                "championName": "Morgana",
+                "riotIdGameName": "amo seios",
+                "riotIdTagLine": "Lucy",
+                "summonerName": "amo seios#Lucy",
+                "playerName": "amo seios",
+                "puuid": "puuid-m",
+            },
+            {
+                "teamID": 200,
+                "championName": "Renekton",
+                "riotIdGameName": "casual",
+                "riotIdTagLine": "2709",
+                "summonerName": "casual#2709",
+                "playerName": "casual",
+                "puuid": "puuid-r",
+            },
+            {
+                "teamID": 200,
+                "championName": "LeBlanc",
+                "riotIdGameName": "haste",
+                "riotIdTagLine": "zapp",
+                "summonerName": "haste#zapp",
+                "playerName": "haste",
+                "puuid": "puuid-lb",
+            },
+            {
+                "teamID": 200,
+                "championName": "Ashe",
+                "riotIdGameName": "Love Her",
+                "riotIdTagLine": "Lucy",
+                "summonerName": "Love Her#Lucy",
+                "playerName": "Love Her",
+                "puuid": "puuid-a",
+            },
+            {
+                "teamID": 200,
+                "championName": "Lillia",
+                "riotIdGameName": "Sonancia",
+                "riotIdTagLine": "UEL",
+                "summonerName": "Sonancia#UEL",
+                "playerName": "Sonancia",
+                "puuid": "puuid-l",
+            },
+        ]
+
+    def test_source_record_order_pins_monkeyking_to_pid2(self) -> None:
+        meta = self._rofl_meta()
+        stable = extract.assign_stable_participant_ids(
+            self._scrambled_liveclient(), rofl_meta=meta
+        )
+        by_pid = {int(r["participantID"]): r for r in stable}
+        self.assertEqual(by_pid[2]["championName"], "MonkeyKing")
+        self.assertEqual(by_pid[2]["playerName"], "pixel")
+        self.assertEqual(by_pid[2]["puuid"], "puuid-mk")
+        self.assertEqual(by_pid[4]["championName"], "Ezreal")
+        self.assertEqual(by_pid[4]["playerName"], "Ayron")
+        self.assertEqual(by_pid[5]["championName"], "Sona")
+        # Riot-ID sort alone would put Ayron before pixel on blue; source order must win.
+        self.assertNotEqual(by_pid[2]["championName"], "Ezreal")
+
+    def test_remap_moves_dynamics_with_identity(self) -> None:
+        meta = self._rofl_meta()
+        # Simulate a scrambled capture: Ezreal row on pid2, pixel/Wukong on pid5.
+        participants = []
+        for pid, row in enumerate(self._scrambled_liveclient(), start=1):
+            copied = dict(row)
+            copied["participantID"] = pid
+            copied["level"] = pid
+            copied["position"] = {"x": float(pid * 100), "z": float(pid * 10)}
+            participants.append(copied)
+        # Force the classic scramble pids: put pixel at 5 and Ezreal at 2.
+        by_name = {p["riotIdGameName"]: p for p in participants}
+        scrambled = [None] * 10
+        order = [
+            "awakening",
+            "Ayron",
+            "Cigarro",
+            "nhUwUmi",
+            "pixel",
+            "casual",
+            "Sonancia",
+            "haste",
+            "Love Her",
+            "amo seios",
+        ]
+        for index, name in enumerate(order):
+            row = dict(by_name[name])
+            row["participantID"] = index + 1
+            scrambled[index] = row
+        rows = [
+            {
+                "rfc461Schema": "game_info",
+                "participants": extract.game_info_participants(scrambled),
+            },
+            {
+                "rfc461Schema": "stats_update",
+                "gameTime": 100_000,
+                "participants": scrambled,
+            },
+        ]
+        remapped = extract.remap_rfc461_rows_to_rofl_source_order(rows, meta)
+        stats = next(r for r in remapped if r["rfc461Schema"] == "stats_update")
+        by_pid = {int(p["participantID"]): p for p in stats["participants"]}
+        self.assertEqual(by_pid[2]["championName"], "MonkeyKing")
+        self.assertEqual(by_pid[2]["playerName"], "pixel")
+        # Dynamics travel with identity (pixel was scrambled pid5 → level/pos of that row).
+        self.assertEqual(by_pid[2]["level"], by_name["pixel"]["level"])
+        self.assertEqual(by_pid[2]["position"], by_name["pixel"]["position"])
+        self.assertEqual(by_pid[4]["championName"], "Ezreal")
+        gi = next(r for r in remapped if r["rfc461Schema"] == "game_info")
+        gi_by_pid = {int(p["participantID"]): p for p in gi["participants"]}
+        self.assertEqual(gi_by_pid[2]["championName"], "MonkeyKing")
+        self.assertEqual(
+            gi_by_pid[2]["championName"],
+            by_pid[2]["championName"],
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -60,6 +60,9 @@ class ArtifactPaths:
     checkpoint: Path
     hp_evidence: Path
     hp_events: Path
+    ranks_evidence: Path
+    ranks_events: Path
+    combat_events: Path
     timeline: Path
     validation: Path
 
@@ -71,6 +74,9 @@ class ArtifactPaths:
             self.checkpoint,
             self.hp_evidence,
             self.hp_events,
+            self.ranks_evidence,
+            self.ranks_events,
+            self.combat_events,
             self.timeline,
             self.validation,
         )
@@ -91,9 +97,171 @@ def artifact_paths(
         checkpoint=match_dir / "capture.checkpoint.json",
         hp_evidence=match_dir / "hp-evidence.json",
         hp_events=match_dir / "events.hp-trusted.rfc461.jsonl",
+        ranks_evidence=match_dir / "ranks-evidence.json",
+        ranks_events=match_dir / "events.ranks-trusted.rfc461.jsonl",
+        combat_events=match_dir / "events.combat-trusted.rfc461.jsonl",
         timeline=match_dir / "timeline.json",
         validation=match_dir / "validation.json",
     )
+
+
+def _castspell_identity_path(match_code: str) -> Optional[Path]:
+    local = ARTIFACT_ROOT / str(match_code) / "castspell-identity.json"
+    if local.is_file():
+        return local
+    research = ROOT / "docs" / "rofl-research" / f"castspell-identity-BR1-{match_code}.json"
+    if research.is_file():
+        return research
+    return None
+
+
+def _combat_evidence_path(match_code: str) -> Optional[Path]:
+    local = ARTIFACT_ROOT / str(match_code) / "combat-wire-proof.json"
+    if local.is_file():
+        return local
+    research = (
+        ROOT / "docs" / "rofl-research" / f"combat-wire-proof-BR1-{match_code}.json"
+    )
+    if research.is_file():
+        return research
+    return None
+
+
+def _manifest_has_source_record_order(manifest: Mapping[str, Any]) -> bool:
+    rows = list(manifest.get("participants") or [])
+    if len(rows) != 10:
+        return False
+    seen: set[int] = set()
+    for row in rows:
+        if not isinstance(row, Mapping):
+            return False
+        try:
+            src = int(row.get("sourceRecordIndex"))
+        except (TypeError, ValueError):
+            return False
+        if src < 0 or src > 9 or src in seen:
+            return False
+        seen.add(src)
+    return seen == set(range(10))
+
+
+def remap_capture_events_to_source_order(
+    paths: ArtifactPaths,
+    manifest: Mapping[str, Any],
+) -> bool:
+    """Rewrite events.rfc461.jsonl onto CreateHero/sourceRecordIndex pids when needed.
+
+    Returns True when a remap was applied. No-op when game_info already matches
+    sourceRecordIndex order (or manifest lacks source indices).
+    """
+    if not _manifest_has_source_record_order(manifest):
+        return False
+    if not paths.events.is_file():
+        raise IngestError("capture events missing; cannot remap identity order")
+    rows: list[dict[str, Any]] = []
+    with paths.events.open(encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    game_info = next(
+        (row for row in rows if row.get("rfc461Schema") == "game_info"),
+        None,
+    )
+    if game_info is None:
+        raise IngestError("capture events missing game_info for identity remap")
+    # Detect scramble: pid labels disagree with sourceRecordIndex champion assets.
+    by_src = {
+        int(row["sourceRecordIndex"]): row
+        for row in manifest["participants"]
+        if isinstance(row, Mapping)
+    }
+    scrambled = False
+    for participant in game_info.get("participants") or []:
+        if not isinstance(participant, Mapping):
+            continue
+        try:
+            pid = int(participant.get("participantID"))
+        except (TypeError, ValueError):
+            continue
+        meta = by_src.get(pid - 1)
+        if meta is None:
+            continue
+        champ = meta.get("champion") if isinstance(meta.get("champion"), Mapping) else {}
+        asset = str(
+            (champ or {}).get("asset") or (champ or {}).get("raw") or ""
+        ).strip()
+        capture_champ = str(participant.get("championName") or "").strip()
+        aliases = {"Wukong": "MonkeyKing", "LeBlanc": "Leblanc"}
+        if aliases.get(capture_champ, capture_champ) != aliases.get(asset, asset):
+            scrambled = True
+            break
+    if not scrambled:
+        return False
+    remapped = replay_capture.remap_rfc461_rows_to_rofl_source_order(
+        rows,
+        {"participants": manifest["participants"]},
+    )
+    tmp = paths.match_dir / ".events.rfc461.remap.tmp.jsonl"
+    with tmp.open("w", encoding="utf-8") as handle:
+        for row in remapped:
+            handle.write(json.dumps(row, separators=(",", ":")) + "\n")
+    os.replace(tmp, paths.events)
+    return True
+
+
+def _run_jsonl_fuse(
+    *,
+    script: str,
+    args: Sequence[str],
+    output: Path,
+    command_runner: Callable[[Sequence[str]], subprocess.CompletedProcess[str]],
+    label: str,
+) -> dict[str, Any]:
+    tmp = output.with_name(f".{output.name}.build.tmp")
+    if tmp.exists():
+        tmp.unlink()
+    command = [
+        sys.executable,
+        str(SCRIPTS / script),
+        "--product",
+        *args,
+        "-o",
+        str(tmp),
+    ]
+    result = command_runner(command)
+    if result.returncode != 0:
+        if tmp.exists():
+            tmp.unlink()
+        raise IngestError(
+            f"{label} fusion failed: {result.stderr or result.stdout}"
+        )
+    if not tmp.is_file():
+        raise IngestError(f"{label} fusion did not write its canonical output")
+    summary: dict[str, Any] = {"ok": True}
+    stdout = (result.stdout or "").strip()
+    if stdout:
+        try:
+            parsed = json.loads(stdout)
+            if isinstance(parsed, dict):
+                summary = parsed
+        except json.JSONDecodeError:
+            # Some fuse CLIs print a path line before JSON.
+            for line in reversed(stdout.splitlines()):
+                line = line.strip()
+                if line.startswith("{"):
+                    try:
+                        parsed = json.loads(line)
+                        if isinstance(parsed, dict):
+                            summary = parsed
+                            break
+                    except json.JSONDecodeError:
+                        continue
+    if summary.get("ok") is not True:
+        tmp.unlink()
+        raise IngestError(f"{label} fusion summary did not pass")
+    os.replace(tmp, output)
+    return summary
 
 
 def controller_lock_path(*, artifact_root: Path = ARTIFACT_ROOT) -> Path:
@@ -703,6 +871,9 @@ def build_phase(
         tmp.unlink()
     existing_manifest = load_json(paths.manifest)
     existing_trusted_hp = existing_manifest.get("trustedHp") or {}
+    # Capture can scramble champ↔pid vs CreateHero/sourceRecordIndex. Remap
+    # before any fuse so HP/ranks/combat bind onto the same identity pids.
+    remap_capture_events_to_source_order(paths, existing_manifest)
     evidence_input = hp_evidence
     if evidence_input is None and paths.hp_evidence.is_file():
         evidence_input = paths.hp_evidence
@@ -715,48 +886,90 @@ def build_phase(
         )
     build_events = paths.events
     hp_summary: Optional[dict[str, Any]] = None
+    ranks_summary: Optional[dict[str, Any]] = None
+    combat_summary: Optional[dict[str, Any]] = None
+    match_code = str(metadata["matchCode"])
     if evidence_input is not None:
         if not evidence_input.is_file():
             raise IngestError(f"trusted HP evidence missing: {evidence_input}")
         evidence = load_json(evidence_input)
         assert_sanitized(evidence, label="trusted HP evidence")
-        hp_events_tmp = paths.match_dir / ".events.hp-trusted.build.tmp.jsonl"
-        if hp_events_tmp.exists():
-            hp_events_tmp.unlink()
-        fusion_command = [
-            sys.executable,
-            str(SCRIPTS / "fuse_replay_api_hp.py"),
-            "--product",
-            "--jsonl",
-            str(paths.events),
-            "--replay-manifest",
-            str(paths.manifest),
-            "--hp-evidence",
-            str(evidence_input),
-            "-o",
-            str(hp_events_tmp),
-        ]
-        fusion_result = command_runner(fusion_command)
-        if fusion_result.returncode != 0:
-            if hp_events_tmp.exists():
-                hp_events_tmp.unlink()
-            raise IngestError(
-                "trusted HP fusion failed: "
-                + str(fusion_result.stderr or fusion_result.stdout)
-            )
-        if not hp_events_tmp.is_file():
-            raise IngestError("trusted HP fusion did not write its canonical output")
-        try:
-            hp_summary = json.loads(fusion_result.stdout)
-        except json.JSONDecodeError as exc:
-            hp_events_tmp.unlink()
-            raise IngestError(f"trusted HP fusion returned invalid summary: {exc}") from exc
-        if hp_summary.get("ok") is not True:
-            hp_events_tmp.unlink()
-            raise IngestError("trusted HP fusion summary did not pass")
-        os.replace(hp_events_tmp, paths.hp_events)
-        atomic_write_json(paths.hp_evidence, evidence, compact=True)
+        hp_summary = _run_jsonl_fuse(
+            script="fuse_replay_api_hp.py",
+            args=[
+                "--jsonl",
+                str(paths.events),
+                "--replay-manifest",
+                str(paths.manifest),
+                "--hp-evidence",
+                str(evidence_input),
+            ],
+            output=paths.hp_events,
+            command_runner=command_runner,
+            label="trusted HP",
+        )
+        aligned_evidence = hp_summary.pop("alignedEvidence", None)
+        if not isinstance(aligned_evidence, dict):
+            # fuse CLI rewrites --hp-evidence with frame-aligned samples.
+            try:
+                aligned_evidence = load_json(evidence_input)
+            except (OSError, json.JSONDecodeError, TypeError, ValueError) as exc:
+                raise IngestError(
+                    f"aligned trusted HP evidence unreadable after fusion: {exc}"
+                ) from exc
+        assert_sanitized(aligned_evidence, label="aligned trusted HP evidence")
+        atomic_write_json(paths.hp_evidence, aligned_evidence, compact=True)
         build_events = paths.hp_events
+        evidence = aligned_evidence
+        if "evidenceSha256" not in hp_summary:
+            raise IngestError("trusted HP fusion summary missing evidenceSha256")
+        durable_sha = hashlib.sha256(
+            json.dumps(
+                aligned_evidence,
+                sort_keys=True,
+                separators=(",", ":"),
+            ).encode("utf-8")
+        ).hexdigest()
+        if durable_sha != hp_summary["evidenceSha256"]:
+            raise IngestError(
+                "trusted HP evidence sha mismatch after frame alignment"
+            )
+
+        castspell_identity = _castspell_identity_path(match_code)
+        if paths.ranks_evidence.is_file() and castspell_identity is not None:
+            ranks_summary = _run_jsonl_fuse(
+                script="fuse_replay_api_ranks.py",
+                args=[
+                    "--jsonl",
+                    str(paths.hp_events),
+                    "--ranks-evidence",
+                    str(paths.ranks_evidence),
+                    "--castspell-identity",
+                    str(castspell_identity),
+                ],
+                output=paths.ranks_events,
+                command_runner=command_runner,
+                label="trusted ranks",
+            )
+            build_events = paths.ranks_events
+
+            combat_evidence = _combat_evidence_path(match_code)
+            if combat_evidence is not None:
+                combat_summary = _run_jsonl_fuse(
+                    script="fuse_replay_api_combat.py",
+                    args=[
+                        "--jsonl",
+                        str(paths.ranks_events),
+                        "--combat-evidence",
+                        str(combat_evidence),
+                        "--castspell-identity",
+                        str(castspell_identity),
+                    ],
+                    output=paths.combat_events,
+                    command_runner=command_runner,
+                    label="trusted combat",
+                )
+                build_events = paths.combat_events
     commands = [
         [
             sys.executable,
@@ -813,6 +1026,8 @@ def build_phase(
     source_coverage = dict(manifest.get("sourceCoverage") or {})
     product_gates = dict(manifest.get("productGates") or {})
     trusted_hp: Optional[dict[str, Any]] = None
+    trusted_ranks: Optional[dict[str, Any]] = None
+    trusted_combat: Optional[dict[str, Any]] = None
     if hp_summary is not None:
         source_coverage["hp"] = hp_summary["coverage"]
         trusted_hp = {
@@ -830,27 +1045,72 @@ def build_phase(
             "timeToleranceMs": hp_summary["timeToleranceMs"],
             "identityBinding": hp_summary["identityBinding"],
             "rosterHash": hp_summary["rosterHash"],
-            "combatStatsKnown": False,
-            "abilityRanksKnown": False,
+            "combatStatsKnown": bool(combat_summary and combat_summary.get("ok")),
+            "abilityRanksKnown": bool(ranks_summary and ranks_summary.get("ok")),
         }
         product_gates["hpTrusted"] = True
     else:
         source_coverage["hp"] = "none"
         product_gates["hpTrusted"] = False
+    if ranks_summary is not None:
+        source_coverage["abilityRanks"] = "full_at_sampled_frames"
+        trusted_ranks = {
+            "ok": True,
+            "schema": ranks_summary.get("schema") or "rofl-upgrade-spell-ranks-v0",
+            "evidence": "ranks-evidence.json",
+            "events": "events.ranks-trusted.rfc461.jsonl",
+            "abilityRanksTrusted": True,
+            "identityBinding": ranks_summary.get("identityBinding")
+            or "stable_identity_to_net_id",
+        }
+    else:
+        source_coverage.setdefault("abilityRanks", "none")
+    if combat_summary is not None:
+        frames_partial = int(combat_summary.get("framesPartialCombat") or 0)
+        source_coverage["combatStats"] = (
+            "partial_at_sampled_frames"
+            if frames_partial > 0
+            else "full_at_sampled_frames"
+        )
+        trusted_combat = {
+            "ok": True,
+            "schema": combat_summary.get("schema") or "rofl-combat-wire-proof-v1",
+            "evidence": str(
+                _combat_evidence_path(match_code) or "combat-wire-proof.json"
+            ).replace(str(ROOT) + "/", ""),
+            "events": "events.combat-trusted.rfc461.jsonl",
+            "combatTrusted": True,
+            "identityBinding": combat_summary.get("identityBinding")
+            or "stable_identity_to_net_id",
+            "framesPartialCombat": frames_partial,
+        }
+    else:
+        source_coverage.setdefault("combatStats", "none")
+    updates: dict[str, Any] = {
+        "motionQA": copy.deepcopy(
+            (timeline.get("provenance") or {}).get("motionAudit") or {}
+        ),
+        "sourceCoverage": source_coverage,
+        "trustedHp": trusted_hp,
+        "productGates": product_gates,
+        "buildEvents": build_events.name,
+    }
+    if trusted_ranks is not None:
+        updates["trustedAbilityRanks"] = trusted_ranks
+    if trusted_combat is not None:
+        updates["trustedCombat"] = trusted_combat
     update_manifest(
         paths,
         phase="build",
         status="complete",
-        updates={
-            "motionQA": copy.deepcopy(
-                (timeline.get("provenance") or {}).get("motionAudit") or {}
-            ),
-            "sourceCoverage": source_coverage,
-            "trustedHp": trusted_hp,
-            "productGates": product_gates,
-        },
+        updates=updates,
     )
-    return {"phase": "build", "ok": True, "timeline": paths.timeline.name}
+    return {
+        "phase": "build",
+        "ok": True,
+        "timeline": paths.timeline.name,
+        "buildEvents": build_events.name,
+    }
 
 
 def validate_phase(
@@ -880,6 +1140,20 @@ def validate_phase(
         if durable_evidence_sha != trusted_hp.get("evidenceSha256"):
             raise IngestError("trusted HP evidence hash changed after build")
         validation_events = paths.hp_events
+    # Prefer the same fused stream the build used for the timeline.
+    build_events_name = str(manifest.get("buildEvents") or "").strip()
+    if build_events_name:
+        named = paths.match_dir / build_events_name
+        if not named.is_file():
+            raise IngestError(
+                f"manifest buildEvents {build_events_name!r} missing for validate"
+            )
+        validation_events = named
+    else:
+        for candidate in (paths.combat_events, paths.ranks_events, paths.hp_events):
+            if candidate.is_file():
+                validation_events = candidate
+                break
     command = [
         sys.executable,
         str(SCRIPTS / "validate-rofl-pipeline.py"),

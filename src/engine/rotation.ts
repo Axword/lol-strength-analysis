@@ -14,6 +14,12 @@
  * - Effective-reset utilization (ordinary AA consumed since last reset)
  *   is a deterministic secondary objective after total expected damage so
  *   equal-damage plans prefer AA → W reset over W-first.
+ *
+ * Front-loading: primary rank uses score + frontLoaded/duration so early
+ * casts outrank equal-total AA-padding that parks abilities after a
+ * first-lethal truncate (e.g. Meraki Yasuo E dumped at t>4s). Attack-reset
+ * utilization remains the next tie-break so AA→W still beats W-first when
+ * totals match.
  */
 
 import type { AbilitySlot } from './types'
@@ -107,6 +113,11 @@ interface SearchState {
   effectiveResets: number
   /** Sum of (durationSec − resetStart) for effective resets — prefer earlier weaves. */
   resetEarliness: number
+  /**
+   * Σ expectedDamage × (durationSec − startSec). Prefer earlier damage among
+   * equal-total plans so lethal truncates do not erase parked abilities.
+   */
+  frontLoaded: number
   actions: PlannedAction[]
   score: number
   fingerprint: string
@@ -133,9 +144,13 @@ function scoreKey(score: number): number {
   return Math.round(score * 1e6) / 1e6
 }
 
-function compareStates(a: SearchState, b: SearchState): number {
-  const as = scoreKey(a.score)
-  const bs = scoreKey(b.score)
+function compareStates(a: SearchState, b: SearchState, durationSec: number): number {
+  // Primary: total expected damage + mean front-load (damage × remaining window / duration).
+  // Early casts get ~+expectedDamage; end-of-window casts get ~0. Stops AA-padding
+  // from parking abilities after a first-lethal truncate while keeping reset tie-breaks.
+  const denom = Math.max(durationSec, TIME_EPS)
+  const as = scoreKey(a.score + a.frontLoaded / denom)
+  const bs = scoreKey(b.score + b.frontLoaded / denom)
   if (as !== bs) return bs - as
   if (a.effectiveResets !== b.effectiveResets) {
     return b.effectiveResets - a.effectiveResets
@@ -156,6 +171,7 @@ function cloneState(s: SearchState): SearchState {
     aaSinceReset: s.aaSinceReset,
     effectiveResets: s.effectiveResets,
     resetEarliness: s.resetEarliness,
+    frontLoaded: s.frontLoaded,
     actions: s.actions.slice(),
     score: s.score,
     fingerprint: s.fingerprint,
@@ -214,6 +230,7 @@ export function planRotation(params: PlanRotationParams): RotationPlan {
     aaSinceReset: false,
     effectiveResets: 0,
     resetEarliness: 0,
+    frontLoaded: 0,
     actions: [],
     score: 0,
     fingerprint: '',
@@ -304,6 +321,8 @@ export function planRotation(params: PlanRotationParams): RotationPlan {
         }
         child.actions = child.actions.concat(planned)
         child.score += cand.expectedDamage
+        child.frontLoaded +=
+          cand.expectedDamage * Math.max(0, durationSec - opt.startSec)
         child.fingerprint = stateFingerprint(child.actions)
 
         const lock = Math.max(0, cand.castLockSec)
@@ -323,12 +342,12 @@ export function planRotation(params: PlanRotationParams): RotationPlan {
         }
 
         nextBeam.push(child)
-        if (compareStates(child, best) < 0) best = child
+        if (compareStates(child, best, durationSec) < 0) best = child
       }
     }
 
     if (!nextBeam.length) break
-    nextBeam.sort(compareStates)
+    nextBeam.sort((a, b) => compareStates(a, b, durationSec))
     beam = nextBeam.slice(0, beamWidth)
   }
 

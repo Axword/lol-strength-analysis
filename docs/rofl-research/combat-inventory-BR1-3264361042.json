@@ -1,0 +1,71 @@
+{
+  "ok": true,
+  "schema": "rofl-combat-inventory-v0",
+  "match": {
+    "platformId": "BR1",
+    "matchCode": "3264361042",
+    "gameId": 3264361042,
+    "gameName": "3264361042"
+  },
+  "identityBindingComplete": true,
+  "inventory": {
+    "trusted": true,
+    "note": "primary-1 combat-ish floats may appear on type-107 vectors; not product-trusted until a separate proof pass",
+    "observedKeys": [
+      "mFlatMagicDamageMod"
+    ],
+    "observationCounts": {
+      "mFlatMagicDamageMod": 5
+    },
+    "binaryCombatNames": [
+      "mArmor",
+      "mAttackSpeedMod",
+      "mBaseAttackDamage",
+      "mBonusArmor",
+      "mBonusSpellBlock",
+      "mFlatMagicDamageMod",
+      "mFlatPhysicalDamageMod",
+      "mGold",
+      "mGoldTotal",
+      "mHP",
+      "mLevelRef",
+      "mMaxHP",
+      "mMoveSpeed",
+      "mPercentAttackSpeedMod",
+      "mPercentMagicDamageMod",
+      "mPercentMultiplicativeAttackSpeedMod",
+      "mPercentPhysicalDamageMod",
+      "mSkillUpLevelDeltaReplicate",
+      "mSpellBlock"
+    ],
+    "namedHits": [
+      "mFlatMagicDamageMod"
+    ],
+    "wireProof": {
+      "schema": "rofl-combat-wire-proof-v1",
+      "combatTrusted": true,
+      "wireTableProven": true,
+      "observedNamed": [
+        "attackDamage",
+        "abilityPower",
+        "armor",
+        "magicResist",
+        "attackSpeed"
+      ],
+      "hypothesisProvenIndexCount": 11,
+      "furFieldProvenUnderPeTable": {
+        "attackDamage": true,
+        "abilityPower": true,
+        "armor": true,
+        "magicResist": true,
+        "attackSpeed": true
+      },
+      "evidence": "docs/rofl-research/combat-wire-proof-BR1-3264361042.json"
+    }
+  },
+  "blocker": null,
+  "combatTrusted": true,
+  "productEligible": true,
+  "note": "Gate B1 PE wire table proven; combatTrusted=true for product fuse.",
+  "dependsOnGateA": false
+}

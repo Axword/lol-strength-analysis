@@ -1,8 +1,32 @@
 import type { AbilityContext, AbilityDefinition, ChampionDefinition } from '../engine/types'
 import { bonusAd, rankOf } from '../engine/types'
 import { GAME_CHAMPIONS } from './generatedGameChamps'
+import { CHAMPION_BASE_STATS } from './generated/championBaseStats'
+import { MERAKI_GENERATED_CHAMPIONS } from './merakiKitFactory'
 
 const DDRAGON = '16.14.1'
+
+/** Timeline / display aliases → DDragon / Meraki kit keys. */
+const CHAMPION_ID_ALIASES: Record<string, string> = {
+  Wukong: 'MonkeyKing',
+  LeBlanc: 'Leblanc',
+  'Nunu & Willump': 'Nunu',
+  'Renata Glasc': 'Renata',
+}
+
+/** Canonical champion id for kit / base-stat lookup. */
+export function resolveChampionId(id: string): string {
+  const trimmed = String(id || '').trim()
+  if (!trimmed) return trimmed
+  if (trimmed in CHAMPION_BASE_STATS || trimmed in GAME_CHAMPIONS) return trimmed
+  const aliased = CHAMPION_ID_ALIASES[trimmed]
+  if (aliased) return aliased
+  const lower = trimmed.toLowerCase()
+  for (const key of Object.keys(CHAMPION_BASE_STATS)) {
+    if (key.toLowerCase() === lower) return key
+  }
+  return trimmed
+}
 
 function rankValue(values: number[], rank: number): number {
   const idx = Math.min(values.length, Math.max(1, rank)) - 1
@@ -807,9 +831,17 @@ const GAME_CHAMPIONS_WITH_FORMS: Record<string, ChampionDefinition> = {
 }
 
 export const CHAMPIONS: Record<string, ChampionDefinition> = {
+  // Meraki-generated kits fill wiki roster gaps (experimental damage mirrors).
+  ...MERAKI_GENERATED_CHAMPIONS,
   ...GAME_CHAMPIONS_WITH_FORMS,
   // Curated kits (damage, utility, passives) win over sparse wiki stubs.
   ...CORE_CHAMPIONS,
+}
+
+/** Resolve a fighter champion id (aliases + wiki/CORE/generated kits). */
+export function getChampion(id: string): ChampionDefinition | undefined {
+  const resolved = resolveChampionId(id)
+  return CHAMPIONS[resolved] ?? CHAMPIONS[id]
 }
 
 /**
@@ -831,7 +863,8 @@ export function isCoreChampion(id: string): boolean {
 export const CHAMPION_LIST = Object.values(CHAMPIONS)
 
 export function championIconUrl(id: string): string {
-  return `https://ddragon.leagueoflegends.com/cdn/${DDRAGON}/img/champion/${id}.png`
+  const resolved = resolveChampionId(id)
+  return `https://ddragon.leagueoflegends.com/cdn/${DDRAGON}/img/champion/${resolved}.png`
 }
 
 export { DDRAGON }
