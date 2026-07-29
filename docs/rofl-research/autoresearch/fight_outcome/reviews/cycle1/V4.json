@@ -1,0 +1,105 @@
+{
+  "reviewer": "V4",
+  "cycle": 1,
+  "role": "Unfreeze 0.9683 auditor",
+  "criterion": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T15:50:00Z",
+  "never_edited_parent": true,
+  "read_only": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.97,
+  "criteria": {
+    "C_unfreeze_process": true,
+    "C_history_preserved": true,
+    "C_no_unjustified_best_keep": true,
+    "C_r07_no_keep": true,
+    "C_new_best_justified": null,
+    "C_detail": "Unfreeze authorized (STATUS.unfreeze_0_9683=true). best.json still composite 0.9683 with no unfrozenFromComposite; mtime 2026-07-23T19:33:36 (pre Cycle1). results.jsonl retains exact 0.9682758824446431 baseline. R07 keeps=[] / best_json_updated=false (FA flat 0.5351 Δ0 vs E0). No researcher rewrote BEST under FA improvement law. Non-best KEEPs (R01/R02/R03 digest; R06 wire-measure) are not Criterion C BEST keeps."
+  },
+  "unfreeze_audit": {
+    "baselineComposite": 0.9683,
+    "best_json_composite_now": 0.9683,
+    "unfrozenFromComposite_present": false,
+    "best_json_mtime": "2026-07-23T19:33:36",
+    "best_json_sha1": "0c51733e0657e2c8e5a378799560c8f951b5f29b",
+    "best_json_rewritten_this_cycle": false,
+    "product_default_still": "cusum_engage_then_skills",
+    "product_selectors_changed": false,
+    "results_jsonl_baseline_lines_0_9682758824446431": 2,
+    "r07": {
+      "verdict": "NO_KEEP",
+      "best_fightAgreement": 0.5350862346343341,
+      "delta_vs_e0": 0.0,
+      "keeps": [],
+      "best_json_updated": false,
+      "reason": "No config beat E0 FA; ties e14/e15/e18/e19 flat; product cusum e1 worse"
+    },
+    "keep_classification": {
+      "unjustified_best_json_keeps": [],
+      "justified_non_best_keeps": [
+        "R01 digest-path (stamp/DIGEST; not best.json)",
+        "R02 source-preserve (fuse honesty; not best.json)",
+        "R03 digest-validate docs (not best.json)",
+        "R06 KEEP_wire_measure (S1/S2 harness; not best.json; no S1 tune)"
+      ],
+      "correct_no_keep": [
+        "R04 measured_baseline only",
+        "R07 unfreeze-marks NO KEEP"
+      ]
+    },
+    "git_note": "best.json and results.jsonl are currently untracked (??) in this checkout; Cycle1 did not delete or overwrite the on-disk 0.9683 artifact. History for C is the file + results.jsonl append-only trail, not a git rewrite."
+  },
+  "gate_failures_A_I": {
+    "A": null,
+    "B": "S0 product FA 0.4217 / pass 0.167; S1 0.478 / 0.333; S2 0.634 / 0.333 — all below 0.95/0.90 bars",
+    "C": "process compliant; no FA-beating KEEP yet (not a process violation)",
+    "D": "digestCleanGate still false (second host + reviewer affirm open)",
+    "E": "S0 still 2970110 proxy; 2970132 crosschecks missing",
+    "F": "S1 below threshold; cannot claim on S0 alone",
+    "G": null,
+    "H": null,
+    "I": "Cycle1 majority/e2e not run"
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/best.json composite=0.9683; no unfrozenFromComposite; productModes.cusum_engage_then_skills intact",
+    "best.json mtime 2026-07-23 19:33:36; sha1 0c51733e0657e2c8e5a378799560c8f951b5f29b — not touched by Cycle1 R01–R07",
+    "docs/rofl-research/autoresearch/results.jsonl retains FREEZE/research markMinGap0.4 composite 0.9682758824446431 (2 lines)",
+    "PARENT_MERGE.md: R07 unfreeze-marks NO KEEP; best.json unchanged; product selectors unchanged",
+    "r07/researcher_r07_summary.json: keeps=[]; best_json_updated=false; best_fightAgreement_delta_vs_e0=0.0; reason_no_keep cites FA improvement required",
+    "r07/leaderboard.json: e0 FA 0.5351 tops; product cusum e1 FA 0.4848 (−0.0503)",
+    "r04/researcher_r04_summary.json: baselineCompositePreserved=0.9683; no KEEP / best.json rewrite",
+    "r06 verdict KEEP_wire_measure only — fightOutcomeGateEvidence=false; no best.json claim",
+    "BRIEF.md: unfreeze 0.9683: no FA KEEP yet (R07 flat)",
+    "STATUS.json: unfreeze_0_9683=true; best_composite_new=null; fightOutcomeGate=false; digestCleanGate=false"
+  ],
+  "failures": [
+    {
+      "criterion": "B_fightAgreement",
+      "concrete": true,
+      "detail": "Dev/holdout/transfer fightAgreement far below gate bars (S0 0.42, S1 0.48, S2 0.63). Unfreeze sweeps (R07) did not improve FA."
+    },
+    {
+      "criterion": "D_digestCleanGate",
+      "concrete": true,
+      "detail": "DIGEST/STATUS/R01–R03 all leave digestCleanGate false (second host + V2 affirm still open)."
+    },
+    {
+      "criterion": "F_holdout",
+      "concrete": true,
+      "detail": "S1 FA 0.478 / pass 0.333 << 0.95; gate cannot flip on S0 alone."
+    }
+  ],
+  "blocker": "No FA-improving KEEP past 0.9683 baseline; S0/S1 fightAgreement ≪ 0.95 under product non-drop selector.",
+  "sharper_blocker": "F3 must beat R07 E0 FA 0.5351 (research-drop) and product cusum ~0.42 on S0 without invent, then re-measure S1/S2; only then rewrite best.json with unfrozenFromComposite=0.9683.",
+  "votes": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": false,
+    "C_history_preserved": true,
+    "C_r07_no_keep_correct": true,
+    "C_no_unjustified_KEEP": true
+  },
+  "one_line_vote": "V4: fightOutcomeGate=false digestCleanGate=false — C history OK, R07 correctly NO KEEP, no unjustified best.json KEEP; FA≪0.95.",
+  "notes": "Affirm Criterion C process: 0.9683 history preserved; R07 flat → no KEEP is correct; digest/wire KEEPs are not BEST rewrites. Deny fightOutcomeGate for concrete B/D/F failures, not unfinished peers."
+}

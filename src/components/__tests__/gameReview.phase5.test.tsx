@@ -44,10 +44,16 @@ const vite = await createServer({
 })
 
 try {
-  const { MatchCoverageBadges, MatchPicker, calculatorTrustBlockReason } =
-    (await vite.ssrLoadModule(
-      '/src/components/GameReview.tsx',
-    )) as typeof import('../GameReview')
+  const {
+    MatchCoverageBadges,
+    MatchPicker,
+    calculatorTrustBlockReason,
+    livingSelectedUnits,
+    selectedCombatTrustGap,
+    selectedLacksKnownCombatState,
+  } = (await vite.ssrLoadModule(
+    '/src/components/GameReview.tsx',
+  )) as typeof import('../GameReview')
 
   const published = renderToStaticMarkup(
     React.createElement(MatchPicker, {
@@ -140,6 +146,117 @@ try {
     }) ?? '',
     /MonkeyKing HP/,
   )
+
+  // P6 H1 / S2 — fail-closed: absent flags block Send (undefined ≠ known)
+  assert.equal(selectedLacksKnownCombatState([{}]), true)
+  assert.equal(
+    selectedCombatTrustGap([{ loadout: { championId: 'Gnar' } }]),
+    'Gnar HP',
+  )
+  assert.equal(
+    selectedLacksKnownCombatState([
+      {
+        loadout: { championId: 'Gnar' },
+        hpKnown: true,
+        combatStatsKnown: true,
+        abilityRanksKnown: true,
+      },
+    ]),
+    false,
+  )
+  assert.equal(
+    selectedCombatTrustGap([
+      {
+        loadout: { championId: 'Gnar' },
+        hpKnown: true,
+        combatStatsKnown: true,
+        abilityRanksKnown: true,
+      },
+    ]),
+    null,
+  )
+  assert.equal(
+    selectedCombatTrustGap([
+      {
+        loadout: { championId: 'MonkeyKing' },
+        hpKnown: false,
+        combatStatsKnown: true,
+        abilityRanksKnown: true,
+      },
+    ]),
+    'MonkeyKing HP',
+  )
+
+  // P6 H2 / S1 — dead+unknown must not false-block when living picks are known
+  const deadUnknownAlly = {
+    loadout: { championId: 'MonkeyKing' },
+    alive: false,
+    hpKnown: false,
+    combatStatsKnown: false,
+    abilityRanksKnown: false,
+  }
+  const livingKnownBlue = {
+    loadout: { championId: 'Gnar' },
+    alive: true,
+    hpKnown: true,
+    combatStatsKnown: true,
+    abilityRanksKnown: true,
+  }
+  const livingKnownRed = {
+    loadout: { championId: 'Ornn' },
+    alive: true,
+    hpKnown: true,
+    combatStatsKnown: true,
+    abilityRanksKnown: true,
+  }
+  const mixedSelection = [livingKnownBlue, deadUnknownAlly, livingKnownRed]
+  const livingOnly = livingSelectedUnits(mixedSelection)
+  assert.equal(livingOnly.length, 2)
+  assert.equal(
+    livingOnly.every((u) => u.loadout.championId !== 'MonkeyKing'),
+    true,
+    'dead excluded from living set',
+  )
+  assert.equal(selectedLacksKnownCombatState(livingOnly), false)
+  assert.equal(selectedCombatTrustGap(livingOnly), null)
+  // regress guard: all-selected (incl dead) would still block — gate must use livingOnly
+  assert.equal(selectedLacksKnownCombatState(mixedSelection), true)
+
+  // P6 H2 / S3 — living+unknown still blocks with champ-specific label
+  const livingUnknown = {
+    loadout: { championId: 'Azir' },
+    alive: true,
+    hpKnown: false,
+    combatStatsKnown: true,
+    abilityRanksKnown: true,
+  }
+  const livingGapSel = livingSelectedUnits([livingKnownBlue, livingUnknown])
+  assert.equal(selectedLacksKnownCombatState(livingGapSel), true)
+  assert.equal(selectedCombatTrustGap(livingGapSel), 'Azir HP')
+
+  // P6 H2 / S1 NvM 2v2 — living counts; dead on either side ignored by gate
+  const nvm = livingSelectedUnits([
+    livingKnownBlue,
+    {
+      loadout: { championId: 'Sejuani' },
+      alive: true,
+      hpKnown: true,
+      combatStatsKnown: true,
+      abilityRanksKnown: true,
+    },
+    livingKnownRed,
+    {
+      loadout: { championId: 'Braum' },
+      alive: true,
+      hpKnown: true,
+      combatStatsKnown: true,
+      abilityRanksKnown: true,
+    },
+    deadUnknownAlly,
+  ])
+  assert.equal(nvm.length, 4)
+  assert.equal(selectedLacksKnownCombatState(nvm), false)
+  assert.equal(`${nvm.length}`, '4')
 } finally {
   await vite.close()
 }

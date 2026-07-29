@@ -1,0 +1,73 @@
+{
+  "reviewer": "V8",
+  "cycle": 2,
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T15:55:30Z",
+  "model": "Auto",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.94,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "criterionG_detail": {
+    "affirmed": true,
+    "basis": "Personally ran parent `npm run fo:send-smoke` → 8 pass / 0 fail; Matchup≡Series endHp agree; dead/known-flags/no-odds green",
+    "r17_parent": {
+      "send_parity_smoke": "8/8",
+      "smokeCommand": "npm run fo:send-smoke",
+      "scriptPresent": "scripts/fo_r17_send_parity_smoke.ts",
+      "researcher_claims_proven_for_V8": true,
+      "fightOutcomeGate_self": false
+    },
+    "r16_inflight": {
+      "parent_r16_dir": "empty",
+      "worktree_smoke_report": "11/11 PASS",
+      "smokeCommand": "npm run smoke:calc-parity (worktree-only; not parent package.json)",
+      "corroborates_G": true,
+      "not_required_once_R17_parent_green": true
+    },
+    "residual_disclosed": "Product map Send still ships continuous pins unless killWindow.actionMarks attached; R17 proves shared math when marks present — does not invent timeline skill_used or raise FA"
+  },
+  "evidence": [
+    "GOAL V8 = Calculator↔harness parity (F6 / Criterion G)",
+    "R17 parent: researcher_r17_summary.json criterionG.proven_for_V8=true; send_parity_smoke.json passCount=8 failCount=0; criterionG all true; fightOutcomeGate false",
+    "Personally reproduced: `npm run fo:send-smoke` → 8/8 (E0 shared module; E1 endHpAgree calc=harness=289.73; E2 Path1 Galio→Trundle endHp agree; E3 deadExcluded; E4 known-flags block; E5 Path1 unitToLoadout honesty; E6 no odds; E7 overlay bypass false)",
+    "R16 worktree (in flight / not parent-mirrored): smoke_report.json 11/11; researcher_r16_summary claims Criterion G math identity; parent docs/…/r16/ still empty; smoke:calc-parity absent from parent package.json — corroboration only",
+    "BRIEF measured FA: S0 Path1 product cusum 0.228 / pass 0 (R05) — authoritative; S1 0.478 / S2 0.634; R10 timed 0.502 no product KEEP — Criterion B unmet",
+    "R14: honest PE damage F1=1.0 on c1; zero-dmg echo REJECTED; FA credit only honest; small proxy lift — supports H, does not clean digest or raise S0 to 0.95",
+    "DIGEST.md: still digestCleanGate false; Path1 fingerprints on-disk match (events 114456779 / 823aa35f…; timeline 9064216 / fb542736…); second host 2970110 still not product-green",
+    "STATUS/HEARTBEAT: fightOutcomeGate false; digestCleanGate false; C2 in flight; no ≥11/15 + parent e2e yet",
+    "rooms/f6 room_ready remains orchestrator_seed=true — seed ≠ evidence; R17 smoke replaces C1 seed-only gap"
+  ],
+  "failures": [
+    {
+      "criterion": "B",
+      "gap": "S0 Path1 fightAgreement 0.228 << 0.95 and fightPassRate 0; S1 0.478 << 0.95. Parity proof does not raise FA (R16/R17 disclose)."
+    },
+    {
+      "criterion": "D",
+      "gap": "digestCleanGate re-judge: DIGEST still self-reports false; second-host 2970110 combat honesty open; R14 honest F1 is orthogonal to §D digest path. Fingerprints match but co-gate not flipped by V8."
+    },
+    {
+      "criterion": "F",
+      "gap": "No fightOutcomeGate on S0 alone; S1 holdout below threshold."
+    },
+    {
+      "criterion": "I",
+      "gap": "Cycle2 in progress; no ≥11/15 majority + parent e2e STATUS flip yet."
+    }
+  ],
+  "blocker": "Criterion G closed for V8 (R17 parent smoke 8/8 personally green). Remaining fightOutcomeGate blockers: B (Path1 FA 0.228), F (S1), D (digestCleanGate), I (majority+e2e). Next FA work is F3/F4 Path1 lethal/early (R18/R19) — not more Send parity.",
+  "notes": "C1 V8 gap was R16–R18 missing / F6 seed-only. C2: R17 parent Final smoke + script merged and personally verified → G=true. R16 in-flight 11/11 corroborates but parent mirror incomplete — not a G blocker once R17 parent runs. Voted fightOutcomeGate false for concrete B/D/F/I — not because peers unfinished. R17 residual (marks opt-in on map Send) disclosed; do not invent skill marks for FA.",
+  "never_edited_code": true,
+  "one_line_vote": "V8: fightOutcomeGate=false digestCleanGate=false — G=true (fo:send-smoke 8/8); B fails S0 FA 0.228."
+}

@@ -1,0 +1,70 @@
+{
+  "reviewer": "V7",
+  "cycle": 8,
+  "phase": "C",
+  "role": "S2 transfer auditor",
+  "utc": "2026-07-24T17:05:42Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "one_liner": "V7: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — S2 FA 0.4075 / pass 0 ≪ bars; S0 0.9304 / S1 0.7628 also ≪0.95; FA≠odds",
+  "s2_lens": {
+    "members": ["S2-2954868-g1"],
+    "unusedProSlim": "2954868-g1",
+    "seriesUnusedVsS0S1": true,
+    "schema": "pro-grid-riot-slim-v1",
+    "nWindows": 6,
+    "fightAgreement_authoritative": 0.40750780944418485,
+    "fightPassRate_authoritative": 0,
+    "research_best_FA": 0.4482066017540128,
+    "research_best_still_pass": 0,
+    "gateBar": {
+      "fightAgreement": 0.9,
+      "fightPassRate": 0.8333333333333334,
+      "noneWindowScoreBelow": 0.8
+    },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "authoritative_source": "R45 S2 transfer remesaure (NO KEEP); STATUS best_S2_fightAgreement 0.4075",
+    "cycle8Delta": {
+      "s2Remeasured": true,
+      "s2KEEP": false,
+      "compound_S0_FA": 0.9304,
+      "compound_S1_FA": 0.7628,
+      "wave3": "R39–R46 CLOSED; R45 NO KEEP on transfer",
+      "sharper": "Camille→Vayne late leth; Cassio miss-kill; LeeSin earlyPoisoned"
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "BRIEF C8 — S0 FA 0.9304 pass 0.667 ≪0.95; S1 0.7628 pass 0.500; S2 FA 0.4075 pass 0; G true",
+    "STATUS — best_S2_fightAgreement 0.4075; fightOutcomeGate false; digestCleanGate true",
+    "r45 fight_agreement_S2.json — baseline FA 0.40750780944418485 / passRate 0; meetsThresholds false",
+    "PARENT_MERGE R45 — NO KEEP; research best 0.4482 still pass 0; no product merge",
+    "DIGEST Path1 2970132 living_post_seed_v1 — digestCleanGate reaffirm true",
+    "GOAL — FA≠odds; fightOutcomeGate needs S0+S1 mean FA≥0.95 with passRate path — unmet; transfer also unmet"
+  ],
+  "failures": [
+    "B: S0 compound FA 0.9304 / pass 0.667 ≪ 0.95",
+    "F: S1 holdout FA 0.7628 / pass 0.500 ≪ 0.95",
+    "E/transfer: S2 FA 0.4075 / pass 0 ≪ 0.9 / 0.833 — R45 NO KEEP"
+  ],
+  "blocker": "Close B/F on S0+S1 (c2 pathMae / passRate / S1 miss-kills) before inventing transfer KEEP; S2 pass stuck at 0",
+  "notes": "V7 S2 transfer lens (Cycle8). R45 remounted unused pro 2954868-g1 → FA 0.4075 / pass 0 (NO KEEP). S0/S1 post-wave3 still ≪0.95. FO false. DC true. FA ≠ odds."
+}

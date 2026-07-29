@@ -1,0 +1,82 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r22",
+  "slug": "camille-q-wire",
+  "model": "Auto",
+  "utc": "2026-07-24T16:00:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r22",
+  "branch": "adv/fo-r22-camille-q-wire",
+  "room": "f4",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Wire Camille Q from same-match PE/wiki-proven evidence; measure Path1 2970132 S0 FA; PE insufficient → impossibility sharpener",
+  "r11_blocker_addressed": {
+    "empty_q_stub": "CLEARED — wiki first-cast packets + attackReset/empoweredAuto + MS utility",
+    "gate_action_ignores_planner": "STILL OPEN — FA path unchanged; Path1 killers not Camille"
+  },
+  "hypothesesAutoPicked": [
+    {
+      "id": "H1",
+      "title": "Wiki first-cast Q wire (empowered AA)",
+      "result": "KEEP"
+    },
+    {
+      "id": "H2",
+      "title": "Path1 2970132 S0 FA measure",
+      "result": "measured_FA_flat_vs_Q_lever_N/A"
+    },
+    {
+      "id": "H3",
+      "title": "PE impossibility sharpener",
+      "result": "KEEP_disclose"
+    }
+  ],
+  "n_experiments": 3,
+  "wire": {
+    "file": "src/data/generatedGameChamps.ts",
+    "ability": "Camille.Q Precision Protocol",
+    "formula": "AD * (1 + rankValue([0.2,0.25,0.3,0.35,0.4], Q))",
+    "execution": { "attackReset": true, "empoweredAuto": true },
+    "utility": "selfMsBuff wiki 25–45%",
+    "notWired": ["recast_true_damage_mix", "pe_float_coeffs"]
+  },
+  "evidence": {
+    "wiki": "public/data/lolwiki/champions-full.json Camille.Q Bonus Physical Damage % AD",
+    "meraki": "src/data/generated/merakiAbilityKits.ts ratios match",
+    "pe": "product_ready/r04 PrecisionProtocol=0 CamilleQ=0",
+    "sameMatch": {
+      "2970110_qCasts": 84,
+      "2970110_c1_qInWindow": 4,
+      "2970132_qCasts": 71
+    }
+  },
+  "path1_S0_FA": {
+    "match": "2970132-g1",
+    "fightAgreement": 0.2945984235430667,
+    "fightPassRate": 0.16666666666666666,
+    "n": 6,
+    "killers": ["Galio", "Olaf", "Olaf"],
+    "camilleKillerWindows": 0,
+    "deltaAttributableToQWire": null,
+    "note": "Cannot attribute FA delta to Q — no Camille-as-killer windows; gate_action pulse uses killer kit continuously"
+  },
+  "probe_pass": true,
+  "best_json_updated": false,
+  "fightOutcomeGateEvidence": false,
+  "verdict": "KEEP_wiki_q_wire; PE_IMPOSSIBILITY_disclose; NO_FA_KEEP_on_Path1_S0",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "sharper_blocker": "PE cannot prove Q coeffs or recast true-mix; Path1 S0 FA insensitive to Camille Q until Camille-killer windows exist and/or gate_action consumes kit-slot packets",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r22/results.jsonl",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r22/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r22/NOTES.md",
+    "wire_probe": "docs/rofl-research/autoresearch/fight_outcome/r22/e_camille_q_wire.json",
+    "pe_sharpener": "docs/rofl-research/autoresearch/fight_outcome/r22/pe_impossibility_sharpener.json",
+    "same_match_census": "docs/rofl-research/autoresearch/fight_outcome/r22/same_match_q_census.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r22/fight_agreement_S0.json",
+    "harness": "docs/rofl-research/autoresearch/fight_outcome/r22/harness_eval_S0_2970132_g1.json"
+  },
+  "next": "F9 Camille-killer windows on Path1 or gate_action kit-slot path; optional 2970110 c1 FA delta for Camille→Leona (not Path1 S0)"
+}

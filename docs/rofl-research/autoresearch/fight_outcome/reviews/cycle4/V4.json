@@ -1,0 +1,72 @@
+{
+  "reviewer": "V4",
+  "role": "Unfreeze 0.9683 auditor",
+  "cycle": 4,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:09:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "unfreeze_audit": {
+    "baselineComposite": 0.9683,
+    "best_json_composite_now": 0.9683,
+    "unfrozenFromComposite_present": false,
+    "best_json_sha1": "0c51733e0657e2c8e5a378799560c8f951b5f29b",
+    "best_json_rewritten_this_cycle": false,
+    "product_default_still": "cusum_engage_then_skills",
+    "idleFollowActual_product_KEEP": {
+      "source": "R19 MERGED",
+      "r25_confirmed": true,
+      "note": "product default flag KEEP; does not rewrite best.json composite 0.9683"
+    },
+    "r23": {
+      "verdict": "NO_KEEP",
+      "research_best_FA": 0.25028620072867436,
+      "keeps": [],
+      "S1_flat_or_regress": true,
+      "best_json_updated": false,
+      "galio_W_pre_CUSUM_sec": 0.334
+    },
+    "r22": {
+      "verdict": "wiki_KEEP_no_FA_lift",
+      "best_json_updated": false
+    },
+    "r25": {
+      "verdict": "REMEASURE_ONLY_NO_KEEP",
+      "best_json_updated": false
+    },
+    "prior_correct_no_keep": ["R07", "R08", "R09", "R10", "R12", "R18", "R23"]
+  },
+  "evidence": [
+    "C specialty: unfreeze_0_9683 authorized; best.json composite 0.9683; unfrozenFromComposite absent; sha1 0c51733e… / mtime Jul 23 19:33 unchanged through R23/R25/R29.",
+    "R23 path1-lethal2: research FA 0.250; S1 flat/regress → honest refuse product KEEP — Criterion C process compliant.",
+    "R22 Camille Q wiki KEEP (no FA lift) does not rewrite best.json composite history.",
+    "R25 remesaure-only confirms R19 idleFollowActual product FA 0.4107; no best.json rewrite.",
+    "Product selectors remain non-drop cusum/post_engage; near_hp_drop research-only; preEngageOpenerSec stays 0 in product.",
+    "B FAIL: Path1 product FA 0.4107 ≪ 0.95; research 0.250 also ≪ 0.95 and not KEEP.",
+    "D reaffirm: Path1 validate+hashes personally green → digestCleanGate=true (2970110 prefer≠require).",
+    "G AFFIRM: STATUS.criterionG_proven=true.",
+    "STATUS: best_fightAgreement=0.4107 (r25_S0_path1_remeasure); fightOutcomeGate=false."
+  ],
+  "failures": [
+    "B: No FA-to-0.95 product KEEP; Path1 product FA 0.4107 ≪ 0.95.",
+    "F: S1 unmet (0.417 / pass 0); R23 no S1 improve → no product KEEP.",
+    "I: FO majority+e2e not satisfied."
+  ],
+  "notes": "Affirm Criterion C: 0.9683 history preserved; R23 correctly NO product KEEP despite research +0.022. R19 idleFollowActual is product flag KEEP (FA→0.4107) without best.json composite rewrite — process OK. digestClean reaffirm true. FO false on B/F/I. G proven. FA≠odds.",
+  "one_line_vote": "V4: fightOutcomeGate=false digestCleanGate=true — C history OK (R23 NO KEEP; best.json 0.9683 intact); Path1 FA 0.4107≪0.95; G=true."
+}

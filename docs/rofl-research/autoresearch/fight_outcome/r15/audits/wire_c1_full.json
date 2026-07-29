@@ -1,0 +1,39 @@
+{
+  "check": 1,
+  "segment": "full",
+  "matchup": "Galio→Trundle",
+  "aaTruthCount": 50,
+  "damageTruthCount": 13,
+  "sourceAndAmountResolvedCount": 13,
+  "damageGateEligible": true,
+  "aaGateEligible": false,
+  "echo": {
+    "aaF1": 1,
+    "damageF1": 1,
+    "rejectedAsGateEvidence": true,
+    "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+  },
+  "honestDamage": {
+    "modelDamagingCount": 13,
+    "modelEchoCount": 0,
+    "f1": {
+      "actionCoverage": 1,
+      "precision": 1,
+      "recall": 1,
+      "matched": 13,
+      "truthCount": 13,
+      "modelCount": 13
+    },
+    "available": true,
+    "actionCoverageF1_for_secondary": 1
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=50 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+    "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+    "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+    "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+    "r44_model_damage: modelDamageCount=13 rejectedNoAmount=0 rejectedZeroAmount=0"
+  ]
+}

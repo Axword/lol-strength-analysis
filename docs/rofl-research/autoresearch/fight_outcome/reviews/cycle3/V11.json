@@ -1,0 +1,72 @@
+{
+  "reviewer": "V11",
+  "cycle": 3,
+  "role": "Path1 / known-flags / no invent",
+  "utc": "2026-07-24T16:00:30Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "path1_known_flags_lens": {
+    "host": "2970132-g1",
+    "policy": "living_post_seed_v1",
+    "strict_all_frame": false,
+    "calculatorReady": true,
+    "livingOkSlots": 14725,
+    "livingMissSlots": 0,
+    "ranksDensity": 1.0,
+    "hpHoldAcrossRespawn": true,
+    "knownWithoutSource": { "hp": 0, "combat": 0, "ranks": 0 },
+    "events_sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+    "timeline_sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4",
+    "events_bytes": 114456779,
+    "timeline_bytes": 9064216,
+    "fingerprints_match_digest": true,
+    "personally_revalidated_this_cycle": true,
+    "validate_exit": 0,
+    "cycle6_calculatorReadyGate": true,
+    "r17_knownFlags_smoke": true,
+    "r16_no_invent_smoke": true,
+    "r18_product_KEEP": false,
+    "r18_invent": false,
+    "specialty_holds": true
+  },
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "evidence": [
+    "C3 personal Path1 validate --product living_post_seed_v1 --require-calculator-ready exit 0: calculatorReady true; livingOkSlots 14725; livingMissSlots 0; ranksDensity 1.0; hpHoldAcrossRespawn true.",
+    "C3 personal sha256+bytes bit-match DIGEST: events 114456779/823aa35f…; timeline 9064216/fb542736….",
+    "BRIEF/STATUS: S0 Path1 product FA 0.2279 unchanged; R18 research e11 FA 0.2414 NO product KEEP (S1 regress); no invent; product selectors unchanged.",
+    "Criterion G proven on parent: npm run fo:send-smoke 8/8 (knownFlags+path1Honesty+deadExcluded+noOdds); npm run smoke:calc-parity 11/11 (no invent + known-flags fail-closed).",
+    "R02 source_preserve: knownWithoutSource hp/combat/ranks = 0/0/0; R03 second_host 2970110 invent_refused disclosed — GOAL §D.4 prefer≠require.",
+    "DIGEST.md one-command Path1 path + living_post_seed + hold_across disclosed; stamp helper rebuild footgun only.",
+    "Open tracks R19 early / R21 falsekill / R22 Camille Q / R23 lethal2 / R24 Galio kill — none invent known-flags.",
+    "C2 digestClean 6/15 — re-judge: Path1 §D.1–D.7 personally holds again this cycle."
+  ],
+  "failures": [
+    "B: S0 Path1 product FA 0.2279 / pass 0 ≪ 0.95; R18 research 0.2414 still ≪ bars and NO product KEEP.",
+    "F: Holdout unmet; cannot set fightOutcomeGate on S0 alone (GOAL §F).",
+    "I: ≥11/15 fightOutcomeGate + parent e2e not established — gate false on concrete B+F regardless of peers."
+  ],
+  "digestClean_rejudge": {
+    "c1_vote": false,
+    "c2_vote": true,
+    "c3_vote": true,
+    "c2_tally_true": 6,
+    "reason": "Personally re-affirm GOAL §D.1–D.7 on Path1 2970132 this cycle (validate+fingerprints+sources+identity+living disclosure+DIGEST smoke). G proven does not weaken D. Second-host prefer still open/disclosed. DIGEST header self-mark false is circular pending — not a §D failure."
+  },
+  "notes": "V11 specialty (Path1 / known-flags / no invent) HOLDS: personal Path1 validate green, fingerprints match, R16/R17 known-flags+no-invent smokes green on parent, R18 correctly refused product KEEP that would not invent but also would not clear B. digestCleanGate true under §D (≥1 Path1 host). fightOutcomeGate still false on concrete B+F (+I). Do not invent pins to raise FA 0.2279. Critical path: R19/R21/R23/R24 without invent.",
+  "one_line_vote": "V11: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — Path1/known-flags HOLD; G proven; FA 0.2279≪0.95",
+  "blocker": "S0 Path1 product FA 0.2279 / pass 0; R18 research-only +0.013 no KEEP; lift via R19/R21/R23/R24 without inventing known-flags"
+}

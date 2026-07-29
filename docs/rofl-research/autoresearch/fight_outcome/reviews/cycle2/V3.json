@@ -1,0 +1,140 @@
+{
+  "reviewer": "V3",
+  "cycle": 2,
+  "role": "fightAgreement metric honesty (no gaming)",
+  "utc": "2026-07-24T15:53:10Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.97,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": false,
+    "H": true,
+    "I": false
+  },
+  "metric_honesty": {
+    "law_encoded": {
+      "weights": "0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1",
+      "caps": "lethal≤0.75s, earlyMae≤50, burst≤90, full≤130, endHpFloor≤40",
+      "source": "scripts/fight_agreement_suite.ts scoreWindow matches GOAL §B (unchanged since C1)"
+    },
+    "fa_not_odds": true,
+    "authoritative_S0": {
+      "host": "2970132-g1 Path1 product cusum_engage_then_skills",
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0,
+      "n": 6,
+      "grain": "check×segment (3 checks × burst/full)",
+      "source": "r05/s0_fight_agreement_cusum.json",
+      "supersedes_proxy": "2970110 proxy ~0.42 is non-authoritative for Path1 gate"
+    },
+    "product_vs_research_drop": {
+      "product_default": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+      "research_only": "near_hp_drop",
+      "S0_Path1_product_FA": 0.228,
+      "S0_proxy_product_FA": 0.4217,
+      "S0_research_drop_FA": 0.6018,
+      "research_sold_as_product": false,
+      "r10_timed_best_FA": 0.5019,
+      "r10_product_KEEP": false,
+      "r10_reason": "S1 timed 0.282 << marks 0.519 — honest refuse"
+    },
+    "r14_action_anti_gaming": {
+      "honest_c1_PE_damage_F1": 1.0,
+      "echo_F1": 1.0,
+      "echo_rejected_as_gate_evidence": true,
+      "echo_FA_credit": 0,
+      "honest_partial_FA_lift": 0.025,
+      "S0_proxy_fa_zero_f1": 0.3494,
+      "S0_proxy_fa_honest_c1": 0.3744,
+      "actionF1_weight_only": 0.15,
+      "never_sole_gate": true,
+      "sold_as_Path1_gate": false
+    },
+    "audits_for_failing_windows": true,
+    "grain": {
+      "GOAL": "check×segment",
+      "r05_S0_Path1": "check×segment n=6 — GOAL-faithful; canonical for gate",
+      "r06_S1_S2": "check-level collapse still inflates vs r04 S1 0.3279",
+      "canonical_for_gate": "r05 Path1 0.228; do not treat r06 0.478 / r14 proxy 0.374 / research-drop 0.60 as Path1 gate"
+    },
+    "latent_hygiene": {
+      "forceTruthKill_in_suite_ts": true,
+      "note": "suite.ts forceTruthKill=true still latent; Path1 r05 failing windows are lethal-miss / MAE — not observed as gate claim. Soft hygiene only."
+    },
+    "forbidden_H_as_gate_evidence": {
+      "zero_damage_log_echo": "R14 E03 REJECTED; credit forced 0",
+      "single_coeff_early_late": "not claimed",
+      "fixture_remap_pins": "not claimed",
+      "grid_zip_alone_as_digest": "not claimed",
+      "timed_S0_lift_without_S1": "R10 refused KEEP"
+    },
+    "no_KEEP_knob_sweeps": ["r07", "r08", "r09", "r12"]
+  },
+  "measured": {
+    "S0_Path1_product_cusum_2970132": {
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0,
+      "n": 6,
+      "authoritative": true
+    },
+    "S0_Path1_post_engage": {
+      "fightAgreement": 0.09447496947496947,
+      "fightPassRate": 0,
+      "n": 6
+    },
+    "S0_proxy_2970110": { "fightAgreement": 0.4217, "fightPassRate": 0.1667, "n": 6 },
+    "S0_research_drop": { "fightAgreement": 0.6018, "note": "not product" },
+    "S1_r06_pooled": { "fightAgreement": 0.4777, "fightPassRate": 0.3333 },
+    "S2_r06": { "fightAgreement": 0.6335, "fightPassRate": 0.3333 },
+    "r10_timed_best": { "fightAgreement": 0.5019, "product_KEEP": false },
+    "r14_honest_partial_proxy": { "fightAgreement": 0.3744, "delta_vs_f1_zero": 0.025 },
+    "gate_bar_S0_S1": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "meets_thresholds": false
+  },
+  "digestClean_rejudge": {
+    "DIGEST_self_claim": false,
+    "second_host_2970110": "validate --product fails (combatStatsKnown + unavailable_replay_api)",
+    "R14_changes_digest": false,
+    "C1_affirmers_only": ["V2", "V13"],
+    "vote": false
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B + §H",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle2/BRIEF.md",
+    "scripts/fight_agreement_suite.ts (scoreWindow weights/caps; PRODUCT_MARK_SELECTIONS; forceTruthKill)",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/researcher_r05_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json",
+    "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check0{1,2,3}_{full,burst}.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/experiments/E02_honest_f1.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/experiments/E03_zero_dmg_echo_reject.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/experiments/E06_suite_join_S0.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r10/researcher_r10_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r07/researcher_r07_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md"
+  ],
+  "failures": [
+    "B_thresholds: authoritative S0 Path1 FA 0.228 / pass 0 << 0.95; S1 0.48 << 0.95 — metric law gate unmet.",
+    "B_host_hygiene: gate math must use r05 2970132 Path1 0.228, not 2970110 proxy 0.42 or r14 partial 0.374.",
+    "D_digestCleanGate: DIGEST.md still false; 2970110 second-host combat honesty still blocks; R14 does not clean digest.",
+    "F_holdout: S1 below bar; researchers correctly refuse fightOutcomeGateEvidence on S0 alone.",
+    "G_calc_path: Send parity still open (R16/R17); no product Send↔harness gate proof.",
+    "I_majority_e2e: Cycle2 mid-vote; parent e2e not run."
+  ],
+  "blocker": "S0 Path1 product FA 0.228 (pass 0) under cusum << 0.95; metric harness honest (echo rejected, no false KEEP) but thresholds unmet.",
+  "sharper_blocker": "Lift Path1 lethalHit (±0.75) + early/path MAE on 2970132 check×segment (r05 audits: c1 miss-kill, c2/c3 lethalError>0.75, early/path caps); never promote research-drop 0.60, r10 timed 0.50, or r14 proxy F1-join 0.37 as product gate evidence.",
+  "notes": "V3 C2 metric honesty: scorer weights/caps still match GOAL §B; FA≠odds; STATUS best_fightAgreement correctly 0.228 (Path1). R14 honest PE damage F1=1.0 KEEP + zero-dmg echo REJECT (H anti-gaming). R10 timed 0.502 no product KEEP (S1 regress). R07/R09/R12 empty keeps. Soft: forceTruthKill latent; r06 grain inflate vs r04. Gate false on B/D/F/G/I. fightAgreement ≠ win odds.",
+  "one_line_vote": "V3: metric law honest (R14 echo REJECT; Path1 FA 0.228 canonical) but 0.228/0.48 << 0.95 → fightOutcomeGate=false; digestCleanGate=false (conf 0.97)."
+}

@@ -1,0 +1,164 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r44",
+  "slug": "action-coverage-c1burst",
+  "wave": 3,
+  "model": "Auto",
+  "utc": "2026-07-24T17:05:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r44",
+  "branch": "adv/fo-r44-action-coverage-c1burst",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "mandate": "honest actionCoverage F1 on c1-burst (no zero-dmg echo); secondary only; KEEP if S0 FA↑ S1 flat+",
+  "owns": "S0 c1-burst actionCoverage honesty (truth mark-domain parity with R31 pre-burst lead)",
+  "does_not_own": [
+    "Galio full lethErr",
+    "c2 pathMae",
+    "calibrated win odds",
+    "fightOutcomeGate claim"
+  ],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "is": "truth inventory used HP-burst window only while model loaded+remapped pre-burst lead skills",
+    "not": "missing skill_used in slim / need zero-dmg echo",
+    "evidence": {
+      "burstStartMs": 502021,
+      "skillLoadStartMs_lead2_5": 499521,
+      "galioSkillsInLead": [
+        { "tMs": 500018, "slot": 3 },
+        { "tMs": 501821, "slot": 1 }
+      ],
+      "galioSkillsInBurstWindow": 0,
+      "e0b": { "truth": 0, "model": 1, "F1": 0 },
+      "e3": { "truth": 2, "model": 1, "matched": 1, "F1": 0.6666666666666666 }
+    }
+  },
+  "n_experiments": 10,
+  "experiments": [
+    {
+      "id": "E0",
+      "hypothesis": "H0 baseline no product density",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0, "truth": 0, "model": 1 }
+    },
+    {
+      "id": "E0b",
+      "hypothesis": "H0 product density baseline",
+      "keep": false,
+      "metrics": {
+        "c1_burst_F1": 0,
+        "S0_FA": 0.7740028158506135,
+        "S1_FA": 0.5810
+      }
+    },
+    {
+      "id": "E1",
+      "hypothesis": "H1 truth burst-window only ablate",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0, "truth": 0, "model": 1 }
+    },
+    {
+      "id": "E2",
+      "hypothesis": "H2 domain expand without remap",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0, "truth": 2, "model": 1, "matched": 0 }
+    },
+    {
+      "id": "E3",
+      "hypothesis": "H3 domain + engage remap (default)",
+      "keep": true,
+      "metrics": {
+        "c1_burst_F1": 0.6666666666666666,
+        "truth": 2,
+        "model": 1,
+        "matched": 1,
+        "S0_FA": 0.7906694825172802,
+        "S1_FA": 0.5810
+      }
+    },
+    {
+      "id": "E4",
+      "hypothesis": "H4 tau 0.15",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0.6666666666666666, "note": "flat vs E3" }
+    },
+    {
+      "id": "E5",
+      "hypothesis": "H5 ally truth",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0.5, "truth": 3, "model": 1 }
+    },
+    {
+      "id": "E6",
+      "hypothesis": "H6 no pre-burst lead",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0, "note": "confirms R31 coupling" }
+    },
+    {
+      "id": "E7",
+      "hypothesis": "H7 lead 3.5 includes W",
+      "keep": false,
+      "metrics": { "c1_burst_F1": 0.5, "truth": 3, "model": 1 }
+    },
+    {
+      "id": "E8",
+      "hypothesis": "H8 zero-dmg echo reject",
+      "keep": false,
+      "rejectReason": "zero_damage_log_echo forbid #13",
+      "metrics": {
+        "honest_F1": 0.6666666666666666,
+        "echo_F1": 1.0,
+        "gateEligible_echo": false
+      }
+    }
+  ],
+  "product_KEEP": {
+    "keep": true,
+    "reason": "S0 FA 0.7740→0.7907 (+0.0167) via honest actionF1 secondary; S1 FA flat 0.5810; no invent; echo rejected",
+    "files": [
+      "scripts/crosscheck_action_aligned.ts",
+      "scripts/fo_r44_echo_reject_audit.ts"
+    ],
+    "defaults": {
+      "truthBurstWindowOnly": false,
+      "truthPreBurstRemap": true,
+      "markPreBurstSkillLeadSec": 2.5
+    },
+    "note": "Harness-only; HP/lethal path unchanged. FA lift is 0.15·ΔF1/nWindows — not fightOutcomeGate."
+  },
+  "FA_deltas": {
+    "S0_e0b": 0.7740028158506135,
+    "S0_e3": 0.7906694825172802,
+    "S0_delta": 0.01666666666666672,
+    "S1_e0b": 0.5810,
+    "S1_e3": 0.5810,
+    "S1_delta": 0.0,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "actionCoverage": {
+    "S0_c1_burst_e0b": 0.0,
+    "S0_c1_burst_e3": 0.6666666666666666,
+    "secondary_only": true,
+    "windowScore_weight": 0.15,
+    "echo_rejected": true
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "actionReplayGateEvidence": false,
+  "confidence": "actionCoverage ≥0.95 means log-matched F1 — NOT win odds. fightAgreement ≠ odds %. Zero-dmg echo never gate evidence.",
+  "blocker_residual": "c1-burst F1 0.667≪0.95 (model 1/2 skills); earlyMae/pathMae still fail; passRate 0.333; fightOutcomeGate false",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r44/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r44/NOTES.md",
+    "e3": "docs/rofl-research/autoresearch/fight_outcome/r44/experiments/e3_domain_remap.json",
+    "e8": "docs/rofl-research/autoresearch/fight_outcome/r44/experiments/e8_echo_reject.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r44/experiments/fa_e3_S0/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r44/experiments/fa_e3_S1/fight_agreement_S1.json",
+    "parent_mirror": "/Users/river/Projects/lol-strength-analysis/docs/rofl-research/autoresearch/fight_outcome/r44"
+  }
+}

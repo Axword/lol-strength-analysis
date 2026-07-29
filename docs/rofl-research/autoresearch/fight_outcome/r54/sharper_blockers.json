@@ -1,0 +1,128 @@
+{
+  "schema": "fightOutcome-sharper-blocker-pack-v1",
+  "researcher": "r54",
+  "utc": "2026-07-24T17:12:20Z",
+  "authoritative_STATUS": {
+    "S0_FA": 0.9304,
+    "S0_pass": 0.6667,
+    "S1_FA": 0.7628,
+    "S1_pass": 0.5,
+    "S2_FA_R45": 0.4075,
+    "S2_pass_R45": 0.0,
+    "note": "STATUS best_S2 from R45; post-compound remesaure S2 FA 0.5861 pass 0.333 (Camille leth fixed by R39/R42 stack; Cassio+LeeSin remain)"
+  },
+  "remeasure_r54": {
+    "S0_FA": 0.930409557022156,
+    "S0_pass": 0.6666666666666666,
+    "S1_FA": 0.7627693321171581,
+    "S1_pass": 0.5,
+    "S2_FA": 0.5861062942926697,
+    "S2_pass": 0.3333333333333333,
+    "S2_match": "2954868-g1"
+  },
+  "gate": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95,
+    "S2_FA": 0.9,
+    "S2_pass": 0.8333333333333334
+  },
+  "fightOutcomeGate": false,
+  "fa_not_odds": true,
+  "blockers_ranked": [
+    {
+      "rank": 1,
+      "id": "S0_c2_burst_pathMae",
+      "one_liner": "Olaf\u2192Trundle burst pathMae 111.6 > cap 90 (overage +21.6); lethOk; R40 floor ~101 NO KEEP; pathFollow forbidden",
+      "suite": "S0",
+      "window": "S0_2970132-g1_c2_burst",
+      "metric": "pathMae",
+      "value": 111.59164037216308,
+      "cap": 90,
+      "overage": 21.592,
+      "owned_by": "pathMae / kit-dump honesty (not finish/density; not actionF1)",
+      "forbidden": [
+        "pathFollow product",
+        "pathClamp product",
+        "invent pins"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "S0_c3_full_pathMae",
+      "one_liner": "Olaf\u2192Camille full pathMae 159.3 > cap 130 (overage +29.3); leth perfect (err=0)",
+      "suite": "S0",
+      "window": "S0_2970132-g1_c3_full",
+      "metric": "pathMae",
+      "value": 159.29375,
+      "cap": 130,
+      "overage": 29.294,
+      "owned_by": "full-window Olaf spacing / residual HP path (not idleFollow)"
+    },
+    {
+      "rank": 3,
+      "id": "S1_c1_Vayne_leth",
+      "one_liner": "Vayne\u2192Ambessa full |lethErr|=2.05>0.75; burst miss-kill (leth null); pathOk; not density",
+      "suite": "S1",
+      "window": [
+        "S1_2970137-g1_c1_full",
+        "S1_2970137-g1_c1_burst"
+      ],
+      "metric": "lethal",
+      "lethalErrorSec_full": 2.0519531326600635,
+      "burst_killedInModel": false,
+      "owned_by": "Vayne lethal timing / miss-burst (holdout \u2014 do not tune on S1)"
+    },
+    {
+      "rank": 4,
+      "id": "S1_c3_burst_Anivia_pathMae",
+      "one_liner": "Anivia\u2192Sylas burst pathMae 198.4 > 90 after R43 Q-fold KEEP; lethOk |err|=0.125; fat Q dump vs burst onset",
+      "suite": "S1",
+      "window": "S1_2970137-g1_c3_burst",
+      "metric": "pathMae",
+      "value": 198.41243848197195,
+      "cap": 90,
+      "overage": 108.412,
+      "owned_by": "Anivia Q-fold timing vs burst window (not global R-pulse \u2014 S0 regress)"
+    },
+    {
+      "rank": 5,
+      "id": "S2_Cassio_misskill",
+      "one_liner": "Cassio\u2192Ambessa miss-kill both segments; burst pathMae 145.6; transfer host 2954868",
+      "suite": "S2",
+      "window": [
+        "S2_2954868-g1_c2_full",
+        "S2_2954868-g1_c2_burst"
+      ],
+      "metric": "lethal+pathMae",
+      "owned_by": "transfer miss-kill (not idleFollow)"
+    },
+    {
+      "rank": 6,
+      "id": "S2_LeeSin_earlyPoisoned",
+      "one_liner": "LeeSin\u2192Ziggs earlyPoisoned; |lethErr| 8.75/16.2s; pathMae 161/308",
+      "suite": "S2",
+      "window": [
+        "S2_2954868-g1_c3_full",
+        "S2_2954868-g1_c3_burst"
+      ],
+      "metric": "earlyPoisoned+leth+pathMae",
+      "owned_by": "earlyPoisoned transfer (diagnostic class \u2014 not a product coeff)"
+    },
+    {
+      "rank": 7,
+      "id": "actionF1_secondary_ceiling",
+      "one_liner": "actionCoverage F1 secondary (w=0.15): all-F1=1 lifts S0 FA by ~0.01\u20130.02 only; cannot close 0.9304\u21920.95 alone",
+      "suite": "all",
+      "metric": "actionF1",
+      "owned_by": "secondary only \u2014 never fightOutcomeGate evidence; zero-dmg echo REJECT"
+    },
+    {
+      "rank": 8,
+      "id": "passRate_two_plus_flips",
+      "one_liner": "S0 pass 0.667 needs \u22652 window flips; S1 0.500 needs \u22653; S2 0.333 needs \u22654 \u2014 all hard path/leth",
+      "suite": "all",
+      "metric": "fightPassRate"
+    }
+  ],
+  "one_liner": "FO\u226a0.95 blocked by S0 pathMae (c2_burst +21.6, c3_full +29.3), S1 Vayne leth + Anivia burst path, S2 Cassio miss + LeeSin earlyPoisoned; actionF1 cannot close the gap"
+}

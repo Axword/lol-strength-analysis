@@ -1,0 +1,113 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "burst",
+  "matchup": "Olaf→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.234,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 1.503,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 8.53,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 10.3,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 10.4,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 10.3,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 0.4
+    },
+    {
+      "tSec": 10.4,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 0.4
+    },
+    {
+      "tSec": 10.878711691096921,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 5,
+    "modelCount": 3,
+    "matchedCount": 2,
+    "precision": 0.6666666666666666,
+    "recall": 0.4,
+    "actionCoverage": 0.5,
+    "matches": [
+      {
+        "truthIdx": 3,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 1,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      2
+    ],
+    "unmatchedModel": [
+      2
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 5,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 0.5714285714285715
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=5 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

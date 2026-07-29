@@ -1,0 +1,88 @@
+{
+  "check": 3,
+  "segment": "full",
+  "matchup": "Ezreal→LeeSin",
+  "sourceAudit": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/action_audits/r40-2970110-g1-c3-full.json",
+  "schema": "honest-action-f1-v1",
+  "truthCount": 16,
+  "modelCount": 9,
+  "matchedCount": 4,
+  "precision": 0.4444444444444444,
+  "recall": 0.25,
+  "actionCoverage": 0.32,
+  "matches": [
+    {
+      "truthIdx": 2,
+      "modelIdx": 0,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 3,
+      "modelIdx": 2,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 4,
+      "modelIdx": 3,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 14,
+      "modelIdx": 8,
+      "dtSec": 0
+    }
+  ],
+  "unmatchedTruth": [
+    0,
+    1,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15
+  ],
+  "unmatchedModel": [
+    1,
+    4,
+    5,
+    6,
+    7
+  ],
+  "rawActionCoverage": 0.6,
+  "honestActionCoverage": 0.32,
+  "fightAgreementF1": 0.32,
+  "weightInWindowScore": 0.15,
+  "rejectedZeroDmgEchoModelCount": 0,
+  "rejectedZeroDmgEchoTruthCount": 5,
+  "peProvenDamageTruthCount": 0,
+  "peProvenDamageModelCount": 0,
+  "echoGamingSuspected": false,
+  "disclosures": [
+    "honest_action_f1: rawF1=0.6000 honestF1=0.3200 fightAgreementF1=0.3200 (weight=0.15 secondary only)",
+    "rejectedZeroDmgEcho model=0 truth=5 (GOAL forbid zero-dmg log-echo)",
+    "peProvenDamage truth=0 model=0 (sourceNetId+amount>0)",
+    "echoGamingSuspected=false",
+    "NOT win odds / NOT calibrated probability"
+  ],
+  "coverageGaps": {
+    "missingClasses": [
+      "item",
+      "summoner",
+      "damage"
+    ],
+    "presentClasses": [
+      "skill",
+      "aa"
+    ],
+    "notes": [
+      "damage absent — no invent; wait for PE damage_dealt source+amount",
+      "item absent — omit unless evented item_active_ability_used",
+      "summoner absent — omit unless evented summoner_spell_used"
+    ]
+  }
+}

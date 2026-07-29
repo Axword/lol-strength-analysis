@@ -1,0 +1,138 @@
+{
+  "researcher": "r19",
+  "slug": "path1-early",
+  "model": "Auto",
+  "utc": "2026-07-24T16:30:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r19",
+  "branch": "adv/fo-r19-path1-early",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "room_note": "Mandate override: Path1 earlyBand (not F7 holdout inventory)",
+  "coordinate_r18": "R19 owns early/idle honesty (false_all_in / earlyPoisoned diagnostics); R18 owns lethal miss-kill / timing",
+  "skipped_closed": [
+    "markMinGap / density / CUSUM K-H / regen knob sweeps (R07–R09 closed)"
+  ],
+  "n_experiments": 8,
+  "primary_host": "2970132-g1 Path1",
+  "product_selector": "cusum_engage_then_skills",
+  "R05_reference": {
+    "fightAgreement": 0.2279,
+    "fightPassRate": 0,
+    "galio_trundle_earlyMae": { "full": 116, "burst": 233 }
+  },
+  "baseline_e0_measured": {
+    "fightAgreement": 0.2945984235430667,
+    "fightPassRate": 0.16666666666666666,
+    "note": "Same earlyMae 116/233 as R05; FA scorer delta vs R05 from burst path MAE drift (44.5 vs 53.5 on c3-burst)"
+  },
+  "best_keep": {
+    "experiment": "e1/e5",
+    "change": "idleFollowActual=true (truth-follow idle until engageSec)",
+    "product_default": true,
+    "files": [
+      "src/engine/killWindowOverlay.ts",
+      "src/engine/killWindowProduct.ts",
+      "src/engine/types.ts",
+      "scripts/crosscheck_action_aligned.ts",
+      "src/engine/__tests__/killWindow.acceptance.test.ts"
+    ]
+  },
+  "earlyMae_deltas": {
+    "vs_e0_freeze": [
+      {
+        "window": "c1-full",
+        "matchup": "Galio→Trundle",
+        "earlyMae_e0": 116,
+        "earlyMae_e1": 0,
+        "delta": -116,
+        "cap": 50,
+        "earlyOk_e1": true
+      },
+      {
+        "window": "c1-burst",
+        "matchup": "Galio→Trundle",
+        "earlyMae_e0": 233,
+        "earlyMae_e1": 0,
+        "delta": -233,
+        "cap": 50,
+        "earlyOk_e1": true
+      },
+      {
+        "window": "c2-full",
+        "matchup": "Olaf→Trundle",
+        "earlyMae_e0": 4.8,
+        "earlyMae_e1": 0,
+        "delta": -4.8
+      },
+      {
+        "window": "c2-burst",
+        "matchup": "Olaf→Trundle",
+        "earlyMae_e0": 99.5,
+        "earlyMae_e1": 9.5,
+        "delta": -90,
+        "earlyOk_e1": true
+      },
+      {
+        "window": "c3-full",
+        "matchup": "Olaf→Camille",
+        "earlyMae_e0": 527.6,
+        "earlyMae_e1": 476,
+        "delta": -51.6,
+        "earlyPoisoned_e0": true,
+        "earlyPoisoned_e1": true,
+        "handoff": "R18 lethal/opener — idle-follow alone insufficient"
+      },
+      {
+        "window": "c3-burst",
+        "matchup": "Olaf→Camille",
+        "earlyMae_e0": 7.5,
+        "earlyMae_e1": 0,
+        "delta": -7.5
+      }
+    ],
+    "mean_earlyMae_e0": 164.733,
+    "mean_earlyMae_e1": 80.917,
+    "mean_earlyMae_delta": -83.817
+  },
+  "FA_deltas": {
+    "S0_e0_freeze": 0.2945984235430667,
+    "S0_e1_idle_follow": 0.4106910062451652,
+    "S0_delta": 0.1160925827020985,
+    "S0_passRate_e0": 0.16666666666666666,
+    "S0_passRate_e1": 0.16666666666666666,
+    "S0_passRate_delta": 0,
+    "S1_e3_freeze": 0.3279491037780255,
+    "S1_e4_idle_follow": 0.4169776331222436,
+    "S1_delta": 0.0890285293442181,
+    "S1_passRate_e3": 0,
+    "S1_passRate_e4": 0,
+    "S1_passRate_delta": 0,
+    "vs_R05_S0": {
+      "R05": 0.2279,
+      "e1": 0.4107,
+      "delta_vs_R05": 0.1828,
+      "note": "Prefer e0→e1 delta (+0.116) for same-scorer honesty"
+    }
+  },
+  "falseAllIn": {
+    "e0": "all windows false",
+    "e1": "all windows false",
+    "note": "Root cause was freeze-idle vs level-up HP drift, not false_all_in damage invent"
+  },
+  "earlyPoisoned": {
+    "residual": "2970132 check03 full still earlyPoisoned after KEEP",
+    "handoff_r18": "opener overdamage / lethal timing — not idle honesty"
+  },
+  "keeps": ["e1", "e4", "e5"],
+  "discards": ["e2", "e6", "e7", "e8"],
+  "product_KEEP": {
+    "idleFollowActual": true,
+    "reason": "S0 earlyBand lift + S1 FA +0.089 without S1 tuning",
+    "aaAtEachMark_unchanged": true,
+    "aaAtEachMark_research_note": "E6/E8 no-aa-at-mark S0 FA 0.423 / S1 FA 0.567 research-only; handoff R18"
+  },
+  "blocker": "S0 FA 0.411 << 0.95; check01 miss-kill (R18); check03 earlyPoisoned residual; passRate still 0.167",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "acceptance": "killWindow.acceptance: 23 passed (includes truth-follow earlyMae≈0)"
+}

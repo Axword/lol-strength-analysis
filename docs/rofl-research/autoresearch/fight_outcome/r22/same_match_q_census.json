@@ -1,0 +1,59 @@
+{
+  "schema": "fight-outcome-r22-same-match-q-census-v1",
+  "t": "2026-07-24T15:59:28.120124Z",
+  "researcher": "r22",
+  "note": "skill_used skill_slot=1 = Q casts; proves Camille Q is cast same-match. Damage coeffs from wiki \u2014 PE PrecisionProtocol floats absent (r04).",
+  "matches": {
+    "2970110-g1": {
+      "camillePid": 10,
+      "qCasts": 84,
+      "skillSlotCounts": {
+        "1": 84,
+        "2": 24,
+        "3": 84,
+        "4": 6
+      },
+      "c1CamilleLeonaWindowSkills": [
+        {
+          "tMs": 204063,
+          "skillSlot": 2
+        },
+        {
+          "tMs": 207803,
+          "skillSlot": 1
+        },
+        {
+          "tMs": 210909,
+          "skillSlot": 1
+        },
+        {
+          "tMs": 219592,
+          "skillSlot": 1
+        },
+        {
+          "tMs": 221395,
+          "skillSlot": 3
+        },
+        {
+          "tMs": 221629,
+          "skillSlot": 3
+        },
+        {
+          "tMs": 221796,
+          "skillSlot": 1
+        }
+      ],
+      "c1QCastsInWindow": 4
+    },
+    "2970132-g1": {
+      "camillePid": 10,
+      "qCasts": 71,
+      "skillSlotCounts": {
+        "1": 71,
+        "2": 28,
+        "3": 68,
+        "4": 5
+      }
+    }
+  }
+}

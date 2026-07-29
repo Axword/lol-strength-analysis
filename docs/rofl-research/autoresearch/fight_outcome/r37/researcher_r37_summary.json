@@ -1,0 +1,260 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r37",
+  "slug": "holdout-s1-remeasure",
+  "model": "Auto",
+  "utc": "2026-07-24T16:22:40Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r37",
+  "branch": "adv/fo-r37-holdout-s1-remeasure",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Measure-only: remesaure S1 (and S0) under current product defaults after R28+R30 KEEPs. No tune on S1. Write freeze JSON + audits. FA\u2260odds.",
+  "product_selector": "cusum_engage_then_skills",
+  "product_defaults_seeded": {
+    "markSelection": "cusum_engage_then_skills",
+    "idleFollowActual": true,
+    "aaAtEachMark": false,
+    "perSlotPulse": true,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0
+    },
+    "dense": {
+      "denseWindow": 1.0,
+      "denseMax": 1,
+      "markMinGap": 0.4
+    },
+    "galioCore": "R28 KEEP in src/data/champions.ts",
+    "source": "worktree product defaults post PARENT_MERGE R28+R30"
+  },
+  "hypothesesAutoPicked": [
+    {
+      "id": "H1",
+      "title": "Remeasure S0 Path1 FA after R28+R30 product KEEPs",
+      "result": "MEASURED"
+    },
+    {
+      "id": "H2",
+      "title": "Score S1 current law no tune (freeze)",
+      "result": "MEASURED_freeze"
+    },
+    {
+      "id": "H3",
+      "title": "Sharpen residual blocker vs R30 claim",
+      "result": "KEEP_disclose"
+    }
+  ],
+  "n_experiments": 2,
+  "S0_product_remeasure": {
+    "match": "2970132-g1",
+    "harnessSuite": "2970132-g1-holdout",
+    "markSelection": "cusum_engage_then_skills",
+    "fightAgreement": 0.5937715129268749,
+    "fightPassRate": 0.3333333333333333,
+    "n": 6,
+    "meetsThresholds": false,
+    "authoritative": true,
+    "vs_R30": {
+      "R30_S0_FA": 0.5896947676936598,
+      "r37_S0_FA": 0.5937715129268749,
+      "delta": 0.004076745233215107,
+      "note": "Slight lift vs R30 alone \u2014 R28 Galio CORE present; c1 full now kills but lethErr=2.61>0.75"
+    },
+    "vs_R25": {
+      "R25_S0_FA": 0.4106910062451652,
+      "r37_S0_FA": 0.5937715129268749,
+      "delta": 0.18308050668170972
+    },
+    "pass_windows": [
+      "S0_2970132-g1_c2_full",
+      "S0_2970132-g1_c3_burst"
+    ]
+  },
+  "S1_current_law": {
+    "match": "2970137-g1",
+    "tuned": false,
+    "fightAgreement": 0.5619564223174064,
+    "fightPassRate": 0.3333333333333333,
+    "n": 6,
+    "meetsThresholds": false,
+    "authoritative": true,
+    "vs_R30": {
+      "R30_S1_FA": 0.5619564223174064,
+      "r37_S1_FA": 0.5619564223174064,
+      "delta": 0.0,
+      "note": "bit-match R30 S1 within float noise"
+    },
+    "vs_R25": {
+      "R25_S1_FA": 0.4169776331222436,
+      "r37_S1_FA": 0.5619564223174064,
+      "delta": 0.14497878919516277
+    },
+    "pass_windows": [
+      "S1_2970137-g1_c2_full",
+      "S1_2970137-g1_c2_burst"
+    ]
+  },
+  "failing_window_summary": {
+    "S0": [
+      {
+        "id": "S0_2970132-g1_c1_full",
+        "windowOk": false,
+        "windowScore": 0.51,
+        "matchup": "Galio\u2192Trundle",
+        "segment": "full",
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "earlyMaeHp": 0,
+        "maeHp": 69.07999999999998,
+        "lethalErrorSec": 2.6074444444444467,
+        "fails": [
+          "lethal"
+        ]
+      },
+      {
+        "id": "S0_2970132-g1_c1_burst",
+        "windowOk": false,
+        "windowScore": 0.25,
+        "matchup": "Galio\u2192Trundle",
+        "segment": "burst",
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "earlyMaeHp": 0,
+        "maeHp": 246.58187134502924,
+        "lethalErrorSec": null,
+        "fails": [
+          "lethal",
+          "path"
+        ]
+      },
+      {
+        "id": "S0_2970132-g1_c2_burst",
+        "windowOk": false,
+        "windowScore": 0.903911,
+        "matchup": "Olaf\u2192Trundle",
+        "segment": "burst",
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": false,
+        "earlyMaeHp": 9.5,
+        "maeHp": 117.66306894359165,
+        "lethalErrorSec": 0.33399999999999963,
+        "fails": [
+          "path"
+        ]
+      },
+      {
+        "id": "S0_2970132-g1_c3_full",
+        "windowOk": false,
+        "windowScore": 0.033333,
+        "matchup": "Olaf\u2192Camille",
+        "segment": "full",
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "earlyMaeHp": 476,
+        "maeHp": 343.24,
+        "lethalErrorSec": 18.266,
+        "fails": [
+          "lethal",
+          "early",
+          "path"
+        ]
+      }
+    ],
+    "S1": [
+      {
+        "id": "S1_2970137-g1_c1_full",
+        "windowOk": false,
+        "windowScore": 0.542308,
+        "matchup": "Vayne\u2192Ambessa",
+        "segment": "full",
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "earlyMaeHp": 0,
+        "maeHp": 36.933760909090914,
+        "lethalErrorSec": 2.0519531326600635,
+        "fails": [
+          "lethal"
+        ]
+      },
+      {
+        "id": "S1_2970137-g1_c1_burst",
+        "windowOk": false,
+        "windowScore": 0.326056,
+        "matchup": "Vayne\u2192Ambessa",
+        "segment": "burst",
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "earlyMaeHp": 77.76190476190476,
+        "maeHp": 114.54285714285713,
+        "lethalErrorSec": null,
+        "fails": [
+          "lethal",
+          "early",
+          "path"
+        ]
+      },
+      {
+        "id": "S1_2970137-g1_c3_full",
+        "windowOk": false,
+        "windowScore": 0.313158,
+        "matchup": "Anivia\u2192Sylas",
+        "segment": "full",
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "earlyMaeHp": 0,
+        "maeHp": 335.4116813165434,
+        "lethalErrorSec": null,
+        "fails": [
+          "lethal",
+          "path"
+        ]
+      },
+      {
+        "id": "S1_2970137-g1_c3_burst",
+        "windowOk": false,
+        "windowScore": 0.35,
+        "matchup": "Anivia\u2192Sylas",
+        "segment": "burst",
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "earlyMaeHp": 49.38679232914228,
+        "maeHp": 647.4172558211905,
+        "lethalErrorSec": null,
+        "fails": [
+          "lethal",
+          "path"
+        ]
+      }
+    ]
+  },
+  "product_KEEP": null,
+  "verdict": "REMEASURE_ONLY_NO_KEEP; R28+R30_product_defaults_CONFIRMED; S0_FA=0.5938 S1_FA=0.5620",
+  "fightOutcomeGateEvidence": false,
+  "sharper_blocker": "Post R28+R30 remesaure: S0 FA 0.5938 / pass 0.333; S1 FA 0.5620 / pass 0.333 (no tune). Still \u226a0.95. Residuals: S0 c1 Galio lethErr=2.61 (kills but late), c1 burst miss-kill 0 marks, c2 pathMae over cap, c3 earlyPoisoned earlyMae=476 + lethErr\u224818s. S1: c1 burst miss-kill + earlyMae 77.8; c3 Anivia miss-kill pathMae. FA\u2260odds.",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r37/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r37/NOTES.md",
+    "s0_remeasure": "docs/rofl-research/autoresearch/fight_outcome/r37/s0_product_remeasure.json",
+    "s1_freeze": "docs/rofl-research/autoresearch/fight_outcome/r37/S1_score_freeze.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r37/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r37/fight_agreement_S1.json",
+    "audits_s0": "docs/rofl-research/autoresearch/fight_outcome/r37/audits/s0/",
+    "audits_s1": "docs/rofl-research/autoresearch/fight_outcome/r37/audits/s1/",
+    "harness_s0": "docs/rofl-research/autoresearch/fight_outcome/r37/experiments/s0_product_defaults.json",
+    "harness_s1": "docs/rofl-research/autoresearch/fight_outcome/r37/experiments/s1_product_defaults.json"
+  },
+  "next": "Orchestrator: absorb authoritative S0 FA=0.5938 / S1 FA=0.5620 into STATUS; residual Galio leth timing + Camille earlyPoisoned + S1 Anivia miss-kill \u2014 do not re-open R30 pulse KEEP"
+}

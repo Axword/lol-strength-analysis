@@ -1,0 +1,196 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T16:33:00.467Z",
+  "researcher": "r04",
+  "suite": "S0",
+  "match": "2970132-g1",
+  "proxied": false,
+  "harnessSuite": "2970132-g1-holdout",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r31/docs/rofl-research/autoresearch/fight_outcome/r31/experiments/e18_share08.json",
+  "markSelection": "cusum_engage_then_skills",
+  "harnessMode": "gate_action",
+  "harnessHypothesis": "R31 e18_share08",
+  "n": 6,
+  "fightAgreement": 0.3643996196061712,
+  "fightPassRate": 0.16666666666666666,
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S0_2970132-g1_c1_full",
+      "windowOk": false,
+      "windowScore": 0.501309,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.8815467696636919,
+        "actionF1": 0.5,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 246.58187134502924,
+        "maeHpFull": 145.39891994372005,
+        "maeHp": 145.39891994372005,
+        "pathCap": 130,
+        "lethalErrorSec": 1.8369999999999997,
+        "segment": "full",
+        "matchup": "Galio→Trundle"
+      }
+    },
+    {
+      "id": "S0_2970132-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.25,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0,
+        "actionF1": 0,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 246.58187134502924,
+        "maeHpFull": 145.39891994372005,
+        "maeHp": 246.58187134502924,
+        "pathCap": 90,
+        "lethalErrorSec": null,
+        "segment": "burst",
+        "matchup": "Galio→Trundle"
+      }
+    },
+    {
+      "id": "S0_2970132-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.38637,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.10492899800862088,
+        "actionF1": 0.7692307692307693,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 403.49862546228445,
+        "maeHpFull": 246.35923025887928,
+        "maeHp": 246.35923025887928,
+        "pathCap": 130,
+        "lethalErrorSec": 1.1370000000000005,
+        "segment": "full",
+        "matchup": "Olaf→Trundle"
+      }
+    },
+    {
+      "id": "S0_2970132-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.115385,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0,
+        "pathBand": 0,
+        "actionF1": 0.7692307692307693,
+        "earlyMaeHp": 310.5707413025708,
+        "maeHpBurst": 403.49862546228445,
+        "maeHpFull": 246.35923025887928,
+        "maeHp": 403.49862546228445,
+        "pathCap": 90,
+        "lethalErrorSec": 1.1369999999999987,
+        "segment": "burst",
+        "matchup": "Olaf→Trundle"
+      }
+    },
+    {
+      "id": "S0_2970132-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.033333,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0,
+        "pathBand": 0,
+        "actionF1": 0.2222222222222222,
+        "earlyMaeHp": 476,
+        "maeHpBurst": 0,
+        "maeHpFull": 343.24,
+        "maeHp": 343.24,
+        "pathCap": 130,
+        "lethalErrorSec": 18.266,
+        "segment": "full",
+        "matchup": "Olaf→Camille"
+      }
+    },
+    {
+      "id": "S0_2970132-g1_c3_burst",
+      "windowOk": true,
+      "windowScore": 0.9,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.33333333333333337,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 0,
+        "maeHpFull": 343.24,
+        "maeHp": 0,
+        "pathCap": 90,
+        "lethalErrorSec": 0,
+        "segment": "burst",
+        "matchup": "Olaf→Camille"
+      }
+    }
+  ],
+  "failingAudits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r31/docs/rofl-research/autoresearch/fight_outcome/r31/audits/S0_2970132-g1_c1_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r31/docs/rofl-research/autoresearch/fight_outcome/r31/audits/S0_2970132-g1_c1_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r31/docs/rofl-research/autoresearch/fight_outcome/r31/audits/S0_2970132-g1_c2_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r31/docs/rofl-research/autoresearch/fight_outcome/r31/audits/S0_2970132-g1_c2_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r31/docs/rofl-research/autoresearch/fight_outcome/r31/audits/S0_2970132-g1_c3_full.json"
+  ],
+  "law": {
+    "lethalTolSec": 0.75,
+    "earlyMaeCap": 50,
+    "burstMaeCap": 90,
+    "fullMaeCap": 130,
+    "endHpFloor": 40,
+    "weights": {
+      "lethalHit": 0.4,
+      "earlyBand": 0.25,
+      "pathBand": 0.2,
+      "actionCoverageF1": 0.15
+    }
+  },
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S0 prefer 2970132 Path1; proxy 2970110-g1 if windows file absent"
+  ],
+  "confidence": "fightAgreement ≥0.95 means kill-window suite agreement under GOAL §B — NOT calibrated win odds"
+}

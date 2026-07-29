@@ -1,0 +1,144 @@
+{
+  "schema": "fight-outcome-s0-remeasure-freeze-v1",
+  "researcher": "r37",
+  "slug": "holdout-s1-remeasure",
+  "utc": "2026-07-24T16:22:40Z",
+  "mandate": "Remeasure S0+S1 under product defaults after R28 Galio CORE + R30 aaAtEachMark=false/pulseBySlot R=0 KEEPs; no tune on S1",
+  "product_defaults": {
+    "markSelection": "cusum_engage_then_skills",
+    "idleFollowActual": true,
+    "aaAtEachMark": false,
+    "perSlotPulse": true,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0
+    },
+    "dense": {
+      "denseWindow": 1.0,
+      "denseMax": 1,
+      "markMinGap": 0.4
+    },
+    "galioCore": "R28 KEEP in src/data/champions.ts",
+    "source": "worktree product defaults post PARENT_MERGE R28+R30"
+  },
+  "suite": "S0",
+  "match": "2970132-g1",
+  "harnessSuite": "2970132-g1-holdout",
+  "fightAgreement": 0.5937715129268749,
+  "fightPassRate": 0.3333333333333333,
+  "n": 6,
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S0_2970132-g1_c1_full",
+      "windowOk": false,
+      "windowScore": 0.51,
+      "matchup": "Galio\u2192Trundle",
+      "segment": "full",
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": true,
+      "earlyMaeHp": 0,
+      "maeHp": 69.07999999999998,
+      "lethalErrorSec": 2.6074444444444467,
+      "fails": [
+        "lethal"
+      ]
+    },
+    {
+      "id": "S0_2970132-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.25,
+      "matchup": "Galio\u2192Trundle",
+      "segment": "burst",
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false,
+      "earlyMaeHp": 0,
+      "maeHp": 246.58187134502924,
+      "lethalErrorSec": null,
+      "fails": [
+        "lethal",
+        "path"
+      ]
+    },
+    {
+      "id": "S0_2970132-g1_c2_full",
+      "windowOk": true,
+      "windowScore": 0.965385,
+      "matchup": "Olaf\u2192Trundle",
+      "segment": "full",
+      "lethalOk": true,
+      "earlyOk": true,
+      "pathOk": true,
+      "earlyMaeHp": 0,
+      "maeHp": 86.29131860841133,
+      "lethalErrorSec": 0.33399999999999963,
+      "fails": []
+    },
+    {
+      "id": "S0_2970132-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.903911,
+      "matchup": "Olaf\u2192Trundle",
+      "segment": "burst",
+      "lethalOk": true,
+      "earlyOk": true,
+      "pathOk": false,
+      "earlyMaeHp": 9.5,
+      "maeHp": 117.66306894359165,
+      "lethalErrorSec": 0.33399999999999963,
+      "fails": [
+        "path"
+      ]
+    },
+    {
+      "id": "S0_2970132-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.033333,
+      "matchup": "Olaf\u2192Camille",
+      "segment": "full",
+      "lethalOk": false,
+      "earlyOk": false,
+      "pathOk": false,
+      "earlyMaeHp": 476,
+      "maeHp": 343.24,
+      "lethalErrorSec": 18.266,
+      "fails": [
+        "lethal",
+        "early",
+        "path"
+      ]
+    },
+    {
+      "id": "S0_2970132-g1_c3_burst",
+      "windowOk": true,
+      "windowScore": 0.9,
+      "matchup": "Olaf\u2192Camille",
+      "segment": "burst",
+      "lethalOk": true,
+      "earlyOk": true,
+      "pathOk": true,
+      "earlyMaeHp": 0,
+      "maeHp": 0,
+      "lethalErrorSec": 0,
+      "fails": []
+    }
+  ],
+  "vs_R30_claim": {
+    "R30_S0_FA": 0.5896947676936598,
+    "r37_S0_FA": 0.5937715129268749,
+    "delta": 0.004076745233215107,
+    "note": "Slight lift vs R30 alone \u2014 R28 Galio CORE present; c1 full now kills but lethErr=2.61>0.75"
+  },
+  "vs_R25_remeasure": {
+    "R25_S0_FA": 0.4106910062451652,
+    "r37_S0_FA": 0.5937715129268749,
+    "delta": 0.18308050668170972
+  },
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r37/experiments/s0_product_defaults.json",
+  "fa_json": "docs/rofl-research/autoresearch/fight_outcome/r37/fight_agreement_S0.json"
+}

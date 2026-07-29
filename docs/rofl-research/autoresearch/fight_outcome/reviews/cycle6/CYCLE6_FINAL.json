@@ -1,0 +1,23 @@
+{
+  "cycle": 6,
+  "utc": "2026-07-24T16:38:49Z",
+  "model": "Auto",
+  "wave2_done_at_trigger": 6,
+  "votes_present": 15,
+  "fightOutcomeGate": false,
+  "fightOutcomeGate_tally": {
+    "true": 0,
+    "false": 15,
+    "majority_needed": 11
+  },
+  "digestCleanGate": true,
+  "digestCleanGate_tally": {
+    "true": 15,
+    "false": 0,
+    "majority_needed": 11
+  },
+  "criterionG_proven": true,
+  "fa_note": "Verified S0 FA 0.6021; claimed ~0.72 pending compound remesaure \u2014 both \u226a0.95. FA \u2260 odds.",
+  "decision": "CONTINUE_WAVE2",
+  "sharper_blocker": "compound remesaure; Galio lethErr/burst; pathMae; passRate\u226a0.95"
+}

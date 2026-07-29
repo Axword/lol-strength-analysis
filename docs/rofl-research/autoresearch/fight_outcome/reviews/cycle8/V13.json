@@ -1,0 +1,83 @@
+{
+  "reviewer": "V13",
+  "cycle": 8,
+  "role": "Reproducibility (digest + suite commands)",
+  "utc": "2026-07-24T17:06:00Z",
+  "cwd": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "blocker": "GOAL §B/F: authoritative post-R43 compound S0 FA 0.9304 pass 0.667 ≪ 0.95; S1 FA 0.7628 pass 0.500; FA ≠ calibrated win odds",
+  "reproduce_commands": [
+    {
+      "from": "DIGEST.md Path1 validate (C3–C8 reaffirm)",
+      "cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+      "exit": 0,
+      "result": "productPublication.ok=true; calculatorReady=true; livingOkSlots=14725/14725; ranksDensity=1.0; hpHoldAcrossRespawn=true (carried; fingerprints unchanged)"
+    },
+    {
+      "from": "DIGEST.md fingerprints",
+      "cmd": "sha256+bytes check on Path1 events+timeline",
+      "exit": 0,
+      "result": "events 114456779 sha256=823aa35f…0b9bf8 MATCH; timeline 9064216 sha256=fb542736…edc4fe4 MATCH"
+    },
+    {
+      "from": "PARENT_MERGE R43 compound remesaure S0 (authoritative C8)",
+      "cmd": "fight_agreement_suite parent_stack_r43_s0 → fight_agreement_S0_stack_r43.json",
+      "exit": 0,
+      "result": "fightAgreement=0.930409557 fightPassRate=0.6667 n=6 meetsThresholds=false; markSelection=cusum_engage_then_skills"
+    },
+    {
+      "from": "PARENT_MERGE R43 compound remesaure S1 (no tune)",
+      "cmd": "fight_agreement_suite parent_stack_r43_s1 → fight_agreement_S1_stack_r43.json",
+      "exit": 0,
+      "result": "fightAgreement=0.762769332 fightPassRate=0.5 n=6 meetsThresholds=false"
+    },
+    {
+      "from": "BRIEF / STATUS criterion G",
+      "cmd": "npm run fo:send-smoke",
+      "exit": 0,
+      "result": "8/8 green; calculatorReady Path1 living_post_seed_v1"
+    }
+  ],
+  "window_spot_checks": {
+    "S0_c1_burst": "windowOk true; early/path mae 0; |leth|≈0.335",
+    "S0_c1_full": "windowOk true; |leth|≈0.356",
+    "S0_c2_burst": "maeHp 111.6 pathOk false pathBand 0.760; windowOk false",
+    "S0_c3_full": "maeHp 159.3 pathOk false; windowOk false",
+    "S1_c1_full": "Vayne→Ambessa |leth|≈2.05 lethOk false",
+    "S1_c3": "Anivia→Sylas |leth|=0.125 after R43 KEEP"
+  },
+  "evidence": [
+    "DIGEST Path1 validate command + fingerprints reproducible; living_post_seed_v1 calculatorReady — digestCleanGate reaffirm.",
+    "Authoritative FA files: r43/experiments/fight_agreement_S0_stack_r43.json (0.9304) and …_S1_… (0.7628); thresholds 0.95 unmet.",
+    "PARENT_MERGE 2026-07-24T17:04:13Z R43 KEEP absorbed; compound remesaure S0 FA 0.9304 flat; S1→0.7628 pass 0.500.",
+    "BRIEF wave3 CLOSED R39–R46; wave4 R47–R54 launching; stacked KEEPs R39/R42/R43/R44 (+R41 subsumed).",
+    "Suite JSONs: noInvent true all windows; FA≠odds disclosures present; selector cusum_engage_then_skills product non-drop.",
+    "STATUS best_fightAgreement 0.9304; fightOutcomeGate false; digestCleanGate true; G true; last_blocker c2 pathMae; passRate; S2 0.41.",
+    "fo:send-smoke 8/8 reproduces Criterion G — does not meet FO bars."
+  ],
+  "failures": [
+    "B: S0 FA 0.9304 / pass 0.667 reproducible and below bars",
+    "F: S1 FA 0.7628 / pass 0.500 reproducible holdout fail",
+    "I: FO majority cannot pass on these numbers"
+  ],
+  "notes": "Repro specialty: C8 numbers are compound-remeasure post-R43 (not C7 0.7766). Commands and FA artifacts align with BRIEF/STATUS. CONTINUE_WAVE4.",
+  "one_liner": "V13: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — repro S0 FA 0.9304≪0.95; DC Path1 green; CONTINUE_WAVE4"
+}

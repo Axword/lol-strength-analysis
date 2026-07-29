@@ -1,0 +1,73 @@
+{
+  "researcher": "r04",
+  "role": "metric-scorer",
+  "model": "Auto",
+  "utc": "2026-07-24T15:41:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r04",
+  "branch": "adv/fo-r04-metric-scorer",
+  "room": "f2",
+  "never_edited_parent_code": true,
+  "status": "measured_baseline",
+  "hypotheses_auto_picked": [
+    "H1 Baseline measure — implement fight_agreement_suite.ts; score S0 before KEEP",
+    "H2 windowOk law — lethal≤0.75s, earlyMae≤50, burst≤90, full≤130, no invent, program.md hard fails",
+    "H3 windowScore weights — 0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1",
+    "H4 Audit JSON — failing windows → fight_outcome/audits/<id>.json",
+    "H5 S1/S2 wire — holdout 2970137 wired; S2 path stubbed to 2970120; no tune on S1",
+    "H6 Selector default — product cusum_engage_then_skills; near_hp_drop research-only"
+  ],
+  "artifact": "scripts/fight_agreement_suite.ts",
+  "npm": "npm run fight:agreement",
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "note": "Measured fightAgreement FIRST. Unfreeze authorized but no KEEP / best.json rewrite this session.",
+  "confidence": "fightAgreement is kill-window suite agreement under GOAL §B — NOT win probability / odds % / calibrated posterior",
+  "S0": {
+    "preferredHost": "2970132-g1 Path1",
+    "blocker": "crosschecks-2970132-g1-holdout.json missing — F9 window curation",
+    "proxiedTo": "2970110-g1",
+    "product_cusum_engage_then_skills": {
+      "fightAgreement": 0.4217,
+      "fightPassRate": 0.1667,
+      "n": 6,
+      "meetsThresholds": false,
+      "report": "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0.json"
+    },
+    "research_drop_BEST_last_eval": {
+      "fightAgreement": 0.6018,
+      "fightPassRate": 0.3333,
+      "n": 6,
+      "meetsThresholds": false,
+      "composite_old": 0.9683,
+      "markSelection": "near_hp_drop / useDropConditioning (research-only)",
+      "report": "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S0_research_drop.json"
+    }
+  },
+  "S1": {
+    "match": "2970137-g1",
+    "markSelection": "cusum_engage_then_skills",
+    "fightAgreement": 0.3279,
+    "fightPassRate": 0.0,
+    "n": 6,
+    "meetsThresholds": false,
+    "tunedOnS1": false,
+    "report": "docs/rofl-research/autoresearch/fight_outcome/r04/fight_agreement_S1.json"
+  },
+  "S2": {
+    "wired": true,
+    "harnessSuite": "2970120-g1-holdout",
+    "runThisSession": false,
+    "note": "Path wired; not required for R04 baseline measure-first"
+  },
+  "audits_dir": "docs/rofl-research/autoresearch/fight_outcome/audits/",
+  "failing_window_count": {
+    "S0_product": 5,
+    "S0_research_drop": 4,
+    "S1": 6
+  },
+  "gate": {
+    "fightOutcomeGate": false,
+    "reason": "S0 fightAgreement 0.42 (product) / 0.60 (research-drop) << 0.95; S1 0.33; 2970132 windows absent"
+  },
+  "next_for_orchestrator": "F9 curate 2970132 Path1 crosschecks; F3 unfreeze experiments must lift lethalHit+earlyBand vs product cusum baseline 0.4217 — measure fightAgreement not old composite alone"
+}

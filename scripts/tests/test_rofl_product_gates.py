@@ -530,6 +530,531 @@ class ProductGateRejectionTests(unittest.TestCase):
             self.assertFalse(product["calculatorReady"])
             self.assertIn("Zaahen", product["rosterChampions"])
 
+    def test_grid_riot_livestats_source_kind_rejected(self):
+        """R19: gameID rewrite must not publish GRID research density."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="grid_riot_livestats",
+                source_kind="grid_riot_livestats",
+                game_id=3264361042,
+                hp_coverage="dense_1hz_when_present",
+            )
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(jsonl, tl)
+            self.assertIn("grid_riot_livestats", str(ctx.exception))
+
+    def test_short_game_id_without_tournament_disclosure_rejected(self):
+        """R20: bare gameID 426746 must not publish without LOLTMNT disclosure."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="replay_api_playback",
+                source_kind="replay_api_playback",
+                game_id=426746,
+            )
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(jsonl, tl)
+            self.assertIn("426746", str(ctx.exception))
+
+    def test_disclosed_tournament_identity_allows_short_game_id(self):
+        """R20: LOLTMNT01-426746 with explicit disclosure clears identity gate."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            champs = [
+                "Ambessa",
+                "LeeSin",
+                "Syndra",
+                "Jhin",
+                "Leona",
+                "Gnar",
+                "Naafiri",
+                "Cassiopeia",
+                "Ezreal",
+                "Camille",
+            ]
+            jsonl, tl = _write_pair(
+                td,
+                source="rofl_upgrade_spell_ranks_fuse",
+                source_kind="rofl_upgrade_spell_ranks_fuse",
+                game_id=426746,
+                champs=champs,
+                extra_prov={
+                    "tournamentIdentityDisclosed": True,
+                    "suggestedProductRofl": "LOLTMNT01-426746.rofl",
+                    "platformID": "LOLTMNT01",
+                    "gridSeriesId": "2970110",
+                    "matchCode": "426746",
+                },
+            )
+            rows = [json.loads(l) for l in jsonl.read_text().splitlines() if l.strip()]
+            for row in rows:
+                if row.get("rfc461Schema") == "game_info":
+                    row["platformID"] = "LOLTMNT01"
+                    row["gameName"] = "426746"
+            jsonl.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+            tl_obj = json.loads(tl.read_text())
+            tl_obj["name"] = "426746"
+            prov = dict(tl_obj.get("provenance") or {})
+            prov.update(
+                {
+                    "tournamentIdentityDisclosed": True,
+                    "suggestedProductRofl": "LOLTMNT01-426746.rofl",
+                    "platformID": "LOLTMNT01",
+                    "gridSeriesId": "2970110",
+                    "matchCode": "426746",
+                }
+            )
+            tl_obj["provenance"] = prov
+            tl.write_text(json.dumps(tl_obj))
+            product = validate_mod.validate_product(jsonl, tl)
+            self.assertTrue(product["ok"])
+            self.assertEqual(product["gameID"], 426746)
+            self.assertFalse(product["calculatorReady"])
+            self.assertFalse(product["hpTrusted"])
+
+    def test_product_eligible_false_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="replay_api_playback",
+                source_kind="replay_api_playback",
+                extra_prov={"productEligible": False},
+            )
+            # Mirror coverage.productEligible=false used by GRID adapters.
+            rows = [json.loads(l) for l in jsonl.read_text().splitlines() if l.strip()]
+            for row in rows:
+                if row.get("rfc461Schema") == "rofl_coverage":
+                    row["productEligible"] = False
+            jsonl.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(jsonl, tl)
+            self.assertIn("productEligible", str(ctx.exception))
+
+    def test_grid_unit_health_source_rejected_when_hp_known(self):
+        """Stripping sourceKind is not enough if unit healthSource stays grid_*."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="replay_api_playback",
+                source_kind="replay_api_playback",
+                hp_coverage="partial",
+                timeline_units_extra={
+                    "hp": 1000.0,
+                    "hpMax": 2000.0,
+                    "hpKnown": True,
+                },
+            )
+            rows = [json.loads(l) for l in jsonl.read_text().splitlines() if l.strip()]
+            for row in rows:
+                if row.get("rfc461Schema") == "stats_update":
+                    for p in row.get("participants") or []:
+                        p["health"] = 1000.0
+                        p["healthMax"] = 2000.0
+                        p["healthSource"] = "grid_riot_livestats"
+            jsonl.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(jsonl, tl)
+            self.assertIn("grid_riot_livestats", str(ctx.exception))
+
+    def test_require_calculator_ready_fails_when_hp_coverage_none(self):
+        """R21 H3: --require-calculator-ready must refuse incomplete HP/combat."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="replay_api_playback",
+                source_kind="replay_api_playback",
+                hp_coverage="none",
+                position_coverage="full_at_sampled_frames",
+            )
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(
+                    jsonl, tl, require_calculator_ready=True
+                )
+            msg = str(ctx.exception)
+            self.assertIn("calculator-ready", msg)
+            self.assertIn("hpTrusted=False", msg)
+            self.assertIn("hpCoverage='none'", msg)
+            self.assertIn("hp=False", msg)
+            self.assertIn("combat=False", msg)
+
+    def test_require_calculator_ready_fails_on_fountain_placeholders(self):
+        """R21 H3: fountain_placeholder_only can never satisfy calculator claim."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="rofl_upgrade_spell_ranks_fuse",
+                source_kind="rofl_upgrade_spell_ranks_fuse",
+                hp_coverage="none",
+                position_coverage="fountain_placeholder_only",
+                calculator_ready_note=True,
+            )
+            product = None
+            with self.assertRaises(SystemExit) as ctx:
+                product = validate_mod.validate_product(jsonl, tl)
+            self.assertIsNone(product)
+            msg = str(ctx.exception)
+            self.assertIn("calculator-ready", msg)
+            self.assertIn("positionCoverage='fountain_placeholder_only'", msg)
+            self.assertIn("hpTrusted=False", msg)
+
+    def test_provenance_calculator_ready_flag_cannot_bypass_gates(self):
+        """R21 H3: stamping calculatorReady:true in provenance still fails closed."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="replay_api_playback",
+                source_kind="replay_api_playback",
+                hp_coverage="none",
+                extra_prov={"calculatorReady": True},
+            )
+            tl_obj = json.loads(tl.read_text())
+            tl_obj["provenance"] = dict(tl_obj.get("provenance") or {})
+            tl_obj["provenance"]["calculatorReady"] = True
+            tl.write_text(json.dumps(tl_obj) + "\n", encoding="utf-8")
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(jsonl, tl)
+            msg = str(ctx.exception)
+            self.assertIn("calculator-ready", msg)
+            self.assertIn("hpTrusted=False", msg)
+            self.assertIn("hpCoverage='none'", msg)
+
+    def test_loltmnt_scaffold_require_calculator_ready_refuses(self):
+        """R21 H3: preferred pro scaffold stays red under --require-calculator-ready."""
+        match_dir = ROOT / "artifacts/rofl/LOLTMNT01-426746"
+        jsonl = match_dir / "events.ranks-trusted.scaffold.rfc461.jsonl"
+        timeline = match_dir / "timeline.ranks-scaffold.json"
+        if not jsonl.is_file() or not timeline.is_file():
+            self.skipTest("LOLTMNT01-426746 scaffold artifacts not present")
+        # Plain --product may be green (artifacts-first ranks scaffold).
+        product = validate_mod.validate_product(jsonl, timeline)
+        self.assertTrue(product["ok"])
+        self.assertFalse(product["hpTrusted"])
+        self.assertFalse(product["calculatorReady"])
+        self.assertEqual(product.get("hpCoverage"), "none")
+        self.assertEqual(
+            product.get("positionCoverage"), "fountain_placeholder_only"
+        )
+        with self.assertRaises(SystemExit) as ctx:
+            validate_mod.validate_product(
+                jsonl, timeline, require_calculator_ready=True
+            )
+        msg = str(ctx.exception)
+        self.assertIn("hpTrusted=False", msg)
+        self.assertIn("hpCoverage='none'", msg)
+        self.assertIn("positionCoverage='fountain_placeholder_only'", msg)
+        self.assertIn("hp=False", msg)
+        self.assertIn("combat=False", msg)
+
+
+class LivingPostSeedCalculatorReadyTests(unittest.TestCase):
+    """R15 Path1: living_post_seed_v1 honesty (dead/pre-seed may stay unknown)."""
+
+    @staticmethod
+    def _unit(
+        pid: int,
+        *,
+        alive: bool = True,
+        hp: bool = False,
+        combat: bool = False,
+        ranks: bool = True,
+        hp_source: str | None = None,
+        combat_source: str | None = None,
+    ) -> dict:
+        row: Dict[str, Any] = {
+            "pid": pid,
+            "alive": alive,
+            "hpKnown": hp,
+            "combatStatsKnown": combat,
+            "abilityRanksKnown": ranks,
+        }
+        if hp_source is not None:
+            row["hpSource"] = hp_source
+        if combat_source is not None:
+            row["combatStatsSource"] = combat_source
+        return row
+
+    def test_evaluate_allows_dead_and_preseed_unknown(self):
+        pe = "same_match_replication_type107_pe_wire_table"
+        frames = [
+            {
+                "t": 100,
+                "units": [
+                    self._unit(1, alive=True),  # pre-seed unknown OK
+                    self._unit(2, alive=False),  # dead unknown OK
+                ],
+            },
+            {
+                "t": 200,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source=pe,
+                    ),
+                    self._unit(
+                        2,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source=pe,
+                    ),
+                ],
+            },
+            {
+                "t": 300,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="hold_forward",
+                        combat_source="hold_forward",
+                    ),
+                    self._unit(2, alive=False),  # dead after seed OK
+                ],
+            },
+        ]
+        metrics = validate_mod.evaluate_calculator_ready_policies(
+            frames, expected_units=2
+        )
+        self.assertTrue(metrics["livingPostSeedCalculatorReady"])
+        self.assertFalse(metrics["strictAllFrameCalculatorReady"])
+        self.assertEqual(metrics["livingMissSlots"], 0)
+        self.assertGreater(metrics["preSeedSlots"], 0)
+        self.assertGreater(metrics["deadSlots"], 0)
+
+    def test_evaluate_requires_living_postseed_triple(self):
+        pe = "same_match_replication_type107_pe_wire_table"
+        frames = [
+            {
+                "t": 100,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source=pe,
+                    ),
+                ],
+            },
+            {
+                "t": 200,
+                "units": [
+                    # Past both seeds, alive, but HP dropped → must fail living gate.
+                    self._unit(
+                        1,
+                        hp=False,
+                        combat=True,
+                        combat_source="hold_forward",
+                    ),
+                ],
+            },
+        ]
+        metrics = validate_mod.evaluate_calculator_ready_policies(
+            frames, expected_units=1
+        )
+        self.assertFalse(metrics["livingPostSeedCalculatorReady"])
+        self.assertEqual(metrics["livingMissSlots"], 1)
+
+    def test_evaluate_treats_post_death_before_hp_reseed_as_preseed(self):
+        pe = "same_match_replication_type107_pe_wire_table"
+        frames = [
+            {
+                "t": 100,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source=pe,
+                    ),
+                ],
+            },
+            {"t": 200, "units": [self._unit(1, alive=False)]},
+            {
+                "t": 300,
+                "units": [
+                    # Respawn before HP PE re-seed: HP unknown, combat may hold.
+                    self._unit(
+                        1,
+                        hp=False,
+                        combat=True,
+                        combat_source="hold_forward",
+                    ),
+                ],
+            },
+            {
+                "t": 400,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source="hold_forward",
+                    ),
+                ],
+            },
+        ]
+        metrics = validate_mod.evaluate_calculator_ready_policies(
+            frames, expected_units=1
+        )
+        self.assertTrue(metrics["livingPostSeedCalculatorReady"])
+        self.assertEqual(metrics["livingMissSlots"], 0)
+        self.assertFalse(metrics["strictAllFrameCalculatorReady"])
+
+    def test_evaluate_hp_hold_across_respawn_counts_post_respawn_hold(self):
+        """With hpHoldAcrossRespawn, post-death hold_forward is living-required."""
+        pe = "same_match_replication_type107_pe_wire_table"
+        frames = [
+            {
+                "t": 100,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source=pe,
+                    ),
+                ],
+            },
+            {"t": 200, "units": [self._unit(1, alive=False)]},
+            {
+                "t": 300,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="hold_forward",
+                        combat_source="hold_forward",
+                    ),
+                ],
+            },
+        ]
+        # Default clear-on-death: hold after death still re-seeds via hold_forward tag.
+        metrics_default = validate_mod.evaluate_calculator_ready_policies(
+            frames, expected_units=1
+        )
+        self.assertTrue(metrics_default["livingPostSeedCalculatorReady"])
+
+        # Explicit across-respawn provenance: seed survives death even if a
+        # respawn frame briefly lacks hold tags but later holds.
+        frames_gap = [
+            {
+                "t": 100,
+                "units": [
+                    self._unit(
+                        1,
+                        hp=True,
+                        combat=True,
+                        hp_source="pe",
+                        combat_source=pe,
+                    ),
+                ],
+            },
+            {"t": 200, "units": [self._unit(1, alive=False)]},
+            {
+                "t": 300,
+                "units": [
+                    # Alive post-respawn without tags → living miss under across-respawn.
+                    self._unit(1, hp=False, combat=True, combat_source="hold_forward"),
+                ],
+            },
+        ]
+        metrics_gap = validate_mod.evaluate_calculator_ready_policies(
+            frames_gap,
+            expected_units=1,
+            hp_hold_across_respawn=True,
+        )
+        self.assertFalse(metrics_gap["livingPostSeedCalculatorReady"])
+        self.assertEqual(metrics_gap["livingMissSlots"], 1)
+        self.assertTrue(metrics_gap["hpHoldAcrossRespawn"])
+
+        # Same gap without across-respawn stays pre-seed (legacy clear).
+        metrics_legacy = validate_mod.evaluate_calculator_ready_policies(
+            frames_gap,
+            expected_units=1,
+            hp_hold_across_respawn=False,
+        )
+        self.assertTrue(metrics_legacy["livingPostSeedCalculatorReady"])
+        self.assertEqual(metrics_legacy["livingMissSlots"], 0)
+        self.assertGreater(metrics_legacy["preSeedSlots"], 0)
+
+    def test_default_policy_stays_strict_without_disclosure(self):
+        policy = validate_mod._resolve_calculator_ready_policy(
+            cli_policy=None,
+            provenance={},
+            timeline_provenance={},
+        )
+        self.assertEqual(policy, validate_mod.CALCULATOR_READY_POLICY_STRICT)
+
+    def test_provenance_policy_selects_living_post_seed(self):
+        policy = validate_mod._resolve_calculator_ready_policy(
+            cli_policy=None,
+            provenance={},
+            timeline_provenance={
+                "calculatorReadyPolicy": "living_post_seed_v1",
+            },
+        )
+        self.assertEqual(
+            policy, validate_mod.CALCULATOR_READY_POLICY_LIVING_POST_SEED
+        )
+
+    def test_cli_policy_overrides_provenance(self):
+        policy = validate_mod._resolve_calculator_ready_policy(
+            cli_policy="strict_all_frame_v1",
+            provenance={"calculatorReadyPolicy": "living_post_seed_v1"},
+            timeline_provenance={"calculatorReadyPolicy": "living_post_seed_v1"},
+        )
+        self.assertEqual(policy, validate_mod.CALCULATOR_READY_POLICY_STRICT)
+
+    def test_unknown_policy_fails_closed(self):
+        with self.assertRaises(SystemExit) as ctx:
+            validate_mod._resolve_calculator_ready_policy(
+                cli_policy=None,
+                provenance={"calculatorReadyPolicy": "weaken_silently_v0"},
+                timeline_provenance={},
+            )
+        self.assertIn("unknown calculatorReadyPolicy", str(ctx.exception))
+
+    def test_living_policy_require_calculator_ready_message_discloses_policy(self):
+        """Living policy must not silently use strict wording when claim fails."""
+        with tempfile.TemporaryDirectory() as tmp:
+            td = Path(tmp)
+            jsonl, tl = _write_pair(
+                td,
+                source="replay_api_playback",
+                source_kind="replay_api_playback",
+                hp_coverage="none",
+                position_coverage="full_at_sampled_frames",
+                extra_prov={"calculatorReadyPolicy": "living_post_seed_v1"},
+            )
+            with self.assertRaises(SystemExit) as ctx:
+                validate_mod.validate_product(
+                    jsonl,
+                    tl,
+                    require_calculator_ready=True,
+                    calculator_ready_policy="living_post_seed_v1",
+                )
+            msg = str(ctx.exception)
+            self.assertIn("living_post_seed_v1", msg)
+            self.assertIn("livingReady=", msg)
+            self.assertNotIn("every frame/unit", msg)
+
 
 class ProvenanceBehaviorTests(unittest.TestCase):
     def test_maknee_marks_synthetic_path_walking(self):

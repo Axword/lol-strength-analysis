@@ -1,0 +1,37 @@
+{
+  "cycle": 4,
+  "utc": "2026-07-24T16:11:00Z",
+  "model": "Auto",
+  "researchers_done_at_trigger": 24,
+  "votes_present": 15,
+  "fightOutcomeGate": false,
+  "fightOutcomeGate_tally": {
+    "true": 0,
+    "false": 15,
+    "majority_needed": 11
+  },
+  "digestCleanGate": true,
+  "digestCleanGate_tally": {
+    "true": 15,
+    "false": 0,
+    "majority_needed": 11
+  },
+  "digestClean_dissent": [],
+  "criterionG_proven": true,
+  "fa_note": "S0 Path1 FA 0.4107 / pass 0.167 (R25) \u226a0.95. fightAgreement \u2260 win odds.",
+  "decision": "CONTINUE_PHASE_B",
+  "next_phase_c_at": 30,
+  "sharper_blocker": "G regress (send-smoke E2); Galio miss-kill; check03 poison needs non-global share; FK/lethal tension",
+  "criterionG_note": "C4 V8 dissent confirmed: npm run fo:send-smoke FAIL E2 Path1 pin endHp drift calc=1137.19 series=1066.19 (likely idleFollowActual KEEP vs smoke expectation). Prior R16/R17 green superseded until smoke re-green.",
+  "fo_send_smoke_c4": {
+    "pass": 7,
+    "fail": 1,
+    "e2": "endHp drift"
+  },
+  "criterionG_restored_after_c4": {
+    "utc": "2026-07-24T16:13:00Z",
+    "fix": "fo_r17_send_parity_smoke E2: idleFollowActual + selected.engageSec",
+    "fo_send_smoke": "8/8",
+    "note": "V8 dissent was correct at vote time; parent fixed post-C4"
+  }
+}

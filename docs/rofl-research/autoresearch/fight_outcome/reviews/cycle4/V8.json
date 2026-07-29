@@ -1,0 +1,77 @@
+{
+  "reviewer": "V8",
+  "cycle": 4,
+  "phase": "C",
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T16:09:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.94,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": false,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "criterionG_detail": {
+    "affirmed": false,
+    "basis": "Personally re-ran BOTH parent smokes this cycle — smoke:calc-parity green; fo:send-smoke REGRESSED E2",
+    "brief_status_claim": {
+      "BRIEF": "Criterion G proven",
+      "STATUS_criterionG_proven": true,
+      "note": "C3 prior green absorbed; live C4 parent fo:send-smoke no longer 8/8"
+    },
+    "r17_parent": {
+      "smokeCommand": "npm run fo:send-smoke",
+      "result": "7 pass / 1 fail",
+      "script": "scripts/fo_r17_send_parity_smoke.ts",
+      "endHpAgree_E1": true,
+      "path1_Galio_Trundle_E2": false,
+      "E2_detail": "Path1 pin endHp drift calc=1137.1948051948048 series=1066.1948051948048 (Δ≈71)",
+      "deadExcluded_E3": true,
+      "knownFlags_E4": true,
+      "noOdds_E6": true,
+      "researcher_proven_for_V8": false
+    },
+    "r16_parent": {
+      "smokeCommand": "npm run smoke:calc-parity",
+      "result": "11/11 PASS",
+      "script": "scripts/fo_r16_calc_parity_smoke.ts",
+      "packageJsonPresent": true,
+      "allPass": true
+    },
+    "status": {
+      "criterionG_proven": true,
+      "fightOutcomeGate": false,
+      "note": "STATUS still claims G proven; V8 live dissent on fo:send-smoke E2"
+    },
+    "residual_disclosed": "Matchup vs series Path1 pin endHp diverged on Galio→Trundle; R16 Send→overlay suite still green. Fix E2 before re-claiming G. Parity ≠ FA lift."
+  },
+  "evidence": [
+    "GOAL V8 = Calculator↔harness parity (F6 / Criterion G)",
+    "Personally reproduced C4: `npm run fo:send-smoke` → 7/8 FAIL E2; `npm run smoke:calc-parity` → 11/11",
+    "r17/send_parity_smoke.json — E2 Path1 pin endHp drift calc=1137.19 series=1066.19",
+    "r16 — smoke:calc-parity still 11/11; package.json wired",
+    "BRIEF/STATUS — claim criterionG proven; S0 Path1 product FA 0.4107≪0.95; R23 research 0.250 NO product KEEP",
+    "r25 — remesaure authoritative FA 0.4107 / pass 0.167; idleFollowActual confirmed; blocker=lethal",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (no concrete §D failure)",
+    "R14 — honest F1 KEEP secondary; echo REJECTED — supports H, not B"
+  ],
+  "failures": [
+    "G: fo:send-smoke E2 Path1 endHp drift (calc≠series) — Criterion G not currently live-green",
+    "B: S0 Path1 fightAgreement 0.4107 ≪ 0.95 and fightPassRate 0.167 — even if G were green, FO false",
+    "F: S1 holdout unmet (R25 current-law ≈0.417 / pass 0) — no FO on S0 alone",
+    "I: No ≥11/15 FO majority + parent e2e STATUS flip while B/G fail"
+  ],
+  "blocker": "Restore fo:send-smoke E2 Path1 Matchup≡series endHp (Δ≈71), then continue Path1 lethal/early/falsekill (open R21/R24/R26/R28/R30). Do not sell parity as FA lift.",
+  "notes": "C4 V8: G dissent after personal fo:send-smoke 7/8 (E2 Path1 endHp drift) while smoke:calc-parity 11/11. BRIEF/STATUS still cite G proven from C3 — live parent no longer matches. Voted fightOutcomeGate false for concrete B/F/I (+G). digestCleanGate true on §D reaffirm (no §D failure). Parity ≠ FA. fightAgreement ≠ win odds.",
+  "one_line_vote": "V8: fightOutcomeGate=false digestCleanGate=true — G=false live (fo:send-smoke E2 endHp drift); B fails S0 FA 0.4107≪0.95"
+}

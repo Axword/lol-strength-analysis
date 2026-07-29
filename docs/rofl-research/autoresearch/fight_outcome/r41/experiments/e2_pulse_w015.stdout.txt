@@ -1,0 +1,18 @@
+/Users/river/.codex/worktrees/rofl-fo-r41/scripts/crosscheck_action_aligned.ts:498
+      .prepare(
+       ^
+
+Error: database is locked
+    at countKillerSkills (/Users/river/.codex/worktrees/rofl-fo-r41/scripts/crosscheck_action_aligned.ts:498:8)
+    at runOneCheck (/Users/river/.codex/worktrees/rofl-fo-r41/scripts/crosscheck_action_aligned.ts:2055:24)
+    at main (/Users/river/.codex/worktrees/rofl-fo-r41/scripts/crosscheck_action_aligned.ts:2556:11)
+    at <anonymous> (/Users/river/.codex/worktrees/rofl-fo-r41/scripts/crosscheck_action_aligned.ts:2717:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:639:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 261,
+  errstr: 'database is locked'
+}
+
+Node.js v25.8.2

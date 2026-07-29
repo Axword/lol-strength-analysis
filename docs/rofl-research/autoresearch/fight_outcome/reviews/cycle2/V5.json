@@ -1,0 +1,96 @@
+{
+  "reviewer": "V5",
+  "cycle": 2,
+  "role": "S0 suite auditor",
+  "utc": "2026-07-24T15:53:27Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.98,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": false,
+    "F": false,
+    "G": false,
+    "H": true,
+    "I": false
+  },
+  "s0": {
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "authoritativeHost": "2970132-g1 Path1 product cusum_engage_then_skills",
+    "authoritative": {
+      "fightAgreement": 0.2279317568764,
+      "fightAgreement_rounded": 0.228,
+      "fightPassRate": 0,
+      "nWindows": 6,
+      "windowOk_count": 0,
+      "meetsThresholds": false,
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json",
+      "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json",
+      "audits": [
+        "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check01_full.json",
+        "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check01_burst.json",
+        "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check02_full.json",
+        "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check02_burst.json",
+        "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check03_full.json",
+        "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check03_burst.json"
+      ]
+    },
+    "proxy_2970110_not_authoritative": {
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "note": "R04 proxy retired as S0 gate host; STATUS best_fightAgreement=0.228 Path1"
+    },
+    "r14_honest_f1_proxy_partial": {
+      "faZero": 0.34937129854089544,
+      "faHonest": 0.3743712985408954,
+      "delta": 0.025,
+      "echoRejected": true,
+      "note": "Secondary actionCoverage only; does not lift Path1 authoritative 0.228; not a product FA KEEP"
+    },
+    "dominantFails_path1": [
+      "check01 Galio→Trundle: miss-kill (modelKilled=false) + early/path MAE",
+      "check02 Olaf→Trundle: lethalErrorSec≈2.8s (>0.75) + full/burst path MAE",
+      "check03 Olaf→Camille: lethalErrorSec≈18s full + earlyMaeHp≈528; burst lethal≈1.77s"
+    ]
+  },
+  "digestClean_rejudge": {
+    "digest_header": false,
+    "r14_clears_D": false,
+    "path1_validate_documented": true,
+    "second_host_2970110": "still fails combat honesty; prefer not require under §D.4",
+    "stamp_rebuild_footgun": "still disclosed; helper required after bare rebuild",
+    "vote": false,
+    "reason": "DIGEST.md still marks digestCleanGate false; R14 honest F1 is §H/F5 not §D; stamp lag + second-host prefer + no personal C2 re-validate → deny co-gate"
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle2/BRIEF.md (authoritative S0 Path1 FA 0.228)",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json best_fightAgreement=0.228 pass=0",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md §B S0 bars ≥0.95",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json (FA 0.2279 / pass 0 / 0/6 windowOk)",
+    "docs/rofl-research/autoresearch/fight_outcome/r05/researcher_r05_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/audits/2970132-g1_check*.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json (honest F1 KEEP; echo REJECT; FA credit only honest; small proxy lift)",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md (digestCleanGate still false)",
+    "docs/rofl-research/autoresearch/fight_outcome/r17/send_parity_smoke.json (G scaffolding; overlay parity fails)",
+    "BRIEF closed tracks: mark/CUSUM/density/regen knob sweeps NO KEEP"
+  ],
+  "failures": [
+    "B_S0_authoritative: Path1 product cusum FA 0.228 / pass 0 ≪ 0.95 (all 6 windows fail windowOk).",
+    "E_S0_suite: preferred host scored and fails bars; proxy ~0.42 also ≪0.95 — suites wired, thresholds unmet.",
+    "D_digestCleanGate: DIGEST still false; R14 does not clear §D; stamp/second-host residuals remain.",
+    "F_holdout: S1 FA 0.478 / pass 0.333 ≪ 0.95; no fightOutcomeGate on S0 alone.",
+    "G_ui_send: R17 npm fo:send-smoke exists but sendOverlayParity=false + Path1 pin honesty fails — Criterion G not proven.",
+    "I_majority_e2e: C2 mid-vote; concrete B failure means ≥11/15 cannot pass today."
+  ],
+  "blocker": "Authoritative S0 Path1 FA 0.228 / pass 0 ≪ 0.95; lethal±0.75 + earlyBand dominate (check01 miss-kill; check03 earlyMaeHp≈528 / lethal≈18s).",
+  "sharper_blocker": "Open R18 Path1 lethal + R19 Path1 early on 2970132; do not re-open closed knob sweeps; R14 F1 secondary cannot carry gate.",
+  "notes": "V5 C2 S0 audit: gate false solely on concrete §B (authoritative Path1 0.228). Proxy 0.42 retired. R14 KEEP honest F1 / REJECT echo — affirms H, does not move Path1 FA or digestClean. A/C/H hold. Closed: mark/CUSUM/density/regen. Open: R18/R19 lethal+early, R16/R17 Send. fightAgreement ≠ win odds.",
+  "one_line_vote": "V5: fightOutcomeGate=false digestCleanGate=false (conf 0.98) — S0 Path1 FA 0.228 / pass 0 ≪ 0.95; R14 F1 secondary only."
+}

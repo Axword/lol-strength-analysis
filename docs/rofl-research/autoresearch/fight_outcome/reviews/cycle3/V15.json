@@ -1,0 +1,287 @@
+{
+  "reviewer": "V15",
+  "cycle": 3,
+  "role": "Consolidation — best branch + Final fields",
+  "utc": "2026-07-24T16:00:30Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.97,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "personal_AI_affirm": {
+    "A": {
+      "affirmed": true,
+      "why": "packetDecodeGate + Path1 calculatorReady living_post_seed_v1 honest; no invent; pBlue/pRed model edge; R18 never_invent."
+    },
+    "B": {
+      "affirmed": false,
+      "why": "Authoritative S0 Path1 product FA 0.2279 / pass 0; R18 research e11 0.2414 NO product KEEP (S1 regress). ≪ 0.95 bars."
+    },
+    "C": {
+      "affirmed": true,
+      "why": "Unfreeze 0.9683 authorized; R18 correctly NO product KEEP; best.json composite 0.9683 preserved; product non-drop selectors unchanged."
+    },
+    "D": {
+      "affirmed": false,
+      "why": "Re-judge vs C2 6/15: Path1 DIGEST validate+fingerprints strong partial (V11/V13-style), but DIGEST header + STATUS still digestCleanGate false; second-host open; consolidation refuses flip without peer majority + closed Final package."
+    },
+    "E": {
+      "affirmed": true,
+      "why": "S0/S1/S2 wired; audits present; Camille holes disclosed not invented."
+    },
+    "F": {
+      "affirmed": false,
+      "why": "Holdout unmet; R18 S1 regress correctly blocks KEEP; no fightOutcomeGate on S0 alone."
+    },
+    "G": {
+      "affirmed": true,
+      "why": "BRIEF/STATUS criterionG_proven; parent fo:send-smoke 8/8 + smoke:calc-parity 11/11 personally reproducible this cycle."
+    },
+    "H": {
+      "affirmed": true,
+      "why": "R14 echo rejected; R18 no false product KEEP; no fixture remap; near_hp_drop research-only."
+    },
+    "I": {
+      "affirmed": false,
+      "why": "Peers incomplete at write; even if all peers vote true, B/F objective FA≪0.95 makes honest ≥11/15 fightOutcomeGate true impossible this cycle."
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT win odds / odds %",
+    "S0_path1_2970132_authoritative": {
+      "source": "BRIEF / STATUS / R05",
+      "selector": "cusum_engage_then_skills",
+      "fightAgreement": 0.2279,
+      "fightPassRate": 0.0,
+      "gateMet": false
+    },
+    "R18_research_best_e11": {
+      "fightAgreement": 0.2414,
+      "fightPassRate": 0.0,
+      "product_keep": false,
+      "why_no_keep": "S1 regress 0.396≪product 0.519; Galio still no model kill"
+    },
+    "gate_needs": "S0+S1 fightAgreement≥0.95 AND fightPassRate≥0.95; S2 FA≥0.90 pass≥5/6"
+  },
+  "keeps": [
+    {
+      "priority": 1,
+      "researcher": "R16",
+      "branch": "adv/fo-r16-calc-parity",
+      "verdict": "KEEP_G",
+      "action": "RETAIN",
+      "why": "Parent smoke:calc-parity 11/11 — Criterion G Send↔harness proven"
+    },
+    {
+      "priority": 2,
+      "researcher": "R17",
+      "branch": "adv/fo-r17-send-parity",
+      "verdict": "KEEP_G",
+      "action": "RETAIN",
+      "why": "Parent fo:send-smoke 8/8 — knownFlags/path1Honesty/deadExcluded/noOdds"
+    },
+    {
+      "priority": 3,
+      "researcher": "R01",
+      "branch": "adv/fo-r01-digest-path",
+      "verdict": "KEEP",
+      "action": "RETAIN",
+      "why": "Path1 DIGEST path; validate green livingOk 14725"
+    },
+    {
+      "priority": 4,
+      "researcher": "R02",
+      "branch": "adv/fo-r02-digest-sources",
+      "verdict": "KEEP",
+      "action": "RETAIN",
+      "why": "knownWithoutSource 0/0/0"
+    },
+    {
+      "priority": 5,
+      "researcher": "R03",
+      "branch": "adv/fo-r03-digest-validate",
+      "verdict": "KEEP_docs",
+      "action": "RETAIN",
+      "why": "DIGEST fingerprints + failure modes disclosed"
+    },
+    {
+      "priority": 6,
+      "researcher": "R14",
+      "branch": "adv/fo-r14-action-noecho",
+      "verdict": "KEEP_research",
+      "action": "RETAIN",
+      "why": "Honest PE F1 + echo REJECT"
+    },
+    {
+      "priority": 7,
+      "researcher": "R05",
+      "branch": "adv/fo-r05-metric-s0",
+      "verdict": "KEEP_path1_s0_score",
+      "action": "RETAIN_MEASURE",
+      "why": "Authoritative Path1 S0 FA 0.2279"
+    },
+    {
+      "priority": 8,
+      "researcher": "R18",
+      "branch": "adv/fo-r18-path1-lethal",
+      "verdict": "NO_KEEP_product",
+      "action": "RETAIN_MEASURE_ONLY",
+      "why": "Research FA 0.2414; S1 regress; Galio unkilled — correctly no product KEEP"
+    }
+  ],
+  "keep_priority_order": [
+    "R16",
+    "R17",
+    "R01",
+    "R02",
+    "R03",
+    "R14",
+    "R05"
+  ],
+  "best_branches": [
+    {
+      "priority": 1,
+      "focus": "criterion_G",
+      "branch": "adv/fo-r17-send-parity",
+      "why": "G proven on parent this cycle — largest C3 gate delta"
+    },
+    {
+      "priority": 2,
+      "focus": "digest_path1",
+      "branch": "adv/fo-r01-digest-path",
+      "why": "Best living digest package while digestCleanGate awaits majority"
+    },
+    {
+      "priority": 3,
+      "focus": "path1_lethal_measure",
+      "branch": "adv/fo-r18-path1-lethal",
+      "why": "Honest miss + research ceiling 0.2414; informs R23/R24"
+    }
+  ],
+  "vote_tally_observed": {
+    "seen_at_write": ["V11", "V12", "V13", "V14"],
+    "missing_at_write": [
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6",
+      "V7",
+      "V8",
+      "V9",
+      "V10"
+    ],
+    "fightOutcomeGate_true_among_seen": 0,
+    "fightOutcomeGate_false_among_seen": 4,
+    "digestCleanGate_true_among_seen": 2,
+    "digestCleanGate_false_among_seen": 2,
+    "cycle2_digestClean_true_count": 6,
+    "majority_11_of_15_fightOutcomeGate": false,
+    "majority_can_pass": false,
+    "majority_possible_fightOutcomeGate": false,
+    "majority_possible_digestCleanGate": true,
+    "note": "FO majority_possible=false is evidence-driven (B/F FA≪0.95), not unfinished-peer tautology. digestClean majority_possible=true if ≥11 adopt §D.4 Path1-alone reading (C2 had 6; need +5) — still does not unlock fightOutcomeGate."
+  },
+  "majority_can_pass": false,
+  "majority_possible": false,
+  "majority_possible_detail": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": true,
+    "why_fo_impossible": "S0 Path1 FA 0.2279 ≪ 0.95 objective; honest reviewers cannot affirm B/F",
+    "why_dc_possible": "C2 6/15; Path1 §D evidence unchanged/stronger with G; ≥11 can affirm if peers follow prefer≠require"
+  },
+  "final_fields_draft": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": false,
+    "calculatorReadyGate": true,
+    "calculatorReadyHost": "2970132-g1",
+    "calculatorReadyPolicy": "living_post_seed_v1",
+    "criterionG_proven": true,
+    "unfreeze_0_9683": true,
+    "baselineComposite": 0.9683,
+    "best_composite_new": null,
+    "best_fightAgreement": 0.2279,
+    "best_fightAgreement_research": 0.2414,
+    "best_fightPassRate": 0.0,
+    "suites": {
+      "S0_path1": { "FA": 0.2279, "pass": 0.0 },
+      "R18_research_e11": { "FA": 0.2414, "pass": 0.0, "product_keep": false }
+    },
+    "DIGEST_reproduce": "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "calculator_Send_smoke": "npm run fo:send-smoke",
+    "calculator_Send_smoke_status": "GREEN_8_of_8",
+    "calc_parity_smoke": "npm run smoke:calc-parity",
+    "calc_parity_smoke_status": "GREEN_11_of_11",
+    "keep_priority": "R16>R17>R01>R02>R03>R14>R05",
+    "reviewer_votes_V1_V15": {
+      "true_count_expected_FO": 0,
+      "majority_11": false,
+      "majority_possible": false,
+      "majority_possible_digestClean": true,
+      "decision": "CONTINUE_PHASE_B"
+    },
+    "heartbeat_path": "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "status_path": "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "model": "Auto",
+    "limits_exhausted": false,
+    "if_false": {
+      "sharper_blocker": "Path1 S0 FA 0.2279 (Galio no kill + early/lethal); R18 research-only 0.2414; G proven so no longer a blocker; digestClean still <11/15.",
+      "next_mega_cycle": "CONTINUE Phase B: R19 early · R21 falsekill · R22 Camille Q · R23 lethal2 · R24 Galio kill; re-measure S1 after product KEEP; Phase C after next wave.",
+      "next_tracks": [
+        "R24 Galio→Trundle model kill",
+        "R19 Path1 earlyBand",
+        "R21 falsekill",
+        "R23 lethal2",
+        "Optional: digestClean majority package"
+      ]
+    }
+  },
+  "partial_wins_not_gate": [
+    "Criterion G proven (R16/R17 parent smokes) — NEW C3",
+    "R18 research FA +0.013 correctly NO product KEEP",
+    "Path1 DIGEST validate + fingerprints",
+    "Source-preserve 0/0/0",
+    "R14 honest F1 + echo REJECT",
+    "calculatorReadyGate Path1 still true",
+    "C2 digestClean 6/15 — partial, not majority"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r18/researcher_r18_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r16/smoke_report.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r17/send_parity_smoke.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle2/CYCLE2_TALLY.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/V11.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/V12.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/V13.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/V14.json",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md"
+  ],
+  "failures": [
+    "B: FA thresholds unmet — S0 Path1 0.2279; R18 research 0.2414 no KEEP",
+    "F: Holdout unmet — cannot claim fightOutcomeGate",
+    "D: digestCleanGate false (STATUS/DIGEST; C2 6/15; re-judge pending majority)",
+    "I: Majority ≥11/15 fightOutcomeGate true not achievable this cycle (FA objective)"
+  ],
+  "blocker": "B/F: Path1 S0 FA 0.2279 ≪ 0.95; R18 NO KEEP; G closed; open R19/R21/R22/R23/R24.",
+  "sharper_blocker": "Lift Path1 S0 Galio lethal + early/falsekill (R24/R19/R21/R23) from FA 0.2279; then re-measure S1 without tune. digestCleanGate separate co-gate (majority_possible=true, not yet).",
+  "notes": "Consolidation Cycle3: KEEP order R16>R17>R01>R02>R03>R14>R05; R18 NO_KEEP_product. Closed: G. Open: early/falsekill/CamilleQ/lethal2/Galio. majority_possible=false for fightOutcomeGate; majority_possible_digestClean=true. Final draft CONTINUE_PHASE_B. fightAgreement ≠ win probability.",
+  "one_line_vote": "V15: fightOutcomeGate=false digestCleanGate=false (conf 0.97) — FA 0.2279≪0.95; G proven; majority_possible=false; CONTINUE Phase B"
+}

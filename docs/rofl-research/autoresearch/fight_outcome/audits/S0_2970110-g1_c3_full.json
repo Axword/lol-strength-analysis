@@ -1,0 +1,43 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:26:03.636Z",
+  "suite": "S0",
+  "match": "2970110-g1",
+  "windowId": "S0_2970110-g1_c3_full",
+  "windowOk": false,
+  "windowScore": 0.05217391304347826,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": false,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 0,
+    "pathBand": 0,
+    "actionF1": 0.34782608695652173,
+    "earlyMaeHp": 579.815870547395,
+    "maeHpBurst": 146.62249393958234,
+    "maeHpFull": 703.8601392875831,
+    "maeHp": 703.8601392875831,
+    "pathCap": 130,
+    "lethalErrorSec": -12.791,
+    "segment": "full",
+    "matchup": "Ezreal→LeeSin"
+  },
+  "failReasons": [
+    "lethal",
+    "earlyMae",
+    "pathMae"
+  ],
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e0.json",
+  "sourceFightAgreement": "docs/rofl-research/autoresearch/fight_outcome/r12/eval_e0.fightAgreement.json",
+  "markSelection": "cusum_engage_then_skills",
+  "promotedBy": "r38",
+  "promotedUtc": "2026-07-24T16:26:03.636Z",
+  "stableIdLaw": "r27",
+  "authoritativeLaw": "r12_e0_2970110_measured",
+  "replacedMislabeledProxy": true,
+  "note": "Prior S0_2970110-* audits wrongly carried 2970132 Galio/Olaf matchups from r05 proxy; replaced with r12 measured 2970110 windows.",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability"
+}

@@ -1,0 +1,647 @@
+{
+  "schema": "pro-grid-action-aligned-suite-v1",
+  "t": "2026-07-24T16:52:54.921Z",
+  "hypothesis": "e7 finishHorizon4 nearKill2 dens1.0 gap0.4",
+  "mode": "gate_action",
+  "seriesId": "2970137",
+  "gameIndex": 1,
+  "config": {
+    "hypothesis": "e7 finishHorizon4 nearKill2 dens1.0 gap0.4",
+    "mode": "gate_action",
+    "castPulseSec": 0.4,
+    "aaFiller": false,
+    "maxAaBetweenMarks": 6,
+    "allyPulseShare": 0.35,
+    "markIdleSkipSec": 0,
+    "markNearDropSec": 0.75,
+    "markDropMinHp": 15,
+    "markAlwaysNearKillSec": 2,
+    "useDropConditioning": true,
+    "markSelection": "cusum_engage_then_skills",
+    "finishAaAfterLastMark": true,
+    "finishAaMax": 4,
+    "finishAaWindowSec": 0,
+    "aaAtEachMark": false,
+    "rePinEachMark": false,
+    "perSlotPulse": true,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0
+    },
+    "cusumK": 8,
+    "cusumH": 45,
+    "markMinGapSec": 0.4,
+    "markFinishHorizonSec": 4,
+    "maxKillerMarks": 0,
+    "markDensityWindowSec": 1,
+    "markDenseMaxPerWindow": 1,
+    "preEngageOpenerSec": 0.5,
+    "preEngageOpenerMaxPostMarks": 3,
+    "markPreEngageLeadSec": 0,
+    "markPreEngageFarSec": 0,
+    "markPreEngageFarShare": 0.35,
+    "markPreBurstSkillLeadSec": 2.5,
+    "markPreBurstSkillShare": 1,
+    "preEngageShiftEngageToOpener": true,
+    "preEngageHostSeries": "",
+    "actionReplayTauSec": 0.25,
+    "includeAllyTruth": false,
+    "emitItemModelActions": true,
+    "itemPulseShare": 0,
+    "basicAttackJsonl": "",
+    "aaIdentityPath": "",
+    "emitDamagingModelAaFromTruth": false,
+    "idleFollowActual": true,
+    "openerAllyAttrib": "local_skill_share",
+    "openerAllyWindowSec": 5,
+    "openerAllyDiscloseMarks": true,
+    "openerAllyLocalSec": 2,
+    "openerAllyMin": 5,
+    "openerKillerMin": 1,
+    "zeroDeadActualHp": true
+  },
+  "checks": [
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Vayne→Ambessa",
+      "earlyMaeHp": 0,
+      "lateMaeHp": 305.1493772727273,
+      "lateMaeDeltaVsBaseline": 1.1786205543311326,
+      "maeHp": 161.21209655844157,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 11.217,
+      "skillMarks": 1,
+      "openerAllyAttrib": {
+        "mode": "local_skill_share",
+        "openerWindowSec": 5,
+        "localWindowSec": 2,
+        "openerAllyMin": 5,
+        "openerKillerMin": 1,
+        "killerSkillsOpener": 0,
+        "allySkillsOpener": 4,
+        "skillShareProxy": 0,
+        "hpKillerShare": null,
+        "appliedKillerShare": 1,
+        "scaledKillerMarks": 0,
+        "meanLocalShare": null,
+        "allyMarksDisclosed": 0,
+        "allyMarksLogOnly": true,
+        "note": "opener ally=4/min5 killer=0/min1; no attrib"
+      },
+      "method": "gate_action",
+      "modelEndHp": 339.91889772727274,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          353796,
+          356296
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 353926,
+          "tSec": 18.13,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 5,
+        "modelCount": 5,
+        "matchedCount": 1,
+        "precision": 0.2,
+        "recall": 0.2,
+        "actionCoverage": 0.20000000000000004,
+        "allyDisclosedCount": 14,
+        "summonerDisclosedCount": 0
+      }
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Vayne→Ambessa",
+      "earlyMaeHp": 77.76190476190476,
+      "lateMaeHp": null,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 79.09203928571428,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 0.902,
+      "skillMarks": 1,
+      "openerAllyAttrib": {
+        "mode": "local_skill_share",
+        "openerWindowSec": 5,
+        "localWindowSec": 2,
+        "openerAllyMin": 5,
+        "openerKillerMin": 1,
+        "killerSkillsOpener": 0,
+        "allySkillsOpener": 4,
+        "skillShareProxy": 0,
+        "hpKillerShare": null,
+        "appliedKillerShare": 1,
+        "scaledKillerMarks": 0,
+        "meanLocalShare": null,
+        "allyMarksDisclosed": 0,
+        "allyMarksLogOnly": true,
+        "note": "opener ally=4/min5 killer=0/min1; no attrib"
+      },
+      "method": "gate_action",
+      "modelEndHp": 38.23009821428573,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          353796,
+          356296
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 353926,
+          "tSec": 0.902,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 1,
+        "modelCount": 4,
+        "matchedCount": 1,
+        "precision": 0.25,
+        "recall": 1,
+        "actionCoverage": 0.4,
+        "allyDisclosedCount": 1,
+        "summonerDisclosedCount": 0
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Cassiopeia→Viktor",
+      "earlyMaeHp": 0,
+      "lateMaeHp": 124.21519542242054,
+      "lateMaeDeltaVsBaseline": -372.0384878965279,
+      "maeHp": 24.843039084484108,
+      "lethalErrorSec": -0.26699999999999946,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 15.556,
+      "skillMarks": 5,
+      "openerAllyAttrib": {
+        "mode": "local_skill_share",
+        "openerWindowSec": 5,
+        "localWindowSec": 2,
+        "openerAllyMin": 5,
+        "openerKillerMin": 1,
+        "killerSkillsOpener": 0,
+        "allySkillsOpener": 8,
+        "skillShareProxy": 0,
+        "hpKillerShare": null,
+        "appliedKillerShare": 1,
+        "scaledKillerMarks": 0,
+        "meanLocalShare": null,
+        "allyMarksDisclosed": 0,
+        "allyMarksLogOnly": true,
+        "note": "opener ally=8/min5 killer=0/min1; no attrib"
+      },
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          687455,
+          689955
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 685849,
+          "tSec": 16.394,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 685916,
+          "tSec": 16.461,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 685982,
+          "tSec": 16.527,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 686684,
+          "tSec": 17.229,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 689188,
+          "tSec": 19.733,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 18,
+        "modelCount": 5,
+        "matchedCount": 5,
+        "precision": 1,
+        "recall": 0.2777777777777778,
+        "actionCoverage": 0.4347826086956522,
+        "allyDisclosedCount": 23,
+        "summonerDisclosedCount": 1
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Cassiopeia→Viktor",
+      "earlyMaeHp": 0,
+      "lateMaeHp": 119.59530709237515,
+      "lateMaeDeltaVsBaseline": -598.3038660875903,
+      "maeHp": 28.230726232368305,
+      "lethalErrorSec": -0.26699999999999946,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 14.995,
+      "skillMarks": 5,
+      "openerAllyAttrib": {
+        "mode": "local_skill_share",
+        "openerWindowSec": 5,
+        "localWindowSec": 2,
+        "openerAllyMin": 5,
+        "openerKillerMin": 1,
+        "killerSkillsOpener": 0,
+        "allySkillsOpener": 8,
+        "skillShareProxy": 0,
+        "hpKillerShare": null,
+        "appliedKillerShare": 1,
+        "scaledKillerMarks": 0,
+        "meanLocalShare": null,
+        "allyMarksDisclosed": 0,
+        "allyMarksLogOnly": true,
+        "note": "opener ally=8/min5 killer=0/min1; no attrib"
+      },
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          687455,
+          689955
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 685849,
+          "tSec": 15.833,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 685916,
+          "tSec": 15.9,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 685982,
+          "tSec": 15.966,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 686684,
+          "tSec": 16.668,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 689188,
+          "tSec": 19.172,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 15,
+        "modelCount": 5,
+        "matchedCount": 5,
+        "precision": 1,
+        "recall": 0.3333333333333333,
+        "actionCoverage": 0.5,
+        "allyDisclosedCount": 21,
+        "summonerDisclosedCount": 1
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Anivia→Sylas",
+      "earlyMaeHp": 0,
+      "lateMaeHp": 1627.1839623012572,
+      "lateMaeDeltaVsBaseline": 844.8214639968523,
+      "maeHp": 700.98300195252,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 14.89,
+      "skillMarks": 3,
+      "openerAllyAttrib": {
+        "mode": "local_skill_share",
+        "openerWindowSec": 5,
+        "localWindowSec": 2,
+        "openerAllyMin": 5,
+        "openerKillerMin": 1,
+        "killerSkillsOpener": 2,
+        "allySkillsOpener": 4,
+        "skillShareProxy": 0.3333333333333333,
+        "hpKillerShare": null,
+        "appliedKillerShare": 1,
+        "scaledKillerMarks": 0,
+        "meanLocalShare": null,
+        "allyMarksDisclosed": 0,
+        "allyMarksLogOnly": true,
+        "note": "opener ally=4/min5 killer=2/min1; no attrib"
+      },
+      "method": "gate_action",
+      "modelEndHp": 1739.650148584938,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          1081100,
+          1083600
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 1077990,
+          "tSec": 14.89,
+          "skillSlot": 4,
+          "ally": false,
+          "keptReason": "pre_engage_opener"
+        },
+        {
+          "tMs": 1081631,
+          "tSec": 18.531,
+          "skillSlot": 4,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1082065,
+          "tSec": 18.965,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 11,
+        "modelCount": 7,
+        "matchedCount": 3,
+        "precision": 0.42857142857142855,
+        "recall": 0.2727272727272727,
+        "actionCoverage": 0.33333333333333326,
+        "allyDisclosedCount": 16,
+        "summonerDisclosedCount": 1
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Anivia→Sylas",
+      "earlyMaeHp": 389.3333333333333,
+      "lateMaeHp": 1838.8523957759496,
+      "lateMaeDeltaVsBaseline": 209.98126490448135,
+      "maeHp": 1362.1730208142055,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 0.968,
+      "skillMarks": 3,
+      "openerAllyAttrib": {
+        "mode": "local_skill_share",
+        "openerWindowSec": 5,
+        "localWindowSec": 2,
+        "openerAllyMin": 5,
+        "openerKillerMin": 1,
+        "killerSkillsOpener": 2,
+        "allySkillsOpener": 4,
+        "skillShareProxy": 0.3333333333333333,
+        "hpKillerShare": null,
+        "appliedKillerShare": 1,
+        "scaledKillerMarks": 0,
+        "meanLocalShare": null,
+        "allyMarksDisclosed": 0,
+        "allyMarksLogOnly": true,
+        "note": "opener ally=4/min5 killer=2/min1; no attrib"
+      },
+      "method": "gate_action",
+      "modelEndHp": 1831.7849800456124,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          1081100,
+          1083600
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 1077990,
+          "tSec": 0.968,
+          "skillSlot": 4,
+          "ally": false,
+          "keptReason": "pre_engage_opener"
+        },
+        {
+          "tMs": 1081631,
+          "tSec": 4.609,
+          "skillSlot": 4,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1082065,
+          "tSec": 5.043,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 6,
+        "modelCount": 5,
+        "matchedCount": 3,
+        "precision": 0.6,
+        "recall": 0.5,
+        "actionCoverage": 0.5454545454545454,
+        "allyDisclosedCount": 6,
+        "summonerDisclosedCount": 1
+      }
+    }
+  ],
+  "composite": 2.1099446905254444,
+  "parts": {
+    "meanEarlyMae": 77.84920634920634,
+    "meanMae": 392.7556539879556,
+    "meanLethalAbs": 3.422333333333333,
+    "latePoisonPenalty": 0
+  },
+  "hardFails": [],
+  "shipChecklist": {
+    "A1_check02_full_early_idle": true,
+    "A2_check02_burst_lethal_pm2": true,
+    "A3_check01_burst_path_improved": true,
+    "A4_strict_lethal_01_02_full_burst": false,
+    "A5_check03_early_not_hurt": true,
+    "A6_poison_clear_prefer": true,
+    "A6_min_check03_burst_poison_clear": true,
+    "A7_late_mae_01_02_not_hurt": true,
+    "A8_hard_fails_clean": true,
+    "holdout_B_directionally": true,
+    "holdout_B_burst_lethal_pm2": true,
+    "holdout_B_check03_early_ok": true,
+    "details": {
+      "c01_full_lethal": null,
+      "c01_burst_lethal": null,
+      "c02_burst_lethal": -0.26699999999999946,
+      "c01_assist_full": 0,
+      "c01_modelEndHp_burst": 38.23009821428573,
+      "c03_burst_poison": false,
+      "lateMaeDelta_01": 1.1786205543311326,
+      "lateMaeDelta_02": -372.0384878965279
+    }
+  },
+  "shipGateCandidate": false,
+  "shipGate": true,
+  "shipNotes": [
+    "A1 check02 full early MAE ≪ baseline",
+    "A2 check02 burst lethal ±2s",
+    "A3 check01 burst path improved",
+    "FAIL A4: strict lethal (need 01+02 full+burst kill ±2s)",
+    "A5 check03 early not hurt >50",
+    "A6 poison clear (all)",
+    "A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn)",
+    "A8 hard fails clean",
+    "holdout B directional+≥1 burst lethal±2+early OK"
+  ],
+  "baselineComposite": 4.254763987877419,
+  "keepCandidate": true,
+  "actionReplay": {
+    "meanActionCoverage": 0.40226174791392183,
+    "worstWindow": {
+      "check": 1,
+      "segment": "full",
+      "actionCoverage": 0.20000000000000004
+    },
+    "gate95": false,
+    "perWindow": [
+      {
+        "check": 1,
+        "segment": "full",
+        "matchup": "Vayne→Ambessa",
+        "truthCount": 5,
+        "modelCount": 5,
+        "matchedCount": 1,
+        "precision": 0.2,
+        "recall": 0.2,
+        "actionCoverage": 0.20000000000000004
+      },
+      {
+        "check": 1,
+        "segment": "burst",
+        "matchup": "Vayne→Ambessa",
+        "truthCount": 1,
+        "modelCount": 4,
+        "matchedCount": 1,
+        "precision": 0.25,
+        "recall": 1,
+        "actionCoverage": 0.4
+      },
+      {
+        "check": 2,
+        "segment": "full",
+        "matchup": "Cassiopeia→Viktor",
+        "truthCount": 18,
+        "modelCount": 5,
+        "matchedCount": 5,
+        "precision": 1,
+        "recall": 0.2777777777777778,
+        "actionCoverage": 0.4347826086956522
+      },
+      {
+        "check": 2,
+        "segment": "burst",
+        "matchup": "Cassiopeia→Viktor",
+        "truthCount": 15,
+        "modelCount": 5,
+        "matchedCount": 5,
+        "precision": 1,
+        "recall": 0.3333333333333333,
+        "actionCoverage": 0.5
+      },
+      {
+        "check": 3,
+        "segment": "full",
+        "matchup": "Anivia→Sylas",
+        "truthCount": 11,
+        "modelCount": 7,
+        "matchedCount": 3,
+        "precision": 0.42857142857142855,
+        "recall": 0.2727272727272727,
+        "actionCoverage": 0.33333333333333326
+      },
+      {
+        "check": 3,
+        "segment": "burst",
+        "matchup": "Anivia→Sylas",
+        "truthCount": 6,
+        "modelCount": 5,
+        "matchedCount": 3,
+        "precision": 0.6,
+        "recall": 0.5,
+        "actionCoverage": 0.5454545454545454
+      }
+    ]
+  }
+}

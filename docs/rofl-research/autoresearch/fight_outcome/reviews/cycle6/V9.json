@@ -1,0 +1,106 @@
+{
+  "reviewer": "V9",
+  "cycle": 6,
+  "phase": "C",
+  "role": "Timed planner / death-coupled honesty",
+  "utc": "2026-07-24T16:37:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "planner_lens": {
+    "death_coupled_parent": true,
+    "no_hp_pct_ability_ban": true,
+    "product_selectors_held": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+    "idleFollowActual_KEEP": true,
+    "r30": {
+      "product_KEEP": true,
+      "aaAtEachMark": false,
+      "pulseBySlot_R": 0,
+      "note": "Finish-track R-pulse invent closed; death-coupled finish AA retained"
+    },
+    "r32": {
+      "product_KEEP": true,
+      "killerShareMode": "residual_hp",
+      "S0_claimed_FA": 0.7307,
+      "S1_FA_flat": 0.562,
+      "note": "residual HP share at probe lethal — not assist-gated one-coeff; c3 poison cleared in isolation"
+    },
+    "r34": {
+      "product_KEEP": true,
+      "galio_tornadoPct": 0.15,
+      "S0_claimed_FA": 0.6629,
+      "S0_pass_claimed": 0.5,
+      "S1_FA_flat": 0.562,
+      "disclosure": "attention kit blend; not wiki-exact; not calibrated"
+    },
+    "r35": {
+      "product_KEEP": true,
+      "preEngageOpenerSec": 0.5,
+      "preEngageOpenerMaxPostMarks": 3,
+      "S0_verified_FA": 0.6021,
+      "S1_verified_FA": 0.581,
+      "rejected_r24_lead_far": true,
+      "note": "sparse structural opener KEEP; distinct from R23/R24 research lead/far"
+    },
+    "r36": {
+      "product_KEEP": true,
+      "openerAllyAttrib": "local_skill_share",
+      "S0_claimed_FA": 0.7217,
+      "S1_FA_flat": 0.562,
+      "note": "timeline skill_used local shares; early_poisoned diagnostic only; not packet damage_dealt"
+    },
+    "r23_r24": {
+      "product_KEEP": false,
+      "note": "preEngage lead/far + maxKillerMarks research-only — still holds; R35 sparse is the product opener KEEP"
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds",
+    "S0_verified_r35": 0.6021,
+    "S0_claimed_stack_pending_remeasure": { "lo": 0.72, "hi": 0.73 },
+    "S0_passRate_class": 0.333,
+    "S1_verified_r35": 0.581,
+    "S1_claimed_stack": { "lo": 0.56, "hi": 0.58 },
+    "S1_passRate": 0.333,
+    "S2": 0.634,
+    "R10_best_timed_S0": 0.5019,
+    "R10_timed_S1": 0.2822
+  },
+  "evidence": [
+    "V9 specialty — parent death-coupled / no-HP%-ban HOLDS: timed_manual_1v1 stops at first lethal; abilityBudget never HP%-bans slots",
+    "V9 specialty — product selectors unchanged; near_hp_drop research-only",
+    "V9 specialty — R35 KEEP: sparse preEngage 0.5/maxPost=3 lifts S0→0.6021 and S1→0.581 without R24 lead/far",
+    "R32 residual_hp KEEP — c3 overkill share honesty; S1 flat; claimed S0 0.731 pending remesaure",
+    "R34 Galio tornado 0.15 KEEP — attention blend disclosed; claimed pass 0.500; S1 flat",
+    "R36 local_skill_share KEEP — claimed S0 0.722; poison cleared in isolation; S1 flat",
+    "B FAIL: verified S0 FA 0.6021 / claimed ~0.72 ≪ 0.95; pass still ≪0.95",
+    "F FAIL: S1 verified ≈0.581 / claimed ~0.56–0.58 / pass 0.333 ≪ 0.95",
+    "D reaffirm TRUE: GOAL §D Path1 ≥1 match; no new §D failure",
+    "G TRUE: fo:send-smoke 8/8 + smoke:calc-parity 11/11 (BRIEF + V8 live)",
+    "H OK: R24 research not sold as product; R14 echo REJECTED; FA≠odds",
+    "C OK: unfreeze authorized; composite 0.9683 history preserved"
+  ],
+  "failures": [
+    "B: verified S0 FA 0.6021 ≪ 0.95 (claimed stack ~0.72 still ≪0.95; remesaure pending)",
+    "F: S1 holdout unmet at ≈0.581 / 0.333 (claimed ~0.56–0.58)",
+    "Outcome honesty gap (not death-coupled mechanism): Galio |lethErr|≈1.84 miss-kill; c1 burst 0-marks; pathMae residual",
+    "I: FO majority + parent e2e not met"
+  ],
+  "blocker": "Planner death-coupled honesty holds and wave2 KEEP stack shipped, but verified Path1 S0 FA=0.6021 and S1≈0.581 ≪ 0.95; remesaure compound then Galio lethErr/burst + pathMae — do not flip selectors to R24 lead/far",
+  "notes": "V9 C6: death-coupled mechanism honest; R32/R34/R35/R36 are product honesty KEEPs (not FA≥0.95 claims). R24 lead/far still research-only. digestCleanGate true on §D reaffirm. fightOutcomeGate false solely on concrete B+F (+I). FA ≠ win odds / ≠ pBlue-pRed %.",
+  "one_line_vote": "V9: fightOutcomeGate=false digestCleanGate=true — planner death-coupled honest; S0 FA 0.602≪0.95 (claimed~0.72 pending)"
+}

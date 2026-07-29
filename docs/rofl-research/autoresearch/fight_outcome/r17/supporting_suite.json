@@ -1,0 +1,34 @@
+{
+  "utc": "2026-07-24T15:54:36Z",
+  "commands": {
+    "fo:send-smoke": {
+      "exit": 0,
+      "pass": 8,
+      "fail": 0
+    },
+    "test:known-flags": {
+      "exit": 0,
+      "detail": "E1\u2013E8 ok"
+    },
+    "test:send-gate": {
+      "exit": 0,
+      "detail": "E1\u2013E10 living-only + H4"
+    },
+    "test:track3-send-parity": {
+      "exit": 0,
+      "detail": "9 experiments passed"
+    },
+    "test:kill-window": {
+      "exit": 0,
+      "detail": "20 passed"
+    },
+    "test:anti-odds": {
+      "exit": 0,
+      "detail": "ANTI-ODDS AUDIT OK"
+    },
+    "partialC.sendHonesty.2970132": {
+      "exit": 0,
+      "detail": "E1\u2013E10 ok"
+    }
+  }
+}

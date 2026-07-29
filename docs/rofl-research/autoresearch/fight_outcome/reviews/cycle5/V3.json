@@ -1,0 +1,71 @@
+{
+  "reviewer": "V3",
+  "role": "fightAgreement metric honesty (no gaming)",
+  "cycle": 5,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:20:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "metric_honesty": {
+    "authoritative_S0": {
+      "host": "2970132-g1 Path1 product cusum_engage_then_skills + idleFollowActual + R30 aaAtEachMark=false + R-pulse0",
+      "fightAgreement": 0.5896947676936598,
+      "fightPassRate": 0.3333333333333333,
+      "n": 6,
+      "windowOk": "2/6 (c2_full + c3_burst)",
+      "grain": "check×segment",
+      "source": "r30/experiments/fa_S0_e8_product_keep.json",
+      "status_best": 0.5896947676936598,
+      "supersedes_C4_R25": 0.4106910062451652
+    },
+    "research_not_product": {
+      "r24_best_research_FA": 0.5030447427479277,
+      "r24_product_KEEP": false,
+      "r24_S1_regress": true,
+      "note": "Galio kill research peak 0.503 on old baseline; product Path1 stays R30 ≈0.590"
+    },
+    "S1_current_law": {
+      "fightAgreement": 0.5619564223174064,
+      "fightPassRate": 0.3333333333333333,
+      "tuned": false,
+      "source": "r30/experiments/fa_S1_e8_product_keep.json"
+    },
+    "fa_not_odds": true,
+    "echo_rejected": true,
+    "gate_bar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "meets_thresholds": false
+  },
+  "evidence": [
+    "Specialty B/H: scorer law unchanged (0.40 lethal + 0.25 early + 0.20 path + 0.15 actionF1; lethal≤0.75).",
+    "Authoritative product S0 Path1 FA 0.5896947676936598 / pass 0.333 / 2/6 windowOk (R30 e8 KEEP; BRIEF ≈0.590; STATUS best_fightAgreement).",
+    "Do not cite C4 R25 0.4107 as current product FA after R30 KEEP; do not cite R24 research 0.503 as product gate evidence.",
+    "R24 research e49 FA 0.503 correctly NO product KEEP (S1 0.519→0.338) — honest non-gaming.",
+    "R30 KEEP only after S0↑ (+0.179) and S1↑ (+0.145) with no invent; rejected e7c (S1 regress).",
+    "R14 zero-dmg echo still REJECTED as gate evidence (H); FA ≠ odds / pBlue%.",
+    "D reaffirm: Path1 validate+hashes personally green this cycle → §D.1–7 affirm; digestCleanGate=true.",
+    "G AFFIRM: proven (fo:send-smoke 8/8; smoke:calc-parity 11/11) — does not move FA.",
+    "C AFFIRM: best.json composite 0.9683 preserved; unfrozenFromComposite=0.9683; FA fields updated honestly."
+  ],
+  "failures": [
+    "B_thresholds: S0 Path1 product FA ≈0.590 / pass ≈0.333 ≪ 0.95; R24 research 0.503 still ≪ 0.95 and not product.",
+    "F_holdout: S1 current-law FA ≈0.562 / pass ≈0.333 below bar.",
+    "I_majority_e2e: FO cannot pass while B fails."
+  ],
+  "notes": "V3 C5 metric honesty: Path1 product FA ≈0.590 canonical (R30); R24 research 0.503 correctly non-KEEP. G proven ≠ metric pass. digestClean reaffirm true on personal §D. fightOutcomeGate false solely on unmet B (+F/I). fightAgreement ≠ win odds.",
+  "one_line_vote": "V3: metric law honest (R30 Path1 FA≈0.590 canonical; R24 research-only) → fightOutcomeGate=false; digestCleanGate=true; G=true."
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "fightOutcome-researcher-summary-v1",
+  "researcher": "r27",
+  "slug": "suite-windows",
+  "room": "f9",
+  "model": "Auto",
+  "utc": "2026-07-24T16:05:27Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r27",
+  "branch": "adv/fo-r27-suite-windows",
+  "never_edited_parent_code": true,
+  "artifactsMirroredToParent": true,
+  "parentArtifacts": "docs/rofl-research/autoresearch/fight_outcome/r27/",
+  "hypothesesAutoPicked": [
+    {
+      "id": "F9.H1",
+      "title": "Window suite JSON",
+      "result": "DONE"
+    },
+    {
+      "id": "F9.H2",
+      "title": "CUSUM/product selectors",
+      "result": "ENCODED"
+    },
+    {
+      "id": "F9.H3",
+      "title": "Crosscheck reuse Path1 2970132",
+      "result": "DONE"
+    },
+    {
+      "id": "F9.H4",
+      "title": "VOD labels optional",
+      "result": "SKIPPED_unused"
+    },
+    {
+      "id": "F9.H5",
+      "title": "Stable audit window ids",
+      "result": "DONE"
+    }
+  ],
+  "deliverables": [
+    "suite_S0.json",
+    "suite_S1.json",
+    "suite_S2.json",
+    "HYPOTHESES_PICKED.md",
+    "researcher_r27_summary.json",
+    "path1_crosscheck_alias.json",
+    "crosschecks-2954868-g1-transfer.json"
+  ],
+  "windowCounts": {
+    "S0_total": 12,
+    "S0_path1_2970132": 6,
+    "S0_optional_2970110": 6,
+    "S1_total": 12,
+    "S2_total": 6
+  },
+  "path1SuiteComplete": true,
+  "path1": {
+    "host": "2970132-g1",
+    "complete": true,
+    "windowCount": 6,
+    "requiredWindowCount": 6,
+    "crosscheckCanonical": "docs/canvases/_data/crosschecks-2970132-g1.json",
+    "harnessSuiteKey": "2970132-g1-holdout",
+    "harnessAliasWorktree": "docs/canvases/_data/crosschecks-2970132-g1-holdout.json",
+    "aliasByteMatchCanonical": true,
+    "sqlite": "artifacts/pro-grid/2970132/timeline.g1.slim.sqlite",
+    "allKillsVerified": true
+  },
+  "windowIdLaw": "{suite}_{match}_c{check}_{segment}  e.g. S0_2970132-g1_c1_burst",
+  "markSelection": {
+    "product": [
+      "cusum_engage_then_skills",
+      "post_engage_killer_skills"
+    ],
+    "researchOnly": [
+      "near_hp_drop"
+    ],
+    "defaultForAudits": "cusum_engage_then_skills",
+    "note": "Product non-drop selectors only for fightAgreement audits; near_hp_drop research-only"
+  },
+  "stableWindowIdExamples": [
+    "S0_2970132-g1_c1_full",
+    "S0_2970132-g1_c1_burst",
+    "S0_2970132-g1_c2_full",
+    "S0_2970132-g1_c2_burst",
+    "S0_2970132-g1_c3_full",
+    "S0_2970132-g1_c3_burst"
+  ],
+  "gapsDisclosed": [
+    "Harness expects crosschecks-2970132-g1-holdout.json; canonical is crosschecks-2970132-g1.json \u2014 worktree alias only",
+    "S2 2954868 not in crosscheck_action_aligned --suite enum (score via explicit input)",
+    "fight_agreement_suite.ts still wires S2\u21922970120; GOAL/r06 place 2970120 in S1 and 2954868 in S2 \u2014 suite JSON follows GOAL",
+    "2970110/2970137 Camille PE AD/armor structural holes for product fuse",
+    "2970120/2954868 slim-v1 missing items_json"
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "fightOutcomeGateEvidence": false,
+  "next": "F2 harness consumers should load suite_S*.json window ids; optional parent merge of Path1 holdout alias into docs/canvases/_data/"
+}

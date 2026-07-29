@@ -799,6 +799,116 @@ class PhaseRecoveryAndPublishTests(unittest.TestCase):
                 )
             self.assertFalse((root / f"public/data/matches/{MATCH_CODE}").exists())
 
+    def test_publish_refused_without_product_publication_ok(self):
+        """R21 H5: artifacts-first latch — no public write without productPublication.ok."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            metadata, config, paths = self._ready_capture(root)
+            ingest.atomic_write_json(
+                paths.timeline,
+                {
+                    "id": MATCH_CODE,
+                    "name": MATCH_CODE,
+                    "provenance": {
+                        "sourceKind": "replay_api_playback",
+                        "artifact": "events.rfc461.jsonl",
+                        "positionCoverage": "full_at_sampled_frames",
+                        "hpCoverage": "none",
+                    },
+                    "frames": [],
+                },
+            )
+            # Adversarial: generic ok without productPublication block.
+            ingest.atomic_write_json(
+                paths.validation,
+                {"ok": True, "schemas": {"stats_update": 1}},
+            )
+            manifest = ingest.load_json(paths.manifest)
+            gates = dict(manifest.get("productGates") or {})
+            gates["productValidated"] = True
+            gates["calculatorReady"] = False
+            manifest["productGates"] = gates
+            ingest.atomic_write_json(paths.manifest, manifest)
+            with self.assertRaises(ingest.IngestError) as ctx:
+                ingest.publish_phase(
+                    metadata,
+                    config,
+                    paths,
+                    publish_root=root / "public/data/matches",
+                )
+            self.assertIn("productPublication", str(ctx.exception))
+            self.assertFalse((root / f"public/data/matches/{MATCH_CODE}").exists())
+
+            # Explicit productPublication.ok=false also refuses.
+            ingest.atomic_write_json(
+                paths.validation,
+                {
+                    "ok": True,
+                    "productPublication": {
+                        "ok": False,
+                        "calculatorReady": False,
+                        "hpTrusted": False,
+                    },
+                },
+            )
+            with self.assertRaises(ingest.IngestError) as ctx2:
+                ingest.publish_phase(
+                    metadata,
+                    config,
+                    paths,
+                    publish_root=root / "public/data/matches",
+                )
+            self.assertIn("productPublication.ok", str(ctx2.exception))
+            self.assertFalse((root / f"public/data/matches/{MATCH_CODE}").exists())
+
+    def test_publish_refused_when_manifest_calculator_ready_lies(self):
+        """R21 H5+H3: manifest cannot claim calculatorReady ahead of validation."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            metadata, config, paths = self._ready_capture(root)
+            ingest.atomic_write_json(
+                paths.timeline,
+                {
+                    "id": MATCH_CODE,
+                    "name": MATCH_CODE,
+                    "provenance": {
+                        "sourceKind": "replay_api_playback",
+                        "artifact": "events.rfc461.jsonl",
+                        "positionCoverage": "fountain_placeholder_only",
+                        "hpCoverage": "none",
+                    },
+                    "frames": [],
+                },
+            )
+            ingest.atomic_write_json(
+                paths.validation,
+                {
+                    "ok": True,
+                    "productPublication": {
+                        "ok": True,
+                        "calculatorReady": False,
+                        "hpTrusted": False,
+                        "hpCoverage": "none",
+                        "positionCoverage": "fountain_placeholder_only",
+                    },
+                },
+            )
+            manifest = ingest.load_json(paths.manifest)
+            gates = dict(manifest.get("productGates") or {})
+            gates["productValidated"] = True
+            gates["calculatorReady"] = True  # dishonest latch attempt
+            manifest["productGates"] = gates
+            ingest.atomic_write_json(paths.manifest, manifest)
+            with self.assertRaises(ingest.IngestError) as ctx:
+                ingest.publish_phase(
+                    metadata,
+                    config,
+                    paths,
+                    publish_root=root / "public/data/matches",
+                )
+            self.assertIn("calculatorReady", str(ctx.exception))
+            self.assertFalse((root / f"public/data/matches/{MATCH_CODE}").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

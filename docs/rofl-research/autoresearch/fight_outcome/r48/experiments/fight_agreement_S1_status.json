@@ -1,0 +1,27 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T17:17:16.861Z",
+  "researcher": "r04",
+  "status": "awaiting_eval",
+  "suite": "S1",
+  "runtime": {
+    "harnessSuite": "2970137-g1-holdout",
+    "match": "2970137-g1",
+    "note": "S1 holdout — do not tune on S1",
+    "proxied": false
+  },
+  "fightAgreement": null,
+  "fightPassRate": null,
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S1 holdout — do not tune on S1"
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %",
+  "howTo": "Pass --from-eval <harness.json> or --run-harness with artifacts/pro-grid slim present"
+}

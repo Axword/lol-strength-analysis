@@ -1,0 +1,115 @@
+{
+  "researcher": "r24",
+  "slug": "galio-kill",
+  "model": "Auto",
+  "utc": "2026-07-24T16:15:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r24",
+  "branch": "adv/fo-r24-galio-kill",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "room": "f6/galio-kill",
+  "mandate": "Lift product cusum lethal agreement on Path1 Galio\u2192Trundle (2970132) without S1 regress; measure Path1 FA; no product KEEP if S1 drops",
+  "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json",
+  "primarySelector": "cusum_engage_then_skills",
+  "n_experiments": 50,
+  "path1_FA_before": 0.2279317568764,
+  "path1_FA_after_research_best": 0.5030447427479277,
+  "path1_FA_after_product": 0.2279317568764,
+  "path1_FA_delta_research": 0.27511298587152766,
+  "fightPassRate_before": 0,
+  "fightPassRate_after_research_best": 0,
+  "baseline_e0": {
+    "experiment": "e0",
+    "fightAgreement": 0.2279317568764,
+    "galio": {
+      "killedInModel": false,
+      "lethalErrorSec": null,
+      "modelEndHp": 306.32739019915186,
+      "skillMarks": 2,
+      "note": "W@15.024 dropped; only E + finish Q"
+    }
+  },
+  "best_S0_research": {
+    "experiment": "e49",
+    "fightAgreement": 0.5030447427479277,
+    "config": "product cusum density + --pre-engage-lead 0.4 --pre-engage-far 5 --pre-engage-far-share 0.45 --max-killer-marks 4 (no aa-filler)",
+    "galio": {
+      "killedInModel": true,
+      "lethalErrorSec": -0.3555185185185188,
+      "lethalHit": 1,
+      "modelEndHp": 0,
+      "skillMarks": 4,
+      "note": "near W full share + far Q@10.883 share 0.45; AA filler gated until CUSUM"
+    },
+    "lethal": {
+      "Galio\u2192Trundle": "model kill + |lethErr| 0.356 \u2264 0.75 \u2192 lethalHit",
+      "Olaf\u2192Trundle": "improved via maxKillerMarks4 on Path1",
+      "Olaf\u2192Camille full": "|lethErr| still large"
+    }
+  },
+  "holdout_S1": {
+    "e0_product_FA": 0.5185109757392367,
+    "e49_research_FA": 0.3379081614115324,
+    "lead_only_FA": 0.374,
+    "tunedOnS1": false,
+    "note": "pre-engage lead/far + maxKillerMarks regress S1 \u2014 no product KEEP"
+  },
+  "keeps": [],
+  "research_keep_candidates": [
+    "e49",
+    "e50",
+    "e43"
+  ],
+  "keepable_artifact": {
+    "kind": "research_harness_knob + Path1 suite wire + pre-engage lead/far share",
+    "harness": "scripts/crosscheck_action_aligned.ts --suite 2970132-g1 --pre-engage-lead/--pre-engage-far/--pre-engage-far-share",
+    "engine": "src/engine/killWindowOverlay.ts selectKillWindowMarks + pre-engage poke in simulateKillWindowSeries",
+    "scorer": "scripts/fight_agreement_suite.ts --from-eval",
+    "best_research_config": "e49: lead0.4 far5 farShare0.45 maxKillerMarks4",
+    "product_default_unchanged": true,
+    "product_default_still": [
+      "cusum_engage_then_skills",
+      "markDensityWindowSec=1.2",
+      "markDenseMaxPerWindow=1",
+      "markMinGapSec=1.0",
+      "markPreEngageLeadSec unset/0",
+      "aaAtEachMark=true",
+      "finishAaAfterLastMark=true"
+    ],
+    "best_json_updated": false,
+    "reason": "Path1 FA +0.275 and Galio lethalHit=1 vs e0, but S1 FA 0.338 << product 0.519; no invent; no product selector/lead flip"
+  },
+  "discards": [
+    "e1-e14",
+    "e16-e18",
+    "e20-e42",
+    "e44-e48",
+    "pure densify / pulse / finishAaMax without far poke"
+  ],
+  "findings": [
+    "Path1 product baseline reconfirmed FA=0.2279; Galio no model kill (endHp\u2248306, 2 marks).",
+    "CUSUM 1 Hz lag drops Galio W that trips engage; near lead 0.4 restores W.",
+    "Far attenuated Q@10.883 (share\u22480.45) closes |lethErr| to 0.356 \u2192 lethalHit without inventing marks.",
+    "Best research e49 Path1 FA=0.503 with Galio lethalHit=1; burst still 0 marks (burstStart after skills).",
+    "S1 holdout: product 0.5185 vs e49 0.338 \u2014 no product KEEP / no killWindowProduct rewrite."
+  ],
+  "blocker": "S1 regress on any Path1 Galio-lethal config; burst Galio still unkilled; fightPassRate 0; FA\u226a0.95",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "galio_kill": {
+    "before": false,
+    "after_research_best": true,
+    "lethalHit": true,
+    "lethalErrorSec": -0.3555185185185188
+  },
+  "path1_FA": {
+    "before": 0.2279317568764,
+    "after_research_best": 0.5030447427479277,
+    "after_product": 0.2279317568764
+  },
+  "artifacts": {
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r24/leaderboard.json",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r24/NOTES.md",
+    "experiments": "docs/rofl-research/autoresearch/fight_outcome/r24/experiments/",
+    "summary": "docs/rofl-research/autoresearch/fight_outcome/r24/researcher_r24_summary.json"
+  }
+}

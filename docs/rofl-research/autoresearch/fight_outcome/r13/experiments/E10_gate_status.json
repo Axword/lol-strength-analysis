@@ -1,0 +1,19 @@
+{
+  "id": "E10",
+  "hypothesis": "Gate honesty — actionCoverage lift ≠ fightOutcomeGate",
+  "fightOutcomeGateEvidence": false,
+  "digestCleanGate": false,
+  "s0_honest_fightAgreement": 0.3476599177030975,
+  "context": {
+    "S0": 0.4217,
+    "S1": 0.478,
+    "S2": 0.634
+  },
+  "gateBars": {
+    "S0": 0.95,
+    "S1": 0.95,
+    "S2": 0.9
+  },
+  "reason": "All suite FA ≪ gate; F1 secondary cannot carry gate alone",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds"
+}

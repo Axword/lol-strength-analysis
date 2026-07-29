@@ -1,0 +1,206 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r13",
+  "slug": "action-f1",
+  "room": "f5",
+  "model": "Auto",
+  "utc": "2026-07-24T15:51:33.527Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r13",
+  "branch": "adv/fo-r13-action-f1",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "phase": "C_cycle1_starting",
+  "hypotheses_auto_picked": [
+    {
+      "id": "F5.H1",
+      "title": "Honest F1 — reject zero-dmg log-echo",
+      "result": "KEEP_reject"
+    },
+    {
+      "id": "F5.H2",
+      "title": "Secondary only — 0.15 of windowScore",
+      "result": "proven"
+    },
+    {
+      "id": "F5.H3",
+      "title": "Wire emit proof source+amount",
+      "result": "KEEP_census"
+    },
+    {
+      "id": "F5.H4",
+      "title": "Coverage gaps disclose",
+      "result": "KEEP_disclose"
+    },
+    {
+      "id": "F5.H5",
+      "title": "Suite join into fightAgreement",
+      "result": "KEEP_wire"
+    }
+  ],
+  "n_experiments": 10,
+  "keeps": [
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E06",
+    "E07",
+    "E08",
+    "E09",
+    "E10"
+  ],
+  "discards": [
+    "E05"
+  ],
+  "actionCoverageWeight": 0.15,
+  "reject_zero_dmg_log_echo": true,
+  "best_honest_s0_fightAgreement": 0.3476599177030975,
+  "skill_only_s0_fightAgreement": 0.3605004660436458,
+  "context_baselines": {
+    "S0": 0.4217,
+    "S1": 0.478,
+    "S2": 0.634
+  },
+  "fightOutcomeGateEvidence": false,
+  "sharper_blocker": "S0/S1/S2 fightAgreement ≪ gate; honest F1 secondary (0.15) wired + zero-dmg echo rejected — lethal/path still dominate failures",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r13/results.jsonl",
+    "honest_lib": "scripts/lib/honest_action_f1.ts",
+    "runner": "scripts/fo_r13_action_f1.ts",
+    "experiments_dir": "docs/rofl-research/autoresearch/fight_outcome/r13/experiments/"
+  },
+  "confidence": "actionCoverage F1 / fightAgreement are suite agreement metrics — NOT win probability / odds %",
+  "experiments": [
+    {
+      "id": "E01",
+      "hypothesis": "H1 Honest F1 — reject zero-dmg log-echo",
+      "keep": true,
+      "notes": "rawF1=1.000 → fightAgreementF1=0 (echo gaming)",
+      "metrics": {
+        "rawActionCoverage": 1,
+        "fightAgreementF1": 0,
+        "echoGamingSuspected": true
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E01_echo_reject.json"
+    },
+    {
+      "id": "E02",
+      "hypothesis": "H1+H4 suite honest F1 + coverage gaps",
+      "keep": true,
+      "notes": "meanRaw=0.622 meanHonestFA_F1=0.554 n=13",
+      "metrics": {
+        "meanRaw": 0.6219103715267398,
+        "meanHonest": 0.5536974136974137,
+        "n": 13
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E02_suite_honest_f1.json"
+    },
+    {
+      "id": "E03",
+      "hypothesis": "H2 Secondary only — 0.15 weight",
+      "keep": true,
+      "notes": "delta=0.15 expected=0.15",
+      "metrics": {
+        "withF1": 1,
+        "withoutF1": 0.8500000000000001,
+        "delta": 0.1499999999999999
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E03_secondary_weight.json"
+    },
+    {
+      "id": "E04",
+      "hypothesis": "H3 Wire emit proof",
+      "keep": true,
+      "notes": "best peProvenBothPositive=53286 damage_dealt=53369",
+      "metrics": {
+        "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/packet_decode/r41/emit_2970110_basic_attack_damage.jsonl",
+        "exists": true,
+        "lines": 67817,
+        "basic_attack": 14447,
+        "damage_dealt": 53369,
+        "withSourceNetId": 67816,
+        "withAmount": 53369,
+        "withBoth": 53369,
+        "peProvenBothPositive": 53286
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E04_wire_emit_proof.json"
+    },
+    {
+      "id": "E05",
+      "hypothesis": "H5 Suite join raw F1 S0",
+      "keep": false,
+      "notes": "rawFA=0.3304 (baseline context 0.4217)",
+      "metrics": {
+        "fightAgreement": 0.3303893000357407,
+        "fightPassRate": 0.16666666666666666
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E05_s0_raw_f1_score.json"
+    },
+    {
+      "id": "E06",
+      "hypothesis": "H5 Suite join honest F1 S0",
+      "keep": true,
+      "notes": "honestFA=0.3477 weight=0.15",
+      "metrics": {
+        "fightAgreement": 0.3476599177030975,
+        "fightPassRate": 0.16666666666666666
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E06_s0_honest_f1_score.json"
+    },
+    {
+      "id": "E07",
+      "hypothesis": "H2 F1 sensitivity bound",
+      "keep": true,
+      "notes": "delta=0.1500 ≤ 0.15",
+      "metrics": {
+        "delta": 0.15000000000000002,
+        "fa0": 0.2641043621475419,
+        "fa1": 0.4141043621475419
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E07_f1_sensitivity.json"
+    },
+    {
+      "id": "E08",
+      "hypothesis": "H4 Coverage gaps disclose",
+      "keep": true,
+      "notes": "present=aa,item,skill missing=aa,damage,item,skill,summoner",
+      "metrics": {
+        "presentUnion": [
+          "aa",
+          "item",
+          "skill"
+        ],
+        "missingUnion": [
+          "aa",
+          "damage",
+          "item",
+          "skill",
+          "summoner"
+        ]
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E08_coverage_gaps.json"
+    },
+    {
+      "id": "E09",
+      "hypothesis": "H1 skill-only F1 suite join",
+      "keep": true,
+      "notes": "skillOnlyFA=0.3605",
+      "metrics": {
+        "fightAgreement": 0.3605004660436458,
+        "fightPassRate": 0.16666666666666666
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E09_skill_only_f1_score.json"
+    },
+    {
+      "id": "E10",
+      "hypothesis": "Gate still false (honest)",
+      "keep": true,
+      "notes": "honestFA=0.3477 ≪ 0.95; no false gate claim",
+      "metrics": {
+        "fightOutcomeGateEvidence": false,
+        "honestFa": 0.3476599177030975
+      },
+      "path": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/fight_outcome/r13/experiments/E10_gate_status.json"
+    }
+  ]
+}

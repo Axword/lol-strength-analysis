@@ -1,0 +1,28 @@
+{
+  "schema": "fo-r54-experiment-v1",
+  "id": "E11",
+  "hypothesis": "Even actionF1=1 on all windows cannot alone push S0 FA to 0.95 while pathMae fails",
+  "utc": "2026-07-24T17:12:20Z",
+  "weight_actionCoverageF1": 0.15,
+  "S0": {
+    "fa_approx_now": 0.93041,
+    "fa_approx_all_F1_1": 0.984492,
+    "delta": 0.054082,
+    "note": "Secondary 0.15 weight only; cannot alone close FO\u226a0.95 when path/leth fail"
+  },
+  "S1": {
+    "fa_approx_now": 0.762769,
+    "fa_approx_all_F1_1": 0.833333,
+    "delta": 0.070564,
+    "note": "Secondary 0.15 weight only; cannot alone close FO\u226a0.95 when path/leth fail"
+  },
+  "E07_ablation": {
+    "desc": "truth-burst-window-only drops c1-burst F1 0.667\u21920",
+    "FA_baseline": 0.930409557022156,
+    "FA_ablate": 0.9137428903554893,
+    "delta": -0.016667,
+    "pathMae_unchanged": true,
+    "c2_burst_mae": 111.59164037216308
+  },
+  "keep": false
+}

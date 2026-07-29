@@ -1,0 +1,82 @@
+{
+  "reviewer": "V13",
+  "cycle": 7,
+  "role": "Reproducibility (digest + suite commands)",
+  "utc": "2026-07-24T16:52:00Z",
+  "cwd": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "blocker": "GOAL §B/F: authoritative post-R31 compound remesaure S0 FA 0.7766 pass 0.333 ≪ 0.95; S1 FA 0.5810; FA ≠ calibrated win odds",
+  "reproduce_commands": [
+    {
+      "from": "DIGEST.md Path1 validate (C3–C7 reaffirm)",
+      "cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+      "exit": 0,
+      "result": "productPublication.ok=true; calculatorReady=true; livingOkSlots=14725/14725; ranksDensity=1.0; hpHoldAcrossRespawn=true (carried; fingerprints unchanged)"
+    },
+    {
+      "from": "DIGEST.md fingerprints",
+      "cmd": "sha256+bytes check on Path1 events+timeline",
+      "exit": 0,
+      "result": "events 114456779 sha256=823aa35f…0b9bf8 MATCH; timeline 9064216 sha256=fb542736…edc4fe4 MATCH"
+    },
+    {
+      "from": "PARENT_MERGE R31 compound remesaure S0 (authoritative C7)",
+      "cmd": "fight_agreement_suite parent_stack_r31_s0 → fight_agreement_S0_parent_stack_r31.json",
+      "exit": 0,
+      "result": "fightAgreement=0.7766342 fightPassRate=0.3333 n=6 meetsThresholds=false; markSelection=cusum_engage_then_skills"
+    },
+    {
+      "from": "PARENT_MERGE R31 compound remesaure S1 (no tune)",
+      "cmd": "fight_agreement_suite parent_stack_r31_s1 → fight_agreement_S1_parent_stack_r31.json",
+      "exit": 0,
+      "result": "fightAgreement=0.5810464 fightPassRate=0.3333 n=6 meetsThresholds=false"
+    },
+    {
+      "from": "BRIEF / STATUS criterion G",
+      "cmd": "npm run fo:send-smoke",
+      "exit": 0,
+      "result": "8/8 green; calculatorReady Path1 living_post_seed_v1"
+    }
+  ],
+  "window_spot_checks": {
+    "S0_c1_burst": "modelKills; 2 marks; |leth|=0.635; windowOk false (early/path)",
+    "S0_c1_full": "|leth|=1.84 residual; lethalOk false",
+    "S0_c2_burst": "maeHp 111.6 pathOk false pathBand 0.760",
+    "S1_c1": "miss-kills lethHit 0",
+    "S1_c3": "Anivia→Sylas pathBand 0; large maeHp"
+  },
+  "evidence": [
+    "DIGEST Path1 validate command + fingerprints reproducible; living_post_seed_v1 calculatorReady — digestCleanGate reaffirm.",
+    "Authoritative FA files: r31/experiments/fight_agreement_S0_parent_stack_r31.json (0.7766) and …_S1_… (0.5810); thresholds 0.95 unmet.",
+    "PARENT_MERGE 2026-07-24T16:46:21Z R31 KEEP absorbed; compound remesaure S0 FA 0.7766 pass 0.333; S1 flat 0.5810.",
+    "BRIEF stacked KEEPs R19/R30–R36 documented; wave2 CLOSED R31–R38; wave3 R39–R46 live.",
+    "Suite JSONs: noInvent true all windows; FA≠odds disclosures present; selector cusum_engage_then_skills product non-drop.",
+    "STATUS best_fightAgreement 0.7766 source compound_remeasure_post_r31_S0; fightOutcomeGate false; digestCleanGate true; G true.",
+    "fo:send-smoke 8/8 reproduces Criterion G — does not meet FO bars."
+  ],
+  "failures": [
+    "B: S0 FA 0.7766 / pass 0.333 reproducible and below bars",
+    "F: S1 FA 0.5810 reproducible holdout fail",
+    "I: FO majority cannot pass on these numbers"
+  ],
+  "notes": "Repro specialty: C7 numbers are compound-remeasure post-R31 (not R35-alone 0.6021). Commands and FA artifacts align with BRIEF/STATUS. CONTINUE wave3.",
+  "one_liner": "V13: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — repro S0 FA 0.7766≪0.95; DC Path1 green; CONTINUE wave3"
+}

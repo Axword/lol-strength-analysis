@@ -1,0 +1,27 @@
+{
+  "researcher": "r17",
+  "room": "f6",
+  "metric": "criterionG_send_parity",
+  "utc": "2026-07-24T15:54:36Z",
+  "authoritative_S0_FA": 0.228,
+  "r10_best_timed_proxy_FA": 0.5019,
+  "r10_product_KEEP": false,
+  "entries": [
+    {
+      "id": "fo:send-smoke",
+      "pass": 8,
+      "fail": 0,
+      "criterionG": true,
+      "fightAgreement": null,
+      "note": "Send\u2194harness parity + dead/known-flags; not FA"
+    }
+  ],
+  "supporting": {
+    "test:known-flags": "PASS",
+    "test:send-gate": "PASS",
+    "test:track3-send-parity": "PASS",
+    "test:kill-window": "PASS",
+    "test:anti-odds": "PASS",
+    "partialC.sendHonesty.2970132": "PASS"
+  }
+}

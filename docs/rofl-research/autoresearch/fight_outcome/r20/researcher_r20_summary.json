@@ -1,0 +1,94 @@
+{
+  "researcher": "r20",
+  "slug": "holdout-s1",
+  "model": "Auto",
+  "utc": "2026-07-24T15:58:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r20",
+  "branch": "adv/fo-r20-holdout-s1",
+  "room": "f7",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "mandate": "Measure/disclose S1 holdout freeze; no invent; do not tune on S1",
+  "phase": "C_cycle2_context",
+  "hypotheses_auto_picked": [
+    {
+      "id": "F7.H1",
+      "title": "Inventory holdouts",
+      "result": "DONE"
+    },
+    {
+      "id": "F7.H2",
+      "title": "Camille disclose",
+      "result": "DONE"
+    },
+    {
+      "id": "F7.H3",
+      "title": "S1 score freeze",
+      "result": "DONE_measure"
+    },
+    {
+      "id": "F7.H4",
+      "title": "S2 transfer",
+      "result": "DISCLOSED_from_R06"
+    },
+    {
+      "id": "F7.H5",
+      "title": "Blocker doc",
+      "result": "DONE"
+    }
+  ],
+  "S1_score_freeze": {
+    "tuneForbidden": true,
+    "tuned": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "members": [
+      "S1-2970137-g1",
+      "S1-2970120-g1"
+    ],
+    "primary_protocol": "r06_proto_no_dense + current_scoreWindow_lethal_0_75",
+    "fightAgreement": 0.41099771388416645,
+    "fightPassRate": 0.16666666666666666,
+    "n": 6,
+    "grain": "paired_one_window_per_check",
+    "also_check_x_segment": {
+      "fightAgreement": 0.4105916180926972,
+      "fightPassRate": 0.16666666666666666,
+      "n": 12,
+      "gateMet": false
+    },
+    "product_dense_paired_FA": 0.3443310472174997,
+    "brief_cited_FA": 0.478,
+    "brief_note": "R06 stored inflated; current-law freeze \u22480.411",
+    "gateBar": {
+      "fightAgreement": 0.95,
+      "fightPassRate": 0.95
+    },
+    "gateMet": false
+  },
+  "context": {
+    "Path1_S0_FA": 0.228,
+    "S1_brief_FA": 0.478,
+    "cycle": "Phase C Cycle2 starting"
+  },
+  "camille_pe": {
+    "invent": "refused",
+    "trackClosed": true,
+    "blocker": "camille_ad_armor_absent_structural_2970110_2970137"
+  },
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r20/HYPOTHESES_PICKED.md",
+    "inventory": "docs/rofl-research/autoresearch/fight_outcome/r20/holdout_inventory.json",
+    "camille": "docs/rofl-research/autoresearch/fight_outcome/r20/camille_disclose.json",
+    "freeze": "docs/rofl-research/autoresearch/fight_outcome/r20/S1_score_freeze.json",
+    "fight_agreement_S1": "docs/rofl-research/autoresearch/fight_outcome/r20/fight_agreement_S1.json",
+    "s2": "docs/rofl-research/autoresearch/fight_outcome/r20/S2_transfer_disclose.json",
+    "blocker": "docs/rofl-research/autoresearch/fight_outcome/r20/sharper_blocker.json",
+    "summary": "docs/rofl-research/autoresearch/fight_outcome/r20/researcher_r20_summary.json"
+  },
+  "verdict": "MEASURE_DISCLOSE_NO_KEEP",
+  "fightOutcomeGateEvidence": false,
+  "sharper_blocker": "S1 current-law FA \u22480.411 / pass \u22480.167 \u226a 0.95; Path1 S0 still 0.228; Camille PE invent refused; do not tune on S1",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT win probability / odds %",
+  "next": "Orchestrator: absorb freeze into Cycle2 reviewers; Path1 tracks (R18/R19) before any S1 re-claim"
+}

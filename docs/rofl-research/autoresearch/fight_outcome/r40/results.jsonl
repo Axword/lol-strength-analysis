@@ -1,0 +1,6 @@
+{"t":"2026-07-24T16:55:00Z","id":"e0","hypothesis":"baseline kit-dump parent stack","keep":false,"S0_FA":0.7740,"S1_FA":0.5810,"c2b_mae":111.6,"c2b_pathOk":false,"notes":"baseline remesaure","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:56:00Z","id":"e1","hypothesis":"slot-scoped binary","keep":false,"c2b_mae":462.6,"c2b_pathOk":false,"notes":"underkill miss","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:58:00Z","id":"e8","hypothesis":"slot+aaWeave4","keep":false,"S0_FA":0.6867,"S1_FA":0.5669,"c2b_mae":102.0,"c2b_pathOk":false,"notes":"lethOk mae↓ but FA regress","confidence":"FA≠odds"}
+{"t":"2026-07-24T16:59:00Z","id":"e12","hypothesis":"slot weave4 blend0.10","keep":false,"S0_FA":0.6871,"S1_FA":0.5708,"c2b_mae":101.07,"c2b_pathOk":false,"notes":"best non-follow mae still >90","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:02:00Z","id":"e21","hypothesis":"kit pathFollow finish0.4","keep":false,"S0_FA":0.7584,"S1_FA":0.5311,"c2b_mae":0.0,"c2b_pathOk":true,"notes":"RESEARCH_ONLY S1 regress pass0","confidence":"FA≠odds"}
+{"t":"2026-07-24T17:05:00Z","id":"verdict","hypothesis":"R40 product KEEP gate","keep":false,"S0_FA":0.7740,"S1_FA":0.5810,"c2b_mae":111.6,"c2b_pathOk":false,"notes":"NO KEEP; sharper blocker pathMae floor≈101 under lethOk without truth-follow","confidence":"FA≠odds"}

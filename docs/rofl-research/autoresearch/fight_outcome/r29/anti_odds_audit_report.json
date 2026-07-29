@@ -1,0 +1,117 @@
+{
+  "schema": "product-anti-odds-audit-v1",
+  "room": "f10",
+  "researcher": "R29",
+  "track": "anti-odds-copy",
+  "utc": "2026-07-24T16:09:00.381Z",
+  "worktree": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "never_edited_parent": false,
+  "allow_parent": true,
+  "unfreeze_0_9683": {
+    "authorized": true,
+    "best_json_touched": false,
+    "preserved_composite": 0.9683,
+    "note": "Unfreeze authorized for fightAgreement experiments; best.json composite 0.9683 history preserved (no rewrite this run)"
+  },
+  "scanned": [
+    "src/components/Calculator.tsx",
+    "src/components/CombatResult.tsx",
+    "src/components/GameReview.tsx",
+    "src/components/Faq.tsx",
+    "src/App.tsx",
+    "src/components/Scoreboard.tsx",
+    "src/engine/modelTrust.ts",
+    "src/engine/combat.ts",
+    "src/engine/gameStateOdds.ts"
+  ],
+  "forbidden_hits": [],
+  "required": [
+    {
+      "id": "combat_model_edge_headline",
+      "ok": true,
+      "detail": "CombatResult headlines must say model edge"
+    },
+    {
+      "id": "combat_not_win_probability",
+      "ok": true,
+      "detail": "CombatResult subline must deny win probability"
+    },
+    {
+      "id": "combat_heuristic_model_score",
+      "ok": true,
+      "detail": "CombatResult must label pBlue/pRed as heuristic model score"
+    },
+    {
+      "id": "combat_trust_badge",
+      "ok": true,
+      "detail": "CombatResult must surface modelTrust badges from classifier"
+    },
+    {
+      "id": "band_model_edge_not_bare_score",
+      "ok": true,
+      "detail": "BandCell must say model edge, not bare score (odds-like)"
+    },
+    {
+      "id": "modelTrust_calibrated_false",
+      "ok": true,
+      "detail": "modelTrust.calibrated must be typed/returned false"
+    },
+    {
+      "id": "modelTrust_kill_window_not_odds",
+      "ok": true,
+      "detail": "kill-window path must add anti-odds reason code"
+    },
+    {
+      "id": "modelTrust_reasons_visible_not_tooltip_only",
+      "ok": true,
+      "detail": "CombatResult must render trust reasons in DOM (not title= only); assumptions parity"
+    },
+    {
+      "id": "calculator_kill_window_not_win_pct",
+      "ok": true,
+      "detail": "Calculator kill-window path must disclose not win %"
+    },
+    {
+      "id": "send_honesty_chip_visible",
+      "ok": true,
+      "detail": "GameReview Send path must show visible model-edge honesty chip (Props intact)"
+    },
+    {
+      "id": "faq_no_fight_odds",
+      "ok": true,
+      "detail": "Faq must not say fight-odds / fight odds (V12 residual)"
+    },
+    {
+      "id": "faq_fight_agreement_not_win_pct",
+      "ok": true,
+      "detail": "Faq must disclose fightAgreement as kill-window suite agreement ≠ win % / odds"
+    },
+    {
+      "id": "game_state_odds_comments_model_edge",
+      "ok": true,
+      "detail": "gameStateOdds comments must say model-edge, not P(win) / Fight win odds"
+    },
+    {
+      "id": "app_shell_no_odds_claims",
+      "ok": true,
+      "detail": "App shell must not claim odds % / chance to win"
+    },
+    {
+      "id": "scoreboard_no_odds_claims",
+      "ok": true,
+      "detail": "Scoreboard must not claim odds % / fight-odds"
+    }
+  ],
+  "gate_progress": {
+    "H_freeze": null,
+    "anti_odds": true,
+    "G_send_honesty_chip": true,
+    "G_model_trust_reasons_visible": true,
+    "faq_fight_agreement_disclosure": true
+  },
+  "calculatorReady": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds % / pBlue",
+  "ok": true
+}

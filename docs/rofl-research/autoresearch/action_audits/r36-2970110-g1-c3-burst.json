@@ -1,0 +1,173 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "burst",
+  "matchup": "Ezreal→LeeSin",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 2.539,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 3.1736269531249945,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 3.1736269531249945,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 3.1736269531249945,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 3.808,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 5.812,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 6.346583987557324,
+      "actorClass": "killer",
+      "kind": "damage"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 3.808,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 3.8579999999999997,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 5.812,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 7,
+    "modelCount": 3,
+    "matchedCount": 2,
+    "precision": 0.6666666666666666,
+    "recall": 0.2857142857142857,
+    "actionCoverage": 0.4,
+    "matches": [
+      {
+        "truthIdx": 4,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 2,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      2,
+      3,
+      6
+    ],
+    "unmatchedModel": [
+      1
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 3,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 0.8
+    },
+    "damage": {
+      "truthCount": 4,
+      "modelCount": 0,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=false aaTruthCount=0 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=103 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+    "damage_bridge: target=param identity-bound; sourceStatus/amountStatus left null (not invented)",
+    "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory when source unresolved",
+    "damage_bridge: damageTruthAvailable=true damageTruthCount=4 aaClassTruthCount=0 sourceResolvedCount=0 gateEligible=false",
+    "damage_bridge: rejectedNoIdentity=211 rejectedWrongGame=0 rejectedPidOrderOnly=0 rejectedNoTarget=0",
+    "r36: R28 emit + R32 CastSpellAns-1144 identity → truth AA/damage fold on pro kill window",
+    "r36: modelActions reused from prior action-replay audit (planner AA); no zero-damage echo for gate",
+    "r36: packetDecodeGate=false until reviewer C5 ≥7/10; calculatorReady=false",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=0 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ],
+  "researcher": "R36",
+  "gateEligible": false,
+  "packetDecodeGate": false,
+  "calculatorReady": false,
+  "criterionC": false,
+  "aaBridge": {
+    "jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r36/docs/rofl-research/packet_decode/r28/emit_2970110_basic_attack_damage.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r36/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+    "aaTruthAvailable": false,
+    "aaTruthCount": 0,
+    "foldGateEligible": false,
+    "rejectedNoIdentity": 103,
+    "rejectedWrongGame": 0,
+    "rejectedPidOrderOnly": 0,
+    "identityComplete": true,
+    "createHeroOrderFallback": false,
+    "aaBridgeReady": true
+  },
+  "damageBridge": {
+    "damageTruthAvailable": true,
+    "damageTruthCount": 4,
+    "aaClassTruthCount": 0,
+    "foldGateEligible": false,
+    "sourceResolvedCount": 0,
+    "rejectedNoIdentity": 211,
+    "rejectedNoTarget": 0
+  },
+  "window": {
+    "startMs": 1643019,
+    "endMs": 1651365,
+    "startSec": 1643.019,
+    "endSec": 1651.365,
+    "killerId": 9,
+    "victimId": 2,
+    "killerChamp": "Ezreal",
+    "victimChamp": "LeeSin"
+  }
+}

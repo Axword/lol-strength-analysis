@@ -67,24 +67,62 @@ function healthKnown(participant: Record<string, unknown>): boolean {
   return 'health' in participant || 'healthMax' in participant
 }
 
-function combatStatsKnown(participant: Record<string, unknown>): boolean {
-  const source = participant.combatStatsSource
-  if (source === 'unavailable_replay_api' || source === 'unavailable' || source === 'unknown') {
-    return false
-  }
+function combatFieldPresent(participant: Record<string, unknown>): boolean {
   return (
     'attackDamage' in participant ||
     'abilityPower' in participant ||
     'armor' in participant ||
     'magicResist' in participant ||
-    'attackSpeed' in participant ||
-    source == null
+    'attackSpeed' in participant
+  )
+}
+
+function combatStatsKnown(participant: Record<string, unknown>): boolean {
+  const source = participant.combatStatsSource
+  if (source === 'unavailable_replay_api' || source === 'unavailable' || source === 'unknown') {
+    return false
+  }
+  // Fail-closed: never treat source==null alone as known (zeros must not Send).
+  return combatFieldPresent(participant)
+}
+
+function abilityRankSlotsPresent(participant: Record<string, unknown>): boolean {
+  return (
+    'ability1Level' in participant ||
+    'ability2Level' in participant ||
+    'ability3Level' in participant ||
+    'ability4Level' in participant
   )
 }
 
 function abilityRanksKnown(participant: Record<string, unknown>): boolean {
   const source = participant.abilityRanksSource
-  return !(source === 'unavailable_replay_api' || source === 'unavailable' || source === 'unknown')
+  if (
+    source == null ||
+    source === '' ||
+    source === 'unavailable_replay_api' ||
+    source === 'unavailable' ||
+    source === 'unknown'
+  ) {
+    return false
+  }
+  // Proven non-empty source string + present rank slots required.
+  return typeof source === 'string' && source.length > 0 && abilityRankSlotsPresent(participant)
+}
+
+/** Exported for unit tests — keep inference fail-closed. */
+export function inferCombatStatsKnown(participant: Record<string, unknown>): boolean {
+  return combatStatsKnown(participant)
+}
+
+/** Exported for unit tests — keep inference fail-closed. */
+export function inferAbilityRanksKnown(participant: Record<string, unknown>): boolean {
+  return abilityRanksKnown(participant)
+}
+
+/** Exported for unit tests — keep inference fail-closed. */
+export function inferHealthKnown(participant: Record<string, unknown>): boolean {
+  return healthKnown(participant)
 }
 
 function looksLikeRfc461Jsonl(text: string): boolean {
@@ -172,6 +210,9 @@ export function buildTimelineFromRfc461Jsonl(
         hpKnown,
         combatStatsKnown: combatKnown,
         abilityRanksKnown: ranksKnown,
+        ...(typeof raw.abilityRanksSource === 'string' && raw.abilityRanksSource
+          ? { abilityRanksSource: raw.abilityRanksSource }
+          : {}),
         ad: combatKnown ? Math.round(Number(raw.attackDamage || 0)) : 0,
         ap: combatKnown ? Math.round(Number(raw.abilityPower || 0)) : 0,
         armor: combatKnown ? Math.round(Number(raw.armor || 0)) : 0,

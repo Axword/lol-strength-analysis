@@ -1,0 +1,74 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r45",
+  "slug": "s2-transfer-remeasure",
+  "model": "Auto",
+  "utc": "2026-07-24T16:53:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r45",
+  "branch": "adv/fo-r45-s2-transfer-remeasure",
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "S2 unused pro transfer remesaure + lift; FA≠odds; not 2970132/2970137",
+  "series_choice": {
+    "match": "2954868-g1",
+    "harnessSuite": "2954868-g1-transfer",
+    "sqlite": "artifacts/pro-grid/2954868/timeline.g1.slim.sqlite",
+    "extract": "docs/rofl-research/autoresearch/fight_outcome/r45/crosschecks-2954868-g1-transfer.json",
+    "proOnly": true,
+    "gridApiCalled": false,
+    "why": "Unused vs S0/S1 tune hosts; R06 transfer extract; GEN vs T1 pro slim local dump"
+  },
+  "product_selector": "cusum_engage_then_skills",
+  "parent_stack": [
+    "R19 idleFollow",
+    "R30 aaAtEachMark false + R-pulse0",
+    "R31 preBurstLead 2.5",
+    "R32 residual_hp",
+    "R33 zeroDeadActualHp",
+    "R34 Galio Q tornado",
+    "R35 preEngageOpener 0.5/3",
+    "R36 openerAlly local_skill_share"
+  ],
+  "authoritative_baselines": {
+    "S0_FA": 0.7766,
+    "S0_pass": 0.333,
+    "S0_match": "2970132-g1",
+    "S1_FA": 0.581,
+    "S1_pass": 0.333,
+    "S1_match": "2970137-g1",
+    "note": "Not retuned this session; KEEP requires S0↑ and S1 flat+"
+  },
+  "S2": {
+    "match": "2954868-g1",
+    "baseline_FA": 0.40750780944418485,
+    "baseline_pass": 0.0,
+    "n": 6,
+    "gate": { "fightAgreement": 0.9, "fightPassRate": 0.8333333333333334 },
+    "gateMet": false,
+    "best_lift_FA": 0.4482066017540128,
+    "best_lift_id": "e17",
+    "best_lift_note": "post_engage_killer_skills + pre-burst 0; pass still 0",
+    "r06_legacy_FA": 0.6335376212427813,
+    "r06_note": "n=3 scaffold; not comparable under current check×segment §B lethal tol"
+  },
+  "n_experiments": 18,
+  "verdict": "NO KEEP",
+  "product_KEEP": {
+    "keep": false,
+    "reason": "No product default change improves S2 to gate; research lifts stay ≪0.90 and passRate=0; KEEP needs S0↑+S1 flat+ which was not earned"
+  },
+  "sharper_blocker": "S2 2954868-g1 under product defaults: 0/6 windowOk — Camille→Vayne |lethErr| 1.24/3.77 (>0.75), Cassio→Ambessa miss-kill, LeeSin→Ziggs earlyPoisoned+pathMae; FA 0.4075 ≪ 0.90",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "series_choice": "docs/rofl-research/autoresearch/fight_outcome/r45/SERIES_CHOICE.md",
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r45/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r45/NOTES.md",
+    "baseline_eval": "docs/rofl-research/autoresearch/fight_outcome/r45/experiments/e01_s2_baseline.json",
+    "baseline_fa": "docs/rofl-research/autoresearch/fight_outcome/r45/experiments/e01_fa/fight_agreement_S2.json",
+    "sharper_blocker": "docs/rofl-research/autoresearch/fight_outcome/r45/sharper_blocker.json"
+  },
+  "next": "Orchestrator: record S2 remesaure FA 0.4075 (n=6) under post-R36 product; do not cite R06 0.634 as current law; lethal-timing / miss-kill / earlyPoisoned remain transfer blockers"
+}

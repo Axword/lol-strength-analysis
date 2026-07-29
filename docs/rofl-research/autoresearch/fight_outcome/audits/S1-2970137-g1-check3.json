@@ -1,0 +1,51 @@
+{
+  "schema": "fightOutcome-window-audit-v1",
+  "utc": "2026-07-24T15:41:29.448Z",
+  "windowId": "S1-2970137-g1-check3",
+  "suite": "S1",
+  "tuneForbidden": true,
+  "truth": {
+    "id": "S1-2970137-g1-check3",
+    "suite": "S1",
+    "match": "2970137-g1",
+    "truthKilled": true,
+    "killerPid": 3,
+    "victimPid": 9,
+    "killerChamp": "Anivia",
+    "victimChamp": "Sylas"
+  },
+  "model": {
+    "modelKilled": false,
+    "modelLethalSec": null,
+    "lethalErrorSec": null,
+    "earlyMaeHp": 0,
+    "maeHpBurst": 766.5220071226587,
+    "maeHpFull": 329.3674096152643,
+    "actionCoverageF1": null,
+    "hardFail": false,
+    "noInvent": true
+  },
+  "result": {
+    "id": "S1-2970137-g1-check3",
+    "windowOk": false,
+    "windowScore": 0.25,
+    "parts": {
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false,
+      "noInvent": true,
+      "noHard": true,
+      "lethalHit": 0,
+      "earlyBand": 1,
+      "pathBand": 0,
+      "actionF1": 0,
+      "earlyMaeHp": 0,
+      "maeHpBurst": 766.5220071226587,
+      "maeHpFull": 329.3674096152643,
+      "lethalErrorSec": null
+    }
+  },
+  "camilleInWindow": false,
+  "camillePeNote": null,
+  "confidence": "window audit — fightAgreement part, not win probability"
+}

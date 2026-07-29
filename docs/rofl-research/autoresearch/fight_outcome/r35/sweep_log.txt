@@ -1,0 +1,632 @@
+=== e0 :: R35-e0 product baseline R30 law ===
+
+=== gate_action | R35-e0 product baseline R30 law ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	69.1	2.61	Y	N	N	2	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	86.3	-0.33	Y	N	N	6	gate_action
+2	burst	9.5	117.7	-0.33	Y	N	N	6	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=1.8986  early=80.9  mae=143.8  |leth|=4.42  poisonPen=1
+actionReplay: meanCoverage=0.416  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=5	matched=2	P=0.40	R=0.40	F1=0.400
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e0_S0.json
+
+=== gate_action | R35-e0 product baseline R30 law S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	114.5	null	N	N	N	0	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3216  early=21.2  mae=205.9  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.440  worst=c1-burst=0.000  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=3	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e0_S1.json
+{"S0_FA": 0.5937715129268749, "S0_pass": 0.3333333333333333, "S1_FA": 0.5619564223174064, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": 2.6074444444444467, "galio_marks": 2, "hyp": "R35-e0 product baseline R30 law", "tag": "e0"}
+=== e1 :: R35-e1 sparse opener0.5 maxPost=3 ===
+
+=== gate_action | R35-e1 sparse opener0.5 maxPost=3 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	131.6	-1.84	Y	N	N	3	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	86.3	-0.33	Y	N	N	6	gate_action
+2	burst	9.5	117.7	-0.33	Y	N	N	6	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=1.8926  early=80.9  mae=154.2  |leth|=4.30  poisonPen=1
+actionReplay: meanCoverage=0.474  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e1_S0.json
+
+=== gate_action | R35-e1 sparse opener0.5 maxPost=3 S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	79.1	null	N	N	N	1	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3068  early=21.2  mae=200.0  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.506  worst=c1-burst=0.400  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=4	matched=1	P=0.25	R=1.00	F1=0.400
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e1_S1.json
+{"S0_FA": 0.6021026407618185, "S0_pass": 0.3333333333333333, "S1_FA": 0.5810463694073534, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -1.8369999999999997, "galio_marks": 3, "hyp": "R35-e1 sparse opener0.5 maxPost=3", "tag": "e1"}
+=== e2 :: R35-e2 lead0.4 only ===
+
+=== gate_action | R35-e2 lead0.4 only ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	131.6	-1.84	Y	N	N	3	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	181.2	-1.14	Y	N	N	7	gate_action
+2	burst	220.1	287.1	-1.14	Y	N	N	7	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=2.1925  early=116.0  mae=198.3  |leth|=4.56  poisonPen=1
+actionReplay: meanCoverage=0.474  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e2_S0.json
+
+=== gate_action | R35-e2 lead0.4 only S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	79.1	null	N	N	N	1	gate_action
+2	full	0.0	65.0	0.90	Y	N	N	9	gate_action
+2	burst	0.0	73.9	0.90	Y	N	N	6	gate_action
+3	full	0.0	505.7	null	N	N	N	5	gate_action
+3	burst	226.6	982.5	null	N	N	N	5	gate_action
+composite=1.6895  early=50.7  mae=290.5  |leth|=3.14  poisonPen=0
+actionReplay: meanCoverage=0.537  worst=c1-burst=0.400  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=4	matched=1	P=0.25	R=1.00	F1=0.400
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=9	matched=5	P=0.56	R=0.45	F1=0.500
+  c3-burst	Anivia→Sylas	truth=6	model=7	matched=5	P=0.71	R=0.83	F1=0.769
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e2_S1.json
+{"S0_FA": 0.39088688076001726, "S0_pass": 0.16666666666666666, "S1_FA": 0.4105841561819823, "S1_pass": 0, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -1.8369999999999997, "galio_marks": 3, "hyp": "R35-e2 lead0.4 only", "tag": "e2"}
+=== e3 :: R35-e3 lead0.4 far5 share0.45 maxMarks4 ===
+
+=== gate_action | R35-e3 lead0.4 far5 share0.45 maxMarks4 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	167.0	-3.64	Y	N	N	4	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	220.6	1.55	Y	N	N	4	gate_action
+2	burst	100.0	357.5	1.55	Y	N	N	4	gate_action
+3	full	154.0	322.9	-8.80	Y	Y	N	4	gate_action
+3	burst	0.0	2.0	0.00	Y	N	N	3	gate_action
+composite=1.7024  early=42.3  mae=219.5  |leth|=3.42  poisonPen=1
+actionReplay: meanCoverage=0.479  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=4	matched=4	P=1.00	R=0.50	F1=0.667
+  c2-burst	Olaf→Trundle	truth=8	model=4	matched=4	P=1.00	R=0.50	F1=0.667
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=2	matched=2	P=1.00	R=0.40	F1=0.571
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e3_S0.json
+
+=== gate_action | R35-e3 lead0.4 far5 share0.45 maxMarks4 S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	79.1	null	N	N	N	1	gate_action
+2	full	0.0	326.7	null	N	N	N	4	gate_action
+2	burst	0.0	176.1	null	N	N	N	4	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	226.6	982.5	null	N	N	N	4	gate_action
+composite=2.1117  early=50.7  mae=322.8  |leth|=4.51  poisonPen=0
+actionReplay: meanCoverage=0.481  worst=c2-full=0.364  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=4	matched=1	P=0.25	R=1.00	F1=0.400
+  c2-full	Cassiopeia→Viktor	truth=18	model=4	matched=4	P=1.00	R=0.22	F1=0.364
+  c2-burst	Cassiopeia→Viktor	truth=15	model=4	matched=4	P=1.00	R=0.27	F1=0.421
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=N
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | FAIL holdout B ship bar
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e3_S1.json
+{"S0_FA": 0.3933561175998283, "S0_pass": 0.16666666666666666, "S1_FA": 0.3370886606646133, "S1_pass": 0, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -3.6400000000000006, "galio_marks": 4, "hyp": "R35-e3 lead0.4 far5 share0.45 maxMarks4", "tag": "e3"}
+=== e4 :: R35-e4 host-gated lead/far/maxMarks on 2970132 ===
+
+=== gate_action | R35-e4 host-gated lead/far/maxMarks on 2970132 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	167.0	-3.64	Y	N	N	4	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	220.6	1.55	Y	N	N	4	gate_action
+2	burst	100.0	357.5	1.55	Y	N	N	4	gate_action
+3	full	154.0	322.9	-8.80	Y	Y	N	4	gate_action
+3	burst	0.0	2.0	0.00	Y	N	N	3	gate_action
+composite=1.7024  early=42.3  mae=219.5  |leth|=3.42  poisonPen=1
+actionReplay: meanCoverage=0.479  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=4	matched=4	P=1.00	R=0.50	F1=0.667
+  c2-burst	Olaf→Trundle	truth=8	model=4	matched=4	P=1.00	R=0.50	F1=0.667
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=2	matched=2	P=1.00	R=0.40	F1=0.571
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e4_S0.json
+
+=== gate_action | R35-e4 host-gated lead/far/maxMarks on 2970132 S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	114.5	null	N	N	N	0	gate_action
+2	full	0.0	326.7	null	N	N	N	4	gate_action
+2	burst	0.0	176.1	null	N	N	N	4	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.8834  early=21.2  mae=272.8  |leth|=4.51  poisonPen=0
+actionReplay: meanCoverage=0.415  worst=c1-burst=0.000  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=3	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Cassiopeia→Viktor	truth=18	model=4	matched=4	P=1.00	R=0.22	F1=0.364
+  c2-burst	Cassiopeia→Viktor	truth=15	model=4	matched=4	P=1.00	R=0.27	F1=0.421
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=false  holdoutB=N
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | FAIL holdout B ship bar
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e4_S1.json
+{"S0_FA": 0.3933561175998283, "S0_pass": 0.16666666666666666, "S1_FA": 0.3596653802413328, "S1_pass": 0, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -3.6400000000000006, "galio_marks": 4, "hyp": "R35-e4 host-gated lead/far/maxMarks on 2970132", "tag": "e4"}
+=== e5 :: R35-e5 host-gated sparse opener0.5 maxPost=3 ===
+
+=== gate_action | R35-e5 host-gated sparse opener0.5 maxPost=3 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	131.6	-1.84	Y	N	N	3	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	86.3	-0.33	Y	N	N	6	gate_action
+2	burst	9.5	117.7	-0.33	Y	N	N	6	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=1.8926  early=80.9  mae=154.2  |leth|=4.30  poisonPen=1
+actionReplay: meanCoverage=0.474  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e5_S0.json
+
+=== gate_action | R35-e5 host-gated sparse opener0.5 maxPost=3 S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	114.5	null	N	N	N	0	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3216  early=21.2  mae=205.9  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.440  worst=c1-burst=0.000  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=3	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e5_S1.json
+{"S0_FA": 0.6021026407618185, "S0_pass": 0.3333333333333333, "S1_FA": 0.5619564223174064, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -1.8369999999999997, "galio_marks": 3, "hyp": "R35-e5 host-gated sparse opener0.5 maxPost=3", "tag": "e5"}
+=== e6 :: R35-e6 host sparse+farShare0.35 no maxMarks ===
+
+=== gate_action | R35-e6 host sparse+farShare0.35 no maxMarks ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	164.7	-3.64	Y	N	N	4	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	86.3	-0.33	Y	N	N	6	gate_action
+2	burst	9.5	117.7	-0.33	Y	N	N	6	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	1.6	0.00	Y	N	N	3	gate_action
+composite=1.9821  early=80.9  mae=160.0  |leth|=4.60  poisonPen=1
+actionReplay: meanCoverage=0.514  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=2	matched=2	P=1.00	R=0.40	F1=0.571
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e6_S0.json
+
+=== gate_action | R35-e6 host sparse+farShare0.35 no maxMarks S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	114.5	null	N	N	N	0	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3216  early=21.2  mae=205.9  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.440  worst=c1-burst=0.000  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=3	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e6_S1.json
+{"S0_FA": 0.5995888404472548, "S0_pass": 0.3333333333333333, "S1_FA": 0.5619564223174064, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -3.6400000000000006, "galio_marks": 4, "hyp": "R35-e6 host sparse+farShare0.35 no maxMarks", "tag": "e6"}
+=== e7 :: R35-e7 sparse opener0.4 maxPost=2 host ===
+
+=== gate_action | R35-e7 sparse opener0.4 maxPost=2 host ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	131.6	-1.84	Y	N	N	3	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	86.3	-0.33	Y	N	N	6	gate_action
+2	burst	9.5	117.7	-0.33	Y	N	N	6	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=1.8926  early=80.9  mae=154.2  |leth|=4.30  poisonPen=1
+actionReplay: meanCoverage=0.474  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e7_S0.json
+
+=== gate_action | R35-e7 sparse opener0.4 maxPost=2 host S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	114.5	null	N	N	N	0	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3216  early=21.2  mae=205.9  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.440  worst=c1-burst=0.000  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=3	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e7_S1.json
+{"S0_FA": 0.6021026407618185, "S0_pass": 0.3333333333333333, "S1_FA": 0.5619564223174064, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -1.8369999999999997, "galio_marks": 3, "hyp": "R35-e7 sparse opener0.4 maxPost=2 host", "tag": "e7"}
+=== e8 :: R35-e8 host lead0.4 only ===
+
+=== gate_action | R35-e8 host lead0.4 only ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	131.6	-1.84	Y	N	N	3	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	181.2	-1.14	Y	N	N	7	gate_action
+2	burst	220.1	287.1	-1.14	Y	N	N	7	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=2.1925  early=116.0  mae=198.3  |leth|=4.56  poisonPen=1
+actionReplay: meanCoverage=0.474  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e8_S0.json
+
+=== gate_action | R35-e8 host lead0.4 only S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	114.5	null	N	N	N	0	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3216  early=21.2  mae=205.9  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.440  worst=c1-burst=0.000  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=3	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e8_S1.json
+{"S0_FA": 0.39088688076001726, "S0_pass": 0.16666666666666666, "S1_FA": 0.5619564223174064, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -1.8369999999999997, "galio_marks": 3, "hyp": "R35-e8 host lead0.4 only", "tag": "e8"}
+=== e9 :: R35-e9 structural sparse opener0.5 maxPost=3 no host ===
+
+=== gate_action | R35-e9 structural sparse opener0.5 maxPost=3 no host ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	131.6	-1.84	Y	N	N	3	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	86.3	-0.33	Y	N	N	6	gate_action
+2	burst	9.5	117.7	-0.33	Y	N	N	6	gate_action
+3	full	476.0	343.2	-18.27	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.00	Y	N	N	2	gate_action
+composite=1.8926  early=80.9  mae=154.2  |leth|=4.30  poisonPen=1
+actionReplay: meanCoverage=0.474  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=3	matched=3	P=1.00	R=0.60	F1=0.750
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c2-burst	Olaf→Trundle	truth=8	model=5	matched=5	P=1.00	R=0.63	F1=0.769
+  c3-full	Olaf→Camille	truth=8	model=1	matched=1	P=1.00	R=0.13	F1=0.222
+  c3-burst	Olaf→Camille	truth=5	model=1	matched=1	P=1.00	R=0.20	F1=0.333
+baselineComposite=5.2010  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e9_S0.json
+
+=== gate_action | R35-e9 structural sparse opener0.5 maxPost=3 no host S1 ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	36.9	2.05	Y	N	N	4	gate_action
+1	burst	77.8	79.1	null	N	N	N	1	gate_action
+2	full	0.0	47.2	-0.27	Y	N	N	10	gate_action
+2	burst	0.0	53.7	-0.27	Y	N	N	7	gate_action
+3	full	0.0	335.4	null	N	N	N	4	gate_action
+3	burst	49.4	647.4	null	N	N	N	4	gate_action
+composite=1.3068  early=21.2  mae=200.0  |leth|=2.93  poisonPen=0
+actionReplay: meanCoverage=0.506  worst=c1-burst=0.400  gate95=false
+  c1-full	Vayne→Ambessa	truth=5	model=8	matched=4	P=0.50	R=0.80	F1=0.615
+  c1-burst	Vayne→Ambessa	truth=1	model=4	matched=1	P=0.25	R=1.00	F1=0.400
+  c2-full	Cassiopeia→Viktor	truth=18	model=5	matched=5	P=1.00	R=0.28	F1=0.435
+  c2-burst	Cassiopeia→Viktor	truth=15	model=5	matched=5	P=1.00	R=0.33	F1=0.500
+  c3-full	Anivia→Sylas	truth=11	model=8	matched=4	P=0.50	R=0.36	F1=0.421
+  c3-burst	Anivia→Sylas	truth=6	model=6	matched=4	P=0.67	R=0.67	F1=0.667
+baselineComposite=4.2548  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=Y | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=Y | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | A2 check02 burst lethal ±2s | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6 poison clear (all) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r35/docs/rofl-research/autoresearch/fight_outcome/r35/experiments/e9_S1.json
+{"S0_FA": 0.6021026407618185, "S0_pass": 0.3333333333333333, "S1_FA": 0.5810463694073534, "S1_pass": 0.3333333333333333, "galio_endHp": 0, "galio_killed": true, "galio_lethErr": -1.8369999999999997, "galio_marks": 3, "hyp": "R35-e9 structural sparse opener0.5 maxPost=3 no host", "tag": "e9"}
+[
+  {
+    "tag": "e0",
+    "hyp": "R35-e0 product baseline R30 law",
+    "S0_FA": 0.5937715129268749,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5619564223174064,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": 2.6074444444444467,
+    "galio_marks": 2,
+    "galio_endHp": 0,
+    "dS0": 0.0,
+    "dS1": 0.0,
+    "s1_ok": true,
+    "s0_up": false,
+    "product_keep_candidate": false
+  },
+  {
+    "tag": "e1",
+    "hyp": "R35-e1 sparse opener0.5 maxPost=3",
+    "S0_FA": 0.6021026407618185,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5810463694073534,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": -1.8369999999999997,
+    "galio_marks": 3,
+    "galio_endHp": 0,
+    "dS0": 0.008331127834943608,
+    "dS1": 0.019089947089947046,
+    "s1_ok": true,
+    "s0_up": true,
+    "product_keep_candidate": true
+  },
+  {
+    "tag": "e2",
+    "hyp": "R35-e2 lead0.4 only",
+    "S0_FA": 0.39088688076001726,
+    "S0_pass": 0.16666666666666666,
+    "S1_FA": 0.4105841561819823,
+    "S1_pass": 0,
+    "galio_killed": true,
+    "galio_lethErr": -1.8369999999999997,
+    "galio_marks": 3,
+    "galio_endHp": 0,
+    "dS0": -0.20288463216685765,
+    "dS1": -0.1513722661354241,
+    "s1_ok": false,
+    "s0_up": false,
+    "product_keep_candidate": false
+  },
+  {
+    "tag": "e3",
+    "hyp": "R35-e3 lead0.4 far5 share0.45 maxMarks4",
+    "S0_FA": 0.3933561175998283,
+    "S0_pass": 0.16666666666666666,
+    "S1_FA": 0.3370886606646133,
+    "S1_pass": 0,
+    "galio_killed": true,
+    "galio_lethErr": -3.6400000000000006,
+    "galio_marks": 4,
+    "galio_endHp": 0,
+    "dS0": -0.2004153953270466,
+    "dS1": -0.2248677616527931,
+    "s1_ok": false,
+    "s0_up": false,
+    "product_keep_candidate": false
+  },
+  {
+    "tag": "e4",
+    "hyp": "R35-e4 host-gated lead/far/maxMarks on 2970132",
+    "S0_FA": 0.3933561175998283,
+    "S0_pass": 0.16666666666666666,
+    "S1_FA": 0.3596653802413328,
+    "S1_pass": 0,
+    "galio_killed": true,
+    "galio_lethErr": -3.6400000000000006,
+    "galio_marks": 4,
+    "galio_endHp": 0,
+    "dS0": -0.2004153953270466,
+    "dS1": -0.20229104207607357,
+    "s1_ok": false,
+    "s0_up": false,
+    "product_keep_candidate": false
+  },
+  {
+    "tag": "e5",
+    "hyp": "R35-e5 host-gated sparse opener0.5 maxPost=3",
+    "S0_FA": 0.6021026407618185,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5619564223174064,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": -1.8369999999999997,
+    "galio_marks": 3,
+    "galio_endHp": 0,
+    "dS0": 0.008331127834943608,
+    "dS1": 0.0,
+    "s1_ok": true,
+    "s0_up": true,
+    "product_keep_candidate": true
+  },
+  {
+    "tag": "e6",
+    "hyp": "R35-e6 host sparse+farShare0.35 no maxMarks",
+    "S0_FA": 0.5995888404472548,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5619564223174064,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": -3.6400000000000006,
+    "galio_marks": 4,
+    "galio_endHp": 0,
+    "dS0": 0.005817327520379889,
+    "dS1": 0.0,
+    "s1_ok": true,
+    "s0_up": true,
+    "product_keep_candidate": true
+  },
+  {
+    "tag": "e7",
+    "hyp": "R35-e7 sparse opener0.4 maxPost=2 host",
+    "S0_FA": 0.6021026407618185,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5619564223174064,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": -1.8369999999999997,
+    "galio_marks": 3,
+    "galio_endHp": 0,
+    "dS0": 0.008331127834943608,
+    "dS1": 0.0,
+    "s1_ok": true,
+    "s0_up": true,
+    "product_keep_candidate": true
+  },
+  {
+    "tag": "e8",
+    "hyp": "R35-e8 host lead0.4 only",
+    "S0_FA": 0.39088688076001726,
+    "S0_pass": 0.16666666666666666,
+    "S1_FA": 0.5619564223174064,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": -1.8369999999999997,
+    "galio_marks": 3,
+    "galio_endHp": 0,
+    "dS0": -0.20288463216685765,
+    "dS1": 0.0,
+    "s1_ok": true,
+    "s0_up": false,
+    "product_keep_candidate": false
+  },
+  {
+    "tag": "e9",
+    "hyp": "R35-e9 structural sparse opener0.5 maxPost=3 no host",
+    "S0_FA": 0.6021026407618185,
+    "S0_pass": 0.3333333333333333,
+    "S1_FA": 0.5810463694073534,
+    "S1_pass": 0.3333333333333333,
+    "galio_killed": true,
+    "galio_lethErr": -1.8369999999999997,
+    "galio_marks": 3,
+    "galio_endHp": 0,
+    "dS0": 0.008331127834943608,
+    "dS1": 0.019089947089947046,
+    "s1_ok": true,
+    "s0_up": true,
+    "product_keep_candidate": true
+  }
+]

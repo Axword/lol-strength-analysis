@@ -1,0 +1,77 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r40",
+  "slug": "c2-pathmae-slot-pulse",
+  "model": "Auto",
+  "utc": "2026-07-24T17:05:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r40",
+  "branch": "adv/fo-r40-c2-pathmae-slot-pulse",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Lift c2_burst pathMae ≤90 via slot-scoped single-ability pulses / kit-dump honesty; no pathFollow S1 regress; KEEP iff S0 FA↑ and S1 flat+; FA≠odds",
+  "product_selector": "cusum_engage_then_skills",
+  "hypothesesAutoPicked": [
+    { "id": "H1", "title": "Baseline remesaure pathMae residual", "result": "MEASURED_mae111.6_S0_0.774_S1_0.581" },
+    { "id": "H2", "title": "Slot-scoped binary (no kit dump)", "result": "DISCARD_underkill_mae463_miss" },
+    { "id": "H3", "title": "Slot + AA weave", "result": "PARTIAL_mae101_lethOk_but_FA_regress" },
+    { "id": "H4", "title": "Slot kit-blend", "result": "DISCARD_no_pathOk_FA_down" },
+    { "id": "H5", "title": "HP-frac cap", "result": "DISCARD_miss_kill" },
+    { "id": "H6", "title": "pathFollowActualUntilFinish", "result": "RESEARCH_ONLY_pathOk_S1_regress" },
+    { "id": "H7", "title": "Fractional weave sweet spot", "result": "DISCARD_floor_mae101_at_leth_-0.33" },
+    { "id": "H8", "title": "FA product KEEP gate", "result": "NO_KEEP" }
+  ],
+  "n_experiments": 33,
+  "track": "path",
+  "c2_burst_path": {
+    "baseline_maeHp": 111.592,
+    "best_non_follow_maeHp": 101.07,
+    "best_non_follow_exp": "e12_blend010_aa4",
+    "pathFollow_maeHp": 0.0,
+    "pathOk_without_follow": false,
+    "pathOk_with_pathFollow": true,
+    "pathCap": 90,
+    "lethalErrorSec_baseline": -0.334,
+    "lethalOk_baseline": true
+  },
+  "S0": {
+    "baseline_FA": 0.7740,
+    "authoritative_compound_FA": 0.7766,
+    "best_slot_FA": 0.6871,
+    "pathFollow_FA": 0.7584,
+    "baseline_pass": 0.3333,
+    "pathFollow_pass": 0.6667,
+    "match": "2970132-g1"
+  },
+  "S1": {
+    "baseline_FA": 0.5810,
+    "best_slot_FA": 0.5708,
+    "pathFollow_FA": 0.5311,
+    "baseline_pass": 0.3333,
+    "pathFollow_pass": 0.0,
+    "match": "2970137-g1",
+    "tuned": false
+  },
+  "product_KEEP": {
+    "keep": false,
+    "slotScopedPulse": false,
+    "pathFollowActualUntilFinish": false,
+    "reason": "No config achieves pathMae≤90 with S0 FA↑ and S1 flat+. Slot+weave improves mae 111.6→~101 but FA regresses both suites. pathFollow pathOk on S0 but S1 FA 0.581→0.531 pass 0."
+  },
+  "verdict": "NO KEEP",
+  "sharper_blocker": "c2_burst pathMae floors ≈101 under lethOk (−0.33s) without truth-follow; kit-dump and slot+weave share early-lethal cliff; pathFollow clears pathOk but S1 regresses (pass→0). Need S1-safe residual/ally timing, not global pathFollow.",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r40/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r40/NOTES.md",
+    "e0": "docs/rofl-research/autoresearch/fight_outcome/r40/experiments/e0_baseline.json",
+    "best_non_follow": "docs/rofl-research/autoresearch/fight_outcome/r40/experiments/e12_blend010_aa4.json",
+    "pathFollow_research": "docs/rofl-research/autoresearch/fight_outcome/r40/experiments/e21_kit_pathfollow_v2.json",
+    "fa_s0_e0": "docs/rofl-research/autoresearch/fight_outcome/r40/experiments/fa_S0_e0_baseline.json",
+    "fa_s1_e0": "docs/rofl-research/autoresearch/fight_outcome/r40/experiments/fa_S1_e0.json"
+  },
+  "next": "Do not PARENT_MERGE product defaults. Residual: S1-safe path timing / ally residual without global pathFollow; Meraki Olaf slot packets alone cannot replace kit dump for ≤90 mae."
+}

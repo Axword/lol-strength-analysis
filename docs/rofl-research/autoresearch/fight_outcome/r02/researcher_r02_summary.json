@@ -1,0 +1,92 @@
+{
+  "schema": "fo-researcher-r02-summary-v1",
+  "utc": "2026-07-24T15:40:10Z",
+  "researcher": "R02",
+  "room": "f1",
+  "mandate": "digest-sources",
+  "model": "Auto",
+  "branch": "adv/fo-r02-digest-sources",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r02",
+  "never_edited_parent": true,
+  "hypothesis_auto_picked": {
+    "id": "F1#2",
+    "title": "Source preserve",
+    "from": "docs/rofl-research/autoresearch/fight_outcome/rooms/f1/HYPOTHESES.md"
+  },
+  "verdict": "keep_source_preserve_patches",
+  "pass": true,
+  "digestCleanGate": false,
+  "digestCleanGateContribution": "GOAL §D source tags preserved events→timeline on 2970132 Path1; strip/clear no longer orphan or silently drop known sources",
+  "host": "2970132-g1",
+  "artifacts": {
+    "events": "artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl",
+    "events_bytes": 114456779,
+    "events_sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+    "timeline": "artifacts/rofl/2970132/timeline.g1.path1-final.json",
+    "timeline_bytes": 9064216,
+    "timeline_sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4"
+  },
+  "rebuild_census": {
+    "hpSource": {"pe": 203, "hold_forward": 16098},
+    "combatSource": {
+      "same_match_replication_type107_pe_wire_table": 1766,
+      "hold_forward": 12959
+    },
+    "abilityRanksSource": {
+      "rofl2_upgrade_spell_ans_1012_first_write": 16960
+    },
+    "knownWithoutSource": {"hp": 0, "combat": 0, "ranks": 0}
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "title": "jsonl_to_timeline source copy",
+      "status": "verified_green",
+      "note": "Prior rematch bug peHpHeroes=0/10; copy path present; rebuild missing=0"
+    },
+    {
+      "id": "F2",
+      "title": "strip_untrusted orphan hpSource/combatSource",
+      "status": "patched",
+      "file": "scripts/fuse_product_timeline.py"
+    },
+    {
+      "id": "F3",
+      "title": "combat clear pops combatSource + restore hold_forward fuse",
+      "status": "patched",
+      "file": "scripts/fuse_replay_api_combat.py",
+      "sourced_from": "rofl-prd-r04 Path1 keep"
+    },
+    {
+      "id": "F4",
+      "title": "dead HP pops hpSource",
+      "status": "ok_intentional",
+      "file": "scripts/fuse_replay_api_hp.py"
+    }
+  ],
+  "worktree_patches": [
+    "scripts/fuse_product_timeline.py",
+    "scripts/fuse_replay_api_combat.py",
+    "scripts/tests/test_fuse_product_timeline_r11.py",
+    "scripts/tests/test_source_preserve_r02.py",
+    "scripts/fo_r02_source_preserve_audit.py"
+  ],
+  "docs": [
+    "docs/rofl-research/autoresearch/fight_outcome/r02/FINDINGS.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r02/source_preserve_audit.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r02/researcher_r02_summary.json"
+  ],
+  "tests": {
+    "command": "python3 -m unittest scripts.tests.test_source_preserve_r02 -v",
+    "ok": true,
+    "count": 4
+  },
+  "audit": {
+    "command": "python3 scripts/fo_r02_source_preserve_audit.py",
+    "ok": true,
+    "path": "docs/rofl-research/autoresearch/fight_outcome/r02/source_preserve_audit.json"
+  },
+  "invent": false,
+  "calculatorReadyGate": true,
+  "notes": "Source-preservation KEEP for digestCleanGate §D.2; does not alone flip digestCleanGate."
+}

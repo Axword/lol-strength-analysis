@@ -1,0 +1,69 @@
+{
+  "schema": "fo-r15-action-coverage-f1-v1",
+  "match": "2970132-g1",
+  "meanHonestF1": 1,
+  "honestF1OrZero": 1,
+  "echoRejected": true,
+  "perWindow": [
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Galio→Trundle",
+      "honestF1": 1,
+      "echoAaF1": 1,
+      "echoDmgF1": 1,
+      "sourceAndAmountResolvedCount": 13,
+      "damageTruthCount": 13
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Galio→Trundle",
+      "honestF1": 1,
+      "echoAaF1": 1,
+      "echoDmgF1": 1,
+      "sourceAndAmountResolvedCount": 13,
+      "damageTruthCount": 13
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Olaf→Trundle",
+      "honestF1": 1,
+      "echoAaF1": 1,
+      "echoDmgF1": 1,
+      "sourceAndAmountResolvedCount": 25,
+      "damageTruthCount": 25
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Olaf→Trundle",
+      "honestF1": 1,
+      "echoAaF1": 1,
+      "echoDmgF1": 1,
+      "sourceAndAmountResolvedCount": 25,
+      "damageTruthCount": 25
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Olaf→Camille",
+      "honestF1": 1,
+      "echoAaF1": 1,
+      "echoDmgF1": 1,
+      "sourceAndAmountResolvedCount": 30,
+      "damageTruthCount": 30
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Olaf→Camille",
+      "honestF1": 1,
+      "echoAaF1": 1,
+      "echoDmgF1": 1,
+      "sourceAndAmountResolvedCount": 30,
+      "damageTruthCount": 30
+    }
+  ]
+}

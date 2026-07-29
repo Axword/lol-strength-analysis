@@ -1,0 +1,177 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970137",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "burst",
+  "matchup": "Anivia→Sylas",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.968,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 1.102,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 1.403,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 1.903,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 4.609,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 5.043,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 1.102,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 1.1520000000000001,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 1.903,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 1.953,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 4.609,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4,
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 4.659,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 5.043,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 5.093,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0.2
+    },
+    {
+      "tSec": 6.203119724355553,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 7.3632394487111075,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 6,
+    "modelCount": 10,
+    "matchedCount": 4,
+    "precision": 0.4,
+    "recall": 0.6666666666666666,
+    "actionCoverage": 0.5,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 6,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      2
+    ],
+    "unmatchedModel": [
+      1,
+      3,
+      5,
+      7,
+      8,
+      9
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 6,
+      "modelCount": 4,
+      "matchedCount": 4,
+      "actionCoverage": 0.8
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 6,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=6 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=1 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

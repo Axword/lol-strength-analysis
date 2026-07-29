@@ -1,0 +1,69 @@
+{
+  "reviewer": "V8",
+  "cycle": 3,
+  "phase": "C",
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T16:01:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "criterionG_detail": {
+    "affirmed": true,
+    "basis": "Personally re-ran BOTH parent smokes this cycle — G proven (BRIEF/STATUS) verified live",
+    "r17_parent": {
+      "smokeCommand": "npm run fo:send-smoke",
+      "result": "8 pass / 0 fail",
+      "script": "scripts/fo_r17_send_parity_smoke.ts",
+      "endHpAgree_E1": true,
+      "path1_Galio_Trundle_E2": true,
+      "deadExcluded_E3": true,
+      "knownFlags_E4": true,
+      "noOdds_E6": true,
+      "researcher_proven_for_V8": true
+    },
+    "r16_parent": {
+      "smokeCommand": "npm run smoke:calc-parity",
+      "result": "11/11 PASS",
+      "script": "scripts/fo_r16_calc_parity_smoke.ts",
+      "packageJsonPresent": true,
+      "allPass": true
+    },
+    "status": {
+      "criterionG_proven": true,
+      "fightOutcomeGate": false
+    },
+    "residual_disclosed": "Product map Send still opt-in kill-window marks; parity proves shared math when marks present — does not invent timeline skill_used or raise FA"
+  },
+  "evidence": [
+    "GOAL V8 = Calculator↔harness parity (F6 / Criterion G)",
+    "Personally reproduced C3: `npm run fo:send-smoke` → 8/8; `npm run smoke:calc-parity` → 11/11",
+    "r17/send_parity_smoke.json + researcher_r17_summary.json — criterionG.* true; proven_for_V8; fightOutcomeGate false",
+    "r16/smoke_report.json — allPass true; 11/11; parent package.json smoke:calc-parity wired",
+    "BRIEF/STATUS — criterionG proven; S0 Path1 product FA 0.2279 unchanged; research e11 0.2414 NO product KEEP",
+    "r18 — Path1 lethal research Δ+0.013; product path still 0.2279; parity orthogonal to FA",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate re-judge true (C2 DC 6/15)",
+    "R14 — honest F1 KEEP secondary; echo REJECTED — supports H, not B"
+  ],
+  "failures": [
+    "B: S0 Path1 fightAgreement 0.2279 ≪ 0.95 and fightPassRate 0 — G proof does not raise FA",
+    "F: S1 holdout unmet (R20 current-law ≈0.411; R06 0.478) — no FO on S0 alone",
+    "I: No ≥11/15 FO majority + parent e2e STATUS flip while B fails"
+  ],
+  "blocker": "Criterion G closed (both parent smokes personally green). Remaining FO blockers: B (Path1 FA 0.2279), F (S1), I. Next FA work is Path1 lethal/early/falsekill (open R19/R21–R24) — not more Send parity.",
+  "notes": "C3 V8: G=true after personal fo:send-smoke 8/8 AND smoke:calc-parity 11/11 on parent (both scripts in package.json). R16/R17 merge absorbed. Voted fightOutcomeGate false for concrete B/F/I — not unfinished peers. digestCleanGate true on §D Path1 re-judge. Parity ≠ FA lift. fightAgreement ≠ win odds.",
+  "one_line_vote": "V8: fightOutcomeGate=false digestCleanGate=true — G=true (fo:send-smoke 8/8 + smoke:calc-parity 11/11); B fails S0 FA 0.2279"
+}

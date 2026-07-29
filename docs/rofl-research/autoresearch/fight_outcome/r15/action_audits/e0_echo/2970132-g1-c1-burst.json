@@ -1,0 +1,179 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "burst",
+  "matchup": "Galio→Trundle",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.1340397964892759,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.30141821289061,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.3344182144580259,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.5687661164635642,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.10293188476561,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.10293188476561,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.3363103043017759,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.6368779312549009,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.1340397964892759,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.30141821289061,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.3344182144580259,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.5687661164635642,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.10293188476561,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.10293188476561,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.3363103043017759,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.6368779312549009,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.083081081081081,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 8,
+    "modelCount": 9,
+    "matchedCount": 8,
+    "precision": 0.8888888888888888,
+    "recall": 1,
+    "actionCoverage": 0.9411764705882353,
+    "matches": [
+      {
+        "truthIdx": 0,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 1,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 7,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [],
+    "unmatchedModel": [
+      8
+    ]
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 8,
+      "modelCount": 9,
+      "matchedCount": 8,
+      "actionCoverage": 0.9411764705882353
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=8 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=87 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=8 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=8 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=1 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

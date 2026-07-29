@@ -1,0 +1,164 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 2.2,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 5.94,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 9.046,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 17.729,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 19.532,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.766,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.933,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 9.046,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 9.096,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.729,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 17.779,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.532,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.582,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 19.933,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 19.983,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "coverage": {
+    "truthCount": 7,
+    "modelCount": 8,
+    "matchedCount": 4,
+    "precision": 0.5,
+    "recall": 0.5714285714285714,
+    "actionCoverage": 0.5333333333333333,
+    "matches": [
+      {
+        "truthIdx": 2,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 6,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      5
+    ],
+    "unmatchedModel": [
+      1,
+      3,
+      5,
+      7
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 7,
+      "modelCount": 4,
+      "matchedCount": 4,
+      "actionCoverage": 0.7272727272727273
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 4,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "E05",
+  "hypothesis": "F5H2 actionCoverage is 0.15 of windowScore; never sole gate evidence; echo credit=0",
+  "f5": "H2",
+  "weights": {
+    "lethalHit": 0.4,
+    "earlyBand": 0.25,
+    "pathBand": 0.2,
+    "actionCoverageF1": 0.15
+  },
+  "maxLiftFromActionF1Alone": 0.15,
+  "neverSoleGateEvidence": true,
+  "scenarios": {
+    "allElseZero_honestF1": 0.15,
+    "allElseZero_echoF1": 0.15,
+    "allElsePerfect_honestF1": 1,
+    "allElsePerfect_echoF1_REJECTED": null,
+    "note": "Echo F1 forced to 0 for scoring even if raw F1=1 — reject as secondary credit"
+  },
+  "honestF1": 1,
+  "echoF1": 1,
+  "echoCreditForFightAgreement": 0,
+  "keep": true
+}

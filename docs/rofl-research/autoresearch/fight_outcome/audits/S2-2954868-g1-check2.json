@@ -1,0 +1,51 @@
+{
+  "schema": "fightOutcome-window-audit-v1",
+  "utc": "2026-07-24T15:41:46.477Z",
+  "windowId": "S2-2954868-g1-check2",
+  "suite": "S2",
+  "tuneForbidden": true,
+  "truth": {
+    "id": "S2-2954868-g1-check2",
+    "suite": "S2",
+    "match": "2954868-g1",
+    "truthKilled": true,
+    "killerPid": 3,
+    "victimPid": 6,
+    "killerChamp": "Cassiopeia",
+    "victimChamp": "Ambessa"
+  },
+  "model": {
+    "modelKilled": false,
+    "modelLethalSec": -0.08299999999999841,
+    "lethalErrorSec": -0.08299999999999841,
+    "earlyMaeHp": 32,
+    "maeHpBurst": 137.25184921791728,
+    "maeHpFull": 104.91280430805949,
+    "actionCoverageF1": null,
+    "hardFail": false,
+    "noInvent": true
+  },
+  "result": {
+    "id": "S2-2954868-g1-check2",
+    "windowOk": false,
+    "windowScore": 0.39749794531342525,
+    "parts": {
+      "lethalOk": false,
+      "earlyOk": true,
+      "pathOk": false,
+      "noInvent": true,
+      "noHard": true,
+      "lethalHit": 0,
+      "earlyBand": 1,
+      "pathBand": 0.7374897265671262,
+      "actionF1": 0,
+      "earlyMaeHp": 32,
+      "maeHpBurst": 137.25184921791728,
+      "maeHpFull": 104.91280430805949,
+      "lethalErrorSec": -0.08299999999999841
+    }
+  },
+  "camilleInWindow": false,
+  "camillePeNote": null,
+  "confidence": "window audit — fightAgreement part, not win probability"
+}

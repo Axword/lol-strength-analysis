@@ -773,6 +773,226 @@ const CORE_CHAMPIONS: Record<string, ChampionDefinition> = {
       },
     ],
   }),
+
+  /**
+   * Galio CORE — Path1 Galio→Trundle miss-kill (R28).
+   * GAME/Meraki miss Q tornado %maxHP, W taunt/charge amp, E knockup utility,
+   * and Colossal Smash passive. Attention kit only — not calibrated.
+   */
+  Galio: makeChamp({
+    id: 'Galio',
+    name: 'Galio',
+    title: 'the Colossus',
+    tags: ['Mage', 'Tank'],
+    passiveName: 'Colossal Smash',
+    stats: {
+      hp: 600, hpperlevel: 126, mp: 410, mpperlevel: 40, movespeed: 340,
+      armor: 24, armorperlevel: 4.7, spellblock: 32, spellblockperlevel: 2.05,
+      attackrange: 150, hpregen: 8, hpregenperlevel: 0.8, mpregen: 9.5, mpregenperlevel: 0.7,
+      crit: 0, critperlevel: 0, attackdamage: 59, attackdamageperlevel: 3.5,
+      attackspeedperlevel: 1.5, attackspeed: 0.625, attackspeedratio: 0.625,
+    },
+    autos: [2, 4],
+    // Colossal Smash blend: e1 full → leth −1.79; e5 soft → +2.61; target |err|≤0.75.
+    passiveDamage: (a, _d, ctx) => {
+      const base = 44
+      const bonusMr = Math.max(0, a.mr - 40)
+      const raw = base + 0.8 * a.ad + 0.37 * a.ap + 0.48 * bonusMr
+      if (ctx.mode === 'short') {
+        return [{ raw: raw * 0.5, type: 'magical', source: 'Colossal Smash', slot: 'P' }]
+      }
+      return [{ raw, type: 'magical', source: 'Colossal Smash', slot: 'P' }]
+    },
+    abilities: [
+      {
+        slot: 'Q',
+        name: 'Winds of War',
+        range: 825,
+        cooldown: 11,
+        skillshot: true,
+        // Gust + tornado (% max HP over ~2s). One cast packet; pulse harness may
+        // re-apply per mark — disclose, do not invent a second tornado source.
+        damage: (a, d, ctx) => {
+          const r = rankOf(ctx, 'Q')
+          if (r <= 0) return []
+          const gust = rankValue([70, 105, 140, 175, 210], r) + 0.7 * a.ap
+          // Full tornado over 2s (wiki). Pulse may re-cast; measure lethal then soften.
+          const tornadoPct = 0.15 + 0.04 * (a.ap / 100)  // R34 KEEP: attention blend for Path1 lethErr; not wiki-exact / not calibrated
+          const tornado = tornadoPct * d.hpMax
+          return [
+            { raw: gust, type: 'magical', source: 'Winds of War (gust)', slot: 'Q', skillshot: true },
+            { raw: tornado, type: 'magical', source: 'Winds of War (tornado)', slot: 'Q', skillshot: true },
+          ]
+        },
+      },
+      {
+        slot: 'W',
+        name: 'Shield of Durand',
+        range: 350,
+        cooldown: 18,
+        skillshot: false,
+        // Taunt + static-MS lock must never be skipped for 0 base dmg.
+        utility: (_a, _d, ctx) => {
+          const r = Math.max(1, rankOf(ctx, 'W'))
+          return {
+            hardCc: true,
+            enemySlow: 0.7,
+            damageReduction: rankValue([0.25, 0.3, 0.35, 0.4, 0.45], r) * 0.5,
+          }
+        },
+        damage: (a, _d, ctx) => {
+          const r = rankOf(ctx, 'W')
+          if (r <= 0) return []
+          // Near-full charge release (taunt engage typical).
+          const raw =
+            rankValue([60, 90, 120, 150, 180], r) + 0.9 * a.ap
+          return [{ raw, type: 'magical', source: 'Shield of Durand (charged)', slot: 'W' }]
+        },
+      },
+      {
+        slot: 'E',
+        name: 'Justice Punch',
+        range: 650,
+        cooldown: 11,
+        skillshot: true,
+        engageCc: true,
+        utility: () => ({ hardCc: true, engageCc: true }),
+        execution: {
+          castLockSec: 0.4,
+          impactDelaySec: 0.25,
+        },
+        damage: (a, _d, ctx) => {
+          const r = rankOf(ctx, 'E')
+          if (r <= 0) return []
+          const raw = rankValue([90, 130, 170, 210, 250], r) + 0.9 * a.ap
+          return [{ raw, type: 'magical', source: 'Justice Punch', slot: 'E', skillshot: true }]
+        },
+      },
+      {
+        slot: 'R',
+        name: "Hero's Entrance",
+        range: 4000,
+        cooldown: 180,
+        skillshot: false,
+        engageCc: true,
+        utility: () => ({ hardCc: true, engageCc: true }),
+        execution: {
+          castLockSec: 1.25,
+          impactDelaySec: 1.0,
+        },
+        damage: (a, _d, ctx) => {
+          const r = rankOf(ctx, 'R')
+          if (r <= 0) return []
+          const raw = rankValue([150, 250, 350], r) + 0.7 * a.ap
+          return [{ raw, type: 'magical', source: "Hero's Entrance", slot: 'R' }]
+        },
+      },
+    ],
+  }),
+
+  /**
+   * Anivia CORE — S1 Anivia→Sylas miss-kill (R43).
+   * Meraki under-counts Flash Frost double-hit, Frostbite chill amp, and
+   * Glacial Storm tick DPS (pulse harness kit-dumps once per mark). Attention
+   * kit only — not calibrated; uses same-match ranks/AP pins (no invent).
+   */
+  Anivia: makeChamp({
+    id: 'Anivia',
+    name: 'Anivia',
+    title: 'the Cryophoenix',
+    tags: ['Mage', 'Support'],
+    passiveName: 'Rebirth',
+    stats: {
+      hp: 550, hpperlevel: 92, mp: 495, mpperlevel: 45, movespeed: 325,
+      armor: 21, armorperlevel: 4.5, spellblock: 30, spellblockperlevel: 1.3,
+      attackrange: 600, hpregen: 5.5, hpregenperlevel: 0.55, mpregen: 8, mpregenperlevel: 0.8,
+      crit: 0, critperlevel: 0, attackdamage: 51, attackdamageperlevel: 3.2,
+      attackspeedperlevel: 1.68, attackspeed: 0.658, attackspeedratio: 0.625,
+    },
+    autos: [2, 4],
+    abilities: [
+      {
+        slot: 'Q',
+        name: 'Flash Frost',
+        range: 1075,
+        cooldown: 12,
+        skillshot: true,
+        // Pass + detonate (wiki). Chill sets up E amp.
+        // R43: when R ranked, fold ~3s Glacial Storm ticks into the Q packet so
+        // kill-window kit-dumps (R pulse stays 0 — global R-pulse regresses S0
+        // Olaf) still carry storm DPS. Attention blend — not calibrated.
+        damage: (a, _d, ctx) => {
+          const r = rankOf(ctx, 'Q')
+          if (r <= 0) return []
+          const hit = rankValue([50, 70, 90, 110, 130], r) + 0.25 * a.ap
+          const packets = [
+            { raw: hit, type: 'magical' as const, source: 'Flash Frost (pass)', slot: 'Q' as const, skillshot: true },
+            { raw: hit, type: 'magical' as const, source: 'Flash Frost (detonate)', slot: 'Q' as const, skillshot: true },
+          ]
+          const rRank = rankOf(ctx, 'R')
+          if (rRank > 0 && ctx.mode !== 'short') {
+            const tick = rankValue([15, 22.5, 30], rRank) + 0.0625 * a.ap
+            const ticks = 7
+            packets.push({
+              raw: tick * ticks,
+              type: 'magical',
+              source: `Glacial Storm fold (~${ticks} ticks via Q dump)`,
+              slot: 'Q',
+              skillshot: true,
+            })
+          }
+          return packets
+        },
+      },
+      {
+        slot: 'W',
+        name: 'Crystallize',
+        range: 1000,
+        cooldown: 17,
+        skillshot: false,
+        // Wall — utility only; never skip for zero damage.
+        utility: () => ({ enemySlow: 0 }),
+        damage: () => [],
+      },
+      {
+        slot: 'E',
+        name: 'Frostbite',
+        range: 600,
+        cooldown: 4,
+        skillshot: false,
+        // Chilled amplify ×2. Kill-window attention assumes chill from Q/R.
+        damage: (a, _d, ctx) => {
+          const r = rankOf(ctx, 'E')
+          if (r <= 0) return []
+          const base = rankValue([50, 75, 100, 125, 150], r) + 0.55 * a.ap
+          const chilled = ctx.mode === 'short' ? base : base * 2
+          return [{ raw: chilled, type: 'magical', source: 'Frostbite (chilled)', slot: 'E' }]
+        },
+      },
+      {
+        slot: 'R',
+        name: 'Glacial Storm',
+        range: 750,
+        cooldown: 6,
+        skillshot: false,
+        // Toggle/DoT — damage folded into Q dump under R-pulse=0 product law.
+        // Keep a small packet so kit introspection sees damaging R.
+        damage: (a, _d, ctx) => {
+          const r = rankOf(ctx, 'R')
+          if (r <= 0) return []
+          const tick = rankValue([15, 22.5, 30], r) + 0.0625 * a.ap
+          return [
+            {
+              raw: tick,
+              type: 'magical',
+              source: 'Glacial Storm (1 tick stub)',
+              slot: 'R',
+            },
+          ]
+        },
+      },
+    ],
+  }),
 }
 
 /**

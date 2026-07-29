@@ -1,0 +1,70 @@
+{
+  "reviewer": "V12",
+  "cycle": 7,
+  "role": "Anti-odds / wording (agreement ≠ win %)",
+  "utc": "2026-07-24T16:52:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "criteria": {
+    "A_anti_odds_wording": true,
+    "A_full": "partial — pBlue/pRed + FA + actionCoverage labeling honest; other A limbs deferred to V1/V14",
+    "B_metric_thresholds": false,
+    "C_unfreeze_disclosure": true,
+    "D_digestCleanGate": true,
+    "E_suites_wired": true,
+    "F_holdout": false,
+    "G_calculator_path": true,
+    "H_anti_gaming": true,
+    "I_majority_e2e": false
+  },
+  "anti_odds": {
+    "fightAgreement_means": "mean(windowScore) on kill-window suite (GOAL §B)",
+    "fightAgreement_does_not_mean": "calibrated win probability / odds % / bookmaker posterior / map win %",
+    "actionCoverage_does_not_mean": "win odds — secondary 0.15 term only (R14)",
+    "pBlue_pRed": "heuristic model edge only",
+    "calculatorReady_does_not_mean": "fights match or win odds",
+    "criterionG_does_not_mean": "fightAgreement≥0.95 or win odds — G is Send↔harness path honesty only",
+    "S0_FA_0_7766_does_not_mean": "≈77.66% win odds — suite agreement only; still ≪0.95 bars",
+    "S1_FA_0_5810_does_not_mean": "≈58% win odds — holdout suite agreement; unmet",
+    "R31_preBurst_KEEP_does_not_mean": "calibrated win odds — mark-domain lead 2.5s product KEEP",
+    "wording_scan": {
+      "suspect_files_claiming_odds_without_negation": 0,
+      "researcher_confidence_disclaimers": [
+        "r31 confidence: fightAgreement NOT win probability / odds %",
+        "fight_agreement_S0/S1_parent_stack_r31.json disclosures: FA ≠ win probability / odds %",
+        "STATUS/HEARTBEAT/BRIEF/DIGEST label FA as NOT win odds; pBlue/pRed model edge",
+        "R29 anti-odds KEEP retained"
+      ],
+      "product_ui": {
+        "Send_chip": "model edge only · not odds %",
+        "CombatResult_subline": "not a win probability",
+        "modelTrust_calibrated": false,
+        "Faq_model_edge_not_odds": true
+      },
+      "r17_send_smoke_noOddsCopy": true,
+      "r29_anti_odds_audit": true
+    }
+  },
+  "evidence": [
+    "BRIEF/STATUS/HEARTBEAT: S0 FA 0.7766 · S1 0.5810 · pass 0.333 ≪0.95 · FA ≠ odds — wording consistent.",
+    "r31 FA suite JSONs disclose: fightAgreement = mean(windowScore); NOT win probability / odds %; confidence field repeats.",
+    "R31 NOTES + researcher_r31_summary: FA ≠ odds / NOT pBlue-pRed %; product KEEP preBurst 2.5 is suite-agreement lift only.",
+    "DIGEST: pBlue/pRed model edge only — never odds %; Path1 calculatorReady ≠ FO gate.",
+    "Criterion G proven does not unlock FO: fo:send-smoke 8/8 is path honesty, not FA≥0.95.",
+    "digestCleanGate reaffirm true (C3–C6 Path1 DIGEST) — orthogonal to win-odds wording.",
+    "No invent of odds language from FA 0.7766 — refuse fightOutcomeGate on concrete B+F."
+  ],
+  "failures": [
+    "B: S0 FA 0.7766 ≪ 0.95 (suite agreement, not odds) — fightOutcomeGate false",
+    "F: S1 FA 0.5810 holdout unmet",
+    "I: majority FO true impossible while B/F objective fails"
+  ],
+  "notes": "Anti-odds specialty HOLDS: post-R31 FA 0.7766 must not be read as ~78% win. digestCleanGate reaffirm. CONTINUE wave3 for passRate/pathMae/Galio leth — not odds calibration.",
+  "one_liner": "V12: fightOutcomeGate=false digestCleanGate=true (conf 0.98) — FA 0.7766≠odds; DC reaffirm; FO false; CONTINUE wave3",
+  "blocker": "S0 FA 0.7766≪0.95 suite agreement (not odds); passRate 0.333; S1 0.5810"
+}

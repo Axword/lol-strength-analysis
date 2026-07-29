@@ -1,0 +1,38 @@
+{
+  "wrote": "docs/rofl-research/autoresearch/fight_outcome/r01/experiments/timeline.g1.path1-rebuild.json",
+  "mb": 8.64,
+  "frames": 1696,
+  "durationMs": 1694759,
+  "mid_t": 848024,
+  "mid_x_spread": 0.3809,
+  "champs": [
+    "Olaf",
+    "JarvanIV",
+    "Galio",
+    "Seraphine",
+    "Shen",
+    "Jayce",
+    "Trundle",
+    "Orianna",
+    "Ziggs",
+    "Camille"
+  ],
+  "basicAttack": 0,
+  "damageDealt": 0,
+  "actionExtract": {
+    "seen_basic_attack": 0,
+    "seen_damage_dealt": 0,
+    "accepted_basic_attack": 0,
+    "accepted_damage_dealt": 0,
+    "rejected_no_net_id": 0,
+    "rejected_no_identity": 0,
+    "rejected_order_only_pid": 0,
+    "rejected_unproven_pid": 0,
+    "rejected_bad_time": 0,
+    "skipped_other_schema": 0,
+    "skipped_skill_used": 2720,
+    "skipped_stats_update": 0
+  },
+  "aaCoverage": "none",
+  "damageCoverage": "none"
+}

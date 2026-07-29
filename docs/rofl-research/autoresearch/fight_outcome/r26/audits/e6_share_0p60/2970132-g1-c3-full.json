@@ -1,0 +1,189 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970132",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "full",
+  "matchup": "Olaf→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.599,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 1.734,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 6.027,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 9.934,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 11.203,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 18.23,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 20,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 20.1,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 1.734,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 6.027,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 9.934,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 11.203,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 18.23,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 20,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 20.1,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 0.6
+    },
+    {
+      "tSec": 20.456663908465774,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 8,
+    "modelCount": 8,
+    "matchedCount": 7,
+    "precision": 0.875,
+    "recall": 0.875,
+    "actionCoverage": 0.875,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 6,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0
+    ],
+    "unmatchedModel": [
+      7
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 8,
+      "modelCount": 7,
+      "matchedCount": 7,
+      "actionCoverage": 0.9333333333333333
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 1,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — enable --basic-attack-jsonl for decode path",
+    "aaTruthAvailable=false aaTruthCount=0 aaGateEligible=false (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaEchoCount=0 (inventory echo at decode timestamps; shareHint=0; not damaging AA model)",
+    "itemActiveTruthAvailable=false itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=27 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=4 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

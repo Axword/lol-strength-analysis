@@ -1,0 +1,633 @@
+{
+  "schema": "pro-grid-action-aligned-suite-v1",
+  "t": "2026-07-24T15:40:26.299Z",
+  "hypothesis": "F3H1 cusum + global markMinGap0.4 (no dens window)",
+  "mode": "gate_action",
+  "seriesId": "2970110",
+  "gameIndex": 1,
+  "config": {
+    "hypothesis": "F3H1 cusum + global markMinGap0.4 (no dens window)",
+    "mode": "gate_action",
+    "castPulseSec": 0.4,
+    "aaFiller": false,
+    "maxAaBetweenMarks": 6,
+    "allyPulseShare": 0.35,
+    "markIdleSkipSec": 0,
+    "markNearDropSec": 0.75,
+    "markDropMinHp": 15,
+    "markAlwaysNearKillSec": 2,
+    "useDropConditioning": false,
+    "markSelection": "cusum_engage_then_skills",
+    "finishAaAfterLastMark": true,
+    "finishAaMax": 4,
+    "finishAaWindowSec": 0,
+    "aaAtEachMark": true,
+    "rePinEachMark": false,
+    "perSlotPulse": false,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0.75
+    },
+    "cusumK": 8,
+    "cusumH": 45,
+    "markMinGapSec": 0.4,
+    "markFinishHorizonSec": 0,
+    "maxKillerMarks": 0,
+    "markDensityWindowSec": 0,
+    "markDenseMaxPerWindow": 1,
+    "actionReplayTauSec": 0.25,
+    "includeAllyTruth": false,
+    "emitItemModelActions": true,
+    "itemPulseShare": 0,
+    "basicAttackJsonl": "",
+    "aaIdentityPath": "",
+    "emitDamagingModelAaFromTruth": false
+  },
+  "checks": [
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Camille→Leona",
+      "earlyMaeHp": 31.2,
+      "lateMaeHp": 154.68966,
+      "lateMaeDeltaVsBaseline": -162.7423669871796,
+      "maeHp": 83.06034700000002,
+      "lethalErrorSec": -0.06700000000000017,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 4.137,
+      "skillMarks": 5,
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 6,
+        "allyParticipants": [
+          9,
+          8,
+          7
+        ],
+        "windowMs": [
+          219863,
+          222363
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 207803,
+          "tSec": 5.94,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 210909,
+          "tSec": 9.046,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 219592,
+          "tSec": 17.729,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 221395,
+          "tSec": 19.532,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221796,
+          "tSec": 19.933,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 7,
+        "modelCount": 9,
+        "matchedCount": 5,
+        "precision": 0.5555555555555556,
+        "recall": 0.7142857142857143,
+        "actionCoverage": 0.6250000000000001,
+        "allyDisclosedCount": 22,
+        "summonerDisclosedCount": 3
+      }
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Camille→Leona",
+      "earlyMaeHp": 126.33333333333333,
+      "lateMaeHp": null,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 149.90233833333338,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 1.002,
+      "skillMarks": 2,
+      "method": "gate_action",
+      "modelEndHp": 185.25584583333344,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 6,
+        "allyParticipants": [
+          9,
+          8,
+          7
+        ],
+        "windowMs": [
+          219863,
+          222363
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 221395,
+          "tSec": 2.371,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221796,
+          "tSec": 2.772,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 4,
+        "modelCount": 4,
+        "matchedCount": 2,
+        "precision": 0.5,
+        "recall": 0.5,
+        "actionCoverage": 0.5,
+        "allyDisclosedCount": 8,
+        "summonerDisclosedCount": 2
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Syndra→Camille",
+      "earlyMaeHp": 0,
+      "lateMaeHp": 612.8498342185762,
+      "lateMaeDeltaVsBaseline": -15.685747039629746,
+      "maeHp": 306.96996684371527,
+      "lethalErrorSec": -1.0070000000000014,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 9.836,
+      "skillMarks": 7,
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 3,
+        "allyParticipants": [
+          5,
+          2
+        ],
+        "windowMs": [
+          1087188,
+          1089688
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 1086912,
+          "tSec": 17.724,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1087446,
+          "tSec": 18.258,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1088181,
+          "tSec": 18.993,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1089088,
+          "tSec": 19.9,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1091927,
+          "tSec": 22.739,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1092862,
+          "tSec": 23.674,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1093363,
+          "tSec": 24.175,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "no_filter"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 9,
+        "modelCount": 5,
+        "matchedCount": 3,
+        "precision": 0.6,
+        "recall": 0.3333333333333333,
+        "actionCoverage": 0.42857142857142855,
+        "allyDisclosedCount": 22,
+        "summonerDisclosedCount": 3
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Syndra→Camille",
+      "earlyMaeHp": 274.1973165478686,
+      "lateMaeHp": null,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 164.51838992872115,
+      "lethalErrorSec": -1.0070000000000001,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 0.434,
+      "skillMarks": 3,
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 3,
+        "allyParticipants": [
+          5,
+          2
+        ],
+        "windowMs": [
+          1087188,
+          1089688
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 1087446,
+          "tSec": 0.434,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1088181,
+          "tSec": 1.169,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 1089088,
+          "tSec": 2.076,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 5,
+        "modelCount": 3,
+        "matchedCount": 2,
+        "precision": 0.6666666666666666,
+        "recall": 0.4,
+        "actionCoverage": 0.5,
+        "allyDisclosedCount": 3,
+        "summonerDisclosedCount": 0
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Ezreal→LeeSin",
+      "earlyMaeHp": 579.815870547395,
+      "lateMaeHp": 1109,
+      "lateMaeDeltaVsBaseline": 828.7053543182938,
+      "maeHp": 703.8601392875831,
+      "lethalErrorSec": -12.791,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 1.645,
+      "skillMarks": 13,
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 210,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          1647365,
+          1649865
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 1631845,
+          "tSec": 2.48,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1632981,
+          "tSec": 3.616,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1635118,
+          "tSec": 5.753,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1636574,
+          "tSec": 7.209,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1637509,
+          "tSec": 8.144,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1637977,
+          "tSec": 8.612,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1639346,
+          "tSec": 9.981,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1640014,
+          "tSec": 10.649,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1640581,
+          "tSec": 11.216,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1642418,
+          "tSec": 13.053,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1645558,
+          "tSec": 16.193,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1646827,
+          "tSec": 17.462,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 1648831,
+          "tSec": 19.466,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 16,
+        "modelCount": 7,
+        "matchedCount": 4,
+        "precision": 0.5714285714285714,
+        "recall": 0.25,
+        "actionCoverage": 0.34782608695652173,
+        "allyDisclosedCount": 26,
+        "summonerDisclosedCount": 3
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Ezreal→LeeSin",
+      "earlyMaeHp": 3.3333333333333335,
+      "lateMaeHp": 240.53414848541368,
+      "lateMaeDeltaVsBaseline": -95.30948086424101,
+      "maeHp": 146.62249393958234,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 4.008,
+      "skillMarks": 1,
+      "method": "gate_action",
+      "modelEndHp": 161.85067954375893,
+      "actualEndHp": 210,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          1647365,
+          1649865
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 1648831,
+          "tSec": 5.812,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 3,
+        "modelCount": 5,
+        "matchedCount": 1,
+        "precision": 0.2,
+        "recall": 0.3333333333333333,
+        "actionCoverage": 0.25,
+        "allyDisclosedCount": 0,
+        "summonerDisclosedCount": 0
+      }
+    }
+  ],
+  "composite": 2.276235612749849,
+  "parts": {
+    "meanEarlyMae": 169.14664229365505,
+    "meanMae": 259.1556125554892,
+    "meanLethalAbs": 4.145333333333333,
+    "latePoisonPenalty": 0
+  },
+  "hardFails": [],
+  "shipChecklist": {
+    "A1_check02_full_early_idle": true,
+    "A2_check02_burst_lethal_pm2": true,
+    "A3_check01_burst_path_improved": true,
+    "A4_strict_lethal_01_02_full_burst": false,
+    "A5_check03_early_not_hurt": true,
+    "A6_poison_clear_prefer": true,
+    "A6_min_check03_burst_poison_clear": true,
+    "A7_late_mae_01_02_not_hurt": true,
+    "A8_hard_fails_clean": true,
+    "holdout_B_directionally": null,
+    "holdout_B_burst_lethal_pm2": null,
+    "holdout_B_check03_early_ok": null,
+    "details": {
+      "c01_full_lethal": -0.06700000000000017,
+      "c01_burst_lethal": null,
+      "c02_burst_lethal": -1.0070000000000001,
+      "c01_assist_full": 6,
+      "c01_modelEndHp_burst": 185.25584583333344,
+      "c03_burst_poison": false,
+      "lateMaeDelta_01": -162.7423669871796,
+      "lateMaeDelta_02": -15.685747039629746
+    }
+  },
+  "shipGateCandidate": false,
+  "shipGate": false,
+  "shipNotes": [
+    "A1 check02 full early MAE ≪ baseline",
+    "A2 check02 burst lethal ±2s",
+    "A3 check01 burst path improved",
+    "FAIL A4: strict lethal (need 01+02 full+burst kill ±2s)",
+    "A5 check03 early not hurt >50",
+    "A6 poison clear (all)",
+    "A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn)",
+    "A8 hard fails clean",
+    "holdout B not evaluated in this suite run"
+  ],
+  "baselineComposite": 3.518187689696021,
+  "keepCandidate": true,
+  "actionReplay": {
+    "meanActionCoverage": 0.44189958592132506,
+    "worstWindow": {
+      "check": 3,
+      "segment": "burst",
+      "actionCoverage": 0.25
+    },
+    "gate95": false,
+    "perWindow": [
+      {
+        "check": 1,
+        "segment": "full",
+        "matchup": "Camille→Leona",
+        "truthCount": 7,
+        "modelCount": 9,
+        "matchedCount": 5,
+        "precision": 0.5555555555555556,
+        "recall": 0.7142857142857143,
+        "actionCoverage": 0.6250000000000001
+      },
+      {
+        "check": 1,
+        "segment": "burst",
+        "matchup": "Camille→Leona",
+        "truthCount": 4,
+        "modelCount": 4,
+        "matchedCount": 2,
+        "precision": 0.5,
+        "recall": 0.5,
+        "actionCoverage": 0.5
+      },
+      {
+        "check": 2,
+        "segment": "full",
+        "matchup": "Syndra→Camille",
+        "truthCount": 9,
+        "modelCount": 5,
+        "matchedCount": 3,
+        "precision": 0.6,
+        "recall": 0.3333333333333333,
+        "actionCoverage": 0.42857142857142855
+      },
+      {
+        "check": 2,
+        "segment": "burst",
+        "matchup": "Syndra→Camille",
+        "truthCount": 5,
+        "modelCount": 3,
+        "matchedCount": 2,
+        "precision": 0.6666666666666666,
+        "recall": 0.4,
+        "actionCoverage": 0.5
+      },
+      {
+        "check": 3,
+        "segment": "full",
+        "matchup": "Ezreal→LeeSin",
+        "truthCount": 16,
+        "modelCount": 7,
+        "matchedCount": 4,
+        "precision": 0.5714285714285714,
+        "recall": 0.25,
+        "actionCoverage": 0.34782608695652173
+      },
+      {
+        "check": 3,
+        "segment": "burst",
+        "matchup": "Ezreal→LeeSin",
+        "truthCount": 3,
+        "modelCount": 5,
+        "matchedCount": 1,
+        "precision": 0.2,
+        "recall": 0.3333333333333333,
+        "actionCoverage": 0.25
+      }
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "reviewer": "V13",
+  "cycle": 3,
+  "role": "Reproducibility (digest + suite commands)",
+  "utc": "2026-07-24T16:00:30Z",
+  "cwd": "/Users/river/Projects/lol-strength-analysis",
+  "branch": "feat/fight-outcome-95-10x30x15",
+  "head": "e93d8b2",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.95,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "blocker": "GOAL §B/F: product fightAgreement ≪ 0.95 on Path1 S0 (FA 0.2279 / pass 0); R18 research 0.2414 NO product KEEP; not calibrated win odds",
+  "reproduce_commands": [
+    {
+      "from": "DIGEST.md Path1 validate",
+      "cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+      "exit": 0,
+      "result": "productPublication.ok=true; calculatorReady=true; calculatorReadyPolicy=living_post_seed_v1; livingOkSlots=14725/14725; ranksDensity=1.0; hpHoldAcrossRespawn=true"
+    },
+    {
+      "from": "DIGEST.md fingerprints",
+      "cmd": "sha256+bytes check on Path1 events+timeline",
+      "exit": 0,
+      "result": "events 114456779 sha256=823aa35f…0b9bf8 MATCH; timeline 9064216 sha256=fb542736…edc4fe4 MATCH"
+    },
+    {
+      "from": "V13 Cycle3 re-score S0 Path1 product (R05 eval)",
+      "cmd": "npx --yes tsx scripts/fight_agreement_suite.ts --suite-label S0 --from-eval docs/rofl-research/autoresearch/fight_outcome/r05/s0_eval_cusum.json --out-dir /tmp/v13_c3_fight_out --mark-selection cusum_engage_then_skills",
+      "exit": 0,
+      "result": "fightAgreement=0.2279 fightPassRate=0.0000 n=6 meetsThresholds=false (scorer label footgun match=2970110-g1 proxied — numeric FA matches R05 Path1 AUTHORITATIVE)"
+    },
+    {
+      "from": "R17 Send smoke (parent)",
+      "cmd": "npm run fo:send-smoke",
+      "exit": 0,
+      "result": "8 pass / 0 fail; criterionG sendOverlayParity+deadExcluded+knownFlags+path1Honesty+noOddsCopy all true"
+    },
+    {
+      "from": "R16 calc-parity smoke (parent)",
+      "cmd": "npm run smoke:calc-parity",
+      "exit": 0,
+      "result": "11/11 PASS including Path1 check01–03 Send↔harness pin parity + noOddsCopy"
+    }
+  ],
+  "npm_matrix": {
+    "DIGEST_validate_path1_living_post_seed": "PASS",
+    "DIGEST_fingerprints": "PASS",
+    "fight:agreement_S0_from_eval_r05_path1": "PASS_score_below_gate_FA_0.2279",
+    "fo:send-smoke": "PASS_8_of_8",
+    "smoke:calc-parity": "PASS_11_of_11"
+  },
+  "digest": {
+    "path1_validate": true,
+    "fingerprints_match": true,
+    "living_post_seed_v1": true,
+    "hold_forward_disclosed": true,
+    "hpHoldAcrossRespawn": true,
+    "sources_on_frames": "DIGEST e06 census + R01/R02 source-preserve",
+    "identity": "DIGEST pid↔champ↔RiotID↔netId table; never participant-order",
+    "second_host_2970110": "not digest-clean (combat honesty fail disclosed) — GOAL §D.4 prefer ≠ require",
+    "DIGEST_header_self_mark": "DIGEST.md still says digestCleanGate:false pending majority — circular pending cleared by personal §D affirm",
+    "digestCleanGate_vote_basis": "Personally affirm GOAL §D for ≥1 match (2970132 Path1); C2 6/15 re-judged true on same evidence + G smokes now parent-green"
+  },
+  "suite": {
+    "product_selector": "cusum_engage_then_skills",
+    "S0": {
+      "fightAgreement": 0.2279,
+      "fightPassRate": 0.0,
+      "n": 6,
+      "match_truth": "2970132-g1 Path1 (BRIEF authoritative 0.2279)",
+      "meetsThresholds": false,
+      "R18_research_best": 0.2414,
+      "R18_product_KEEP": false
+    },
+    "confidence_wording": "fightAgreement is kill-window suite agreement under GOAL §B — NOT win probability / odds % / calibrated posterior"
+  },
+  "honesty": {
+    "packetDecodeGate": true,
+    "calculatorReadyGate_path1": true,
+    "unfreeze_0_9683": true,
+    "criterionG_parent_smokes": true,
+    "pBlue_pRed": "model edge only — never odds %",
+    "R18_no_false_KEEP": true
+  },
+  "failures": [
+    "B: Path1 S0 product fightAgreement 0.2279 / pass 0.0 ≪ 0.95 (personally re-scored from r05 s0_eval_cusum)",
+    "F: Holdout required; no S0-alone claim; R18 S1 regress blocks KEEP",
+    "I: ≥11/15 fightOutcomeGate + parent e2e FA scripts would fail today"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle3/BRIEF.md",
+    "personal validate --product Path1 exit 0 + fingerprint MATCH (Cycle3)",
+    "npm run fo:send-smoke → 8/8; npm run smoke:calc-parity → 11/11",
+    "/tmp/v13_c3_fight_out/fight_agreement_S0.json FA 0.2279",
+    "docs/rofl-research/autoresearch/fight_outcome/r18/researcher_r18_summary.json"
+  ],
+  "notes": "Cycle3 V13 reproducibility: Path1 DIGEST validate + sha256/bytes personally green → digestCleanGate=true. G now personally green on parent (C2 fo:send-smoke was missing). Suite re-score FA 0.2279 still ≪ 0.95 → fightOutcomeGate=false on concrete B+F. R18 research 0.2414 correctly NO product KEEP. fightAgreement ≠ odds.",
+  "one_line_vote": "V13: digestCleanGate=true (Path1 validate+fingerprints); G proven (8/8+11/11); fightOutcomeGate=false (S0 FA 0.2279≪0.95)"
+}

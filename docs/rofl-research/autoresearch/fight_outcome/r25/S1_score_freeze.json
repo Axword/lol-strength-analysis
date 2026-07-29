@@ -1,0 +1,40 @@
+{
+  "schema": "fight-outcome-s1-score-freeze-v1",
+  "researcher": "r25",
+  "utc": "2026-07-24T16:04:00Z",
+  "tuneForbidden": true,
+  "tuned": false,
+  "markSelection": "cusum_engage_then_skills",
+  "dropFilter": false,
+  "productDefaults": {
+    "idleFollowActual": true,
+    "note": "R19 KEEP already merged into product; remesaure under current law"
+  },
+  "suite": "S1",
+  "match": "2970137-g1",
+  "harnessSuite": "2970137-g1-holdout",
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r25/s1_current_law.json",
+  "fightAgreement": 0.4169776331222436,
+  "fightPassRate": 0,
+  "n": 6,
+  "meetsThresholds": false,
+  "gateBar": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "vs_R19_S1_e4": {
+    "R19_claim": 0.4169776331222436,
+    "r25": 0.4169776331222436,
+    "delta": 0,
+    "note": "bit-match R19 idle-follow S1 score under current law"
+  },
+  "failingAudits": [
+    "audits/s1/S1_2970137-g1_c1_full.json",
+    "audits/s1/S1_2970137-g1_c1_burst.json",
+    "audits/s1/S1_2970137-g1_c2_full.json",
+    "audits/s1/S1_2970137-g1_c2_burst.json",
+    "audits/s1/S1_2970137-g1_c3_full.json",
+    "audits/s1/S1_2970137-g1_c3_burst.json"
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue%"
+}

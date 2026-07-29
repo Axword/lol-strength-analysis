@@ -1,0 +1,12 @@
+{
+  "tag": "e0",
+  "hyp": "R35-e0 product baseline R30 law",
+  "S0_FA": 0.5937715129268749,
+  "S0_pass": 0.3333333333333333,
+  "S1_FA": 0.5619564223174064,
+  "S1_pass": 0.3333333333333333,
+  "galio_killed": true,
+  "galio_lethErr": 2.6074444444444467,
+  "galio_marks": 2,
+  "galio_endHp": 0
+}

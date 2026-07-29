@@ -1,0 +1,44 @@
+{
+  "id": "E08",
+  "hypothesis": "F5H1+H3 Criterion table: honest KEEP vs echo REJECT",
+  "f5": "H1+H3",
+  "criteria": [
+    {
+      "name": "same_actor_kind_slot_tau",
+      "honest": true,
+      "echo": true,
+      "note": "Both can match timestamps; match rules alone insufficient"
+    },
+    {
+      "name": "shareHint_gt_0_from_PE_amount",
+      "honest": true,
+      "echo": false,
+      "note": "Echo shareHint=0 — forbid #13"
+    },
+    {
+      "name": "sourceNetId_resolved_on_truth",
+      "honest": true,
+      "echo": true,
+      "note": "Truth wire proof required for both; echo still fails model side"
+    },
+    {
+      "name": "gateEligible",
+      "honest": true,
+      "echo": false
+    },
+    {
+      "name": "counts_toward_actionReplayGate",
+      "honest": true,
+      "echo": false
+    },
+    {
+      "name": "counts_toward_fightAgreement_actionF1",
+      "honest": true,
+      "echo": false,
+      "note": "Echo forced to actionF1=0 in scorer join"
+    }
+  ],
+  "honestActionCoverage": 1,
+  "echoActionCoverage": 1,
+  "keep": true
+}

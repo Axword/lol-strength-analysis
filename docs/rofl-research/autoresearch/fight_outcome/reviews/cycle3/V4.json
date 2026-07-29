@@ -1,0 +1,59 @@
+{
+  "reviewer": "V4",
+  "role": "Unfreeze 0.9683 auditor",
+  "cycle": 3,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:00:30Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "unfreeze_audit": {
+    "baselineComposite": 0.9683,
+    "best_json_composite_now": 0.9683,
+    "unfrozenFromComposite_present": false,
+    "best_json_sha1": "0c51733e0657e2c8e5a378799560c8f951b5f29b",
+    "best_json_rewritten_this_cycle": false,
+    "product_default_still": "cusum_engage_then_skills",
+    "r18": {
+      "verdict": "NO_KEEP",
+      "research_best_FA": 0.24136621085367857,
+      "product_FA_unchanged": 0.2279317568764,
+      "keeps": [],
+      "S1_regresses": true,
+      "best_json_updated": false
+    },
+    "prior_correct_no_keep": ["R07", "R08", "R09", "R10", "R12"],
+    "r14_not_best_rewrite": true
+  },
+  "evidence": [
+    "C specialty: unfreeze_0_9683 authorized; best.json composite 0.9683; unfrozenFromComposite absent; sha1 0c51733e… / mtime Jul 23 19:33 unchanged through R18.",
+    "R18 path1-lethal: research e11 FA 0.2414; product path still 0.2279; keeps=[]; honest refuse product KEEP on S1 regress — Criterion C process compliant.",
+    "R07/R08/R09/R10/R12 still no FA-beating best.json KEEP (C2 audit stands).",
+    "Product selectors remain non-drop cusum/post_engage; near_hp_drop research-only.",
+    "B FAIL: Path1 product FA 0.2279 ≪ 0.95; research 0.2414 also ≪ 0.95 and not KEEP.",
+    "D re-judge: Path1 validate+hashes personally green → §D affirm ≥1 match; digestCleanGate=true (2970110 prefer≠require).",
+    "G AFFIRM: R16 11/11 + R17 8/8 smokes; STATUS.criterionG_proven=true.",
+    "STATUS: best_fightAgreement=0.2279; best_fightAgreement_research=0.2414; fightOutcomeGate=false."
+  ],
+  "failures": [
+    "B: No FA-improving product KEEP; Path1 product FA 0.2279 ≪ 0.95.",
+    "F: S1 unmet; R18 e11 regresses holdout.",
+    "I: FO majority+e2e not satisfied."
+  ],
+  "notes": "Affirm Criterion C: 0.9683 history preserved; R18 correctly NO product KEEP despite +0.013 research. Re-judge digestClean=true on personal §D. FO false on B/F/I. G proven. FA≠odds.",
+  "one_line_vote": "V4: fightOutcomeGate=false digestCleanGate=true — C history OK (R18 NO KEEP); Path1 FA 0.2279≪0.95; G=true."
+}

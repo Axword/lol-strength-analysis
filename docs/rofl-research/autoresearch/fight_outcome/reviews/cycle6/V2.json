@@ -1,0 +1,19 @@
+{
+  "reviewer": "V2",
+  "role": "digestCleanGate auditor",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "evidence": [
+    "GOAL §D.1–7 REAFFIRM digestCleanGate=true for ≥1 match (2970132 Path1); C3–C5 majority stands; BRIEF: reaffirm or dissent with concrete §D failure only — none found this cycle.",
+    "R32/R34/R35/R36/R38 KEEP/audits orthogonal to §D (metric / kit / mark process); digest not regressed by wave2 merges.",
+    "BRIEF: verified S0 FA 0.6021 (R35); claimed ~0.72 pending compound remesaure — neither lifts FO; G proven; DC already true.",
+    "2970110 second host still prefer≠require under §D.4 — disclosed; not a digestCleanGate blocker."
+  ],
+  "failures": [
+    "fightOutcomeGate: criterion B unmet (verified S0 FA 0.6021 ≪ 0.95; claimed ~0.72 also ≪ 0.95).",
+    "F: S1 ~0.56–0.58 holdout unmet.",
+    "I: FO majority+e2e not met while B fails."
+  ],
+  "notes": "V2 C6 specialty §D: REAFFIRM digestCleanGate=true. No concrete §D failure to dissent. fightOutcomeGate false on B (and F), not on digest cleanliness. G proven. FA≠odds."
+}

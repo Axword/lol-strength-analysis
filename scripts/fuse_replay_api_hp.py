@@ -44,13 +44,30 @@ from rofl2_packet_decrypt_probe import DecryptError, extract_hp_snapshot_from_ev
 HEALTH_SOURCE = "rofl2_replication_decrypt"
 TRUSTED_HEALTH_SOURCE = "rofl2_replication_decrypt_timed_identity_bound"
 TRUSTED_EVIDENCE_SCHEMA = "rofl-trusted-hp-v1"
+TRUSTED_EVIDENCE_SCHEMA_PERHERO = "rofl-trusted-hp-v1-perhero"
+TRUSTED_EVIDENCE_SCHEMAS = frozenset(
+    {TRUSTED_EVIDENCE_SCHEMA, TRUSTED_EVIDENCE_SCHEMA_PERHERO}
+)
 TRUSTED_EVIDENCE_MODE = "timed_identity_bound"
+TRUSTED_EVIDENCE_MODE_PERHERO = "timed_identity_bound_per_hero"
 TRUSTED_BINDING_METHOD = "stable_identity_to_net_id"
 MAX_PRODUCT_TIME_TOLERANCE_MS = 500
+MIN_PERHERO_SAMPLES = 2
 ABILITY_RANKS_SOURCE = "unavailable"
 DEFAULT_COMBAT_STATS_SOURCE = "unavailable"
 STATIC_SNAPSHOT_SOURCE_KIND = "research_static_hp_snapshot"
 TIMED_RESEARCH_SOURCE_KIND = "research_timed_hp_createhero_order"
+# Path 1: after a PE-proven seed, hold last trusted HP forward.
+# Death suppresses known on the dead frame but does not wipe held_state —
+# respawn restores hold from the last PE seed (mirror combat hold-extend).
+HP_SOURCE_PE = "pe"
+HP_SOURCE_EXPLICIT = "explicit"
+HP_SOURCE_HOLD_FORWARD = "hold_forward"
+HP_HOLD_FORWARD_POLICY = "until_next_seed_keep_across_death_respawn_restores"
+HP_HOLD_FORWARD_POLICY_LEGACY_CLEAR_ON_DEATH = "until_next_seed_or_end_of_continuous_alive_segment"
+HP_COVERAGE_HOLD = "known_hold_forward"
+HP_COVERAGE_PARTIAL_HOLD = "partial_known_with_hold_forward"
+HP_COVERAGE_FULL_HOLD = "known_with_hold_forward"
 COMBAT_FIELDS = (
     "attackDamage",
     "abilityPower",
@@ -238,18 +255,43 @@ def backfill_game_info_identities_from_manifest(
     return out
 
 
+def _is_perhero_sample(sample: Mapping[str, Any]) -> bool:
+    """Flat per-hero sample: timed netId+HP without an all-10 units[] vector."""
+    if "units" in sample:
+        return False
+    return sample.get("netId") is not None and (
+        sample.get("mMaxHP") is not None or sample.get("mHP") is not None
+    )
+
+
+def _evidence_is_perhero(hp_evidence: Mapping[str, Any]) -> bool:
+    schema = str(hp_evidence.get("schema") or "")
+    if schema == TRUSTED_EVIDENCE_SCHEMA_PERHERO:
+        return True
+    if schema == TRUSTED_EVIDENCE_SCHEMA:
+        return False
+    samples = hp_evidence.get("samples")
+    if isinstance(samples, list) and samples:
+        return all(
+            isinstance(sample, Mapping) and _is_perhero_sample(sample)
+            for sample in samples
+        )
+    return False
+
+
 def align_hp_samples_to_stats_frames(
     samples: Sequence[Mapping[str, Any]],
     frame_times_ms: Sequence[int],
     *,
     max_delta_ms: int = MAX_PRODUCT_TIME_TOLERANCE_MS,
+    perhero: bool = False,
 ) -> List[dict]:
     """Snap decrypt sample times onto Replay API 1Hz frame times within tolerance."""
     if not frame_times_ms:
         raise DecryptError("cannot align HP samples without stats_update frame times")
     frames = sorted({int(t) for t in frame_times_ms})
     aligned: List[dict] = []
-    used: set[int] = set()
+    used: set[Any] = set()
     for index, raw in enumerate(samples):
         sample = dict(_object(raw, f"HP sample[{index}]"))
         try:
@@ -260,9 +302,19 @@ def align_hp_samples_to_stats_frames(
         delta = abs(nearest - source_t)
         if delta > int(max_delta_ms):
             continue
-        if nearest in used:
-            continue
-        used.add(nearest)
+        if perhero:
+            try:
+                net_id = int(sample.get("netId"))
+            except (TypeError, ValueError):
+                raise DecryptError(f"HP sample[{index}] missing netId") from None
+            key: Any = (net_id, nearest)
+            if key in used:
+                continue
+            used.add(key)
+        else:
+            if nearest in used:
+                continue
+            used.add(nearest)
         sample["gameTimeMs"] = nearest
         sample["alignment"] = {
             "sourceGameTimeMs": source_t,
@@ -270,7 +322,17 @@ def align_hp_samples_to_stats_frames(
             "deltaMs": delta,
         }
         aligned.append(sample)
-    if len(aligned) < 2:
+    if perhero:
+        by_net: Dict[int, int] = {}
+        for sample in aligned:
+            net_id = int(sample["netId"])
+            by_net[net_id] = by_net.get(net_id, 0) + 1
+        if len(by_net) < 10 or any(count < MIN_PERHERO_SAMPLES for count in by_net.values()):
+            raise DecryptError(
+                "per-hero HP evidence needs ≥2 frame-aligned explicit samples "
+                f"for each of 10 netIds (got {sorted(by_net.items())})"
+            )
+    elif len(aligned) < 2:
         raise DecryptError(
             "fewer than two HP samples align to Replay API frames within tolerance"
         )
@@ -450,10 +512,16 @@ def _validate_product_sources(
     if set(manifest_identities) != set(stream_identities):
         raise DecryptError("canonical roster identities do not match replay manifest")
 
-    if hp_evidence.get("schema") != TRUSTED_EVIDENCE_SCHEMA:
+    if hp_evidence.get("schema") not in TRUSTED_EVIDENCE_SCHEMAS:
         raise DecryptError(
-            f"HP evidence schema must be {TRUSTED_EVIDENCE_SCHEMA!r}"
+            f"HP evidence schema must be one of {sorted(TRUSTED_EVIDENCE_SCHEMAS)}"
         )
+    perhero = _evidence_is_perhero(hp_evidence)
+    if perhero and hp_evidence.get("schema") not in (
+        TRUSTED_EVIDENCE_SCHEMA_PERHERO,
+        TRUSTED_EVIDENCE_SCHEMA,
+    ):
+        raise DecryptError("per-hero HP evidence requires a trusted product schema")
     hp_provenance = _object(hp_evidence.get("provenance"), "HP evidence provenance")
     if hp_provenance.get("sourceKind") != TRUSTED_HEALTH_SOURCE:
         raise DecryptError("HP evidence sourceKind is not timed identity-bound decrypt")
@@ -526,33 +594,31 @@ def _validate_product_sources(
     if not isinstance(raw_samples, list) or len(raw_samples) < 2:
         raise DecryptError("product HP evidence requires at least two timed samples")
     samples: List[dict[str, Any]] = []
-    seen_times: set[int] = set()
-    for sample_index, raw_sample in enumerate(raw_samples):
-        sample = _object(raw_sample, f"HP sample[{sample_index}]")
-        try:
-            game_time_ms = int(sample.get("gameTimeMs"))
-        except (TypeError, ValueError):
-            raise DecryptError(f"HP sample[{sample_index}] is untimed") from None
-        if game_time_ms < 0 or game_time_ms in seen_times:
-            raise DecryptError("HP sample times must be unique non-negative replay times")
-        seen_times.add(game_time_ms)
-        raw_units = sample.get("units")
-        if not isinstance(raw_units, list) or len(raw_units) != 10:
-            raise DecryptError(f"HP sample[{sample_index}] must contain 10 bound units")
-        by_net: Dict[int, Tuple[float, float]] = {}
-        for unit_index, raw_unit in enumerate(raw_units):
-            unit = _object(raw_unit, f"HP sample[{sample_index}].units[{unit_index}]")
+    if perhero:
+        by_net_counts: Dict[int, int] = {net_id: 0 for net_id in net_ids}
+        seen_keys: set[Tuple[int, int]] = set()
+        for sample_index, raw_sample in enumerate(raw_samples):
+            sample = _object(raw_sample, f"HP sample[{sample_index}]")
+            if not _is_perhero_sample(sample):
+                raise DecryptError(
+                    f"HP sample[{sample_index}] must be a flat per-hero timed sample"
+                )
             try:
-                net_id = int(unit.get("netId"))
-                hp = float(unit.get("mHP"))
-                hp_max = float(unit.get("mMaxHP"))
+                game_time_ms = int(sample.get("gameTimeMs"))
+                net_id = int(sample.get("netId"))
+                hp = float(sample.get("mHP"))
+                hp_max = float(sample.get("mMaxHP"))
             except (TypeError, ValueError):
-                raise DecryptError("HP sample has invalid netId/mHP/mMaxHP") from None
-            if unit.get("mMaxHPExplicit") is not True:
+                raise DecryptError(
+                    f"HP sample[{sample_index}] has invalid netId/mHP/mMaxHP/time"
+                ) from None
+            if sample.get("mMaxHPExplicit") is not True:
                 raise DecryptError("product HP sample requires explicit mMaxHP evidence")
+            key = (net_id, game_time_ms)
             if (
-                net_id not in net_ids
-                or net_id in by_net
+                game_time_ms < 0
+                or key in seen_keys
+                or net_id not in net_ids
                 or not math.isfinite(hp)
                 or not math.isfinite(hp_max)
                 or hp < 0
@@ -562,11 +628,64 @@ def _validate_product_sources(
                 raise DecryptError(
                     f"HP sample has invalid/unbound values netId={net_id}: {hp}/{hp_max}"
                 )
-            by_net[net_id] = (hp, hp_max)
-        if set(by_net) != net_ids:
-            raise DecryptError("HP sample netIds do not exactly match validated binding")
-        samples.append({"gameTimeMs": game_time_ms, "byNetId": by_net})
-    samples.sort(key=lambda sample: sample["gameTimeMs"])
+            seen_keys.add(key)
+            by_net_counts[net_id] = by_net_counts.get(net_id, 0) + 1
+            samples.append(
+                {
+                    "gameTimeMs": game_time_ms,
+                    "netId": net_id,
+                    "mHP": hp,
+                    "mMaxHP": hp_max,
+                }
+            )
+        if any(count < MIN_PERHERO_SAMPLES for count in by_net_counts.values()):
+            raise DecryptError(
+                "per-hero product HP evidence requires ≥2 explicit timed samples "
+                f"per bound netId (counts={sorted(by_net_counts.items())})"
+            )
+        samples.sort(key=lambda sample: (sample["gameTimeMs"], sample["netId"]))
+    else:
+        seen_times: set[int] = set()
+        for sample_index, raw_sample in enumerate(raw_samples):
+            sample = _object(raw_sample, f"HP sample[{sample_index}]")
+            try:
+                game_time_ms = int(sample.get("gameTimeMs"))
+            except (TypeError, ValueError):
+                raise DecryptError(f"HP sample[{sample_index}] is untimed") from None
+            if game_time_ms < 0 or game_time_ms in seen_times:
+                raise DecryptError("HP sample times must be unique non-negative replay times")
+            seen_times.add(game_time_ms)
+            raw_units = sample.get("units")
+            if not isinstance(raw_units, list) or len(raw_units) != 10:
+                raise DecryptError(f"HP sample[{sample_index}] must contain 10 bound units")
+            by_net: Dict[int, Tuple[float, float]] = {}
+            for unit_index, raw_unit in enumerate(raw_units):
+                unit = _object(raw_unit, f"HP sample[{sample_index}].units[{unit_index}]")
+                try:
+                    net_id = int(unit.get("netId"))
+                    hp = float(unit.get("mHP"))
+                    hp_max = float(unit.get("mMaxHP"))
+                except (TypeError, ValueError):
+                    raise DecryptError("HP sample has invalid netId/mHP/mMaxHP") from None
+                if unit.get("mMaxHPExplicit") is not True:
+                    raise DecryptError("product HP sample requires explicit mMaxHP evidence")
+                if (
+                    net_id not in net_ids
+                    or net_id in by_net
+                    or not math.isfinite(hp)
+                    or not math.isfinite(hp_max)
+                    or hp < 0
+                    or hp_max <= 100
+                    or hp > hp_max
+                ):
+                    raise DecryptError(
+                        f"HP sample has invalid/unbound values netId={net_id}: {hp}/{hp_max}"
+                    )
+                by_net[net_id] = (hp, hp_max)
+            if set(by_net) != net_ids:
+                raise DecryptError("HP sample netIds do not exactly match validated binding")
+            samples.append({"gameTimeMs": game_time_ms, "byNetId": by_net})
+        samples.sort(key=lambda sample: sample["gameTimeMs"])
     return (
         coverage,
         game_info,
@@ -575,6 +694,8 @@ def _validate_product_sources(
         pid_to_roster_label,
         samples,
         tolerance_ms,
+        perhero,
+        str(hp_evidence.get("schema")),
     )
 
 
@@ -686,16 +807,236 @@ def _nearest_hp(
     return best
 
 
+def _participant_alive(participant: Mapping[str, Any]) -> bool:
+    if "alive" not in participant:
+        return True
+    return bool(participant.get("alive"))
+
+
+def _stamp_seed_provenance(participant: dict) -> None:
+    """Disclose PE/explicit seed (not hold-forward)."""
+    participant.setdefault("hpSource", HP_SOURCE_PE)
+    participant["hpHoldForward"] = False
+
+
+def apply_hp_hold_forward(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    policy: str = HP_HOLD_FORWARD_POLICY,
+) -> tuple[List[dict], dict[str, Any]]:
+    """Hold last PE-proven HP forward per pid/netId.
+
+    Default policy (across death): once a pid has ≥1 PE seed, keep last HP/maxHp
+    across death; dead frames stay unknown; respawn restores hold_forward from
+    the last PE seed. Never invents a first seed / pre-seed stays unknown.
+
+    Legacy policy ``HP_HOLD_FORWARD_POLICY_LEGACY_CLEAR_ON_DEATH`` wipes held
+    state on death/respawn (prior Path1 behavior).
+    """
+    supported = {
+        HP_HOLD_FORWARD_POLICY,
+        HP_HOLD_FORWARD_POLICY_LEGACY_CLEAR_ON_DEATH,
+    }
+    if policy not in supported:
+        raise DecryptError(f"unsupported HP hold-forward policy: {policy!r}")
+    clear_on_death = policy == HP_HOLD_FORWARD_POLICY_LEGACY_CLEAR_ON_DEATH
+
+    out: List[dict] = []
+    # pid -> last trusted seed/hold state (kept across death unless legacy)
+    held: Dict[int, dict[str, Any]] = {}
+    prev_alive: Dict[int, bool] = {}
+    seed_rows = 0
+    hold_rows = 0
+    cleared_death = 0
+    cleared_respawn_gap = 0
+    suppressed_dead = 0
+
+    for original in rows:
+        if original.get("rfc461Schema") != "stats_update":
+            out.append(dict(original))
+            continue
+
+        frame_time = int(original.get("gameTime") or 0)
+        participants: List[dict] = []
+        known_net_ids: List[int] = []
+        seed_net_ids: List[int] = []
+        hold_net_ids: List[int] = []
+
+        for raw in original.get("participants") or []:
+            participant = dict(raw)
+            pid = int(participant["participantID"])
+            alive = _participant_alive(participant)
+            was_alive = prev_alive.get(pid)
+            is_seed = (
+                participant.get("healthSource") == TRUSTED_HEALTH_SOURCE
+                and participant.get("hpHoldForward") is not True
+                and "health" in participant
+                and "healthMax" in participant
+            )
+
+            if clear_on_death:
+                if was_alive is True and not alive:
+                    # Legacy: wipe hold on death.
+                    if pid in held:
+                        cleared_death += 1
+                    held.pop(pid, None)
+                elif was_alive is False and alive and not is_seed:
+                    if pid in held:
+                        cleared_respawn_gap += 1
+                    held.pop(pid, None)
+            elif not alive and not is_seed:
+                # Across-death: suppress known on dead frames; keep held_state.
+                if pid in held:
+                    suppressed_dead += 1
+                for key in (
+                    "health",
+                    "healthMax",
+                    "healthSampleGameTimeMs",
+                    "healthNetId",
+                    "healthIdentityKey",
+                    "healthTimeToleranceMs",
+                ):
+                    participant.pop(key, None)
+                participant["healthSource"] = "unavailable_replay_api"
+                participant["hpHoldForward"] = False
+                participant.pop("hpSource", None)
+                participants.append(participant)
+                prev_alive[pid] = alive
+                continue
+
+            if is_seed:
+                _stamp_seed_provenance(participant)
+                held[pid] = {
+                    "health": float(participant["health"]),
+                    "healthMax": float(participant["healthMax"]),
+                    "healthSampleGameTimeMs": int(
+                        participant.get("healthSampleGameTimeMs") or frame_time
+                    ),
+                    "healthNetId": participant.get("healthNetId"),
+                    "healthIdentityKey": participant.get("healthIdentityKey"),
+                    "healthIdentityBinding": participant.get(
+                        "healthIdentityBinding", TRUSTED_BINDING_METHOD
+                    ),
+                    "mMaxHPExplicit": bool(participant.get("mMaxHPExplicit")),
+                    "healthMaxEvidence": participant.get(
+                        "healthMaxEvidence", "explicit_mMaxHP"
+                    ),
+                }
+                seed_rows += 1
+                seed_net_ids.append(int(participant.get("healthNetId") or 0))
+                known_net_ids.append(int(participant.get("healthNetId") or 0))
+                participants.append(participant)
+                prev_alive[pid] = alive
+                continue
+
+            # Across-death: resume hold on any alive frame after a seed
+            # (including post-respawn). Legacy clear-on-death still requires a
+            # continuous alive segment (was_alive is not False).
+            continuous_ok = (was_alive is not False) if clear_on_death else True
+            if (
+                alive
+                and pid in held
+                and continuous_ok
+                and participant.get("healthSource")
+                in (
+                    None,
+                    "unavailable_replay_api",
+                    "unavailable",
+                    "unknown",
+                )
+            ):
+                state = held[pid]
+                seed_time = int(state["healthSampleGameTimeMs"])
+                participant["health"] = float(state["health"])
+                participant["healthMax"] = float(state["healthMax"])
+                participant["healthSource"] = TRUSTED_HEALTH_SOURCE
+                participant["healthCoverage"] = HP_COVERAGE_HOLD
+                participant["healthSampleGameTimeMs"] = seed_time
+                participant["healthSampleDeltaMs"] = abs(frame_time - seed_time)
+                participant["healthNetId"] = state["healthNetId"]
+                participant["healthIdentityKey"] = state["healthIdentityKey"]
+                participant["healthIdentityBinding"] = state["healthIdentityBinding"]
+                participant["healthMaxEvidence"] = state["healthMaxEvidence"]
+                participant["mMaxHPExplicit"] = state["mMaxHPExplicit"]
+                participant["hpSource"] = HP_SOURCE_HOLD_FORWARD
+                participant["hpHoldForward"] = True
+                participant["combatStatsSource"] = participant.get(
+                    "combatStatsSource", "unavailable_replay_api"
+                )
+                participant["abilityRanksSource"] = participant.get(
+                    "abilityRanksSource", "unavailable_replay_api"
+                )
+                hold_rows += 1
+                hold_net_ids.append(int(state["healthNetId"] or 0))
+                known_net_ids.append(int(state["healthNetId"] or 0))
+                participants.append(participant)
+                prev_alive[pid] = alive
+                continue
+
+            # Unknown / pre-seed: do not invent. Legacy may still see dead rows
+            # here after wipe; across-death dead rows already continued above.
+            if clear_on_death and not alive:
+                held.pop(pid, None)
+            participants.append(participant)
+            prev_alive[pid] = alive
+
+        fused_frame = dict(original)
+        fused_frame["participants"] = participants
+        evidence = dict(original.get("hpEvidence") or {})
+        evidence["source"] = evidence.get("source") or TRUSTED_HEALTH_SOURCE
+        evidence["holdForwardPolicy"] = policy
+        n_known = len([n for n in known_net_ids if n])
+        n_parts = len(participants)
+        if n_known == 0:
+            evidence["coverage"] = evidence.get("coverage") or "unknown_no_aligned_sample"
+        elif n_known == n_parts:
+            if hold_net_ids:
+                evidence["coverage"] = HP_COVERAGE_FULL_HOLD
+            else:
+                evidence["coverage"] = "known_at_sampled_frame"
+        else:
+            if hold_net_ids:
+                evidence["coverage"] = HP_COVERAGE_PARTIAL_HOLD
+            else:
+                evidence["coverage"] = "partial_known_at_sampled_frame"
+        if known_net_ids:
+            evidence["knownNetIds"] = [n for n in known_net_ids if n]
+            evidence["knownParticipantCount"] = n_known
+            evidence["seedNetIds"] = [n for n in seed_net_ids if n]
+            evidence["holdForwardNetIds"] = [n for n in hold_net_ids if n]
+        fused_frame["hpEvidence"] = evidence
+        out.append(fused_frame)
+
+    stats = {
+        "holdForwardUsed": hold_rows > 0,
+        "holdForwardPolicy": policy,
+        "holdAcrossRespawn": not clear_on_death,
+        "seedParticipantRows": seed_rows,
+        "holdForwardParticipantRows": hold_rows,
+        "clearedOnDeath": cleared_death,
+        "clearedOnRespawnGap": cleared_respawn_gap,
+        "suppressedDeadFrames": suppressed_dead,
+    }
+    return out, stats
+
+
 def fuse_product(
     rows: Sequence[Mapping[str, Any]],
     *,
     replay_manifest: Mapping[str, Any],
     hp_evidence: Mapping[str, Any],
     time_tolerance_ms: Optional[int] = None,
+    hold_forward: Optional[bool] = None,
 ) -> tuple[List[dict], dict[str, Any]]:
     """Fuse only timed, same-match, identity-bound Replication HP evidence."""
     working_rows = backfill_game_info_identities_from_manifest(rows, replay_manifest)
     evidence = dict(hp_evidence)
+    perhero_requested = _evidence_is_perhero(evidence)
+    evidence_hold = (evidence.get("provenance") or {}).get("hpHoldForward")
+    if hold_forward is None:
+        hold_forward = evidence_hold is True
+    else:
+        hold_forward = bool(hold_forward)
     frame_times = [
         int(row.get("gameTime") or 0)
         for row in working_rows
@@ -714,6 +1055,7 @@ def fuse_product(
         list(evidence.get("samples") or []),
         frame_times,
         max_delta_ms=MAX_PRODUCT_TIME_TOLERANCE_MS,
+        perhero=perhero_requested,
     )
     timing["toleranceMs"] = evidence_tol
     timing["unit"] = timing.get("unit") or "milliseconds"
@@ -722,6 +1064,9 @@ def fuse_product(
         "Replication decrypt times snapped to nearest Replay API 1Hz frame "
         f"within {MAX_PRODUCT_TIME_TOLERANCE_MS}ms"
     )
+    if perhero_requested:
+        timing["simultaneousAll10Required"] = False
+        timing["sampleModel"] = "per_hero_explicit_mMaxHP_timed_fuse_le500ms"
     evidence["timing"] = timing
     (
         coverage,
@@ -731,6 +1076,8 @@ def fuse_product(
         pid_to_roster_label,
         samples,
         evidence_tolerance,
+        perhero,
+        evidence_schema,
     ) = _validate_product_sources(working_rows, replay_manifest, evidence)
     tolerance_ms = evidence_tolerance
     if time_tolerance_ms is not None:
@@ -782,8 +1129,6 @@ def fuse_product(
     def _apply_roster_labels(participant: Mapping[str, Any], pid: int) -> dict:
         fused = dict(participant)
         labels = pid_to_roster_label[pid]
-        # Capture frames can scramble championName/playerName onto the wrong
-        # participantID while HP still binds correctly by identity→pid→netId.
         fused["championName"] = labels["championName"]
         fused["playerName"] = labels["playerName"]
         fused["summonerName"] = labels["fullRiotId"]
@@ -798,7 +1143,14 @@ def fuse_product(
     out: List[dict] = []
     fused_frames = 0
     fused_rows = 0
-    sample_times_used: set[int] = set()
+    sample_times_used: set[Any] = set()
+    samples_by_net: Dict[int, List[dict[str, Any]]] = {}
+    if perhero:
+        for sample in samples:
+            samples_by_net.setdefault(int(sample["netId"]), []).append(sample)
+        for net_samples in samples_by_net.values():
+            net_samples.sort(key=lambda sample: int(sample["gameTimeMs"]))
+
     for original in working_rows:
         if original.get("rfc461Schema") == "rofl_coverage":
             out.append(dict(original))
@@ -816,6 +1168,83 @@ def fuse_product(
             out.append(dict(original))
             continue
         frame_time = int(original.get("gameTime") or 0)
+
+        if perhero:
+            participants = []
+            known_net_ids: List[int] = []
+            for participant in original.get("participants") or []:
+                pid = int(participant["participantID"])
+                net_id = pid_to_net[pid]
+                fused = _apply_roster_labels(participant, pid)
+                candidates = [
+                    sample
+                    for sample in samples_by_net.get(net_id, [])
+                    if (net_id, int(sample["gameTimeMs"])) not in sample_times_used
+                    and abs(int(sample["gameTimeMs"]) - frame_time) <= tolerance_ms
+                ]
+                if not candidates:
+                    participants.append(fused)
+                    continue
+                nearest = min(
+                    candidates,
+                    key=lambda sample: abs(int(sample["gameTimeMs"]) - frame_time),
+                )
+                sample_time = int(nearest["gameTimeMs"])
+                delta_ms = abs(sample_time - frame_time)
+                sample_times_used.add((net_id, sample_time))
+                fused["health"] = float(nearest["mHP"])
+                fused["healthMax"] = float(nearest["mMaxHP"])
+                fused["healthSource"] = TRUSTED_HEALTH_SOURCE
+                fused["healthCoverage"] = "known_at_sampled_frame"
+                fused["healthSampleGameTimeMs"] = sample_time
+                fused["healthSampleDeltaMs"] = delta_ms
+                fused["healthNetId"] = net_id
+                fused["healthIdentityKey"] = pid_to_identity[pid]
+                fused["healthIdentityBinding"] = TRUSTED_BINDING_METHOD
+                fused["healthMaxEvidence"] = "explicit_mMaxHP"
+                fused["mMaxHPExplicit"] = True
+                fused["hpSource"] = HP_SOURCE_PE
+                fused["hpHoldForward"] = False
+                fused["combatStatsSource"] = "unavailable_replay_api"
+                fused["abilityRanksSource"] = "unavailable_replay_api"
+                participants.append(fused)
+                known_net_ids.append(net_id)
+                fused_rows += 1
+            fused_frame = dict(original)
+            fused_frame["participants"] = participants
+            if not known_net_ids:
+                nearest_overall = min(
+                    samples,
+                    key=lambda sample: abs(int(sample["gameTimeMs"]) - frame_time),
+                )
+                sample_time = int(nearest_overall["gameTimeMs"])
+                fused_frame["hpEvidence"] = {
+                    "source": TRUSTED_HEALTH_SOURCE,
+                    "coverage": "unknown_no_aligned_sample",
+                    "nearestSampleGameTimeMs": sample_time,
+                    "nearestSampleDeltaMs": abs(sample_time - frame_time),
+                    "timeToleranceMs": tolerance_ms,
+                }
+            elif len(known_net_ids) == 10:
+                fused_frame["hpEvidence"] = {
+                    "source": TRUSTED_HEALTH_SOURCE,
+                    "coverage": "known_at_sampled_frame",
+                    "knownNetIds": known_net_ids,
+                    "timeToleranceMs": tolerance_ms,
+                }
+                fused_frames += 1
+            else:
+                fused_frame["hpEvidence"] = {
+                    "source": TRUSTED_HEALTH_SOURCE,
+                    "coverage": "partial_known_at_sampled_frame",
+                    "knownNetIds": known_net_ids,
+                    "knownParticipantCount": len(known_net_ids),
+                    "timeToleranceMs": tolerance_ms,
+                }
+                fused_frames += 1
+            out.append(fused_frame)
+            continue
+
         nearest_overall = min(
             samples,
             key=lambda sample: abs(int(sample["gameTimeMs"]) - frame_time),
@@ -865,7 +1294,8 @@ def fuse_product(
             fused["healthIdentityBinding"] = TRUSTED_BINDING_METHOD
             fused["healthMaxEvidence"] = "explicit_mMaxHP"
             fused["mMaxHPExplicit"] = True
-            # HP proves neither combat stats nor ability ranks.
+            fused["hpSource"] = HP_SOURCE_PE
+            fused["hpHoldForward"] = False
             fused["combatStatsSource"] = "unavailable_replay_api"
             fused["abilityRanksSource"] = "unavailable_replay_api"
             participants.append(fused)
@@ -884,7 +1314,39 @@ def fuse_product(
 
     if fused_frames == 0:
         raise DecryptError("no canonical frame aligned to trusted HP samples")
-    hp_coverage = "full" if fused_frames == len(stats) else "partial"
+
+    hold_stats: dict[str, Any] = {
+        "holdForwardUsed": False,
+        "holdForwardPolicy": None,
+        "seedParticipantRows": fused_rows,
+        "holdForwardParticipantRows": 0,
+        "clearedOnDeath": 0,
+        "clearedOnRespawnGap": 0,
+    }
+    if hold_forward:
+        out, hold_stats = apply_hp_hold_forward(out, policy=HP_HOLD_FORWARD_POLICY)
+        # Recount known participant rows after hold-forward.
+        fused_rows = 0
+        fused_frames = 0
+        for row in out:
+            if row.get("rfc461Schema") != "stats_update":
+                continue
+            known = [
+                p
+                for p in (row.get("participants") or [])
+                if p.get("healthSource") == TRUSTED_HEALTH_SOURCE
+            ]
+            fused_rows += len(known)
+            if known:
+                fused_frames += 1
+
+    total_rows = len(stats) * 10
+    if perhero or hold_forward:
+        # Hold-forward (and per-hero) can leave death/respawn gaps inside otherwise
+        # covered frames — coverage is full only when every participant row is known.
+        hp_coverage = "full" if fused_rows == total_rows else "partial"
+    else:
+        hp_coverage = "full" if fused_frames == len(stats) else "partial"
     evidence_sha = hashlib.sha256(
         json.dumps(
             evidence,
@@ -893,11 +1355,14 @@ def fuse_product(
         ).encode("utf-8")
     ).hexdigest()
     product_provenance = dict(coverage.get("provenance") or {})
+    evidence_mode = (
+        TRUSTED_EVIDENCE_MODE_PERHERO if perhero else TRUSTED_EVIDENCE_MODE
+    )
     product_provenance.update(
         {
             "hpCoverage": hp_coverage,
-            "hpEvidenceMode": TRUSTED_EVIDENCE_MODE,
-            "hpEvidenceSchema": TRUSTED_EVIDENCE_SCHEMA,
+            "hpEvidenceMode": evidence_mode,
+            "hpEvidenceSchema": evidence_schema,
             "hpEvidenceSource": TRUSTED_HEALTH_SOURCE,
             "hpEvidenceSha256": evidence_sha,
             "hpEvidenceTimed": True,
@@ -909,6 +1374,11 @@ def fuse_product(
             "hpTimeUnit": "milliseconds",
             "hpTimeClock": "replay_game_time",
             "hpTimeToleranceMs": tolerance_ms,
+            "hpHoldForward": bool(hold_forward),
+            "hpHoldForwardPolicy": (
+                HP_HOLD_FORWARD_POLICY if hold_forward else None
+            ),
+            "hpHoldForwardUsed": bool(hold_stats.get("holdForwardUsed")),
             "hpSampleCoverage": {
                 "statsFrames": len(stats),
                 "fusedFrames": fused_frames,
@@ -916,23 +1386,54 @@ def fuse_product(
                 "fusedParticipantRows": fused_rows,
                 "sampleCount": len(samples),
                 "sampleTimesUsed": len(sample_times_used),
+                "sampleModel": "per_hero" if perhero else "all10",
+                "seedParticipantRows": hold_stats.get("seedParticipantRows"),
+                "holdForwardParticipantRows": hold_stats.get(
+                    "holdForwardParticipantRows"
+                ),
+                "clearedOnDeath": hold_stats.get("clearedOnDeath"),
+                "clearedOnRespawnGap": hold_stats.get("clearedOnRespawnGap"),
+                "suppressedDeadFrames": hold_stats.get("suppressedDeadFrames"),
+                "holdAcrossRespawn": hold_stats.get("holdAcrossRespawn"),
             },
         }
     )
     notes = str(product_provenance.get("notes") or "").strip()
-    product_provenance["notes"] = (
-        (notes + " " if notes else "")
-        + "HP uses timed same-match Replication samples with validated stable "
-        "identity-to-netId binding and explicit mMaxHP. Combat stats and ability "
-        "ranks remain unavailable."
-    )
+    if perhero:
+        hold_note = (
+            f" Path1 hold-forward enabled ({HP_HOLD_FORWARD_POLICY}); "
+            "held slots disclose hpSource=hold_forward / hpHoldForward=true; "
+            "seeds stay hpSource=pe. Pre-first-seed and death/respawn gaps stay unknown."
+            if hold_forward
+            else ""
+        )
+        product_provenance["notes"] = (
+            (notes + " " if notes else "")
+            + "HP uses timed same-match per-hero Replication samples with validated "
+            "stable identity-to-netId binding and explicit mMaxHP. Simultaneous "
+            "all-10 packets are not required. Early unmatched heroes stay unknown. "
+            "Combat stats and ability ranks remain unavailable."
+            + hold_note
+        )
+    else:
+        product_provenance["notes"] = (
+            (notes + " " if notes else "")
+            + "HP uses timed same-match Replication samples with validated stable "
+            "identity-to-netId binding and explicit mMaxHP. Combat stats and ability "
+            "ranks remain unavailable."
+        )
     product_coverage = dict(coverage)
     decoded = list(product_coverage.get("decoded") or [])
-    if "health_rofl2_replication_timed_identity_bound" not in decoded:
-        decoded.append("health_rofl2_replication_timed_identity_bound")
+    marker = (
+        "health_rofl2_replication_timed_identity_bound_per_hero"
+        if perhero
+        else "health_rofl2_replication_timed_identity_bound"
+    )
+    if marker not in decoded:
+        decoded.append(marker)
     product_coverage["decoded"] = decoded
     missing = list(product_coverage.get("missing") or [])
-    if hp_coverage == "full":
+    if hp_coverage == "full" and not perhero:
         missing = [field for field in missing if field not in ("health", "healthMax")]
     product_coverage["missing"] = missing
     product_coverage["provenance"] = product_provenance
@@ -946,7 +1447,7 @@ def fuse_product(
     out[coverage_index] = product_coverage
     summary = {
         "ok": True,
-        "schema": TRUSTED_EVIDENCE_SCHEMA,
+        "schema": evidence_schema,
         "healthSource": TRUSTED_HEALTH_SOURCE,
         "coverage": hp_coverage,
         "statsFrames": len(stats),
@@ -960,6 +1461,16 @@ def fuse_product(
         "evidenceSha256": evidence_sha,
         "combatStatsKnown": False,
         "abilityRanksKnown": False,
+        "sampleModel": "per_hero" if perhero else "all10",
+        "holdForward": bool(hold_forward),
+        "holdAcrossRespawn": bool(hold_stats.get("holdAcrossRespawn")),
+        "holdForwardUsed": bool(hold_stats.get("holdForwardUsed")),
+        "holdForwardPolicy": hold_stats.get("holdForwardPolicy"),
+        "seedParticipantRows": hold_stats.get("seedParticipantRows"),
+        "holdForwardParticipantRows": hold_stats.get("holdForwardParticipantRows"),
+        "suppressedDeadFrames": hold_stats.get("suppressedDeadFrames"),
+        "clearedOnDeath": hold_stats.get("clearedOnDeath"),
+        "clearedOnRespawnGap": hold_stats.get("clearedOnRespawnGap"),
         "alignedEvidence": evidence,
     }
     return out, summary
@@ -1117,6 +1628,14 @@ def main() -> int:
         default=None,
         help="Optional narrower product alignment tolerance",
     )
+    ap.add_argument(
+        "--hold-forward",
+        action="store_true",
+        help=(
+            "Path1: after PE-proven seed, hold hp/maxHp forward per netId while "
+            "continuously alive; disclose hpSource=hold_forward"
+        ),
+    )
     ap.add_argument("-o", "--output", type=Path, required=True)
     args = ap.parse_args()
 
@@ -1144,6 +1663,7 @@ def main() -> int:
                 replay_manifest=_object(replay_manifest, "replay manifest"),
                 hp_evidence=_object(hp_evidence, "HP evidence"),
                 time_tolerance_ms=args.time_tol_ms,
+                hold_forward=True if args.hold_forward else None,
             )
         except (OSError, json.JSONDecodeError, DecryptError, ValueError) as exc:
             print(f"product fuse error: {exc}", file=sys.stderr)

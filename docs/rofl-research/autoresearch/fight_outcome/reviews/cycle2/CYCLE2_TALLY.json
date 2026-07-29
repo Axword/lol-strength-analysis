@@ -1,0 +1,97 @@
+{
+  "utc": "2026-07-24T15:57:11Z",
+  "cycle": 2,
+  "votes_in": 15,
+  "votes_target": 15,
+  "fightOutcome_true": 0,
+  "digestClean_true": 6,
+  "majority_threshold": 11,
+  "fightOutcome_majority": false,
+  "digestClean_majority": false,
+  "by_reviewer": {
+    "V1": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": true,
+      "confidence": 0.94
+    },
+    "V10": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": true,
+      "confidence": 0.97
+    },
+    "V11": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": true,
+      "confidence": 0.97
+    },
+    "V12": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.95
+    },
+    "V13": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": true,
+      "confidence": 0.93
+    },
+    "V14": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.95
+    },
+    "V15": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.97
+    },
+    "V2": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": true,
+      "confidence": 0.93
+    },
+    "V3": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.97
+    },
+    "V4": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.97
+    },
+    "V5": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.98
+    },
+    "V6": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.97
+    },
+    "V7": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.98
+    },
+    "V8": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": false,
+      "confidence": 0.94
+    },
+    "V9": {
+      "fightOutcomeGate": false,
+      "digestCleanGate": true,
+      "confidence": 0.94
+    }
+  },
+  "digestClean_affirmers": [
+    "V1",
+    "V10",
+    "V11",
+    "V13",
+    "V2",
+    "V9"
+  ],
+  "complete": true
+}

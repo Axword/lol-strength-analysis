@@ -1,0 +1,59 @@
+{
+  "schema": "fightOutcome-researcher-summary-v1",
+  "researcher": "r38",
+  "slug": "suite-audit-gaps",
+  "room": "f9",
+  "model": "Auto",
+  "utc": "2026-07-24T16:26:03.636Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r38",
+  "branch": "adv/fo-r38-suite-audit-gaps",
+  "never_edited_parent_code": true,
+  "artifactsMirroredToParent": true,
+  "parentArtifacts": "docs/rofl-research/autoresearch/fight_outcome/r38/",
+  "verdict": "KEEP",
+  "docs_only": true,
+  "hypothesesAutoPicked": [
+    {
+      "id": "F9.H1",
+      "title": "Census missing stable audit ids vs r27",
+      "result": "DONE"
+    },
+    {
+      "id": "F9.H2",
+      "title": "Promote R30 e8 failing S0/S1 Path1+holdout",
+      "result": "DONE"
+    },
+    {
+      "id": "F9.H3",
+      "title": "Promote R20 product_dense S1-2970120 failing",
+      "result": "DONE"
+    },
+    {
+      "id": "F9.H4",
+      "title": "Replace mislabeled S0-2970110 proxy audits from R12 measured",
+      "result": "DONE"
+    },
+    {
+      "id": "F9.H5",
+      "title": "No invent / no product code edit",
+      "result": "DONE"
+    }
+  ],
+  "deliverables": [
+    "gap_fill_manifest.json",
+    "researcher_r38_summary.json",
+    "HYPOTHESES_PICKED.md",
+    "NOTES.md",
+    "audits/* (stable r27 ids for failing S0/S1)",
+    "../audits/S0_2970132-g1_c*_*.json",
+    "../audits/S0_2970110-g1_c*_*.json (corrected)",
+    "../audits/S1_2970137-g1_c*_*.json (refreshed failing)",
+    "../audits/S1_2970120-g1_c*_*.json"
+  ],
+  "failingAuditCount": 19,
+  "missingAfter": [],
+  "coverageComplete": true,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "next": "Orchestrator PARENT_MERGE docs-only KEEP; consumers load audits/{windowId}.json for failing windows"
+}

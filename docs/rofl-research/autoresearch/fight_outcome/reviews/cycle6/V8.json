@@ -1,0 +1,74 @@
+{
+  "reviewer": "V8",
+  "cycle": 6,
+  "phase": "C",
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T16:37:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "criterionG_detail": {
+    "affirmed": true,
+    "basis": "Personally re-ran BOTH parent smokes this cycle — fo:send-smoke 8/8; smoke:calc-parity 11/11 (post R35/R36 merges)",
+    "brief_status_claim": {
+      "BRIEF": "G proven (smokes green after R35/R36 merges)",
+      "STATUS_criterionG_proven": true,
+      "note": "Wave2 KEEPs (residual_hp / tornado 0.15 / preEngage / local_skill_share) preserved Send↔harness parity"
+    },
+    "r17_parent": {
+      "smokeCommand": "npm run fo:send-smoke",
+      "result": "8 pass / 0 fail",
+      "script": "scripts/fo_r17_send_parity_smoke.ts",
+      "endHpAgree_E1": true,
+      "path1_Galio_Trundle_E2": true,
+      "deadExcluded_E3": true,
+      "knownFlags_E4": true,
+      "noOdds_E6": true,
+      "researcher_proven_for_V8": true
+    },
+    "r16_parent": {
+      "smokeCommand": "npm run smoke:calc-parity",
+      "result": "11/11 PASS",
+      "script": "scripts/fo_r16_calc_parity_smoke.ts",
+      "packageJsonPresent": true,
+      "allPass": true
+    },
+    "status": {
+      "criterionG_proven": true,
+      "fightOutcomeGate": false,
+      "note": "G live-green; FO still false on B/F — parity ≠ FA lift; verified FA 0.6021 / claimed ~0.72 both ≪0.95"
+    },
+    "residual_disclosed": "G affirmed after R35/R36. Do not sell calc parity as Path1 FA≥0.95. FA ≠ odds."
+  },
+  "evidence": [
+    "GOAL V8 = Calculator↔harness parity (F6 / Criterion G)",
+    "Personally reproduced C6: `npm run fo:send-smoke` → 8/8; `npm run smoke:calc-parity` → 11/11",
+    "PARENT_MERGE — R35/R36 note G smokes green; residual_hp + tornado + preEngage + local_skill_share merged",
+    "BRIEF/STATUS — criterionG_proven true; verified S0 FA 0.6021≪0.95; claimed stack ~0.72 pending remesaure still ≪0.95",
+    "r35 — KEEP preEngage S0 0.5938→0.6021; S1→0.581; FO evidence false",
+    "r36 — KEEP local_skill_share claimed S0→0.722; S1 flat; FO evidence false",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (no concrete §D failure)"
+  ],
+  "failures": [
+    "B: verified S0 fightAgreement 0.6021 ≪ 0.95 (claimed ~0.72 pending remesaure also ≪0.95); passRate still 0.333-class — G green does not flip FO",
+    "F: S1 holdout unmet (R35 ≈0.581 / pass 0.333; claimed ~0.56–0.58) — no FO on S0 alone",
+    "I: No ≥11/15 FO majority + parent e2e STATUS flip while B/F fail"
+  ],
+  "blocker": "G closed. Remeasure compound KEEP stack; continue Path1 Galio lethErr/burst + pathMae. Do not sell parity as FA lift.",
+  "notes": "C6 V8: G affirmed after personal fo:send-smoke 8/8 + smoke:calc-parity 11/11 post R35/R36. Voted fightOutcomeGate false for concrete B/F/I (verified FA 0.6021≪0.95; claimed ~0.72 still ≪0.95). digestCleanGate true on §D reaffirm. Parity ≠ FA. fightAgreement ≠ win odds.",
+  "one_line_vote": "V8: fightOutcomeGate=false digestCleanGate=true — G=true live (8/8+11/11); B fails S0 FA 0.602≪0.95 (claimed~0.72 pending)"
+}

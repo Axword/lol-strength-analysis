@@ -1,0 +1,193 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T17:15:21.639Z",
+  "researcher": "r04",
+  "suite": "S1",
+  "match": "2970137-g1",
+  "proxied": false,
+  "harnessSuite": "2970137-g1-holdout",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r49/docs/rofl-research/autoresearch/fight_outcome/r49/experiments/e1b_s1.json",
+  "markSelection": "cusum_engage_then_skills",
+  "harnessMode": "gate_action",
+  "harnessHypothesis": "e1b confirm Vayne CORE Q silver-bolt",
+  "n": 6,
+  "fightAgreement": 0.8322332015810275,
+  "fightPassRate": 0.6666666666666666,
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S1_2970137-g1_c1_full",
+      "windowOk": true,
+      "windowScore": 0.959091,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.7272727272727272,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 56.57801964285714,
+        "maeHpFull": 51.055352337662306,
+        "maeHp": 51.055352337662306,
+        "pathCap": 130,
+        "lethalErrorSec": 0.09097656633003126,
+        "segment": "full",
+        "matchup": "Vayne→Ambessa"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.51,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.4,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 56.57801964285714,
+        "maeHpFull": 51.055352337662306,
+        "maeHp": 56.57801964285714,
+        "pathCap": 90,
+        "lethalErrorSec": 0.7502704119065093,
+        "segment": "burst",
+        "matchup": "Vayne→Ambessa"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c2_full",
+      "windowOk": true,
+      "windowScore": 0.915217,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.4347826086956522,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 53.660284376681325,
+        "maeHpFull": 47.22105025147957,
+        "maeHp": 47.22105025147957,
+        "pathCap": 130,
+        "lethalErrorSec": 0.26699999999999946,
+        "segment": "full",
+        "matchup": "Cassiopeia→Viktor"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c2_burst",
+      "windowOk": true,
+      "windowScore": 0.925,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.5,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 53.660284376681325,
+        "maeHpFull": 47.22105025147957,
+        "maeHp": 53.660284376681325,
+        "pathCap": 90,
+        "lethalErrorSec": 0.26699999999999946,
+        "segment": "burst",
+        "matchup": "Cassiopeia→Viktor"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c3_full",
+      "windowOk": true,
+      "windowScore": 0.925,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.5000000000000001,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 198.41243848197195,
+        "maeHpFull": 71.4284778535099,
+        "maeHp": 71.4284778535099,
+        "pathCap": 130,
+        "lethalErrorSec": 0.12511972435555307,
+        "segment": "full",
+        "matchup": "Anivia→Sylas"
+      }
+    },
+    {
+      "id": "S1_2970137-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.759091,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 0,
+        "actionF1": 0.7272727272727272,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 198.41243848197195,
+        "maeHpFull": 71.4284778535099,
+        "maeHp": 198.41243848197195,
+        "pathCap": 90,
+        "lethalErrorSec": 0.12511972435555307,
+        "segment": "burst",
+        "matchup": "Anivia→Sylas"
+      }
+    }
+  ],
+  "failingAudits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r49/docs/rofl-research/autoresearch/fight_outcome/r49/audits/e1b_s1/S1_2970137-g1_c1_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r49/docs/rofl-research/autoresearch/fight_outcome/r49/audits/e1b_s1/S1_2970137-g1_c3_burst.json"
+  ],
+  "law": {
+    "lethalTolSec": 0.75,
+    "earlyMaeCap": 50,
+    "burstMaeCap": 90,
+    "fullMaeCap": 130,
+    "endHpFloor": 40,
+    "weights": {
+      "lethalHit": 0.4,
+      "earlyBand": 0.25,
+      "pathBand": 0.2,
+      "actionCoverageF1": 0.15
+    }
+  },
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S1 holdout — do not tune on S1"
+  ],
+  "confidence": "fightAgreement ≥0.95 means kill-window suite agreement under GOAL §B — NOT calibrated win odds"
+}

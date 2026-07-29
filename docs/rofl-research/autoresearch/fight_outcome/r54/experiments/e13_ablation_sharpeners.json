@@ -1,0 +1,36 @@
+{
+  "schema": "fo-r54-experiment-v1",
+  "id": "E13",
+  "hypothesis": "Ablations sharpen what does NOT fix FO\u226a0.95",
+  "utc": "2026-07-24T17:12:20Z",
+  "ablations": [
+    {
+      "id": "E07",
+      "knob": "truthBurstWindowOnly=true (undo R44)",
+      "effect": "S0 FA 0.9304\u21920.9137; c1-burst F1 0.667\u21920; pathMae unchanged",
+      "fixes_pathMae": false,
+      "fixes_leth": false
+    },
+    {
+      "id": "E08",
+      "knob": "markPreBurstDelaySec=0 (undo R42)",
+      "effect": "S1 Vayne leth 2.05 / miss-burst and Anivia pathMae 198 unchanged",
+      "fixes_pathMae": false,
+      "fixes_leth": false
+    },
+    {
+      "id": "E09",
+      "knob": "zeroDeadActualHp=false (undo R33)",
+      "effect": "c2_burst mae 111.6\u2192117.7 worsens",
+      "fixes_pathMae": false,
+      "regresses": true
+    },
+    {
+      "id": "E10",
+      "knob": "preEngageOpenerShare=1.0 (undo R39 0.18)",
+      "effect": "c2_burst mae stays 111.6; not the lever",
+      "fixes_pathMae": false
+    }
+  ],
+  "keep": false
+}

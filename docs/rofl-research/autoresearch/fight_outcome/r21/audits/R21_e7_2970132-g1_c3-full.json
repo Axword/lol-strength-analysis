@@ -1,0 +1,20 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:07:59.344766+00:00",
+  "suite": "S0-Path1",
+  "match": "2970132-g1",
+  "windowId": "R21_e7_2970132-g1_c3-full",
+  "researcher": "r21",
+  "hypothesis": "R21-E7 Path1 slot_ability + idleFollow",
+  "parts": {
+    "killedInModel": true,
+    "actualEndHp": 0,
+    "modelEndHp": 0,
+    "lethalErrorSec": -13.923,
+    "earlyMaeHp": 204.48781249999996,
+    "maeHp": 270.83675,
+    "earlyPoisoned": true,
+    "note": "Path1 c3 is true kill (actualEndHp=0); failure mode is early-lethal/overkill not survivor false-kill"
+  },
+  "confidence": "Path1 c3 audit \u2014 NOT win odds"
+}

@@ -1,0 +1,298 @@
+{
+  "schema": "fightAgreement-suite-windows-v1",
+  "utc": "2026-07-24T16:05:02Z",
+  "researcher": "r27",
+  "slug": "suite-windows",
+  "room": "f9",
+  "suite": "S2",
+  "never_edited_parent_code": true,
+  "markSelection": {
+    "product": [
+      "cusum_engage_then_skills",
+      "post_engage_killer_skills"
+    ],
+    "researchOnly": [
+      "near_hp_drop"
+    ],
+    "defaultForAudits": "cusum_engage_then_skills",
+    "note": "Product non-drop selectors only for fightAgreement audits; near_hp_drop research-only"
+  },
+  "windowIdLaw": "{suite}_{match}_c{check}_{segment}  e.g. S0_2970132-g1_c1_burst",
+  "truthSource": "timeline/SQLite champion_kill + crosschecks extracts; VOD labels optional and not used here",
+  "members": [
+    {
+      "id": "S2-2954868-g1",
+      "suite": "S2",
+      "seriesId": "2954868",
+      "gameIndex": 1,
+      "match": "2954868-g1",
+      "role": "transfer_unused_pro_slim",
+      "tuneAllowed": false,
+      "crosscheckPath": "docs/rofl-research/autoresearch/fight_outcome/r27/crosschecks-2954868-g1-transfer.json",
+      "crosscheckResolved": "docs/rofl-research/autoresearch/fight_outcome/r27/crosschecks-2954868-g1-transfer.json",
+      "sqlitePath": "artifacts/pro-grid/2954868/timeline.g1.slim.sqlite",
+      "harnessSuite": null,
+      "path1Host": false,
+      "calculatorReadyHost": null,
+      "sourceSqliteDeclared": null,
+      "crossCheckRule": "S2 transfer auto-extract from unused pro slim (research only; not used for tuning; slim-v1 no items_json)",
+      "killsAvailable": 40,
+      "checkCount": 3,
+      "windowCount": 6,
+      "crosscheckOk": true,
+      "sqliteOk": true,
+      "gaps": [
+        "not_in_crosscheck_action_aligned_suite_enum",
+        "slim_v1_no_items_json",
+        "check1_victimHpStartEnd_absent_in_crosscheck_extract",
+        "check2_victimHpStartEnd_absent_in_crosscheck_extract",
+        "check3_victimHpStartEnd_absent_in_crosscheck_extract"
+      ],
+      "notes": [
+        "Unused vs S0/S1 series (not 2970110/2970132/2970137/2970120)",
+        "R06 auto-extract \u22653 checks; slim-v1",
+        "Harness --suite enum does not include 2954868 \u2014 score via --input when needed; disclosed"
+      ]
+    }
+  ],
+  "windows": [
+    {
+      "windowId": "S2_2954868-g1_c1_full",
+      "suite": "S2",
+      "match": "2954868-g1",
+      "memberId": "S2-2954868-g1",
+      "check": 1,
+      "segment": "full",
+      "truthKilled": true,
+      "tMs": 531224,
+      "windowMs": [
+        511224,
+        536224
+      ],
+      "killerId": 10,
+      "victimId": 1,
+      "killerChamp": "Camille",
+      "victimChamp": "Vayne",
+      "killerName": "GEN Duro",
+      "victimName": "T1 Doran",
+      "matchup": "Camille\u2192Vayne",
+      "victimHpStart": null,
+      "victimHpEnd": null,
+      "victimHpMax": null,
+      "sqliteKillVerified": true,
+      "sqliteKill": {
+        "eventGameTimeMs": 531224,
+        "schema": "champion_kill",
+        "deltaMs": 0
+      },
+      "auditRel": "docs/rofl-research/autoresearch/fight_outcome/audits/S2_2954868-g1_c1_full.json",
+      "markSelectionProduct": [
+        "cusum_engage_then_skills",
+        "post_engage_killer_skills"
+      ],
+      "markSelectionResearchOnly": [
+        "near_hp_drop"
+      ]
+    },
+    {
+      "windowId": "S2_2954868-g1_c1_burst",
+      "suite": "S2",
+      "match": "2954868-g1",
+      "memberId": "S2-2954868-g1",
+      "check": 1,
+      "segment": "burst",
+      "truthKilled": true,
+      "tMs": 531224,
+      "windowMs": [
+        511224,
+        536224
+      ],
+      "killerId": 10,
+      "victimId": 1,
+      "killerChamp": "Camille",
+      "victimChamp": "Vayne",
+      "killerName": "GEN Duro",
+      "victimName": "T1 Doran",
+      "matchup": "Camille\u2192Vayne",
+      "victimHpStart": null,
+      "victimHpEnd": null,
+      "victimHpMax": null,
+      "sqliteKillVerified": true,
+      "sqliteKill": {
+        "eventGameTimeMs": 531224,
+        "schema": "champion_kill",
+        "deltaMs": 0
+      },
+      "auditRel": "docs/rofl-research/autoresearch/fight_outcome/audits/S2_2954868-g1_c1_burst.json",
+      "markSelectionProduct": [
+        "cusum_engage_then_skills",
+        "post_engage_killer_skills"
+      ],
+      "markSelectionResearchOnly": [
+        "near_hp_drop"
+      ]
+    },
+    {
+      "windowId": "S2_2954868-g1_c2_full",
+      "suite": "S2",
+      "match": "2954868-g1",
+      "memberId": "S2-2954868-g1",
+      "check": 2,
+      "segment": "full",
+      "truthKilled": true,
+      "tMs": 859945,
+      "windowMs": [
+        839945,
+        864945
+      ],
+      "killerId": 3,
+      "victimId": 6,
+      "killerChamp": "Cassiopeia",
+      "victimChamp": "Ambessa",
+      "killerName": "T1 Faker",
+      "victimName": "GEN Kiin",
+      "matchup": "Cassiopeia\u2192Ambessa",
+      "victimHpStart": null,
+      "victimHpEnd": null,
+      "victimHpMax": null,
+      "sqliteKillVerified": true,
+      "sqliteKill": {
+        "eventGameTimeMs": 859945,
+        "schema": "champion_kill",
+        "deltaMs": 0
+      },
+      "auditRel": "docs/rofl-research/autoresearch/fight_outcome/audits/S2_2954868-g1_c2_full.json",
+      "markSelectionProduct": [
+        "cusum_engage_then_skills",
+        "post_engage_killer_skills"
+      ],
+      "markSelectionResearchOnly": [
+        "near_hp_drop"
+      ]
+    },
+    {
+      "windowId": "S2_2954868-g1_c2_burst",
+      "suite": "S2",
+      "match": "2954868-g1",
+      "memberId": "S2-2954868-g1",
+      "check": 2,
+      "segment": "burst",
+      "truthKilled": true,
+      "tMs": 859945,
+      "windowMs": [
+        839945,
+        864945
+      ],
+      "killerId": 3,
+      "victimId": 6,
+      "killerChamp": "Cassiopeia",
+      "victimChamp": "Ambessa",
+      "killerName": "T1 Faker",
+      "victimName": "GEN Kiin",
+      "matchup": "Cassiopeia\u2192Ambessa",
+      "victimHpStart": null,
+      "victimHpEnd": null,
+      "victimHpMax": null,
+      "sqliteKillVerified": true,
+      "sqliteKill": {
+        "eventGameTimeMs": 859945,
+        "schema": "champion_kill",
+        "deltaMs": 0
+      },
+      "auditRel": "docs/rofl-research/autoresearch/fight_outcome/audits/S2_2954868-g1_c2_burst.json",
+      "markSelectionProduct": [
+        "cusum_engage_then_skills",
+        "post_engage_killer_skills"
+      ],
+      "markSelectionResearchOnly": [
+        "near_hp_drop"
+      ]
+    },
+    {
+      "windowId": "S2_2954868-g1_c3_full",
+      "suite": "S2",
+      "match": "2954868-g1",
+      "memberId": "S2-2954868-g1",
+      "check": 3,
+      "segment": "full",
+      "truthKilled": true,
+      "tMs": 558562,
+      "windowMs": [
+        538562,
+        563562
+      ],
+      "killerId": 7,
+      "victimId": 4,
+      "killerChamp": "LeeSin",
+      "victimChamp": "Ziggs",
+      "killerName": "GEN Canyon",
+      "victimName": "T1 Peyz",
+      "matchup": "LeeSin\u2192Ziggs",
+      "victimHpStart": null,
+      "victimHpEnd": null,
+      "victimHpMax": null,
+      "sqliteKillVerified": true,
+      "sqliteKill": {
+        "eventGameTimeMs": 558562,
+        "schema": "champion_kill",
+        "deltaMs": 0
+      },
+      "auditRel": "docs/rofl-research/autoresearch/fight_outcome/audits/S2_2954868-g1_c3_full.json",
+      "markSelectionProduct": [
+        "cusum_engage_then_skills",
+        "post_engage_killer_skills"
+      ],
+      "markSelectionResearchOnly": [
+        "near_hp_drop"
+      ]
+    },
+    {
+      "windowId": "S2_2954868-g1_c3_burst",
+      "suite": "S2",
+      "match": "2954868-g1",
+      "memberId": "S2-2954868-g1",
+      "check": 3,
+      "segment": "burst",
+      "truthKilled": true,
+      "tMs": 558562,
+      "windowMs": [
+        538562,
+        563562
+      ],
+      "killerId": 7,
+      "victimId": 4,
+      "killerChamp": "LeeSin",
+      "victimChamp": "Ziggs",
+      "killerName": "GEN Canyon",
+      "victimName": "T1 Peyz",
+      "matchup": "LeeSin\u2192Ziggs",
+      "victimHpStart": null,
+      "victimHpEnd": null,
+      "victimHpMax": null,
+      "sqliteKillVerified": true,
+      "sqliteKill": {
+        "eventGameTimeMs": 558562,
+        "schema": "champion_kill",
+        "deltaMs": 0
+      },
+      "auditRel": "docs/rofl-research/autoresearch/fight_outcome/audits/S2_2954868-g1_c3_burst.json",
+      "markSelectionProduct": [
+        "cusum_engage_then_skills",
+        "post_engage_killer_skills"
+      ],
+      "markSelectionResearchOnly": [
+        "near_hp_drop"
+      ]
+    }
+  ],
+  "windowCount": 6,
+  "checkCount": 3,
+  "gaps": [],
+  "confidence": "fightAgreement suite windows \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "tunePolicy": "FORBIDDEN \u2014 transfer measure only",
+  "gateBar": {
+    "fightAgreement": 0.9,
+    "fightPassRate": "\u22655/6",
+    "noneBelow": 0.8
+  }
+}

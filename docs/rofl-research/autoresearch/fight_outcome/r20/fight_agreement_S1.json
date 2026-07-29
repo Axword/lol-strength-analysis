@@ -1,0 +1,41 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T15:57:02.312Z",
+  "researcher": "r20",
+  "suite": "S1",
+  "tuneForbidden": true,
+  "tuned": false,
+  "markSelection": "cusum_engage_then_skills",
+  "dropFilter": false,
+  "protocol": "r06_proto_no_dense + current_scoreWindow",
+  "members": [
+    "S1-2970137-g1",
+    "S1-2970120-g1"
+  ],
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "fightAgreement": 0.41099771388416645,
+  "fightPassRate": 0.16666666666666666,
+  "n": 6,
+  "grain": "paired_one_window_per_check",
+  "also": {
+    "grain_check_x_segment": {
+      "fightAgreement": 0.4105916180926972,
+      "fightPassRate": 0.16666666666666666,
+      "n": 12,
+      "gateMet": false
+    },
+    "product_dense_paired": {
+      "fightAgreement": 0.3443310472174997,
+      "fightPassRate": 0,
+      "n": 6,
+      "gateMet": false
+    },
+    "brief_cited_0_478": "R06 stored (inflated lethal on 2970137-c2); not current-law"
+  },
+  "meetsThresholds": false,
+  "source": "S1_score_freeze.json",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %"
+}

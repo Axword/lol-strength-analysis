@@ -1,0 +1,63 @@
+{
+  "t": "2026-07-24T15:47:49.083Z",
+  "researcher": "r11",
+  "hypothesis": "F4.H3 utility/engageCc zero-damage keep in timed planner",
+  "pass": false,
+  "rows": [
+    {
+      "id": "nasus_w_wither",
+      "method": "timed_manual_1v1",
+      "expectSlots": [
+        "W"
+      ],
+      "plannedSlots": [
+        "AA",
+        "Q",
+        "W",
+        "AA"
+      ],
+      "ok": true,
+      "enemyAsSlow": 0.725,
+      "enemySlow": 0.55,
+      "hardCc": false,
+      "blueAa": 2,
+      "redAa": 0
+    },
+    {
+      "id": "zilean_e_slow",
+      "method": "timed_manual_1v1",
+      "expectSlots": [
+        "E"
+      ],
+      "plannedSlots": [
+        "AA",
+        "E",
+        "AA"
+      ],
+      "ok": true,
+      "enemyAsSlow": 0,
+      "enemySlow": 0.7,
+      "hardCc": false,
+      "blueAa": 2,
+      "redAa": 1
+    },
+    {
+      "id": "camille_r_engageCc",
+      "method": "timed_manual_1v1",
+      "expectSlots": [
+        "R"
+      ],
+      "plannedSlots": [
+        "AA",
+        "AA"
+      ],
+      "ok": false,
+      "enemyAsSlow": 0,
+      "enemySlow": 0,
+      "hardCc": false,
+      "blueAa": 2,
+      "redAa": 2
+    }
+  ],
+  "note": "Camille Q still empty-damage without utility/engageCc/attackReset — disclosed gap, no invent"
+}

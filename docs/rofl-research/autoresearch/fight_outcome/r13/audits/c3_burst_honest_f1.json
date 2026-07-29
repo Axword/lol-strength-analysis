@@ -1,0 +1,62 @@
+{
+  "check": 3,
+  "segment": "burst",
+  "matchup": "Ezreal→LeeSin",
+  "sourceAudit": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/action_audits/r40-2970110-g1-c3-burst.json",
+  "schema": "honest-action-f1-v1",
+  "truthCount": 3,
+  "modelCount": 2,
+  "matchedCount": 2,
+  "precision": 1,
+  "recall": 0.6666666666666666,
+  "actionCoverage": 0.8,
+  "matches": [
+    {
+      "truthIdx": 1,
+      "modelIdx": 0,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 2,
+      "modelIdx": 1,
+      "dtSec": 0
+    }
+  ],
+  "unmatchedTruth": [
+    0
+  ],
+  "unmatchedModel": [],
+  "rawActionCoverage": 0.8,
+  "honestActionCoverage": 0.8,
+  "fightAgreementF1": 0.8,
+  "weightInWindowScore": 0.15,
+  "rejectedZeroDmgEchoModelCount": 0,
+  "rejectedZeroDmgEchoTruthCount": 0,
+  "peProvenDamageTruthCount": 0,
+  "peProvenDamageModelCount": 0,
+  "echoGamingSuspected": false,
+  "disclosures": [
+    "honest_action_f1: rawF1=0.8000 honestF1=0.8000 fightAgreementF1=0.8000 (weight=0.15 secondary only)",
+    "rejectedZeroDmgEcho model=0 truth=0 (GOAL forbid zero-dmg log-echo)",
+    "peProvenDamage truth=0 model=0 (sourceNetId+amount>0)",
+    "echoGamingSuspected=false",
+    "NOT win odds / NOT calibrated probability"
+  ],
+  "coverageGaps": {
+    "missingClasses": [
+      "aa",
+      "item",
+      "summoner",
+      "damage"
+    ],
+    "presentClasses": [
+      "skill"
+    ],
+    "notes": [
+      "aa absent — no invent; wait for PE basic_attack + damaging model AA",
+      "damage absent — no invent; wait for PE damage_dealt source+amount",
+      "item absent — omit unless evented item_active_ability_used",
+      "summoner absent — omit unless evented summoner_spell_used"
+    ]
+  }
+}

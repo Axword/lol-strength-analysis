@@ -1,0 +1,112 @@
+{
+  "schema": "fo-r54-experiment-v1",
+  "id": "E12",
+  "hypothesis": "passRate\u21920.95 requires flipping concrete failing windows; S0 needs 2 flips, S1 3, S2 4",
+  "utc": "2026-07-24T17:12:20Z",
+  "S0": {
+    "n": 6,
+    "passRate": 0.6666666666666666,
+    "n_failing": 2,
+    "n_flips_to_0_95": 2,
+    "failing_ids": [
+      "S0_2970132-g1_c2_burst",
+      "S0_2970132-g1_c3_full"
+    ],
+    "hardest": [
+      {
+        "id": "S0_2970132-g1_c3_full",
+        "score": 0.89967,
+        "reasons": [
+          "pathMae"
+        ]
+      },
+      {
+        "id": "S0_2970132-g1_c2_burst",
+        "score": 0.917403,
+        "reasons": [
+          "pathMae"
+        ]
+      }
+    ]
+  },
+  "S1": {
+    "n": 6,
+    "passRate": 0.5,
+    "n_failing": 3,
+    "n_flips_to_0_95": 3,
+    "failing_ids": [
+      "S1_2970137-g1_c1_full",
+      "S1_2970137-g1_c1_burst",
+      "S1_2970137-g1_c3_burst"
+    ],
+    "hardest": [
+      {
+        "id": "S1_2970137-g1_c1_burst",
+        "score": 0.51,
+        "reasons": [
+          "lethal"
+        ]
+      },
+      {
+        "id": "S1_2970137-g1_c1_full",
+        "score": 0.542308,
+        "reasons": [
+          "lethal"
+        ]
+      },
+      {
+        "id": "S1_2970137-g1_c3_burst",
+        "score": 0.759091,
+        "reasons": [
+          "pathMae"
+        ]
+      }
+    ]
+  },
+  "S2": {
+    "n": 6,
+    "passRate": 0.3333333333333333,
+    "n_failing": 4,
+    "n_flips_to_0_95": 4,
+    "failing_ids": [
+      "S2_2954868-g1_c2_full",
+      "S2_2954868-g1_c2_burst",
+      "S2_2954868-g1_c3_full",
+      "S2_2954868-g1_c3_burst"
+    ],
+    "hardest": [
+      {
+        "id": "S2_2954868-g1_c3_burst",
+        "score": 0.277273,
+        "reasons": [
+          "lethal",
+          "pathMae"
+        ]
+      },
+      {
+        "id": "S2_2954868-g1_c2_burst",
+        "score": 0.408359,
+        "reasons": [
+          "lethal",
+          "pathMae"
+        ]
+      },
+      {
+        "id": "S2_2954868-g1_c3_full",
+        "score": 0.434903,
+        "reasons": [
+          "lethal",
+          "pathMae"
+        ]
+      },
+      {
+        "id": "S2_2954868-g1_c2_full",
+        "score": 0.514286,
+        "reasons": [
+          "lethal"
+        ]
+      }
+    ]
+  },
+  "keep": false
+}

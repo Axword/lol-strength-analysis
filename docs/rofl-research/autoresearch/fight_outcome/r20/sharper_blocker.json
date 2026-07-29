@@ -1,0 +1,39 @@
+{
+  "schema": "fightOutcome-sharper-blocker-v1",
+  "researcher": "r20",
+  "hypothesis": "F7.H5 Blocker doc",
+  "utc": "2026-07-24T15:58:00Z",
+  "fightOutcomeGate": false,
+  "digestCleanGate": "re-judge_in_cycle2",
+  "primary_blocker": "S1_holdout_FA_below_gate",
+  "measured": {
+    "S1_primary_paired_FA": 0.41099771388416645,
+    "S1_primary_paired_pass": 0.16666666666666666,
+    "S1_n": 6,
+    "S1_gate": {
+      "fightAgreement": 0.95,
+      "fightPassRate": 0.95
+    },
+    "S1_gateMet": false,
+    "Path1_S0_FA": 0.228,
+    "brief_cited_S1_FA": 0.478,
+    "brief_vs_current_law": "R06 stored FA 0.478 inflated (2970137 check2 lethalOk with |leth|=2.721); current-law freeze FA\u22480.411"
+  },
+  "fail_modes": [
+    "lethalHit misses under LETHAL_TOL=0.75 on most S1 windows",
+    "path MAE over burst/full caps on failing windows",
+    "2970137 check2 model kill exists but |lethErr|=2.72 \u226b 0.75",
+    "Camille PE AD/armor closed on 2970110/2970137 \u2014 disclose, do not invent",
+    "Path1 S0 still 0.228 \u2014 must lift before S1 can clear gate"
+  ],
+  "closed_tracks": [
+    "mark/CUSUM/density/regen knob sweeps",
+    "Camille PE densify on measured hosts without new PE evidence"
+  ],
+  "open_tracks": [
+    "R18 Path1 lethal",
+    "R19 Path1 early",
+    "R16/R17 Send parity"
+  ],
+  "confidence": "fightAgreement is suite agreement \u2014 NOT win odds"
+}

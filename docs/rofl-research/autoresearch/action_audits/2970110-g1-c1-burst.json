@@ -1,0 +1,126 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "burst",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.568,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 2.371,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 2.605,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 2.772,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.568,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 0.618,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.371,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.421,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.772,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.8219999999999996,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "coverage": {
+    "truthCount": 4,
+    "modelCount": 6,
+    "matchedCount": 3,
+    "precision": 0.5,
+    "recall": 0.75,
+    "actionCoverage": 0.6,
+    "matches": [
+      {
+        "truthIdx": 0,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 1,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 4,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      2
+    ],
+    "unmatchedModel": [
+      1,
+      3,
+      5
+    ]
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 4,
+      "modelCount": 3,
+      "matchedCount": 3,
+      "actionCoverage": 0.8571428571428571
+    },
+    "aa": {
+      "truthCount": 0,
+      "modelCount": 3,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    }
+  },
+  "disclosures": [
+    "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=8 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=2 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

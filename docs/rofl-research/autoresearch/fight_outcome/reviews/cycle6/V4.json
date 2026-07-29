@@ -1,0 +1,20 @@
+{
+  "reviewer": "V4",
+  "role": "Unfreeze 0.9683 auditor",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "evidence": [
+    "C specialty: unfreeze_0_9683 still authorized; composite 0.9683 history preserved across wave2 KEEPs (R35/R32/R34/R36/R38) — FA fields update under unfrozenFromComposite without rewriting composite as fake shipGate.",
+    "R35 KEEP preEngageOpener records verified S0 FA 0.6021 honestly; R32/R34/R36 claimed FA lifts pending remesaure — Criterion C process compliant.",
+    "Product selector remains non-drop cusum_engage_then_skills; near_hp_drop research-only.",
+    "B FAIL: verified 0.6021 and claimed ~0.72 both ≪ 0.95 → FO false.",
+    "D reaffirm digestCleanGate=true; G AFFIRM smokes green after R35/R36 merges."
+  ],
+  "failures": [
+    "B: No FA-to-0.95 product KEEP; verified S0 0.6021 ≪ 0.95.",
+    "F: S1 ~0.56–0.58 unmet; compound remesaure still pending.",
+    "I: FO majority+e2e not satisfied."
+  ],
+  "notes": "V4 C6: Criterion C history OK (0.9683 intact; wave2 KEEPs record FA under unfreeze). FO false on B/F/I. digestClean reaffirm. G proven. FA≠odds."
+}

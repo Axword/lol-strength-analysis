@@ -1,0 +1,66 @@
+{
+  "researcher": "r26",
+  "slug": "check03-poison",
+  "model": "Auto",
+  "utc": "2026-07-24T16:15:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r26",
+  "branch": "adv/fo-r26-check03-poison",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "owns": "check03 Olaf→Camille full earlyPoisoned residual after idleFollowActual",
+  "does_not_own": ["Galio miss-kill (R18/R24)", "one-coefficient early+late"],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "not": "idle freeze (R19 KEEP already applied)",
+    "is": "teamfight opener 1v1 full-share overkill",
+    "evidence": {
+      "early5s_allySkills": 8,
+      "early5s_killerSkills": 2,
+      "measuredKillerSkillShareProxy": 0.2,
+      "nearKillAssistProbe_allySkills": 0,
+      "nearKillProbe_mismatch": "under-reports early multi-actor pressure",
+      "modelLethalSec_approx": 1.734,
+      "actualDeathSec_approx": 20.0,
+      "lethalErrorSec_e0": -18.266,
+      "falseAllIn": false
+    }
+  },
+  "n_experiments": 13,
+  "product_KEEP": false,
+  "product_KEEP_reason": "S0 FA↑ but S1 FA regresses; allyMin threshold collides with S1 c2 (allySkills5s=8)",
+  "research_best": "e12",
+  "earlyMae_deltas": {
+    "check03_full_e0": 476,
+    "check03_full_e12": 89.6,
+    "delta": -386.4,
+    "earlyPoisoned_e0": true,
+    "earlyPoisoned_e12": false
+  },
+  "FA_deltas": {
+    "S0_e0": 0.4106910062451652,
+    "S0_e12": 0.5455,
+    "S0_delta": 0.1348,
+    "S1_e0": 0.4170,
+    "S1_e12": 0.3607,
+    "S1_delta": -0.0563,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "code_changes_worktree_only": [
+    "scripts/crosscheck_action_aligned.ts: --killer-pulse-share, --assist-ally-min, --assist-early-window; countEarlyAllySkills",
+    "src/engine/killWindowOverlay.ts: aaAtEachMark respects mark.share (default 1 = noop)"
+  ],
+  "product_defaults_unchanged": {
+    "idleFollowActual": true,
+    "aaAtEachMark": true,
+    "killerPulseShare": 1,
+    "assistAllyMin": 0
+  },
+  "keeps_research_room": ["e8", "e12"],
+  "discards": ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e9", "e10", "e11", "e13"],
+  "blocker": "Multi-caster share needs attribution that does not collide S1 teamfight windows; packet-level damage share or residual HP share — no invent",
+  "handoff": "R18/R24 still own Galio miss-kill; R26 closes diagnostic on check03 early poison mechanism",
+  "confidence": "FA≠odds; early_poisoned diagnostic only"
+}

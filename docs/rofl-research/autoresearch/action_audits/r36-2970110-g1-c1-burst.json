@@ -1,0 +1,362 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "burst",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.5347110611377275,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.5347110611377275,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.568,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 0.6349002701221025,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.7021047363281241,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.9354678970752275,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.9694678986901408,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.0026571044921866,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.0356571060596025,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.23602026523929,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.6367618423877275,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7709510529870158,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7709510529870158,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7709510529870158,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7709510529870158,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.904314208984374,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.037503419536165,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.1046773681640616,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.305071044921874,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.305071044921874,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.371,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 2.605,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 2.605608154296874,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.605608154296874,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.63860815586429,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.6726081574792033,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.6726081574792033,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.772,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 2.7727973664635783,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.805986572265624,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.83898657383304,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.83898657383304,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.83898657383304,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 3.507280517578124,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.568,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 0.618,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.371,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.421,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.772,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.8219999999999996,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "coverage": {
+    "truthCount": 34,
+    "modelCount": 6,
+    "matchedCount": 4,
+    "precision": 0.6666666666666666,
+    "recall": 0.11764705882352941,
+    "actionCoverage": 0.2,
+    "matches": [
+      {
+        "truthIdx": 2,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 1,
+        "dtSec": 0.01690027012210249
+      },
+      {
+        "truthIdx": 20,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 27,
+        "modelIdx": 4,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+    ],
+    "unmatchedModel": [
+      3,
+      5
+    ]
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 3,
+      "modelCount": 3,
+      "matchedCount": 1,
+      "actionCoverage": 0.3333333333333333
+    },
+    "damage": {
+      "truthCount": 27,
+      "modelCount": 0,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    },
+    "skill": {
+      "truthCount": 4,
+      "modelCount": 3,
+      "matchedCount": 3,
+      "actionCoverage": 0.8571428571428571
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=3 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=45 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+    "damage_bridge: target=param identity-bound; sourceStatus/amountStatus left null (not invented)",
+    "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory when source unresolved",
+    "damage_bridge: damageTruthAvailable=true damageTruthCount=27 aaClassTruthCount=0 sourceResolvedCount=0 gateEligible=false",
+    "damage_bridge: rejectedNoIdentity=271 rejectedWrongGame=0 rejectedPidOrderOnly=0 rejectedNoTarget=0",
+    "r36: R28 emit + R32 CastSpellAns-1144 identity → truth AA/damage fold on pro kill window",
+    "r36: modelActions reused from prior action-replay audit (planner AA); no zero-damage echo for gate",
+    "r36: packetDecodeGate=false until reviewer C5 ≥7/10; calculatorReady=false",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=8 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=2 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ],
+  "researcher": "R36",
+  "gateEligible": true,
+  "packetDecodeGate": false,
+  "calculatorReady": false,
+  "criterionC": true,
+  "aaBridge": {
+    "jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r36/docs/rofl-research/packet_decode/r28/emit_2970110_basic_attack_damage.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r36/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+    "aaTruthAvailable": true,
+    "aaTruthCount": 3,
+    "foldGateEligible": true,
+    "rejectedNoIdentity": 45,
+    "rejectedWrongGame": 0,
+    "rejectedPidOrderOnly": 0,
+    "identityComplete": true,
+    "createHeroOrderFallback": false,
+    "aaBridgeReady": true
+  },
+  "damageBridge": {
+    "damageTruthAvailable": true,
+    "damageTruthCount": 27,
+    "aaClassTruthCount": 0,
+    "foldGateEligible": false,
+    "sourceResolvedCount": 0,
+    "rejectedNoIdentity": 271,
+    "rejectedNoTarget": 0
+  },
+  "window": {
+    "startMs": 219024,
+    "endMs": 223863,
+    "startSec": 219.024,
+    "endSec": 223.863,
+    "killerId": 10,
+    "victimId": 5,
+    "killerChamp": "Camille",
+    "victimChamp": "Leona"
+  }
+}

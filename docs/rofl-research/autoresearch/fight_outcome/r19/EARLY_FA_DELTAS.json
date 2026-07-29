@@ -1,0 +1,16 @@
+{
+  "schema": "fightOutcome-r19-earlyMae-FA-deltas-v1",
+  "utc": "2026-07-24T16:30:00Z",
+  "host": "2970132-g1 Path1 product cusum",
+  "earlyMae": {
+    "Galio→Trundle_full": { "e0": 116, "e1": 0, "delta": -116 },
+    "Galio→Trundle_burst": { "e0": 233, "e1": 0, "delta": -233 },
+    "mean_all_windows": { "e0": 164.733, "e1": 80.917, "delta": -83.817 }
+  },
+  "FA": {
+    "S0": { "e0": 0.2946, "e1": 0.4107, "delta": 0.1161 },
+    "S1": { "e3": 0.3279, "e4": 0.4170, "delta": 0.0890 },
+    "note": "FA ≠ win odds"
+  },
+  "product_KEEP": "idleFollowActual=true"
+}

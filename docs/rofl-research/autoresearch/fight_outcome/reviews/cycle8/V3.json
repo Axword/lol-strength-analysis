@@ -1,0 +1,15 @@
+{
+  "reviewer": "V3",
+  "role": "fightAgreement metric honesty (no gaming)",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "one_liner": "Authoritative S0 FA 0.9304 / S1 0.7628 both ≪0.95; FO false; FA≠odds.",
+  "evidence": [
+    "Specialty B/H: compound remesaure post R43 KEEP is authoritative — S0 fightAgreement 0.930409… passRate 0.6667; meetsThresholds=false.",
+    "S1 fightAgreement 0.762769… passRate 0.500; meetsThresholds=false; holdout F unmet.",
+    "Residual blockers match BRIEF/STATUS: c2_burst pathMae 111.6 (pathOk false); c3_full pathMae 159.3; S2 FA 0.4075 pass 0.",
+    "Disclosures on FA artifacts: fightAgreement = mean(windowScore); NOT win probability / odds %.",
+    "R43 KEEP progress (S1 FA↑ to 0.7628) is real but not gate; digestClean reaffirm true; G proven."
+  ]
+}

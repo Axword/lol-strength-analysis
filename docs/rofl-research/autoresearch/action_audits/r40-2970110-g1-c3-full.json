@@ -1,0 +1,286 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 3,
+  "segment": "full",
+  "matchup": "Ezreal→LeeSin",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.009,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 0.076,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 4
+    },
+    {
+      "tSec": 1.144,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 2.113068360942407,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.48,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 3.616,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 5.753,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 6.174435550104818,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 6.87570605786982,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 7.209,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 8.144,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 8.612,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 9.48056445630732,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 9.981,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 10.649,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 11.216,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 11.617666015624991,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 13.053,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 16.193,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 17.462,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 19.466,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 1.144,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.113,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.48,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 3.616,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 6.174,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 6.876,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 9.481,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 11.618,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 1
+    },
+    {
+      "tSec": 17.462,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 21,
+    "modelCount": 9,
+    "matchedCount": 9,
+    "precision": 1,
+    "recall": 0.42857142857142855,
+    "actionCoverage": 0.6,
+    "matches": [
+      {
+        "truthIdx": 2,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 1,
+        "dtSec": 0.00006836094240680879
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 4,
+        "dtSec": 0.00043555010481721723
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 5,
+        "dtSec": 0.00029394213018019144
+      },
+      {
+        "truthIdx": 12,
+        "modelIdx": 6,
+        "dtSec": 0.0004355436926797296
+      },
+      {
+        "truthIdx": 16,
+        "modelIdx": 7,
+        "dtSec": 0.0003339843750094218
+      },
+      {
+        "truthIdx": 19,
+        "modelIdx": 8,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      1,
+      6,
+      9,
+      10,
+      11,
+      13,
+      14,
+      15,
+      17,
+      18,
+      20
+    ],
+    "unmatchedModel": []
+  },
+  "byKind": {
+    "skill": {
+      "truthCount": 16,
+      "modelCount": 4,
+      "matchedCount": 4,
+      "actionCoverage": 0.4
+    },
+    "aa": {
+      "truthCount": 5,
+      "modelCount": 5,
+      "matchedCount": 5,
+      "actionCoverage": 1
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=castspell_ans_1144_champion_string complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=5 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=0 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=5 aaGateEligible=true (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaDamagingKitCount=5 matchedDamagingAa=5 damagingAaMarks=5 (kit physical AA via kind:aa marks; shareHint>0; NO zero-damage echo; GOAL forbid #13)",
+    "itemActiveTruthAvailable=true itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=26 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

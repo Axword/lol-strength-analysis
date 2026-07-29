@@ -1,0 +1,73 @@
+{
+  "reviewer": "V5",
+  "role": "S0 suite auditor",
+  "cycle": 3,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:00:30Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "s0": {
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "authoritativeHost": "2970132-g1 Path1 product cusum_engage_then_skills",
+    "authoritative": {
+      "fightAgreement": 0.2279317568764,
+      "fightAgreement_rounded": 0.2279,
+      "fightPassRate": 0,
+      "nWindows": 6,
+      "windowOk_count": 0,
+      "meetsThresholds": false,
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json",
+      "failingWindowIds": [
+        "2970132-g1/check01/full",
+        "2970132-g1/check01/burst",
+        "2970132-g1/check02/full",
+        "2970132-g1/check02/burst",
+        "2970132-g1/check03/full",
+        "2970132-g1/check03/burst"
+      ]
+    },
+    "research_e11_not_authoritative": {
+      "fightAgreement": 0.24136621085367857,
+      "product_KEEP": false,
+      "note": "STATUS best_fightAgreement_research=0.2414; product Path1 remains 0.2279"
+    },
+    "dominantFails_path1": [
+      "check01 Galio→Trundle: miss-kill (modelKilled=false) — R18 still no Galio kill",
+      "check02 Olaf→Trundle: lethalError still >0.75 (e11 improves 2.81→1.14, still fail)",
+      "check03 Olaf→Camille: lethalErrorSec~18 full + earlyMaeHp large — open R19/R23"
+    ],
+    "openTracks": ["R19 early", "R21 falsekill", "R22 Camille Q", "R23 lethal2"]
+  },
+  "evidence": [
+    "Specialty E/S0: authoritative Path1 product cusum FA 0.2279 / pass 0 (r05 personally read; BRIEF/STATUS unchanged).",
+    "All 6 Path1 windows fail windowOk — gate false on concrete §B alone.",
+    "R18 e11 research 0.2414 does not replace product 0.2279; fightPassRate still 0; NO product KEEP.",
+    "Proxy 2970110 ~0.42 retired as S0 gate host.",
+    "D re-judge: Path1 validate+hashes personally green → digestCleanGate=true (§D.4 prefer second host ≠ require).",
+    "G AFFIRM: R16 11/11 + R17 send-smoke 8/8; Criterion G proven — orthogonal to S0 FA.",
+    "Suites wired (E): S0/S1/S2 measured; thresholds unmet → E affirmed as suite existence, not bar pass.",
+    "Open per BRIEF: R19 early, R21 falsekill, R22 Camille Q, R23 lethal2."
+  ],
+  "failures": [
+    "B_S0_authoritative: Path1 product FA 0.2279 / pass 0 ≪ 0.95 (0/6 windowOk).",
+    "F_holdout: S1 below bar; R18 e11 regresses S1.",
+    "I_majority_e2e: FO cannot reach ≥11/15 while B fails."
+  ],
+  "notes": "V5 C3 S0 audit: FO false solely on concrete Path1 FA 0.2279≪0.95. Research e11 secondary only. digestClean re-judge true on personal §D. G proven. Next FA work: Galio kill + early/lethal (R19/R21–R23) — not more Send parity. FA≠odds.",
+  "one_line_vote": "V5: fightOutcomeGate=false digestCleanGate=true (conf 0.98) — S0 Path1 FA 0.2279 / pass 0 ≪ 0.95; G=true."
+}

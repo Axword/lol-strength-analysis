@@ -1,0 +1,78 @@
+{
+  "researcher": "r35",
+  "slug": "preengage-s1safe",
+  "wave": 2,
+  "model": "Auto",
+  "utc": "2026-07-24T16:30:38Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r35",
+  "branch": "adv/fo-r35-preengage-s1safe",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "mandate": "S1-safe pre-engage variant (sparse maxPost / far-share / host-gated); product KEEP only if S0\u2191 and S1 not regress; FA\u2260odds",
+  "n_experiments": 12,
+  "path1_FA_before": 0.5937715129268749,
+  "path1_FA_after_product_KEEP": 0.6021026407618185,
+  "path1_FA_delta": 0.008331127834943608,
+  "S1_FA_before": 0.5619564223174064,
+  "S1_FA_after_product_KEEP": 0.5810463694073534,
+  "S1_FA_delta": 0.019089947089947046,
+  "fightPassRate_S0_after": 0.3333333333333333,
+  "fightPassRate_S1_after": 0.3333333333333333,
+  "product_KEEP": true,
+  "keep_config": {
+    "preEngageOpenerSec": 0.5,
+    "preEngageOpenerMaxPostMarks": 3,
+    "markPreEngageLeadSec": 0,
+    "markPreEngageFarSec": 0,
+    "hostGate": null,
+    "note": "structural sparse \u2014 no host gate; S1 also rises"
+  },
+  "keeps": [
+    "e1",
+    "e9"
+  ],
+  "research_keep_candidates": [
+    "e1",
+    "e5",
+    "e7",
+    "e9",
+    "e6"
+  ],
+  "discards": [
+    "e2",
+    "e3",
+    "e4",
+    "e8"
+  ],
+  "galio": {
+    "before": {
+      "W_retained": false,
+      "lethErr": 2.6074444444444467,
+      "lethalHit": false,
+      "marks": 2
+    },
+    "after_KEEP": {
+      "W_retained": true,
+      "lethErr": -1.8369999999999997,
+      "lethalHit": false,
+      "marks": 3
+    },
+    "note": "W@15.024 restored; |lethErr| still >0.75 \u2192 lethalHit=0"
+  },
+  "findings": [
+    "Under R30 law, structural sparse opener (0.5/maxPost=3) lifts S0 FA 0.5938\u21920.6021 and S1 0.5620\u21920.5810.",
+    "R24 lead/far/maxMarks regresses S0 and S1 under idleFollow \u2014 reject for product.",
+    "Host-gated sparse matches S0 lift with S1 flat; structural preferred (S1\u2191).",
+    "Galio W retained but |lethErr|=1.84 still fails lethalHit bar.",
+    "FA is suite agreement \u2014 not calibrated win odds."
+  ],
+  "blocker": "Galio lethalHit still 0 (|lethErr|=1.84>0.75); FA\u226a0.95; burst 0 marks",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r35/leaderboard.json",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r35/NOTES.md",
+    "experiments": "docs/rofl-research/autoresearch/fight_outcome/r35/experiments/",
+    "sweep": "scripts/r35_preengage_s1safe_sweep.sh"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "reviewer": "V10",
+  "cycle": 7,
+  "phase": "C",
+  "role": "ActionCoverage secondary (reject zero-dmg echo)",
+  "utc": "2026-07-24T16:52:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "one_liner": "V10: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — actionF1 secondary cannot rescue S0 FA 0.7766 / pass 0.333 ≪0.95; FA≠odds",
+  "action_coverage_lens": {
+    "secondary_weight_in_windowScore": 0.15,
+    "secondary_only": true,
+    "never_sole_gate_evidence": true,
+    "honest_unavailable_policy": "actionF1 → 0 when null/unavailable (disclose)",
+    "reject_zero_damage_log_echo": true,
+    "compound_S0_windows_actionF1": {
+      "c1_full": 0.75,
+      "c1_burst": 0,
+      "c2_full": 0.7692307692307693,
+      "c2_burst": 0.7692307692307693,
+      "c3_full": 0.631578947368421,
+      "c3_burst": 0.33333333333333337,
+      "note": "c1_burst actionF1=0; secondary term max +0.15 cannot push suite FA to 0.95"
+    },
+    "suite_fa_context": {
+      "S0_compound": 0.7766342033756181,
+      "S0_pass": 0.3333333333333333,
+      "S1_compound": 0.5810463694073534,
+      "S1_pass": 0.3333333333333333,
+      "gate_needs": 0.95,
+      "actionReplayGate": false,
+      "cannot_rescue_B": true
+    },
+    "r14_policy_held": {
+      "echo_rejected_as_gate_evidence": true,
+      "rejectReason": "zero_damage_log_echo must not earn actionReplayGate / fightOutcomeGate secondary credit"
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "BRIEF C7 — S0 FA 0.7766 pass 0.333 ≪0.95; S1 0.5810; G fo:send-smoke 8/8",
+    "r31 fight_agreement_S0_parent_stack_r31.json — law weights actionCoverageF1=0.15; c1_burst actionF1=0; meetsThresholds false",
+    "GOAL — actionCoverage / actionReplayGate secondary only; reject zero-dmg log-echo as sole gate evidence",
+    "STATUS — fightOutcomeGate false; best_fightAgreement 0.7766; digestCleanGate true; criterionG_proven true",
+    "DIGEST Path1 — digestCleanGate reaffirm true; calculatorReady living_post_seed_v1; FA≠odds",
+    "Secondary max lift 0.15 << gap from 0.7766→0.95 — cannot rescue B"
+  ],
+  "failures": [
+    "B: S0 FA 0.7766 / pass 0.333 ≪ 0.95; actionF1 secondary insufficient",
+    "F: S1 FA 0.5810 / pass 0.333 ≪ 0.95",
+    "actionReplayGate false — not calibrated odds; not FO evidence alone"
+  ],
+  "blocker": "Fix lethal/path/early primary bands (passRate, pathMae, Galio leth); do not credit echo F1 or sell FA as odds",
+  "notes": "C7 V10 actionCoverage lens: secondary-only policy held; compound S0 still 0.7766≪0.95 with c1_burst actionF1=0. FO false. DC true. FA ≠ odds. G proven orthogonal."
+}

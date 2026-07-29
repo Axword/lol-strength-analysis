@@ -1,0 +1,102 @@
+{
+  "researcher": "r09",
+  "slug": "unfreeze-regen",
+  "model": "Auto",
+  "utc": "2026-07-24T15:49:03Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r09",
+  "branch": "adv/fo-r09-unfreeze-regen",
+  "never_edited_parent": true,
+  "unfreeze_0_9683_authorized": true,
+  "f3_hypotheses_auto_picked": [
+    "3 Regen / extended fight \u2014 Resource regen in kill windows; opener vs finish separate"
+  ],
+  "f3_hypotheses_deferred": [
+    "1 Mark density vs lethalHit (R07 mandate)",
+    "2 PulseBySlot retune (R07 mandate)",
+    "4 CUSUM K/H sweep (R07 mandate)"
+  ],
+  "n_experiments": 12,
+  "suite": "S0-2970110-g1",
+  "baseline": {
+    "experiment": "e0",
+    "fightAgreement": 0.5350862346343341,
+    "fightPassRate": 0.3333333333333333,
+    "composite": 0.9682758824446431,
+    "note": "research drop markMinGap0.4 \u2014 frozen composite 0.9683 config; regen off"
+  },
+  "best_fightAgreement": 0.5350862346343341,
+  "best_experiment": "e0",
+  "best_fightAgreement_delta_vs_e0": 0.0,
+  "best_hypothesis": "R09-E0 baseline no-regen markMinGap0.4 drop (frozen composite 0.9683)",
+  "keeps": [],
+  "discards": [
+    "e1",
+    "e2",
+    "e3",
+    "e4",
+    "e5",
+    "e6",
+    "e7",
+    "e8",
+    "e9",
+    "e10",
+    "e11"
+  ],
+  "ties_no_improve": [],
+  "product_selectors_changed": false,
+  "product_default_still": [
+    "cusum_engage_then_skills",
+    "post_engage_killer_skills"
+  ],
+  "best_json_updated": false,
+  "reason_no_keep": "No regen config beat E0 fightAgreement; unfreeze authorized but KEEP requires FA improvement without invent",
+  "engine_overlay_touched": true,
+  "parity_gate": "harness delegates regen to killWindowOverlay.simulateKillWindowSeries (engine==harness)",
+  "regen_path": {
+    "idle_pre_engage": "rate 0 (false-all-in gate preserved)",
+    "listed_source": "buildStats(champ+items).hpRegen or --regen-hps override",
+    "combat_frac_default": 0.3,
+    "opener_vs_finish": "separate fracs; never single coeff for both tracks"
+  },
+  "blocker": "S0 fightAgreement 0.5351 << 0.95; regen track did not unlock gate",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r09/results.jsonl",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r09/leaderboard.json",
+    "scorer": "scripts/fight_agreement_from_eval.ts",
+    "sweep": "scripts/r09_unfreeze_regen_sweep.sh",
+    "overlay": "src/engine/killWindowOverlay.ts"
+  },
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %",
+  "ranked_top5": [
+    {
+      "id": "e0",
+      "fightAgreement": 0.5350862346343341,
+      "delta": 0.0,
+      "regenMode": "off"
+    },
+    {
+      "id": "e3",
+      "fightAgreement": 0.4848445238480757,
+      "delta": -0.05024171078625844,
+      "regenMode": "combat"
+    },
+    {
+      "id": "e11",
+      "fightAgreement": 0.4757849910927739,
+      "delta": -0.059301243541560245,
+      "regenMode": "opener_only"
+    },
+    {
+      "id": "e6",
+      "fightAgreement": 0.47155119609909435,
+      "delta": -0.06353503853523979,
+      "regenMode": "split"
+    },
+    {
+      "id": "e1",
+      "fightAgreement": 0.4705313580815562,
+      "delta": -0.06455487655277792,
+      "regenMode": "combat"
+    }
+  ]
+}

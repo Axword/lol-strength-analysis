@@ -1,0 +1,11 @@
+{
+  "id": "E03",
+  "hypothesis": "H2 Secondary only — actionCoverage is 0.15 of windowScore",
+  "ACTION_COVERAGE_WINDOW_WEIGHT": 0.15,
+  "perfectPartsWindowScoreWithF1": 1,
+  "perfectPartsWindowScoreWithoutF1": 0.8500000000000001,
+  "deltaFromF1": 0.1499999999999999,
+  "expectedDelta": 0.15,
+  "soleGateEvidenceForbidden": true,
+  "note": "F1 alone cannot flip fightOutcomeGate; lethal/early/path dominate"
+}

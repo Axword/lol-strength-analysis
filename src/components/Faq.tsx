@@ -4,7 +4,7 @@ const SECTIONS: { id: string; title: string; body: string }[] = [
   {
     id: 'winner',
     title: 'How can the gold/scoreboard loser win a trade?',
-    body: `They usually should not. The primary verdict is a heuristic fight-odds prior from gold, levels, towers, dragons, baron/elder, and kill lead, then updated by combat pressure (how much of the enemy HP pool the exchange removes). It is not a calibrated probability claim, especially for NvM.
+    body: `They usually should not. The primary verdict is a heuristic model-edge prior from gold, levels, towers, dragons, baron/elder, and kill lead, then updated by combat pressure (how much of the enemy HP pool the exchange removes). It is a ranking score, not a calibrated win probability or odds %, especially for NvM.
 
 Leftover HP% after a light poke is secondary. A Blue side that “wins” 81% vs 75% leftover HP while Red is +6k with baron is not called the favorite — Red is.
 
@@ -13,7 +13,14 @@ This match (FUR vs G2 JSONL) is a foolproof check: after ~16 minutes every kill 
   {
     id: 'strength-band',
     title: 'What do Miss / Expected / Hit all show?',
-    body: `Each band re-runs skillshot assumptions and reports both fight odds and leftover HP%. Odds can stay Red-favored across all three when the scoreboard gap is large; Hit all may only change how bloody the leftover HP looks.`,
+    body: `Each band re-runs skillshot assumptions and reports both model edge scores and leftover HP%. Model edge can stay Red-favored across all three when the scoreboard gap is large; Hit all may only change how bloody the leftover HP looks. These scores are not win probabilities and never odds %.`,
+  },
+  {
+    id: 'model-edge-not-odds',
+    title: 'Are model edge scores bookmaker odds? What about “~95%” fight agreement?',
+    body: `No. Blue/Red model edge (pBlue/pRed) are heuristic ranking scores for who is stronger in the modeled trade. They are never calibrated win probability, never odds %, and never bookmaker chance.
+
+Research kill-window suite agreement (fightAgreement) is a separate metric: how often the calculator’s predicted fight outcome matches timeline truth on a fixed window suite. A bar like “fight outcome agreement ≥95% (kill-window suite)” means that suite mean — not “95% sure we win the map,” and not pBlue rendered as a percent.`,
   },
   {
     id: 'duration',
@@ -74,7 +81,7 @@ Drake use (per champ): quantified conversion of applied permanent stacks — inf
 
 AS and AH are separate columns (attack speed % of base vs ability haste).
 
-Grub Touch: estimated Touch-of-the-Void burn (touch-v5). Structure map seeded at t=0 from SR layout; plate/destroy refine it. Clean AA = near structure + AD/AS-sized delta + no skill in window. Burn ticks that continue in the turret feed after walking away are not counted as far rejects. High = ≥3 clean AAs and far-share ≤30%. Optional: scripts/touch_vod_probe.py on a match.mp4 cuts ambiguous siege clips for labeling. Grubs never feed fight odds.
+Grub Touch: estimated Touch-of-the-Void burn (touch-v5). Structure map seeded at t=0 from SR layout; plate/destroy refine it. Clean AA = near structure + AD/AS-sized delta + no skill in window. Burn ticks that continue in the turret feed after walking away are not counted as far rejects. High = ≥3 clean AAs and far-share ≤30%. Optional: scripts/touch_vod_probe.py on a match.mp4 cuts ambiguous siege clips for labeling. Grubs never feed model edge scores.
 
 Sustain: ally heal + shield from the feed, live HP regen, life steal / spell vamp, and item omnivamp.`,
   },
@@ -103,7 +110,7 @@ Sustain: ally heal + shield from the feed, live HP regen, life steal / spell vam
     title: 'How does NvM focus fire work?',
     body: `NvM uses a deterministic first-living-target policy: every living attacker sends single-target packets to the first living enemy in input order. The exchange is simultaneous, HP is pooled only for the team meter, and there is no automatic retarget after that focus target dies. Armor/MR, max-HP scaling, Liandry's, sustain, and defensive utility resolve against concrete targets.
 
-The calculator exposes this in the assumptions footer. Relative damage is acceptance-tested across all 25 cells from 1v1 through 5v5, but NvM fight odds and retarget timing remain uncalibrated.`,
+The calculator exposes this in the assumptions footer. Relative damage is acceptance-tested across all 25 cells from 1v1 through 5v5, but NvM model edge scores and retarget timing remain uncalibrated — never odds %.`,
   },
 ]
 

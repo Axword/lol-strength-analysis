@@ -1,0 +1,39 @@
+{
+  "schema": "r32-check03-residual-hp-attribution-v1",
+  "matchup": "Olaf→Camille",
+  "suite": "2970132-g1 Path1",
+  "segment": "full",
+  "method": "residual_hp",
+  "probe": {
+    "firstLethalSec": 1.734,
+    "actualDeathSec": 20.702,
+    "earlyBySec": 18.968,
+    "gate_minEarlyLethalSec": 8,
+    "gate_fired": true
+  },
+  "drops": {
+    "actualStartHp": 1308.0,
+    "actualAtLethalHp": 1049.0,
+    "actualDrop": 259.0,
+    "modelDrop": 1308.0,
+    "residualShare": 0.19800157169487195
+  },
+  "vs_r26": {
+    "assist_gated_share": 0.2,
+    "skill_count_proxy": 0.2,
+    "note": "residual HP share ≈ skill-count proxy without allyMin collision"
+  },
+  "s1_cass_viktor": {
+    "earlyBySec_approx": 0.84,
+    "gate_fired": false,
+    "reason": "earlyBy<8 — preserves holdout lethal"
+  },
+  "metrics": {
+    "earlyMae_before": 476,
+    "earlyMae_after": 100.4196699440769,
+    "earlyPoisoned_before": true,
+    "earlyPoisoned_after": false,
+    "lethalErrorSec_after": 0.4566639084657744
+  },
+  "confidence": "FA≠odds; same-match HP only — no invent"
+}

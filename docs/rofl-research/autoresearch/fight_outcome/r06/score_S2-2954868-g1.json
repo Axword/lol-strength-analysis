@@ -1,0 +1,78 @@
+{
+  "schema": "fightAgreement-member-score-v1",
+  "utc": "2026-07-24T15:41:46.479Z",
+  "member": "S2-2954868-g1",
+  "suite": "S2",
+  "tuneAllowed": false,
+  "markSelection": "cusum_engage_then_skills",
+  "fightAgreement": 0.6335376212427813,
+  "fightPassRate": 0.3333333333333333,
+  "n": 3,
+  "results": [
+    {
+      "id": "S2-2954868-g1-check1",
+      "windowOk": true,
+      "windowScore": 0.8500000000000001,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0,
+        "earlyMaeHp": 2.8,
+        "maeHpBurst": 26.47846848544473,
+        "maeHpFull": 23.301052267191363,
+        "lethalErrorSec": -1.235999999999997
+      }
+    },
+    {
+      "id": "S2-2954868-g1-check2",
+      "windowOk": false,
+      "windowScore": 0.39749794531342525,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.7374897265671262,
+        "actionF1": 0,
+        "earlyMaeHp": 32,
+        "maeHpBurst": 137.25184921791728,
+        "maeHpFull": 104.91280430805949,
+        "lethalErrorSec": -0.08299999999999841
+      }
+    },
+    {
+      "id": "S2-2954868-g1-check3",
+      "windowOk": false,
+      "windowScore": 0.6531149184149185,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 0.97,
+        "pathBand": 0.053074592074592086,
+        "actionF1": 0,
+        "earlyMaeHp": 53,
+        "maeHpBurst": 217.77272727272728,
+        "maeHpFull": 191.64,
+        "lethalErrorSec": -8.750000000000002
+      }
+    }
+  ],
+  "audits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r06/docs/rofl-research/autoresearch/fight_outcome/audits/S2-2954868-g1-check2.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r06/docs/rofl-research/autoresearch/fight_outcome/audits/S2-2954868-g1-check3.json"
+  ],
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win probability / odds %"
+}

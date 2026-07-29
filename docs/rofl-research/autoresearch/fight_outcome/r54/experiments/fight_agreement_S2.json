@@ -1,0 +1,195 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T17:10:00.911Z",
+  "researcher": "r04",
+  "suite": "S2",
+  "match": "2954868-g1",
+  "proxied": false,
+  "harnessSuite": "2954868-g1-transfer",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r54/docs/rofl-research/autoresearch/fight_outcome/r54/experiments/e03_stack_s2.json",
+  "markSelection": "cusum_engage_then_skills",
+  "harnessMode": "gate_action",
+  "harnessHypothesis": "E03 compound stack remesaure S2 transfer 2954868",
+  "n": 6,
+  "fightAgreement": 0.5861062942926697,
+  "fightPassRate": 0.3333333333333333,
+  "thresholds": {
+    "fightAgreement": 0.9,
+    "fightPassRate": 0.8333333333333334
+  },
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S2_2954868-g1_c1_full",
+      "windowOk": true,
+      "windowScore": 0.95,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.6666666666666665,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 10.329727340789434,
+        "maeHpFull": 9.090160059894702,
+        "maeHp": 9.090160059894702,
+        "pathCap": 130,
+        "lethalErrorSec": 0.11425654874426172,
+        "segment": "full",
+        "matchup": "Camille→Vayne"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c1_burst",
+      "windowOk": true,
+      "windowScore": 0.931818,
+      "parts": {
+        "lethalOk": true,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 1,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.5454545454545454,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 10.329727340789434,
+        "maeHpFull": 9.090160059894702,
+        "maeHp": 10.329727340789434,
+        "pathCap": 90,
+        "lethalErrorSec": 0.11425654874426527,
+        "segment": "burst",
+        "matchup": "Camille→Vayne"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.514286,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.42857142857142855,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 145.55682159360794,
+        "maeHpFull": 55.77369460695952,
+        "maeHp": 55.77369460695952,
+        "pathCap": 130,
+        "lethalErrorSec": null,
+        "segment": "full",
+        "matchup": "Cassiopeia→Ambessa"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.408359,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.38270198229324515,
+        "actionF1": 0.5454545454545454,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 145.55682159360794,
+        "maeHpFull": 55.77369460695952,
+        "maeHp": 145.55682159360794,
+        "pathCap": 90,
+        "lethalErrorSec": null,
+        "segment": "burst",
+        "matchup": "Cassiopeia→Ambessa"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.434903,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.757846153846154,
+        "actionF1": 0.2222222222222222,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 308.1818181818182,
+        "maeHpFull": 161.48,
+        "maeHp": 161.48,
+        "pathCap": 130,
+        "lethalErrorSec": 8.75,
+        "segment": "full",
+        "matchup": "LeeSin→Ziggs"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0.277273,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0,
+        "actionF1": 0.18181818181818182,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 308.1818181818182,
+        "maeHpFull": 161.48,
+        "maeHp": 308.1818181818182,
+        "pathCap": 90,
+        "lethalErrorSec": 16.233,
+        "segment": "burst",
+        "matchup": "LeeSin→Ziggs"
+      }
+    }
+  ],
+  "failingAudits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r54/docs/rofl-research/autoresearch/fight_outcome/r54/audits/e03_stack_s2/S2_2954868-g1_c2_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r54/docs/rofl-research/autoresearch/fight_outcome/r54/audits/e03_stack_s2/S2_2954868-g1_c2_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r54/docs/rofl-research/autoresearch/fight_outcome/r54/audits/e03_stack_s2/S2_2954868-g1_c3_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r54/docs/rofl-research/autoresearch/fight_outcome/r54/audits/e03_stack_s2/S2_2954868-g1_c3_burst.json"
+  ],
+  "law": {
+    "lethalTolSec": 0.75,
+    "earlyMaeCap": 50,
+    "burstMaeCap": 90,
+    "fullMaeCap": 130,
+    "endHpFloor": 40,
+    "weights": {
+      "lethalHit": 0.4,
+      "earlyBand": 0.25,
+      "pathBand": 0.2,
+      "actionCoverageF1": 0.15
+    }
+  },
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S2 transfer = unused pro slim 2954868-g1 (not 2970132/2970137; R45/R54 remesaure)"
+  ],
+  "confidence": "fightAgreement ≥0.95 means kill-window suite agreement under GOAL §B — NOT calibrated win odds"
+}

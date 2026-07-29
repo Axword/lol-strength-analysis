@@ -1,0 +1,90 @@
+{
+  "reviewer": "V6",
+  "cycle": 5,
+  "phase": "C",
+  "role": "S1 holdout auditor",
+  "utc": "2026-07-24T16:18:00Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "s1_lens": {
+    "members": ["S1-2970137-g1", "S1-2970120-g1"],
+    "authoritative_member_freeze": "S1-2970137-g1",
+    "nWindows": 6,
+    "authoritative_current_law": {
+      "source": "r30/experiments/fa_S1_e8_product_keep.json (R30 KEEP product defaults)",
+      "protocol": "cusum_engage_then_skills + idleFollowActual + aaAtEachMark=false + pulseBySlot R=0",
+      "fightAgreement": 0.5619564223174064,
+      "fightPassRate": 0.3333333333333333,
+      "gateMet": false,
+      "note": "BRIEF/STATUS S1 FA≈0.562 / pass≈0.333; tuneForbidden; Δ vs R25 +0.145 without S1 tune"
+    },
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "no_s1_tuning_claim": true,
+    "idleFollowActual": true,
+    "r30_product_KEEP": {
+      "keep": true,
+      "s1_FA_before": 0.4169776331222436,
+      "s1_FA_after": 0.5619564223174064,
+      "s1_pass_after": 0.3333333333333333,
+      "rejected_e7c": "R/W=0 keep aa-at-mark → S1 FA 0.417→0.404 regress"
+    },
+    "r24_holdout": {
+      "research_path1_FA": 0.5030447427479277,
+      "s1_e49_REGRESS": 0.3379081614115324,
+      "product_KEEP": false,
+      "note": "R24 Galio kill research FA 0.503 on old baseline; S1 0.519→0.338 → NO product KEEP; product stays R30 0.590"
+    },
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c1_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c1_burst.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c3_full.json",
+      "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c3_burst.json"
+    ],
+    "cycle5_delta": {
+      "S0_path1_product_FA": 0.5896947676936598,
+      "S0_path1_pass": 0.3333333333333333,
+      "S1_current_law_FA": 0.5619564223174064,
+      "S1_pass": 0.3333333333333333,
+      "r30_KEEP_lifted_S1": true,
+      "r24_no_product_KEEP": true,
+      "still_far_below_095": true
+    }
+  },
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "evidence": [
+    "GOAL §B/§F — S1 must hit FA≥0.95 AND passRate≥0.95; no fightOutcomeGate on S0 alone",
+    "r30/fa_S1_e8_product_keep.json — current-law FA≈0.562 / pass 0.333; tuneForbidden; gateMet false; 4/6 windows fail (c1+c3)",
+    "BRIEF C5 — S0 Path1 product FA≈0.590 / pass≈0.333; S1≈0.562 / pass≈0.333; G proven; digestCleanGate true",
+    "STATUS — fightOutcomeGate false; best_fightAgreement 0.5897; S1_current_law_FA 0.5620; r24_product_KEEP false",
+    "R24 — research FA 0.503 (S1 regress 0.338) → keeps=[]; product remains R30",
+    "R30 KEEP — aaAtEachMark=false + R-pulse 0 lifts S1 without tuning; e7c rejected on S1 regress",
+    "DIGEST/GOAL §D Path1 ≥1 match — digestCleanGate reaffirm true (C3/C4; no new §D failure)"
+  ],
+  "failures": [
+    "B/F: S1 current-law FA≈0.562 / pass 0.333 ≪ 0.95 (R30); cannot claim FO",
+    "F: R24 research lift on S0 does not rescue holdout — S1 regress → no KEEP",
+    "I: ≥11/15 + parent e2e not met while holdout fails"
+  ],
+  "blocker": "S1 FA≈0.562 and pass 0.333 far below 0.95; residual Path1 Galio miss-kill (c1) + Camille earlyPoisoned (c3) + c2 pathMae — lift S0 lethal/early without S1 tune, then re-measure holdout",
+  "notes": "V6 S1 holdout lens (Cycle5). Authoritative freeze is R30 KEEP product law FA≈0.562 / pass 0.333 under cusum_engage_then_skills + idleFollowActual + aaAtEachMark=false + R-pulse 0, tuneForbidden — 4/6 windows fail. R24 proves Galio lead/far knobs are research-only (S1 regress). digestCleanGate true on §D reaffirm. G cited proven orthogonal to holdout. fightAgreement ≠ win odds / ≠ pBlue%.",
+  "one_line_vote": "V6: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — S1 current-law FA≈0.562 / pass 0.333 ≪0.95; R24 no KEEP"
+}

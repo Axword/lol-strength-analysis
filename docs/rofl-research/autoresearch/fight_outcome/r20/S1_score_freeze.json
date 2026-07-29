@@ -1,0 +1,171 @@
+{
+  "schema": "fightOutcome-S1-score-freeze-v1",
+  "utc": "2026-07-24T15:57:02.312Z",
+  "researcher": "r20",
+  "hypothesis": "F7.H3 S1 score freeze",
+  "tuneForbidden": true,
+  "tuned": false,
+  "markSelection": "cusum_engage_then_skills",
+  "dropFilter": false,
+  "productNonDrop": true,
+  "members": [
+    "S1-2970137-g1",
+    "S1-2970120-g1"
+  ],
+  "thresholds": {
+    "fightAgreement": 0.95,
+    "fightPassRate": 0.95
+  },
+  "prior_context": {
+    "brief_S1_FA": 0.478,
+    "brief_source": "R06 suite_status paired/pooled (stored scores used lethalOk looser than LETHAL_TOL=0.75 on 2970137 check2)",
+    "path1_S0_FA": 0.228,
+    "path1_source": "R05 product cusum"
+  },
+  "primary_freeze": {
+    "note": "R06-protocol harness (cusum_engage_then_skills, markMinGap 0.4, no dense-window 1.0) + CURRENT scoreWindow law (lethal≤0.75s)",
+    "protocol": "r06_proto_no_dense",
+    "members": [
+      "S1-2970137-g1",
+      "S1-2970120-g1"
+    ],
+    "grain_check_x_segment": {
+      "fightAgreement": 0.4105916180926972,
+      "fightPassRate": 0.16666666666666666,
+      "n": 12,
+      "gateMet": false
+    },
+    "grain_paired": {
+      "fightAgreement": 0.41099771388416645,
+      "fightPassRate": 0.16666666666666666,
+      "n": 6,
+      "gateMet": false
+    },
+    "memberReports": [
+      {
+        "id": "S1-2970137-g1",
+        "path": "score_S1-2970137-g1.json",
+        "seg": {
+          "fightAgreement": 0.3279491037780255,
+          "fightPassRate": 0,
+          "n": 6
+        },
+        "paired": {
+          "fightAgreement": 0.3485996187220188,
+          "fightPassRate": 0,
+          "n": 3
+        }
+      },
+      {
+        "id": "S1-2970120-g1",
+        "path": "score_S1-2970120-g1.json",
+        "seg": {
+          "fightAgreement": 0.4932341324073688,
+          "fightPassRate": 0.3333333333333333,
+          "n": 6
+        },
+        "paired": {
+          "fightAgreement": 0.4733958090463141,
+          "fightPassRate": 0.3333333333333333,
+          "n": 3
+        }
+      }
+    ]
+  },
+  "product_dense_throttle_also": {
+    "note": "Same selector with fight_agreement_suite dense-window 1.0 / dense-max 1 (R04 runHarness defaults) — disclosed, not used to retune",
+    "protocol": "product_dense_1_0",
+    "members": [
+      "S1-2970137-g1",
+      "S1-2970120-g1"
+    ],
+    "grain_check_x_segment": {
+      "fightAgreement": 0.34392495142603047,
+      "fightPassRate": 0,
+      "n": 12,
+      "gateMet": false
+    },
+    "grain_paired": {
+      "fightAgreement": 0.3443310472174997,
+      "fightPassRate": 0,
+      "n": 6,
+      "gateMet": false
+    },
+    "memberReports": [
+      {
+        "id": "S1-2970137-g1",
+        "path": "score_S1-2970137-g1.product_dense.json",
+        "seg": {
+          "fightAgreement": 0.3279491037780255,
+          "fightPassRate": 0,
+          "n": 6
+        },
+        "paired": {
+          "fightAgreement": 0.3485996187220188,
+          "fightPassRate": 0,
+          "n": 3
+        }
+      },
+      {
+        "id": "S1-2970120-g1",
+        "path": "score_S1-2970120-g1.product_dense.json",
+        "seg": {
+          "fightAgreement": 0.3599007990740355,
+          "fightPassRate": 0,
+          "n": 6
+        },
+        "paired": {
+          "fightAgreement": 0.3400624757129807,
+          "fightPassRate": 0,
+          "n": 3
+        }
+      }
+    ]
+  },
+  "r06_stored_rescored_current_law": {
+    "note": "R06 eval JSON re-scored with current scoreWindow; does not retune",
+    "per_member": {
+      "2970120": {
+        "seg": {
+          "fightAgreement": 0.4932341324073688,
+          "fightPassRate": 0.3333333333333333,
+          "n": 6
+        },
+        "paired": {
+          "fightAgreement": 0.4733958090463141,
+          "fightPassRate": 0.3333333333333333,
+          "n": 3
+        }
+      },
+      "2970137": {
+        "seg": {
+          "fightAgreement": 0.3279491037780255,
+          "fightPassRate": 0,
+          "n": 6
+        },
+        "paired": {
+          "fightAgreement": 0.3485996187220188,
+          "fightPassRate": 0,
+          "n": 3
+        }
+      }
+    },
+    "pooled_paired": {
+      "fightAgreement": 0.41099771388416645,
+      "fightPassRate": 0.16666666666666666,
+      "n": 6
+    },
+    "delta_vs_brief_0_478": -0.06700228611583353
+  },
+  "r06_stored_score_inflation": {
+    "detail": "R06 score_S1-2970137-g1.json marks check2 lethalOk=true with |lethErr|=2.721 > 0.75 — inflates FA to 0.482 on that member; current law rejects"
+  },
+  "disclosures": [
+    "Measure/disclose only — no S1 retune, no knob sweep, no invent.",
+    "fightAgreement ≠ win odds / calibrated probability.",
+    "Primary freeze FA uses CURRENT GOAL §B lethal≤0.75 — not R06 inflated stored lethalHit.",
+    "Path1 S0 still 0.228 — S1 freeze is not fightOutcomeGate evidence."
+  ],
+  "fightOutcomeGateEvidence": false,
+  "gateMet": false
+}

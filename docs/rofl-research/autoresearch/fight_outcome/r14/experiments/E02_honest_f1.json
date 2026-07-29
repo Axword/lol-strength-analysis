@@ -1,0 +1,19 @@
+{
+  "id": "E02",
+  "hypothesis": "F5H1 Honest F1 non-echo damage model on 2970110-g1-c1",
+  "f5": "H1",
+  "damageTruth": 64,
+  "sourceResolved": 64,
+  "amountResolved": 64,
+  "modelDamage": 64,
+  "echoCount": 0,
+  "damagingCount": 64,
+  "matched": 64,
+  "precision": 1,
+  "recall": 1,
+  "actionCoverage": 1,
+  "gateEligible": true,
+  "shareHintMin": 0.8487789034843445,
+  "shareHintMax": 90.77167510986328,
+  "keep": true
+}

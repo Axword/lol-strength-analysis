@@ -1,0 +1,15 @@
+{"t": "2026-07-24T17:00:00Z", "id": "e0", "hypothesis": "S1 baseline", "keep": false, "S1_FA": 0.581, "notes": "Anivia miss-kill mae335/647"}
+{"t": "2026-07-24T17:01:00Z", "id": "e0b", "hypothesis": "S0 baseline", "keep": false, "S0_FA": 0.774, "notes": "worktree remesaure vs STATUS 0.7766"}
+{"t": "2026-07-24T17:02:00Z", "id": "e1", "hypothesis": "S1 pulse R=0.4", "keep": false, "notes": "mae\u2193 still miss-kill; Vayne leth side-effect"}
+{"t": "2026-07-24T17:03:00Z", "id": "e2", "hypothesis": "S1 pulse R=1.0", "keep": false, "notes": "identical to e1 \u2014 kit-dump flat"}
+{"t": "2026-07-24T17:04:00Z", "id": "e3", "hypothesis": "S0 pulse R=0.4", "keep": false, "notes": "S0 Olaf path/leth regress \u2014 discard global R pulse"}
+{"t": "2026-07-24T17:05:00Z", "id": "e4", "hypothesis": "Anivia CORE Q\u00d72 E chill R pack", "keep": false, "notes": "endHp 233 miss; burst earlyMae\u2191"}
+{"t": "2026-07-24T17:06:00Z", "id": "e5", "hypothesis": "S0 + Anivia CORE", "keep": false, "notes": "S0 bit-match \u2014 CORE isolated"}
+{"t": "2026-07-24T17:07:00Z", "id": "e6", "hypothesis": "CORE + R pulse 0.4", "keep": false, "notes": "kill |leth|=1.04>0.75; needs global R pulse"}
+{"t": "2026-07-24T17:08:00Z", "id": "e7", "hypothesis": "CORE + finishAaMax10", "keep": false, "notes": "still miss"}
+{"t": "2026-07-24T17:09:00Z", "id": "e8", "hypothesis": "CORE + aaAtEachMark", "keep": false, "notes": "still miss; early worse"}
+{"t": "2026-07-24T17:10:00Z", "id": "e9", "hypothesis": "fatter R ticks only", "keep": false, "notes": "no effect \u2014 R not in 0.4s dump cast order"}
+{"t": "2026-07-24T17:11:00Z", "id": "e10", "hypothesis": "Q-fold storm 6tick", "keep": false, "notes": "full kill leth+2.45 late; burst miss"}
+{"t": "2026-07-24T17:12:00Z", "id": "e11", "hypothesis": "Q-fold tick sweep 7-12", "keep": false, "notes": "ticks=7 |leth|=0.125 best"}
+{"t": "2026-07-24T17:13:00Z", "id": "e12", "hypothesis": "Anivia CORE Q-fold7 product KEEP-cand", "keep": true, "S0_FA": 0.774, "S1_FA": 0.7095, "notes": "S1\u2191 S0 flat; c3_full windowOk"}
+{"t": "2026-07-24T17:14:00Z", "id": "e13", "hypothesis": "ally-truth ablation", "keep": false, "notes": "no FA lift vs e12; assistProbe was 0"}

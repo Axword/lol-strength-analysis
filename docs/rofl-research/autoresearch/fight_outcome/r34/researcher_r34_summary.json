@@ -1,0 +1,83 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r34",
+  "slug": "s0-passrate",
+  "wave": 2,
+  "model": "Auto",
+  "utc": "2026-07-24T16:31:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r34",
+  "branch": "adv/fo-r34-s0-passrate",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Audit S0 failing windows; raise fightPassRate toward 0.95 without S1 regress; KEEP only S0 pass↑ and S1 not regress; FA≠odds",
+  "product_selector": "cusum_engage_then_skills",
+  "hypothesesAutoPicked": [
+    { "id": "H0", "title": "Baseline remesaure + failing-window audit", "result": "MEASURED" },
+    { "id": "H1", "title": "finish-AA soften for c2 pathMae", "result": "DISCARD" },
+    { "id": "H2", "title": "pulseBySlot soften for c2 pathMae", "result": "DISCARD" },
+    { "id": "H3", "title": "mark thin / finish-horizon", "result": "DISCARD" },
+    { "id": "H4", "title": "aa-at-mark uncapped/capped", "result": "DISCARD_product" },
+    { "id": "H6", "title": "Galio tornadoPct 0.15", "result": "KEEP" }
+  ],
+  "n_experiments": 24,
+  "failing_window_audit_pre_KEEP": {
+    "S0_pass": 0.3333333333333333,
+    "windows": [
+      { "id": "c1_full", "matchup": "Galio→Trundle", "fail": ["lethal"], "lethErrSec": 2.61, "pathOk": true, "passable": "next" },
+      { "id": "c1_burst", "matchup": "Galio→Trundle", "fail": ["lethal", "pathMae"], "marks": 0, "passable": "hard" },
+      { "id": "c2_burst", "matchup": "Olaf→Trundle", "fail": ["pathMae"], "maeBurst": 117.7, "lethalOk": true, "passable": "closest_but_pulse_noop" },
+      { "id": "c3_full", "matchup": "Olaf→Camille", "fail": ["lethal", "earlyMae", "pathMae"], "earlyMae": 476, "earlyPoisoned": true, "passable": "hard_S1_share" }
+    ]
+  },
+  "S0": {
+    "before_FA": 0.5937715129268749,
+    "after_FA": 0.6629381795935415,
+    "delta_FA": 0.06916666666666666,
+    "before_pass": 0.3333333333333333,
+    "after_pass": 0.5,
+    "delta_pass": 0.16666666666666669,
+    "match": "2970132-g1",
+    "c1_full_windowOk": true,
+    "c1_full_lethErrSec": -0.3555185185185188
+  },
+  "S1": {
+    "before_FA": 0.5619564223174064,
+    "after_FA": 0.5619564223174064,
+    "delta_FA": 0,
+    "before_pass": 0.3333333333333333,
+    "after_pass": 0.3333333333333333,
+    "match": "2970137-g1",
+    "tuned": false,
+    "regress": false
+  },
+  "product_KEEP": {
+    "keep": true,
+    "file": "src/data/champions.ts",
+    "champion": "Galio",
+    "change": "Q tornadoPct base 0.10 → 0.15 (AP scale unchanged)",
+    "disclosure": "attention kit blend; not wiki-exact; not calibrated; FA≠odds",
+    "reason": "S0 pass 0.333→0.500 and FA↑; S1 FA flat; flips c1_full windowOk without aa-at-mark (Olaf-safe)"
+  },
+  "infra_defaults_off": {
+    "aaAtMarkMax": 0,
+    "aaAtMarkSkipZeroPulseDmg": true,
+    "note": "research knob; product KEEP does not enable aa-at-mark"
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r34/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r34/NOTES.md",
+    "results": "docs/rofl-research/autoresearch/fight_outcome/r34/results.jsonl",
+    "e24_keep": "docs/rofl-research/autoresearch/fight_outcome/r34/experiments/e24_keep_tornado015.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r34/experiments/fa_S0_e24_keep.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r34/experiments/fa_S1_e24_keep.json",
+    "audits_s0": "docs/rofl-research/autoresearch/fight_outcome/r34/audits/e24_keep_s0/",
+    "audits_s1": "docs/rofl-research/autoresearch/fight_outcome/r34/audits/e24_keep_s1/"
+  },
+  "next": "Orchestrator PARENT_MERGE Galio tornado 0.15; STATUS FA 0.663 / pass 0.500; residual c2_burst pathMae 117→90, c1_burst 0-marks, c3 earlyPoisoned"
+}

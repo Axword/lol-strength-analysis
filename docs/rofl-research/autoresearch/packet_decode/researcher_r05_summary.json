@@ -1,0 +1,167 @@
+{
+  "researcher": "R05",
+  "model": "cursor-grok-4.5-high-fast",
+  "room": "M1",
+  "track": "H5",
+  "hypothesis": "Keyframe/chunk boundary needs HMM/change-point re-sync; continuous carried cursor is wrong",
+  "worktree": "/Users/river/.codex/worktrees/rofl-pkt-r05",
+  "branch": "adv/pkt-r05-keyframe-resync",
+  "never_edited_parent": true,
+  "rofl": "BR1-3264361042.rofl",
+  "decision": "keep",
+  "kept": true,
+  "keep_rule": {
+    "need": "resync-at-boundary beats carried-cursor on ≥3 consecutive segments for deserOk/fullConsumeOk AND type107 on ≥1 mid segment",
+    "observed": {
+      "exp01_honestRun": 7,
+      "exp02_honestRun": 7,
+      "exp01_midType107Hits": 5,
+      "exp02_midType107Hits": 5,
+      "exp03_smallOffsetResyncStrictBestChunks": 5
+    },
+    "met": true,
+    "honesty": "fullConsumeOk primary; soft deserOk alone never used for keep"
+  },
+  "metrics": {
+    "exp01_chunks_18_25": {
+      "fairHonestBeatRun": 7,
+      "fairDeserBeatRun": 7,
+      "midType107FullHits": [
+        {"chunkIndex": 19, "fullConsumeOk": 37, "type107FullConsumeOk": 1},
+        {"chunkIndex": 20, "fullConsumeOk": 14, "type107FullConsumeOk": 1},
+        {"chunkIndex": 21, "fullConsumeOk": 31, "type107FullConsumeOk": 1},
+        {"chunkIndex": 22, "fullConsumeOk": 40, "type107FullConsumeOk": 1},
+        {"chunkIndex": 23, "fullConsumeOk": 25, "type107FullConsumeOk": 1}
+      ],
+      "carriedOffsetFullConsumeOk": 0,
+      "carriedStateEqualsResync": true
+    },
+    "exp02_chunks_26_33": {
+      "fairHonestBeatRun": 7,
+      "midType107FullHits": 5,
+      "example": {"chunkIndex": 30, "resyncFull": 41, "type107Full": 2, "carriedFull": 0}
+    },
+    "exp03_small_offset_carry": {
+      "offsets": [1, 2, 4, 8, 16, 32, 64, 128, 256],
+      "chunks": [19, 20, 21, 22, 23],
+      "resyncStrictlyBeatsAllNonzero": true,
+      "note": "+1 byte start_index collapses fullConsumeOk (e.g. chunk19 37→0); some soft deserOk>0 at bad offsets with full=0 (R01 guard)"
+    },
+    "exp04_packet_drive_chunk20": {
+      "deserOk": 14,
+      "fullConsumeOk": 14,
+      "replCand": 1,
+      "type107": 1,
+      "status": "replication_candidate_deserialized_need_field_getters"
+    },
+    "changePoint": {
+      "role": "sync-point signal only (channel entropy / KL vs prior resync segment)",
+      "inventedPackets": false,
+      "exp01_cpFlags": 7,
+      "exp02_cpFlags": 7
+    }
+  },
+  "kept_artifacts": [
+    {
+      "artifact": "scripts/rofl2_h5_boundary_resync_probe.py",
+      "why": "Reproducible resync@0 vs carried_offset vs carried_state with fullConsumeOk honesty + BOCPD-lite change-point flags"
+    },
+    {
+      "artifact": "scripts/rofl2_unicorn_packet_drive.py (extract_blocks_unicorn start_index/seed_channel/seed_param)",
+      "why": "H5 research dials; default remains start_index=0 fresh state"
+    },
+    {
+      "artifact": "package.json (rofl:boundary-resync)",
+      "why": "npm one-liner for H5 probe"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r05/h5_exp01_mid_window.json",
+      "why": "Canonical keep evidence: honestRun=7, midT107=5"
+    },
+    {
+      "artifact": "docs/rofl-research/packet_decode/r05/h5_exp03_small_offset_carry.json",
+      "why": "Non-trivial control: even +1..+256 byte carry loses to resync@0"
+    }
+  ],
+  "discarded": [
+    {
+      "change": "Carry previous chunk stop index into next chunk body as start_index",
+      "why": "fullConsumeOk collapses to 0 on every fair consecutive segment; violates stream re-acquire"
+    },
+    {
+      "change": "Carry channel/param state across chunk boundary while start_index=0",
+      "why": "No lift vs fresh resync (identical fullConsumeOk); not needed for keep, not harmful either"
+    },
+    {
+      "change": "Use change-point model to invent packet contents / HP",
+      "why": "Forbidden; CP used only as sync-point flag (entropy/KL)"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "exp01",
+      "file": "h5_exp01_mid_window.json",
+      "result": "chunks 18–25: honestRun=7 midT107=5 → KEEP"
+    },
+    {
+      "id": "exp02",
+      "file": "h5_exp02_default_mid_window.json",
+      "result": "chunks 26–33 (incl. default mid 27): honestRun=7 midT107=5 → KEEP replicate"
+    },
+    {
+      "id": "exp03",
+      "file": "h5_exp03_small_offset_carry.json",
+      "result": "offsets 1..256 all lose to resync@0 on 5/5 mid chunks"
+    },
+    {
+      "id": "exp04",
+      "file": "h5_exp04_packet_drive_chunk20_confirm.json",
+      "result": "packet-drive confirm: fullConsumeOk=14 replCand=1 type107"
+    }
+  ],
+  "blocker": null,
+  "room_residual_blocker": "Type107 still candidate-only (M2 field getters). M1 residual after H5 keep: H6 unmapped stubs / type-53 Deserialize — not cross-chunk cursor.",
+  "priors": {
+    "R01": "cursor discard (uniform ±N soft inflation)",
+    "R02": "type107 chunk keep",
+    "R03": "channel TBD",
+    "R04": "type threshold discard (0x55d already correct)"
+  },
+  "gate_progress": {
+    "stream_sync": "improved_boundary_resync_proven",
+    "replication_aa": "no",
+    "basic_attack_events": "no",
+    "identity_bind": "no",
+    "action_replay_bridge": "no"
+  },
+  "freeze": {
+    "best_json_composite": 0.9683,
+    "shipGate": true,
+    "productShipGate": true,
+    "untouched": true
+  },
+  "invariants": {
+    "hpInvented": false,
+    "calculatorReady": false,
+    "vendorDecrypt": false,
+    "never_edited_parent": true,
+    "honestFullConsumeOk": true,
+    "changePointInventedPackets": false
+  },
+  "npm": {
+    "isolation": "pwd; git branch --show-current  # expect .../rofl-pkt-r05 + adv/pkt-r05-keyframe-resync",
+    "probe": "npm run rofl:boundary-resync -- \"$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl\" --start-chunk 18 --n-segments 8 --max-packets 48 --max-blocks 256 --json-out docs/rofl-research/packet_decode/r05/h5_exp01_mid_window.json",
+    "confirm": "npm run rofl:packet-drive -- \"$HOME/Documents/League of Legends/Replays/BR1-3264361042.rofl\" --chunk-index 20 --max-packets 48 --max-blocks 256"
+  },
+  "artifacts": [
+    "scripts/rofl2_h5_boundary_resync_probe.py",
+    "docs/rofl-research/packet_decode/r05/h5_exp01_mid_window.json",
+    "docs/rofl-research/packet_decode/r05/h5_exp02_default_mid_window.json",
+    "docs/rofl-research/packet_decode/r05/h5_exp03_small_offset_carry.json",
+    "docs/rofl-research/packet_decode/r05/h5_exp04_packet_drive_chunk20_confirm.json",
+    "docs/rofl-research/packet_decode/r05/h5_metrics_summary.json",
+    "docs/rofl-research/packet_decode/r05/blocker.json",
+    "docs/rofl-research/packet_decode/r05/researcher_r05_summary.json"
+  ],
+  "next_auto_track": "H5 kept — enforce start_index=0 at every chunk/keyframe body; hand type107 chunks to M2; residual M1 → H6"
+}

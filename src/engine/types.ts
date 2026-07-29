@@ -307,6 +307,96 @@ export interface FighterLoadout {
 
 export type XhMode = 'off' | 'expected' | 'hit_all' | 'miss_shots'
 
+/**
+ * Opt-in kill-window overlay (research-derived; experimental).
+ * Absent ⇒ classic continuous simulateMatchup (backward compatible).
+ * Never implies calibrated win odds or calculatorReady.
+ */
+export type KillWindowMarkSelection =
+  | 'near_hp_drop'
+  | 'post_engage_killer_skills'
+  | 'cusum_engage_then_skills'
+
+export interface KillWindowActionMark {
+  tSec: number
+  skillSlot?: number
+  ally?: boolean
+  share?: number
+}
+
+export interface KillWindowFinishAaOptions {
+  afterLastMark?: boolean
+  maxAa?: number
+  aaAtEachMark?: boolean
+  windowSec?: number
+}
+
+export interface KillWindowInputOptions {
+  /** Hold defender HP flat until this fight-offset (idle gate). */
+  engageSec?: number
+  idleUntilSec?: number
+  /** Killer skill marks (point-process pulses). */
+  actionMarks?: KillWindowActionMark[]
+  /** Optional ally marks — never invented when absent. */
+  allyMarks?: KillWindowActionMark[]
+  allyPulseShare?: number
+  castPulseSec?: number
+  finishAa?: KillWindowFinishAaOptions
+  /**
+   * Product default must be non-drop (`post_engage_killer_skills` or
+   * `cusum_engage_then_skills`). `near_hp_drop` is research/attribution only.
+   */
+  markSelection?: KillWindowMarkSelection
+  /** Sample timeline for series / optional CUSUM engage (when provided). */
+  actualHpSeries?: { tSec: number; hp: number; hpMax?: number }[]
+  /**
+   * Pre-engage: mirror observed victim HP (truth-follow idle) instead of
+   * freezing window-start HP. Product KEEP after R19 S0+S1 earlyBand lift.
+   */
+  idleFollowActual?: boolean
+  killOffsetSec?: number
+  aaFiller?: boolean
+  maxAaBetweenMarks?: number
+  perSlotPulse?: boolean
+  pulseBySlot?: Record<number, number>
+  /** Finish-window keep using kill event time (not HP-drop peek). */
+  markAlwaysNearKillSec?: number
+  markMinGapSec?: number
+  markFinishHorizonSec?: number
+  maxKillerMarks?: number
+  /** Rolling window for density-triggered min-gap (0 = global min-gap). */
+  markDensityWindowSec?: number
+  /** Max killer marks in density window before min-gap activates. */
+  markDenseMaxPerWindow?: number
+  /** R23/R35: pre-CUSUM opener retain window (sec). 0 = off. */
+  preEngageOpenerSec?: number
+  /** Sparse: only opener when post-engage killer marks ≤ N (0 = always). */
+  preEngageOpenerMaxPostMarks?: number
+  /**
+   * R39: opener pulse share (0–1]. Slot-filtered via preEngageOpenerShareSlots.
+   */
+  preEngageOpenerShare?: number
+  /** R39: only these skillSlots get openerShare; others stay 1. */
+  preEngageOpenerShareSlots?: number[]
+  /** R24/R35: near pre-engage lead (sec) at full share. */
+  markPreEngageLeadSec?: number
+  /** R24/R35: far pre-engage window (sec) with attenuated share. */
+  markPreEngageFarSec?: number
+  markPreEngageFarShare?: number
+  /** Shift idle engage to near opener when no far poke (default true). */
+  preEngageShiftEngageToOpener?: boolean
+  /**
+   * Burst-only: include real killer skills from before burst HP onset,
+   * remapped to engage (mark domain). 0 = off. R31 KEEP 2.5s. FA ≠ odds.
+   */
+  markPreBurstSkillLeadSec?: number
+  markPreBurstSkillShare?: number
+  /**
+   * R42: delay remapped pre-burst marks after CUSUM engage (sec). 0 = off.
+   */
+  markPreBurstDelaySec?: number
+}
+
 export interface MatchupInput {
   blue: FighterLoadout[]
   red: FighterLoadout[]
@@ -331,6 +421,13 @@ export interface MatchupInput {
   }
   /** Optional vision wards for softVision (combat ↔ overlay parity). */
   wards?: import('./vision').VisionWard[]
+  /**
+   * Opt-in gated / action-aligned kill-window path.
+   * When set with actionMarks (+ optional actualHpSeries), combat uses the
+   * shared overlay instead of continuous all-in. Default product callers
+   * omit this and keep classic behavior.
+   */
+  killWindow?: KillWindowInputOptions
 }
 
 export interface FighterResult {
@@ -424,7 +521,10 @@ export interface XhDodgeBands {
 }
 
 /** How damage was scheduled for this matchup result. */
-export type CombatResolutionMethod = 'timed_manual_1v1' | 'aggregate_window'
+export type CombatResolutionMethod =
+  | 'timed_manual_1v1'
+  | 'aggregate_window'
+  | 'kill_window_gate_action'
 
 /**
  * One scheduled / executed combat action for later UI timelines.

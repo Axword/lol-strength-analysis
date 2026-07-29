@@ -1,0 +1,1 @@
+FAIL: product gate: combatStatsKnown=true without valid non-placeholder combat evidence (t=97029 pid=3 source='unavailable_replay_api')

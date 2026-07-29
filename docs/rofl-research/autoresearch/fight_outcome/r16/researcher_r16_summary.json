@@ -1,0 +1,90 @@
+{
+  "researcher": "r16",
+  "slug": "calc-parity",
+  "model": "Auto",
+  "utc": "2026-07-24T15:54:15.983Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r16",
+  "branch": "adv/fo-r16-calc-parity",
+  "never_edited_parent": true,
+  "room": "f6",
+  "f6_hypotheses_auto_picked": [
+    "1 Send→overlay parity — Identical math Calculator Send vs harness on same pins",
+    "2 Dead excluded — Dead units never imported; known-flags gate Send",
+    "3 Smoke command — One npm/tsx path for Final parent e2e",
+    "4 Partial C honesty — hpKnown/combatStatsKnown/abilityRanksKnown fail-closed",
+    "5 No odds copy — UI shows model edge / fightAgreement agreement language only"
+  ],
+  "n_experiments": 11,
+  "all_pass": true,
+  "suite_context": {
+    "S0_Path1_product_FA": 0.228,
+    "S0_Path1_product_passRate": 0.0,
+    "note": "R05 measured FA; R16 proves Send≡harness math only — does not raise FA / fightOutcomeGate"
+  },
+  "keeps": [
+    "e0",
+    "e1",
+    "e2",
+    "e3",
+    "e4",
+    "e5",
+    "e6",
+    "e7",
+    "e8",
+    "e9",
+    "e10"
+  ],
+  "discards": [],
+  "keepable_artifact": {
+    "kind": "calc_send_harness_parity_proof",
+    "engine": "src/engine/killWindowOverlay.ts (simulateKillWindowMatchup ≡ simulateKillWindowSeries)",
+    "product_attach": "src/engine/killWindowProduct.ts maybeAttachKillWindow",
+    "calculator_route": "src/components/Calculator.tsx → simulateKillWindowMatchup when actionMarks present",
+    "send_gate": "livingSelectedUnits + fail-closed hpIsKnown/combatStatsAreKnown/abilityRanksAreKnown",
+    "smoke": "npm run smoke:calc-parity",
+    "smoke_alias": "npm run fo:r16-calc-parity",
+    "acceptance": "npm run test:kill-window (20 passed)",
+    "report": "docs/rofl-research/autoresearch/fight_outcome/r16/smoke_report.json"
+  },
+  "parity_proof": {
+    "metric": "endHp + firstLethalSec identical (eps 1e-6) on same pins",
+    "synthetic": {
+      "e0_cusum": { "endHp": 0, "lethalSec": 0.6, "marks": 4 },
+      "e1_post_engage": { "endHp": 0, "lethalSec": 1.1 }
+    },
+    "S0_Path1_checks": {
+      "check01_Galio_Trundle": { "endHp": 0, "lethalSec": 19.365 },
+      "check02_Olaf_Trundle": { "endHp": 0, "lethalSec": 15.19 },
+      "check03_Olaf_Camille": { "endHp": 0, "lethalSec": 1.701 }
+    },
+    "dead_excluded": true,
+    "known_flags_fail_closed": true,
+    "no_invent_on_missing_pins": true,
+    "no_odds_copy": true
+  },
+  "findings": [
+    "Calculator Send kill-window path and harness share simulateKillWindowSeries — endHp/lethal bit-identical on synthetic + S0 Path1 pins.",
+    "Dead units excluded from buildLivingSendImport; corpse pins force continuous fallback with disclosure (no invent).",
+    "Known-flags fail-closed (===true); absent ranks/combat blocks Send on living selection only.",
+    "npm run smoke:calc-parity is the Final parent e2e command (11/11 PASS).",
+    "S0 FA 0.228 context unchanged — Criterion G parity proven; fightAgreement still ≪ 0.95."
+  ],
+  "blocker": "Parity closed for Criterion G math identity; fightOutcomeGate still false (FA 0.228 ≪ 0.95; digestCleanGate/review majority separate)",
+  "confidence": "Send≡harness is shared-engine identity — NOT calibrated win odds; NOT fightAgreement≥0.95",
+  "reproduce": {
+    "cwd": "/Users/river/.codex/worktrees/rofl-fo-r16",
+    "commands": [
+      "npm run test:kill-window",
+      "npm run smoke:calc-parity"
+    ]
+  },
+  "law": {
+    "invented_hp": false,
+    "invented_combat": false,
+    "invented_ranks": false,
+    "odds_percent_copy": false,
+    "dead_excluded_import": true,
+    "never_edited_parent": true,
+    "fightOutcomeGate_claimed": false
+  }
+}

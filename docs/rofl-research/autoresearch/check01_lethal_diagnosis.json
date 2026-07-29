@@ -1,0 +1,425 @@
+{
+  "t": "2026-07-23T22:05:21.178Z",
+  "suite": "2970110-g1",
+  "mode": "gate_action",
+  "config": {
+    "hypothesis": "instrument ship checklist",
+    "mode": "gate_action",
+    "castPulseSec": 0.4,
+    "aaFiller": false,
+    "maxAaBetweenMarks": 6,
+    "allyPulseShare": 0.35,
+    "markIdleSkipSec": 0,
+    "markNearDropSec": 0.75,
+    "markDropMinHp": 15,
+    "markAlwaysNearKillSec": 2.5,
+    "useDropConditioning": true,
+    "finishAaAfterLastMark": false,
+    "finishAaMax": 4,
+    "finishAaWindowSec": 0,
+    "aaAtEachMark": false,
+    "rePinEachMark": false,
+    "perSlotPulse": false,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0.75
+    },
+    "cusumK": 8,
+    "cusumH": 45
+  },
+  "check01": {
+    "full": {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Camille\u2192Leona",
+      "earlyMaeHp": 31.2,
+      "lateMaeHp": 87.87909208333319,
+      "lateMaeDeltaVsBaseline": -229.5529349038464,
+      "maeHp": 78.59444283333329,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 2.2,
+      "skillMarks": 5,
+      "method": "gate_action",
+      "modelEndHp": 86.13961458333335,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 6,
+        "allyParticipants": [
+          9,
+          8,
+          7
+        ],
+        "windowMs": [
+          219863,
+          222363
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 210909,
+          "tSec": 9.046,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "drop"
+        },
+        {
+          "tMs": 219592,
+          "tSec": 17.729,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221395,
+          "tSec": 19.532,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221629,
+          "tSec": 19.766,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221796,
+          "tSec": 19.933,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ]
+    },
+    "burst": {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Camille\u2192Leona",
+      "earlyMaeHp": 39.666666666666664,
+      "lateMaeHp": null,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 32.80467666666673,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 0.568,
+      "skillMarks": 4,
+      "method": "gate_action",
+      "modelEndHp": 22.51169166666682,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 6,
+        "allyParticipants": [
+          9,
+          8,
+          7
+        ],
+        "windowMs": [
+          219863,
+          222363
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 219592,
+          "tSec": 0.568,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221395,
+          "tSec": 2.371,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221629,
+          "tSec": 2.605,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221796,
+          "tSec": 2.772,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ]
+    },
+    "baselineFull": {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Camille\u2192Leona",
+      "earlyMaeHp": 158.25557131410264,
+      "lateMaeHp": 317.4320269871796,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 209.54711611507653,
+      "lethalErrorSec": -0.3516161128866919,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": null,
+      "skillMarks": 5,
+      "method": "continuous_simulateMatchup",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 6,
+        "allyParticipants": [
+          9,
+          8,
+          7
+        ],
+        "windowMs": [
+          219863,
+          222363
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 210909,
+          "tSec": 9.046,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "drop"
+        },
+        {
+          "tMs": 219592,
+          "tSec": 17.729,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221395,
+          "tSec": 19.532,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221629,
+          "tSec": 19.766,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221796,
+          "tSec": 19.933,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ]
+    },
+    "baselineBurst": {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Camille\u2192Leona",
+      "earlyMaeHp": 67.13995608974362,
+      "lateMaeHp": null,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 188.45226711538467,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": null,
+      "skillMarks": 4,
+      "method": "continuous_simulateMatchup",
+      "modelEndHp": 346.4215990384616,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 6,
+        "allyParticipants": [
+          9,
+          8,
+          7
+        ],
+        "windowMs": [
+          219863,
+          222363
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 219592,
+          "tSec": 0.568,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221395,
+          "tSec": 2.371,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221629,
+          "tSec": 2.605,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "finish_window"
+        },
+        {
+          "tMs": 221796,
+          "tSec": 2.772,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ]
+    }
+  },
+  "assistProbe": {
+    "full": {
+      "allySkillUsedNearKill": 6,
+      "allyParticipants": [
+        9,
+        8,
+        7
+      ],
+      "windowMs": [
+        219863,
+        222363
+      ]
+    },
+    "burst": {
+      "allySkillUsedNearKill": 6,
+      "allyParticipants": [
+        9,
+        8,
+        7
+      ],
+      "windowMs": [
+        219863,
+        222363
+      ]
+    }
+  },
+  "markDebug": {
+    "full": [
+      {
+        "tMs": 210909,
+        "tSec": 9.046,
+        "skillSlot": 1,
+        "ally": false,
+        "keptReason": "drop"
+      },
+      {
+        "tMs": 219592,
+        "tSec": 17.729,
+        "skillSlot": 1,
+        "ally": false,
+        "keptReason": "finish_window"
+      },
+      {
+        "tMs": 221395,
+        "tSec": 19.532,
+        "skillSlot": 3,
+        "ally": false,
+        "keptReason": "finish_window"
+      },
+      {
+        "tMs": 221629,
+        "tSec": 19.766,
+        "skillSlot": 3,
+        "ally": false,
+        "keptReason": "finish_window"
+      },
+      {
+        "tMs": 221796,
+        "tSec": 19.933,
+        "skillSlot": 1,
+        "ally": false,
+        "keptReason": "finish_window"
+      }
+    ],
+    "burst": [
+      {
+        "tMs": 219592,
+        "tSec": 0.568,
+        "skillSlot": 1,
+        "ally": false,
+        "keptReason": "finish_window"
+      },
+      {
+        "tMs": 221395,
+        "tSec": 2.371,
+        "skillSlot": 3,
+        "ally": false,
+        "keptReason": "finish_window"
+      },
+      {
+        "tMs": 221629,
+        "tSec": 2.605,
+        "skillSlot": 3,
+        "ally": false,
+        "keptReason": "finish_window"
+      },
+      {
+        "tMs": 221796,
+        "tSec": 2.772,
+        "skillSlot": 1,
+        "ally": false,
+        "keptReason": "finish_window"
+      }
+    ]
+  },
+  "modelEndHp": {
+    "full": 86.13961458333335,
+    "burst": 22.51169166666682
+  },
+  "actualEndHp": {
+    "full": 0,
+    "burst": 0
+  },
+  "shipChecklist": {
+    "A1_check02_full_early_idle": true,
+    "A2_check02_burst_lethal_pm2": true,
+    "A3_check01_burst_path_improved": true,
+    "A4_strict_lethal_01_02_full_burst": false,
+    "A5_check03_early_not_hurt": true,
+    "A6_poison_clear_prefer": false,
+    "A6_min_check03_burst_poison_clear": false,
+    "A7_late_mae_01_02_not_hurt": false,
+    "A8_hard_fails_clean": true,
+    "holdout_B_directionally": null,
+    "holdout_B_burst_lethal_pm2": null,
+    "holdout_B_check03_early_ok": null,
+    "details": {
+      "c01_full_lethal": null,
+      "c01_burst_lethal": null,
+      "c02_burst_lethal": -1.475,
+      "c01_assist_full": 6,
+      "c01_modelEndHp_burst": 22.51169166666682,
+      "c03_burst_poison": true,
+      "lateMaeDelta_01": -229.5529349038464,
+      "lateMaeDelta_02": 75.66049422187791
+    }
+  },
+  "conclusion": {
+    "hypothesisClass": "assists_plus_finish_underkill",
+    "evidence": [
+      "ally skill_used count=6 near kill from pids 9,8,7 (team 200 with Camille pid10)",
+      "victim HP 572\u2192442\u2192323\u21920 across 219\u2013222s while Camille marks alone leave modelEndHp~22 burst / ~86 full",
+      "marks present in finish window (Q/E); no invented damage needed for diagnosis",
+      "next: finish-only AA then multi_caster small share if still short"
+    ],
+    "forbidden": "no AD coeff fit; combat.ts untouched"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "E04",
+  "hypothesis": "F5H4 Disclose missing action classes; do not invent AA/item/summoner",
+  "f5": "H4",
+  "windows": [
+    {
+      "path": "docs/rofl-research/autoresearch/action_audits/2970110-g1-c1-burst.json",
+      "check": 1,
+      "segment": "burst",
+      "actionCoverage": 0.6,
+      "skillTruth": 4,
+      "skillModel": 3,
+      "aaTruth": 0,
+      "aaModel": 3,
+      "itemTruth": 0,
+      "summonerTruth": 0,
+      "damageTruth": 0,
+      "disclosures": [
+        "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+        "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+        "allyDisclosedCount=8 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+        "summonerDisclosedCount=2 (evented summoner_spell_used; model does not emit summoner damage yet)"
+      ]
+    },
+    {
+      "path": "docs/rofl-research/autoresearch/action_audits/2970110-g1-c1-full.json",
+      "check": 1,
+      "segment": "full",
+      "actionCoverage": 0.5333333333333333,
+      "skillTruth": 7,
+      "skillModel": 4,
+      "aaTruth": 0,
+      "aaModel": 4,
+      "itemTruth": 0,
+      "summonerTruth": 0,
+      "damageTruth": 0,
+      "disclosures": [
+        "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+        "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+        "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+        "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+      ]
+    },
+    {
+      "path": "docs/rofl-research/autoresearch/action_audits/2970110-g1-c2-burst.json",
+      "check": 2,
+      "segment": "burst",
+      "actionCoverage": 0.5,
+      "skillTruth": 5,
+      "skillModel": 2,
+      "aaTruth": 0,
+      "aaModel": 1,
+      "itemTruth": 0,
+      "summonerTruth": 0,
+      "damageTruth": 0,
+      "disclosures": [
+        "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+        "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+        "allyDisclosedCount=3 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+        "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+      ]
+    },
+    {
+      "path": "docs/rofl-research/autoresearch/action_audits/2970110-g1-c2-full.json",
+      "check": 2,
+      "segment": "full",
+      "actionCoverage": 0.42857142857142855,
+      "skillTruth": 9,
+      "skillModel": 3,
+      "aaTruth": 0,
+      "aaModel": 2,
+      "itemTruth": 0,
+      "summonerTruth": 0,
+      "damageTruth": 0,
+      "disclosures": [
+        "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+        "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+        "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+        "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+      ]
+    },
+    {
+      "path": "docs/rofl-research/autoresearch/action_audits/2970110-g1-c3-burst.json",
+      "check": 3,
+      "segment": "burst",
+      "actionCoverage": 0.6666666666666666,
+      "skillTruth": 3,
+      "skillModel": 2,
+      "aaTruth": 0,
+      "aaModel": 1,
+      "itemTruth": 0,
+      "summonerTruth": 0,
+      "damageTruth": 0,
+      "disclosures": [
+        "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+        "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+        "allyDisclosedCount=0 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+        "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+      ]
+    },
+    {
+      "path": "docs/rofl-research/autoresearch/action_audits/2970110-g1-c3-full.json",
+      "check": 3,
+      "segment": "full",
+      "actionCoverage": 0.34782608695652173,
+      "skillTruth": 16,
+      "skillModel": 4,
+      "aaTruth": 0,
+      "aaModel": 3,
+      "itemTruth": 0,
+      "summonerTruth": 0,
+      "damageTruth": 0,
+      "disclosures": [
+        "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+        "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+        "allyDisclosedCount=26 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+        "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)"
+      ]
+    }
+  ],
+  "uniqueDisclosures": [
+    "no evented AA source in slim SQLite — truth AA count always 0 (never invented)",
+    "no item-active-use event source — item truth always 0 (purchased/sold/destroyed are not fight actions)",
+    "allyDisclosedCount=8 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=2 (evented summoner_spell_used; model does not emit summoner damage yet)",
+    "allyDisclosedCount=22 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=3 (evented summoner_spell_used; model does not emit summoner damage yet)",
+    "allyDisclosedCount=3 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)",
+    "allyDisclosedCount=0 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "allyDisclosedCount=26 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)"
+  ],
+  "gaps": {
+    "eventedAaInSlim": true,
+    "itemActives": true,
+    "damageKindInSlimAudits": true,
+    "note": "Slim skill_used audits lack evented AA/damage; R41 emit is separate PE wire — never invent slim AA to inflate F1"
+  },
+  "invent": false,
+  "keep": true
+}

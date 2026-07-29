@@ -1,0 +1,22 @@
+{
+  "cycle": 3,
+  "utc": "2026-07-24T16:05:00Z",
+  "model": "Auto",
+  "researchers_done_at_trigger": 18,
+  "votes_present": 15,
+  "fightOutcomeGate": false,
+  "fightOutcomeGate_tally": { "true": 0, "false": 15, "majority_needed": 11 },
+  "digestCleanGate": true,
+  "digestCleanGate_tally": { "true": 12, "false": 3, "majority_needed": 11 },
+  "digestClean_dissent": ["V12", "V14", "V15"],
+  "criterionG_proven": true,
+  "fa_note": "C3 BRIEF cited S0 Path1 FA 0.2279 (R05 freeze-idle). Post-C3 parent KEEP R19 idleFollowActual → worktree FA≈0.411 — still ≪0.95; does not flip fightOutcomeGate. fightAgreement ≠ win odds.",
+  "parent_e2e": {
+    "validate_product_2970132": true,
+    "smoke_calc_parity": "prior_green_R16",
+    "fo_send_smoke": "prior_green_R17"
+  },
+  "decision": "CONTINUE_PHASE_B",
+  "next_phase_c_at": 24,
+  "sharper_blocker": "Path1 Galio miss-kill + check03 earlyPoisoned + passRate≪0.95; lift product FA toward 0.95"
+}

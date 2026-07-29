@@ -1,0 +1,12 @@
+{
+  "tag": "e8",
+  "hyp": "R35-e8 host lead0.4 only",
+  "S0_FA": 0.39088688076001726,
+  "S0_pass": 0.16666666666666666,
+  "S1_FA": 0.5619564223174064,
+  "S1_pass": 0.3333333333333333,
+  "galio_killed": true,
+  "galio_lethErr": -1.8369999999999997,
+  "galio_marks": 3,
+  "galio_endHp": 0
+}

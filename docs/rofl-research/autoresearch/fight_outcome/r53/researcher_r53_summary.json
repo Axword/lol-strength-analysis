@@ -1,0 +1,164 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r53",
+  "slug": "s1-vayne-letherr",
+  "wave": 4,
+  "model": "Auto",
+  "utc": "2026-07-24T17:20:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r53",
+  "branch": "adv/fo-r53-s1-vayne-letherr",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "mandate": "S1 Vayne→Ambessa c1 full |leth| 2.05→≤0.75 without invent; no S0 regress; FA≠odds",
+  "owns": "S1 c1_full Vayne→Ambessa lethal timing (Meraki under-count → CORE attention kit)",
+  "does_not_own": [
+    "c2 pathMae",
+    "Anivia c3_burst pathMae",
+    "calibrated win odds",
+    "fightOutcomeGate claim"
+  ],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "is": "Meraki Vayne models Silver Bolts as castable W and Tumble as bonus-only; kit-dump pulses leave ~200 HP needing 4 finish AA → lethal +2.05s late",
+    "not": "missing ranks/HP invent, R-pulse, or pathFollow",
+    "evidence": {
+      "marks": ["E@11.35", "R@11.82 pulse0", "Q@14.19", "Q@18.13"],
+      "pulseDmgEngage": 196.13,
+      "finishAa": 4,
+      "firstLethalSec_e0": 22.051953132660064,
+      "killOffsetSec": 20.0,
+      "e0_lethErr": 2.0519531326600635,
+      "e2_lethErr": 0.09097656633003126
+    }
+  },
+  "n_experiments": 9,
+  "experiments": [
+    {
+      "id": "E0",
+      "hypothesis": "H0 parent-stack baseline",
+      "keep": false,
+      "metrics": {
+        "c1_full_lethAbs": 2.0519531326600635,
+        "S0_FA": 0.930409557022156,
+        "S1_FA": 0.7627693321171581,
+        "S0_pass": 0.6667,
+        "S1_pass": 0.5
+      }
+    },
+    {
+      "id": "E1",
+      "hypothesis": "H1 Vayne CORE full Silver Bolts + P passive",
+      "keep": false,
+      "metrics": {
+        "c1_full_lethErr": -0.89,
+        "c1_full_lethAbs": 0.89,
+        "S1_FA": 0.7674,
+        "note": "overshoot |leth|>0.75"
+      }
+    },
+    {
+      "id": "E2",
+      "hypothesis": "H2 soft CORE: Q auto+bonus + Silver Bolts×0.65 fold; no P double-count",
+      "keep": true,
+      "metrics": {
+        "c1_full_lethErr": 0.09097656633003126,
+        "c1_full_lethAbs": 0.09097656633003126,
+        "c1_burst_lethErr": 0.7502704119065093,
+        "S0_FA": 0.930409557022156,
+        "S1_FA": 0.8322,
+        "S0_pass": 0.6667,
+        "S1_pass": 0.6667
+      }
+    },
+    {
+      "id": "E3",
+      "hypothesis": "H3 finishAa maxAa=6 (Meraki)",
+      "keep": false,
+      "metrics": { "c1_full_lethAbs": 2.05, "note": "no-op vs 4-AA lethal clock" }
+    },
+    {
+      "id": "E4",
+      "hypothesis": "H4 aaAtEachMark (Meraki)",
+      "keep": false,
+      "metrics": { "c1_full_lethErr": -1.82, "c1_full_lethAbs": 1.82 }
+    },
+    {
+      "id": "E5",
+      "hypothesis": "H5 pulseBySlot R=0.25 global (Meraki)",
+      "keep": false,
+      "metrics": { "c1_full_lethErr": -0.89, "c1_full_lethAbs": 0.89, "note": "S0 Olaf R-pulse risk" }
+    },
+    {
+      "id": "E6",
+      "hypothesis": "H6 preEngageOpenerSec=2.5 (Meraki)",
+      "keep": false,
+      "metrics": { "c1_full_lethAbs": 2.05, "note": "early Q not retained" }
+    },
+    {
+      "id": "E7",
+      "hypothesis": "H7 pulseBySlot Q=0.7 (Meraki)",
+      "keep": false,
+      "metrics": { "c1_full_lethAbs": 2.05, "note": "pulse floor insensitive" }
+    },
+    {
+      "id": "E8",
+      "hypothesis": "H8 E2 product KEEP verify S0+S1",
+      "keep": true,
+      "metrics": {
+        "c1_full_lethAbs": 0.09097656633003126,
+        "S0_FA": 0.930409557022156,
+        "S1_FA": 0.8322,
+        "S0_pass": 0.6667,
+        "S1_pass": 0.6667
+      }
+    }
+  ],
+  "product_KEEP": {
+    "keep": true,
+    "reason": "c1_full |leth| 2.05→0.09 (≤0.75); S1 FA 0.7628→0.8322; S0 FA flat 0.9304 (no regress); no invent; no pathFollow",
+    "files": ["src/data/champions.ts"],
+    "defaults": {
+      "Vayne_CORE": true,
+      "silverBolts_q_fold": 0.65,
+      "pulseBySlot_R": 0
+    },
+    "note": "Attention kit only — not calibrated. FA lift is kill-window agreement — NOT win odds."
+  },
+  "FA_deltas": {
+    "S0_e0": 0.930409557022156,
+    "S0_e8": 0.930409557022156,
+    "S0_delta": 0.0,
+    "S1_e0": 0.7627693321171581,
+    "S1_e8": 0.8322,
+    "S1_delta": 0.0694306678828419,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "mandate_metric": {
+    "window": "S1_2970137-g1_c1_full",
+    "matchup": "Vayne→Ambessa",
+    "lethAbs_baseline": 2.0519531326600635,
+    "lethAbs_KEEP": 0.09097656633003126,
+    "target": 0.75,
+    "hit": true
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "actionReplayGateEvidence": false,
+  "confidence": "c1_full |leth|≤0.75 on attention CORE fold — NOT win odds. S0 FA flat is non-regress (Vayne absent from S0). fightAgreement ≠ odds %.",
+  "blocker_residual": "c1_burst lethOk edge (0.7503); c3_burst Anivia pathMae 198; fightOutcomeGate false",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r53/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r53/NOTES.md",
+    "e0_s1": "docs/rofl-research/autoresearch/fight_outcome/r53/experiments/e0_s1_baseline.json",
+    "e2_s1": "docs/rofl-research/autoresearch/fight_outcome/r53/experiments/e2_soft_core_S1.json",
+    "e8_s1": "docs/rofl-research/autoresearch/fight_outcome/r53/experiments/e8_keep_verify_S1.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r53/experiments/fa_e8_S0/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r53/experiments/fa_e8_S1/fight_agreement_S1.json",
+    "parent_mirror": "/Users/river/Projects/lol-strength-analysis/docs/rofl-research/autoresearch/fight_outcome/r53"
+  }
+}

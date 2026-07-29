@@ -1,0 +1,22 @@
+{
+  "reviewer": "V1",
+  "role": "clean-room + packetDecodeGate + calculatorReady honesty",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "evidence": [
+    "A AFFIRM: No vendored League client / unlicensed decrypt in fight_outcome path; packetDecodeGate remains research wire; calculatorReady not conflated with FO or FA.",
+    "A AFFIRM: FA / pBlue / pRed stay model-edge / kill-window agreement — never odds % (BRIEF; GOAL §B).",
+    "B FAIL: Verified S0 FA 0.6021 (R35 KEEP) ≪ 0.95; claimed stacked ~0.72–0.73 (R32/R34/R36) pending remesaure also ≪ 0.95 → FO false either way.",
+    "D AFFIRM → digestCleanGate=true: C3–C5 majority + BRIEF reaffirm; no concrete §D failure this cycle.",
+    "G AFFIRM: Criterion G proven (smokes green after R35/R36 merges) — orthogonal to FA.",
+    "H AFFIRM: Pending remesaure not treated as authoritative; FA≠odds; zero-dmg echo still rejected.",
+    "I FAIL: No ≥11/15 FO true possible while B fails."
+  ],
+  "failures": [
+    "B: S0 verified FA 0.6021 ≪ 0.95; claimed ~0.72 pending remesaure also ≪ 0.95.",
+    "F: S1 claimed ~0.56–0.58 ≪ 0.95 holdout bar.",
+    "I: Majority + parent e2e not satisfied for FO."
+  ],
+  "notes": "V1 C6: clean-room + gate honesty hold. fightOutcomeGate=false on concrete B (0.6021 and ~0.72 both ≪0.95). digestCleanGate reaffirm true. G proven. FA≠odds."
+}

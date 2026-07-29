@@ -1,0 +1,87 @@
+{
+  "researcher": "r10",
+  "slug": "planner-lethal",
+  "model": "Auto",
+  "utc": "2026-07-24T15:47:17.262698Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r10",
+  "branch": "adv/fo-r10-planner-lethal",
+  "never_edited_parent": true,
+  "unfreeze_0_9683_authorized": true,
+  "room": "f4",
+  "f4_hypotheses_auto_picked": [
+    "1 Death-coupled truncate \u2014 Stop planner at first lethal; no post-death casts",
+    "2 No HP% ability bans \u2014 Low HP still schedules abilities with survival timing",
+    "3 Utility-only keep \u2014 Nasus W / slows reshape AA counts even at 0 base damage",
+    "4 Front-loaded scoring \u2014 Avoid AA-pad after first-lethal truncate on long windows",
+    "5 Engage t=0 \u2014 Opener on clock; defender reaction delay; no engageCc abuse",
+    "6 Parity with Send \u2014 Same timed path as calculator import"
+  ],
+  "n_experiments": 13,
+  "suite_S0": "S0-2970110-g1",
+  "baseline_e0": {
+    "experiment": "e0",
+    "mode": "gate_action",
+    "markSelection": "cusum_engage_then_skills",
+    "fightAgreement": 0.4848229030957609,
+    "fightPassRate": 0.16666666666666666,
+    "note": "product mark overlay densestride; session FA (scorer fight_agreement_from_eval)"
+  },
+  "R04_reference": {
+    "S0_product_cusum_FA": 0.4217,
+    "S0_research_drop_FA": 0.6018,
+    "S1_product_FA": 0.3279
+  },
+  "best_S0": {
+    "experiment": "e5",
+    "mode": "cusum_gate",
+    "simTradeMode": "allin",
+    "fightAgreement": 0.501897361945962,
+    "fightPassRate": 0,
+    "delta_vs_e0": 0.01707445885020109,
+    "delta_vs_R04_product": 0.080197361945962,
+    "config": "cusum_gate + simTradeMode=allin (death-coupled timed_manual_1v1)"
+  },
+  "holdout_S1": {
+    "e11_timed_allin_FA": 0.28221300978113156,
+    "e12_mark_overlay_FA": 0.5185109757392367,
+    "timed_vs_marks_delta": -0.2362979659581051,
+    "tunedOnS1": false,
+    "note": "Timed path LOSES on S1 vs mark overlay \u2014 no product KEEP"
+  },
+  "keeps": [],
+  "keepable_artifact": {
+    "kind": "research_harness_knob + sweep",
+    "harness": "scripts/crosscheck_action_aligned.ts --sim-mode short|allin|extended + --cusum-k/--cusum-h",
+    "sweep": "scripts/r10_planner_lethal_sweep.sh",
+    "scorer": "scripts/fight_agreement_from_eval.ts",
+    "best_research_config": "cusum_gate sim=allin (e5/e10 FA=0.5019 on S0)",
+    "product_default_unchanged": true,
+    "product_default_still": [
+      "cusum_engage_then_skills",
+      "post_engage_killer_skills"
+    ],
+    "best_json_updated": false,
+    "reason": "S0 FA +0.017 vs e0 marks but S1 timed FA 0.282 << marks 0.519; passRate 0 on timed S0; no invent; no product selector flip"
+  },
+  "discards": [
+    "e10",
+    "e4",
+    "e0",
+    "e1",
+    "e9",
+    "e7",
+    "e2",
+    "e6",
+    "e8",
+    "e3"
+  ],
+  "findings": [
+    "Death-coupled timed planner (cusum_gate) with sim=allin lifts S0 FA 0.4848\u21920.5019 despite actionF1=0 (no mark action-replay).",
+    "sim=short close second (0.4985); sim=extended worse (0.4234) \u2014 long windows over-damage / miss c1 lethal.",
+    "gate_repin and continuous baseline hurt earlyBand (idle false-all-in) \u2014 engage gate required.",
+    "S1 holdout: marks still win (0.5185 vs 0.2822) \u2014 planner alone is not transfer-ready.",
+    "Camille\u2192Leona c1: timed path fails modelKilled (null lethal) while marks kill within 0.75s \u2014 main lethalHit gap."
+  ],
+  "blocker": "S0 best FA 0.5019 << 0.95; fightPassRate 0 on timed; S1 timed regresses vs marks; c1 Camille false-miss on planner",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %"
+}

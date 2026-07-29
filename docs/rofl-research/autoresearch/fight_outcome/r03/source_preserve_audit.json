@@ -1,0 +1,31 @@
+{
+  "utc": "2026-07-24T15:39:52Z",
+  "researcher": "R03",
+  "artifact": "artifacts/rofl/2970132/timeline.g1.path1-final.json",
+  "ok": true,
+  "units": 16960,
+  "frames": 1696,
+  "missing_src_when_known": { "hp": 0, "combat": 0, "ranks": 0 },
+  "known_counts": {
+    "hpKnown_true": 16301,
+    "combatStatsKnown_true": 14725,
+    "abilityRanksKnown_true": 16960
+  },
+  "sources": {
+    "hpSource": { "hold_forward": 16098, "pe": 203 },
+    "combatStatsSource": {
+      "hold_forward": 12959,
+      "unavailable_replay_api": 2235,
+      "same_match_replication_type107_pe_wire_table": 1766
+    },
+    "abilityRanksSource": { "rofl2_upgrade_spell_ans_1012_first_write": 16960 }
+  },
+  "jsonl_to_timeline": {
+    "preserves_hpSource": true,
+    "preserves_combatStatsSource": true,
+    "preserves_combatSource": true,
+    "preserves_abilityRanksSource": true,
+    "note": "scripts/jsonl_to_timeline.py copies tags only when present on rfc461 participant; never invents"
+  },
+  "rebuild_combo_equal_to_path1_final": true
+}

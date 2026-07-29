@@ -1,0 +1,173 @@
+{
+  "researcher": "r05",
+  "slug": "metric-s0",
+  "room": "f2",
+  "model": "Auto",
+  "utc": "2026-07-24T15:43:06Z",
+  "status": "scored",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r05",
+  "branch": "adv/fo-r05-metric-s0",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "hypotheses_autopicked": [
+    {
+      "id": 1,
+      "title": "Baseline measure",
+      "applied": true
+    },
+    {
+      "id": 2,
+      "title": "windowOk law",
+      "applied": true
+    },
+    {
+      "id": 3,
+      "title": "windowScore weights",
+      "applied": true
+    },
+    {
+      "id": 4,
+      "title": "Audit JSON",
+      "applied": true
+    },
+    {
+      "id": 6,
+      "title": "Selector default product non-drop",
+      "applied": true
+    }
+  ],
+  "hypotheses_skipped": [
+    {
+      "id": 5,
+      "title": "S1/S2 wire",
+      "reason": "R06 mandate; R05 is S0 only"
+    }
+  ],
+  "suite": "S0",
+  "match": "2970132-g1",
+  "path1Host": true,
+  "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json",
+  "sqlite": "artifacts/pro-grid/2970132/timeline.g1.slim.sqlite",
+  "windows": [
+    {
+      "check": 1,
+      "matchup": "Galio\u2192Trundle",
+      "tMs": 503658
+    },
+    {
+      "check": 2,
+      "matchup": "Olaf\u2192Trundle",
+      "tMs": 1076813
+    },
+    {
+      "check": 3,
+      "matchup": "Olaf\u2192Camille",
+      "tMs": 1667319
+    }
+  ],
+  "primarySelector": "cusum_engage_then_skills",
+  "altSelector": "post_engage_killer_skills",
+  "near_hp_drop": "research-only (not scored as product)",
+  "fightAgreement": 0.2279317568764,
+  "fightPassRate": 0,
+  "nWindows": 6,
+  "gateS0": false,
+  "scores": {
+    "cusum_engage_then_skills": {
+      "fightAgreement": 0.2279317568764,
+      "fightPassRate": 0,
+      "nWindows": 6,
+      "failingWindowIds": [
+        "2970132-g1/check01/full",
+        "2970132-g1/check01/burst",
+        "2970132-g1/check02/full",
+        "2970132-g1/check02/burst",
+        "2970132-g1/check03/full",
+        "2970132-g1/check03/burst"
+      ],
+      "eval": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_eval_cusum.json",
+      "agreement": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_cusum.json"
+    },
+    "post_engage_killer_skills": {
+      "fightAgreement": 0.09447496947496947,
+      "fightPassRate": 0,
+      "nWindows": 6,
+      "failingWindowIds": [
+        "2970132-g1/check01/full",
+        "2970132-g1/check01/burst",
+        "2970132-g1/check02/full",
+        "2970132-g1/check02/burst",
+        "2970132-g1/check03/full",
+        "2970132-g1/check03/burst"
+      ],
+      "eval": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_eval_post_engage.json",
+      "agreement": "docs/rofl-research/autoresearch/fight_outcome/r05/s0_fight_agreement_post_engage.json"
+    }
+  },
+  "audits": {
+    "cusum": "docs/rofl-research/autoresearch/fight_outcome/audits/",
+    "post_engage": "docs/rofl-research/autoresearch/fight_outcome/audits/post_engage/"
+  },
+  "windowScores_cusum": [
+    {
+      "id": "2970132-g1/check01/full",
+      "windowScore": 0.21232417411707974,
+      "windowOk": false,
+      "failReasons": [
+        "lethal: modelKilled=false |lethalErrorSec|=null",
+        "earlyMaeHp=116 > 50",
+        "full maeHp=207.23928682389817 > 130"
+      ]
+    },
+    {
+      "id": "2970132-g1/check01/burst",
+      "windowScore": 0,
+      "windowOk": false,
+      "failReasons": [
+        "lethal: modelKilled=false |lethalErrorSec|=null",
+        "earlyMaeHp=233 > 50",
+        "burst maeHp=596.0818713450292 > 90"
+      ]
+    },
+    {
+      "id": "2970132-g1/check02/full",
+      "windowScore": 0.43139731952227267,
+      "windowOk": false,
+      "failReasons": [
+        "lethal: modelKilled=true |lethalErrorSec|=2.8069999999999986",
+        "full maeHp=187.09174231052276 > 130"
+      ]
+    },
+    {
+      "id": "2970132-g1/check02/burst",
+      "windowScore": 0.19053571428571428,
+      "windowOk": false,
+      "failReasons": [
+        "lethal: modelKilled=true |lethalErrorSec|=2.756999999999998",
+        "earlyMaeHp=99.5 > 50",
+        "burst maeHp=293.14029134835164 > 90"
+      ]
+    },
+    {
+      "id": "2970132-g1/check03/full",
+      "windowScore": 0.03333333333333333,
+      "windowOk": false,
+      "failReasons": [
+        "lethal: modelKilled=true |lethalErrorSec|=18.266",
+        "earlyMaeHp=527.6 > 50",
+        "full maeHp=353.56 > 130"
+      ]
+    },
+    {
+      "id": "2970132-g1/check03/burst",
+      "windowScore": 0.5,
+      "windowOk": false,
+      "failReasons": [
+        "lethal: modelKilled=true |lethalErrorSec|=1.7700000000000014"
+      ]
+    }
+  ],
+  "blocker": "S0 fightAgreement/fightPassRate both <<0.95 under product cusum (best of two). Lethal\u00b10.75 fails on all 6 windows; early/path MAE caps fail on most.",
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT win probability / odds %",
+  "note": "Not fightOutcomeGate evidence (S0 alone insufficient; gate remains false)."
+}

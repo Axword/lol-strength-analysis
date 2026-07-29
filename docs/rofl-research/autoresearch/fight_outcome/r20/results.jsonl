@@ -1,0 +1,1 @@
+{"t": "2026-07-24T15:58:00Z", "researcher": "r20", "hypothesis": "F7.H3 S1 score freeze (measure-only)", "keep": false, "fightAgreement": 0.41099771388416645, "fightPassRate": 0.16666666666666666, "n": 6, "notes": "No tune on S1; current-law freeze; BRIEF 0.478 inflated vs LETHAL_TOL=0.75", "path": "docs/rofl-research/autoresearch/fight_outcome/r20/S1_score_freeze.json"}

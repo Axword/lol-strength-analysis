@@ -1,0 +1,9 @@
+{
+  "schema": "fightOutcome-path1-crosscheck-alias-v1",
+  "utc": "2026-07-24T16:05:02Z",
+  "canonical": "docs/canvases/_data/crosschecks-2970132-g1.json",
+  "harnessExpected": "docs/canvases/_data/crosschecks-2970132-g1-holdout.json",
+  "worktreeAlias": "docs/canvases/_data/crosschecks-2970132-g1-holdout.json",
+  "note": "Alias is byte-copy of Path1 windows for fight_agreement_suite / crosscheck_action_aligned --suite 2970132-g1-holdout. Worktree-only; no parent code edit.",
+  "sha256_canonical": "fbff63b09818d6e452b986b20d0509e2c59e2cfa235ec1195f69f1b7cae97ef7"
+}

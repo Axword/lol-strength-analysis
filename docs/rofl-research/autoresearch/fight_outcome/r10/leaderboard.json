@@ -1,0 +1,117 @@
+{
+  "schema": "r10-planner-lethal-leaderboard-v1",
+  "utc": "2026-07-24T15:47:17.255002+00:00",
+  "metric": "fightAgreement (NOT odds / NOT pBlue-pRed)",
+  "suite_S0": "2970110-g1",
+  "e0_mark_overlay_FA": 0.4848229030957609,
+  "best_S0": {
+    "id": "e5",
+    "fightAgreement": 0.501897361945962,
+    "delta_vs_e0": 0.01707445885020109,
+    "mode": "cusum_gate",
+    "simTradeMode": "allin"
+  },
+  "delta_vs_R04_product_0_4217": 0.080197361945962,
+  "delta_vs_R04_research_drop_0_6018": -0.09990263805403798,
+  "ranked_S0": [
+    {
+      "id": "e5",
+      "fightAgreement": 0.501897361945962,
+      "fightPassRate": 0,
+      "delta_vs_e0": 0.01707445885020109,
+      "mode": "cusum_gate",
+      "simTradeMode": "allin",
+      "composite": 1.4119366724060045
+    },
+    {
+      "id": "e10",
+      "fightAgreement": 0.501897361945962,
+      "fightPassRate": 0,
+      "delta_vs_e0": 0.01707445885020109,
+      "mode": "cusum_gate",
+      "simTradeMode": "allin",
+      "composite": 1.4119366724060045
+    },
+    {
+      "id": "e4",
+      "fightAgreement": 0.49851714967589894,
+      "fightPassRate": 0,
+      "delta_vs_e0": 0.013694246580138014,
+      "mode": "cusum_gate",
+      "simTradeMode": "short",
+      "composite": 1.7595223127891826
+    },
+    {
+      "id": "e0",
+      "fightAgreement": 0.4848229030957609,
+      "fightPassRate": 0.16666666666666666,
+      "delta_vs_e0": 0.0,
+      "mode": "gate_action",
+      "simTradeMode": "extended",
+      "composite": 2.1040313467290845
+    },
+    {
+      "id": "e1",
+      "fightAgreement": 0.4234325512779089,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.06139035181785202,
+      "mode": "cusum_gate",
+      "simTradeMode": "extended",
+      "composite": 1.4698600231112202
+    },
+    {
+      "id": "e9",
+      "fightAgreement": 0.4234325512779089,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.06139035181785202,
+      "mode": "cusum_gate",
+      "simTradeMode": "extended",
+      "composite": 1.4698600231112202
+    },
+    {
+      "id": "e7",
+      "fightAgreement": 0.285684003472411,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.1991388996233499,
+      "mode": "gate_repin",
+      "simTradeMode": "allin",
+      "composite": 2.3944434445788545
+    },
+    {
+      "id": "e2",
+      "fightAgreement": 0.28311669031075865,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.20170621278500228,
+      "mode": "gate_repin",
+      "simTradeMode": "extended",
+      "composite": 2.1821909104083788
+    },
+    {
+      "id": "e6",
+      "fightAgreement": 0.2820141567284044,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.20280874636735652,
+      "mode": "gate_repin",
+      "simTradeMode": "short",
+      "composite": 2.5735846374106517
+    },
+    {
+      "id": "e8",
+      "fightAgreement": 0.2068628855070677,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.27796001758869326,
+      "mode": "baseline",
+      "simTradeMode": "short",
+      "composite": 3.6361571333584304
+    },
+    {
+      "id": "e3",
+      "fightAgreement": 0.11412832185617694,
+      "fightPassRate": 0,
+      "delta_vs_e0": -0.370694581239584,
+      "mode": "baseline",
+      "simTradeMode": "extended",
+      "composite": 3.518187689696021
+    }
+  ]
+}

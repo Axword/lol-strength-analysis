@@ -1,0 +1,22 @@
+
+=== gate_action | R26-E2 H1 killerPulseShare=0.20 measured early skill proxy ===
+chk	seg	earlyMAE	mae	lethErr	kill	poison	falseAI	marks	method
+1	full	0.0	251.1	null	N	N	N	2	gate_action
+1	burst	0.0	246.6	null	N	N	N	0	gate_action
+2	full	0.0	218.3	null	N	N	N	6	gate_action
+2	burst	9.5	305.3	null	N	N	N	6	gate_action
+3	full	128.0	218.2	-10.02	Y	Y	N	7	gate_action
+3	burst	0.0	0.0	0.05	Y	N	N	2	gate_action
+composite=1.9994  early=22.9  mae=206.6  |leth|=5.01  poisonPen=1
+actionReplay: meanCoverage=0.361  worst=c1-burst=0.000  gate95=false
+  c1-full	Galio→Trundle	truth=5	model=8	matched=2	P=0.25	R=0.40	F1=0.308
+  c1-burst	Galio→Trundle	truth=0	model=1	matched=0	P=0.00	R=0.00	F1=0.000
+  c2-full	Olaf→Trundle	truth=8	model=14	matched=6	P=0.43	R=0.75	F1=0.545
+  c2-burst	Olaf→Trundle	truth=8	model=12	matched=6	P=0.50	R=0.75	F1=0.600
+  c3-full	Olaf→Camille	truth=8	model=6	matched=3	P=0.50	R=0.38	F1=0.429
+  c3-burst	Olaf→Camille	truth=5	model=2	matched=1	P=0.50	R=0.20	F1=0.286
+baselineComposite=5.2976  keepCandidate=true
+shipChecklist:	A1 early idle=Y | A2 c02 burst leth=N | A3 c01 path=Y | A4 strict leth=N | A5 c03 early=Y | A6 poison prefer=N | A6min c03 burst=Y | A7 late MAE=Y | A8 hard fails=Y
+shipGateCandidate=false  shipGate=true  holdoutB=Y
+shipNotes: A1 check02 full early MAE ≪ baseline | FAIL A2: check02 burst lethal | A3 check01 burst path improved | FAIL A4: strict lethal (need 01+02 full+burst kill ±2s) | A5 check03 early not hurt >50 | A6min check03 burst poison clear (prefer still fails) | A7 late MAE 01/02 not hurt >50 (skip if baseline falseAllIn) | A8 hard fails clean | holdout B directional+≥1 burst lethal±2+early OK
+out=/Users/river/.codex/worktrees/rofl-fo-r26/docs/rofl-research/autoresearch/fight_outcome/r26/experiments/e2_share_0p20.json

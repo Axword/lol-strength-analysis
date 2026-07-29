@@ -1,0 +1,57 @@
+{
+  "reviewer": "V8",
+  "cycle": 1,
+  "role": "Calculator↔harness parity",
+  "utc": "2026-07-24T15:48:00Z",
+  "model": "Auto",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.96,
+  "criteria": {
+    "A": null,
+    "B": false,
+    "C": null,
+    "D": false,
+    "E": false,
+    "F": false,
+    "G": false,
+    "H": null,
+    "I": false
+  },
+  "evidence": [
+    "GOAL R16–R18 → F6 calculator path parity; V8 role = Calculator↔harness parity (GOAL Phase C table)",
+    "No fight_outcome/r16|r17|r18 dirs; no researcher_r1{6,7,8}_summary.json",
+    "Worktrees ~/.codex/worktrees/rofl-fo-r16|r17|r18 MISSING",
+    "rooms/f6: parent-seeded room_ready.json only (orchestrator_seed=true; note: do not treat seed as fightOutcomeGate evidence); HYPOTHESES.md lists Send→overlay parity but no runs",
+    "BRIEF Cycle1: researchers_done R01–R04,R06–R07 only — F6 researchers not in trigger set",
+    "DIGEST.md: digestCleanGate false; no Final calculator/Send smoke command from F6",
+    "Measured FA (BRIEF): S0 product 0.4217 / pass 0.167; S1 0.478 / 0.333; S2 0.634 / 0.333 — all << gate thresholds",
+    "R07/R08 summaries: overlay untouched / parityRequired false — harness/CLI only, not Calculator Send path"
+  ],
+  "failures": [
+    {
+      "criterion": "G",
+      "gap": "R16–R18 not done: zero Send→overlay / product-calculator↔harness parity proofs under fight_outcome. F6 seed ≠ evidence. Cannot affirm product Send path shares killWindowOverlay math with harness on same pins, dead-excluded import, known-flags gate, or one npm/tsx Final smoke."
+    },
+    {
+      "criterion": "B",
+      "gap": "S0 fightAgreement 0.4217 << 0.95 (and pass 0.167 << 0.95); gate thresholds unmet even before parity."
+    },
+    {
+      "criterion": "D",
+      "gap": "DIGEST.md self-reports digestCleanGate false (second host + reviewer affirm open); no F6 Send smoke in digest Final path."
+    },
+    {
+      "criterion": "E/F",
+      "gap": "S1/S2 FA below thresholds; no holdout claim possible. 2970132 product crosschecks still missing per BRIEF."
+    },
+    {
+      "criterion": "I",
+      "gap": "Cycle1 in progress; no ≥11/15 majority + parent e2e yet."
+    }
+  ],
+  "blocker": "Launch/complete R16–R18 (F6): Send→overlay pin parity + dead/known-flags fail-closed + one npm/tsx Send smoke; until then Criterion G unprovable for V8.",
+  "notes": "Voted false for concrete G (and B/D/E/F/I) failures — not because peer reviewers unfinished. Evidence thin by design: F6 researchers R16–R18 absent. Parent-seeded f6/room_ready is not parity proof. Prior product_ready Cycle6 calculatorReadyGate is Send-pin honesty only, not fightOutcome Calculator↔harness parity.",
+  "never_edited_code": true,
+  "one_line_vote": "V8: fightOutcomeGate=false digestCleanGate=false — R16–R18 missing; Criterion G Send↔harness parity unproven (F6 seed only)."
+}

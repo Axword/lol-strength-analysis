@@ -1,0 +1,104 @@
+{
+  "reviewer": "V6",
+  "cycle": 2,
+  "role": "S1 holdout auditor",
+  "utc": "2026-07-24T15:53:30Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.97,
+  "s1_lens": {
+    "members": ["S1-2970137-g1", "S1-2970120-g1"],
+    "nWindows": 6,
+    "fightAgreement": 0.4776643805508331,
+    "fightPassRate": 0.3333333333333333,
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "gateMet": false,
+    "markSelection": "cusum_engage_then_skills",
+    "dropFilter": false,
+    "tuneForbidden": true,
+    "tuned": false,
+    "no_s1_tuning_claim": true,
+    "authoritative_source": "r06 product non-drop measure (BRIEF + suite_status)",
+    "per_member": {
+      "S1-2970137-g1": {
+        "fightAgreement": 0.4819329520553521,
+        "fightPassRate": 0.3333333333333333,
+        "n": 3,
+        "windowOk": ["check2"],
+        "windowFail": ["check1", "check3"]
+      },
+      "S1-2970120-g1": {
+        "fightAgreement": 0.4733958090463141,
+        "fightPassRate": 0.3333333333333333,
+        "n": 3,
+        "windowOk": ["check1"],
+        "windowFail": ["check2", "check3"]
+      }
+    },
+    "failing_audits_present": [
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970137-g1-check1.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970137-g1-check3.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970120-g1-check2.json",
+      "docs/rofl-research/autoresearch/fight_outcome/audits/S1-2970120-g1-check3.json"
+    ],
+    "cycle2_extra_holdout_probes": {
+      "r10_timed_allin_FA": 0.28221300978113156,
+      "r10_mark_overlay_FA": 0.5185109757392367,
+      "r10_tunedOnS1": false,
+      "r10_product_KEEP": false,
+      "r10_note": "Timed planner LOSES on S1 vs marks — reinforces no product selector flip; does not replace R06 authoritative pooled FA",
+      "r14_s1_remeasure": false,
+      "r20_holdout_s1": "launched live at HEARTBEAT; not absorbed — vote on current evidence only"
+    }
+  },
+  "criteria": {
+    "A": null,
+    "B": false,
+    "C": null,
+    "D": false,
+    "E": true,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": false
+  },
+  "cycle1_to_cycle2_delta": {
+    "s1_authoritative_FA": "unchanged 0.478 / pass 0.333 (R06)",
+    "new_evidence": [
+      "R10 timed S1 FA 0.282 << marks 0.519 → explicit no KEEP (S1 regress)",
+      "R14 honest PE F1 KEEP on c1; echo rejected; no S1 holdout remeasure / no FA≥0.95 claim",
+      "BRIEF: Path1 S0 FA 0.228 — gate still forbids S0-alone; S1 still short",
+      "DIGEST.md still digestCleanGate=false (second host + reviewer affirm open)"
+    ],
+    "gate_flip": false
+  },
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle2/BRIEF.md — S1: 0.478 (R06); R10 timed best 0.502 no product KEEP (S1 regress); gate needs S0+S1 ≥0.95",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/suite_status.json — S1 FA 0.4777, passRate 0.333, tuneForbidden true, product cusum_engage_then_skills, fightOutcomeGateEvidence false",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/score_S1-2970137-g1.json — FA 0.482 / pass 0.333; check1+check3 fail (lethalHit=0 + path)",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/score_S1-2970120-g1.json — FA 0.473 / pass 0.333; check2+check3 fail",
+    "docs/rofl-research/autoresearch/fight_outcome/r06/researcher_r06_summary.json — KEEP_wire_measure only; sharper_blocker S1 0.478 << 0.95; no S1 retune",
+    "docs/rofl-research/autoresearch/fight_outcome/r10/researcher_r10_summary.json — holdout_S1 timed 0.282 vs marks 0.519; tunedOnS1 false; keeps=[]",
+    "docs/rofl-research/autoresearch/fight_outcome/r14/researcher_r14_summary.json — honest F1 KEEP; no S1 suite join to ≥0.95",
+    "Failing window audits under docs/rofl-research/autoresearch/fight_outcome/audits/S1-*.json (4/4 present)",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md — digestCleanGate=false",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json — fightOutcomeGate false; digestCleanGate false; best_fightAgreement 0.228 Path1",
+    "GOAL-fight-outcome-95-10x30x15.md §B/§F — S1 must hit FA≥0.95 AND passRate≥0.95; no fightOutcomeGate on S0 alone"
+  ],
+  "failures": [
+    "B: S1 fightAgreement 0.478 << 0.95 and fightPassRate 0.333 << 0.95 (pooled n=6; product non-drop selector)",
+    "F: Holdout bar unmet — cannot affirm fightOutcomeGate; R06 fightOutcomeGateEvidence false; R10 refused KEEP on S1 timed regress",
+    "D: digestCleanGate not affirmed (DIGEST.md digestCleanGate=false; V6 does not override)",
+    "I: Parent e2e / ≥11/15 majority not met; gate false regardless"
+  ],
+  "peer_visibility": {
+    "seen_at_write": [],
+    "note": "Cycle2 dir had only BRIEF.md at write; vote false on concrete B/F/D, not unfinished peers"
+  },
+  "notes": "V6 S1 holdout lens only (Cycle2). Authoritative pooled S1 remains R06 product non-drop: FA≈0.478 / pass≈0.333 under cusum_engage_then_skills, dropFilter=false, tuneForbidden. Cycle2 adds R10 confirmation that timed planner regresses on S1 (0.282 vs marks 0.519) so no product KEEP — still not a gate pass. R14 honest F1 does not remeasure S1 to bar. Dominant fails unchanged: lethalHit=0 + path MAE over caps on 4/6 windows; earlyBand ok; noInvent=true. Camille PE holes disclosed/refused invent. R20 holdout-s1 live but not absorbed. fightAgreement ≠ win odds. Gate ≥0.95 → fightOutcomeGate false; digestCleanGate false co-requisite.",
+  "one_line_vote": "V6: fightOutcomeGate=false digestCleanGate=false (conf 0.97) — S1 FA 0.478 / pass 0.333 << 0.95; R10 timed S1 regress no KEEP",
+  "blocker": "S1 fightAgreement 0.478 and passRate 0.333 both far below 0.95; lift via S0/Path1 unfreeze (lethal+early) then re-measure S1 without tuning on holdout"
+}

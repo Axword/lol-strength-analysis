@@ -1,0 +1,141 @@
+{
+  "schema": "r01-identity-bind-2970132-g1-v1",
+  "utc": "2026-07-24T15:40:58Z",
+  "host": "2970132-g1",
+  "identityComplete": true,
+  "binding": "PUUID/fullRiotId \u2192 netId \u2192 participantID",
+  "neverParticipantOrder": true,
+  "rosterHash": "83896b95795343e0fc234f2610a3f4fbcecf0b899546ee8c725b3099fe80fcb6",
+  "participants": [
+    {
+      "participantID": 1,
+      "champion": "Olaf",
+      "puuid": "d62acbf0-3789-5644-ad7d-d0bd5de96b0c",
+      "fullRiotId": "GEN Kiin#eProd",
+      "netId": 1073741998,
+      "matchedSampleCount": 4,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 2,
+      "champion": "JarvanIV",
+      "puuid": "26e416f6-c017-5ef4-af1d-349a4d2f2809",
+      "fullRiotId": "GEN Canyon#eProd",
+      "netId": 1073741999,
+      "matchedSampleCount": 14,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 3,
+      "champion": "Galio",
+      "puuid": "dc20fd1d-f1e3-5dcd-8f6d-3865740692e7",
+      "fullRiotId": "GEN Chovy#eProd",
+      "netId": 1073742000,
+      "matchedSampleCount": 16,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 4,
+      "champion": "Seraphine",
+      "puuid": "3462f12f-1fe2-5662-9ba7-48cafe966e7b",
+      "fullRiotId": "GEN Ruler#eProd",
+      "netId": 1073742001,
+      "matchedSampleCount": 4,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 5,
+      "champion": "Shen",
+      "puuid": "7d48b778-5a84-5005-94ff-16a49adcfcba",
+      "fullRiotId": "GEN Duro#eProd",
+      "netId": 1073742002,
+      "matchedSampleCount": 4,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 6,
+      "champion": "Jayce",
+      "puuid": "eaa17a03-bb63-5943-a5b8-f9cf2adf4d6c",
+      "fullRiotId": "JDG Xiaoxu#eProd",
+      "netId": 1073742003,
+      "matchedSampleCount": 5,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 7,
+      "champion": "Trundle",
+      "puuid": "00da3a3d-4f6e-5515-9489-e5ff94a142c3",
+      "fullRiotId": "JDG JunJia#eProd",
+      "netId": 1073742004,
+      "matchedSampleCount": 7,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 8,
+      "champion": "Orianna",
+      "puuid": "483a03fc-6c46-529a-90f7-c6b951dad629",
+      "fullRiotId": "JDG HongQ#eProd",
+      "netId": 1073742005,
+      "matchedSampleCount": 6,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 9,
+      "champion": "Ziggs",
+      "puuid": "9ba5fc1f-ce82-5363-831c-6cbcc358eb03",
+      "fullRiotId": "JDG GALA#eProd",
+      "netId": 1073742006,
+      "matchedSampleCount": 4,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    },
+    {
+      "participantID": 10,
+      "champion": "Camille",
+      "puuid": "30ac5dfb-c83d-59bb-bf4c-c717d5330018",
+      "fullRiotId": "JDG Vampire#eProd",
+      "netId": 1073742007,
+      "matchedSampleCount": 3,
+      "ge2": true,
+      "mMaxHPExplicitAll": true
+    }
+  ],
+  "netIdToParticipantId": {
+    "1073741998": 1,
+    "1073741999": 2,
+    "1073742000": 3,
+    "1073742001": 4,
+    "1073742002": 5,
+    "1073742003": 6,
+    "1073742004": 7,
+    "1073742005": 8,
+    "1073742006": 9,
+    "1073742007": 10
+  },
+  "puuidToParticipantId": {
+    "d62acbf0-3789-5644-ad7d-d0bd5de96b0c": 1,
+    "26e416f6-c017-5ef4-af1d-349a4d2f2809": 2,
+    "dc20fd1d-f1e3-5dcd-8f6d-3865740692e7": 3,
+    "3462f12f-1fe2-5662-9ba7-48cafe966e7b": 4,
+    "7d48b778-5a84-5005-94ff-16a49adcfcba": 5,
+    "eaa17a03-bb63-5943-a5b8-f9cf2adf4d6c": 6,
+    "00da3a3d-4f6e-5515-9489-e5ff94a142c3": 7,
+    "483a03fc-6c46-529a-90f7-c6b951dad629": 8,
+    "9ba5fc1f-ce82-5363-831c-6cbcc358eb03": 9,
+    "30ac5dfb-c83d-59bb-bf4c-c717d5330018": 10
+  },
+  "sources": [
+    "artifacts/rofl/2970132/hp_fuse_dry_run.g1.json",
+    "artifacts/rofl/2970132/replay-manifest.g1.json",
+    "events.g1.path1-final.rfc461.jsonl stats_update puuid/riotId"
+  ],
+  "failClosed": "CreateHero-order fallback forbidden; scramble \u2192 refuse Send/action attach"
+}

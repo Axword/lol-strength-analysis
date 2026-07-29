@@ -1,0 +1,39 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T15:57:02.308Z",
+  "suite": "S1",
+  "match": "2970120-g1",
+  "windowId": "S1_2970120-g1_c2_burst",
+  "windowOk": false,
+  "windowScore": 0.33376415761149153,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 0.1688207880574576,
+    "actionF1": 0.33333333333333337,
+    "earlyMaeHp": 4,
+    "maeHpBurst": 164.80612907482882,
+    "maeHpFull": 190.70304716684478,
+    "maeHp": 164.80612907482882,
+    "pathCap": 90,
+    "lethalErrorSec": null,
+    "segment": "burst",
+    "matchup": "Caitlyn→Ziggs"
+  },
+  "failReasons": [
+    "lethal",
+    "pathMae"
+  ],
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r20/evals/S1-2970120-g1.r06proto.eval.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability",
+  "promotedBy": "r38",
+  "promotedUtc": "2026-07-24T16:26:03.636Z",
+  "stableIdLaw": "r27",
+  "authoritativeLaw": "r20_product_dense"
+}

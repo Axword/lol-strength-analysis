@@ -1,0 +1,42 @@
+{
+  "reviewer": "V9",
+  "role": "Timed planner / death-coupled honesty",
+  "cycle": 1,
+  "utc": "2026-07-24T15:48:30Z",
+  "model": "Auto",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.94,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": false,
+    "E": false,
+    "F": false,
+    "G": null,
+    "H": true,
+    "I": false
+  },
+  "evidence": [
+    "V9 specialty — mechanism honesty HOLDS in parent engine: timed_manual_1v1 stops damage at first lethal and suppresses post-death hits (src/engine/combat.ts); abilityBudget docs+impl: HP% never bans slots; timed path leaves surviveSec unset (src/engine/hpBudget.ts); acceptance test low-HP Darius still schedules abilities (combat.acceptance.test.ts).",
+    "V9 specialty — R10 (~/.codex/worktrees/rofl-fo-r10) complete: 13 experiments, F4 H1–H6 auto-picked, never_edited_parent, keeps:[]. Best timed cusum_gate+allin S0 FA=0.5019 (passRate=0) vs e0 marks 0.4848; S1 timed FA=0.2822 loses to marks 0.5185 — no product KEEP / no best.json rewrite.",
+    "V9 specialty — R11 partial (worktree): F4.H3 utility probe — Nasus W + Zilean E kept on timed path (ok=true); Camille R engageCc miss disclosed (ok=false) — no invent.",
+    "V9 specialty — R12 partial (worktree, still running): e0 FA=0.4848; e1 death-coupled no-finish-AA FA=0.4762; e2 no-aa-at-mark FA=0.3524. c3-full still false-kill (truthKilled=false, modelEndHp=0, actualEndHp=210, endHpAbsError=210) — death-coupled truncate alone does not fix over-damage.",
+    "B FAILS: S0 product FA 0.4217 / pass 0.167 (BRIEF/R04); R10 best research timed 0.5019 still ≪ 0.95; passRate 0 on timed S0.",
+    "F FAILS: S1 timed 0.282 ≪ 0.95; even mark overlay S1 0.519 ≪ gate; cannot claim on S0 alone.",
+    "D incomplete: DIGEST.md + R01 digestCleanGate=false (2970110 second-host combat honesty fail; V2 affirm open). fightOutcomeGate co-requires digestCleanGate.",
+    "C process OK: unfreeze authorized; R10/R12 leave product selectors non-drop (cusum_engage_then_skills / post_engage_killer_skills); no FA KEEP → 0.9683 history untouched.",
+    "H OK for V9 scope: no zero-dmg echo as gate evidence; R10/R12 score fightAgreement not odds; Camille holes disclosed."
+  ],
+  "failures": [
+    "B: fightAgreement/fightPassRate far below gate on S0 (product 0.4217; best timed research 0.5019; pass ≤0.167 / timed pass 0).",
+    "F: S1 holdout unmet (timed 0.282; marks 0.519); R10 explicitly no KEEP due to S1 regress.",
+    "D: digestCleanGate false — co-requisite blocks fightOutcomeGate.",
+    "Outcome honesty gap (not mechanism): check3 false-kill + path MAE persist under death-coupled sweeps (R12 e1 c3-full; R10 blocker Camille→Leona lethal miss on pure planner)."
+  ],
+  "blocker": "Timed planner mechanism is death-coupled / no-HP%-ban honest, but fightAgreement ≪ 0.95 on S0+S1; finish R11–R12, then lift lethalHit/path without invent — do not flip product selectors on current evidence.",
+  "notes": "V9 affirms death-coupled + no HP% ability-ban honesty in engine + R10/R11 probes. Vote fightOutcomeGate false solely on concrete B+F (+ co-req D) — not because R11/R12 unfinished. Partial R12 evidence already shows false-kill/path failures remain. fightAgreement ≠ win odds / ≠ pBlue-pRed %.",
+  "never_edited_code": true,
+  "one_line_vote": "V9: fightOutcomeGate=false digestCleanGate=false — planner death-coupled honest; S0/S1 FA≪0.95 (best timed 0.5019)."
+}

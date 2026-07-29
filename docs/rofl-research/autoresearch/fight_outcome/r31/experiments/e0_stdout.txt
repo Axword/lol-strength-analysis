@@ -1,0 +1,12 @@
+/Users/river/.codex/worktrees/rofl-fo-r31/scripts/crosscheck_action_aligned.ts:2272
+  if (!existsSync(inputPath)) throw new Error(`missing input ${inputPath}`)
+                                    ^
+
+Error: missing input /Users/river/.codex/worktrees/rofl-fo-r31/docs/canvases/_data/crosschecks-2970132-g1-holdout.json
+    at main (/Users/river/.codex/worktrees/rofl-fo-r31/scripts/crosscheck_action_aligned.ts:2272:37)
+    at <anonymous> (/Users/river/.codex/worktrees/rofl-fo-r31/scripts/crosscheck_action_aligned.ts:2478:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:639:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v25.8.2

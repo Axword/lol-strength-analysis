@@ -1,0 +1,10 @@
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E0", "hypothesis": "baseline", "c1_burst_F1": 0.0, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E0b", "hypothesis": "product density baseline", "c1_burst_F1": 0.0, "S0_FA": 0.774, "S1_FA": 0.581, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E1", "hypothesis": "truth burst only", "c1_burst_F1": 0.0, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E2", "hypothesis": "domain no remap", "c1_burst_F1": 0.0, "truth": 2, "matched": 0, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E3", "hypothesis": "domain+remap KEEP", "c1_burst_F1": 0.6667, "S0_FA": 0.7907, "S1_FA": 0.581, "keep": true}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E4", "hypothesis": "tau 0.15", "c1_burst_F1": 0.6667, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E5", "hypothesis": "ally truth", "c1_burst_F1": 0.5, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E6", "hypothesis": "no pre-burst lead", "c1_burst_F1": 0.0, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E7", "hypothesis": "lead 3.5", "c1_burst_F1": 0.5, "keep": false}
+{"researcher": "r44", "utc": "2026-07-24T17:05:00Z", "FA_ne_odds": true, "id": "E8", "hypothesis": "echo reject", "honest_F1": 0.6667, "echo_F1": 1.0, "keep": false, "reject": "zero_dmg_echo"}

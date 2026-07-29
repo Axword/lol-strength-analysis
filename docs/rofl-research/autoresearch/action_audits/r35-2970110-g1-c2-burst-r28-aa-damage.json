@@ -1,0 +1,490 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "burst",
+  "matchup": "Syndra→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.06722363281255639,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.13422363599488563,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.3346630891198856,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.434,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 0.701,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 0.7014199234424723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 0.8016396500049723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.169,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 1.336,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 1.6757441406250564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 1.8429638703698856,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.0094033218799723,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.076,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.1767207031250564,
+      "actorClass": "killer",
+      "kind": "damage"
+    },
+    {
+      "tSec": 2.1767207031250564,
+      "actorClass": "killer",
+      "kind": "damage"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.06722363281255639,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.13422363599488563,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.3346630891198856,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.434,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 0.701,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 0.7014199234424723,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 0.8016396500049723,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.169,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 1.336,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3,
+      "shareHint": 1
+    },
+    {
+      "tSec": 1.6757441406250564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.7759638671875564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 1.8429638703698856,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.0094033218799723,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.076,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1,
+      "shareHint": 1
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.0765009765625564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.1767207031250564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    },
+    {
+      "tSec": 2.1767207031250564,
+      "actorClass": "killer",
+      "kind": "damage",
+      "shareHint": 0
+    }
+  ],
+  "coverage": {
+    "truthCount": 24,
+    "modelCount": 24,
+    "matchedCount": 24,
+    "precision": 1,
+    "recall": 1,
+    "actionCoverage": 1,
+    "matches": [
+      {
+        "truthIdx": 0,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 1,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 5,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 6,
+        "modelIdx": 6,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 7,
+        "modelIdx": 7,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 8,
+        "modelIdx": 8,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 9,
+        "modelIdx": 9,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 10,
+        "modelIdx": 10,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 11,
+        "modelIdx": 11,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 12,
+        "modelIdx": 12,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 13,
+        "modelIdx": 13,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 14,
+        "modelIdx": 14,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 15,
+        "modelIdx": 15,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 16,
+        "modelIdx": 16,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 17,
+        "modelIdx": 17,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 18,
+        "modelIdx": 18,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 19,
+        "modelIdx": 19,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 20,
+        "modelIdx": 20,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 21,
+        "modelIdx": 21,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 22,
+        "modelIdx": 22,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 23,
+        "modelIdx": 23,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [],
+    "unmatchedModel": []
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 2,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 1
+    },
+    "damage": {
+      "truthCount": 17,
+      "modelCount": 17,
+      "matchedCount": 17,
+      "actionCoverage": 1
+    },
+    "skill": {
+      "truthCount": 5,
+      "modelCount": 5,
+      "matchedCount": 5,
+      "actionCoverage": 1
+    }
+  },
+  "disclosures": [
+    "aa_bridge: identity createHeroOrderFallback=true — research-only; gateEligible=false",
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=createHero_order_research_contiguous_netIds_ae_b7 complete=false",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=2 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=28 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "damage_bridge: identity createHeroOrderFallback=true — research-only; gateEligible=false",
+    "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=createHero_order_research_contiguous_netIds_ae_b7 complete=false",
+    "damage_bridge: target=param identity-bound; sourceStatus/amountStatus left null (not invented)",
+    "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory when source unresolved",
+    "damage_bridge: damageTruthAvailable=true damageTruthCount=17 aaClassTruthCount=0 sourceResolvedCount=0 gateEligible=false",
+    "damage_bridge: rejectedNoIdentity=112 rejectedWrongGame=0 rejectedPidOrderOnly=0 rejectedNoTarget=0",
+    "r35: truth aa/damage from R28 same-match emit (PE remap opcodes); skills from slim sqlite skill_used",
+    "r35: model aa/damage = inventory echo at decode timestamps (adapter plumbing); skills echoed from truth skills",
+    "r35: identity = createHero-order research bind (ae..b7 ↔ roster pid 1..10); CastSpellAns(1144) Deserialize not used; gateEligible=false",
+    "r35: allyDisclosedCount=3 (not folded)",
+    "never invent AA/damage from HPΔ; calculatorReady=false; shipFreeze 0.9683 untouched"
+  ],
+  "researchBridge": {
+    "r28Jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r35/docs/rofl-research/packet_decode/r28/emit_2970110_basic_attack_damage.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r35/docs/rofl-research/packet_decode/r35/identity_2970110_createhero_order_research.json",
+    "sqlite": "/Users/river/.codex/worktrees/rofl-pkt-r35/artifacts/pro-grid/2970110/timeline.g1.slim.sqlite",
+    "emitSchemaCounts": {
+      "damage_dealt": 53369,
+      "basic_attack": 14447
+    },
+    "aaTruthCount": 2,
+    "damageTruthCount": 17,
+    "skillTruthCount": 5,
+    "aaGateEligible": false,
+    "damageGateEligible": false,
+    "rejectedAa": {
+      "noIdentity": 28,
+      "wrongGame": 0,
+      "pidOrder": 0
+    },
+    "rejectedDamage": {
+      "noIdentity": 112,
+      "wrongGame": 0,
+      "pidOrder": 0,
+      "noTarget": 0
+    }
+  },
+  "gateEligible": false,
+  "windowMs": [
+    1087012,
+    1091188
+  ],
+  "windowSec": {
+    "startSec": 1087.012,
+    "endSec": 1091.188
+  }
+}

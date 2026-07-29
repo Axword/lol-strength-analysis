@@ -76,6 +76,41 @@ function livingLoadouts(
 }
 
 /**
+ * Top machine reasons surfaced in CombatResult (visible, not tooltip-only).
+ * Deterministic priority; never implies calibration or odds %.
+ */
+export const VISIBLE_TRUST_REASON_PRIORITY = [
+  'calibrated:false',
+  'scope:kill_window_not_calibrated_win_odds',
+  'reason:kill_window_experimental',
+  'class:experimental',
+  'class:manual_kit_1v1',
+  'reason:nvm',
+  'reason:generated_fighter',
+  'reason:unresolved_fighter',
+  'reason:non_core_1v1',
+  'reason:both_fighters_core',
+  'scope:kits_only_no_item_rune_passive_validation',
+] as const
+
+const VISIBLE_TRUST_REASON_CAP = 6
+
+/** Pick deterministic top reasons for UI chips / assumptions parity. */
+export function pickVisibleTrustReasons(reasons: readonly string[]): string[] {
+  const set = new Set(reasons)
+  const picked: string[] = []
+  for (const code of VISIBLE_TRUST_REASON_PRIORITY) {
+    if (set.has(code)) picked.push(code)
+    if (picked.length >= VISIBLE_TRUST_REASON_CAP) return picked
+  }
+  for (const code of reasons) {
+    if (!picked.includes(code)) picked.push(code)
+    if (picked.length >= VISIBLE_TRUST_REASON_CAP) break
+  }
+  return picked
+}
+
+/**
  * Pure classifier: living roster + CORE membership → model class.
  * Always returns calibrated: false.
  */
@@ -125,13 +160,24 @@ export function classifyMatchupModelTrust(
   // Items/runes/passives are never claimed validated.
   reasons.add('scope:kits_only_no_item_rune_passive_validation')
 
+  if (input.killWindow?.actionMarks?.length) {
+    // Kill-window overlay is research-derived; always experimental edge, not odds.
+    reasons.add('reason:kill_window_experimental')
+    reasons.add('scope:kill_window_not_calibrated_win_odds')
+  }
+
   const sortedReasons = [...reasons].sort(compareCodePoint)
+
+  const forceExperimental = !!input.killWindow?.actionMarks?.length
+  const finalClass: MatchupModelClass = forceExperimental
+    ? 'experimental'
+    : modelClass
 
   return {
     calibrated: false,
-    class: modelClass,
+    class: finalClass,
     badge:
-      modelClass === 'manual_kit_1v1'
+      finalClass === 'manual_kit_1v1'
         ? 'Manual kits · uncalibrated'
         : 'Experimental · uncalibrated',
     reasons: sortedReasons,

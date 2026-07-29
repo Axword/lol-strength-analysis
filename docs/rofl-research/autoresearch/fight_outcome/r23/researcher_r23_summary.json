@@ -1,0 +1,103 @@
+{
+  "researcher": "r23",
+  "slug": "path1-lethal2",
+  "model": "Auto",
+  "utc": "2026-07-24T16:05:00.000000+00:00",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r23",
+  "branch": "adv/fo-r23-path1-lethal2",
+  "never_edited_parent": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "room": "f4/f6-path1-lethal2",
+  "mandate": "Continue Path1 lethalHit on 2970132 after R18; lift FA from 0.228; skip knob sweeps; no product KEEP without S1 improve",
+  "crosschecks": "docs/canvases/_data/crosschecks-2970132-g1.json",
+  "primarySelector": "cusum_engage_then_skills",
+  "n_experiments": 15,
+  "path1_FA_before": 0.2279317568764,
+  "path1_FA_after_research_best": 0.25028620072867436,
+  "path1_FA_after_research_S1_flat": 0.23261483513205836,
+  "path1_FA_after_product": 0.2279317568764,
+  "path1_FA_delta_research_best": 0.022354443852274365,
+  "path1_FA_delta_research_S1_flat": 0.004683078255658365,
+  "fightPassRate_before": 0,
+  "fightPassRate_after_research_best": 0,
+  "baseline_e0": {
+    "experiment": "e0",
+    "fightAgreement": 0.2279317568764,
+    "note": "R05-parity product cusum density stride1.2/gap1/nearKill2"
+  },
+  "best_S0_research": {
+    "experiment": "e7",
+    "fightAgreement": 0.25028620072867436,
+    "config": "sparse preEngageOpenerSec=0.5 maxPost=3 + --no-aa-at-mark + finish-aa",
+    "lethal": {
+      "Galio→Trundle": "W retained but no model kill without aa-at-mark (modelEndHp=81.9)",
+      "Olaf→Trundle": "|lethErr| 2.81→1.14 (R18 death-coupled pattern)",
+      "Olaf→Camille full": "|lethErr|~18 unchanged"
+    },
+    "S1": "REGRESS 0.514→0.390 — no product KEEP"
+  },
+  "best_S0_S1_flat": {
+    "experiment": "e5",
+    "fightAgreement": 0.23261483513205836,
+    "config": "sparse preEngageOpenerSec=0.5 maxPost=3 + aa-at-mark + finish-aa + engageSec→opener",
+    "lethal": {
+      "Galio→Trundle": "model kill restored; |lethErr|=2.61 still >0.75 (lethalHit=0)",
+      "Olaf→Trundle": "unchanged vs e0 (sparse gate skipped dense opener)",
+      "Olaf→Camille": "unchanged"
+    },
+    "S1": "FLAT 0.5143 = product — research KEEP candidate; not product (S1 did not improve)"
+  },
+  "galio_diagnosis": {
+    "root_cause": "CUSUM engageSec=15.358 fires 0.334s AFTER Galio W (15.024); product post-engage filter drops W; only E+Q remain → modelEndHp=306",
+    "fix": "preEngageOpenerSec retains last real skill_used in [engage−N, engage); sparse maxPost≤3 skips dense Olaf chains",
+    "assistProbeAllySkills2s": 0,
+    "burst": "still 0 marks (W/E outside burst window)",
+    "aa_filler_tightens": "e10 |lethErr| 2.61→1.13 still >0.75; S1 slight regress 0.514→0.506"
+  },
+  "holdout_S1": {
+    "s1_e0_product_FA": 0.514250324110164,
+    "s1_e5_sparse_FA": 0.514250324110164,
+    "s1_e7_death_coupled_FA": 0.39002496720620833,
+    "s1_e10_aa_filler_FA": 0.5056639636530941,
+    "tunedOnS1": false,
+    "note": "No S1 improve → no product KEEP / no default flip"
+  },
+  "keeps": [],
+  "research_keep_candidates": ["e5", "e7", "e10"],
+  "keepable_artifact": {
+    "kind": "research_harness_knob + Path1 suite wire + sparse pre-engage opener",
+    "harness": "scripts/crosscheck_action_aligned.ts --pre-engage-opener-sec N --pre-engage-opener-max-post M --suite 2970132-g1",
+    "overlay": "src/engine/killWindowOverlay.ts selectKillWindowMarks preEngageOpenerSec/MaxPostMarks",
+    "sweep": "scripts/r23_path1_lethal2_sweep.sh",
+    "scorer": "scripts/fight_agreement_suite.ts --from-eval (S0 wire → crosschecks-2970132-g1.json)",
+    "best_research_config_S1_flat": "e5: product cusum + preEngageOpenerSec=0.5 maxPost=3",
+    "best_research_config_S0_peak": "e7: e5 + --no-aa-at-mark (S1 regress)",
+    "product_default_unchanged": true,
+    "product_default_still": [
+      "cusum_engage_then_skills",
+      "preEngageOpenerSec=0",
+      "aaAtEachMark=true",
+      "finishAaAfterLastMark=true"
+    ],
+    "best_json_updated": false,
+    "reason": "S0 FA +0.0047 (e5) / +0.022 (e7) vs e0; Galio lethalHit still 0 (|err|>0.75); S1 never improves; no invent; no product flip"
+  },
+  "discards": ["e1", "e2", "e3", "e4", "e8", "e9", "e11", "e12", "e13", "e14"],
+  "findings": [
+    "Path1 product baseline reconfirmed FA=0.2279 (R05/R18 parity).",
+    "Galio lethal miss root cause: W dropped 0.334s before CUSUM engage; not missing ally assists (assistProbe=0).",
+    "Sparse pre-engage opener (e5) restores Galio model kill and lifts FA to 0.2326 with S1 flat — research KEEP, not product.",
+    "Naive opener without sparse gate (e1) hurts Olaf (extra early Q) and drops FA to 0.193.",
+    "Death-coupled no-aa-at-mark (e7) peaks S0 FA 0.250 but S1 regresses to 0.390 — same KEEP veto as R18 e11.",
+    "aa-filler (e10) tightens Galio |lethErr| to 1.13 (still >0.75) and slightly regresses S1."
+  ],
+  "blocker": "S0 best FA 0.250 << 0.95; Galio lethalHit still 0 (|lethErr|≥1.13); burst 0 marks; Olaf→Camille |lethErr|~18; S1 never improves → no product KEEP",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r23/leaderboard.json",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r23/NOTES.md",
+    "experiments": "docs/rofl-research/autoresearch/fight_outcome/r23/experiments/",
+    "sweep": "scripts/r23_path1_lethal2_sweep.sh"
+  }
+}

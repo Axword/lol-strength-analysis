@@ -1,0 +1,298 @@
+{
+  "t": "2026-07-24T16:03:32.210Z",
+  "suite": "2970132-g1",
+  "mode": "gate_action",
+  "config": {
+    "hypothesis": "R24-E4 pre-engage-lead 0.4 (=castPulse)",
+    "mode": "gate_action",
+    "castPulseSec": 0.4,
+    "aaFiller": false,
+    "maxAaBetweenMarks": 6,
+    "allyPulseShare": 0.35,
+    "markIdleSkipSec": 0,
+    "markNearDropSec": 0.75,
+    "markDropMinHp": 15,
+    "markAlwaysNearKillSec": 2,
+    "useDropConditioning": true,
+    "markSelection": "cusum_engage_then_skills",
+    "finishAaAfterLastMark": true,
+    "finishAaMax": 4,
+    "finishAaWindowSec": 0,
+    "aaAtEachMark": true,
+    "rePinEachMark": false,
+    "perSlotPulse": false,
+    "pulseBySlot": {
+      "1": 0.4,
+      "2": 0.35,
+      "3": 0.55,
+      "4": 0.75
+    },
+    "cusumK": 8,
+    "cusumH": 45,
+    "markMinGapSec": 1,
+    "markFinishHorizonSec": 0,
+    "maxKillerMarks": 0,
+    "markDensityWindowSec": 1.2,
+    "markDenseMaxPerWindow": 1,
+    "markPreEngageLeadSec": 0.4,
+    "actionReplayTauSec": 0.25,
+    "includeAllyTruth": false,
+    "emitItemModelActions": true,
+    "itemPulseShare": 0,
+    "basicAttackJsonl": "",
+    "aaIdentityPath": "",
+    "emitDamagingModelAaFromTruth": false
+  },
+  "check01": {
+    "full": {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Galio→Trundle",
+      "earlyMaeHp": 116,
+      "lateMaeHp": 486.0046558709852,
+      "lateMaeDeltaVsBaseline": 111.24528279723097,
+      "maeHp": 200.76099591254481,
+      "lethalErrorSec": 2.6074444444444467,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 15.024,
+      "skillMarks": 3,
+      "method": "gate_action",
+      "modelEndHp": 0,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          501658,
+          504158
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 498682,
+          "tSec": 15.024,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "pre_engage_lead"
+        },
+        {
+          "tMs": 500018,
+          "tSec": 16.36,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 501821,
+          "tSec": 18.163,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": {
+        "truthCount": 5,
+        "modelCount": 9,
+        "matchedCount": 3,
+        "precision": 0.3333333333333333,
+        "recall": 0.6,
+        "actionCoverage": 0.42857142857142855,
+        "allyDisclosedCount": 12,
+        "summonerDisclosedCount": 1
+      }
+    },
+    "burst": {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Galio→Trundle",
+      "earlyMaeHp": 233,
+      "lateMaeHp": 959.1637426900585,
+      "lateMaeDeltaVsBaseline": 316.0549061221034,
+      "maeHp": 596.0818713450292,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": 1.002,
+      "skillMarks": 0,
+      "method": "gate_action",
+      "modelEndHp": 941.327485380117,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          501658,
+          504158
+        ]
+      },
+      "markDebug": [],
+      "actionReplay": {
+        "truthCount": 0,
+        "modelCount": 1,
+        "matchedCount": 0,
+        "precision": 0,
+        "recall": 0,
+        "actionCoverage": 0,
+        "allyDisclosedCount": 1,
+        "summonerDisclosedCount": 0
+      }
+    },
+    "baselineFull": {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Galio→Trundle",
+      "earlyMaeHp": 548.5054248155095,
+      "lateMaeHp": 374.7593730737542,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 690.2906686741616,
+      "lethalErrorSec": -7.823134328358208,
+      "killedInModel": true,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": null,
+      "skillMarks": 3,
+      "method": "continuous_simulateMatchup",
+      "modelEndHp": 679.8834047174846,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          501658,
+          504158
+        ]
+      },
+      "markDebug": [
+        {
+          "tMs": 498682,
+          "tSec": 15.024,
+          "skillSlot": 2,
+          "ally": false,
+          "keptReason": "pre_engage_lead"
+        },
+        {
+          "tMs": 500018,
+          "tSec": 16.36,
+          "skillSlot": 3,
+          "ally": false,
+          "keptReason": "no_filter"
+        },
+        {
+          "tMs": 501821,
+          "tSec": 18.163,
+          "skillSlot": 1,
+          "ally": false,
+          "keptReason": "finish_window"
+        }
+      ],
+      "actionReplay": null
+    },
+    "baselineBurst": {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Galio→Trundle",
+      "earlyMaeHp": 233,
+      "lateMaeHp": 643.1088365679551,
+      "lateMaeDeltaVsBaseline": null,
+      "maeHp": 438.05441828397755,
+      "lethalErrorSec": null,
+      "killedInModel": false,
+      "falseAllIn": false,
+      "earlyPoisoned": false,
+      "engageSec": null,
+      "skillMarks": 0,
+      "method": "continuous_simulateMatchup",
+      "modelEndHp": 626.4960730694443,
+      "actualEndHp": 0,
+      "assistProbe": {
+        "allySkillUsedNearKill": 0,
+        "allyParticipants": [],
+        "windowMs": [
+          501658,
+          504158
+        ]
+      },
+      "markDebug": [],
+      "actionReplay": null
+    }
+  },
+  "assistProbe": {
+    "full": {
+      "allySkillUsedNearKill": 0,
+      "allyParticipants": [],
+      "windowMs": [
+        501658,
+        504158
+      ]
+    },
+    "burst": {
+      "allySkillUsedNearKill": 0,
+      "allyParticipants": [],
+      "windowMs": [
+        501658,
+        504158
+      ]
+    }
+  },
+  "markDebug": {
+    "full": [
+      {
+        "tMs": 498682,
+        "tSec": 15.024,
+        "skillSlot": 2,
+        "ally": false,
+        "keptReason": "pre_engage_lead"
+      },
+      {
+        "tMs": 500018,
+        "tSec": 16.36,
+        "skillSlot": 3,
+        "ally": false,
+        "keptReason": "no_filter"
+      },
+      {
+        "tMs": 501821,
+        "tSec": 18.163,
+        "skillSlot": 1,
+        "ally": false,
+        "keptReason": "finish_window"
+      }
+    ],
+    "burst": []
+  },
+  "modelEndHp": {
+    "full": 0,
+    "burst": 941.327485380117
+  },
+  "actualEndHp": {
+    "full": 0,
+    "burst": 0
+  },
+  "shipChecklist": {
+    "A1_check02_full_early_idle": true,
+    "A2_check02_burst_lethal_pm2": false,
+    "A3_check01_burst_path_improved": false,
+    "A4_strict_lethal_01_02_full_burst": false,
+    "A5_check03_early_not_hurt": true,
+    "A6_poison_clear_prefer": false,
+    "A6_min_check03_burst_poison_clear": true,
+    "A7_late_mae_01_02_not_hurt": false,
+    "A8_hard_fails_clean": true,
+    "holdout_B_directionally": null,
+    "holdout_B_burst_lethal_pm2": null,
+    "holdout_B_check03_early_ok": null,
+    "details": {
+      "c01_full_lethal": 2.6074444444444467,
+      "c01_burst_lethal": null,
+      "c02_burst_lethal": -3.991999999999999,
+      "c01_assist_full": 0,
+      "c01_modelEndHp_burst": 941.327485380117,
+      "c03_burst_poison": false,
+      "lateMaeDelta_01": 111.24528279723097,
+      "lateMaeDelta_02": 331.6171299891031
+    }
+  }
+}

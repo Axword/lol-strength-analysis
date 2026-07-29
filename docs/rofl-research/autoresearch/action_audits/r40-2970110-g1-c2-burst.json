@@ -1,0 +1,119 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 2,
+  "segment": "burst",
+  "matchup": "Syndra→Camille",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 0.06722363281255639,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 0.434,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 0.701,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 1.169,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2
+    },
+    {
+      "tSec": 1.336,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 3
+    },
+    {
+      "tSec": 1.7087441421924723,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 2.076,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 1
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 0.434,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    },
+    {
+      "tSec": 1.169,
+      "actorClass": "killer",
+      "kind": "skill",
+      "skillSlot": 2,
+      "shareHint": 1
+    }
+  ],
+  "coverage": {
+    "truthCount": 7,
+    "modelCount": 2,
+    "matchedCount": 2,
+    "precision": 1,
+    "recall": 0.2857142857142857,
+    "actionCoverage": 0.4444444444444445,
+    "matches": [
+      {
+        "truthIdx": 1,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 1,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [
+      0,
+      2,
+      4,
+      5,
+      6
+    ],
+    "unmatchedModel": []
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 2,
+      "modelCount": 0,
+      "matchedCount": 0,
+      "actionCoverage": 0
+    },
+    "skill": {
+      "truthCount": 5,
+      "modelCount": 2,
+      "matchedCount": 2,
+      "actionCoverage": 0.5714285714285715
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=castspell_ans_1144_champion_string complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=2 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=0 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "aaTruthAvailable=true aaTruthCount=2 aaGateEligible=true (never invent from HPΔ; packetDecodeGate requires pro same-match decode)",
+    "modelAaDamagingKitCount=0 matchedDamagingAa=0 damagingAaMarks=2 (kit physical AA via kind:aa marks; shareHint>0; NO zero-damage echo; GOAL forbid #13)",
+    "itemActiveTruthAvailable=true itemActiveTruthCount=0 emitItemModelActions=true itemPulseShare=0 (slim-v3 item_active_ability_used; model emits timed kind=item inventory non-damage; item F1 gains do NOT set packetDecodeGate)",
+    "allyDisclosedCount=3 (ally skill_used near window; folded into truth only when includeAllyTruth=true; currently false)",
+    "summonerDisclosedCount=0 (evented summoner_spell_used; model does not emit summoner damage yet)"
+  ]
+}

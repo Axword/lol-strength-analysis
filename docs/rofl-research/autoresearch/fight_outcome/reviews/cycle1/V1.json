@@ -1,0 +1,24 @@
+{
+  "reviewer": "V1",
+  "role": "Clean-room + packetDecodeGate + calculatorReady honesty",
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.92,
+  "evidence": [
+    "A HOLDS: packetDecodeGate remains true (docs/rofl-research/autoresearch/packet_decode/PACKET_DECODE_GATE.json; cycle C10; calculatorReady:false on that research gate).",
+    "A HOLDS: calculatorReadyGate Path1 2970132 stays honest — CYCLE6_FINAL.json 15/15 living_post_seed_v1; strict_all_frame:false; R01/R03 validate --product exit 0 livingOkSlots=14725; no invent densify; 2970110 second-host combat honesty fail disclosed (unavailable_replay_api).",
+    "A HOLDS: Cycle1 researchers refuse invent (R02 invent:false; R03/R06 Camille PE invent refused; R05 never_invent; R07/R08 no invent KEEP). No vendored League client / unlicensed decrypt artifacts cited in fight_outcome r*/ summaries. pBlue/pRed kept as model edge (DIGEST + researcher confidence strings).",
+    "B FAILS: S0 product fightAgreement ≪ 0.95 — R04 proxy 2970110 cusum FA=0.4217 pass=0.167; R05 Path1 2970132 cusum FA=0.228 pass=0; research-drop 0.6018 not product default.",
+    "B/F FAIL: S1 holdout FA ≪ 0.95 — R06 S1 FA=0.478 pass=0.333 (n=6); R04 S1 FA=0.328 pass=0. Gate forbids S0-alone claim.",
+    "B also short on S2: R06 S2 FA=0.634 pass=0.333 vs bars FA≥0.90 / pass≥5/6.",
+    "C process OK so far: unfreeze_0_9683 authorized; R07 flat (no FA KEEP); best.json composite 0.9683 history preserved; product selectors still non-drop.",
+    "D incomplete for digestCleanGate: DIGEST.md self-marks false; Path1 validate+source-preserve 0/0/0 green and fingerprints documented, but rebuild stamp/coverage lag footgun open; 2970110 not digest-clean; co-gate with fightOutcome unmet.",
+    "G not yet proven this cycle (F6 R16–R18 not in trigger set); not sole false reason — B/F suffice."
+  ],
+  "failures": [
+    "B: fightAgreement/fightPassRate below gate on S0 (≤0.42 product; Path1 host 0.23) and required S1 (≤0.48) — concrete metric miss, not reviewer-incompleteness.",
+    "F: No holdout claim possible; S1 thresholds unmet; cannot set fightOutcomeGate on S0 alone.",
+    "D: digestCleanGate false (DIGEST.md + R01/R03); fightOutcomeGate co-requires digestCleanGate true."
+  ],
+  "notes": "V1 specialty A (clean-room / packetDecodeGate / calculatorReady honesty) does NOT fail this cycle. Vote false solely on concrete B+F (and co-requisite D). FA≪0.95 is agreed concrete B/F failure per BRIEF. Do not treat calculatorReadyGate or packetDecodeGate as fight prediction. Unfinished peer reviewers are not a false reason."
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r36",
+  "slug": "ally-attrib",
+  "wave": 2,
+  "model": "Auto",
+  "utc": "2026-07-24T16:40:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r36",
+  "branch": "adv/fo-r36-ally-attrib",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683_authorized": true,
+  "parent_best_json_rewritten": false,
+  "product_selector": "cusum_engage_then_skills",
+  "owns": "check03 teamfight opener overkill — timeline skill_used ally attribution (not global share)",
+  "does_not_own": [
+    "Galio miss-kill (R18/R24)",
+    "pathMae residual",
+    "calibrated win odds"
+  ],
+  "diagnostics_only": ["false_all_in", "early_poisoned"],
+  "root_cause": {
+    "is": "teamfight opener 1v1 full-share overkill",
+    "attribution": "same-match skill_used local±2s killer/(killer+ally) shares",
+    "no_damage_dealt_in_slim": true,
+    "evidence": {
+      "early5s_allySkills": 8,
+      "early5s_killerSkills": 2,
+      "skillShareProxy": 0.2,
+      "scaledKillerMarks_e7": 5,
+      "meanLocalShare_e7": 0.397
+    }
+  },
+  "n_experiments": 9,
+  "product_KEEP": {
+    "keep": true,
+    "reason": "S0 FA 0.5938→0.7217 (+0.128); S1 FA flat 0.561956 (Δ0); c3 poison cleared; no invent",
+    "openerAllyAttrib": "local_skill_share",
+    "openerAllyWindowSec": 5,
+    "openerAllyLocalSec": 2,
+    "openerAllyMin": 5,
+    "openerKillerMin": 1,
+    "openerGate": "check.windowMs[0] full (not burst-shifted)",
+    "allyMarks": "logOnly disclose when activated only",
+    "files": [
+      "scripts/lib/opener_ally_attrib.ts",
+      "scripts/crosscheck_action_aligned.ts",
+      "src/engine/killWindowProduct.ts",
+      "src/engine/types.ts"
+    ]
+  },
+  "FA_deltas": {
+    "S0_e0": 0.5937719593603264,
+    "S0_e7": 0.7217032416938209,
+    "S0_delta": 0.1279312823334945,
+    "S1_e0": 0.5619564223174064,
+    "S1_e7": 0.5619564223174064,
+    "S1_delta": 0.0,
+    "note": "fightAgreement = kill-window suite agreement — NOT calibrated win odds"
+  },
+  "check03": {
+    "earlyMae_e0": 476,
+    "earlyMae_e7": 89.5,
+    "earlyPoisoned_e0": true,
+    "earlyPoisoned_e7": false,
+    "lethalErrorSec_e0": -18.27,
+    "lethalErrorSec_e7": 0.0
+  },
+  "rejected": {
+    "global_opener_skill_share": "poison remains / one-coeff shape",
+    "opener_hp_neighborhood": "worse earlyMae than skill share",
+    "local_without_killerMin": "S1 Cass burst miss-kill",
+    "burst_shifted_opener_gate": "S1 FA regress via false activate"
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "FA≠odds; early_poisoned diagnostic only; skill_used shares are disclosed proxies not packet damage_dealt",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r36/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r36/NOTES.md",
+    "e7": "docs/rofl-research/autoresearch/fight_outcome/r36/experiments/e7_local_fullgate.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r36/experiments/fa_S0_e7.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r36/experiments/fa_S1_e7.json"
+  },
+  "blocker_residual": "S0 FA 0.722≪0.95; Galio miss-kill + pathMae remain; passRate still 0.333"
+}

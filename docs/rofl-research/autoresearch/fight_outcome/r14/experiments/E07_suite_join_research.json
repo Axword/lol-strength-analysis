@@ -1,0 +1,90 @@
+{
+  "id": "E07",
+  "hypothesis": "F5H5 Research-drop harness F1 join (measure; near_hp_drop not product)",
+  "f5": "H5",
+  "markSelection": "research (last_eval.json — may include drop conditioning)",
+  "harnessMeanActionCoverage": 0.5127329192546582,
+  "harnessGate95": false,
+  "scores": {
+    "harnessF1": {
+      "fightAgreement": 0.6017529013010008,
+      "fightPassRate": 0.3333333333333333,
+      "n": 6,
+      "meanActionF1": 0.5127329192546582,
+      "windows": [
+        {
+          "id": "S0_2970110-g1_c1_full",
+          "windowScore": 0.93,
+          "actionF1": 0.5333333333333333
+        },
+        {
+          "id": "S0_2970110-g1_c1_burst",
+          "windowScore": 0.9400000000000001,
+          "actionF1": 0.6
+        },
+        {
+          "id": "S0_2970110-g1_c2_full",
+          "windowScore": 0.7142857142857143,
+          "actionF1": 0.42857142857142855
+        },
+        {
+          "id": "S0_2970110-g1_c2_burst",
+          "windowScore": 0.10940357793617522,
+          "actionF1": 0.5
+        },
+        {
+          "id": "S0_2970110-g1_c3_full",
+          "windowScore": 0.16682811558411492,
+          "actionF1": 0.34782608695652173
+        },
+        {
+          "id": "S0_2970110-g1_c3_burst",
+          "windowScore": 0.75,
+          "actionF1": 0.6666666666666666
+        }
+      ]
+    },
+    "f1ForcedZero": {
+      "fightAgreement": 0.6017529013010008,
+      "fightPassRate": 0.3333333333333333,
+      "n": 6,
+      "meanActionF1": 0.5127329192546582,
+      "windows": [
+        {
+          "id": "S0_2970110-g1_c1_full",
+          "windowScore": 0.93,
+          "actionF1": 0.5333333333333333
+        },
+        {
+          "id": "S0_2970110-g1_c1_burst",
+          "windowScore": 0.9400000000000001,
+          "actionF1": 0.6
+        },
+        {
+          "id": "S0_2970110-g1_c2_full",
+          "windowScore": 0.7142857142857143,
+          "actionF1": 0.42857142857142855
+        },
+        {
+          "id": "S0_2970110-g1_c2_burst",
+          "windowScore": 0.10940357793617522,
+          "actionF1": 0.5
+        },
+        {
+          "id": "S0_2970110-g1_c3_full",
+          "windowScore": 0.16682811558411492,
+          "actionF1": 0.34782608695652173
+        },
+        {
+          "id": "S0_2970110-g1_c3_burst",
+          "windowScore": 0.75,
+          "actionF1": 0.6666666666666666
+        }
+      ]
+    }
+  },
+  "deltaFa": 0,
+  "productDefault": false,
+  "keep": false,
+  "note": "Measure-only; product selectors remain cusum/post_engage"
+}

@@ -1,0 +1,376 @@
+{
+  "reviewer": "V15",
+  "cycle": 8,
+  "role": "Consolidation — best branch + Final fields",
+  "utc": "2026-07-24T17:06:00Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "never_edited_parent": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "personal_AI_affirm": {
+    "A": {
+      "affirmed": true,
+      "why": "packetDecodeGate + Path1 calculatorReady living_post_seed_v1 honest; no invent; pBlue/pRed model edge; wave3 never_invent."
+    },
+    "B": {
+      "affirmed": false,
+      "why": "Authoritative S0 Path1 FA 0.9304 pass 0.667 ≪ 0.95 bars (post-R43 compound remesaure)."
+    },
+    "C": {
+      "affirmed": true,
+      "why": "Unfreeze 0.9683 authorized; wave3 KEEPs update FA with composite history preserved; product non-drop + W-share + delay + Anivia + truth-domain disclosed."
+    },
+    "D": {
+      "affirmed": true,
+      "why": "Reaffirm: C3–C7 already true; Path1 DIGEST validate+fingerprints hold; no concrete §D failure this cycle."
+    },
+    "E": {
+      "affirmed": true,
+      "why": "S0/S1/S2 wired; R45 transfer + R54 audit pack; Camille/Anivia/Olaf holes disclosed not invented."
+    },
+    "F": {
+      "affirmed": false,
+      "why": "Holdout unmet — S1 FA 0.7628 pass 0.500; no fightOutcomeGate on S0 alone."
+    },
+    "G": {
+      "affirmed": true,
+      "why": "BRIEF/STATUS criterionG_proven; fo:send-smoke 8/8."
+    },
+    "H": {
+      "affirmed": true,
+      "why": "R14/R44 echo rejected; R40 pathFollow no product KEEP; R24 no false product KEEP; R29 anti-odds; near_hp_drop research-only."
+    },
+    "I": {
+      "affirmed": false,
+      "why": "Even if all peers vote, B/F objective FA≪0.95 makes honest ≥11/15 fightOutcomeGate true impossible this cycle."
+    }
+  },
+  "fa_numbers": {
+    "note": "fightAgreement = kill-window suite agreement — NOT win odds / odds %",
+    "S0_path1_2970132_authoritative": {
+      "source": "BRIEF / STATUS / PARENT_MERGE R43 compound remesaure",
+      "artifact": "r43/experiments/fight_agreement_S0_stack_r43.json",
+      "selector": "cusum_engage_then_skills",
+      "fightAgreement": 0.9304,
+      "fightPassRate": 0.667,
+      "gateMet": false
+    },
+    "S1_holdout_authoritative": {
+      "source": "PARENT_MERGE R43 compound remesaure",
+      "artifact": "r43/experiments/fight_agreement_S1_stack_r43.json",
+      "fightAgreement": 0.7628,
+      "fightPassRate": 0.5,
+      "tuned": false,
+      "gateMet": false
+    },
+    "S2_transfer_authoritative": {
+      "source": "PARENT_MERGE R45 NO KEEP / STATUS",
+      "match": "2954868-g1",
+      "fightAgreement": 0.4075,
+      "fightPassRate": 0,
+      "gateMet": false
+    },
+    "spot": {
+      "c1_burst": "windowOk; early/path mae 0",
+      "c1_full_leth": 0.356,
+      "c2_burst_maeHp": 111.6,
+      "c2_pathOk": false,
+      "c3_full_maeHp": 159.3,
+      "S1_anivia_leth": 0.125
+    },
+    "gate_needs": "S0+S1 fightAgreement≥0.95 AND fightPassRate≥0.95; S2 FA≥0.90 pass≥5/6"
+  },
+  "keeps": [
+    {
+      "priority": 1,
+      "researcher": "R39",
+      "branch": "adv/fo-r39-passrate-failing-windows",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "preEngageOpenerShare=0.18 slots=[2] W attenuate; compound S0 FA→0.9304 path"
+    },
+    {
+      "priority": 2,
+      "researcher": "R42",
+      "branch": "adv/fo-r42-c1-burst-earlymae",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "markPreBurstDelaySec=0.3 + earlyMaePreEngageOnly; c1 early/path mae→0"
+    },
+    {
+      "priority": 3,
+      "researcher": "R43",
+      "branch": "adv/fo-r43-s1-anivia-sylas-lethal",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "Anivia CORE Q-fold 7 ticks; S1 FA→0.7628; S0 flat"
+    },
+    {
+      "priority": 4,
+      "researcher": "R44",
+      "branch": "adv/fo-r44-action-coverage-c1burst",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "truth-domain + engage remap; c1-burst F1 0.667; echo rejected"
+    },
+    {
+      "priority": 5,
+      "researcher": "R41",
+      "branch": "adv/fo-r41-galio-full-letherr",
+      "verdict": "KEEP_subsumed",
+      "action": "RETAIN_PREFER_R39",
+      "why": "same Galio leth fix; prefer R39 slot filter over Path1 host-gate 0.2"
+    },
+    {
+      "priority": 6,
+      "researcher": "R31",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "preBurst 2.5 carry"
+    },
+    {
+      "priority": 7,
+      "researcher": "R33",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "zeroDeadActualHp carry"
+    },
+    {
+      "priority": 8,
+      "researcher": "R35",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "preEngageOpener carry"
+    },
+    {
+      "priority": 9,
+      "researcher": "R36",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "openerAlly local_skill_share carry"
+    },
+    {
+      "priority": 10,
+      "researcher": "R30",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "aaAtEachMark=false + R-pulse 0"
+    },
+    {
+      "priority": 11,
+      "researcher": "R19",
+      "verdict": "KEEP_product",
+      "action": "RETAIN",
+      "why": "idleFollowActual"
+    },
+    {
+      "priority": 12,
+      "researcher": "R16",
+      "verdict": "KEEP_G",
+      "action": "RETAIN",
+      "why": "smoke:calc-parity — Criterion G"
+    },
+    {
+      "priority": 13,
+      "researcher": "R17",
+      "verdict": "KEEP_G",
+      "action": "RETAIN",
+      "why": "fo:send-smoke — Criterion G"
+    },
+    {
+      "priority": 14,
+      "researcher": "R29",
+      "verdict": "KEEP_copy",
+      "action": "RETAIN",
+      "why": "Anti-odds wording"
+    },
+    {
+      "priority": 15,
+      "researcher": "R40",
+      "verdict": "NO_KEEP_product",
+      "action": "RETAIN_MEASURE_ONLY",
+      "why": "pathMae floor ~101; pathFollow S1-unsafe"
+    },
+    {
+      "priority": 16,
+      "researcher": "R45",
+      "verdict": "NO_KEEP_product",
+      "action": "RETAIN_MEASURE_ONLY",
+      "why": "S2 FA 0.4075 pass 0 — disclosed"
+    },
+    {
+      "priority": 17,
+      "researcher": "R46",
+      "verdict": "NO_KEEP_product",
+      "action": "RETAIN_MEASURE_ONLY",
+      "why": "finish/density cannot lift passRate alone"
+    }
+  ],
+  "keep_priority_order": [
+    "R39",
+    "R42",
+    "R43",
+    "R44",
+    "R31",
+    "R33",
+    "R35",
+    "R36",
+    "R30",
+    "R19",
+    "R16",
+    "R17",
+    "R29"
+  ],
+  "best_branches": [
+    {
+      "priority": 1,
+      "focus": "authoritative_stacked_fa",
+      "branch": "adv/fo-r39-passrate-failing-windows",
+      "why": "W-share KEEP into compound remesaure; S0 FA 0.9304 authoritative with R42"
+    },
+    {
+      "priority": 2,
+      "focus": "s1_anivia_lift",
+      "branch": "adv/fo-r43-s1-anivia-sylas-lethal",
+      "why": "S1 FA 0.7628; S0 flat — holdout progress without invent"
+    },
+    {
+      "priority": 3,
+      "focus": "wave4_open",
+      "branch": "R47–R54 live",
+      "why": "c2 pathMae / S0 passRate / S1 Vayne-Cass / S2 / F1 / Olaf kit / audit pack"
+    }
+  ],
+  "vote_tally_observed": {
+    "seen_at_write": ["V11", "V12", "V13", "V14", "V15"],
+    "batch": "c8_v11_15",
+    "missing_peer_batches_at_write": ["V1–V5", "V6–V10"],
+    "fightOutcomeGate_true_among_seen": 0,
+    "fightOutcomeGate_false_among_seen": 5,
+    "digestCleanGate_true_among_seen": 5,
+    "digestCleanGate_false_among_seen": 0,
+    "expected_FO_false_all_15": true,
+    "majority_needed": "11/15",
+    "majority_11_of_15_fightOutcomeGate": false,
+    "majority_can_pass": false,
+    "majority_possible": false,
+    "majority_possible_fightOutcomeGate": false,
+    "majority_possible_digestCleanGate": true,
+    "note": "majority_possible=false for fightOutcomeGate is evidence-driven: expected FO false votes across V1–V15 because S0 FA 0.9304≪0.95 (and S1 0.7628). Even unfinished V1–V10 cannot honestly flip FO true. digestCleanGate majority_possible=true (already C3–C7 true; C8 reaffirm)."
+  },
+  "majority_can_pass": false,
+  "majority_possible": false,
+  "majority_possible_detail": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": true,
+    "why_fo_impossible": "Authoritative S0 FA 0.9304 ≪ 0.95 objective; expected all 15 FO votes false; ≥11/15 FO true not majority_possible this cycle",
+    "why_dc_possible": "Already true (C3–C7); V11–V15 reaffirm; co-gate held, does not unlock fightOutcomeGate",
+    "expected_FO_false_votes": 15,
+    "expected_DC_true_votes": 15
+  },
+  "recommendation": {
+    "decision": "CONTINUE_WAVE4",
+    "not": "STOP",
+    "why": "wave3 CLOSED 8/8; FA 0.9304 progress but FO false on B+F; wave4 R47–R54 live; GOAL continue until FO true OR limits exhausted OR human STOP.",
+    "human_stop_phrase": "STOP FIGHT OUTCOME"
+  },
+  "final_fields_draft": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": true,
+    "calculatorReadyGate": true,
+    "calculatorReadyHost": "2970132-g1",
+    "calculatorReadyPolicy": "living_post_seed_v1",
+    "criterionG_proven": true,
+    "unfreeze_0_9683": true,
+    "baselineComposite": 0.9683,
+    "best_composite_new": null,
+    "best_fightAgreement": 0.9304,
+    "best_fightAgreement_S1": 0.7628,
+    "best_fightAgreement_S2": 0.4075,
+    "best_fightPassRate": 0.667,
+    "best_S1_passRate": 0.5,
+    "suites": {
+      "S0_post_r43": { "FA": 0.9304, "pass": 0.667 },
+      "S1_post_r43": { "FA": 0.7628, "pass": 0.5 },
+      "S2_r45": { "FA": 0.4075, "pass": 0 }
+    },
+    "DIGEST_reproduce": "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "calculator_Send_smoke": "npm run fo:send-smoke",
+    "calculator_Send_smoke_status": "GREEN_8_8",
+    "keep_priority": "R39>R42>R43>R44>R31>R33>R35>R36>R30>R19>R16>R17>R29",
+    "reviewer_votes_V1_V15": {
+      "true_count_expected_FO": 0,
+      "majority_11": false,
+      "majority_possible": false,
+      "majority_possible_digestClean": true,
+      "decision": "CONTINUE_WAVE4"
+    },
+    "heartbeat_path": "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "status_path": "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "model": "Auto",
+    "limits_exhausted": false,
+    "researchers_done_wave1": 30,
+    "researchers_done_wave2": 8,
+    "researchers_done_wave3": 8,
+    "researchers_done_wave4": 0,
+    "if_false": {
+      "sharper_blocker": "S0 FA 0.9304 pass 0.667; c2 pathMae 111.6; S1 pass 0.500; S2 0.4075; G+DC closed.",
+      "next_mega_cycle": "CONTINUE_WAVE4: absorb R47–R54 KEEPs; tally C8; await human STOP FIGHT OUTCOME only if stopping.",
+      "next_tracks": [
+        "c2 pathMae (R47/R48/R52)",
+        "S0 passRate c2/c3 (R48)",
+        "S1 Vayne/Cass passRate (R49/R53)",
+        "S2 2954868 lift (R50)",
+        "c1-burst F1 + audit pack (R51/R54)"
+      ]
+    }
+  },
+  "partial_wins_not_gate": [
+    "digestCleanGate true — reaffirm C8",
+    "Criterion G proven (fo:send-smoke 8/8)",
+    "Wave3 stack → S0 FA 0.9304 / pass 0.667",
+    "R43 Anivia → S1 FA 0.7628 / pass 0.500",
+    "Wave3 CLOSED R39–R46 (8/8)",
+    "c1 burst/full windowOk under stack",
+    "calculatorReadyGate Path1 still true",
+    "FA ≠ odds wording intact"
+  ],
+  "evidence": [
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle8/BRIEF.md",
+    "docs/rofl-research/autoresearch/fight_outcome/STATUS.json",
+    "docs/rofl-research/autoresearch/fight_outcome/HEARTBEAT.md",
+    "docs/rofl-research/autoresearch/fight_outcome/DIGEST.md",
+    "docs/rofl-research/autoresearch/fight_outcome/PARENT_MERGE.md",
+    "docs/rofl-research/autoresearch/fight_outcome/r43/experiments/fight_agreement_S0_stack_r43.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r43/experiments/fight_agreement_S1_stack_r43.json",
+    "docs/rofl-research/autoresearch/fight_outcome/r43/researcher_r43_summary.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle8/V11.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle8/V12.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle8/V13.json",
+    "docs/rofl-research/autoresearch/fight_outcome/reviews/cycle8/V14.json",
+    "docs/rofl-research/autoresearch/GOAL-fight-outcome-95-10x30x15.md"
+  ],
+  "failures": [
+    "B: FA thresholds unmet — S0 0.9304 ≪ 0.95",
+    "F: Holdout unmet — S1 0.7628",
+    "I: Majority ≥11/15 fightOutcomeGate true not majority_possible (expected FO false×15)"
+  ],
+  "blocker": "B/F: Path1 S0 FA 0.9304 ≪ 0.95; G+DC closed; open wave4 pathMae/passRate/S1/S2.",
+  "sharper_blocker": "majority_possible=false for fightOutcomeGate (expected FO false votes). CONTINUE_WAVE4 (not STOP).",
+  "notes": "Consolidation Cycle8 wave3 CLOSED / wave4 live: KEEP order R39>R42>R43>R44>R31>R33>R35>R36>R30>R19>R16>R17>R29. Closed: stacked KEEPs + G + DC. Open: wave4 tracks. majority_possible=false for FO given expected all-false FO votes; digestCleanGate=true reaffirm. Recommendation CONTINUE_WAVE4. fightAgreement ≠ win probability.",
+  "one_liner": "V15: fightOutcomeGate=false digestCleanGate=true (conf 0.98) — FA 0.9304≪0.95; DC reaffirm; majority_possible=false (FO expected false×15); CONTINUE_WAVE4"
+}

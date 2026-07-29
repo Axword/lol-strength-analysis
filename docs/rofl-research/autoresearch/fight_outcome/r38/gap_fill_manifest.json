@@ -1,0 +1,242 @@
+{
+  "schema": "fightOutcome-r38-suite-audit-gaps-v1",
+  "researcher": "r38",
+  "slug": "suite-audit-gaps",
+  "model": "Auto",
+  "utc": "2026-07-24T16:26:03.636Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r38",
+  "branch": "adv/fo-r38-suite-audit-gaps",
+  "never_edited_parent_code": true,
+  "docs_only": true,
+  "verdict": "KEEP",
+  "mandate": "Ensure every failing S0/S1 window has audit JSON under fight_outcome/audits/ with stable ids from r27 suites. Fill gaps; no invent.",
+  "windowIdLaw": "{suite}_{match}_c{check}_{segment}",
+  "authoritativeSources": {
+    "S0_2970132": "r30/experiments/fa_S0_e8_product_keep.json + r30/audits/e8_product_keep/",
+    "S1_2970137": "r30/experiments/fa_S1_e8_product_keep.json + r30/audits/s1_e8_product_keep/",
+    "S1_2970120": "r20/score_S1-2970120-g1.product_dense.json + r20/audits/",
+    "S0_2970110": "r12/eval_e0.fightAgreement.json (measured; replaced mislabeled r05-proxy copies)"
+  },
+  "promoted": [
+    {
+      "windowId": "S0_2970132-g1_c1_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/e8_product_keep/S0_2970132-g1_c1_full.json",
+      "windowScore": 0.4855395286007088,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970132-g1_c1_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/e8_product_keep/S0_2970132-g1_c1_burst.json",
+      "windowScore": 0.25,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970132-g1_c2_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/e8_product_keep/S0_2970132-g1_c2_burst.json",
+      "windowScore": 0.9039111288433007,
+      "failReasons": [
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970132-g1_c3_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/e8_product_keep/S0_2970132-g1_c3_full.json",
+      "windowScore": 0.03333333333333333,
+      "failReasons": [
+        "lethal",
+        "earlyMae",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970137-g1_c1_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c1_full.json",
+      "windowScore": 0.5423076923076924,
+      "failReasons": [
+        "lethal"
+      ]
+    },
+    {
+      "windowId": "S1_2970137-g1_c1_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c1_burst.json",
+      "windowScore": 0.32605555555555554,
+      "failReasons": [
+        "lethal",
+        "earlyMae",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970137-g1_c3_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c3_full.json",
+      "windowScore": 0.3131578947368421,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970137-g1_c3_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/s1_e8_product_keep/S1_2970137-g1_c3_burst.json",
+      "windowScore": 0.35,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970120-g1_c1_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r20/audits/S1_2970120-g1_c1_full.json",
+      "windowScore": 0.5071428571428571,
+      "failReasons": [
+        "lethal"
+      ]
+    },
+    {
+      "windowId": "S1_2970120-g1_c1_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r20/audits/S1_2970120-g1_c1_burst.json",
+      "windowScore": 0.5166666666666667,
+      "failReasons": [
+        "lethal"
+      ]
+    },
+    {
+      "windowId": "S1_2970120-g1_c2_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r20/audits/S1_2970120-g1_c2_full.json",
+      "windowScore": 0.39946783952353554,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970120-g1_c2_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r20/audits/S1_2970120-g1_c2_burst.json",
+      "windowScore": 0.33376415761149153,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970120-g1_c3_full",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r20/audits/S1_2970120-g1_c3_full.json",
+      "windowScore": 0.40236327349966194,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S1_2970120-g1_c3_burst",
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r20/audits/S1_2970120-g1_c3_burst.json",
+      "windowScore": 0,
+      "failReasons": [
+        "lethal",
+        "earlyMae",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970110-g1_c1_burst",
+      "source": "r12/eval_e0.fightAgreement.json",
+      "windowScore": 0.7491666666666666,
+      "failReasons": [
+        "earlyMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970110-g1_c2_full",
+      "source": "r12/eval_e0.fightAgreement.json",
+      "windowScore": 0.3142857142857143,
+      "failReasons": [
+        "lethal",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970110-g1_c2_burst",
+      "source": "r12/eval_e0.fightAgreement.json",
+      "windowScore": 0.0878888888888889,
+      "failReasons": [
+        "lethal",
+        "earlyMae",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970110-g1_c3_full",
+      "source": "r12/eval_e0.fightAgreement.json",
+      "windowScore": 0.05217391304347826,
+      "failReasons": [
+        "lethal",
+        "earlyMae",
+        "pathMae"
+      ]
+    },
+    {
+      "windowId": "S0_2970110-g1_c3_burst",
+      "source": "r12/eval_e0.fightAgreement.json",
+      "windowScore": 0.761672235689817,
+      "failReasons": [
+        "pathMae"
+      ]
+    }
+  ],
+  "coverage": {
+    "failingExpectedCount": 19,
+    "failingExpected": [
+      "S0_2970110-g1_c1_burst",
+      "S0_2970110-g1_c2_burst",
+      "S0_2970110-g1_c2_full",
+      "S0_2970110-g1_c3_burst",
+      "S0_2970110-g1_c3_full",
+      "S0_2970132-g1_c1_burst",
+      "S0_2970132-g1_c1_full",
+      "S0_2970132-g1_c2_burst",
+      "S0_2970132-g1_c3_full",
+      "S1_2970120-g1_c1_burst",
+      "S1_2970120-g1_c1_full",
+      "S1_2970120-g1_c2_burst",
+      "S1_2970120-g1_c2_full",
+      "S1_2970120-g1_c3_burst",
+      "S1_2970120-g1_c3_full",
+      "S1_2970137-g1_c1_burst",
+      "S1_2970137-g1_c1_full",
+      "S1_2970137-g1_c3_burst",
+      "S1_2970137-g1_c3_full"
+    ],
+    "missingAfter": [],
+    "badMatchup": [],
+    "promotedCount": 19,
+    "mislabeledReplaced": [
+      "S0_2970110-g1_c1_burst",
+      "S0_2970110-g1_c2_full",
+      "S0_2970110-g1_c2_burst",
+      "S0_2970110-g1_c3_full",
+      "S0_2970110-g1_c3_burst"
+    ]
+  },
+  "passWindowsNoAuditRequired": {
+    "S0_2970132": [
+      "S0_2970132-g1_c2_full",
+      "S0_2970132-g1_c3_burst"
+    ],
+    "S1_2970137": [
+      "S1_2970137-g1_c2_full",
+      "S1_2970137-g1_c2_burst"
+    ],
+    "S1_2970120": [],
+    "S0_2970110": [
+      "S0_2970110-g1_c1_full"
+    ]
+  },
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement window audits — NOT calibrated win odds / NOT pBlue-pRed %"
+}

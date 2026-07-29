@@ -1,0 +1,15 @@
+{
+  "reviewer": "V4",
+  "role": "Unfreeze 0.9683 auditor",
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.96,
+  "one_liner": "Unfreeze 0.9683 intact; FO false — S0 FA 0.7766≪0.95; digestClean true.",
+  "evidence": [
+    "C specialty: unfreeze_0_9683=true on S0/S1 r31 FA artifacts; baselineCompositePreserved 0.9683 — FA fields update under unfreeze without rewriting composite as fake shipGate.",
+    "Selector remains cusum_engage_then_skills (product non-drop); near_hp_drop research-only.",
+    "B FAIL: post-R31 S0 FA 0.7766 pass 0.333 ≪0.95/0.95; no contradictory authoritative evidence of ≥0.95.",
+    "Stacked KEEPs R19–R36 + R31 preBurst raise FA vs earlier cycles but still short of gate.",
+    "D reaffirm digestCleanGate=true (Path1); G AFFIRM; FA≠odds; majority 11/15 FO unreachable while B fails."
+  ]
+}

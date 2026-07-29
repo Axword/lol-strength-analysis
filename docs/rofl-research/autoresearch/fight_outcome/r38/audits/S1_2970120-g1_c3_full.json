@@ -1,0 +1,39 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T15:57:02.308Z",
+  "suite": "S1",
+  "match": "2970120-g1",
+  "windowId": "S1_2970120-g1_c3_full",
+  "windowOk": false,
+  "windowScore": 0.40236327349966194,
+  "parts": {
+    "lethalOk": false,
+    "earlyOk": true,
+    "pathOk": false,
+    "noInvent": true,
+    "noHard": true,
+    "lethalHit": 0,
+    "earlyBand": 1,
+    "pathBand": 0.5118163674983098,
+    "actionF1": 0.3333333333333333,
+    "earlyMaeHp": 27,
+    "maeHpBurst": 276.98977505112475,
+    "maeHpFull": 193.46387222521972,
+    "maeHp": 193.46387222521972,
+    "pathCap": 130,
+    "lethalErrorSec": null,
+    "segment": "full",
+    "matchup": "Shen→Ambessa"
+  },
+  "failReasons": [
+    "lethal",
+    "pathMae"
+  ],
+  "sourceEval": "docs/rofl-research/autoresearch/fight_outcome/r20/evals/S1-2970120-g1.r06proto.eval.json",
+  "markSelection": "cusum_engage_then_skills",
+  "confidence": "fightAgreement window audit — NOT win odds / calibrated probability",
+  "promotedBy": "r38",
+  "promotedUtc": "2026-07-24T16:26:03.636Z",
+  "stableIdLaw": "r27",
+  "authoritativeLaw": "r20_product_dense"
+}

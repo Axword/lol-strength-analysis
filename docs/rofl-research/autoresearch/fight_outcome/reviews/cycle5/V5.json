@@ -1,0 +1,76 @@
+{
+  "reviewer": "V5",
+  "role": "S0 suite auditor",
+  "cycle": 5,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:20:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.98,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "s0": {
+    "gateBar": { "fightAgreement": 0.95, "fightPassRate": 0.95 },
+    "authoritativeHost": "2970132-g1 Path1 product cusum_engage_then_skills + idleFollowActual + R30 KEEP",
+    "authoritative": {
+      "fightAgreement": 0.5896947676936598,
+      "fightAgreement_rounded": 0.59,
+      "fightPassRate": 0.3333333333333333,
+      "nWindows": 6,
+      "windowOk_count": 2,
+      "meetsThresholds": false,
+      "source": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/fa_S0_e8_product_keep.json",
+      "delta_from_C4": "+0.179 vs R25 0.4107",
+      "failingWindowIds": [
+        "S0_2970132-g1_c1_full",
+        "S0_2970132-g1_c1_burst",
+        "S0_2970132-g1_c2_burst",
+        "S0_2970132-g1_c3_full"
+      ],
+      "passingWindows": [
+        "S0_2970132-g1_c2_full score=0.965 (Olaf lethOk |err|=0.334)",
+        "S0_2970132-g1_c3_burst score=0.9"
+      ]
+    },
+    "research_r24_not_authoritative": {
+      "fightAgreement": 0.5030447427479277,
+      "product_KEEP": false,
+      "note": "Galio kill research; product Path1 remains R30 ≈0.590"
+    },
+    "dominantFails_path1": [
+      "check01 Galio→Trundle: still miss-kill on product (c1_full lethalOk=false; c1_burst 0 marks) — R24 NO KEEP residual",
+      "check02 Olaf→Trundle burst: lethalOk true but pathMae residual (windowOk false) — R30 partial",
+      "check03 Olaf→Camille full: earlyMaeHp=476 earlyPoisoned + lethErr≈18.27 — R26 open; burst alone passes"
+    ],
+    "openTracks": ["Galio c1 miss-kill (post-R24/R28)", "c2 pathMae residual", "c3 earlyPoisoned (R26)"]
+  },
+  "evidence": [
+    "Specialty E/S0: authoritative Path1 product FA 0.5897 / pass 0.333 (r30 fa_S0_e8 personally read; BRIEF/STATUS ≈0.590).",
+    "4/6 Path1 windows fail windowOk — gate false on concrete §B alone (FA ≈0.590≪0.95).",
+    "R30 closed Olaf finish lethErr (2.81→0.33) and lifted pass 0.167→0.333; still far from 0.95 bars.",
+    "R24 research 0.503 does not replace product 0.590; NO product KEEP (S1 regress).",
+    "D reaffirm: Path1 validate+hashes personally green → digestCleanGate=true (§D.4 prefer second host ≠ require).",
+    "G AFFIRM: Criterion G proven (8/8 + 11/11) — orthogonal to S0 FA.",
+    "Suites wired (E): S0/S1 measured; thresholds unmet → E affirmed as suite existence, not bar pass.",
+    "Open residuals: Galio c1 miss-kill; c2 pathMae; c3 earlyPoisoned — not more Send parity."
+  ],
+  "failures": [
+    "B_S0_authoritative: Path1 product FA ≈0.590 / pass ≈0.333 ≪ 0.95 (2/6 windowOk).",
+    "F_holdout: S1 current-law FA ≈0.562 / pass ≈0.333.",
+    "I_majority_e2e: FO cannot reach ≥11/15 while B fails."
+  ],
+  "notes": "V5 C5 S0 audit: FO almost certainly false on concrete Path1 FA ≈0.590≪0.95. R30 KEEP real progress but not gate. Research R24 secondary only. digestClean reaffirm true on personal §D. G proven. FA≠odds.",
+  "one_line_vote": "V5: fightOutcomeGate=false digestCleanGate=true (conf 0.98) — S0 Path1 FA≈0.590 / pass≈0.333 ≪ 0.95; G=true."
+}

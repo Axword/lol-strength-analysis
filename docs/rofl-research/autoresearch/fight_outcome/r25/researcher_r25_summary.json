@@ -1,0 +1,97 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r25",
+  "slug": "path1-remeasure",
+  "model": "Auto",
+  "utc": "2026-07-24T16:04:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r25",
+  "branch": "adv/fo-r25-path1-remeasure",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Remeasure authoritative S0 Path1 FA on 2970132-g1 AFTER idleFollowActual KEEP; score S1 under current law (no tune); audits for failing windows",
+  "product_selector": "cusum_engage_then_skills",
+  "product_defaults_seeded": {
+    "idleFollowActual": true,
+    "source": "parent MERGED R19 KEEP"
+  },
+  "hypothesesAutoPicked": [
+    { "id": "H1", "title": "Remeasure S0 Path1 FA after idleFollowActual", "result": "MEASURED_confirm_R19" },
+    { "id": "H2", "title": "Score S1 current law no tune", "result": "MEASURED_freeze" },
+    { "id": "H3", "title": "Sharpen blocker from remesaure", "result": "KEEP_disclose" }
+  ],
+  "n_experiments": 2,
+  "S0_path1_remeasure": {
+    "match": "2970132-g1",
+    "harnessSuite": "2970132-g1-holdout",
+    "markSelection": "cusum_engage_then_skills",
+    "dense": { "denseWindow": 1.0, "denseMax": 1, "markMinGap": 0.4 },
+    "fightAgreement": 0.4106910062451652,
+    "fightPassRate": 0.16666666666666666,
+    "n": 6,
+    "meetsThresholds": false,
+    "earlyMae": {
+      "c1_full": 0,
+      "c1_burst": 0,
+      "c2_full": 0,
+      "c2_burst": 9.5,
+      "c3_full": 476,
+      "c3_burst": 0,
+      "mean": 80.91666666666667
+    },
+    "only_pass_window": "c3_burst Olaf→Camille score=0.9",
+    "vs_R05": {
+      "R05_FA": 0.2279,
+      "r25_FA": 0.4106910062451652,
+      "delta": 0.1827910062451652
+    },
+    "vs_R19_claim": {
+      "R19_S0_e1_FA": 0.4106910062451652,
+      "r25_FA": 0.4106910062451652,
+      "delta": 0,
+      "note": "bit-match R19 idle-follow KEEP claim 0.411"
+    }
+  },
+  "S1_current_law": {
+    "match": "2970137-g1",
+    "tuned": false,
+    "fightAgreement": 0.4169776331222436,
+    "fightPassRate": 0,
+    "n": 6,
+    "meetsThresholds": false,
+    "vs_R19_S1_e4": {
+      "R19": 0.4169776331222436,
+      "r25": 0.4169776331222436,
+      "delta": 0
+    }
+  },
+  "failing_window_summary": {
+    "S0": [
+      { "id": "c1_full", "matchup": "Galio→Trundle", "fail": ["lethal"], "note": "miss-kill; earlyOk after idle-follow" },
+      { "id": "c1_burst", "matchup": "Galio→Trundle", "fail": ["lethal", "pathMae"], "maeBurst": 246.6 },
+      { "id": "c2_full", "matchup": "Olaf→Trundle", "fail": ["lethal", "pathMae"], "lethErrSec": 2.81 },
+      { "id": "c2_burst", "matchup": "Olaf→Trundle", "fail": ["lethal", "pathMae"], "lethErrSec": 2.81 },
+      { "id": "c3_full", "matchup": "Olaf→Camille", "fail": ["lethal", "earlyMae", "pathMae"], "earlyMae": 476, "lethErrSec": 18.27, "earlyPoisoned": true }
+    ],
+    "S1": "all 6 check×segment fail; see audits/s1/"
+  },
+  "product_KEEP": null,
+  "verdict": "REMEASURE_ONLY_NO_KEEP; R19_idleFollowActual_CONFIRMED; blocker_shifts_to_lethal",
+  "fightOutcomeGateEvidence": false,
+  "sharper_blocker": "Idle honesty CLOSED (S0 FA 0.411 bit-match R19; c1 earlyMae 0). Remaining FA≪0.95 is lethal/timing: Galio→Trundle miss-kill, Olaf→Trundle lethErr≈2.81s (>0.75), Olaf→Camille earlyPoisoned earlyMae=476 + lethErr≈18s. Handoff R18 lethal/opener — not idle.",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r25/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r25/NOTES.md",
+    "s0_remeasure": "docs/rofl-research/autoresearch/fight_outcome/r25/s0_path1_remeasure.json",
+    "s0_idle_follow": "docs/rofl-research/autoresearch/fight_outcome/r25/s0_path1_idle_follow.json",
+    "s1_eval": "docs/rofl-research/autoresearch/fight_outcome/r25/s1_current_law.json",
+    "s1_freeze": "docs/rofl-research/autoresearch/fight_outcome/r25/S1_score_freeze.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r25/fight_agreement_S0.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r25/fight_agreement_S1.json",
+    "audits_s0": "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s0/",
+    "audits_s1": "docs/rofl-research/autoresearch/fight_outcome/r25/audits/s1/"
+  },
+  "next": "Orchestrator: absorb remesaure into STATUS (Path1 S0 FA=0.411 authoritative); R18 lethal miss-kill / earlyPoisoned — do not re-open idleFollowActual"
+}

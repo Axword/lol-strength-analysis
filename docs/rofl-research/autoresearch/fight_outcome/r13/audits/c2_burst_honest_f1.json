@@ -1,0 +1,63 @@
+{
+  "check": 2,
+  "segment": "burst",
+  "matchup": "Syndra→Camille",
+  "sourceAudit": "/Users/river/.codex/worktrees/rofl-fo-r13/docs/rofl-research/autoresearch/action_audits/r40-2970110-g1-c2-burst.json",
+  "schema": "honest-action-f1-v1",
+  "truthCount": 5,
+  "modelCount": 2,
+  "matchedCount": 2,
+  "precision": 1,
+  "recall": 0.4,
+  "actionCoverage": 0.5714285714285715,
+  "matches": [
+    {
+      "truthIdx": 0,
+      "modelIdx": 0,
+      "dtSec": 0
+    },
+    {
+      "truthIdx": 2,
+      "modelIdx": 1,
+      "dtSec": 0
+    }
+  ],
+  "unmatchedTruth": [
+    1,
+    3,
+    4
+  ],
+  "unmatchedModel": [],
+  "rawActionCoverage": 0.4444444444444445,
+  "honestActionCoverage": 0.5714285714285715,
+  "fightAgreementF1": 0.5714285714285715,
+  "weightInWindowScore": 0.15,
+  "rejectedZeroDmgEchoModelCount": 0,
+  "rejectedZeroDmgEchoTruthCount": 2,
+  "peProvenDamageTruthCount": 0,
+  "peProvenDamageModelCount": 0,
+  "echoGamingSuspected": false,
+  "disclosures": [
+    "honest_action_f1: rawF1=0.4444 honestF1=0.5714 fightAgreementF1=0.5714 (weight=0.15 secondary only)",
+    "rejectedZeroDmgEcho model=0 truth=2 (GOAL forbid zero-dmg log-echo)",
+    "peProvenDamage truth=0 model=0 (sourceNetId+amount>0)",
+    "echoGamingSuspected=false",
+    "NOT win odds / NOT calibrated probability"
+  ],
+  "coverageGaps": {
+    "missingClasses": [
+      "item",
+      "summoner",
+      "damage"
+    ],
+    "presentClasses": [
+      "skill",
+      "aa"
+    ],
+    "notes": [
+      "damage absent — no invent; wait for PE damage_dealt source+amount",
+      "item absent — omit unless evented item_active_ability_used",
+      "summoner absent — omit unless evented summoner_spell_used"
+    ]
+  }
+}

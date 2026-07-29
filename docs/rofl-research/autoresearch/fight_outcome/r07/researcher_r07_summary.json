@@ -1,0 +1,75 @@
+{
+  "researcher": "r07",
+  "slug": "unfreeze-marks",
+  "model": "Auto",
+  "utc": "2026-07-24T15:41:33.476535Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r07",
+  "branch": "adv/fo-r07-unfreeze-marks",
+  "never_edited_parent": true,
+  "unfreeze_0_9683_authorized": true,
+  "f3_hypotheses_auto_picked": [
+    "1 Mark density vs lethalHit",
+    "2 PulseBySlot retune",
+    "4 CUSUM K/H sweep"
+  ],
+  "f3_hypotheses_deferred": [
+    "3 Regen/extended fight (needs overlay regen path; mark/CUSUM/density mandate first)"
+  ],
+  "n_experiments": 20,
+  "suite": "S0-2970110-g1",
+  "baseline": {
+    "experiment": "e0",
+    "fightAgreement": 0.5350862346343341,
+    "fightPassRate": 0.3333333333333333,
+    "composite": 0.9682758824446431,
+    "note": "research drop markMinGap0.4 \u2014 frozen composite 0.9683 config"
+  },
+  "best_fightAgreement": 0.5350862346343341,
+  "best_fightAgreement_delta_vs_e0": 0.0,
+  "best_vs_product_cusum_e1_delta": 0.05026333153857321,
+  "keeps": [],
+  "discards": [
+    "e1",
+    "e10",
+    "e11",
+    "e12",
+    "e13",
+    "e14",
+    "e15",
+    "e16",
+    "e17",
+    "e18",
+    "e19",
+    "e2",
+    "e3",
+    "e4",
+    "e5",
+    "e6",
+    "e7",
+    "e8",
+    "e9"
+  ],
+  "ties_no_improve": [
+    "e14",
+    "e15",
+    "e18",
+    "e19"
+  ],
+  "product_selectors_changed": false,
+  "product_default_still": [
+    "cusum_engage_then_skills",
+    "post_engage_killer_skills"
+  ],
+  "best_json_updated": false,
+  "reason_no_keep": "No config beat E0 fightAgreement=0.5351; unfreeze authorized but KEEP requires FA improvement without invent",
+  "engine_overlay_touched": false,
+  "parity_gate": "n/a (CLI knobs only on harness; overlay unchanged)",
+  "blocker": "S0 fightAgreement 0.5351 << 0.95; check2 path MAE + check3 false-kill (actualEndHp=210) dominate; CUSUM/density/pulse sweeps flat or worse on FA",
+  "artifacts": {
+    "results_jsonl": "docs/rofl-research/autoresearch/fight_outcome/r07/results.jsonl",
+    "leaderboard": "docs/rofl-research/autoresearch/fight_outcome/r07/leaderboard.json",
+    "scorer": "scripts/fight_agreement_from_eval.ts",
+    "sweep": "scripts/r07_unfreeze_marks_sweep.sh"
+  },
+  "confidence": "fightAgreement is kill-window suite agreement \u2014 NOT calibrated win odds / NOT pBlue-pRed %"
+}

@@ -1,0 +1,401 @@
+{
+  "schema": "fo-r15-wire-emit-proof-v1",
+  "researcher": "r15",
+  "slug": "action-wire",
+  "room": "f5",
+  "utc": "2026-07-24T15:53:05.512Z",
+  "match": "2970132-g1",
+  "path1Host": true,
+  "never_invent": true,
+  "never_edited_parent": true,
+  "reject_zero_dmg_log_echo": true,
+  "emit": {
+    "path": "/Users/river/.codex/worktrees/rofl-fo-r15/docs/rofl-research/autoresearch/product_ready/r08/emit/emit_2970132_basic_attack_damage.jsonl",
+    "bytes": 44784734,
+    "sha256": "ccfe2555db387c176731be7baa9a2f9f28195e495e4f4186b2321c921c67f098",
+    "schemaCounts": {
+      "basic_attack": 13966,
+      "damage_dealt": 55230
+    },
+    "gameIDs": [
+      2970132
+    ],
+    "fieldSources": {
+      "basic_attack": "r28_pe_opcode_remap_block_param",
+      "damage_dealt": "r39_unit_apply_damage_fields"
+    },
+    "heroBound": {
+      "basic_attack_attackerNetId": 3479,
+      "damage_dealt_sourceNetId_amount_gt0": 14642
+    },
+    "damage_dealt_source_amount_gt0": 55229,
+    "damage_dealt_amount_eq0": 1,
+    "basic_attack_amount_present": 0,
+    "note": "basic_attack carries attackerNetId (no amount); damage_dealt carries sourceNetId+amount (PE UnitApplyDamage)"
+  },
+  "identity": {
+    "path": "/Users/river/.codex/worktrees/rofl-fo-r15/docs/rofl-research/autoresearch/product_ready/r06/castspell-identity-2970132-g1-pid-stamped.json",
+    "method": "stable_identity_to_net_id",
+    "complete": true,
+    "createHeroOrderFallback": false,
+    "gateEligible": false,
+    "participants": 10,
+    "seriesLabelNote": "artifact series field may say 2970110; netId/PUUID roster matches Path1 DIGEST 2970132"
+  },
+  "windowWireProof": [
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Galio→Trundle",
+      "startSec": 483.658,
+      "endSec": 508.658,
+      "killerNetId": 1073742000,
+      "victimNetId": 1073742004,
+      "wire": {
+        "basic_attack_killer": 3,
+        "damage_dealt_any_src_amt_gt0": 1096,
+        "damage_dealt_killer_on_victim_src_amt_gt0": 8,
+        "pe_proven_source_amount": true
+      }
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Galio→Trundle",
+      "startSec": 483.658,
+      "endSec": 508.658,
+      "killerNetId": 1073742000,
+      "victimNetId": 1073742004,
+      "wire": {
+        "basic_attack_killer": 3,
+        "damage_dealt_any_src_amt_gt0": 1096,
+        "damage_dealt_killer_on_victim_src_amt_gt0": 8,
+        "pe_proven_source_amount": true
+      }
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Olaf→Trundle",
+      "startSec": 1056.813,
+      "endSec": 1081.813,
+      "killerNetId": 1073741998,
+      "victimNetId": 1073742004,
+      "wire": {
+        "basic_attack_killer": 7,
+        "damage_dealt_any_src_amt_gt0": 960,
+        "damage_dealt_killer_on_victim_src_amt_gt0": 9,
+        "pe_proven_source_amount": true
+      }
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Olaf→Trundle",
+      "startSec": 1056.813,
+      "endSec": 1081.813,
+      "killerNetId": 1073741998,
+      "victimNetId": 1073742004,
+      "wire": {
+        "basic_attack_killer": 7,
+        "damage_dealt_any_src_amt_gt0": 960,
+        "damage_dealt_killer_on_victim_src_amt_gt0": 9,
+        "pe_proven_source_amount": true
+      }
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Olaf→Camille",
+      "startSec": 1647.319,
+      "endSec": 1672.319,
+      "killerNetId": 1073741998,
+      "victimNetId": 1073742007,
+      "wire": {
+        "basic_attack_killer": 6,
+        "damage_dealt_any_src_amt_gt0": 1333,
+        "damage_dealt_killer_on_victim_src_amt_gt0": 8,
+        "pe_proven_source_amount": true
+      }
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Olaf→Camille",
+      "startSec": 1647.319,
+      "endSec": 1672.319,
+      "killerNetId": 1073741998,
+      "victimNetId": 1073742007,
+      "wire": {
+        "basic_attack_killer": 6,
+        "damage_dealt_any_src_amt_gt0": 1333,
+        "damage_dealt_killer_on_victim_src_amt_gt0": 8,
+        "pe_proven_source_amount": true
+      }
+    }
+  ],
+  "windowsWithPeSourceAmount": 6,
+  "wireEmitProofPass": true,
+  "actionCoverage": {
+    "secondaryOnly": true,
+    "weightInWindowScore": 0.15,
+    "meanHonestF1": 1,
+    "anyHonestAvailable": true,
+    "honestF1OrZero": 1,
+    "echoRejected": true,
+    "gate95": false,
+    "note": "Honest F1 uses modelDamagingDamageFromEmit (shareHint=amount>0). Echo F1 must not enter fightOutcomeGate / actionReplayGate."
+  },
+  "perWindowF1": [
+    {
+      "check": 1,
+      "segment": "full",
+      "matchup": "Galio→Trundle",
+      "aaTruthCount": 50,
+      "damageTruthCount": 13,
+      "sourceAndAmountResolvedCount": 13,
+      "damageGateEligible": true,
+      "aaGateEligible": false,
+      "echo": {
+        "aaF1": 1,
+        "damageF1": 1,
+        "rejectedAsGateEvidence": true,
+        "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+      },
+      "honestDamage": {
+        "modelDamagingCount": 13,
+        "modelEchoCount": 0,
+        "f1": {
+          "actionCoverage": 1,
+          "precision": 1,
+          "recall": 1,
+          "matched": 13,
+          "truthCount": 13,
+          "modelCount": 13
+        },
+        "available": true,
+        "actionCoverageF1_for_secondary": 1
+      },
+      "disclosures": [
+        "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+        "aa_bridge: aaTruthAvailable=true aaTruthCount=50 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+        "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+        "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+        "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+        "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+        "r44_model_damage: modelDamageCount=13 rejectedNoAmount=0 rejectedZeroAmount=0"
+      ]
+    },
+    {
+      "check": 1,
+      "segment": "burst",
+      "matchup": "Galio→Trundle",
+      "aaTruthCount": 50,
+      "damageTruthCount": 13,
+      "sourceAndAmountResolvedCount": 13,
+      "damageGateEligible": true,
+      "aaGateEligible": false,
+      "echo": {
+        "aaF1": 1,
+        "damageF1": 1,
+        "rejectedAsGateEvidence": true,
+        "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+      },
+      "honestDamage": {
+        "modelDamagingCount": 13,
+        "modelEchoCount": 0,
+        "f1": {
+          "actionCoverage": 1,
+          "precision": 1,
+          "recall": 1,
+          "matched": 13,
+          "truthCount": 13,
+          "modelCount": 13
+        },
+        "available": true,
+        "actionCoverageF1_for_secondary": 1
+      },
+      "disclosures": [
+        "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+        "aa_bridge: aaTruthAvailable=true aaTruthCount=50 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+        "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+        "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+        "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+        "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+        "r44_model_damage: modelDamageCount=13 rejectedNoAmount=0 rejectedZeroAmount=0"
+      ]
+    },
+    {
+      "check": 2,
+      "segment": "full",
+      "matchup": "Olaf→Trundle",
+      "aaTruthCount": 18,
+      "damageTruthCount": 25,
+      "sourceAndAmountResolvedCount": 25,
+      "damageGateEligible": true,
+      "aaGateEligible": false,
+      "echo": {
+        "aaF1": 1,
+        "damageF1": 1,
+        "rejectedAsGateEvidence": true,
+        "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+      },
+      "honestDamage": {
+        "modelDamagingCount": 25,
+        "modelEchoCount": 0,
+        "f1": {
+          "actionCoverage": 1,
+          "precision": 1,
+          "recall": 1,
+          "matched": 25,
+          "truthCount": 25,
+          "modelCount": 25
+        },
+        "available": true,
+        "actionCoverageF1_for_secondary": 1
+      },
+      "disclosures": [
+        "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+        "aa_bridge: aaTruthAvailable=true aaTruthCount=18 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+        "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+        "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+        "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+        "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+        "r44_model_damage: modelDamageCount=25 rejectedNoAmount=0 rejectedZeroAmount=0"
+      ]
+    },
+    {
+      "check": 2,
+      "segment": "burst",
+      "matchup": "Olaf→Trundle",
+      "aaTruthCount": 18,
+      "damageTruthCount": 25,
+      "sourceAndAmountResolvedCount": 25,
+      "damageGateEligible": true,
+      "aaGateEligible": false,
+      "echo": {
+        "aaF1": 1,
+        "damageF1": 1,
+        "rejectedAsGateEvidence": true,
+        "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+      },
+      "honestDamage": {
+        "modelDamagingCount": 25,
+        "modelEchoCount": 0,
+        "f1": {
+          "actionCoverage": 1,
+          "precision": 1,
+          "recall": 1,
+          "matched": 25,
+          "truthCount": 25,
+          "modelCount": 25
+        },
+        "available": true,
+        "actionCoverageF1_for_secondary": 1
+      },
+      "disclosures": [
+        "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+        "aa_bridge: aaTruthAvailable=true aaTruthCount=18 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+        "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+        "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+        "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+        "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+        "r44_model_damage: modelDamageCount=25 rejectedNoAmount=0 rejectedZeroAmount=0"
+      ]
+    },
+    {
+      "check": 3,
+      "segment": "full",
+      "matchup": "Olaf→Camille",
+      "aaTruthCount": 51,
+      "damageTruthCount": 30,
+      "sourceAndAmountResolvedCount": 30,
+      "damageGateEligible": true,
+      "aaGateEligible": false,
+      "echo": {
+        "aaF1": 1,
+        "damageF1": 1,
+        "rejectedAsGateEvidence": true,
+        "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+      },
+      "honestDamage": {
+        "modelDamagingCount": 30,
+        "modelEchoCount": 0,
+        "f1": {
+          "actionCoverage": 1,
+          "precision": 1,
+          "recall": 1,
+          "matched": 30,
+          "truthCount": 30,
+          "modelCount": 30
+        },
+        "available": true,
+        "actionCoverageF1_for_secondary": 1
+      },
+      "disclosures": [
+        "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+        "aa_bridge: aaTruthAvailable=true aaTruthCount=51 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+        "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+        "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+        "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+        "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+        "r44_model_damage: modelDamageCount=30 rejectedNoAmount=0 rejectedZeroAmount=0"
+      ]
+    },
+    {
+      "check": 3,
+      "segment": "burst",
+      "matchup": "Olaf→Camille",
+      "aaTruthCount": 51,
+      "damageTruthCount": 30,
+      "sourceAndAmountResolvedCount": 30,
+      "damageGateEligible": true,
+      "aaGateEligible": false,
+      "echo": {
+        "aaF1": 1,
+        "damageF1": 1,
+        "rejectedAsGateEvidence": true,
+        "reason": "GOAL forbid #13 / F5 — zero-dmg log-echo (shareHint=0)"
+      },
+      "honestDamage": {
+        "modelDamagingCount": 30,
+        "modelEchoCount": 0,
+        "f1": {
+          "actionCoverage": 1,
+          "precision": 1,
+          "recall": 1,
+          "matched": 30,
+          "truthCount": 30,
+          "modelCount": 30
+        },
+        "available": true,
+        "actionCoverageF1_for_secondary": 1
+      },
+      "disclosures": [
+        "aa_bridge: source=rofl_basic_attack_deserialize identity=stable_identity_to_net_id complete=true",
+        "aa_bridge: aaTruthAvailable=true aaTruthCount=51 gateEligible=false (HPΔ invent forbidden; pro-grid path required for gate)",
+        "damage_bridge: source=rofl_unit_apply_damage_deserialize identity=stable_identity_to_net_id complete=true",
+        "damage_bridge: target=param identity-bound; victim-kept truthActions attach emit sourceNetId+amount when PE-proven (never invented)",
+        "damage_bridge: kind mapAaProximity=false → damage|aa(basic_attack proximity); actorClass=killer means damage-to-victim inventory",
+        "r44_model_damage: non-echo UnitApplyDamage amount→shareHint>0 (GOAL forbid #13: not zero-damage log-echo; fractional amount <1 ≡ R40 shareHint≥1)",
+        "r44_model_damage: modelDamageCount=30 rejectedNoAmount=0 rejectedZeroAmount=0"
+      ]
+    }
+  ],
+  "f5_hypotheses": [
+    "Honest F1",
+    "Secondary only",
+    "Wire emit proof",
+    "Coverage gaps",
+    "Suite join"
+  ],
+  "coverageGaps": [
+    "basic_attack rows have no amount (timing-only; amount lives on damage_dealt)",
+    "identity.gateEligible=false on stamped artifact — aaGateEligible stays false; wire proof still holds via PE fields",
+    "crosscheck_action_aligned skill+AA path is separate; this audit scores damage_dealt source+amount F1",
+    "actionCoverage secondary cannot rescue S0 FA≪0.95 (R05 Path1 FA=0.228)"
+  ],
+  "confidence": "actionCoverage / fightAgreement are suite agreement metrics — NOT win odds / pBlue-pRed %",
+  "actionReplayGate": false,
+  "fightOutcomeGate": false
+}

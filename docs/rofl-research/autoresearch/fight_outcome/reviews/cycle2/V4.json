@@ -1,0 +1,161 @@
+{
+  "reviewer": "V4",
+  "cycle": 2,
+  "role": "Unfreeze 0.9683 auditor",
+  "criterion": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T15:54:00Z",
+  "never_edited_parent": true,
+  "read_only": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": false,
+  "confidence": 0.97,
+  "criteria": {
+    "C_unfreeze_process": true,
+    "C_history_preserved": true,
+    "C_no_unjustified_best_keep": true,
+    "C_r07_no_keep": true,
+    "C_r08_no_fa_best_keep": true,
+    "C_r09_no_keep": true,
+    "C_r10_r12_no_keep": true,
+    "C_r14_not_best_json": true,
+    "C_new_best_justified": null,
+    "C_detail": "Unfreeze still authorized (STATUS.unfreeze_0_9683=true). Parent best.json unchanged: composite 0.9683, no unfrozenFromComposite, mtime 2026-07-23T19:33:36, sha1 0c51733e0657e2c8e5a378799560c8f951b5f29b (same as Cycle1). results.jsonl still has exact 0.9682758824446431 baseline (2 lines). Product defaults still cusum_engage_then_skills / post_engage_killer_skills. R07/R09/R10/R12: keeps=[] / best_json_updated=false. R08 E01 retain-BEST with beatPriorFightAgreement=false; worktree claimed updatedBestJson but PARENT_MERGE refused — parent best.json not rewritten (correct under FA-improvement KEEP law). R14 KEEP is honest PE F1 / echo-reject docs+research only; baselineCompositePreserved=0.9683; freezeOk=true; no best.json claim."
+  },
+  "unfreeze_audit": {
+    "baselineComposite": 0.9683,
+    "best_json_composite_now": 0.9683,
+    "unfrozenFromComposite_present": false,
+    "best_json_mtime": "2026-07-23T19:33:36",
+    "best_json_sha1": "0c51733e0657e2c8e5a378799560c8f951b5f29b",
+    "best_json_rewritten_this_cycle": false,
+    "product_default_still": "cusum_engage_then_skills",
+    "product_selectors_changed": false,
+    "results_jsonl_baseline_lines_0_9682758824446431": 2,
+    "r07": {
+      "verdict": "NO_KEEP",
+      "best_fightAgreement": 0.5350862346343341,
+      "delta_vs_e0": 0.0,
+      "keeps": [],
+      "best_json_updated": false
+    },
+    "r08": {
+      "verdict": "NO_OVERLAY_KEEP_PARENT",
+      "best_S0_FA": 0.4932180675135456,
+      "beatPriorFightAgreement": false,
+      "worktree_updatedBestJson_claim": true,
+      "parent_best_json_updated": false,
+      "reason": "E01 retain research BEST only; PARENT_MERGE: best.json unchanged; density/pulse/CUSUM flat or no FA beat"
+    },
+    "r09": {
+      "verdict": "NO_KEEP",
+      "best_fightAgreement": 0.5350862346343341,
+      "delta_vs_e0": 0.0,
+      "keeps": [],
+      "best_json_updated": false
+    },
+    "r10": {
+      "verdict": "NO_KEEP",
+      "best_S0_FA": 0.501897361945962,
+      "S1_timed_regresses": true,
+      "best_json_updated": false
+    },
+    "r12": {
+      "verdict": "NO_KEEP",
+      "best_fightAgreement": 0.48525718823285774,
+      "delta_vs_e0": 0.0004342851370968475,
+      "best_json_updated": false
+    },
+    "r14": {
+      "verdict": "KEEP_docs_research_not_best",
+      "honest_c1_actionCoverage": 1.0,
+      "echo_rejected": true,
+      "S0_fa_delta_honest_partial": 0.025,
+      "baselineCompositePreserved": 0.9683,
+      "best_json_updated": false,
+      "fightOutcomeGate_claim": false
+    },
+    "keep_classification": {
+      "unjustified_best_json_keeps": [],
+      "justified_non_best_keeps": [
+        "R01 digest-path",
+        "R02 source-preserve",
+        "R03 digest-validate docs",
+        "R06 KEEP_wire_measure",
+        "R14 action-noecho (honest F1 / echo REJECT; not best.json)"
+      ],
+      "correct_no_keep": [
+        "R04/R05 measured baselines",
+        "R07 unfreeze-marks",
+        "R08 unfreeze-density (parent)",
+        "R09 unfreeze-regen",
+        "R10 planner-lethal",
+        "R12 planner-death"
+      ]
+    }
+  },
+  "digest_rejudge": {
+    "cycle1_affirmers": ["V2", "V13"],
+    "cycle1_majority": "2/15 failed",
+    "DIGEST_header_digestCleanGate": false,
+    "STATUS_digestCleanGate": false,
+    "Path1_2970132_still_proven": true,
+    "second_host_2970110_still_blocked": true,
+    "R14_closes_digest_D": false,
+    "R14_note": "Honest PE damage F1=1.0 + echo reject strengthens actionCoverage honesty (§B secondary term) — does not satisfy §D digestClean checklist or second-host prefer.",
+    "vote": false,
+    "reason": "DIGEST+STATUS still false; §D.4 second host still combat-honesty fail; R14 orthogonal to digest path; no new Path1 digest evidence since C1 majority miss."
+  },
+  "gate_failures_A_I": {
+    "A": null,
+    "B": "S0 Path1 product cusum FA 0.228 / pass 0 (R05 authoritative); proxy ~0.42; S1 0.478; S2 0.634; R10 timed best 0.502 — all << 0.95/0.90",
+    "C": "process compliant; no FA-beating best.json KEEP (not a process violation)",
+    "D": "digestCleanGate false (DIGEST/STATUS; second host open; C1 majority 2/15; R14 not §D)",
+    "E": "Path1 S0 measured but FA worse than proxy; suites not gate-ready",
+    "F": "S1 FA 0.478 << 0.95; cannot claim on S0 alone",
+    "G": null,
+    "H": null,
+    "I": "Cycle2 majority/e2e not complete"
+  },
+  "evidence": [
+    "best.json composite=0.9683; unfrozenFromComposite absent; productModes.cusum_engage_then_skills intact; sha1 0c51733e0657e2c8e5a378799560c8f951b5f29b; mtime 2026-07-23T19:33:36",
+    "results.jsonl retains FREEZE/research markMinGap0.4 composite 0.9682758824446431 (2 lines)",
+    "STATUS.json: unfreeze_0_9683=true; best_fightAgreement=0.228; fightOutcomeGate=false; digestCleanGate=false",
+    "BRIEF Cycle2: S0 Path1 0.228; closed mark/CUSUM/density/regen; R14 honest F1 KEEP; R07/R08/R09/R12 NO KEEP",
+    "PARENT_MERGE: R07 NO KEEP; R08 NO overlay KEEP / best.json unchanged; R14 KEEP docs/research only",
+    "r07/r09 summaries: keeps=[]; best_json_updated=false; FA Δ0 vs E0",
+    "r08: beatPriorFightAgreement=false; parent best.json not updated despite worktree claim",
+    "r10/r12: NO KEEP; product selectors unchanged; best_json_updated=false",
+    "r14: honest F1=1.0; echo REJECTED; S0 FA +0.025 partial; baselineCompositePreserved=0.9683; no FO gate claim",
+    "DIGEST.md: digestCleanGate false; 2970110 second host still fails validate --product"
+  ],
+  "failures": [
+    {
+      "criterion": "B_fightAgreement",
+      "concrete": true,
+      "detail": "Authoritative S0 Path1 product FA 0.228 / pass 0; S1 0.478; S2 0.634 — far below gate bars. Unfreeze knob/regen/planner sweeps did not produce FA-beating BEST."
+    },
+    {
+      "criterion": "D_digestCleanGate",
+      "concrete": true,
+      "detail": "DIGEST/STATUS still false; second host 2970110 PE/combat honesty open; R14 does not close §D."
+    },
+    {
+      "criterion": "F_holdout",
+      "concrete": true,
+      "detail": "S1 FA 0.478 / pass 0.333 << 0.95; R10 timed regresses on S1 vs marks."
+    }
+  ],
+  "blocker": "No FA-improving best.json KEEP past 0.9683; Path1 S0 product FA 0.228 ≪ 0.95 under non-drop selector.",
+  "sharper_blocker": "Must beat product Path1 FA 0.228 (and research E0 ~0.535 where used) without invent, hold out on S1/S2, then rewrite best.json with unfrozenFromComposite=0.9683; digestClean still needs majority §D affirm (R14 F1 is not that).",
+  "votes": {
+    "fightOutcomeGate": false,
+    "digestCleanGate": false,
+    "C_history_preserved": true,
+    "C_r07_r08_r09_no_keep_correct": true,
+    "C_no_unjustified_KEEP": true,
+    "C_r14_not_best_rewrite": true
+  },
+  "one_line_vote": "V4: fightOutcomeGate=false digestCleanGate=false — C history OK through R14; no unjustified best.json KEEP; Path1 FA 0.228≪0.95; R14 F1≠§D.",
+  "notes": "Affirm Criterion C: 0.9683 history preserved; knob/regen/planner correctly NO KEEP; R08 parent non-merge correct; R14 honest-F1 KEEP is not a BEST rewrite. Deny FO for concrete B/D/F. Re-judge digestClean=false: DIGEST+STATUS+second-host unchanged; R14 strengthens actionCoverage honesty only."
+}

@@ -1,0 +1,78 @@
+{
+  "reviewer": "V9",
+  "cycle": 8,
+  "phase": "C",
+  "role": "Timed planner / death-coupled honesty",
+  "utc": "2026-07-24T17:05:42Z",
+  "model": "Auto",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "one_liner": "V9: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — planner stack honest; S0 FA 0.9304 / pass 0.667 ≪0.95; FA≠odds",
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "planner_lens": {
+    "death_coupled_parent": true,
+    "no_hp_pct_ability_ban": true,
+    "product_selectors_held": ["cusum_engage_then_skills", "post_engage_killer_skills"],
+    "idleFollowActual_KEEP": true,
+    "near_hp_drop_research_only": true,
+    "stacked_KEEPs": {
+      "r19_idleFollow": true,
+      "r30_aa_pulse": { "aaAtEachMark": false, "pulseBySlot_R": 0 },
+      "r31_preBurst": { "markPreBurstSkillLeadSec": 2.5, "markPreBurstSkillShare": 1 },
+      "r32_residual_hp": true,
+      "r33_zeroDead": true,
+      "r34_tornado": { "galio_tornadoPct": 0.15, "disclosure": "attention kit blend; not wiki-exact; not calibrated" },
+      "r35_opener": { "preEngageOpenerSec": 0.5, "preEngageOpenerMaxPostMarks": 3 },
+      "r36_openerAlly": { "openerAllyAttrib": "local_skill_share" },
+      "r39_openerShare": { "preEngageOpenerShare": 0.18, "preEngageOpenerShareSlots": [2] },
+      "r42_preBurstDelay": { "markPreBurstDelaySec": 0.3, "earlyMaePreEngageOnly": true },
+      "r44_truthRemap": { "truthBurstWindowOnly": false, "truthPreBurstRemap": true, "aaEcho": "disclose-only" },
+      "r43_anivia_CORE": { "q_double": true, "e_chill_x2": true, "q_fold_storm_ticks": 7, "pulseBySlot_R": 0 }
+    },
+    "compound_remeasure": {
+      "S0_FA": 0.930409557022156,
+      "S0_pass": 0.6666666666666666,
+      "S1_FA": 0.7627693321171581,
+      "S1_pass": 0.5,
+      "c1_full": { "lethalOk": true, "lethAbs": 0.356, "windowOk": true },
+      "c1_burst": { "earlyMaeHp": 0, "pathOk": true, "windowOk": true },
+      "c2_burst": { "maeHp": 111.59164037216308, "pathOk": false, "pathCap": 90, "windowOk": false },
+      "c3_full": { "maeHp": 159.29375, "pathOk": false, "windowOk": false }
+    },
+    "honesty": {
+      "noInvent": true,
+      "unfreeze_0_9683": true,
+      "FA_is_not_odds": true,
+      "residual_hp_not_one_coeff": true,
+      "r40_pathFollow_rejected": true
+    }
+  },
+  "evidence": [
+    "BRIEF C8 — stacked wave3 KEEPs; S0 FA 0.9304 pass 0.667 ≪0.95",
+    "r43 parent_stack_r43_s0.json — law includes idleFollowActual, residual_hp, preBurst 2.5+delay0.3, openerShare 0.18, zeroDeadActualHp, Anivia CORE",
+    "r43 fight_agreement_S0_stack_r43.json — c2_burst maeHp 111.6 pathOk false; c3_full pathOk false; 4/6 windowOk → pass 0.667",
+    "Product selectors held — cusum_engage_then_skills (not near_hp_drop); death-coupled; no HP% ability ban claimed",
+    "STATUS last_blocker — c2 pathMae; passRate; S2 0.41",
+    "DIGEST Path1 — digestCleanGate reaffirm true; living_post_seed_v1; no invent"
+  ],
+  "failures": [
+    "B: mean FA 0.9304 (S0) / 0.7628 (S1) ≪ 0.95; passRate 0.667 / 0.500 ≪ 0.95",
+    "Planner honesty OK but agreement not gate-ready — c2_burst pathMae>90 residual; c3_full path fail",
+    "I: FO majority + e2e blocked while B/F fail"
+  ],
+  "blocker": "Cut c2_burst pathMae + lift passRate without pathFollow (R40 rejected); wave4 tracks live — no invent, no odds sell",
+  "notes": "C8 V9 planner lens: stacked product law is death-coupled and selector-honest; compound remesaure still FA≪0.95. FO false. DC true. FA ≠ odds / ≠ pBlue%."
+}

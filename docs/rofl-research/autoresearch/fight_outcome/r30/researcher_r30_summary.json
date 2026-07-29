@@ -1,0 +1,82 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r30",
+  "slug": "olaf-lethal-timing",
+  "model": "Auto",
+  "utc": "2026-07-24T16:20:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r30",
+  "branch": "adv/fo-r30-olaf-lethal-timing",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Shrink Olaf→Trundle |lethalErrorSec| toward ≤0.75 (finish track); product KEEP iff S0 FA↑ and S1 not regress; no pin invent / S1 tune / mark-density-regen sweeps",
+  "product_selector": "cusum_engage_then_skills",
+  "hypothesesAutoPicked": [
+    { "id": "H1", "title": "Baseline remesaure finish diagnosis", "result": "MEASURED_finish_early_overkill" },
+    { "id": "H2", "title": "Death-coupled no-aa-at-mark", "result": "PARTIAL_lethErr_2.81_to_1.14" },
+    { "id": "H3", "title": "Finish-AA horizon/max", "result": "DISCARD_no_c2_move" },
+    { "id": "H4", "title": "finish-horizon 2s", "result": "DISCARD_c2_miss_kill" },
+    { "id": "H5", "title": "Opener track", "result": "SKIP_c2_earlyOk" },
+    { "id": "H7b", "title": "R-slot pulse 0 + no-aa-at-mark", "result": "KEEP_product" }
+  ],
+  "n_experiments": 12,
+  "track": "finish",
+  "olaf_trundle_lethal": {
+    "before_lethErrSec": -2.807,
+    "after_lethErrSec": -0.334,
+    "abs_before": 2.807,
+    "abs_after": 0.334,
+    "tol": 0.75,
+    "within_tol": true,
+    "model_lethal_mark_before": "Q@18.863 (early overkill from R-pulse invent)",
+    "model_lethal_after": "E@19.666 vs truth@20.0"
+  },
+  "S0": {
+    "before_FA": 0.4106910062451652,
+    "after_FA": 0.5896947676936598,
+    "delta_FA": 0.1790037614484946,
+    "before_pass": 0.16666666666666666,
+    "after_pass": 0.3333333333333333,
+    "match": "2970132-g1",
+    "c2_full_windowOk": true,
+    "c2_burst_lethalOk": true,
+    "c2_burst_pathMae_residual": true
+  },
+  "S1": {
+    "before_FA": 0.4169776331222436,
+    "after_FA": 0.5619564223174064,
+    "delta_FA": 0.14497878919516277,
+    "before_pass": 0.0,
+    "after_pass": 0.3333333333333333,
+    "match": "2970137-g1",
+    "tuned": false
+  },
+  "product_KEEP": {
+    "keep": true,
+    "aaAtEachMark": false,
+    "perSlotPulse": true,
+    "pulseBySlot": { "1": 0.4, "2": 0.35, "3": 0.55, "4": 0 },
+    "idleFollowActual": true,
+    "markSelection": "cusum_engage_then_skills",
+    "files": [
+      "src/engine/killWindowProduct.ts",
+      "src/engine/killWindowOverlay.ts",
+      "scripts/crosscheck_action_aligned.ts"
+    ],
+    "rejected_e7c": "R/W=0 keep aa-at-mark: S1 FA regress 0.417→0.404"
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r30/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r30/NOTES.md",
+    "e8_keep": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/e8_product_keep.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/fa_S0_e8_product_keep.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r30/experiments/fa_S1_e8_product_keep.json",
+    "audits_c2": "docs/rofl-research/autoresearch/fight_outcome/r30/audits/S0_2970132-g1_c2_*.json"
+  },
+  "next": "Orchestrator PARENT_MERGE product defaults; update best.json FA 0.5897; residual Galio miss-kill + Camille earlyPoisoned + c2 pathMae"
+}

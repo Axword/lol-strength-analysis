@@ -1,5 +1,8 @@
 /**
- * Fight win odds from game state + combat pressure.
+ * Heuristic fight model-edge scores from game state + combat pressure.
+ *
+ * pBlue/pRed are ranking scores for who-is-stronger UI — NOT calibrated win
+ * probability, NOT odds %, NOT fightAgreement (kill-window suite agreement).
  *
  * Grounded in FUR vs G2 kill clusters (events_2970115_1_riot.jsonl):
  * after ~16m with Red gold lead, every clustered fight went Red; Red won the map.
@@ -20,11 +23,11 @@ export interface FightOddsInput {
 }
 
 export interface FightOdds {
-  /** P(blue wins the fight), 0..1 */
+  /** Heuristic blue model-edge score in [0, 1] — not P(win), not odds %. */
   pBlue: number
   pRed: number
   winner: 'blue' | 'red' | 'draw'
-  /** Confidence gap |pBlue - 0.5| */
+  /** Model-edge gap |pBlue - 0.5| (ranking strength, not confidence %). */
   edge: number
   priorLogit: number
   combatLogit: number

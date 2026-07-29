@@ -1,0 +1,84 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r29",
+  "slug": "anti-odds-copy",
+  "model": "Auto",
+  "utc": "2026-07-24T16:10:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r29",
+  "branch": "adv/fo-r29-anti-odds-copy",
+  "room": "f10",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "best_json_updated": false,
+  "best_json_composite_preserved": 0.9683,
+  "mandate": "Audit CombatResult/Faq/modelTrust for odds-like copy; run/extend product_anti_odds_audit; KEEP only strips/clarifies wording; never claim calibrated odds; disclose unfreeze 0.9683",
+  "hypothesesAutoPicked": [
+    {
+      "id": "H1",
+      "title": "Wording audit fightAgreement ≠ win %",
+      "result": "KEEP"
+    },
+    {
+      "id": "H2",
+      "title": "modelTrust calibrated:false + freeze history",
+      "result": "PASS_existing_disclose_0_9683"
+    },
+    {
+      "id": "H3",
+      "title": "Strip odds-like CombatResult/Faq/engine comments",
+      "result": "KEEP"
+    }
+  ],
+  "n_experiments": 3,
+  "odds_copy_failures_pre_keep": [
+    {
+      "file": "src/engine/gameStateOdds.ts",
+      "id": "engine_comment_fight_win_odds",
+      "excerpt": "Fight win odds / P(blue wins the fight)",
+      "fixed": true
+    },
+    {
+      "file": "src/engine/combat.ts",
+      "id": "engine_comment_P_blue",
+      "excerpt": "oddsFromTradeHp → P(blue)",
+      "fixed": true
+    }
+  ],
+  "odds_copy_failures_post_keep": [],
+  "product_ui_pre_existing": {
+    "CombatResult": "clean (model edge + not a win probability)",
+    "Faq_winner_band_nvm": "clean (never odds %)",
+    "modelTrust": "calibrated:false + kill_window_not_calibrated_win_odds + DOM reasons"
+  },
+  "audit": {
+    "command": "npm run test:anti-odds",
+    "ok": true,
+    "report": "docs/rofl-research/autoresearch/fight_outcome/r29/anti_odds_audit_report.json"
+  },
+  "model_trust_test": {
+    "command": "npm run test:model-trust-reasons",
+    "passed": 17
+  },
+  "fightAgreement_note": "kill-window suite agreement — NOT win probability / odds % / pBlue",
+  "fightOutcomeGateEvidence": false,
+  "fa_context": "S0 Path1 FA≈0.411≪0.95; anti-odds KEEP does not claim FA lift",
+  "product_KEEP": "copy_only",
+  "verdict": "KEEP_copy",
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r29/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r29/NOTES.md",
+    "audit": "docs/rofl-research/autoresearch/fight_outcome/r29/anti_odds_audit_report.json",
+    "summary": "docs/rofl-research/autoresearch/fight_outcome/r29/researcher_r29_summary.json"
+  },
+  "parent_merge_candidates": [
+    "src/components/Faq.tsx",
+    "src/engine/gameStateOdds.ts",
+    "src/engine/combat.ts",
+    "scripts/product_anti_odds_audit.ts",
+    "docs/rofl-research/autoresearch/fight_outcome/r29/"
+  ],
+  "next": "Orchestrator PARENT_MERGE copy-only KEEP; R28/R30 continue F10 disclosure if needed"
+}

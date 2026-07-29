@@ -1,0 +1,77 @@
+{
+  "reviewer": "V11",
+  "cycle": 2,
+  "role": "Path1 / known-flags / no invent",
+  "utc": "2026-07-24T15:54:42Z",
+  "model": "Auto",
+  "read_only": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.97,
+  "path1_known_flags_lens": {
+    "host": "2970132-g1",
+    "policy": "living_post_seed_v1",
+    "strict_all_frame": false,
+    "calculatorReady": true,
+    "livingOkSlots": 14725,
+    "livingMissSlots": 0,
+    "ranksDensity": 1.0,
+    "hpHoldAcrossRespawn": true,
+    "knownWithoutSource": { "hp": 0, "combat": 0, "ranks": 0 },
+    "events_sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+    "timeline_sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4",
+    "events_bytes": 114456779,
+    "timeline_bytes": 9064216,
+    "fingerprints_match_digest": true,
+    "personally_revalidated_this_cycle": true,
+    "validate_exit": 0,
+    "cycle6_calculatorReadyGate": true,
+    "r14_honest_actionCoverage_c1": 1.0,
+    "r14_echo_rejected": true,
+    "r14_fa_credit_echo": 0,
+    "second_host_2970110": {
+      "invent_refused": true,
+      "validate_exit": 1,
+      "claim_ready": false,
+      "blocks_digestClean_under_D4": false
+    },
+    "specialty_holds": true
+  },
+  "criteria": {
+    "A": true,
+    "B": false,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": false,
+    "G": true,
+    "H": true,
+    "I": false
+  },
+  "evidence": [
+    "C2 personal Path1 validate --product living_post_seed_v1 --require-calculator-ready exit 0: calculatorReady true; livingOkSlots 14725; livingMissSlots 0; ranksDensity 1.0; hpHoldAcrossRespawn true.",
+    "C2 personal sha256+bytes bit-match DIGEST: events 114456779/823aa35f…; timeline 9064216/fb542736….",
+    "R02 source_preserve_audit: knownWithoutSource hp/combat/ranks = 0/0/0 on shipped + rebuild Path1; invent:false; sources survive jsonl→timeline.",
+    "R03 second_host_2970110_pe_gap: invent_refused true; validate exit 1 combatStatsKnown+unavailable_replay_api — disclosed; GOAL §D.4 prefer≠require so does not block digestCleanGate.",
+    "DIGEST.md one-command Path1 path + living_post_seed + hold_across disclosed; stamp helper is rebuild footgun only (Path1 final smoke needs no stamp).",
+    "R14: honest PE damage actionCoverage F1=1.0 on 2970110-g1-c1 (64/64); zero-dmg echo F1=1.0 REJECTED (forbid #13); FA actionF1 credit echo=0; suite join +0.025 only (secondary 0.15).",
+    "BRIEF/R05 authoritative S0 Path1 product cusum FA 0.228 / pass 0; R04 proxy ~0.42; R06 S1 0.478 / S2 0.634 — all ≪ 0.95 bars.",
+    "R07/R08/R09/R12 NO KEEP; R10 timed best 0.502 no product KEEP (S1 regress); closed mark/CUSUM/density/regen knobs do not invent pins.",
+    "R17 fo:send-smoke: criterionG all true (sendOverlayParity, deadExcluded, knownFlags, path1Honesty, noOddsCopy); passCount 8 failCount 0; invent false; known-flags block sparse Send.",
+    "CYCLE6_FINAL calculatorReadyGate true 15/15 on Path1 — prereq only, not fight prediction."
+  ],
+  "failures": [
+    "B: S0 Path1 FA 0.228 pass 0 (R05) and S1 FA 0.478 pass 0.333 (R06) ≪ §B bars — concrete metric miss; R14 honest F1 cannot close it.",
+    "F: Holdout unmet; cannot set fightOutcomeGate on S0 alone (GOAL §F).",
+    "I: ≥11/15 + parent e2e not established this vote — gate false regardless of unfinished peers."
+  ],
+  "digestClean_rejudge": {
+    "c1_vote": false,
+    "c2_vote": true,
+    "reason": "Personally affirm GOAL §D.1–D.7 on Path1 2970132 this cycle (validate+fingerprints+sources+identity+living disclosure+DIGEST smoke+failure modes). C1 false rested on DIGEST self-mark circular pending + second-host prefer misread as require + stamp optional. R14 reinforces no-invent honesty; does not weaken D."
+  },
+  "notes": "V11 specialty (Path1 / known-flags / no invent) HOLDS and is stronger this cycle: personal Path1 validate green, fingerprints match, knownWithoutSource 0/0/0, R14 echo rejected, R17 Send known-flags green. digestCleanGate flipped true under §D (≥1 Path1 host). Specialty + D are necessary not sufficient for fightOutcomeGate — still false on concrete B+F (+I). Do not invent pins to raise Path1 FA 0.228. Next critical path remains R18 lethal / R19 early without invent.",
+  "one_line_vote": "V11: fightOutcomeGate=false digestCleanGate=true (conf 0.97) — Path1/known-flags/no-invent HOLD; FA≪0.95 on S0+S1",
+  "blocker": "S0 Path1 product cusum FA 0.228 / pass 0 under non-drop selectors; lift via R18/R19 without inventing known-flags"
+}

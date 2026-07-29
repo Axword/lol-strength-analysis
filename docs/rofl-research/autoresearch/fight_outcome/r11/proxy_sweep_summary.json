@@ -1,0 +1,65 @@
+{
+  "t": "2026-07-24T15:50:00.768Z",
+  "researcher": "r11",
+  "baselineProductFa": 0.4217420179369753,
+  "results": [
+    {
+      "experiment": "e_proxy_0.001",
+      "proxy": 0.001,
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "keep": false
+    },
+    {
+      "experiment": "e_proxy_12",
+      "proxy": 12,
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "keep": false
+    },
+    {
+      "experiment": "e_proxy_40",
+      "proxy": 40,
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "keep": false
+    },
+    {
+      "experiment": "e_proxy_80",
+      "proxy": 80,
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "keep": false
+    },
+    {
+      "experiment": "e_proxy_150",
+      "proxy": 150,
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "keep": false
+    },
+    {
+      "experiment": "e_proxy_300",
+      "proxy": 300,
+      "fightAgreement": 0.4217420179369753,
+      "fightPassRate": 0.16666666666666666,
+      "deltaVsBaseline04217": 0,
+      "keep": false
+    }
+  ],
+  "best": {
+    "experiment": "e_proxy_0.001",
+    "proxy": 0.001,
+    "fightAgreement": 0.4217420179369753,
+    "fightPassRate": 0.16666666666666666,
+    "deltaVsBaseline04217": 0,
+    "keep": false
+  },
+  "anyKeep": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT win odds / pBlue%"
+}

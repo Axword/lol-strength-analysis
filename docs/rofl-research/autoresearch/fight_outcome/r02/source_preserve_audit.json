@@ -1,0 +1,103 @@
+{
+  "schema": "fo-r02-source-preserve-audit-v1",
+  "utc": "2026-07-24T15:40:10Z",
+  "researcher": "R02",
+  "room": "f1",
+  "hypothesis": "F1#2 Source preserve",
+  "branch": "adv/fo-r02-digest-sources",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r02",
+  "never_edited_parent": true,
+  "events": {
+    "path": "artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl",
+    "bytes": 114456779,
+    "sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+    "census": {
+      "statsFrames": 1696,
+      "hpSource": {
+        "pe": 203,
+        "hold_forward": 16098
+      },
+      "combatSource": {
+        "same_match_replication_type107_pe_wire_table": 1766,
+        "hold_forward": 12959
+      },
+      "abilityRanksSource": {
+        "rofl2_upgrade_spell_ans_1012_first_write": 16960
+      }
+    }
+  },
+  "shippedTimeline": {
+    "path": "artifacts/rofl/2970132/timeline.g1.path1-final.json",
+    "bytes": 9064216,
+    "sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4",
+    "census": {
+      "hpSource": {
+        "pe": 203,
+        "hold_forward": 16098
+      },
+      "combatSource": {
+        "same_match_replication_type107_pe_wire_table": 1766,
+        "hold_forward": 12959
+      },
+      "abilityRanksSource": {
+        "rofl2_upgrade_spell_ans_1012_first_write": 16960
+      },
+      "knownWithoutSource": {
+        "hp": 0,
+        "combat": 0,
+        "ranks": 0
+      },
+      "ok": true
+    }
+  },
+  "rebuildTimeline": {
+    "census": {
+      "hpSource": {
+        "pe": 203,
+        "hold_forward": 16098
+      },
+      "combatSource": {
+        "same_match_replication_type107_pe_wire_table": 1766,
+        "hold_forward": 12959
+      },
+      "abilityRanksSource": {
+        "rofl2_upgrade_spell_ans_1012_first_write": 16960
+      },
+      "knownWithoutSource": {
+        "hp": 0,
+        "combat": 0,
+        "ranks": 0
+      },
+      "ok": true
+    },
+    "ok": true
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "title": "jsonl_to_timeline must copy hpSource/combatSource/abilityRanksSource",
+      "status": "fixed_in_worktree",
+      "note": "Prior Path1 death-merge rematch saw peHpHeroes=0/10 because timeline rebuild dropped source tags. Copy path is present; rebuild census must show missing=0."
+    },
+    {
+      "id": "F2",
+      "title": "strip_untrusted left orphan hpSource/combatSource",
+      "status": "patched",
+      "note": "fuse_product_timeline.strip_untrusted_product_fields wiped health/combat floats but left hpSource/combatSource — silent lie. Now clears HP_SOURCE_STRIP_KEYS + COMBAT_SOURCE_STRIP_KEYS."
+    },
+    {
+      "id": "F3",
+      "title": "combat clear must pop combatSource",
+      "status": "patched",
+      "note": "Restored Path1 hold_forward fuse_replay_api_combat from prd-r04; _clear_combat pops combatSource when forcing unavailable."
+    },
+    {
+      "id": "F4",
+      "title": "Dead HP across-death pops hpSource (honest unknown)",
+      "status": "ok_intentional",
+      "note": "fuse_replay_api_hp across-death dead frames pop hpSource while health unavailable — not a silent wipe of known; dead stays unknown."
+    }
+  ],
+  "pass": true,
+  "digestCleanGateContribution": "source tags survive events→timeline rebuild on 2970132 Path1 final; strip/clear no longer leave orphan or drop known sources silently"
+}

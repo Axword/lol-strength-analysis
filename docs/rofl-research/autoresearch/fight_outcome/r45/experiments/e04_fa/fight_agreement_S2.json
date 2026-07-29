@@ -1,0 +1,197 @@
+{
+  "schema": "fightAgreement-suite-v1",
+  "t": "2026-07-24T16:51:03.670Z",
+  "researcher": "r04",
+  "suite": "S2",
+  "match": "2954868-g1",
+  "proxied": false,
+  "harnessSuite": "2954868-g1-transfer",
+  "sourceEval": "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/experiments/e04_eval.json",
+  "markSelection": "cusum_engage_then_skills",
+  "harnessMode": "gate_action",
+  "harnessHypothesis": "R45 e04 pre-burst-lead-3.5",
+  "n": 6,
+  "fightAgreement": 0.40750780944418485,
+  "fightPassRate": 0,
+  "thresholds": {
+    "fightAgreement": 0.9,
+    "fightPassRate": 0.8333333333333334
+  },
+  "meetsThresholds": false,
+  "windows": [
+    {
+      "id": "S2_2954868-g1_c1_full",
+      "windowOk": false,
+      "windowScore": 0.5625,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.7499999999999999,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 61.599570199729584,
+        "maeHpFull": 22.15143266364306,
+        "maeHp": 22.15143266364306,
+        "pathCap": 130,
+        "lethalErrorSec": 1.2360000000000007,
+        "segment": "full",
+        "matchup": "Camille→Vayne"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c1_burst",
+      "windowOk": false,
+      "windowScore": 0.525,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.5,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 61.599570199729584,
+        "maeHpFull": 22.15143266364306,
+        "maeHp": 61.599570199729584,
+        "pathCap": 90,
+        "lethalErrorSec": 3.773999999999999,
+        "segment": "burst",
+        "matchup": "Camille→Vayne"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c2_full",
+      "windowOk": false,
+      "windowScore": 0.514286,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": true,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 1,
+        "actionF1": 0.42857142857142855,
+        "earlyMaeHp": 0,
+        "maeHpBurst": 145.55682159360794,
+        "maeHpFull": 55.77369460695952,
+        "maeHp": 55.77369460695952,
+        "pathCap": 130,
+        "lethalErrorSec": null,
+        "segment": "full",
+        "matchup": "Cassiopeia→Ambessa"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c2_burst",
+      "windowOk": false,
+      "windowScore": 0.408359,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.38270198229324515,
+        "actionF1": 0.5454545454545454,
+        "earlyMaeHp": 36.27543371276382,
+        "maeHpBurst": 145.55682159360794,
+        "maeHpFull": 55.77369460695952,
+        "maeHp": 145.55682159360794,
+        "pathCap": 90,
+        "lethalErrorSec": null,
+        "segment": "burst",
+        "matchup": "Cassiopeia→Ambessa"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c3_full",
+      "windowOk": false,
+      "windowScore": 0.434903,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": true,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 1,
+        "pathBand": 0.757846153846154,
+        "actionF1": 0.2222222222222222,
+        "earlyMaeHp": 4.2,
+        "maeHpBurst": 329.04545454545456,
+        "maeHpFull": 161.48,
+        "maeHp": 161.48,
+        "pathCap": 130,
+        "lethalErrorSec": 8.75,
+        "segment": "full",
+        "matchup": "LeeSin→Ziggs"
+      }
+    },
+    {
+      "id": "S2_2954868-g1_c3_burst",
+      "windowOk": false,
+      "windowScore": 0,
+      "parts": {
+        "lethalOk": false,
+        "earlyOk": false,
+        "pathOk": false,
+        "noInvent": true,
+        "noHard": true,
+        "lethalHit": 0,
+        "earlyBand": 0,
+        "pathBand": 0,
+        "actionF1": 0,
+        "earlyMaeHp": 179.4,
+        "maeHpBurst": 329.04545454545456,
+        "maeHpFull": 161.48,
+        "maeHp": 329.04545454545456,
+        "pathCap": 90,
+        "lethalErrorSec": 16.533,
+        "segment": "burst",
+        "matchup": "LeeSin→Ziggs"
+      }
+    }
+  ],
+  "failingAudits": [
+    "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/audits/e04/S2_2954868-g1_c1_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/audits/e04/S2_2954868-g1_c1_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/audits/e04/S2_2954868-g1_c2_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/audits/e04/S2_2954868-g1_c2_burst.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/audits/e04/S2_2954868-g1_c3_full.json",
+    "/Users/river/.codex/worktrees/rofl-fo-r45/docs/rofl-research/autoresearch/fight_outcome/r45/audits/e04/S2_2954868-g1_c3_burst.json"
+  ],
+  "law": {
+    "lethalTolSec": 0.75,
+    "earlyMaeCap": 50,
+    "burstMaeCap": 90,
+    "fullMaeCap": 130,
+    "endHpFloor": 40,
+    "weights": {
+      "lethalHit": 0.4,
+      "earlyBand": 0.25,
+      "pathBand": 0.2,
+      "actionCoverageF1": 0.15
+    }
+  },
+  "unfreeze_0_9683": true,
+  "baselineCompositePreserved": 0.9683,
+  "disclosures": [
+    "fightAgreement = mean(windowScore); NOT win probability / odds %",
+    "unfreeze_0_9683=true (authorized); this run MEASURES fightAgreement first",
+    "selector=cusum_engage_then_skills (product non-drop unless research flag)",
+    "S2 transfer = unused pro slim 2954868-g1 (not 2970132/2970137; R45 remesaure)"
+  ],
+  "confidence": "fightAgreement ≥0.95 means kill-window suite agreement under GOAL §B — NOT calibrated win odds"
+}

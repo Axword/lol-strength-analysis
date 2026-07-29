@@ -1,0 +1,76 @@
+{
+  "deltas": [
+    {
+      "id": "c1-burst",
+      "e0_score": 0.7491666666666666,
+      "e5_score": 0.359833018019943,
+      "delta": -0.38933364864672365,
+      "e0_lethalOk": true,
+      "e5_lethalOk": false,
+      "e0_earlyMae": 126.33333333333333,
+      "e5_earlyMae": 49.45735902777775,
+      "e0_mae": 75.8,
+      "e5_mae": 130.57514189102565
+    },
+    {
+      "id": "c1-full",
+      "e0_score": 0.9437500000000001,
+      "e5_score": 0.4459875755325444,
+      "delta": -0.49776242446745567,
+      "e0_lethalOk": true,
+      "e5_lethalOk": false,
+      "e0_earlyMae": 31.2,
+      "e5_earlyMae": 31.2,
+      "e0_mae": 83.06034700000002,
+      "e5_mae": 132.60807590384616
+    },
+    {
+      "id": "c2-burst",
+      "e0_score": 0.0878888888888889,
+      "e5_score": 0.7541666666666667,
+      "delta": 0.6662777777777777,
+      "e0_lethalOk": false,
+      "e5_lethalOk": true,
+      "e0_earlyMae": 290.3333333333333,
+      "e5_earlyMae": 88.33333333333333,
+      "e0_mae": 174.2,
+      "e5_mae": 53
+    },
+    {
+      "id": "c2-full",
+      "e0_score": 0.3142857142857143,
+      "e5_score": 0.8013969114566187,
+      "delta": 0.48711119717090445,
+      "e0_lethalOk": false,
+      "e5_lethalOk": true,
+      "e0_earlyMae": 0,
+      "e5_earlyMae": 0,
+      "e0_mae": 323.51003315628475,
+      "e5_mae": 161.59200755319785
+    },
+    {
+      "id": "c3-burst",
+      "e0_score": 0.761672235689817,
+      "e5_score": 0.65,
+      "delta": -0.11167223568981699,
+      "e0_lethalOk": true,
+      "e5_lethalOk": true,
+      "e0_earlyMae": 3.3333333333333335,
+      "e5_earlyMae": 3.3333333333333335,
+      "e0_mae": 146.62249393958234,
+      "e5_mae": 200.9863003947238
+    },
+    {
+      "id": "c3-full",
+      "e0_score": 0.05217391304347826,
+      "e5_score": 0,
+      "delta": -0.05217391304347826,
+      "e0_lethalOk": false,
+      "e5_lethalOk": false,
+      "e0_earlyMae": 579.815870547395,
+      "e5_earlyMae": 481.86425729582277,
+      "e0_mae": 703.8601392875831,
+      "e5_mae": 421.514842200676
+    }
+  ]
+}

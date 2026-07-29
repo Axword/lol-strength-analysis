@@ -1,0 +1,14 @@
+{"t": "2026-07-24T17:12:20Z", "experiment": "E01", "hypothesis": "compound stack remesaure S0", "keep": false, "metrics": {"FA": 0.930409557022156, "pass": 0.6666666666666666}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E02", "hypothesis": "compound stack remesaure S1", "keep": false, "metrics": {"FA": 0.7627693321171581, "pass": 0.5}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E03", "hypothesis": "compound stack remesaure S2 2954868", "keep": false, "metrics": {"FA": 0.5861062942926697, "pass": 0.3333333333333333}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E04", "hypothesis": "FA gap decomp to 0.95", "keep": false, "metrics": {"S0_gap": 0.0196}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E05", "hypothesis": "failing window catalog", "keep": false, "metrics": {"n_failing": 9}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E06", "hypothesis": "pathMae delta-to-pass", "keep": false, "metrics": {"n_path": 6}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E07", "hypothesis": "ablate R44 truth domain", "keep": false, "metrics": {"FA": 0.9137428903554893}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E08", "hypothesis": "ablate R42 delay on S1", "keep": false, "metrics": {"S1_unchanged": true}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E09", "hypothesis": "ablate R33 zeroDead", "keep": false, "metrics": {"c2_burst_mae": 117.66306894359165}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E10", "hypothesis": "ablate R39 opener share", "keep": false, "metrics": {"c2_burst_mae": 111.59164037216308}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E11", "hypothesis": "actionF1 ceiling", "keep": false, "metrics": {"fa_approx_now": 0.93041, "fa_approx_all_F1_1": 0.984492, "delta": 0.054082, "note": "Secondary 0.15 weight only; cannot alone close FO\u226a0.95 when path/leth fail"}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E12", "hypothesis": "passRate flip matrix", "keep": false, "metrics": {"S0_flips": 2}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E13", "hypothesis": "ablation sharpeners", "keep": false, "metrics": {"n": 4}, "researcher": "r54"}
+{"t": "2026-07-24T17:12:20Z", "experiment": "E14", "hypothesis": "sharper blocker pack", "keep": false, "metrics": {"n_blockers": 8}, "researcher": "r54"}

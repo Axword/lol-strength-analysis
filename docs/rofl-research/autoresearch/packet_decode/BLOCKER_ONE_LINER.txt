@@ -1,0 +1,1 @@
+NONE — packetDecodeGate true (C10 10/10). calculatorReady remains false.

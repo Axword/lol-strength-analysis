@@ -3,7 +3,10 @@ import { SAMPLE_SNAPSHOTS } from '../data/sampleGames'
 import { getChampion, resolveChampionId } from '../data/champions'
 import { parseSnapshotJson } from '../game/parseSnapshot'
 import {
+  abilityRanksAreKnown,
+  combatStatsAreKnown,
   defaultRegistryMatch,
+  hpIsKnown,
   loadBuiltinTimeline,
   loadMatchRegistry,
   loadRegisteredTimeline,
@@ -21,13 +24,28 @@ import { pickTradeModeForGameTime } from '../engine/fightDuration'
 import { ChampHistoryBoard } from './ChampHistoryBoard'
 import { MapView, UnitRoster } from './MapView'
 import { Scoreboard } from './Scoreboard'
+import {
+  DEFAULT_PLAYHEAD_WINDOW_SEC,
+  DEFAULT_RESEARCH_IDENTITY_URL,
+  DEFAULT_RESEARCH_OVERLAY_URL,
+  filterRowsForSelectedChampions,
+  filterRowsNearPlayhead,
+  formatResearchActionRow,
+  loadResearchActionOverlay,
+  productSendAttachedResearchActions,
+  readResearchAaOverlayFlag,
+  rowsFromTimelineActionBridge,
+  type ResearchActionRow,
+} from '../game/researchActionOverlay'
 import './GameReview.css'
 
+/** GameReview root props — keep free of JSX/ReactNode (panel props stay local). */
 interface Props {
   onSendToCalculator: (matchup: MatchupInput, label: string) => void
 }
 
 type SourceMode = 'timeline' | 'sample' | 'import'
+
 export type TimelineChoice =
   | `match:${string}`
   | `research:${BuiltinTimelineId}`
@@ -212,11 +230,170 @@ export function selectedCombatTrustGap(
 ): string | null {
   for (const unit of units) {
     const champ = unit.loadout.championId
-    if (unit.hpKnown === false) return `${champ} HP`
-    if (unit.abilityRanksKnown === false) return `${champ} ability ranks`
-    if (unit.combatStatsKnown === false) return `${champ} combat stats`
+    // Fail-closed: absent / undefined flags block Send (not only explicit false).
+    if (!hpIsKnown(unit)) return `${champ} HP`
+    if (!abilityRanksAreKnown(unit)) return `${champ} ability ranks`
+    if (!combatStatsAreKnown(unit)) return `${champ} combat stats`
   }
   return null
+}
+
+/** True when any unit lacks explicit true known-flags (product Send gate). */
+export function selectedLacksKnownCombatState(
+  units: Array<{
+    hpKnown?: boolean
+    combatStatsKnown?: boolean
+    abilityRanksKnown?: boolean
+  }>,
+): boolean {
+  return units.some(
+    (u) => !hpIsKnown(u) || !combatStatsAreKnown(u) || !abilityRanksAreKnown(u),
+  )
+}
+
+/** Living selected only — same set `sendFight` imports (dead excluded). */
+export function livingSelectedUnits<T extends { alive?: boolean }>(units: T[]): T[] {
+  return units.filter((u) => u.alive !== false)
+}
+
+export type SendParityUnit = {
+  loadout: { championId: string; hpPct?: number }
+  team: 'blue' | 'red'
+  alive?: boolean
+  position?: { x: number; y: number }
+  hpPct?: number
+  hpKnown?: boolean
+  combatStatsKnown?: boolean
+  abilityRanksKnown?: boolean
+}
+
+/**
+ * P5 Track 3 — living-only Send import builder.
+ * Research AA overlay rows never bypass known-flags or invent AA into the payload.
+ */
+export function buildLivingSendImport(
+  selected: SendParityUnit[],
+  researchOverlayRows: ResearchActionRow[] | null | undefined = null,
+): {
+  blue: Array<{
+    championId: string
+    alive: true
+    hpPct?: number
+    position?: { x: number; y: number }
+  }>
+  red: Array<{
+    championId: string
+    alive: true
+    hpPct?: number
+    position?: { x: number; y: number }
+  }>
+  canSend: boolean
+  lacksKnownCombatState: boolean
+  trustGap: string | null
+  deadExcludedCount: number
+  attachedResearchActions: ResearchActionRow[]
+} {
+  const living = livingSelectedUnits(selected)
+  const deadExcludedCount = selected.length - living.length
+  const blueLiving = living.filter((u) => u.team === 'blue')
+  const redLiving = living.filter((u) => u.team === 'red')
+  const lacksKnownCombatState = selectedLacksKnownCombatState(living)
+  const trustGap = selectedCombatTrustGap(living)
+  return {
+    blue: blueLiving.map((u) => ({
+      championId: u.loadout.championId,
+      alive: true as const,
+      hpPct: u.hpPct ?? u.loadout.hpPct,
+      position: u.position,
+    })),
+    red: redLiving.map((u) => ({
+      championId: u.loadout.championId,
+      alive: true as const,
+      hpPct: u.hpPct ?? u.loadout.hpPct,
+      position: u.position,
+    })),
+    canSend: blueLiving.length >= 1 && redLiving.length >= 1,
+    lacksKnownCombatState,
+    trustGap,
+    deadExcludedCount,
+    // Anti-invent: overlay AA/damage never enter product Send.
+    attachedResearchActions: productSendAttachedResearchActions(researchOverlayRows),
+  }
+}
+
+/** Research AA/damage strip — flag-gated; never claims calculatorReady. */
+export function ResearchActionOverlayPanel({
+  enabled,
+  rows,
+  disclosure,
+  playheadMs,
+  loading,
+  selectedChampions = null,
+}: {
+  enabled: boolean
+  rows: ResearchActionRow[]
+  disclosure: string | null
+  playheadMs: number
+  loading: boolean
+  /** When set, keep rows that touch a selected champion (calculator import context). */
+  selectedChampions?: readonly string[] | null
+}) {
+  if (!enabled) return null
+  const nearPlayhead = filterRowsNearPlayhead(
+    rows,
+    playheadMs,
+    DEFAULT_PLAYHEAD_WINDOW_SEC,
+  )
+  const visible = filterRowsForSelectedChampions(
+    nearPlayhead,
+    selectedChampions,
+  )
+  const selectionNote =
+    selectedChampions && selectedChampions.length > 0
+      ? ` · selected ${selectedChampions.length}`
+      : ''
+  return (
+    <aside
+      className="research-action-overlay"
+      aria-label="Research AA damage overlay"
+      data-research-aa-overlay="on"
+    >
+      <div className="research-action-overlay-head">
+        <strong>research overlay · not calculatorReady</strong>
+        <span>
+          playhead ±{DEFAULT_PLAYHEAD_WINDOW_SEC}s · {visible.length} /{' '}
+          {rows.length} rows{selectionNote}
+        </span>
+      </div>
+      {loading && (
+        <p className="research-action-overlay-empty">Loading research emit…</p>
+      )}
+      {!loading && rows.length === 0 && (
+        <p className="research-action-overlay-empty">
+          {disclosure ?? 'No decode actions — emit missing (not invented)'}
+        </p>
+      )}
+      {!loading && rows.length > 0 && visible.length === 0 && (
+        <p className="research-action-overlay-empty">
+          No research AA/damage in this playhead window — scrub near a kill
+          (2970110-g1 c1 ≈ 3:22).
+        </p>
+      )}
+      {!loading && visible.length > 0 && (
+        <ul className="research-action-overlay-list">
+          {visible.slice(0, 80).map((row, i) => (
+            <li
+              key={`${row.kind}-${row.tMs}-${row.sourceNetId}-${row.targetNetId}-${i}`}
+              data-kind={row.kind}
+              data-t-ms={row.tMs}
+            >
+              <code>{formatResearchActionRow(row)}</code>
+            </li>
+          ))}
+        </ul>
+      )}
+    </aside>
+  )
 }
 
 export function GameReview({ onSendToCalculator }: Props) {
@@ -244,6 +421,60 @@ export function GameReview({ onSendToCalculator }: Props) {
   const [importText, setImportText] = useState('')
   const [importError, setImportError] = useState<string | null>(null)
   const [showImport, setShowImport] = useState(false)
+
+  /** P5/R14 research AA/damage overlay — default OFF; R22 identity fold. */
+  const [researchAaOverlay, setResearchAaOverlay] = useState(false)
+  const [researchOverlayRows, setResearchOverlayRows] = useState<
+    ResearchActionRow[]
+  >([])
+  const [researchOverlayDisclosure, setResearchOverlayDisclosure] = useState<
+    string | null
+  >(null)
+  const [researchOverlayLoading, setResearchOverlayLoading] = useState(false)
+
+  useEffect(() => {
+    setResearchAaOverlay(readResearchAaOverlayFlag())
+  }, [])
+
+  useEffect(() => {
+    if (!researchAaOverlay) {
+      setResearchOverlayRows([])
+      setResearchOverlayDisclosure(null)
+      setResearchOverlayLoading(false)
+      return
+    }
+    // Prefer identity-bound timeline fuse arrays (2970110 product fuse) when present.
+    const bridged = rowsFromTimelineActionBridge(timeline)
+    if (bridged.source === 'timeline_bridge' && bridged.rows.length > 0) {
+      setResearchOverlayRows(bridged.rows)
+      setResearchOverlayDisclosure(bridged.disclosure)
+      setResearchOverlayLoading(false)
+      return
+    }
+    let cancelled = false
+    setResearchOverlayLoading(true)
+    loadResearchActionOverlay(DEFAULT_RESEARCH_OVERLAY_URL, fetch, {
+      identityUrl: DEFAULT_RESEARCH_IDENTITY_URL,
+    })
+      .then((result) => {
+        if (cancelled) return
+        setResearchOverlayRows(result.rows)
+        setResearchOverlayDisclosure(result.disclosure)
+        setResearchOverlayLoading(false)
+      })
+      .catch(() => {
+        if (cancelled) return
+        setResearchOverlayRows([])
+        setResearchOverlayDisclosure(
+          bridged.disclosure ||
+            'No decode actions — emit/slim missing (not invented)',
+        )
+        setResearchOverlayLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [researchAaOverlay, timeline])
 
   useEffect(() => {
     let cancelled = false
@@ -414,20 +645,22 @@ export function GameReview({ onSendToCalculator }: Props) {
   const selectedHasPlaceholderPositions = selectedUnits.some(
     (u) => u.positionSource === 'fountain_placeholder',
   )
-  const selectedLacksCombatState = selectedUnits.some(
-    (u) =>
-      u.hpKnown === false ||
-      u.combatStatsKnown === false ||
-      u.abilityRanksKnown === false,
-  )
-  const selectedTrustGap = selectedCombatTrustGap(selectedUnits)
+  const blueSelected = selectedUnits.filter((u) => u.team === 'blue')
+  const redSelected = selectedUnits.filter((u) => u.team === 'red')
+  // P6 H2: gate + import use living selected only (dead must not false-block Send).
+  const blueLiving = livingSelectedUnits(blueSelected)
+  const redLiving = livingSelectedUnits(redSelected)
+  const livingSelected = [...blueLiving, ...redLiving]
+  const selectedLacksCombatState = selectedLacksKnownCombatState(livingSelected)
+  const selectedTrustGap = selectedCombatTrustGap(livingSelected)
   const timelineHpUnavailable =
     source === 'timeline' && timeline?.provenance?.hpCoverage === 'none'
+  // P6 H4: known-flag / living Send must apply on import+sample too, not timeline-only.
   const combatStateBlocked =
-    source === 'timeline' && (timelineHpUnavailable || selectedLacksCombatState)
+    selectedLacksCombatState || timelineHpUnavailable
   const positionBlocked =
-    source === 'timeline' &&
-    (timeline?.provenance?.positionCoverage === 'none' || selectedHasPlaceholderPositions)
+    selectedHasPlaceholderPositions ||
+    (source === 'timeline' && timeline?.provenance?.positionCoverage === 'none')
   const calculatorBlockReason = calculatorTrustBlockReason({
     research: isResearchTimeline,
     positionBlocked,
@@ -435,6 +668,14 @@ export function GameReview({ onSendToCalculator }: Props) {
     missingFieldLabel: selectedLacksCombatState ? selectedTrustGap : null,
   })
   const calculatorBlocked = calculatorBlockReason !== null
+  const canSend = blueLiving.length >= 1 && redLiving.length >= 1
+  const fightSizeLabel = `${blueLiving.length}v${redLiving.length}`
+  const deadSelected =
+    blueSelected.length - blueLiving.length + (redSelected.length - redLiving.length)
+  const fightSizeTitle =
+    deadSelected > 0
+      ? `${fightSizeLabel} living (of ${blueSelected.length}v${redSelected.length} selected — dead excluded from the trade)`
+      : `Send selected fighters as a ${fightSizeLabel} trade (click champs on the map/roster to pick sides)`
 
   function toggleUnit(id: string) {
     setSelectedIds((prev) => {
@@ -490,19 +731,6 @@ export function GameReview({ onSendToCalculator }: Props) {
       )
     }
   }
-
-  const blueSelected = selectedUnits.filter((u) => u.team === 'blue')
-  const redSelected = selectedUnits.filter((u) => u.team === 'red')
-  const blueLiving = blueSelected.filter((u) => u.alive !== false)
-  const redLiving = redSelected.filter((u) => u.alive !== false)
-  const canSend = blueLiving.length >= 1 && redLiving.length >= 1
-  const fightSizeLabel = `${blueLiving.length}v${redLiving.length}`
-  const deadSelected =
-    blueSelected.length - blueLiving.length + (redSelected.length - redLiving.length)
-  const fightSizeTitle =
-    deadSelected > 0
-      ? `${fightSizeLabel} living (of ${blueSelected.length}v${redSelected.length} selected — dead excluded from the trade)`
-      : `Send selected fighters as a ${fightSizeLabel} trade (click champs on the map/roster to pick sides)`
 
   function sendFight(engager: 'blue' | 'red' | 'neither' = 'neither') {
     if (!canSend || calculatorBlocked || !active) return
@@ -711,6 +939,17 @@ export function GameReview({ onSendToCalculator }: Props) {
           xH
         </button>
 
+        <button
+          type="button"
+          className={researchAaOverlay ? 'tonal' : 'ghost'}
+          data-testid="research-aa-overlay-toggle"
+          aria-pressed={researchAaOverlay}
+          onClick={() => setResearchAaOverlay((v) => !v)}
+          title="Research AA/damage overlay from r41 emit (default off; not calculatorReady)"
+        >
+          Research AA
+        </button>
+
         <label>
           FoW
           <select
@@ -771,6 +1010,16 @@ export function GameReview({ onSendToCalculator }: Props) {
               : 'Positions are real, but HP, ability ranks, and combat stats are unavailable from this replay feed — calculator handoff is blocked.'}
           </span>
         )}
+
+        <div className="send-honesty-chip" role="note" data-testid="send-honesty-chip">
+          model edge only · not odds %
+          {timeline?.skillUsed?.length ? (
+            <span className="send-honesty-chip-kw">
+              {' '}
+              · kill-window marks experimental when attached
+            </span>
+          ) : null}
+        </div>
 
         <div className="send-actions">
           <button
@@ -888,6 +1137,18 @@ export function GameReview({ onSendToCalculator }: Props) {
             snapshot={active}
             selectedIds={selectedIds}
             onToggleUnit={toggleUnit}
+          />
+          <ResearchActionOverlayPanel
+            enabled={researchAaOverlay}
+            rows={researchOverlayRows}
+            disclosure={researchOverlayDisclosure}
+            playheadMs={playheadMs}
+            loading={researchOverlayLoading}
+            selectedChampions={
+              livingSelected.length > 0
+                ? livingSelected.map((u) => u.loadout.championId)
+                : null
+            }
           />
         </div>
       </div>

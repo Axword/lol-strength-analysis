@@ -1,0 +1,159 @@
+{
+  "schema": "pro-grid-action-replay-audit-v1",
+  "series": "2970110",
+  "gameIndex": 1,
+  "check": 1,
+  "segment": "full",
+  "matchup": "Camille→Leona",
+  "tau": 0.25,
+  "truthActions": [
+    {
+      "tSec": 4.103456422465854,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 6.14125586255733,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 6.976004516601563,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 17.795900270122104,
+      "actorClass": "killer",
+      "kind": "aa"
+    },
+    {
+      "tSec": 20.668280517578125,
+      "actorClass": "killer",
+      "kind": "aa"
+    }
+  ],
+  "modelActions": [
+    {
+      "tSec": 4.103456422465854,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 6.14125586255733,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 6.976004516601563,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.69571106113773,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 17.795900270122104,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    },
+    {
+      "tSec": 20.668280517578125,
+      "actorClass": "killer",
+      "kind": "aa",
+      "shareHint": 0
+    }
+  ],
+  "coverage": {
+    "truthCount": 6,
+    "modelCount": 6,
+    "matchedCount": 6,
+    "precision": 1,
+    "recall": 1,
+    "actionCoverage": 1,
+    "matches": [
+      {
+        "truthIdx": 0,
+        "modelIdx": 0,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 1,
+        "modelIdx": 1,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 2,
+        "modelIdx": 2,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 3,
+        "modelIdx": 3,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 4,
+        "modelIdx": 4,
+        "dtSec": 0
+      },
+      {
+        "truthIdx": 5,
+        "modelIdx": 5,
+        "dtSec": 0
+      }
+    ],
+    "unmatchedTruth": [],
+    "unmatchedModel": []
+  },
+  "byKind": {
+    "aa": {
+      "truthCount": 6,
+      "modelCount": 6,
+      "matchedCount": 6,
+      "actionCoverage": 1
+    }
+  },
+  "disclosures": [
+    "aa_bridge: source=rofl_basic_attack_deserialize identity=castspell_ans_1144_champion_string complete=true",
+    "aa_bridge: aaTruthAvailable=true aaTruthCount=6 gateEligible=true (HPΔ invent forbidden; pro-grid path required for gate)",
+    "aa_bridge: rejectedNoIdentity=0 rejectedWrongGame=0 rejectedPidOrderOnly=0",
+    "r38 smoke: direct fold of R15 basic_attack JSONL via R32 CastSpell identity (no spatial)",
+    "model AA is inventory echo (shareHint=0); not damaging kit AA",
+    "never invent AA from HPΔ; calculatorReady=false; packetDecodeGate=false"
+  ],
+  "researchDryRun": false,
+  "gateEligible": true,
+  "aaBridge": {
+    "jsonl": "/Users/river/.codex/worktrees/rofl-pkt-r38/docs/rofl-research/packet_decode/r15/2970110.basic_attack.rfc461.research.jsonl",
+    "identity": "/Users/river/.codex/worktrees/rofl-pkt-r38/docs/rofl-research/packet_decode/r38/aa_identity_2970110_castspell.json",
+    "sourceIdentity": "/Users/river/.codex/worktrees/rofl-pkt-r38/docs/rofl-research/packet_decode/r32/castspell-identity-2970110-g1.json",
+    "eventCount": 3422,
+    "schemaCounts": {
+      "basic_attack": 3422
+    },
+    "gameIDs": [
+      2970110
+    ],
+    "aaTruthCount": 6,
+    "aaTruthAvailable": true,
+    "modelAaCount": 6,
+    "matchedAa": 6,
+    "identityMethod": "castspell_ans_1144_champion_string",
+    "identityComplete": true,
+    "createHeroOrderFallback": false,
+    "neverSpatial": true
+  }
+}

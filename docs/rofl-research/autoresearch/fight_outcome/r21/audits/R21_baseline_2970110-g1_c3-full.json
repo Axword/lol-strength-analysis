@@ -1,0 +1,20 @@
+{
+  "schema": "fightAgreement-window-audit-v1",
+  "t": "2026-07-24T16:07:59.342891+00:00",
+  "suite": "S0-proxy",
+  "match": "2970110-g1",
+  "windowId": "R21_baseline_2970110-g1_c3-full",
+  "researcher": "r21",
+  "hypothesis": "R21-E0b S0proxy product cusum continuous falsekill",
+  "parts": {
+    "killedInModel": true,
+    "actualEndHp": 210,
+    "modelEndHp": 0,
+    "endHpAbsError": 210,
+    "lethalErrorSec": -12.791,
+    "earlyMaeHp": 579.815870547395,
+    "maeHp": 703.8601392875831,
+    "falseKill": true
+  },
+  "confidence": "false-kill audit \u2014 NOT win odds"
+}

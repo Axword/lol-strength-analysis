@@ -1,0 +1,82 @@
+{
+  "schema": "fight-outcome-researcher-summary-v1",
+  "researcher": "r33",
+  "slug": "pathmae-c2",
+  "model": "Auto",
+  "utc": "2026-07-24T16:35:00Z",
+  "worktree": "/Users/river/.codex/worktrees/rofl-fo-r33",
+  "branch": "adv/fo-r33-pathmae-c2",
+  "never_edited_parent": true,
+  "never_edited_parent_code": true,
+  "never_invent": true,
+  "unfreeze_0_9683": true,
+  "mandate": "Lift c2_burst pathBand/pathMae after R30 lethErr fix; product KEEP iff S0 FA↑ and S1 flat+; no FK reopen; FA≠odds",
+  "product_selector": "cusum_engage_then_skills",
+  "hypothesesAutoPicked": [
+    { "id": "H1", "title": "Baseline remesaure pathMae residual", "result": "MEASURED_mae117_pathBand0.693" },
+    { "id": "H2", "title": "Soft Q/E pulses", "result": "DISCARD_flat_kit_dump_pulse" },
+    { "id": "H3", "title": "finishAaMax bound", "result": "DISCARD_no_c2_path_move" },
+    { "id": "H4", "title": "killerShare global", "result": "DISCARD_cliff_miss_kill" },
+    { "id": "H7", "title": "zeroDeadActualHp corpse residual", "result": "KEEP_product" },
+    { "id": "H10", "title": "pathClampToActual", "result": "DISCARD_S1_regress" },
+    { "id": "H13", "title": "pathFollowActualUntilFinish", "result": "RESEARCH_ONLY_S0_0.76_S1_regress" }
+  ],
+  "n_experiments": 16,
+  "track": "path",
+  "c2_burst_path": {
+    "before_maeHp": 117.663,
+    "after_maeHp": 111.592,
+    "before_pathBand": 0.6926,
+    "after_pathBand": 0.7601,
+    "pathOk": false,
+    "pathCap": 90,
+    "lethalErrorSec": 0.334,
+    "lethalOk": true
+  },
+  "S0": {
+    "before_FA": 0.5937715129268749,
+    "after_FA": 0.5960165769507487,
+    "delta_FA": 0.0022450640238738,
+    "before_pass": 0.3333333333333333,
+    "after_pass": 0.3333333333333333,
+    "match": "2970132-g1"
+  },
+  "S1": {
+    "before_FA": 0.5619564223174064,
+    "after_FA": 0.5619564223174064,
+    "delta_FA": 0,
+    "before_pass": 0.3333333333333333,
+    "after_pass": 0.3333333333333333,
+    "match": "2970137-g1",
+    "tuned": false
+  },
+  "product_KEEP": {
+    "keep": true,
+    "zeroDeadActualHp": true,
+    "pathFollowActualUntilFinish": false,
+    "pathClampToActual": false,
+    "markSelection": "cusum_engage_then_skills",
+    "files": [
+      "scripts/crosscheck_action_aligned.ts",
+      "src/engine/killWindowOverlay.ts",
+      "src/engine/types.ts",
+      "src/engine/killWindowProduct.ts"
+    ],
+    "rejected_pathFollow": "S0 FA 0.761 pass 0.667 but S1 FA 0.562→0.525 pass 0 — research only",
+    "rejected_pathClamp": "S1 FA 0.562→0.371 pass 0",
+    "rejected_killerShare": "share≤0.99 cliffs c2 burst miss-kill"
+  },
+  "verdict": "KEEP",
+  "digestCleanGate_regress": false,
+  "fightOutcomeGateEvidence": false,
+  "confidence": "fightAgreement is kill-window suite agreement — NOT calibrated win odds / NOT pBlue-pRed %",
+  "artifacts": {
+    "hypotheses": "docs/rofl-research/autoresearch/fight_outcome/r33/HYPOTHESES_PICKED.md",
+    "notes": "docs/rofl-research/autoresearch/fight_outcome/r33/NOTES.md",
+    "e16_keep": "docs/rofl-research/autoresearch/fight_outcome/r33/experiments/e16_zero_dead_keep.json",
+    "fa_s0": "docs/rofl-research/autoresearch/fight_outcome/r33/experiments/fa_S0_e16_zero_dead_keep.json",
+    "fa_s1": "docs/rofl-research/autoresearch/fight_outcome/r33/experiments/fa_S1_e5_zero_dead.json",
+    "research_pathFollow": "docs/rofl-research/autoresearch/fight_outcome/r33/experiments/fa_S0_e15_product_keep.json"
+  },
+  "next": "Orchestrator may PARENT_MERGE zeroDeadActualHp harness default; residual c2 pathOk (mae 111.6>90) + Galio c1; pathFollow research needs S1-safe ally residual"
+}

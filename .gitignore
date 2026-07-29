@@ -7,6 +7,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Local secrets (GRID_API_KEY, etc.)
+.env
+.env.*
+!.env.example
+
 node_modules
 dist
 dist-ssr
@@ -39,6 +44,17 @@ vision/weights/
 public/data/touch-vod-stills/
 # Local durable ROFL ingest working tree (regenerate via rofl:ingest)
 artifacts/rofl/
+# Axword/MEGA pro-play ROFL + GRID series dumps (large; local-only)
+artifacts/pro-grid/**
+# Allow slim research extracts + indexes (safe to commit; ~2% of raw JSONL)
+!artifacts/pro-grid/
+!artifacts/pro-grid/**/
+!artifacts/pro-grid/README.md
+!artifacts/pro-grid/MANIFEST.json
+!artifacts/pro-grid/SQLITE_INDEX.json
+!artifacts/pro-grid/rofl-rename-report.json
+!artifacts/pro-grid/**/*.slim.sqlite
+!artifacts/pro-grid/**/*.sqlite.summary.json
 # ROFL research dumps (derived from local replays)
 docs/rofl-research/*.bin
 docs/rofl-research/fixtures/events_*.jsonl

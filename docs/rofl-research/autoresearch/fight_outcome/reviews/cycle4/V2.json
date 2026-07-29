@@ -1,0 +1,80 @@
+{
+  "reviewer": "V2",
+  "role": "digestCleanGate auditor",
+  "cycle": 4,
+  "phase": "C",
+  "model": "Auto",
+  "utc": "2026-07-24T16:09:00Z",
+  "readOnly": true,
+  "never_edited_code": true,
+  "fightOutcomeGate": false,
+  "digestCleanGate": true,
+  "confidence": 0.95,
+  "affirm_A_I": {
+    "A_honesty_clean_room": true,
+    "B_fightAgreement_metric": false,
+    "C_unfreeze_0_9683": true,
+    "D_digestClean": true,
+    "E_suites": true,
+    "F_holdout_before_claim": false,
+    "G_ui_calculator_send": true,
+    "H_anti_overfit_anti_gaming": true,
+    "I_review_majority_parent_e2e": false
+  },
+  "sectionD": {
+    "D1_one_command_path": true,
+    "D2_sources_preserved": true,
+    "D3_identity_puuid_netid_pid": true,
+    "D4_validate_product_ge1": true,
+    "D4_second_host": "prefer_not_require",
+    "D4_second_host_blocks_gate": false,
+    "D5_living_hold_forward_disclosed": true,
+    "D6_digest_smoke_hashes": true,
+    "D7_cleaner_failure_modes": true,
+    "concrete_D_failure_this_cycle": null
+  },
+  "reproduceHonesty": {
+    "affirmed": true,
+    "personally_re_ran_this_cycle": true,
+    "primary_validate_cmd": "python3 scripts/validate-rofl-pipeline.py --product --jsonl artifacts/rofl/2970132/events.g1.path1-final.rfc461.jsonl --timeline artifacts/rofl/2970132/timeline.g1.path1-final.json --calculator-ready-policy living_post_seed_v1 --require-calculator-ready",
+    "primary_validate_exit": 0,
+    "expected_matches": {
+      "calculatorReady": true,
+      "calculatorReadyPolicy": "living_post_seed_v1",
+      "livingOkSlots": 14725,
+      "livingMissSlots": 0,
+      "hpHoldAcrossRespawn": true
+    },
+    "fingerprints": {
+      "events.g1.path1-final.rfc461.jsonl": {
+        "bytes": 114456779,
+        "sha256": "823aa35fc309efc7ed7536b5becb9d21f382ea3e03a250d87ad88bee5b0b9bf8",
+        "sha_match": true,
+        "bytes_match": true
+      },
+      "timeline.g1.path1-final.json": {
+        "bytes": 9064216,
+        "sha256": "fb542736e56e6e0afbbc90c0a6a493b9f0236e898c7bca7c39cde50eaedc4fe4",
+        "sha_match": true,
+        "bytes_match": true
+      }
+    },
+    "second_host_2970110": "still not product-green (combat honesty); disclosed; does not block §D.4"
+  },
+  "evidence": [
+    "GOAL §D.1–7 personally re-checked C4 for ≥1 match (2970132 Path1) — REAFFIRM digestCleanGate=true; no concrete §D failure to dissent.",
+    "C4 personal re-run: DIGEST Path1 validate exit 0; livingOkSlots=14725; livingMissSlots=0; hpHoldAcrossRespawn=true; calculatorReadyPolicy=living_post_seed_v1.",
+    "C4 personal fingerprint check: sha256+bytes bit-match on-disk Path1 final events+timeline vs DIGEST table.",
+    "C3 majority 12/15 stands; BRIEF instructs reaffirm or dissent with concrete §D failure only — none found.",
+    "R01/R02/R03: one-command path, source preserve, identity bind, stamp helper — §D.1–3/7 unchanged.",
+    "BRIEF: S0 Path1 product FA 0.4107 (R25) ≪ 0.95; G proven; digestClean already true.",
+    "R23/R25 orthogonal to §D (metric / KEEP process)."
+  ],
+  "failures": [
+    "fightOutcomeGate: criterion B unmet (S0 Path1 FA 0.4107 / pass 0.167 ≪ 0.95); F holdout unmet (S1 FA 0.417 / pass 0).",
+    "2970110 second host still not product-green — disclosed prefer; not a digestCleanGate blocker under §D.4.",
+    "I: FO majority+e2e not met (expected while B fails)."
+  ],
+  "notes": "V2 specialty §D: REAFFIRM digestCleanGate=true for ≥1 match (2970132 Path1). Personally re-verified one-command validate + fingerprints this cycle. No dissent — no concrete §D failure. G proven does not lift FA. fightOutcomeGate false on concrete B (and F), not on digest cleanliness. FA≠odds.",
+  "one_line_vote": "V2 C4: digestCleanGate=true (§D Path1 validate+fingerprints reaffirm; no dissent); fightOutcomeGate=false (S0 FA 0.4107≪0.95); G=true."
+}
