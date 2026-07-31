@@ -1068,7 +1068,10 @@ def enrich_roster_puuids_from_rofl_metadata(
             # Prefer ROFL statsJson Riot ID over liveclient placeholders
             # (e.g. awakening#0000) so capture-time game_info is fuse-ready.
             copied["summonerName"] = full
-            copied["playerName"] = full
+            # Keep the player-facing label separate from the stable full Riot
+            # ID.  Identity joins use summonerName/riotId/PUUID; playerName is
+            # the plain display name used by game_info and timeline rows.
+            copied["playerName"] = game_name or full.split("#", 1)[0]
         out.append(copied)
     return out
 
@@ -2632,6 +2635,14 @@ def extract_replay_api_jsonl(
     if capture_kwargs.get("allow_build_mismatch") is True:
         raise CaptureGuardError(
             "public capture cannot bypass app/replay build verification"
+        )
+
+    local_build = probe.local_build_match_report(rofl_path, app_path)
+    if not local_build["buildMatch"]:
+        raise CaptureGuardError(
+            "client/replay build mismatch before Replay API request: "
+            f"rofl={local_build['roflBuild'] or '<missing>'!r}, "
+            f"app={local_build['clientBuild'] or '<missing>'!r}"
         )
 
     lock = replay_capture_guard.ReplayControllerLock(

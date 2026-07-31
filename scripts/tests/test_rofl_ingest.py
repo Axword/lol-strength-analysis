@@ -289,6 +289,9 @@ class MetadataAndPathTests(unittest.TestCase):
     def test_cli_default_and_recovery_phase_are_unambiguous(self):
         default = ingest.parse_args([f"BR1-{MATCH_CODE}.rofl"])
         recovery = ingest.parse_args(["build", f"BR1-{MATCH_CODE}.rofl"])
+        public_patch = ingest.parse_args(
+            [f"BR1-{MATCH_CODE}.rofl", "--public-patch", "26.14"]
+        )
         hp_build = ingest.parse_args(
             [
                 "build",
@@ -298,7 +301,9 @@ class MetadataAndPathTests(unittest.TestCase):
             ]
         )
         self.assertEqual(default.phase, "ingest")
+        self.assertEqual(default.public_patch, "26.14")
         self.assertEqual(recovery.phase, "build")
+        self.assertEqual(public_patch.public_patch, "26.14")
         self.assertEqual(hp_build.hp_evidence.name, "trusted-hp.json")
         self.assertEqual(recovery.rofl.name, f"BR1-{MATCH_CODE}.rofl")
         with self.assertRaisesRegex(ingest.IngestError, "only valid"):
@@ -316,8 +321,68 @@ class MetadataAndPathTests(unittest.TestCase):
             "python3 scripts/rofl_ingest.py",
         )
 
+    def test_public_patch_is_separate_from_embedded_rofl_patch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            metadata = rofl_metadata.inspect_rofl_metadata(write_rofl(Path(tmp)))
+        config = ingest.capture_config(
+            metadata,
+            start_ms=None,
+            end_ms=None,
+            step_ms=1_000,
+            public_patch="26.14",
+        )
+        manifest = ingest.make_manifest(metadata, config)
+        self.assertEqual(config["publicPatch"], "26.14")
+        self.assertEqual(manifest["rofl"]["patch"], "26.14")
+        self.assertEqual(manifest["rofl"]["publicPatch"], "26.14")
+        self.assertEqual(manifest["rofl"]["embeddedPatch"], metadata["patch"])
+        self.assertEqual(manifest["rofl"]["build"], VERSION)
+
 
 class LockAndPreflightTests(unittest.TestCase):
+    def test_build_mismatch_fails_before_any_replay_api_request(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl = write_rofl(root)
+            app = write_app(root)
+            plist = app / "Contents/Info.plist"
+            plist.write_bytes(
+                plistlib.dumps(
+                    {
+                        "CFBundleVersion": "16.15.8013452",
+                        "FileVersion": "16.15.801.3452",
+                    }
+                )
+            )
+            metadata = rofl_metadata.inspect_rofl_metadata(rofl)
+            config = ingest.capture_config(
+                metadata, start_ms=None, end_ms=None, step_ms=1_000
+            )
+            paths = ingest.artifact_paths(
+                MATCH_CODE, artifact_root=root / "artifacts/rofl"
+            )
+            transport = PreflightTransport(duration_ms=metadata["durationMs"])
+            runner = mock.Mock()
+            with self.assertRaisesRegex(
+                ingest.IngestError, "before Replay API request"
+            ):
+                ingest.capture_phase(
+                    rofl,
+                    metadata,
+                    config,
+                    paths,
+                    force=False,
+                    app_path=app,
+                    base_url="https://127.0.0.1:2999",
+                    timeout=0.1,
+                    transport=transport,
+                    capture_runner=runner,
+                )
+            self.assertEqual(transport.calls, [])
+            runner.assert_not_called()
+            self.assertFalse(paths.manifest.exists())
+            self.assertFalse(paths.events.exists())
+
     def test_lock_contention_and_release(self):
         self.assertIs(
             ingest.capture_phase.__kwdefaults__["capture_runner"],

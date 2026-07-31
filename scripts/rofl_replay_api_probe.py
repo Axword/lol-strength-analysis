@@ -207,6 +207,22 @@ def read_app_build(app_path: Path) -> dict[str, Any]:
     return out
 
 
+def local_build_match_report(rofl_path: Path, app_path: Path) -> dict[str, Any]:
+    """Read-only ROFL/client build check that performs no Replay API calls."""
+    rofl = read_rofl_build(rofl_path)
+    client = read_app_build(app_path)
+    rofl_version = str(rofl.get("version") or "")
+    client_version = str(client.get("version") or "")
+    return {
+        "buildMatch": builds_match(rofl_version, client_version),
+        "roflBuild": rofl_version or None,
+        "clientBuild": client_version or None,
+        "roflError": rofl.get("error"),
+        "clientError": client.get("error"),
+        "apiRequests": 0,
+    }
+
+
 def default_http_transport(
     method: str,
     url: str,
@@ -2082,6 +2098,7 @@ def build_status_report(
     capture_current: bool = False,
     capture_out: Optional[Path] = None,
     schema_out: Optional[Path] = None,
+    probe_api: bool = True,
 ) -> dict[str, Any]:
     rofl = read_rofl_build(rofl_path)
     client = read_app_build(app_path)
@@ -2093,7 +2110,16 @@ def build_status_report(
         else False
     )
 
-    ep = probe_endpoints(transport, base_url, timeout=timeout)
+    if probe_api:
+        ep = probe_endpoints(transport, base_url, timeout=timeout)
+    else:
+        # Build-only preflight must not touch Replay API state. This lets an
+        # operator check compatibility before signing in or opening a replay.
+        ep = {
+            "apiReachable": False,
+            "endpoints": {},
+            "openapi": None,
+        }
     schema_names = (
         schema_property_names(ep.get("openapi")) if ep.get("openapi") else set()
     )
@@ -2274,6 +2300,14 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         help="Exit nonzero when apiReachable is false",
     )
     ap.add_argument(
+        "--require-build-match",
+        action="store_true",
+        help=(
+            "Exit nonzero when the ROFL embedded build does not exactly "
+            "match the installed League game client; this is read-only"
+        ),
+    )
+    ap.add_argument(
         "--probe-selection",
         metavar="NAME",
         default=None,
@@ -2340,6 +2374,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         capture_current=args.capture_current,
         capture_out=args.capture_out,
         schema_out=args.schema_out,
+        probe_api=not args.require_build_match,
     )
 
     text = json.dumps(report, indent=2, sort_keys=True) + "\n"
@@ -2350,6 +2385,11 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     if args.require_api and not report["apiReachable"]:
         return 1
+
+    if args.require_build_match and not report["buildMatch"]:
+        # Keep this distinct from API reachability so an operator can tell
+        # whether a compatible client is missing before attempting playback.
+        return 5
 
     selection = report.get("selectionProbe") or {}
     if args.probe_selection and selection.get("restoreAttempted") and not selection.get(

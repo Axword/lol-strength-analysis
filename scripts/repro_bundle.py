@@ -236,7 +236,12 @@ def _read_timeline_identity(path: Path) -> dict[str, Any]:
     participant_rows = [row for row in participants if isinstance(row, Mapping)]
     return {
         "gameId": next(iter(game_ids)),
+        # `patch` is player-facing when the timeline carries the explicit
+        # public/embedded split. Legacy research timelines may only have the
+        # embedded 16.x label, which remains available as `patch` below.
         "patch": _patch(timeline.get("patch")),
+        "publicPatch": _patch(timeline.get("publicPatch")),
+        "embeddedPatch": _patch(timeline.get("embeddedPatch")),
         "participants": participant_rows,
         "champions": _champion_roster(participant_rows),
     }
@@ -294,22 +299,34 @@ def _inspect_same_match(
     if rofl_champions != jsonl_champions or rofl_champions != timeline_champions:
         raise BundleError("same-match check failed: champion rosters differ")
 
-    known_patches = {
+    embedded_patches = {
         patch
-        for patch in (rofl.get("patch"), jsonl.get("patch"), timeline.get("patch"))
+        for patch in (
+            rofl.get("patch"),
+            jsonl.get("patch"),
+            timeline.get("embeddedPatch"),
+            timeline.get("patch")
+            if not timeline.get("publicPatch")
+            else None,
+        )
         if patch
     }
-    if len(known_patches) > 1:
+    if len(embedded_patches) > 1:
         raise BundleError(
-            f"same-match check failed: patch differs across artifacts ({known_patches})"
+            "same-match check failed: embedded patch differs across artifacts "
+            f"({embedded_patches})"
         )
+    embedded_patch = next(iter(embedded_patches), None)
+    public_patch = timeline.get("publicPatch") or None
 
     return {
         "match": {
             "platformId": rofl_platform,
             "matchCode": str(rofl_game_id),
             "gameId": rofl_game_id,
-            "patch": rofl.get("patch") or jsonl.get("patch") or timeline.get("patch"),
+            "patch": public_patch or embedded_patch,
+            "publicPatch": public_patch,
+            "embeddedPatch": embedded_patch,
             "build": rofl.get("build"),
             "durationMs": rofl.get("durationMs"),
             "rosterHash": rofl.get("rosterHash"),
@@ -323,6 +340,9 @@ def _inspect_same_match(
                 "ROFL and rfc461 game_info share platform/game identity",
                 "ROFL and rfc461 contain the same ten PUUIDs",
                 "ROFL, rfc461, and timeline contain the same champion roster",
+                "Public patch is kept separate from embedded replay/Data Dragon labels"
+                if public_patch
+                else "Embedded replay/Data Dragon patch labels agree",
             ],
             "limits": (
                 "Same-match verification and content hashes do not establish "

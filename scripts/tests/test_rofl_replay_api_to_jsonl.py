@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import json
+import plistlib
 import sys
 import tempfile
 import time
@@ -306,6 +307,36 @@ class PublicCaptureGuardTests(unittest.TestCase):
             self.assertTrue(
                 all(method == "GET" for method, _url, _body in transport.calls)
             )
+
+    def test_build_mismatch_fails_before_any_replay_api_request(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl, app, _metadata = self._guard_fixture(root)
+            plist = app / "Contents/Info.plist"
+            plist.write_bytes(
+                plistlib.dumps(
+                    {
+                        "CFBundleVersion": "16.15.8013452",
+                        "FileVersion": "16.15.801.3452",
+                    }
+                )
+            )
+            transport = _ingest_tests.PreflightTransport(
+                duration_ms=62_000,
+            )
+            with self.assertRaisesRegex(
+                extract.CaptureGuardError, "before Replay API request"
+            ):
+                _public_extract_replay_api_jsonl(
+                    transport,
+                    **self._capture_kwargs(
+                        rofl,
+                        app,
+                        root / "new.jsonl",
+                        root / "controller.lock",
+                    ),
+                )
+            self.assertEqual(transport.calls, [])
 
     def test_ingest_lock_contends_with_public_capture_before_get_or_write(self):
         with tempfile.TemporaryDirectory() as tmp:

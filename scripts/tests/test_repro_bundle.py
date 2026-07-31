@@ -191,6 +191,27 @@ class ReproBundleTests(unittest.TestCase):
             self.assertEqual(result["sameMatch"], "verified")
             self.assertEqual(len(result["artifacts"]), 3)
 
+    def test_public_patch_is_separate_from_embedded_patch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rofl, jsonl, timeline = _make_bundle(root)
+            timeline_data = json.loads(timeline.read_text(encoding="utf-8"))
+            timeline_data["patch"] = "26.14"
+            timeline_data["publicPatch"] = "26.14"
+            timeline_data["embeddedPatch"] = "16.14"
+            timeline.write_text(json.dumps(timeline_data), encoding="utf-8")
+
+            manifest = create_manifest(
+                rofl_path=rofl,
+                jsonl_path=jsonl,
+                timeline_path=timeline,
+            )
+
+            self.assertEqual(manifest["match"]["patch"], "26.14")
+            self.assertEqual(manifest["match"]["publicPatch"], "26.14")
+            self.assertEqual(manifest["match"]["embeddedPatch"], "16.14")
+            self.assertEqual(verify_local_bundle(manifest, root)["sameMatch"], "verified")
+
     def test_create_fails_closed_when_puuid_rosters_differ(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

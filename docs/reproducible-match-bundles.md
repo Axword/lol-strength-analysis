@@ -27,9 +27,16 @@ same-match check:
 2. the rfc461 `game_info` row has the same platform and game ID;
 3. the ROFL and JSONL contain the same ten PUUIDs;
 4. the ROFL, JSONL, and timeline contain the same ten champions;
-5. every disclosed patch agrees.
+5. every embedded replay/Data Dragon patch label agrees; when the timeline
+   carries a player-facing `publicPatch`, that label is recorded separately.
 
 The manifest then pins every file by byte size and SHA-256.
+
+In a manifest, `match.publicPatch` and `match.patch` are the player-facing
+patch label. `match.embeddedPatch` and `match.build` preserve the Riot replay
+and Data Dragon source labels. For the current release, the public patch is
+`26.14`; an embedded `16.13` or `16.14` value is source/build metadata, not a
+different current public patch.
 
 This proves bundle integrity and same-match identity. It does **not** prove that
 the timeline is calculator-ready, calibrated, licensed for publication, or
@@ -101,6 +108,20 @@ same-match identity checks locally.
 
 Existing matching files are reused. Existing non-matching files are never
 overwritten.
+
+For a product-ready hosted bundle, the repository also provides one command
+that fetches the manifest, reruns the product calculator gate, requires the
+identity-bound basic-attack timeline, and builds the app:
+
+```bash
+npm run repro:hosted -- \
+  --manifest https://downloads.example.org/matches/BR1-1234567890/repro-bundle.json \
+  --out artifacts/repro-bundles/BR1-1234567890
+```
+
+This command is a reproducibility aid, not a substitute for an independent
+machine. The second-machine evidence must still record the machine, checkout,
+and successful command output.
 
 ## Verify an existing local copy
 

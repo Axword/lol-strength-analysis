@@ -155,10 +155,13 @@ def game_info_champion_name(participant: Mapping[str, Any]) -> str:
 
 
 def game_info_summoner_name(participant: Mapping[str, Any]) -> str:
-    if participant.get("summonerName"):
-        return str(participant["summonerName"])
+    # ``summonerName`` may intentionally carry the full Riot ID for stable
+    # joins, while timeline/UI names remain the plain game name.  Prefer the
+    # explicit player-facing field when present.
     if participant.get("playerName"):
         return str(participant["playerName"])
+    if participant.get("summonerName"):
+        return str(participant["summonerName"])
     riot = participant.get("riotId")
     if isinstance(riot, Mapping) and riot.get("full"):
         return str(riot["full"])
