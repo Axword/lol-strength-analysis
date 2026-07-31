@@ -1,10 +1,16 @@
 import type {
+  MatchupInput,
   MatchupResult,
   MatchupTimingResult,
   SideResult,
   TimedCombatEvent,
 } from '../engine/types'
 import { pickVisibleTrustReasons } from '../engine/modelTrust'
+import {
+  analysisRecordFilename,
+  canonicalAnalysisJson,
+  createAnalysisRecord,
+} from '../engine/analysisRecord'
 import { championIconUrl } from '../data/champions'
 import './CombatResult.css'
 
@@ -343,7 +349,32 @@ function TimedLogRow({
   )
 }
 
-export function CombatResult({ result }: { result: MatchupResult }) {
+function downloadAnalysisRecord(
+  matchup: MatchupInput,
+  result: MatchupResult,
+  contextLabel?: string | null,
+) {
+  const record = createAnalysisRecord({ matchup, result, contextLabel })
+  const blob = new Blob([`${canonicalAnalysisJson(record)}\n`], {
+    type: 'application/json',
+  })
+  const url = URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.href = url
+  anchor.download = analysisRecordFilename(record)
+  anchor.click()
+  URL.revokeObjectURL(url)
+}
+
+export function CombatResult({
+  result,
+  matchup,
+  contextLabel,
+}: {
+  result: MatchupResult
+  matchup: MatchupInput
+  contextLabel?: string | null
+}) {
   const blueWins = result.winner === 'blue'
   const redWins = result.winner === 'red'
   const draw = result.winner === 'draw'
@@ -400,6 +431,18 @@ export function CombatResult({ result }: { result: MatchupResult }) {
           </ul>
         </div>
         <p className="verdict-sub">{subline}</p>
+        <div className="evidence-export">
+          <button
+            type="button"
+            onClick={() => downloadAnalysisRecord(matchup, result, contextLabel)}
+          >
+            Export evidence JSON
+          </button>
+          <span>
+            Includes inputs, model edge, trust reasons, assumptions, and source
+            revision
+          </span>
+        </div>
 
         {band && (
           <div className="strength-band" aria-label="Model strength band">

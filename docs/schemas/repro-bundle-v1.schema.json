@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/Axword/lol-strength-analysis/main/docs/schemas/repro-bundle-v1.schema.json",
+  "title": "LoL Strength Reproducible Match Bundle v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "bundleId",
+    "createdAt",
+    "match",
+    "sameMatch",
+    "policy",
+    "artifacts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "lol-strength-repro-bundle-v1"
+    },
+    "bundleId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+-[0-9]+-[0-9a-f]{16}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platformId",
+        "matchCode",
+        "gameId",
+        "patch",
+        "build",
+        "durationMs",
+        "rosterHash",
+        "gridSeriesId"
+      ],
+      "properties": {
+        "platformId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "matchCode": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        },
+        "gameId": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "patch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "build": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "durationMs": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "rosterHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "gridSeriesId": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "sameMatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "method",
+        "evidence",
+        "limits"
+      ],
+      "properties": {
+        "status": {
+          "const": "verified"
+        },
+        "method": {
+          "const": "riot_match_identity_plus_puuid_and_champion_rosters"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limits": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataScope",
+        "publicationStatus",
+        "secretsIncluded",
+        "upstreamDeclarations",
+        "limits"
+      ],
+      "properties": {
+        "dataScope": {
+          "const": "professional_competitive_only"
+        },
+        "publicationStatus": {
+          "const": "development_research_bundle"
+        },
+        "secretsIncluded": {
+          "const": false
+        },
+        "upstreamDeclarations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "calculatorReady",
+            "productEligible"
+          ],
+          "properties": {
+            "calculatorReady": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "productEligible": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          }
+        },
+        "limits": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "filename",
+          "mediaType",
+          "sizeBytes",
+          "sha256",
+          "url"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "replay_rofl",
+              "canonical_rfc461_jsonl",
+              "timeline_json"
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mediaType": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "sourceKind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "derivedFromRole": {
+            "const": "canonical_rfc461_jsonl"
+          }
+        }
+      }
+    }
+  }
+}

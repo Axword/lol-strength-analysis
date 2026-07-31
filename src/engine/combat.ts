@@ -1,4 +1,4 @@
-import { CHAMPIONS, getChampion } from '../data/champions'
+import { getChampion } from '../data/champions'
 import { ITEMS } from '../data/items'
 import { resolveRuneId } from '../data/runes'
 import { mitigate, sumMitigated, sumRaw } from './damage'
@@ -1075,7 +1075,10 @@ const AA_EXECUTION = {
  * Default 12 ≈ fraction of an early AA — enough to schedule, not steal damage rank.
  */
 export let UTILITY_PLANNER_PROXY_DAMAGE = (() => {
-  const raw = process.env.UTILITY_PLANNER_PROXY_DAMAGE
+  const raw =
+    typeof process === 'undefined'
+      ? undefined
+      : process.env.UTILITY_PLANNER_PROXY_DAMAGE
   if (raw == null || raw === '') return 12
   const n = Number(raw)
   return Number.isFinite(n) && n >= 0 ? n : 12

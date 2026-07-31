@@ -3,8 +3,9 @@
  * Experimental / unvalidated — CORE and hand GAME kits still win at merge.
  */
 import type {
+  AbilityContext,
   AbilityDefinition,
-  AbilitySlot,
+  AbilityRanks,
   ChampionDefinition,
   CombatStats,
   DamagePacket,
@@ -54,17 +55,23 @@ function ratioStatValue(
   }
 }
 
-function damageFn(slot: AbilitySlot, name: string, spec: MerakiAbilityDamage | null, skillshot: boolean) {
+function damageFn(
+  slot: keyof AbilityRanks,
+  name: string,
+  spec: MerakiAbilityDamage | null,
+  skillshot: boolean,
+) {
   if (!spec) {
     return () => [] as DamagePacket[]
   }
   return (
     attacker: CombatStats,
     defender: CombatStats,
-    ctx: { ranks?: Partial<Record<AbilitySlot, number>>; abilityRank?: number },
+    ctx: AbilityContext,
   ): DamagePacket[] => {
-    const rank = Math.max(1, rankOf(ctx as never, slot))
-    if (rankOf(ctx as never, slot) <= 0) return []
+    const resolvedRank = rankOf(ctx, slot)
+    const rank = Math.max(1, resolvedRank)
+    if (resolvedRank <= 0) return []
     let raw = rankValue(spec.base, rank)
     for (const ratio of spec.ratios) {
       raw += rankValue(ratio.values, rank) * ratioStatValue(ratio.stat, attacker, defender)

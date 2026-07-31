@@ -16,6 +16,7 @@ import {
   readResearchAaOverlayFlag,
   rowsFromHpCurveAloneForbidden,
   rowsFromTimelineActionBridge,
+  timelineMatchesDefaultResearchOverlay,
   filterRowsForSelectedChampions,
   productSendAttachedResearchActions,
   type ResearchActionOverlaySlim,
@@ -51,6 +52,27 @@ exp('flag default OFF (empty / missing query)', () => {
   assert.equal(readResearchAaOverlayFlag(''), false)
   assert.equal(readResearchAaOverlayFlag('?foo=1'), false)
   assert.equal(readResearchAaOverlayFlag('?researchAaOverlay=0'), false)
+})
+
+exp('external research overlay is refused for a different match', () => {
+  assert.equal(
+    timelineMatchesDefaultResearchOverlay({
+      provenance: { gridSeriesId: '2970132', gridGameIndex: 1 },
+    }),
+    false,
+  )
+  assert.equal(
+    timelineMatchesDefaultResearchOverlay({
+      provenance: { gridSeriesId: '2970110', gridGameIndex: 2 },
+    }),
+    false,
+  )
+  assert.equal(
+    timelineMatchesDefaultResearchOverlay({
+      provenance: { gridSeriesId: '2970110', gridGameIndex: 1 },
+    }),
+    true,
+  )
 })
 
 exp('R22 identity artifact parses 10/10 PUUID pid stamps', () => {
@@ -441,7 +463,7 @@ exp('timeline bridge maps identity-bound basicAttack + damageDealt', () => {
   assert.equal(bridged.rows[1].amount, 42)
   assert.equal(bridged.rows[0].researchOnly, true)
   assert.equal(bridged.rows[0].calculatorReady, false)
-  assert.match(bridged.disclosure, /not calculatorReady/)
+  assert.match(bridged.disclosure, /separate from calculator readiness/)
 })
 
 exp('timeline bridge rejects missing netId/pid (no invent)', () => {

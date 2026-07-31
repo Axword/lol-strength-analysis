@@ -35,6 +35,7 @@ import {
   productSendAttachedResearchActions,
   readResearchAaOverlayFlag,
   rowsFromTimelineActionBridge,
+  timelineMatchesDefaultResearchOverlay,
   type ResearchActionRow,
 } from '../game/researchActionOverlay'
 import './GameReview.css'
@@ -239,12 +240,14 @@ export function selectedCombatTrustGap(
 }
 
 /** True when any unit lacks explicit true known-flags (product Send gate). */
-export function selectedLacksKnownCombatState(
-  units: Array<{
+export function selectedLacksKnownCombatState<
+  T extends {
     hpKnown?: boolean
     combatStatsKnown?: boolean
     abilityRanksKnown?: boolean
-  }>,
+  },
+>(
+  units: T[],
 ): boolean {
   return units.some(
     (u) => !hpIsKnown(u) || !combatStatsAreKnown(u) || !abilityRanksAreKnown(u),
@@ -321,13 +324,14 @@ export function buildLivingSendImport(
   }
 }
 
-/** Research AA/damage strip — flag-gated; never claims calculatorReady. */
+/** Replay action strip. Display-only; never enters the Calculator Send payload. */
 export function ResearchActionOverlayPanel({
   enabled,
   rows,
   disclosure,
   playheadMs,
   loading,
+  embeddedProductActions = false,
   selectedChampions = null,
 }: {
   enabled: boolean
@@ -335,6 +339,7 @@ export function ResearchActionOverlayPanel({
   disclosure: string | null
   playheadMs: number
   loading: boolean
+  embeddedProductActions?: boolean
   /** When set, keep rows that touch a selected champion (calculator import context). */
   selectedChampions?: readonly string[] | null
 }) {
@@ -355,18 +360,23 @@ export function ResearchActionOverlayPanel({
   return (
     <aside
       className="research-action-overlay"
-      aria-label="Research AA damage overlay"
+      aria-label="Replay action timeline"
       data-research-aa-overlay="on"
+      data-action-source={embeddedProductActions ? 'embedded' : 'research'}
     >
       <div className="research-action-overlay-head">
-        <strong>research overlay · not calculatorReady</strong>
+        <strong>
+          {embeddedProductActions
+            ? 'decoded action timeline · separate from calculator gate'
+            : 'research overlay · not calculatorReady'}
+        </strong>
         <span>
           playhead ±{DEFAULT_PLAYHEAD_WINDOW_SEC}s · {visible.length} /{' '}
           {rows.length} rows{selectionNote}
         </span>
       </div>
       {loading && (
-        <p className="research-action-overlay-empty">Loading research emit…</p>
+        <p className="research-action-overlay-empty">Loading replay actions…</p>
       )}
       {!loading && rows.length === 0 && (
         <p className="research-action-overlay-empty">
@@ -375,8 +385,8 @@ export function ResearchActionOverlayPanel({
       )}
       {!loading && rows.length > 0 && visible.length === 0 && (
         <p className="research-action-overlay-empty">
-          No research AA/damage in this playhead window — scrub near a kill
-          (2970110-g1 c1 ≈ 3:22).
+          No decoded actions in this playhead window. Move the playhead to
+          inspect another moment.
         </p>
       )}
       {!loading && visible.length > 0 && (
@@ -422,7 +432,7 @@ export function GameReview({ onSendToCalculator }: Props) {
   const [importError, setImportError] = useState<string | null>(null)
   const [showImport, setShowImport] = useState(false)
 
-  /** P5/R14 research AA/damage overlay — default OFF; R22 identity fold. */
+  /** Display-only actions; embedded same-match rows auto-open, research stays opt-in. */
   const [researchAaOverlay, setResearchAaOverlay] = useState(false)
   const [researchOverlayRows, setResearchOverlayRows] = useState<
     ResearchActionRow[]
@@ -431,10 +441,23 @@ export function GameReview({ onSendToCalculator }: Props) {
     string | null
   >(null)
   const [researchOverlayLoading, setResearchOverlayLoading] = useState(false)
+  const embeddedActionBridge = useMemo(
+    () => rowsFromTimelineActionBridge(timeline),
+    [timeline],
+  )
+  const hasEmbeddedActionTimeline =
+    embeddedActionBridge.source === 'timeline_bridge' &&
+    embeddedActionBridge.rows.length > 0
 
   useEffect(() => {
     setResearchAaOverlay(readResearchAaOverlayFlag())
   }, [])
+
+  useEffect(() => {
+    if (embeddedActionBridge.rows.length > 0) {
+      setResearchAaOverlay(true)
+    }
+  }, [embeddedActionBridge])
 
   useEffect(() => {
     if (!researchAaOverlay) {
@@ -443,11 +466,19 @@ export function GameReview({ onSendToCalculator }: Props) {
       setResearchOverlayLoading(false)
       return
     }
-    // Prefer identity-bound timeline fuse arrays (2970110 product fuse) when present.
-    const bridged = rowsFromTimelineActionBridge(timeline)
+    // Prefer identity-bound actions embedded in the loaded same-match timeline.
+    const bridged = embeddedActionBridge
     if (bridged.source === 'timeline_bridge' && bridged.rows.length > 0) {
       setResearchOverlayRows(bridged.rows)
       setResearchOverlayDisclosure(bridged.disclosure)
+      setResearchOverlayLoading(false)
+      return
+    }
+    if (!timelineMatchesDefaultResearchOverlay(timeline)) {
+      setResearchOverlayRows([])
+      setResearchOverlayDisclosure(
+        'No same-match embedded actions. External action rows are disabled for this timeline.',
+      )
       setResearchOverlayLoading(false)
       return
     }
@@ -474,7 +505,7 @@ export function GameReview({ onSendToCalculator }: Props) {
     return () => {
       cancelled = true
     }
-  }, [researchAaOverlay, timeline])
+  }, [embeddedActionBridge, researchAaOverlay, timeline])
 
   useEffect(() => {
     let cancelled = false
@@ -945,9 +976,13 @@ export function GameReview({ onSendToCalculator }: Props) {
           data-testid="research-aa-overlay-toggle"
           aria-pressed={researchAaOverlay}
           onClick={() => setResearchAaOverlay((v) => !v)}
-          title="Research AA/damage overlay from r41 emit (default off; not calculatorReady)"
+          title={
+            hasEmbeddedActionTimeline
+              ? 'Show decoded replay actions. Display-only and separate from Calculator Send.'
+              : 'Show the match-specific research action overlay when available.'
+          }
         >
-          Research AA
+          {hasEmbeddedActionTimeline ? 'Action timeline' : 'Research AA'}
         </button>
 
         <label>
@@ -1144,6 +1179,7 @@ export function GameReview({ onSendToCalculator }: Props) {
             disclosure={researchOverlayDisclosure}
             playheadMs={playheadMs}
             loading={researchOverlayLoading}
+            embeddedProductActions={hasEmbeddedActionTimeline}
             selectedChampions={
               livingSelected.length > 0
                 ? livingSelected.map((u) => u.loadout.championId)

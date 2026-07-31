@@ -45,6 +45,9 @@ TIMELINE_FORMAT_VERSION = 1
 VALIDATION_FORMAT_VERSION = 1
 DEFAULT_START_MS = 60_000
 DEFAULT_STEP_MS = 1_000
+# Current player-facing patch for this checkout. This is intentionally a
+# separate value from ROFL/Data Dragon's embedded 16.x replay/build labels.
+DEFAULT_PUBLIC_PATCH = "26.14"
 PHASES = ("ingest", "inspect", "capture", "build", "validate", "publish")
 
 
@@ -300,6 +303,7 @@ def capture_config(
     start_ms: Optional[int],
     end_ms: Optional[int],
     step_ms: int,
+    public_patch: Optional[str] = None,
 ) -> dict[str, Any]:
     duration = int(metadata["durationMs"])
     if step_ms <= 0:
@@ -317,6 +321,7 @@ def capture_config(
         "cadenceMs": int(step_ms),
         "sampleCount": len(samples),
         "sampleTimesMs": samples,
+        "publicPatch": str(public_patch).strip() if public_patch else None,
     }
 
 
@@ -326,6 +331,8 @@ def _manifest_contract(manifest: Mapping[str, Any]) -> dict[str, Any]:
         "matchCode": (manifest.get("match") or {}).get("matchCode"),
         "roflSha256": (manifest.get("rofl") or {}).get("sha256"),
         "rosterHash": manifest.get("rosterHash"),
+        "patch": (manifest.get("rofl") or {}).get("patch"),
+        "publicPatch": (manifest.get("rofl") or {}).get("publicPatch"),
         "capture": {
             key: (manifest.get("capture") or {}).get(key)
             for key in ("startMs", "endMs", "stepMs")
@@ -354,7 +361,12 @@ def make_manifest(
             "sizeBytes": metadata["sizeBytes"],
             "format": metadata["format"],
             "formatVersion": metadata["formatVersion"],
-            "patch": metadata["patch"],
+            # `patch` is the player-facing label used by GameTimeline and the
+            # public registry. Keep the embedded replay/build family explicit
+            # instead of allowing 16.x to masquerade as the public patch.
+            "patch": config.get("publicPatch") or metadata["patch"],
+            "publicPatch": config.get("publicPatch"),
+            "embeddedPatch": metadata["patch"],
             "build": metadata["build"],
             "durationMs": metadata["durationMs"],
         },
@@ -665,6 +677,18 @@ def verify_active_replay(
         raise IngestError(str(exc)) from exc
 
 
+def verify_local_build_match(rofl_path: Path, app_path: Path) -> dict[str, Any]:
+    """Check ROFL/client compatibility before touching Replay API state."""
+    evidence = replay_probe.local_build_match_report(rofl_path, app_path)
+    if not evidence["buildMatch"]:
+        raise IngestError(
+            "replay/client build mismatch before Replay API request: "
+            f"rofl={evidence['roflBuild'] or '<missing>'!r}, "
+            f"client={evidence['clientBuild'] or '<missing>'!r}"
+        )
+    return evidence
+
+
 def inspect_phase(
     metadata: Mapping[str, Any],
     config: Mapping[str, Any],
@@ -728,6 +752,7 @@ def capture_phase(
             "completedCount": assessment["completed"],
         }
 
+    local_build = verify_local_build_match(rofl_path, app_path)
     lock = ReplayControllerLock(
         lock_path or controller_lock_path(artifact_root=paths.match_dir.parent)
     )
@@ -750,7 +775,10 @@ def capture_phase(
                     **desired["productGates"],
                     "activeReplayIdentityVerified": True,
                 },
-                "activeReplayPreflight": preflight,
+                "activeReplayPreflight": {
+                    **preflight,
+                    "localBuildPreflight": local_build,
+                },
             },
         )
         resume = prepared["assessment"]["state"] == "partial" and paths.events.exists()
@@ -982,7 +1010,12 @@ def build_phase(
             "--name",
             str(metadata["matchCode"]),
             "--patch",
-            str(metadata.get("patch") or metadata.get("build") or ""),
+            str(
+                config.get("publicPatch")
+                or metadata.get("patch")
+                or metadata.get("build")
+                or ""
+            ),
         ],
         [
             sys.executable,
@@ -1334,6 +1367,15 @@ def build_parser(phase: str) -> argparse.ArgumentParser:
     parser.add_argument("--end-ms", type=int, default=None)
     parser.add_argument("--step-ms", type=int, default=DEFAULT_STEP_MS)
     parser.add_argument(
+        "--public-patch",
+        type=str,
+        default=DEFAULT_PUBLIC_PATCH,
+        help=(
+            "Player-facing Riot patch label (default: 26.14). "
+            "ROFL embedded 16.x build labels are never inferred as public patches."
+        ),
+    )
+    parser.add_argument(
         "--hp-evidence",
         type=Path,
         default=None,
@@ -1371,6 +1413,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         start_ms=args.start_ms,
         end_ms=args.end_ms,
         step_ms=args.step_ms,
+        public_patch=args.public_patch,
     )
     paths = artifact_paths(str(metadata["matchCode"]))
     phase = args.phase

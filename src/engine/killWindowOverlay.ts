@@ -12,49 +12,21 @@ import { classifyMatchupModelTrust } from './modelTrust'
 import { resolveFightDuration } from './fightDuration'
 import type {
   FighterLoadout,
+  KillWindowActionMark,
+  KillWindowMarkSelection,
   MatchupInput,
   MatchupResult,
   MatchupTimingResult,
   XhMode,
 } from './types'
 
+export type { KillWindowActionMark, KillWindowMarkSelection } from './types'
+
 function loadoutAlive(f: FighterLoadout): boolean {
   if (f.alive === false) return false
   if (f.hpPct != null && f.hpPct <= 0) return false
   if (f.liveStats?.hp != null && f.liveStats.hp <= 0) return false
   return true
-}
-
-export type KillWindowMarkSelection =
-  | 'near_hp_drop'
-  | 'post_engage_killer_skills'
-  | 'cusum_engage_then_skills'
-
-export type KillWindowActionMark = {
-  /** Seconds from window start */
-  tSec: number
-  skillSlot?: number
-  /**
-   * Action class for modelActions emission. Default `skill`.
-   * `item` = evented item_active_ability_used bridge (Track 2 / M5).
-   * Items default to non-damage inventory emission unless share>0 is set
-   * with an explicit kit-linked pulse (never invent damage from HPΔ).
-   * `aa` = evented/decode-timed basic attack — applies physical AA damage
-   * via killWindowPhysicalAaDamage and emits shareHint>0 (not zero-damage echo).
-   */
-  kind?: 'skill' | 'item' | 'summoner' | 'aa'
-  /** Ally cast — uses allyPulseShare unless share is set */
-  ally?: boolean
-  /** Explicit pulse share override (0–1+) */
-  share?: number
-  /**
-   * Cast is known from the event log (real skill_used row) but not confirmed
-   * to have connected (skillshot miss / off-target / minion clear — the slim
-   * SQLite schema discloses casts, not hit outcomes). Replay it as a
-   * zero-damage model action so action-replay coverage can credit the real
-   * cast timing/slot without inventing or double-counting damage.
-   */
-  logOnly?: boolean
 }
 
 export type KillWindowFinishAa = {
@@ -217,7 +189,7 @@ export type SelectMarksResult = {
 function cloneLoadout(l: FighterLoadout): FighterLoadout {
   return {
     ...l,
-    ranks: { ...l.ranks },
+    ...(l.ranks ? { ranks: { ...l.ranks } } : {}),
     itemIds: [...l.itemIds],
     liveStats: l.liveStats ? { ...l.liveStats } : undefined,
   }
@@ -409,6 +381,7 @@ export function selectKillWindowMarks(input: SelectMarksInput): SelectMarksResul
       markPreEngageLeadSec > 0 ||
       markPreEngageFarSec > 0
     if (engageSec != null && preEngageOn) {
+      const preEngageSec = engageSec
       const postKillerCount = marks.filter((m) => !m.ally).length
       const leadSec = Math.max(0, markPreEngageLeadSec, preEngageOpenerSec)
       const farSec = Math.max(0, markPreEngageFarSec)
@@ -426,12 +399,12 @@ export function selectKillWindowMarks(input: SelectMarksInput): SelectMarksResul
         (m) =>
           !m.ally &&
           (m.kind ?? 'skill') === 'skill' &&
-          m.tSec < engageSec - 1e-9,
+          m.tSec < preEngageSec - 1e-9,
       )
 
       if (sparseOk && leadSec > 0) {
         const near = preCandidates.filter(
-          (m) => m.tSec >= engageSec - leadSec - 1e-9,
+          (m) => m.tSec >= preEngageSec - leadSec - 1e-9,
         )
         // Opener mode (no explicit lead): keep only the last near cast.
         const nearKeep =
@@ -480,8 +453,8 @@ export function selectKillWindowMarks(input: SelectMarksInput): SelectMarksResul
       if (sparseOk && farSec > leadSec && farShare > 0) {
         const far = preCandidates.filter(
           (m) =>
-            m.tSec >= engageSec - farSec - 1e-9 &&
-            m.tSec < engageSec - leadSec - 1e-9,
+            m.tSec >= preEngageSec - farSec - 1e-9 &&
+            m.tSec < preEngageSec - leadSec - 1e-9,
         )
         for (const m of far) {
           const key = `${m.tSec.toFixed(4)}|${m.skillSlot ?? 0}|0`

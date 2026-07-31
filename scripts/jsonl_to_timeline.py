@@ -155,10 +155,13 @@ def game_info_champion_name(participant: Mapping[str, Any]) -> str:
 
 
 def game_info_summoner_name(participant: Mapping[str, Any]) -> str:
-    if participant.get("summonerName"):
-        return str(participant["summonerName"])
+    # ``summonerName`` may intentionally carry the full Riot ID for stable
+    # joins, while timeline/UI names remain the plain game name.  Prefer the
+    # explicit player-facing field when present.
     if participant.get("playerName"):
         return str(participant["playerName"])
+    if participant.get("summonerName"):
+        return str(participant["summonerName"])
     riot = participant.get("riotId")
     if isinstance(riot, Mapping) and riot.get("full"):
         return str(riot["full"])
@@ -357,6 +360,38 @@ def build_timeline(
     artifact = provenance.get("artifact")
     if isinstance(artifact, str) and ("/" in artifact or "\\" in artifact):
         provenance["artifact"] = Path(artifact).name
+
+    # Carry the canonical Riot identity from the feed into the derived file.
+    # This is source data, never a filename inference. Repro bundles use it to
+    # prove the timeline belongs to the same match as the ROFL and rfc461 rows.
+    identity_rows = [row for row in (coverage, game_info) if isinstance(row, Mapping)]
+    game_ids = {
+        int(candidate)
+        for row in identity_rows
+        for candidate in (row.get("gameID"), row.get("gameId"))
+        if candidate not in (None, "")
+        and str(candidate).isdigit()
+        and int(candidate) > 0
+    }
+    if len(game_ids) > 1:
+        raise SystemExit(f"conflicting game identity in rfc461 rows: {sorted(game_ids)}")
+    if game_ids:
+        game_id = next(iter(game_ids))
+        provenance["gameId"] = game_id
+        provenance["matchCode"] = str(game_id)
+
+    platform_ids = {
+        str(candidate).strip().upper()
+        for row in identity_rows
+        for candidate in (row.get("platformID"), row.get("platformId"))
+        if str(candidate or "").strip()
+    }
+    if len(platform_ids) > 1:
+        raise SystemExit(
+            f"conflicting platform identity in rfc461 rows: {sorted(platform_ids)}"
+        )
+    if platform_ids:
+        provenance["platformId"] = next(iter(platform_ids))
 
     timeline: Dict[str, Any] = {
         "id": timeline_id,

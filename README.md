@@ -1,58 +1,27 @@
-# LoL strength analysis
-
-React + TypeScript + Vite app for combat / timeline analysis.
-
-- Product notes: [`PRODUCT.md`](PRODUCT.md), [`DESIGN.md`](DESIGN.md)
-- Replay format research (ROFL1/ROFL2 → why it is not live-stats JSONL): [`docs/rofl-format.md`](docs/rofl-format.md)
-- Combat calculator trust boundary and acceptance evidence: [`docs/combat-trust-boundary.md`](docs/combat-trust-boundary.md)
-
----
-
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
 # LoL Strength Analysis
 
-Desk-side research console for reading **fight strength** from LoL match state — scoreboard, map, loadouts, vision, and skillshot hit chance — not a betting tip engine or a stream overlay.
+Private bookmaker research workbench for reading **fight strength** from
+professional LoL match state: scoreboard, map, loadouts, vision, and skillshot
+hit chance.
+
+The current output is a heuristic model edge for internal research. It is not a
+calibrated win probability, fair price, market line, or recommendation.
 
 ## Goal
 
-Turn live or replayed game state (positions, fog of war, objectives, items/ranks) into **auditable fight judgments**:
+Turn verified live or replayed game state (positions, fog of war, objectives,
+items/ranks) into **auditable fight judgments**:
 
 1. Read the match as one instrument (scoreboard + map + timeline).
 2. Select an NvM (one or both teams).
-3. Send it into a combat calculator that respects HP budgets, utility, and skillshot uncertainty (**xH** / **xHm**).
+3. Send it into a combat calculator that respects HP budgets, utility, and
+   skillshot uncertainty (**xH** / **xHm**).
+4. Export the inputs, result, trust reasons, assumptions, and source revision as
+   an evidence record.
 
-Success looks like: an analyst can scrub a timestamp, spot a fight, and trust why the model prefers blue or red — including dodge bands and fog — without losing context.
+Success looks like: an internal analyst can scrub a timestamp, spot a fight,
+inspect why the model prefers Blue or Red, and hand the evidence to another
+analyst for review.
 
 ## What the app does
 
@@ -102,7 +71,8 @@ Optional vision tooling (VOD frames / detector) lives under `vision/` — large 
 
 - Historic empirical xH tables (mobility × zone × ability) replacing / calibrating corridor priors from real casts  
 - Full **2D stadium** hit CDF (still 1D miss corridor)  
-- Polished teamfight win-odds productization (worst/typical/best ranges exist in spirit; end-to-end UX incomplete)  
+- Calibrated pricing research and model-versus-market comparison. These remain
+  locked behind holdout, reliability, and model-risk gates.
 - Automatic FoW/LKP scrubber from VODs (annotation pipeline exists; not productized)  
 - Broad multi-match library UI (sample timelines ship; not a full VOD browser)  
 - Mobile / touch-first layout (desk density first)  
@@ -119,21 +89,19 @@ Optional vision tooling (VOD frames / detector) lives under `vision/` — large 
 
 ## What this is *not*
 
-- Not a **betting / odds** product or parlay tipster  
+- Not a consumer betting surface, tipster, or recommendation engine
+- Not a market-making or calibrated pricing engine today
+- Not a team or coaching product
 - Not a **PN / homing** skillshot simulator (missiles do not steer mid-flight)  
 - Not an **oracle FoW** tool (blind casts do not treat true position as known)  
 - Not a **stream overlay** or spectator entertainment UI  
-- Not a substitute for replay coaching judgment — it is a structured prior + state calculator  
-- Not “AI said they win” without inspectable σ factors and bands  
+- Not “AI said they win” without inspectable factors, bands, and evidence
 
 ## Future goals
 
-1. **Calibrate xH** on labeled historic skillshots; keep the σ factorization, tighten parameters.  
-2. **Close the map → calculator → result** loop for 5v5 with clear worst/typical/best fight odds.  
-3. **Ship FoW/LKP** from vision or feed-derived scrubbers into the same softVision path.  
-4. **Library of matches** with career/gold-vs-win context at scrub time.  
-5. **Exportable fight cards** (assumptions, bands, xH factors) for research notes.  
-6. Optional: stadium geometry and richer belief packs without reintroducing multiplicative zone×vision glue.
+The gate-based delivery plan lives in [`ROADMAP.md`](./ROADMAP.md). Near-term
+work focuses on a reproducible private research pilot. Calibrated price
+comparison and live desk support are later phases.
 
 ## Repo map
 
@@ -150,6 +118,10 @@ Optional vision tooling (VOD frames / detector) lives under `vision/` — large 
 
 - [`PRODUCT.md`](./PRODUCT.md) — users, purpose, design principles  
 - [`DESIGN.md`](./DESIGN.md) — visual system  
+- [`ROADMAP.md`](./ROADMAP.md) — buyer decision, phases, and exit gates
+- [`docs/reproducible-match-bundles.md`](./docs/reproducible-match-bundles.md) — remote bundle contract
+- [`docs/reproduction-evidence/2026-07-28-grid-2966384-game-1.md`](./docs/reproduction-evidence/2026-07-28-grid-2966384-game-1.md) — real professional-match transfer proof
+- [`docs/combat-trust-boundary.md`](./docs/combat-trust-boundary.md) — current model claims and limits
 - [`xh-autoresearch/program.md`](./xh-autoresearch/program.md) — xH math loop protocol  
 - [`xh-autoresearch/log.md`](./xh-autoresearch/log.md) — keep/discard decisions per pass  
 

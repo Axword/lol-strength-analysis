@@ -47,6 +47,7 @@ try {
   const {
     MatchCoverageBadges,
     MatchPicker,
+    ResearchActionOverlayPanel,
     calculatorTrustBlockReason,
     livingSelectedUnits,
     selectedCombatTrustGap,
@@ -257,6 +258,39 @@ try {
   assert.equal(nvm.length, 4)
   assert.equal(selectedLacksKnownCombatState(nvm), false)
   assert.equal(`${nvm.length}`, '4')
+
+  const embeddedActions = renderToStaticMarkup(
+    React.createElement(ResearchActionOverlayPanel, {
+      enabled: true,
+      rows: [
+        {
+          kind: 'basic_attack',
+          tSec: 120,
+          tMs: 120_000,
+          sourceNetId: 1001,
+          sourceChampion: 'Olaf',
+          sourceParticipantId: 1,
+          targetNetId: null,
+          targetChampion: null,
+          amount: null,
+          researchOnly: true,
+          calculatorReady: false,
+        },
+      ],
+      disclosure:
+        'embedded replay actions · identity_bound_replay_packets · separate from calculator readiness',
+      playheadMs: 120_000,
+      loading: false,
+      embeddedProductActions: true,
+    }),
+  )
+  assert.match(
+    embeddedActions,
+    /decoded action timeline · separate from calculator gate/,
+  )
+  assert.match(embeddedActions, /data-action-source="embedded"/)
+  assert.match(embeddedActions, /Olaf/)
+  assert.doesNotMatch(embeddedActions, /2970110/)
 } finally {
   await vite.close()
 }

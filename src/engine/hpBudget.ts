@@ -1,4 +1,9 @@
-import type { AbilitySlot, CombatStats, TradeMode } from './types'
+import type {
+  AbilityRanks,
+  AbilitySlot,
+  CombatStats,
+  TradeMode,
+} from './types'
 
 /**
  * Fight capability (v2) — replaces absolute HP% → allowed-slot / auto-count cliffs.
@@ -16,7 +21,7 @@ import type { AbilitySlot, CombatStats, TradeMode } from './types'
  * - No cast-animation desync / animation cancel fidelity.
  */
 
-export type AbilityRanks = { Q: number; W: number; E: number; R: number }
+type ActiveAbilitySlot = keyof AbilityRanks
 
 export interface FightCapability {
   allowed: Set<AbilitySlot>
@@ -28,8 +33,8 @@ export interface FightCapability {
   effectiveSec: number
 }
 
-const ALL_SHORT: AbilitySlot[] = ['Q', 'W', 'E', 'AA']
-const ALL_ALLIN: AbilitySlot[] = ['Q', 'W', 'E', 'R', 'AA']
+const ALL_SHORT: Array<ActiveAbilitySlot | 'AA'> = ['Q', 'W', 'E', 'AA']
+const ALL_ALLIN: Array<ActiveAbilitySlot | 'AA'> = ['Q', 'W', 'E', 'R', 'AA']
 
 /**
  * Which casts a living fighter can attempt in the fight window.
@@ -70,7 +75,7 @@ export function abilityBudget(
   const omitted: AbilitySlot[] = []
   const omissionNotes: string[] = []
 
-  const consider = (slot: AbilitySlot) => {
+  const consider = (slot: ActiveAbilitySlot | 'AA') => {
     if (slot === 'AA') {
       if (effectiveSec <= 0) {
         omitted.push('AA')

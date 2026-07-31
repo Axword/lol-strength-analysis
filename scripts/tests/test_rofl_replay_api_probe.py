@@ -466,6 +466,47 @@ class UnreachableStatusTests(unittest.TestCase):
                 )
             self.assertEqual(code_req, 1)
 
+    def test_require_build_match_is_fail_closed(self) -> None:
+        transport = FakeTransport(reachable=False)
+        with tempfile.TemporaryDirectory() as tmp:
+            rofl, app = _stub_rofl_app(tmp)
+            with mock.patch(
+                "rofl_replay_api_probe.default_http_transport", transport
+            ), mock.patch("sys.stdout", new=io.StringIO()):
+                matching_code = probe.main(
+                    [
+                        "--rofl",
+                        str(rofl),
+                        "--app",
+                        str(app),
+                        "--require-build-match",
+                    ]
+                )
+            self.assertEqual(matching_code, 0)
+            self.assertEqual(transport.calls, [])
+
+            plist = app / "Contents" / "Info.plist"
+            plist.write_text(
+                plist.read_text(encoding="utf-8").replace(
+                    "16.14.794.5912", "16.15.801.3452"
+                ),
+                encoding="utf-8",
+            )
+            with mock.patch(
+                "rofl_replay_api_probe.default_http_transport", transport
+            ), mock.patch("sys.stdout", new=io.StringIO()):
+                mismatching_code = probe.main(
+                    [
+                        "--rofl",
+                        str(rofl),
+                        "--app",
+                        str(app),
+                        "--require-build-match",
+                    ]
+                )
+            self.assertEqual(mismatching_code, 5)
+            self.assertEqual(transport.calls, [])
+
 
 class EndpointEvidenceTests(unittest.TestCase):
     def test_successful_endpoint_evidence(self) -> None:

@@ -406,7 +406,11 @@ export function Calculator({ matchup, onChange, contextLabel }: Props) {
         </section>
       )}
 
-      <CombatResult result={result} />
+      <CombatResult
+        result={result}
+        matchup={matchup}
+        contextLabel={contextLabel}
+      />
     </div>
   )
 }

@@ -21,10 +21,10 @@ function App() {
 
   const subtitle =
     tab === 'map'
-      ? 'Match state · map · fight select'
+      ? 'Bookmaker research · match state · fight select'
       : tab === 'calculator'
-        ? 'Combat strength · xH bands'
-        : 'Model rules · scoreboard vs trade'
+        ? 'Trading support · model edge · evidence'
+        : 'Model policy · evidence · market-use limits'
 
   return (
     <div className="app">

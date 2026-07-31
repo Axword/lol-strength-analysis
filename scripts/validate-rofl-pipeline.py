@@ -21,7 +21,7 @@ import re
 from collections import Counter
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import Any, Dict, Iterable, List, Optional, Set
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 
 def fail(message: str) -> None:
@@ -1256,12 +1256,157 @@ def _validate_trusted_hp_evidence(
     }
 
 
+PRODUCT_AA_COVERAGE = "identity_bound_replay_packets"
+PRODUCT_AA_SOURCE_KIND = "rofl_packet"
+PRODUCT_AA_FIELD_SOURCE = "pe_proven_opcode_registry_v1"
+
+
+def _valid_sha256(value: Any) -> bool:
+    return bool(re.fullmatch(r"[0-9a-f]{64}", str(value or "")))
+
+
+def _validate_product_action_timeline(
+    rows: List[dict],
+    timeline: dict,
+    *,
+    require_aa_timeline: bool,
+) -> dict:
+    """Validate a same-match, identity-bound basic-attack product channel.
+
+    AA is an independently audited replay channel. It never contributes to
+    calculatorReady and it may not be synthesized from HP deltas, skill casts,
+    participant order, or an external research overlay.
+    """
+    provenance = dict(timeline.get("provenance") or {})
+    coverage = _norm_text(provenance.get("aaCoverage"))
+    timeline_attacks = timeline.get("basicAttack")
+    jsonl_attacks = [
+        row for row in rows if row.get("rfc461Schema") == "basic_attack"
+    ]
+    claims_product_aa = coverage == PRODUCT_AA_COVERAGE
+
+    if require_aa_timeline and not claims_product_aa:
+        fail(
+            "product gate: --require-aa-timeline requires "
+            f"aaCoverage={PRODUCT_AA_COVERAGE!r}, got {coverage!r}"
+        )
+    if not claims_product_aa:
+        return {
+            "ready": False,
+            "coverage": coverage or "none",
+            "basicAttackCount": 0,
+            "participantCount": 0,
+        }
+
+    if not isinstance(timeline_attacks, list) or not timeline_attacks:
+        fail("product gate: identity-bound AA coverage requires timeline.basicAttack")
+    if not jsonl_attacks:
+        fail("product gate: identity-bound AA coverage requires rfc461 basic_attack rows")
+    if provenance.get("aaCalculatorReadyImpact") != "none":
+        fail("product gate: AA timeline must disclose aaCalculatorReadyImpact='none'")
+    for key in (
+        "aaSourceRoflSha256",
+        "aaReplayManifestSha256",
+        "aaIdentityEvidenceSha256",
+        "aaOpcodeRegistrySha256",
+    ):
+        if not _valid_sha256(provenance.get(key)):
+            fail(f"product gate: AA timeline has invalid or missing {key}")
+    if provenance.get("aaIdentityBinding") != "stable_puuid_full_riot_id_to_net_id":
+        fail("product gate: AA timeline lacks stable PUUID/full Riot ID identity binding")
+    if int(provenance.get("aaEventCount") or -1) != len(timeline_attacks):
+        fail("product gate: aaEventCount does not match timeline.basicAttack")
+    if len(jsonl_attacks) != len(timeline_attacks):
+        fail("product gate: rfc461 and timeline basic-attack counts differ")
+
+    participants = timeline.get("participants") or []
+    expected_game_id = int(provenance.get("gameId") or 0)
+    if expected_game_id <= 0:
+        fail("product gate: AA timeline requires provenance.gameId")
+    roster_pids = {
+        int(participant.get("participantID"))
+        for participant in participants
+        if participant.get("participantID") is not None
+    }
+    if len(roster_pids) != 10:
+        fail("product gate: AA timeline requires the ten-player timeline roster")
+    duration_ms = int(timeline.get("durationMs") or 0)
+    if duration_ms <= 0:
+        fail("product gate: AA timeline requires a positive durationMs")
+
+    netid_to_pid: Dict[int, int] = {}
+    pid_to_netid: Dict[int, int] = {}
+    normalized_timeline: List[Tuple[int, int, int]] = []
+    for index, event in enumerate(timeline_attacks):
+        if not isinstance(event, dict):
+            fail(f"product gate: basicAttack[{index}] is not an object")
+        try:
+            t_ms = int(event.get("tMs"))
+            participant_id = int(event.get("participantId"))
+            net_id = int(event.get("netId"))
+        except (TypeError, ValueError):
+            fail(f"product gate: basicAttack[{index}] has invalid time/identity")
+        if t_ms < 0 or t_ms > duration_ms:
+            fail(f"product gate: basicAttack[{index}] time is outside timeline duration")
+        if participant_id not in roster_pids or net_id <= 0:
+            fail(f"product gate: basicAttack[{index}] is not bound to the timeline roster")
+        if event.get("sourceKind") != PRODUCT_AA_SOURCE_KIND:
+            fail(f"product gate: basicAttack[{index}] has unsupported sourceKind")
+        if event.get("fieldSource") != PRODUCT_AA_FIELD_SOURCE:
+            fail(f"product gate: basicAttack[{index}] has unsupported fieldSource")
+        if event.get("researchOnly") is True:
+            fail(f"product gate: basicAttack[{index}] is researchOnly")
+        if "amount" in event:
+            fail(f"product gate: basicAttack[{index}] must not contain damage amount")
+        prior_pid = netid_to_pid.setdefault(net_id, participant_id)
+        prior_netid = pid_to_netid.setdefault(participant_id, net_id)
+        if prior_pid != participant_id or prior_netid != net_id:
+            fail("product gate: AA netId and participantId mapping is not one-to-one")
+        normalized_timeline.append((t_ms, participant_id, net_id))
+
+    normalized_jsonl: List[Tuple[int, int, int]] = []
+    for index, event in enumerate(jsonl_attacks):
+        try:
+            t_ms = int(event.get("gameTime"))
+            participant_id = int(event.get("participantID"))
+            net_id = int(event.get("netId"))
+        except (TypeError, ValueError):
+            fail(f"product gate: rfc461 basic_attack row {index} has invalid identity")
+        if event.get("sourceKind") != PRODUCT_AA_SOURCE_KIND:
+            fail(f"product gate: rfc461 basic_attack row {index} has unsupported sourceKind")
+        if event.get("fieldSource") != PRODUCT_AA_FIELD_SOURCE:
+            fail(f"product gate: rfc461 basic_attack row {index} has unsupported fieldSource")
+        if event.get("participantIdSource") != "stable_identity_to_net_id":
+            fail(
+                f"product gate: rfc461 basic_attack row {index} lacks stable identity source"
+            )
+        if int(event.get("gameID") or 0) != expected_game_id:
+            fail(f"product gate: rfc461 basic_attack row {index} has wrong gameID")
+        normalized_jsonl.append((t_ms, participant_id, net_id))
+
+    if sorted(normalized_jsonl) != sorted(normalized_timeline):
+        fail("product gate: rfc461 and timeline basic-attack rows differ")
+    covered_pids = set(pid_to_netid)
+    if covered_pids != roster_pids:
+        fail(
+            "product gate: AA timeline must contain decoded attacks for all ten heroes "
+            f"(covered={len(covered_pids)}/10)"
+        )
+    return {
+        "ready": True,
+        "coverage": coverage,
+        "basicAttackCount": len(timeline_attacks),
+        "participantCount": len(covered_pids),
+    }
+
+
 def validate_product(
     jsonl: Path,
     timeline_path: Path,
     *,
     require_calculator_ready: bool = False,
     calculator_ready_policy: Optional[str] = None,
+    require_aa_timeline: bool = False,
 ) -> dict:
     """Real-match publication gates. Fail closed on fixture/schema-proof paths."""
     rows = [json.loads(line) for line in jsonl.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -1425,6 +1570,15 @@ def validate_product(
         )
     ) or provenance.get("calculatorReady") is True or tl_prov.get("calculatorReady") is True
 
+    if calculator_claim and (
+        provenance.get("combatStatsKnownWouldEmit") is False
+        or tl_prov.get("combatStatsKnownWouldEmit") is False
+    ):
+        fail(
+            "product gate: calculatorReady claim contradicts "
+            "combatStatsKnownWouldEmit=false"
+        )
+
     hp_source_ok = hp_cov in ("full", "partial") and "snapshot" not in hp_cov
     # Fountain placeholders / absent live coverage can never satisfy calculatorReady
     # even if ranks fuse or partial known-flags look dense (R21 H3).
@@ -1478,6 +1632,12 @@ def validate_product(
                 f"policy={policy!r})"
             )
 
+    aa_timeline = _validate_product_action_timeline(
+        rows,
+        timeline,
+        require_aa_timeline=require_aa_timeline,
+    )
+
     return {
         "ok": True,
         "product": True,
@@ -1495,6 +1655,10 @@ def validate_product(
         "livingPostSeedCalculatorReady": living_calculator_ready,
         "calculatorReadyMetrics": ready_metrics,
         "calculatorFrameCount": len(frames),
+        "aaTimelineReady": aa_timeline["ready"],
+        "aaCoverage": aa_timeline["coverage"],
+        "basicAttackCount": aa_timeline["basicAttackCount"],
+        "aaParticipantCount": aa_timeline["participantCount"],
         "rosterChampions": sorted(champs),
         "motionAudit": _validated_motion_audit(timeline),
     }
@@ -1529,7 +1693,17 @@ def main() -> int:
             "calculatorReadyPolicy."
         ),
     )
+    ap.add_argument(
+        "--require-aa-timeline",
+        action="store_true",
+        help=(
+            "With --product, require same-match identity-bound basic_attack rows "
+            "in both rfc461 and GameTimeline. This does not affect calculatorReady."
+        ),
+    )
     args = ap.parse_args()
+    if args.require_aa_timeline and not args.product:
+        fail("--require-aa-timeline requires --product")
     for path in (args.jsonl, args.timeline):
         if not path.exists():
             fail(f"missing {path}")
@@ -1547,6 +1721,7 @@ def main() -> int:
             args.timeline,
             require_calculator_ready=args.require_calculator_ready,
             calculator_ready_policy=args.calculator_ready_policy,
+            require_aa_timeline=args.require_aa_timeline,
         )
         result["productPublication"] = product
     print(json.dumps(result, indent=2))

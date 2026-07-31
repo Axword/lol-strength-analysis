@@ -263,8 +263,8 @@ export interface FighterLoadout {
   level: number
   itemIds: string[]
   runeId: string | null
-  /** Per-ability ranks from timeline / manual edit */
-  ranks: AbilityRanks
+  /** Per-ability ranks from timeline / manual edit; absent when ranks are unknown. */
+  ranks?: AbilityRanks
   /** Explicit form for form-dependent kits; absent uses the kit's documented default. */
   form?: ChampionForm
   /**
@@ -320,8 +320,15 @@ export type KillWindowMarkSelection =
 export interface KillWindowActionMark {
   tSec: number
   skillSlot?: number
+  /** Action class for replay parity. Defaults to `skill`. */
+  kind?: 'skill' | 'item' | 'summoner' | 'aa'
   ally?: boolean
   share?: number
+  /**
+   * The event timing is known, but a damaging connection is not. Keep the
+   * action for coverage without inventing damage.
+   */
+  logOnly?: boolean
 }
 
 export interface KillWindowFinishAaOptions {

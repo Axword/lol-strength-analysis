@@ -44,6 +44,8 @@ vision/weights/
 public/data/touch-vod-stills/
 # Local durable ROFL ingest working tree (regenerate via rofl:ingest)
 artifacts/rofl/
+# Downloaded cloud reproduction bundles (verified by repro:bundle)
+artifacts/repro-bundles/
 # Axword/MEGA pro-play ROFL + GRID series dumps (large; local-only)
 artifacts/pro-grid/**
 # Allow slim research extracts + indexes (safe to commit; ~2% of raw JSONL)
@@ -59,4 +61,3 @@ artifacts/pro-grid/**
 docs/rofl-research/*.bin
 docs/rofl-research/fixtures/events_*.jsonl
 /tmp/
-

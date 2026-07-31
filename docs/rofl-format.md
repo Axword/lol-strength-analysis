@@ -448,7 +448,7 @@ Verified on 2026-07-21 for `BR1-3263797356.rofl` (`16.14.794.5912`) vs installed
 | ROFL ↔ client build match | Exact |
 | Selection acceptance | **PROVEN** — `Gnar`→`ltetol`, `Samira`→`aizen cifer` (champion → Riot ID) |
 | **Champion coordinates** | **PROVEN in `cameraMode=focus`** at paused `playback.time≈121.83765411376953` with identity-valid selection + `cameraAttached` + zero offset: distinct per-player `cameraPosition`; reselect repeats. Full 10-player capture requires player-identity keys (9/10 with spaced display names alone due to Tahm Kench stale retain) |
-| Selection key policy | **Primary: plain Riot game name (`playerName`)** from `/liveclientdata/playerlist`; patch 16.14 live evidence showed the tagged Riot ID can be rejected while the plain name succeeds. Fallbacks: tagged `summonerName`, then champion **internal** name (`TahmKench`). Spaced display names (`Tahm Kench`) are invalid — may silently retain the previous selection with a duplicate finite cameraPosition |
+| Selection key policy | **Primary: plain Riot game name (`playerName`)** from `/liveclientdata/playerlist`; public patch 26.14 live evidence (embedded replay/build family 16.14) showed the tagged Riot ID can be rejected while the plain name succeeds. Fallbacks: tagged `summonerName`, then champion **internal** name (`TahmKench`). Spaced display names (`Tahm Kench`) are invalid — may silently retain the previous selection with a duplicate finite cameraPosition |
 | Top camera mode | **NOT proof** — selection may canonicalize while `cameraPosition` stays unchanged |
 | `positionCoverage` | `replay_api_focus_selection` only after focus + canonical nonempty + finite position; else `none` |
 | `hpCoverage` (capture) | Always `none` — Replay API has no participant HP feed for this path |
@@ -468,6 +468,11 @@ Typical macOS path: `/Applications/League of Legends.app/Contents/LoL/Config/gam
 npm run rofl:replay-api -- \
   --rofl "$HOME/Documents/League of Legends/Replays/BR1-3263797356.rofl"
 
+# Read-only build preflight (exit 5 when the installed client is incompatible)
+npm run rofl:replay-api -- \
+  --rofl "$HOME/Documents/League of Legends/Replays/BR1-3263797356.rofl" \
+  --require-build-match
+
 # Focus-mode one-champion probe (no seek / no unpause; restore or exit 3)
 npm run rofl:replay-api -- \
   --rofl "$HOME/Documents/League of Legends/Replays/BR1-3263797356.rofl" \
@@ -481,6 +486,17 @@ npm run rofl:replay-api -- \
 python3 -m unittest scripts.tests.test_rofl_replay_api_probe
 ```
 
+`--require-build-match` compares the embedded ROFL build with the installed
+League game-client build as a strictly local preflight. It makes no Replay API
+requests, never launches a replay, edits `game.cfg`, or changes client state.
+Exit code `5` is a client-build blocker; it is intentionally distinct from
+exit code `1` for an unreachable Replay API.
+
+The product capture entry points enforce the same ordering internally: both
+`rofl_ingest.py capture` and the public `rofl_replay_api_to_jsonl.py` guard now
+fail on a local build mismatch before acquiring the controller lock, querying
+Replay API endpoints, or writing capture artifacts.
+
 **Safe focus method (probe + capture):** snapshot playback/render → for `--capture-current`, **require already `paused=true` and `seeking=false`** (fail without changing playback if not) → single `cameraMode=focus` → per roster member select by **plain player identity first** (tagged identity and champion internal-name fallbacks; strip `game_character_displayname_` prefixes) → attach + zero offset → GET. Invalid if canonical identity does not match. Legitimate champion overlap is allowed; the stale-render gate rejects the unsupported case where every identity-proven selection returns one coordinate. **Restore** posts `paused`/`speed` only (**never `time`**), then GET-verifies seeking/time/paused/speed and supported render fields — HTTP 200 alone is not enough (exit 3 if restore fails).
 
 **Capture JSON:** one object with `gameTimeMs`, `roster`, per-participant `participantID`/`teamID`/`championName`/`playerName`/`level`/`items`/`alive`/`position{x,z}` / `positionSource:"replay_api_focus_selection"`, top-level `positionCoverage` + `hpCoverage:"none"`, and provenance stating it is **proof/capture data only**. Prefer `rofl:replay-jsonl` for ingestible rfc461.
@@ -490,8 +506,9 @@ python3 -m unittest scripts.tests.test_rofl_replay_api_probe
 `scripts/rofl_replay_api_to_jsonl.py` / `npm run rofl:replay-jsonl` is the
 low-level direct capture command; prefer `npm run rofl:ingest` for supported
 phase recovery and publication. Direct capture remains safe: before touching
-output/checkpoints or mutating Replay API state, it acquires the same global
-kernel-backed controller lock as ingest and completes GET-only active replay
+output/checkpoints or mutating Replay API state, it performs a local exact
+ROFL/client build check. Only after that passes does it acquire the same global
+kernel-backed controller lock as ingest and complete GET-only active replay
 verification for match/build/duration plus all ten stable player/team/champion
 identities. The lock remains held through restore/exit. It then seeks
 `[--start-ms, --end-ms]` at `--step-ms` (default 1000), captures all 10
@@ -504,7 +521,7 @@ JSONL only:
 | Positions | Real; `positionSource: replay_api_focus_selection` |
 | HP | **Omitted**; `healthSource` / `combatStatsSource` / `abilityRanksSource` = `unavailable_replay_api` |
 | Provenance | `source: replay_api_playback`, `positionCoverage: full_at_sampled_frames`, `hpCoverage: none` |
-| Seek | Allowed here — pause, POST time, poll `seeking=false` + time tolerance; **re-assert `cameraMode=focus` after every seek**; two-phase restore seeks the initial time while paused, proves it, then restores speed/paused state. Patch 16.14 ignores free `cameraPosition` writes in running top mode, so that one field is best-effort only when playback started running; stable render fields remain strict |
+| Seek | Allowed here — pause, POST time, poll `seeking=false` + time tolerance; **re-assert `cameraMode=focus` after every seek**; two-phase restore seeks the initial time while paused, proves it, then restores speed/paused state. The 26.14-era replay build (embedded build family 16.14) ignores free `cameraPosition` writes in running top mode, so that one field is best-effort only when playback started running; stable render fields remain strict |
 | Liveclient | Stable identity→participantID once; **after each settled seek** poll until `gameData.gameTime` matches target (bounded tol/timeout) with complete identities, then merge level/items/alive; never reuse initial/stale dynamics |
 | Durability | Headers are written once; every completed `stats_update` is flushed + fsynced immediately. `--resume` strictly validates provenance/build/schedule/roster and appends only a contiguous missing suffix |
 | Roles | Preserve Riot liveclient `position` (TOP/JUNGLE/MIDDLE/BOTTOM/UTILITY) → Timeline Top/Jungle/Middle/Bottom/Support in `game_info` + stats rows |
@@ -570,8 +587,9 @@ validation are green.
 8. ~~**rfc461 unknown-HP + Replay API JSONL pilot**~~ — live exact-build positions → JSONL → `GameTimeline` proven
 9. ~~**Crash-safe playback extraction**~~ — per-frame durable writes, strict `--resume`, two-phase state restore
 10. **Field decrypt** (in progress)
-   Maknee-style Replication path is wired end-to-end on fixtures; live 16.14
-   packet accessors remain blocked (see §5.3 / decrypt probe reports).
+   Maknee-style Replication path is wired end-to-end on fixtures; live 26.14-era
+   packet accessors (embedded build family 16.14) remain blocked (see §5.3 /
+   decrypt probe reports).
    **North star:** FUR vs G2 live-stats parity (`events_*_riot.jsonl` schema/field
    contract) so rebuild/enrich/Game Review/calculator/void-grub touch math behave
    like the Desktop FUR feed — see [`fur-parity-checklist.json`](rofl-research/fur-parity-checklist.json).
